@@ -1,0 +1,12 @@
+{
+    "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+        "font": { "file": "fonts/menu.fnt" },
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+        "Back" : { "up": "Back1", "down": "Back2", "pressedOffsetY": -4 },
+        "Exit" : { "up": "Exit1" , "down": "Exit2", "pressedOffsetY": -4 }
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+        "default": { "font": font}
+    }
+}
