@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * @author Adrian
  *
  */
-public abstract class AbstractMenu implements Screen {
+public abstract class AbstractScreen implements Screen {
 
     private Stage stage = new Stage();
     private Table table = new Table();

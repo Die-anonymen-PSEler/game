@@ -8,6 +8,6 @@ public class CreateApp extends Game {
     
     @Override
     public void create() {
-            setScreen(new LoadMenu());
+            setScreen(new LoadMenuView());
     }
 }

@@ -1,6 +1,6 @@
 package com.retroFactory.retroMachines.menu;
 
-public class AchievmentsMenu  extends AbstractMenu {
+public class AchievmentsMenuView  extends AbstractScreen {
 
 	public void show() {
 	}

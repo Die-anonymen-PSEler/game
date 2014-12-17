@@ -1,6 +1,6 @@
 package com.retroFactory.retroMachines.menu;
 
-public class CreateFirstProfileMenu extends AbstractMenu{
+public class SettingsMenuView  extends AbstractScreen {
 
 	public void show() {
 	}

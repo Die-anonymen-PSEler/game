@@ -1,7 +1,8 @@
 package com.retroFactory.retroMachines.menu;
 
-public class ProfileManagementMenu  extends AbstractMenu{
+public class CreateProfileMenuView  extends AbstractScreen{
 
 	public void show() {
 	}
+	
 }
