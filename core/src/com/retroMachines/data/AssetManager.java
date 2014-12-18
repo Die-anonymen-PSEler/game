@@ -1,11 +1,10 @@
-package com.retroFactory.retroMachines.menu;
+package com.retroMachines.data;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class Assets {
+public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
     public static AssetManager manager = new AssetManager();
     public static Skin menuSkin;
 
@@ -26,7 +25,8 @@ public class Assets {
     }
     // This function gets called every render() and the AssetManager pauses the loading each frame
     // so we can still run menus and loading screens smoothly
-    public static boolean update() {
+    
+    public boolean update() {
         return manager.update();
     }
 }

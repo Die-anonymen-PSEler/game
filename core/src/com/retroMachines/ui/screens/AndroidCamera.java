@@ -1,4 +1,4 @@
-package com.retroFactory.retroMachines.menu;
+package com.retroMachines.ui.screens;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 

@@ -1,4 +1,4 @@
-package com.retroFactory.retroMachines;
+package com.retroMachines;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -7,6 +7,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class RetroMachines extends ApplicationAdapter {
+	
+	public static final int WIDTH = 0;
+
+
+	public static final int HEIGHT = 0;
+	
+	
 	SpriteBatch batch;
 	Texture img;
 	
