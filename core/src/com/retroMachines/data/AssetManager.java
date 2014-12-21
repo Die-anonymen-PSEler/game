@@ -7,6 +7,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
     public static AssetManager manager = new AssetManager();
     public static Skin menuSkin;
+    
+    
+    
+    /**
+     * loads all relevant objects into the cache of the game 
+     * for flawless drawing
+     */
+    public void initialize() {
+    	//TODO implement here
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // In here we'll put everything that needs to be loaded in this format:
     // manager.load("file location in assets", fileType.class);

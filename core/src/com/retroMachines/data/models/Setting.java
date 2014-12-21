@@ -3,7 +3,8 @@ package com.retroMachines.data.models;
 public class Setting {
 	
 	/**
-	 * 
+	 * the volume of the game
+	 * range 0.0f to 1.0f
 	 */
 	private float volume;
 	
@@ -34,6 +35,9 @@ public class Setting {
 	 * @param volume the volume to set
 	 */
 	public void setVolume(float volume) {
+		if (volume > 1.0f || volume < 0.0f) {
+			throw new IllegalArgumentException("new volume is out of range");
+		}
 		this.volume = volume;
 	}
 
