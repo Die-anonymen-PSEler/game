@@ -15,17 +15,24 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 
 /**
- * Abstrakte Men� Klasse auf der alle Men�s aufbauen
+ * Abstrakte Screen Klasse auf die alle Anzeigen des Spiels handhabt. 
  * @author Adrian
  *
  */
 public abstract class AbstractScreen implements Screen {
 
-    private Stage stage = new Stage();
-    private Table table = new Table();
-    private Skin skin = AssetManager.menuSkin;
+    protected Stage stage = new Stage();
+        
+    private final RetroMachines game;
+    
+    public AbstractScreen(RetroMachines game) {
+    	this.game = game;
+	}
 
-
+    
+    /**
+     * Renders the Stage to the Screen.
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -36,9 +43,7 @@ public abstract class AbstractScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().setCamera(new AndroidCamera(RetroMachines.WIDTH, RetroMachines.HEIGHT));
-        table.invalidateHierarchy();
-        table.setSize(RetroMachines.WIDTH, RetroMachines.HEIGHT);   
+        
     }
 
     @Override
