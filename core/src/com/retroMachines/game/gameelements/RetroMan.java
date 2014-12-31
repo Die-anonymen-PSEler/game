@@ -2,8 +2,13 @@ package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.Texture;
 
 public class RetroMan {
+	
+	public static final float WIDTH = 5f;
+	
+	public static final float HEIGHT = 5f;
 	
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -11,19 +16,25 @@ public class RetroMan {
 	private boolean faceLeft;
 	
 	/**
-	 * 
+	 * the position of the character on the screen
 	 */
 	private final Vector2 pos;
 	
 	/**
-	 * 
+	 * if the character is jumping the attribute should be true
+	 * prevents jumping while the character is already in the air
 	 */
 	private boolean jumping;
 	
 	/**
-	 * 
+	 * contains a potential gameelement if the character has picked one up
 	 */
 	private GameElement element;
+	
+	/**
+	 * the texture of the character
+	 */
+	private Texture texture;
 	
 	/**
 	 * 
@@ -40,7 +51,7 @@ public class RetroMan {
 	}
 	
 	/**
-	 * 
+	 * Call this method when the character is supposed to jump
 	 */
 	public void landed() {
 		jumping = false;
