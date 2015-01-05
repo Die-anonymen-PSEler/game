@@ -22,25 +22,43 @@ public class Profile {
 	 */
 	private Statistic statistic;
 	
+	/**
+	 * constructor for a new profile
+	 * @param name Name of the profile
+	 * @param profileId Id of the profile
+	 * @param setting settings of the profile
+	 * @param statistic statistics of the profile
+	 */
 	public Profile(String name, int profileId, Setting setting, Statistic statistic) {
 		this.setProfileName(name);
 		this.setProfileId(profileId);
 		this.setSetting(setting);
 		this.statistic = statistic;
 	}
-	
+	/**
+	 * @return the name of the profile
+	 */
 	public String getProfileName() {
 		return profileName;
 	}
 
+	/**
+	 * @param profileName new name of the profile
+	 */
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
 	}
 
+	/**
+	 * @return the Id of the profile
+	 */
 	public int getProfileId() {
 		return profileId;
 	}
 
+	/**
+	 * @param profileId new Id of the profile
+	 */
 	public void setProfileId(int profileId) {
 		this.profileId = profileId;
 	}
