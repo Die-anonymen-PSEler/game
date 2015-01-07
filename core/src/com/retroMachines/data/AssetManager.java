@@ -2,6 +2,8 @@ package com.retroMachines.data;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
@@ -16,6 +18,16 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
      */
     public void initialize() {
     	//TODO implement here
+    }
+
+
+    /**
+     * Loads a map from the Storage based on it's id
+     * @param levelId the id of the map to load
+     * @return the map loaded as a TiledMap
+     */
+    public static TiledMap loadMap(int levelId) {
+    	return new TmxMapLoader().load(("/maps/level" + levelId + ".tmx"));
     }
     
     
