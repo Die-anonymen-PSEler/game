@@ -81,6 +81,15 @@ public class RetroMan {
 		if (hasPickedUpElement()) {
 			element.render(deltaTime);
 		}
+		//TODO RENDER myself
 		return null;
+	}
+
+	public boolean canJump() {
+		return !jumping;
+	}
+
+	public Vector2 getPos() {
+		return pos;
 	}
 }
