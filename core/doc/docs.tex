@@ -1,0 +1,3393 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{color}
+\usepackage{ifthen}
+\usepackage{makeidx}
+\usepackage{ifpdf}
+\usepackage[headings]{fullpage}
+\ifpdf \usepackage[pdftex, pdfpagemode={UseOutlines},bookmarks,colorlinks,linkcolor={blue},plainpages=false,pdfpagelabels,citecolor={red},breaklinks=true]{hyperref}
+  \usepackage[pdftex]{graphicx}
+  \pdfcompresslevel=9
+  \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+  \usepackage[dvips]{graphicx}
+\fi
+
+\newcommand{\entityintro}[3]{%
+  \hbox to \hsize{%
+    \vbox{%
+      \hbox to .2in{}%
+    }%
+    {\bf  #1}%
+    \dotfill\pageref{#2}%
+  }
+  \makebox[\hsize]{%
+    \parbox{.4in}{}%
+    \parbox[l]{5in}{%
+      \vspace{1mm}%
+      #3%
+      \vspace{1mm}%
+    }%
+  }%
+}
+\newcommand{\refdefined}[1]{
+\expandafter\ifx\csname r@#1\endcsname\relax
+\relax\else
+{$($in \ref{#1}, page \pageref{#1}$)$}\fi}
+\date{\today}
+\chardef\textbackslash=`\\
+\makeindex
+\begin{document}
+\sloppy
+\addtocontents{toc}{\protect\markboth{Contents}{Contents}}
+\tableofcontents
+\chapter{Package com.retroMachines.game.Map}{
+\label{com.retroMachines.game.Map}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{LambdaToMap}{com.retroMachines.game.Map.LambdaToMap}{}
+\entityintro{Map}{com.retroMachines.game.Map.Map}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.game.Map.LambdaToMap}\index{LambdaToMap}Class LambdaToMap}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class LambdaToMap
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf LambdaToMap()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getMapFromTerm(String)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{LambdaToMap()}
+{\bf  LambdaToMap}\\
+\texttt{public\ {\bf  LambdaToMap}()
+\label{com.retroMachines.game.Map.LambdaToMap()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getMapFromTerm(String)}
+{\bf  getMapFromTerm}\\
+\texttt{public Map\ {\bf  getMapFromTerm}(\texttt{java.lang.String} {\bf  lambda})
+\label{com.retroMachines.game.Map.LambdaToMap.getMapFromTerm(java.lang.String)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.Map.Map}\index{Map}Class Map}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Map
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Map()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Map()}
+{\bf  Map}\\
+\texttt{public\ {\bf  Map}()
+\label{com.retroMachines.game.Map.Map()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.data}{
+\label{com.retroMachines.data}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{AssetManager}{com.retroMachines.data.AssetManager}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.data.AssetManager}\index{AssetManager}Class AssetManager}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class AssetManager
+\\ {\bf  extends} com.badlogic.gdx.assets.AssetManager
+\refdefined{com.badlogic.gdx.assets.AssetManager}}
+\subsection{Field summary}{
+\begin{verse}
+{\bf manager} \\
+{\bf menuSkin} \\
+\end{verse}
+}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf AssetManager()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf initialize()} loads all relevant objects into the cache of the game for flawless drawing\\
+{\bf loadMap(int)} Loads a map from the Storage based on it's id\\
+{\bf queueLoading()} \\
+{\bf setMenuSkin()} \\
+{\bf update()} \\
+\end{verse}
+}
+\subsection{Fields}{
+\begin{itemize}
+\item{
+\index{manager}
+\label{com.retroMachines.data.AssetManager.manager}public static AssetManager {\bf  manager}}
+\item{
+\index{menuSkin}
+\label{com.retroMachines.data.AssetManager.menuSkin}public static com.badlogic.gdx.scenes.scene2d.ui.Skin {\bf  menuSkin}}
+\end{itemize}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{AssetManager()}
+{\bf  AssetManager}\\
+\texttt{public\ {\bf  AssetManager}()
+\label{com.retroMachines.data.AssetManager()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{initialize()}
+{\bf  initialize}\\
+\texttt{public void\ {\bf  initialize}()
+\label{com.retroMachines.data.AssetManager.initialize()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+loads all relevant objects into the cache of the game for flawless drawing
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{loadMap(int)}
+{\bf  loadMap}\\
+\texttt{public static com.badlogic.gdx.maps.tiled.TiledMap\ {\bf  loadMap}(\texttt{int} {\bf  levelId})
+\label{com.retroMachines.data.AssetManager.loadMap(int)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+Loads a map from the Storage based on it's id
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{levelId} -- the id of the map to load}
+  \end{itemize}
+}%end item
+\item{{\bf  Returns} -- 
+the map loaded as a TiledMap 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{queueLoading()}
+{\bf  queueLoading}\\
+\texttt{public static void\ {\bf  queueLoading}()
+\label{com.retroMachines.data.AssetManager.queueLoading()}}%end signature
+}%end item
+\item{ 
+\index{setMenuSkin()}
+{\bf  setMenuSkin}\\
+\texttt{public static void\ {\bf  setMenuSkin}()
+\label{com.retroMachines.data.AssetManager.setMenuSkin()}}%end signature
+}%end item
+\item{ 
+\index{update()}
+{\bf  update}\\
+\texttt{public synchronized boolean\ {\bf  update}()
+\label{com.retroMachines.data.AssetManager.update()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AssetManager }{
+\texttt{com.badlogic.gdx.assets.AssetManager} {\small 
+\refdefined{com.badlogic.gdx.assets.AssetManager}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  clear}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized boolean {\bf  containsAsset}(\texttt{java.lang.Object} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  finishLoading}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Object {\bf  get}(\texttt{AssetDescriptor} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Object {\bf  get}(\texttt{java.lang.String} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Object {\bf  get}(\texttt{java.lang.String} {\bf  arg0},
+\texttt{java.lang.Class} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Array {\bf  getAll}(\texttt{java.lang.Class} {\bf  arg0},
+\texttt{com.badlogic.gdx.utils.Array} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized String {\bf  getAssetFileName}(\texttt{java.lang.Object} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Array {\bf  getAssetNames}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Class {\bf  getAssetType}(\texttt{java.lang.String} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized Array {\bf  getDependencies}(\texttt{java.lang.String} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized String {\bf  getDiagnostics}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized int {\bf  getLoadedAssets}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public AssetLoader {\bf  getLoader}(\texttt{java.lang.Class} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public AssetLoader {\bf  getLoader}(\texttt{java.lang.Class} {\bf  arg0},
+\texttt{java.lang.String} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Logger {\bf  getLogger}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized float {\bf  getProgress}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized int {\bf  getQueuedAssets}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized int {\bf  getReferenceCount}(\texttt{java.lang.String} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized boolean {\bf  isLoaded}(\texttt{java.lang.String} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized boolean {\bf  isLoaded}(\texttt{java.lang.String} {\bf  arg0},
+\texttt{java.lang.Class} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  load}(\texttt{AssetDescriptor} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  load}(\texttt{java.lang.String} {\bf  arg0},
+\texttt{java.lang.Class} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  load}(\texttt{java.lang.String} {\bf  arg0},
+\texttt{java.lang.Class} {\bf  arg1},
+\texttt{AssetLoaderParameters} {\bf  arg2})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  setErrorListener}(\texttt{AssetErrorListener} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  setLoader}(\texttt{java.lang.Class} {\bf  arg0},
+\texttt{loaders.AssetLoader} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  setLoader}(\texttt{java.lang.Class} {\bf  arg0},
+\texttt{java.lang.String} {\bf  arg1},
+\texttt{loaders.AssetLoader} {\bf  arg2})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  setLogger}(\texttt{com.badlogic.gdx.utils.Logger} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  setReferenceCount}(\texttt{java.lang.String} {\bf  arg0},
+\texttt{int} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized void {\bf  unload}(\texttt{java.lang.String} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public synchronized boolean {\bf  update}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public boolean {\bf  update}(\texttt{int} {\bf  arg0})
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.game}{
+\label{com.retroMachines.game}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{Controller}{com.retroMachines.game.Controller}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.game.Controller}\index{Controller}Class Controller}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Controller
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Controller()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Controller()}
+{\bf  Controller}\\
+\texttt{public\ {\bf  Controller}()
+\label{com.retroMachines.game.Controller()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.data.models}{
+\label{com.retroMachines.data.models}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{Profile}{com.retroMachines.data.models.Profile}{}
+\entityintro{Setting}{com.retroMachines.data.models.Setting}{}
+\entityintro{Statistic}{com.retroMachines.data.models.Statistic}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.data.models.Profile}\index{Profile}Class Profile}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Profile
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Profile(String, int, Setting, Statistic)} constructor for a new profile\\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getProfileId()} \\
+{\bf getProfileName()} \\
+{\bf getSetting()} \\
+{\bf setProfileId(int)} \\
+{\bf setProfileName(String)} \\
+{\bf setSetting(Setting)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Profile(String, int, Setting, Statistic)}
+{\bf  Profile}\\
+\texttt{public\ {\bf  Profile}(\texttt{java.lang.String} {\bf  name},
+\texttt{int} {\bf  profileId},
+\texttt{Setting} {\bf  setting},
+\texttt{Statistic} {\bf  statistic})
+\label{com.retroMachines.data.models.Profile(java.lang.String, int, com.retroMachines.data.models.Setting, com.retroMachines.data.models.Statistic)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+constructor for a new profile
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{name} -- Name of the profile}
+   \item{
+\texttt{profileId} -- Id of the profile}
+   \item{
+\texttt{setting} -- settings of the profile}
+   \item{
+\texttt{statistic} -- statistics of the profile}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getProfileId()}
+{\bf  getProfileId}\\
+\texttt{public int\ {\bf  getProfileId}()
+\label{com.retroMachines.data.models.Profile.getProfileId()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the Id of the profile 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{getProfileName()}
+{\bf  getProfileName}\\
+\texttt{public java.lang.String\ {\bf  getProfileName}()
+\label{com.retroMachines.data.models.Profile.getProfileName()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the name of the profile 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{getSetting()}
+{\bf  getSetting}\\
+\texttt{public Setting\ {\bf  getSetting}()
+\label{com.retroMachines.data.models.Profile.getSetting()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the setting 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{setProfileId(int)}
+{\bf  setProfileId}\\
+\texttt{public void\ {\bf  setProfileId}(\texttt{int} {\bf  profileId})
+\label{com.retroMachines.data.models.Profile.setProfileId(int)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{profileId} -- new Id of the profile}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{setProfileName(String)}
+{\bf  setProfileName}\\
+\texttt{public void\ {\bf  setProfileName}(\texttt{java.lang.String} {\bf  profileName})
+\label{com.retroMachines.data.models.Profile.setProfileName(java.lang.String)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{profileName} -- new name of the profile}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{setSetting(Setting)}
+{\bf  setSetting}\\
+\texttt{public void\ {\bf  setSetting}(\texttt{Setting} {\bf  setting})
+\label{com.retroMachines.data.models.Profile.setSetting(com.retroMachines.data.models.Setting)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{setting} -- the setting to set}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.data.models.Setting}\index{Setting}Class Setting}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Setting
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Setting(boolean, boolean, float)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getVolume()} \\
+{\bf isLeftControl()} \\
+{\bf isSoundOnOff()} \\
+{\bf setLeftControl(boolean)} \\
+{\bf setSoundOnOff(boolean)} \\
+{\bf setVolume(float)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Setting(boolean, boolean, float)}
+{\bf  Setting}\\
+\texttt{public\ {\bf  Setting}(\texttt{boolean} {\bf  leftControl},
+\texttt{boolean} {\bf  soundOnOff},
+\texttt{float} {\bf  volume})
+\label{com.retroMachines.data.models.Setting(boolean, boolean, float)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getVolume()}
+{\bf  getVolume}\\
+\texttt{public float\ {\bf  getVolume}()
+\label{com.retroMachines.data.models.Setting.getVolume()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the volume 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{isLeftControl()}
+{\bf  isLeftControl}\\
+\texttt{public boolean\ {\bf  isLeftControl}()
+\label{com.retroMachines.data.models.Setting.isLeftControl()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the leftControl 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{isSoundOnOff()}
+{\bf  isSoundOnOff}\\
+\texttt{public boolean\ {\bf  isSoundOnOff}()
+\label{com.retroMachines.data.models.Setting.isSoundOnOff()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the soundOnOff 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{setLeftControl(boolean)}
+{\bf  setLeftControl}\\
+\texttt{public void\ {\bf  setLeftControl}(\texttt{boolean} {\bf  leftControl})
+\label{com.retroMachines.data.models.Setting.setLeftControl(boolean)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{leftControl} -- the leftControl to set}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{setSoundOnOff(boolean)}
+{\bf  setSoundOnOff}\\
+\texttt{public void\ {\bf  setSoundOnOff}(\texttt{boolean} {\bf  soundOnOff})
+\label{com.retroMachines.data.models.Setting.setSoundOnOff(boolean)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{soundOnOff} -- the soundOnOff to set}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{setVolume(float)}
+{\bf  setVolume}\\
+\texttt{public void\ {\bf  setVolume}(\texttt{float} {\bf  volume})
+\label{com.retroMachines.data.models.Setting.setVolume(float)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{volume} -- the volume to set}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.data.models.Statistic}\index{Statistic}Class Statistic}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Statistic
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Statistic(int, int, int)} creates a new instance of Statistic and assigns all the variables to the instance\\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getLevelsComplete()} \\
+{\bf getPlaytime()} \\
+{\bf getStepCounter()} \\
+{\bf setLevelsComplete(int)} \\
+{\bf setPlaytime(int)} \\
+{\bf setStepCounter(int)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Statistic(int, int, int)}
+{\bf  Statistic}\\
+\texttt{public\ {\bf  Statistic}(\texttt{int} {\bf  playtime},
+\texttt{int} {\bf  levelsComplete},
+\texttt{int} {\bf  stepCounter})
+\label{com.retroMachines.data.models.Statistic(int, int, int)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+creates a new instance of Statistic and assigns all the variables to the instance
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{playtime} -- }
+   \item{
+\texttt{levelsComplete} -- }
+   \item{
+\texttt{stepCounter} -- }
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getLevelsComplete()}
+{\bf  getLevelsComplete}\\
+\texttt{public int\ {\bf  getLevelsComplete}()
+\label{com.retroMachines.data.models.Statistic.getLevelsComplete()}}%end signature
+}%end item
+\item{ 
+\index{getPlaytime()}
+{\bf  getPlaytime}\\
+\texttt{public int\ {\bf  getPlaytime}()
+\label{com.retroMachines.data.models.Statistic.getPlaytime()}}%end signature
+}%end item
+\item{ 
+\index{getStepCounter()}
+{\bf  getStepCounter}\\
+\texttt{public int\ {\bf  getStepCounter}()
+\label{com.retroMachines.data.models.Statistic.getStepCounter()}}%end signature
+}%end item
+\item{ 
+\index{setLevelsComplete(int)}
+{\bf  setLevelsComplete}\\
+\texttt{public void\ {\bf  setLevelsComplete}(\texttt{int} {\bf  levelsComplete})
+\label{com.retroMachines.data.models.Statistic.setLevelsComplete(int)}}%end signature
+}%end item
+\item{ 
+\index{setPlaytime(int)}
+{\bf  setPlaytime}\\
+\texttt{public void\ {\bf  setPlaytime}(\texttt{int} {\bf  playtime})
+\label{com.retroMachines.data.models.Statistic.setPlaytime(int)}}%end signature
+}%end item
+\item{ 
+\index{setStepCounter(int)}
+{\bf  setStepCounter}\\
+\texttt{public void\ {\bf  setStepCounter}(\texttt{int} {\bf  stepCounter})
+\label{com.retroMachines.data.models.Statistic.setStepCounter(int)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.ui.screens}{
+\label{com.retroMachines.ui.screens}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{AbstractScreen}{com.retroMachines.ui.screens.AbstractScreen}{Abstrakte Screen Klasse auf die alle Anzeigen des Spiels handhabt.}
+\entityintro{AndroidCamera}{com.retroMachines.ui.screens.AndroidCamera}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.ui.screens.AbstractScreen}\index{AbstractScreen}Class AbstractScreen}{
+\vskip .1in 
+Abstrakte Screen Klasse auf die alle Anzeigen des Spiels handhabt.\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class AbstractScreen
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}\\ {\bf  implements} 
+com.badlogic.gdx.Screen}
+\subsection{All known subclasses}{EvaluationScreen\small{\refdefined{com.retroMachines.ui.screens.game.EvaluationScreen}}, GameScreen\small{\refdefined{com.retroMachines.ui.screens.game.GameScreen}}, ProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileMenuScreen}}, AboutMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AboutMenuScreen}}, CreateFirstProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}}, SettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.SettingsMenuScreen}}, CreateProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}}, ProfileManagementMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}}, AchievmentsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen}}, LoadMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LoadMenuScreen}}, LevelMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LevelMenuScreen}}, MenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}, MainMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MainMenuScreen}}, StageMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.StageMenuScreen}}, ProfileSettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf AbstractScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf dispose()} \\
+{\bf hide()} \\
+{\bf pause()} \\
+{\bf render(float)} Renders the Stage to the Screen.\\
+{\bf resize(int, int)} \\
+{\bf resume()} \\
+{\bf show()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{AbstractScreen(RetroMachines)}
+{\bf  AbstractScreen}\\
+\texttt{public\ {\bf  AbstractScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.AbstractScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{dispose()}
+{\bf  dispose}\\
+\texttt{ void\ {\bf  dispose}()
+\label{com.retroMachines.ui.screens.AbstractScreen.dispose()}}%end signature
+}%end item
+\item{ 
+\index{hide()}
+{\bf  hide}\\
+\texttt{ void\ {\bf  hide}()
+\label{com.retroMachines.ui.screens.AbstractScreen.hide()}}%end signature
+}%end item
+\item{ 
+\index{pause()}
+{\bf  pause}\\
+\texttt{ void\ {\bf  pause}()
+\label{com.retroMachines.ui.screens.AbstractScreen.pause()}}%end signature
+}%end item
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public void\ {\bf  render}(\texttt{float} {\bf  delta})
+\label{com.retroMachines.ui.screens.AbstractScreen.render(float)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+Renders the Stage to the Screen.
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{resize(int, int)}
+{\bf  resize}\\
+\texttt{ void\ {\bf  resize}(\texttt{int} {\bf  arg0},
+\texttt{int} {\bf  arg1})
+\label{com.retroMachines.ui.screens.AbstractScreen.resize(int, int)}}%end signature
+}%end item
+\item{ 
+\index{resume()}
+{\bf  resume}\\
+\texttt{ void\ {\bf  resume}()
+\label{com.retroMachines.ui.screens.AbstractScreen.resume()}}%end signature
+}%end item
+\item{ 
+\index{show()}
+{\bf  show}\\
+\texttt{ void\ {\bf  show}()
+\label{com.retroMachines.ui.screens.AbstractScreen.show()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.AndroidCamera}\index{AndroidCamera}Class AndroidCamera}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class AndroidCamera
+\\ {\bf  extends} com.badlogic.gdx.graphics.OrthographicCamera
+\refdefined{com.badlogic.gdx.graphics.OrthographicCamera}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf AndroidCamera(int, int)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{AndroidCamera(int, int)}
+{\bf  AndroidCamera}\\
+\texttt{public\ {\bf  AndroidCamera}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+\label{com.retroMachines.ui.screens.AndroidCamera(int, int)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class OrthographicCamera }{
+\texttt{com.badlogic.gdx.graphics.OrthographicCamera} {\small 
+\refdefined{com.badlogic.gdx.graphics.OrthographicCamera}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  rotate}(\texttt{float} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  setToOrtho}(\texttt{boolean} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  setToOrtho}(\texttt{boolean} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  translate}(\texttt{float} {\bf  arg0},
+\texttt{float} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  translate}(\texttt{com.badlogic.gdx.math.Vector2} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  update}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  update}(\texttt{boolean} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public {\bf  zoom}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Camera }{
+\texttt{com.badlogic.gdx.graphics.Camera} {\small 
+\refdefined{com.badlogic.gdx.graphics.Camera}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  combined}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  direction}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public {\bf  far}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  frustum}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Ray {\bf  getPickRay}(\texttt{float} {\bf  arg0},
+\texttt{float} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Ray {\bf  getPickRay}(\texttt{float} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2},
+\texttt{float} {\bf  arg3},
+\texttt{float} {\bf  arg4},
+\texttt{float} {\bf  arg5})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  invProjectionView}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  lookAt}(\texttt{float} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  lookAt}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public {\bf  near}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  normalizeUp}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  position}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Vector3 {\bf  project}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Vector3 {\bf  project}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2},
+\texttt{float} {\bf  arg3},
+\texttt{float} {\bf  arg4})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  projection}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  rotate}(\texttt{float} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2},
+\texttt{float} {\bf  arg3})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  rotate}(\texttt{com.badlogic.gdx.math.Matrix4} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  rotate}(\texttt{com.badlogic.gdx.math.Quaternion} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  rotate}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0},
+\texttt{float} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  rotateAround}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0},
+\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg1},
+\texttt{float} {\bf  arg2})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  transform}(\texttt{com.badlogic.gdx.math.Matrix4} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  translate}(\texttt{float} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  translate}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Vector3 {\bf  unproject}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Vector3 {\bf  unproject}(\texttt{com.badlogic.gdx.math.Vector3} {\bf  arg0},
+\texttt{float} {\bf  arg1},
+\texttt{float} {\bf  arg2},
+\texttt{float} {\bf  arg3},
+\texttt{float} {\bf  arg4})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  up}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  update}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  update}(\texttt{boolean} {\bf  arg0})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public final {\bf  view}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public {\bf  viewportHeight}}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public {\bf  viewportWidth}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines}{
+\label{com.retroMachines}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{RetroMachines}{com.retroMachines.RetroMachines}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.RetroMachines}\index{RetroMachines}Class RetroMachines}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class RetroMachines
+\\ {\bf  extends} com.badlogic.gdx.Game
+\refdefined{com.badlogic.gdx.Game}}
+\subsection{Field summary}{
+\begin{verse}
+{\bf HEIGHT} \\
+{\bf WIDTH} \\
+\end{verse}
+}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf RetroMachines()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf create()} \\
+{\bf getProfileController()} \\
+{\bf getSettingController()} \\
+\end{verse}
+}
+\subsection{Fields}{
+\begin{itemize}
+\item{
+\index{WIDTH}
+\label{com.retroMachines.RetroMachines.WIDTH}public static final int {\bf  WIDTH}}
+\item{
+\index{HEIGHT}
+\label{com.retroMachines.RetroMachines.HEIGHT}public static final int {\bf  HEIGHT}}
+\end{itemize}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{RetroMachines()}
+{\bf  RetroMachines}\\
+\texttt{public\ {\bf  RetroMachines}()
+\label{com.retroMachines.RetroMachines()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{create()}
+{\bf  create}\\
+\texttt{public void\ {\bf  create}()
+\label{com.retroMachines.RetroMachines.create()}}%end signature
+}%end item
+\item{ 
+\index{getProfileController()}
+{\bf  getProfileController}\\
+\texttt{public game.controllers.ProfileController\ {\bf  getProfileController}()
+\label{com.retroMachines.RetroMachines.getProfileController()}}%end signature
+}%end item
+\item{ 
+\index{getSettingController()}
+{\bf  getSettingController}\\
+\texttt{public game.controllers.SettingController\ {\bf  getSettingController}()
+\label{com.retroMachines.RetroMachines.getSettingController()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Game }{
+\texttt{com.badlogic.gdx.Game} {\small 
+\refdefined{com.badlogic.gdx.Game}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public Screen {\bf  getScreen}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  arg0},
+\texttt{int} {\bf  arg1})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  setScreen}(\texttt{Screen} {\bf  arg0})
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.ui.screens.game}{
+\label{com.retroMachines.ui.screens.game}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{EvaluationScreen}{com.retroMachines.ui.screens.game.EvaluationScreen}{}
+\entityintro{GameScreen}{com.retroMachines.ui.screens.game.GameScreen}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.ui.screens.game.EvaluationScreen}\index{EvaluationScreen}Class EvaluationScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class EvaluationScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf EvaluationScreen(RetroMachines, GameController)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{EvaluationScreen(RetroMachines, GameController)}
+{\bf  EvaluationScreen}\\
+\texttt{public\ {\bf  EvaluationScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game},
+\texttt{com.retroMachines.game.controllers.GameController} {\bf  gameController})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen(com.retroMachines.RetroMachines, com.retroMachines.game.controllers.GameController)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.game.GameScreen}\index{GameScreen}Class GameScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class GameScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf GameScreen(RetroMachines, GameController)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf dispose()} \\
+{\bf render(float)} \\
+{\bf setMap(TiledMap)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{GameScreen(RetroMachines, GameController)}
+{\bf  GameScreen}\\
+\texttt{public\ {\bf  GameScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game},
+\texttt{com.retroMachines.game.controllers.GameController} {\bf  gameController})
+\label{com.retroMachines.ui.screens.game.GameScreen(com.retroMachines.RetroMachines, com.retroMachines.game.controllers.GameController)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{dispose()}
+{\bf  dispose}\\
+\texttt{ void\ {\bf  dispose}()
+\label{com.retroMachines.ui.screens.game.GameScreen.dispose()}}%end signature
+}%end item
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public void\ {\bf  render}(\texttt{float} {\bf  delta})
+\label{com.retroMachines.ui.screens.game.GameScreen.render(float)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from com.retroMachines.ui.screens.AbstractScreen{\small \refdefined{com.retroMachines.ui.screens.AbstractScreen}} }
+
+Renders the Stage to the Screen.
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{setMap(TiledMap)}
+{\bf  setMap}\\
+\texttt{public void\ {\bf  setMap}(\texttt{com.badlogic.gdx.maps.tiled.TiledMap} {\bf  map})
+\label{com.retroMachines.ui.screens.game.GameScreen.setMap(com.badlogic.gdx.maps.tiled.TiledMap)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.ui.screens.menus}{
+\label{com.retroMachines.ui.screens.menus}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{AboutMenuScreen}{com.retroMachines.ui.screens.menus.AboutMenuScreen}{}
+\entityintro{AchievmentsMenuScreen}{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen}{}
+\entityintro{CreateFirstProfileMenuScreen}{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}{}
+\entityintro{CreateProfileMenuScreen}{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}{}
+\entityintro{LevelMenuScreen}{com.retroMachines.ui.screens.menus.LevelMenuScreen}{}
+\entityintro{LoadMenuScreen}{com.retroMachines.ui.screens.menus.LoadMenuScreen}{}
+\entityintro{MainMenuScreen}{com.retroMachines.ui.screens.menus.MainMenuScreen}{}
+\entityintro{MenuScreen}{com.retroMachines.ui.screens.menus.MenuScreen}{abstrakte MenuScreen klasse die die grundsätzliche Struktur eines Menüs wiederspiegelt.}
+\entityintro{ProfileManagementMenuScreen}{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}{}
+\entityintro{ProfileMenuScreen}{com.retroMachines.ui.screens.menus.ProfileMenuScreen}{}
+\entityintro{ProfileSettingsMenuScreen}{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen}{}
+\entityintro{SettingsMenuScreen}{com.retroMachines.ui.screens.menus.SettingsMenuScreen}{}
+\entityintro{StageMenuScreen}{com.retroMachines.ui.screens.menus.StageMenuScreen}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.ui.screens.menus.AboutMenuScreen}\index{AboutMenuScreen}Class AboutMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class AboutMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf AboutMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf show()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{AboutMenuScreen(RetroMachines)}
+{\bf  AboutMenuScreen}\\
+\texttt{public\ {\bf  AboutMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.AboutMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{show()}
+{\bf  show}\\
+\texttt{ void\ {\bf  show}()
+\label{com.retroMachines.ui.screens.menus.AboutMenuScreen.show()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen}\index{AchievmentsMenuScreen}Class AchievmentsMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class AchievmentsMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf AchievmentsMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{AchievmentsMenuScreen(RetroMachines)}
+{\bf  AchievmentsMenuScreen}\\
+\texttt{public\ {\bf  AchievmentsMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}\index{CreateFirstProfileMenuScreen}Class CreateFirstProfileMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class CreateFirstProfileMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf CreateFirstProfileMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{CreateFirstProfileMenuScreen(RetroMachines)}
+{\bf  CreateFirstProfileMenuScreen}\\
+\texttt{public\ {\bf  CreateFirstProfileMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}\index{CreateProfileMenuScreen}Class CreateProfileMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class CreateProfileMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf CreateProfileMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{CreateProfileMenuScreen(RetroMachines)}
+{\bf  CreateProfileMenuScreen}\\
+\texttt{public\ {\bf  CreateProfileMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.LevelMenuScreen}\index{LevelMenuScreen}Class LevelMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class LevelMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf LevelMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{LevelMenuScreen(RetroMachines)}
+{\bf  LevelMenuScreen}\\
+\texttt{public\ {\bf  LevelMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.LevelMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.LoadMenuScreen}\index{LoadMenuScreen}Class LoadMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class LoadMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf LoadMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf show()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{LoadMenuScreen(RetroMachines)}
+{\bf  LoadMenuScreen}\\
+\texttt{public\ {\bf  LoadMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.LoadMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{show()}
+{\bf  show}\\
+\texttt{ void\ {\bf  show}()
+\label{com.retroMachines.ui.screens.menus.LoadMenuScreen.show()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.MainMenuScreen}\index{MainMenuScreen}Class MainMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class MainMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf MainMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf show()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{MainMenuScreen(RetroMachines)}
+{\bf  MainMenuScreen}\\
+\texttt{public\ {\bf  MainMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.MainMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{show()}
+{\bf  show}\\
+\texttt{ void\ {\bf  show}()
+\label{com.retroMachines.ui.screens.menus.MainMenuScreen.show()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.MenuScreen}\index{MenuScreen}Class MenuScreen}{
+\vskip .1in 
+abstrakte MenuScreen klasse die die grundsätzliche Struktur eines Menüs wiederspiegelt.\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class MenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+\subsection{All known subclasses}{ProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileMenuScreen}}, CreateFirstProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}}, SettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.SettingsMenuScreen}}, CreateProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}}, ProfileManagementMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}}, AchievmentsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen}}, LevelMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LevelMenuScreen}}, MainMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MainMenuScreen}}, StageMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.StageMenuScreen}}, ProfileSettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf MenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{MenuScreen(RetroMachines)}
+{\bf  MenuScreen}\\
+\texttt{public\ {\bf  MenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.MenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}\index{ProfileManagementMenuScreen}Class ProfileManagementMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class ProfileManagementMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf ProfileManagementMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{ProfileManagementMenuScreen(RetroMachines)}
+{\bf  ProfileManagementMenuScreen}\\
+\texttt{public\ {\bf  ProfileManagementMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.ProfileMenuScreen}\index{ProfileMenuScreen}Class ProfileMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class ProfileMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf ProfileMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{ProfileMenuScreen(RetroMachines)}
+{\bf  ProfileMenuScreen}\\
+\texttt{public\ {\bf  ProfileMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.ProfileMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen}\index{ProfileSettingsMenuScreen}Class ProfileSettingsMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class ProfileSettingsMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf ProfileSettingsMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{ProfileSettingsMenuScreen(RetroMachines)}
+{\bf  ProfileSettingsMenuScreen}\\
+\texttt{public\ {\bf  ProfileSettingsMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.SettingsMenuScreen}\index{SettingsMenuScreen}Class SettingsMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class SettingsMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf SettingsMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SettingsMenuScreen(RetroMachines)}
+{\bf  SettingsMenuScreen}\\
+\texttt{public\ {\bf  SettingsMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.SettingsMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.ui.screens.menus.StageMenuScreen}\index{StageMenuScreen}Class StageMenuScreen}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class StageMenuScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.menus.MenuScreen
+\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf StageMenuScreen(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{StageMenuScreen(RetroMachines)}
+{\bf  StageMenuScreen}\\
+\texttt{public\ {\bf  StageMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.ui.screens.menus.StageMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  dispose}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.lambda}{
+\label{com.retroMachines.lambda}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{Abstraction}{com.retroMachines.lambda.Abstraction}{}
+\entityintro{Application}{com.retroMachines.lambda.Application}{}
+\entityintro{Tree}{com.retroMachines.lambda.Tree}{}
+\entityintro{Variable}{com.retroMachines.lambda.Variable}{}
+\entityintro{Vertex}{com.retroMachines.lambda.Vertex}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.lambda.Abstraction}\index{Abstraction}Class Abstraction}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Abstraction
+\\ {\bf  extends} com.retroMachines.lambda.Vertex
+\refdefined{com.retroMachines.lambda.Vertex}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Abstraction(Tree, Variable)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf toString()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Abstraction(Tree, Variable)}
+{\bf  Abstraction}\\
+\texttt{public\ {\bf  Abstraction}(\texttt{Tree} {\bf  tree},
+\texttt{Variable} {\bf  var})
+\label{com.retroMachines.lambda.Abstraction(com.retroMachines.lambda.Tree, com.retroMachines.lambda.Variable)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{toString()}
+{\bf  toString}\\
+\texttt{public java.lang.String\ {\bf  toString}()
+\label{com.retroMachines.lambda.Abstraction.toString()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Vertex }{
+\texttt{com.retroMachines.lambda.Vertex} {\small 
+\refdefined{com.retroMachines.lambda.Vertex}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public boolean {\bf  setEdge}(\texttt{Vertex} {\bf  v})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract String {\bf  toString}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.Application}\index{Application}Class Application}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Application
+\\ {\bf  extends} com.retroMachines.lambda.Vertex
+\refdefined{com.retroMachines.lambda.Vertex}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Application(Tree, Tree)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf toString()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Application(Tree, Tree)}
+{\bf  Application}\\
+\texttt{public\ {\bf  Application}(\texttt{Tree} {\bf  t1},
+\texttt{Tree} {\bf  t2})
+\label{com.retroMachines.lambda.Application(com.retroMachines.lambda.Tree, com.retroMachines.lambda.Tree)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{toString()}
+{\bf  toString}\\
+\texttt{public java.lang.String\ {\bf  toString}()
+\label{com.retroMachines.lambda.Application.toString()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Vertex }{
+\texttt{com.retroMachines.lambda.Vertex} {\small 
+\refdefined{com.retroMachines.lambda.Vertex}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public boolean {\bf  setEdge}(\texttt{Vertex} {\bf  v})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract String {\bf  toString}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.Tree}\index{Tree}Class Tree}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Tree
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Tree(String)} creates Tree representation of given lambda-term in string representation\\
+{\bf Tree(Vertex)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf alphaConversion(Variable)} fulfills alphConversion on given variable.\\
+{\bf betaReduction()} fulfills one step of beta-reduction\\
+{\bf toString()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Tree(String)}
+{\bf  Tree}\\
+\texttt{public\ {\bf  Tree}(\texttt{java.lang.String} {\bf  term})
+\label{com.retroMachines.lambda.Tree(java.lang.String)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+creates Tree representation of given lambda-term in string representation
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{term} -- string representation of labmda-term}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{Tree(Vertex)}
+{\bf  Tree}\\
+\texttt{public\ {\bf  Tree}(\texttt{Vertex} {\bf  start})
+\label{com.retroMachines.lambda.Tree(com.retroMachines.lambda.Vertex)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{alphaConversion(Variable)}
+{\bf  alphaConversion}\\
+\texttt{public Variable\ {\bf  alphaConversion}(\texttt{Variable} {\bf  var})
+\label{com.retroMachines.lambda.Tree.alphaConversion(com.retroMachines.lambda.Variable)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+fulfills alphConversion on given variable. Creates new unique variable and replaces every appearance of var in lambda-term where needed. New Variable will be returned
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{var} -- variable to change}
+  \end{itemize}
+}%end item
+\item{{\bf  Returns} -- 
+new created variable 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{betaReduction()}
+{\bf  betaReduction}\\
+\texttt{public boolean\ {\bf  betaReduction}()
+\label{com.retroMachines.lambda.Tree.betaReduction()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+fulfills one step of beta-reduction
+}
+\item{{\bf  Returns} -- 
+true if this tree has changed, false otherwise 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{toString()}
+{\bf  toString}\\
+\texttt{public java.lang.String\ {\bf  toString}()
+\label{com.retroMachines.lambda.Tree.toString()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.Variable}\index{Variable}Class Variable}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Variable
+\\ {\bf  extends} com.retroMachines.lambda.Vertex
+\refdefined{com.retroMachines.lambda.Vertex}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Variable(char)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getId()} \\
+{\bf toString()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Variable(char)}
+{\bf  Variable}\\
+\texttt{public\ {\bf  Variable}(\texttt{char} {\bf  id})
+\label{com.retroMachines.lambda.Variable(char)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getId()}
+{\bf  getId}\\
+\texttt{public int\ {\bf  getId}()
+\label{com.retroMachines.lambda.Variable.getId()}}%end signature
+}%end item
+\item{ 
+\index{toString()}
+{\bf  toString}\\
+\texttt{public java.lang.String\ {\bf  toString}()
+\label{com.retroMachines.lambda.Variable.toString()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Vertex }{
+\texttt{com.retroMachines.lambda.Vertex} {\small 
+\refdefined{com.retroMachines.lambda.Vertex}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public boolean {\bf  setEdge}(\texttt{Vertex} {\bf  v})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract String {\bf  toString}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.Vertex}\index{Vertex}Class Vertex}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class Vertex
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{All known subclasses}{Application\small{\refdefined{com.retroMachines.lambda.Application}}, Abstraction\small{\refdefined{com.retroMachines.lambda.Abstraction}}, Variable\small{\refdefined{com.retroMachines.lambda.Variable}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Vertex()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf setEdge(Vertex)} \\
+{\bf toString()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Vertex()}
+{\bf  Vertex}\\
+\texttt{public\ {\bf  Vertex}()
+\label{com.retroMachines.lambda.Vertex()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{setEdge(Vertex)}
+{\bf  setEdge}\\
+\texttt{public boolean\ {\bf  setEdge}(\texttt{Vertex} {\bf  v})
+\label{com.retroMachines.lambda.Vertex.setEdge(com.retroMachines.lambda.Vertex)}}%end signature
+}%end item
+\item{ 
+\index{toString()}
+{\bf  toString}\\
+\texttt{public java.lang.String\ {\bf  toString}()
+\label{com.retroMachines.lambda.Vertex.toString()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.lambda.test}{
+\label{com.retroMachines.lambda.test}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{AbstractTerm}{com.retroMachines.lambda.test.AbstractTerm}{}
+\entityintro{Main}{com.retroMachines.lambda.test.Main}{}
+\entityintro{Term1}{com.retroMachines.lambda.test.Term1}{Es soll der gegebene Ausdruck mittels der Lambda-Datenstruktur repräsentiert werden.}
+\entityintro{Term2}{com.retroMachines.lambda.test.Term2}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.lambda.test.AbstractTerm}\index{AbstractTerm}Class AbstractTerm}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class AbstractTerm
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{All known subclasses}{Term2\small{\refdefined{com.retroMachines.lambda.test.Term2}}, Term1\small{\refdefined{com.retroMachines.lambda.test.Term1}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf AbstractTerm()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf toString()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{AbstractTerm()}
+{\bf  AbstractTerm}\\
+\texttt{public\ {\bf  AbstractTerm}()
+\label{com.retroMachines.lambda.test.AbstractTerm()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{toString()}
+{\bf  toString}\\
+\texttt{public java.lang.String\ {\bf  toString}()
+\label{com.retroMachines.lambda.test.AbstractTerm.toString()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.test.Main}\index{Main}Class Main}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Main
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Main()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf main(String\lbrack \rbrack )} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Main()}
+{\bf  Main}\\
+\texttt{public\ {\bf  Main}()
+\label{com.retroMachines.lambda.test.Main()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{main(String\lbrack \rbrack )}
+{\bf  main}\\
+\texttt{public static void\ {\bf  main}(\texttt{java.lang.String\lbrack \rbrack } {\bf  args})
+\label{com.retroMachines.lambda.test.Main.main(java.lang.String[])}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.test.Term1}\index{Term1}Class Term1}{
+\vskip .1in 
+Es soll der gegebene Ausdruck mittels der Lambda-Datenstruktur repräsentiert werden. Hier geschieht das von Hand, soll aber später von einem Parser übernommen werden.\vskip .1in 
+\subsection{Declaration}{
+\small public class Term1
+\\ {\bf  extends} com.retroMachines.lambda.test.AbstractTerm
+\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Term1()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Term1()}
+{\bf  Term1}\\
+\texttt{public\ {\bf  Term1}()
+\label{com.retroMachines.lambda.test.Term1()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractTerm }{
+\texttt{com.retroMachines.lambda.test.AbstractTerm} {\small 
+\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public String {\bf  toString}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.lambda.test.Term2}\index{Term2}Class Term2}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Term2
+\\ {\bf  extends} com.retroMachines.lambda.test.AbstractTerm
+\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Term2()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Term2()}
+{\bf  Term2}\\
+\texttt{public\ {\bf  Term2}()
+\label{com.retroMachines.lambda.test.Term2()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class AbstractTerm }{
+\texttt{com.retroMachines.lambda.test.AbstractTerm} {\small 
+\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public String {\bf  toString}()
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.util}{
+\label{com.retroMachines.util}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{Constants}{com.retroMachines.util.Constants}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.util.Constants}\index{Constants}Class Constants}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Constants
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Constants()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Constants()}
+{\bf  Constants}\\
+\texttt{public\ {\bf  Constants}()
+\label{com.retroMachines.util.Constants()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.game.controllers}{
+\label{com.retroMachines.game.controllers}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{GameController}{com.retroMachines.game.controllers.GameController}{GameController This class represents the controller for the actual game.}
+\entityintro{ProfileController}{com.retroMachines.game.controllers.ProfileController}{}
+\entityintro{SettingController}{com.retroMachines.game.controllers.SettingController}{}
+\entityintro{StatisticController}{com.retroMachines.game.controllers.StatisticController}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.game.controllers.GameController}\index{GameController}Class GameController}{
+\vskip .1in 
+GameController This class represents the controller for the actual game. It sets up levels and also disposes them afterwards. It saves progress to the persistent storage.\vskip .1in 
+\subsection{Declaration}{
+\small public class GameController
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf GameController(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getRetroMan()} \\
+{\bf jumpRetroMan()} \\
+{\bf levelFinished()} this method will be called\\
+{\bf startLevel(int)} sets initializes a given level and fires it up\\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{GameController(RetroMachines)}
+{\bf  GameController}\\
+\texttt{public\ {\bf  GameController}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.game.controllers.GameController(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getRetroMan()}
+{\bf  getRetroMan}\\
+\texttt{public com.retroMachines.game.gameelements.RetroMan\ {\bf  getRetroMan}()
+\label{com.retroMachines.game.controllers.GameController.getRetroMan()}}%end signature
+}%end item
+\item{ 
+\index{jumpRetroMan()}
+{\bf  jumpRetroMan}\\
+\texttt{public void\ {\bf  jumpRetroMan}()
+\label{com.retroMachines.game.controllers.GameController.jumpRetroMan()}}%end signature
+}%end item
+\item{ 
+\index{levelFinished()}
+{\bf  levelFinished}\\
+\texttt{public void\ {\bf  levelFinished}()
+\label{com.retroMachines.game.controllers.GameController.levelFinished()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+this method will be called
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{startLevel(int)}
+{\bf  startLevel}\\
+\texttt{public void\ {\bf  startLevel}(\texttt{int} {\bf  levelId})
+\label{com.retroMachines.game.controllers.GameController.startLevel(int)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+sets initializes a given level and fires it up
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{levelId} -- the level to be started}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.controllers.ProfileController}\index{ProfileController}Class ProfileController}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class ProfileController
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Field summary}{
+\begin{verse}
+{\bf MAX\_PROFILE\_NUMBER} the amount of profiles allowed in the game\\
+\end{verse}
+}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf ProfileController(RetroMachines)} creates a new instance of the profile controller\\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf changeActiveProfile(String)} changes to the current profile to another profile\\
+{\bf deleteCurrentProfile()} removes the currently active profile\\
+{\bf getProfile()} \\
+{\bf getProfileName()} Get the name of the currently active user\\
+{\bf isValidUsername(String)} checks if a given username is valid, meaning it is not occupied by another profile already\\
+\end{verse}
+}
+\subsection{Fields}{
+\begin{itemize}
+\item{
+\index{MAX\_PROFILE\_NUMBER}
+\label{com.retroMachines.game.controllers.ProfileController.MAX_PROFILE_NUMBER}public static final int {\bf  MAX\_PROFILE\_NUMBER}\begin{itemize}
+\item{\vskip -.9ex 
+the amount of profiles allowed in the game}
+\end{itemize}
+}
+\end{itemize}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{ProfileController(RetroMachines)}
+{\bf  ProfileController}\\
+\texttt{public\ {\bf  ProfileController}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.game.controllers.ProfileController(com.retroMachines.RetroMachines)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+creates a new instance of the profile controller
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{game} -- the game for calls towards the game}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{changeActiveProfile(String)}
+{\bf  changeActiveProfile}\\
+\texttt{public void\ {\bf  changeActiveProfile}(\texttt{java.lang.String} {\bf  profileName})
+\label{com.retroMachines.game.controllers.ProfileController.changeActiveProfile(java.lang.String)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+changes to the current profile to another profile
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{profileName} -- the name of the profile}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{deleteCurrentProfile()}
+{\bf  deleteCurrentProfile}\\
+\texttt{public void\ {\bf  deleteCurrentProfile}()
+\label{com.retroMachines.game.controllers.ProfileController.deleteCurrentProfile()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+removes the currently active profile
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{getProfile()}
+{\bf  getProfile}\\
+\texttt{public com.retroMachines.data.models.Profile\ {\bf  getProfile}()
+\label{com.retroMachines.game.controllers.ProfileController.getProfile()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+the profile 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{getProfileName()}
+{\bf  getProfileName}\\
+\texttt{public java.lang.String\ {\bf  getProfileName}()
+\label{com.retroMachines.game.controllers.ProfileController.getProfileName()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+Get the name of the currently active user
+}
+\item{{\bf  Returns} -- 
+The name of the currently active user; Empty String if no user is active. 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{isValidUsername(String)}
+{\bf  isValidUsername}\\
+\texttt{public boolean\ {\bf  isValidUsername}(\texttt{java.lang.String} {\bf  username})
+\label{com.retroMachines.game.controllers.ProfileController.isValidUsername(java.lang.String)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+checks if a given username is valid, meaning it is not occupied by another profile already
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.controllers.SettingController}\index{SettingController}Class SettingController}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class SettingController
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf SettingController(RetroMachines)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SettingController(RetroMachines)}
+{\bf  SettingController}\\
+\texttt{public\ {\bf  SettingController}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
+\label{com.retroMachines.game.controllers.SettingController(com.retroMachines.RetroMachines)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.controllers.StatisticController}\index{StatisticController}Class StatisticController}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class StatisticController
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf StatisticController()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{StatisticController()}
+{\bf  StatisticController}\\
+\texttt{public\ {\bf  StatisticController}()
+\label{com.retroMachines.game.controllers.StatisticController()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.game.gameelements}{
+\label{com.retroMachines.game.gameelements}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{GameElement}{com.retroMachines.game.gameelements.GameElement}{}
+\entityintro{LightElement}{com.retroMachines.game.gameelements.LightElement}{}
+\entityintro{MachineElement}{com.retroMachines.game.gameelements.MachineElement}{}
+\entityintro{MetalElement}{com.retroMachines.game.gameelements.MetalElement}{}
+\entityintro{RetroMan}{com.retroMachines.game.gameelements.RetroMan}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.game.gameelements.GameElement}\index{GameElement}Class GameElement}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class GameElement
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{All known subclasses}{MachineElement\small{\refdefined{com.retroMachines.game.gameelements.MachineElement}}, MetalElement\small{\refdefined{com.retroMachines.game.gameelements.MetalElement}}, LightElement\small{\refdefined{com.retroMachines.game.gameelements.LightElement}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf GameElement()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf render(float)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{GameElement()}
+{\bf  GameElement}\\
+\texttt{public\ {\bf  GameElement}()
+\label{com.retroMachines.game.gameelements.GameElement()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public abstract void\ {\bf  render}(\texttt{float} {\bf  deltaTime})
+\label{com.retroMachines.game.gameelements.GameElement.render(float)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.gameelements.LightElement}\index{LightElement}Class LightElement}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class LightElement
+\\ {\bf  extends} com.retroMachines.game.gameelements.GameElement
+\refdefined{com.retroMachines.game.gameelements.GameElement}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf LightElement()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf render(float)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{LightElement()}
+{\bf  LightElement}\\
+\texttt{public\ {\bf  LightElement}()
+\label{com.retroMachines.game.gameelements.LightElement()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public abstract void\ {\bf  render}(\texttt{float} {\bf  deltaTime})
+\label{com.retroMachines.game.gameelements.LightElement.render(float)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class GameElement }{
+\texttt{com.retroMachines.game.gameelements.GameElement} {\small 
+\refdefined{com.retroMachines.game.gameelements.GameElement}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  render}(\texttt{float} {\bf  deltaTime})
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.gameelements.MachineElement}\index{MachineElement}Class MachineElement}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class MachineElement
+\\ {\bf  extends} com.retroMachines.game.gameelements.GameElement
+\refdefined{com.retroMachines.game.gameelements.GameElement}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf MachineElement()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf render(float)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{MachineElement()}
+{\bf  MachineElement}\\
+\texttt{public\ {\bf  MachineElement}()
+\label{com.retroMachines.game.gameelements.MachineElement()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public abstract void\ {\bf  render}(\texttt{float} {\bf  deltaTime})
+\label{com.retroMachines.game.gameelements.MachineElement.render(float)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class GameElement }{
+\texttt{com.retroMachines.game.gameelements.GameElement} {\small 
+\refdefined{com.retroMachines.game.gameelements.GameElement}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  render}(\texttt{float} {\bf  deltaTime})
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.gameelements.MetalElement}\index{MetalElement}Class MetalElement}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class MetalElement
+\\ {\bf  extends} com.retroMachines.game.gameelements.GameElement
+\refdefined{com.retroMachines.game.gameelements.GameElement}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf MetalElement()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf render(float)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{MetalElement()}
+{\bf  MetalElement}\\
+\texttt{public\ {\bf  MetalElement}()
+\label{com.retroMachines.game.gameelements.MetalElement()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public abstract void\ {\bf  render}(\texttt{float} {\bf  deltaTime})
+\label{com.retroMachines.game.gameelements.MetalElement.render(float)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class GameElement }{
+\texttt{com.retroMachines.game.gameelements.GameElement} {\small 
+\refdefined{com.retroMachines.game.gameelements.GameElement}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  render}(\texttt{float} {\bf  deltaTime})
+}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.game.gameelements.RetroMan}\index{RetroMan}Class RetroMan}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class RetroMan
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Field summary}{
+\begin{verse}
+{\bf HEIGHT} \\
+{\bf WIDTH} \\
+\end{verse}
+}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf RetroMan()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf canJump()} \\
+{\bf getPos()} \\
+{\bf hasPickedUpElement()} \\
+{\bf jump()} \\
+{\bf landed()} Call this method when the character is supposed to jump\\
+{\bf pickupElement(GameElement)} \\
+{\bf render(float)} \\
+\end{verse}
+}
+\subsection{Fields}{
+\begin{itemize}
+\item{
+\index{WIDTH}
+\label{com.retroMachines.game.gameelements.RetroMan.WIDTH}public static final float {\bf  WIDTH}}
+\item{
+\index{HEIGHT}
+\label{com.retroMachines.game.gameelements.RetroMan.HEIGHT}public static final float {\bf  HEIGHT}}
+\end{itemize}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{RetroMan()}
+{\bf  RetroMan}\\
+\texttt{public\ {\bf  RetroMan}()
+\label{com.retroMachines.game.gameelements.RetroMan()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{canJump()}
+{\bf  canJump}\\
+\texttt{public boolean\ {\bf  canJump}()
+\label{com.retroMachines.game.gameelements.RetroMan.canJump()}}%end signature
+}%end item
+\item{ 
+\index{getPos()}
+{\bf  getPos}\\
+\texttt{public com.badlogic.gdx.math.Vector2\ {\bf  getPos}()
+\label{com.retroMachines.game.gameelements.RetroMan.getPos()}}%end signature
+}%end item
+\item{ 
+\index{hasPickedUpElement()}
+{\bf  hasPickedUpElement}\\
+\texttt{public boolean\ {\bf  hasPickedUpElement}()
+\label{com.retroMachines.game.gameelements.RetroMan.hasPickedUpElement()}}%end signature
+\begin{itemize}
+\item{{\bf  Returns} -- 
+ 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{jump()}
+{\bf  jump}\\
+\texttt{public void\ {\bf  jump}()
+\label{com.retroMachines.game.gameelements.RetroMan.jump()}}%end signature
+}%end item
+\item{ 
+\index{landed()}
+{\bf  landed}\\
+\texttt{public void\ {\bf  landed}()
+\label{com.retroMachines.game.gameelements.RetroMan.landed()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+Call this method when the character is supposed to jump
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{pickupElement(GameElement)}
+{\bf  pickupElement}\\
+\texttt{public void\ {\bf  pickupElement}(\texttt{GameElement} {\bf  element})
+\label{com.retroMachines.game.gameelements.RetroMan.pickupElement(com.retroMachines.game.gameelements.GameElement)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{element} -- }
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public com.badlogic.gdx.graphics.g2d.TextureRegion\ {\bf  render}(\texttt{float} {\bf  deltaTime})
+\label{com.retroMachines.game.gameelements.RetroMan.render(float)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{deltaTime} -- }
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\end{itemize}
+}
+}
+}
+\printindex
+\end{document}

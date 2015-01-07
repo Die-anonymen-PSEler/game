@@ -1,0 +1,280 @@
+\markboth {Contents}{Contents}
+\contentsline {chapter}{\numberline {1}Package com.retroMachines.game.Map}{8}{chapter.1}
+\contentsline {section}{\numberline {1.1}Class LambdaToMap}{8}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Declaration}{8}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Constructor summary}{8}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Method summary}{8}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Constructors}{8}{subsection.1.1.4}
+\contentsline {subsection}{\numberline {1.1.5}Methods}{8}{subsection.1.1.5}
+\contentsline {section}{\numberline {1.2}Class Map}{9}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Declaration}{9}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Constructor summary}{9}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Constructors}{9}{subsection.1.2.3}
+\contentsline {chapter}{\numberline {2}Package com.retroMachines.data}{10}{chapter.2}
+\contentsline {section}{\numberline {2.1}Class AssetManager}{10}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Declaration}{10}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Field summary}{10}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Constructor summary}{10}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Method summary}{10}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Fields}{10}{subsection.2.1.5}
+\contentsline {subsection}{\numberline {2.1.6}Constructors}{11}{subsection.2.1.6}
+\contentsline {subsection}{\numberline {2.1.7}Methods}{11}{subsection.2.1.7}
+\contentsline {subsection}{\numberline {2.1.8}Members inherited from class AssetManager }{11}{subsection.2.1.8}
+\contentsline {chapter}{\numberline {3}Package com.retroMachines.game}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Class Controller}{13}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Declaration}{13}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Constructor summary}{13}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Constructors}{13}{subsection.3.1.3}
+\contentsline {chapter}{\numberline {4}Package com.retroMachines.data.models}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Class Profile}{14}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Declaration}{14}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Constructor summary}{14}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Method summary}{14}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}Constructors}{15}{subsection.4.1.4}
+\contentsline {subsection}{\numberline {4.1.5}Methods}{15}{subsection.4.1.5}
+\contentsline {section}{\numberline {4.2}Class Setting}{16}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Declaration}{16}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Constructor summary}{16}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Method summary}{16}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Constructors}{16}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Methods}{16}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}Class Statistic}{17}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Declaration}{17}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Constructor summary}{17}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Method summary}{17}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Constructors}{17}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Methods}{17}{subsection.4.3.5}
+\contentsline {chapter}{\numberline {5}Package com.retroMachines.ui.screens}{19}{chapter.5}
+\contentsline {section}{\numberline {5.1}Class AbstractScreen}{19}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Declaration}{19}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}All known subclasses}{19}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Constructor summary}{19}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Method summary}{20}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}Constructors}{20}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}Methods}{20}{subsection.5.1.6}
+\contentsline {section}{\numberline {5.2}Class AndroidCamera}{20}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Declaration}{20}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Constructor summary}{21}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Constructors}{21}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Members inherited from class OrthographicCamera }{21}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}Members inherited from class Camera }{21}{subsection.5.2.5}
+\contentsline {chapter}{\numberline {6}Package com.retroMachines}{22}{chapter.6}
+\contentsline {section}{\numberline {6.1}Class RetroMachines}{22}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Declaration}{22}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Field summary}{22}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Constructor summary}{22}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Method summary}{22}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Fields}{22}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Constructors}{23}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Methods}{23}{subsection.6.1.7}
+\contentsline {subsection}{\numberline {6.1.8}Members inherited from class Game }{23}{subsection.6.1.8}
+\contentsline {chapter}{\numberline {7}Package com.retroMachines.ui.screens.game}{24}{chapter.7}
+\contentsline {section}{\numberline {7.1}Class EvaluationScreen}{24}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Declaration}{24}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Constructor summary}{24}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Constructors}{24}{subsection.7.1.3}
+\contentsline {subsection}{\numberline {7.1.4}Members inherited from class AbstractScreen }{24}{subsection.7.1.4}
+\contentsline {section}{\numberline {7.2}Class GameScreen}{25}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Declaration}{25}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Constructor summary}{25}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Method summary}{25}{subsection.7.2.3}
+\contentsline {subsection}{\numberline {7.2.4}Constructors}{25}{subsection.7.2.4}
+\contentsline {subsection}{\numberline {7.2.5}Methods}{25}{subsection.7.2.5}
+\contentsline {subsection}{\numberline {7.2.6}Members inherited from class AbstractScreen }{25}{subsection.7.2.6}
+\contentsline {chapter}{\numberline {8}Package com.retroMachines.ui.screens.menus}{27}{chapter.8}
+\contentsline {section}{\numberline {8.1}Class AboutMenuScreen}{28}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Declaration}{28}{subsection.8.1.1}
+\contentsline {subsection}{\numberline {8.1.2}Constructor summary}{28}{subsection.8.1.2}
+\contentsline {subsection}{\numberline {8.1.3}Method summary}{28}{subsection.8.1.3}
+\contentsline {subsection}{\numberline {8.1.4}Constructors}{28}{subsection.8.1.4}
+\contentsline {subsection}{\numberline {8.1.5}Methods}{28}{subsection.8.1.5}
+\contentsline {subsection}{\numberline {8.1.6}Members inherited from class AbstractScreen }{28}{subsection.8.1.6}
+\contentsline {section}{\numberline {8.2}Class AchievmentsMenuScreen}{28}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Declaration}{28}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Constructor summary}{28}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}Constructors}{29}{subsection.8.2.3}
+\contentsline {subsection}{\numberline {8.2.4}Members inherited from class AbstractScreen }{29}{subsection.8.2.4}
+\contentsline {section}{\numberline {8.3}Class CreateFirstProfileMenuScreen}{29}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}Declaration}{29}{subsection.8.3.1}
+\contentsline {subsection}{\numberline {8.3.2}Constructor summary}{29}{subsection.8.3.2}
+\contentsline {subsection}{\numberline {8.3.3}Constructors}{29}{subsection.8.3.3}
+\contentsline {subsection}{\numberline {8.3.4}Members inherited from class AbstractScreen }{29}{subsection.8.3.4}
+\contentsline {section}{\numberline {8.4}Class CreateProfileMenuScreen}{29}{section.8.4}
+\contentsline {subsection}{\numberline {8.4.1}Declaration}{29}{subsection.8.4.1}
+\contentsline {subsection}{\numberline {8.4.2}Constructor summary}{30}{subsection.8.4.2}
+\contentsline {subsection}{\numberline {8.4.3}Constructors}{30}{subsection.8.4.3}
+\contentsline {subsection}{\numberline {8.4.4}Members inherited from class AbstractScreen }{30}{subsection.8.4.4}
+\contentsline {section}{\numberline {8.5}Class LevelMenuScreen}{30}{section.8.5}
+\contentsline {subsection}{\numberline {8.5.1}Declaration}{30}{subsection.8.5.1}
+\contentsline {subsection}{\numberline {8.5.2}Constructor summary}{30}{subsection.8.5.2}
+\contentsline {subsection}{\numberline {8.5.3}Constructors}{30}{subsection.8.5.3}
+\contentsline {subsection}{\numberline {8.5.4}Members inherited from class AbstractScreen }{30}{subsection.8.5.4}
+\contentsline {section}{\numberline {8.6}Class LoadMenuScreen}{31}{section.8.6}
+\contentsline {subsection}{\numberline {8.6.1}Declaration}{31}{subsection.8.6.1}
+\contentsline {subsection}{\numberline {8.6.2}Constructor summary}{31}{subsection.8.6.2}
+\contentsline {subsection}{\numberline {8.6.3}Method summary}{31}{subsection.8.6.3}
+\contentsline {subsection}{\numberline {8.6.4}Constructors}{31}{subsection.8.6.4}
+\contentsline {subsection}{\numberline {8.6.5}Methods}{31}{subsection.8.6.5}
+\contentsline {subsection}{\numberline {8.6.6}Members inherited from class AbstractScreen }{31}{subsection.8.6.6}
+\contentsline {section}{\numberline {8.7}Class MainMenuScreen}{31}{section.8.7}
+\contentsline {subsection}{\numberline {8.7.1}Declaration}{31}{subsection.8.7.1}
+\contentsline {subsection}{\numberline {8.7.2}Constructor summary}{31}{subsection.8.7.2}
+\contentsline {subsection}{\numberline {8.7.3}Method summary}{31}{subsection.8.7.3}
+\contentsline {subsection}{\numberline {8.7.4}Constructors}{32}{subsection.8.7.4}
+\contentsline {subsection}{\numberline {8.7.5}Methods}{32}{subsection.8.7.5}
+\contentsline {subsection}{\numberline {8.7.6}Members inherited from class AbstractScreen }{32}{subsection.8.7.6}
+\contentsline {section}{\numberline {8.8}Class MenuScreen}{32}{section.8.8}
+\contentsline {subsection}{\numberline {8.8.1}Declaration}{32}{subsection.8.8.1}
+\contentsline {subsection}{\numberline {8.8.2}All known subclasses}{32}{subsection.8.8.2}
+\contentsline {subsection}{\numberline {8.8.3}Constructor summary}{32}{subsection.8.8.3}
+\contentsline {subsection}{\numberline {8.8.4}Constructors}{32}{subsection.8.8.4}
+\contentsline {subsection}{\numberline {8.8.5}Members inherited from class AbstractScreen }{33}{subsection.8.8.5}
+\contentsline {section}{\numberline {8.9}Class ProfileManagementMenuScreen}{33}{section.8.9}
+\contentsline {subsection}{\numberline {8.9.1}Declaration}{33}{subsection.8.9.1}
+\contentsline {subsection}{\numberline {8.9.2}Constructor summary}{33}{subsection.8.9.2}
+\contentsline {subsection}{\numberline {8.9.3}Constructors}{33}{subsection.8.9.3}
+\contentsline {subsection}{\numberline {8.9.4}Members inherited from class AbstractScreen }{33}{subsection.8.9.4}
+\contentsline {section}{\numberline {8.10}Class ProfileMenuScreen}{33}{section.8.10}
+\contentsline {subsection}{\numberline {8.10.1}Declaration}{33}{subsection.8.10.1}
+\contentsline {subsection}{\numberline {8.10.2}Constructor summary}{33}{subsection.8.10.2}
+\contentsline {subsection}{\numberline {8.10.3}Constructors}{34}{subsection.8.10.3}
+\contentsline {subsection}{\numberline {8.10.4}Members inherited from class AbstractScreen }{34}{subsection.8.10.4}
+\contentsline {section}{\numberline {8.11}Class ProfileSettingsMenuScreen}{34}{section.8.11}
+\contentsline {subsection}{\numberline {8.11.1}Declaration}{34}{subsection.8.11.1}
+\contentsline {subsection}{\numberline {8.11.2}Constructor summary}{34}{subsection.8.11.2}
+\contentsline {subsection}{\numberline {8.11.3}Constructors}{34}{subsection.8.11.3}
+\contentsline {subsection}{\numberline {8.11.4}Members inherited from class AbstractScreen }{34}{subsection.8.11.4}
+\contentsline {section}{\numberline {8.12}Class SettingsMenuScreen}{34}{section.8.12}
+\contentsline {subsection}{\numberline {8.12.1}Declaration}{34}{subsection.8.12.1}
+\contentsline {subsection}{\numberline {8.12.2}Constructor summary}{35}{subsection.8.12.2}
+\contentsline {subsection}{\numberline {8.12.3}Constructors}{35}{subsection.8.12.3}
+\contentsline {subsection}{\numberline {8.12.4}Members inherited from class AbstractScreen }{35}{subsection.8.12.4}
+\contentsline {section}{\numberline {8.13}Class StageMenuScreen}{35}{section.8.13}
+\contentsline {subsection}{\numberline {8.13.1}Declaration}{35}{subsection.8.13.1}
+\contentsline {subsection}{\numberline {8.13.2}Constructor summary}{35}{subsection.8.13.2}
+\contentsline {subsection}{\numberline {8.13.3}Constructors}{35}{subsection.8.13.3}
+\contentsline {subsection}{\numberline {8.13.4}Members inherited from class AbstractScreen }{35}{subsection.8.13.4}
+\contentsline {chapter}{\numberline {9}Package com.retroMachines.lambda}{36}{chapter.9}
+\contentsline {section}{\numberline {9.1}Class Abstraction}{36}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Declaration}{36}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}Constructor summary}{36}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}Method summary}{36}{subsection.9.1.3}
+\contentsline {subsection}{\numberline {9.1.4}Constructors}{36}{subsection.9.1.4}
+\contentsline {subsection}{\numberline {9.1.5}Methods}{37}{subsection.9.1.5}
+\contentsline {subsection}{\numberline {9.1.6}Members inherited from class Vertex }{37}{subsection.9.1.6}
+\contentsline {section}{\numberline {9.2}Class Application}{37}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Declaration}{37}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Constructor summary}{37}{subsection.9.2.2}
+\contentsline {subsection}{\numberline {9.2.3}Method summary}{37}{subsection.9.2.3}
+\contentsline {subsection}{\numberline {9.2.4}Constructors}{37}{subsection.9.2.4}
+\contentsline {subsection}{\numberline {9.2.5}Methods}{37}{subsection.9.2.5}
+\contentsline {subsection}{\numberline {9.2.6}Members inherited from class Vertex }{37}{subsection.9.2.6}
+\contentsline {section}{\numberline {9.3}Class Tree}{37}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}Declaration}{37}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}Constructor summary}{38}{subsection.9.3.2}
+\contentsline {subsection}{\numberline {9.3.3}Method summary}{38}{subsection.9.3.3}
+\contentsline {subsection}{\numberline {9.3.4}Constructors}{38}{subsection.9.3.4}
+\contentsline {subsection}{\numberline {9.3.5}Methods}{38}{subsection.9.3.5}
+\contentsline {section}{\numberline {9.4}Class Variable}{39}{section.9.4}
+\contentsline {subsection}{\numberline {9.4.1}Declaration}{39}{subsection.9.4.1}
+\contentsline {subsection}{\numberline {9.4.2}Constructor summary}{39}{subsection.9.4.2}
+\contentsline {subsection}{\numberline {9.4.3}Method summary}{39}{subsection.9.4.3}
+\contentsline {subsection}{\numberline {9.4.4}Constructors}{39}{subsection.9.4.4}
+\contentsline {subsection}{\numberline {9.4.5}Methods}{39}{subsection.9.4.5}
+\contentsline {subsection}{\numberline {9.4.6}Members inherited from class Vertex }{39}{subsection.9.4.6}
+\contentsline {section}{\numberline {9.5}Class Vertex}{39}{section.9.5}
+\contentsline {subsection}{\numberline {9.5.1}Declaration}{39}{subsection.9.5.1}
+\contentsline {subsection}{\numberline {9.5.2}All known subclasses}{39}{subsection.9.5.2}
+\contentsline {subsection}{\numberline {9.5.3}Constructor summary}{39}{subsection.9.5.3}
+\contentsline {subsection}{\numberline {9.5.4}Method summary}{40}{subsection.9.5.4}
+\contentsline {subsection}{\numberline {9.5.5}Constructors}{40}{subsection.9.5.5}
+\contentsline {subsection}{\numberline {9.5.6}Methods}{40}{subsection.9.5.6}
+\contentsline {chapter}{\numberline {10}Package com.retroMachines.lambda.test}{41}{chapter.10}
+\contentsline {section}{\numberline {10.1}Class AbstractTerm}{41}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Declaration}{41}{subsection.10.1.1}
+\contentsline {subsection}{\numberline {10.1.2}All known subclasses}{41}{subsection.10.1.2}
+\contentsline {subsection}{\numberline {10.1.3}Constructor summary}{41}{subsection.10.1.3}
+\contentsline {subsection}{\numberline {10.1.4}Method summary}{41}{subsection.10.1.4}
+\contentsline {subsection}{\numberline {10.1.5}Constructors}{42}{subsection.10.1.5}
+\contentsline {subsection}{\numberline {10.1.6}Methods}{42}{subsection.10.1.6}
+\contentsline {section}{\numberline {10.2}Class Main}{42}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Declaration}{42}{subsection.10.2.1}
+\contentsline {subsection}{\numberline {10.2.2}Constructor summary}{42}{subsection.10.2.2}
+\contentsline {subsection}{\numberline {10.2.3}Method summary}{42}{subsection.10.2.3}
+\contentsline {subsection}{\numberline {10.2.4}Constructors}{42}{subsection.10.2.4}
+\contentsline {subsection}{\numberline {10.2.5}Methods}{42}{subsection.10.2.5}
+\contentsline {section}{\numberline {10.3}Class Term1}{42}{section.10.3}
+\contentsline {subsection}{\numberline {10.3.1}Declaration}{42}{subsection.10.3.1}
+\contentsline {subsection}{\numberline {10.3.2}Constructor summary}{42}{subsection.10.3.2}
+\contentsline {subsection}{\numberline {10.3.3}Constructors}{43}{subsection.10.3.3}
+\contentsline {subsection}{\numberline {10.3.4}Members inherited from class AbstractTerm }{43}{subsection.10.3.4}
+\contentsline {section}{\numberline {10.4}Class Term2}{43}{section.10.4}
+\contentsline {subsection}{\numberline {10.4.1}Declaration}{43}{subsection.10.4.1}
+\contentsline {subsection}{\numberline {10.4.2}Constructor summary}{43}{subsection.10.4.2}
+\contentsline {subsection}{\numberline {10.4.3}Constructors}{43}{subsection.10.4.3}
+\contentsline {subsection}{\numberline {10.4.4}Members inherited from class AbstractTerm }{43}{subsection.10.4.4}
+\contentsline {chapter}{\numberline {11}Package com.retroMachines.util}{44}{chapter.11}
+\contentsline {section}{\numberline {11.1}Class Constants}{44}{section.11.1}
+\contentsline {subsection}{\numberline {11.1.1}Declaration}{44}{subsection.11.1.1}
+\contentsline {subsection}{\numberline {11.1.2}Constructor summary}{44}{subsection.11.1.2}
+\contentsline {subsection}{\numberline {11.1.3}Constructors}{44}{subsection.11.1.3}
+\contentsline {chapter}{\numberline {12}Package com.retroMachines.game.controllers}{45}{chapter.12}
+\contentsline {section}{\numberline {12.1}Class GameController}{45}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}Declaration}{45}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}Constructor summary}{45}{subsection.12.1.2}
+\contentsline {subsection}{\numberline {12.1.3}Method summary}{45}{subsection.12.1.3}
+\contentsline {subsection}{\numberline {12.1.4}Constructors}{46}{subsection.12.1.4}
+\contentsline {subsection}{\numberline {12.1.5}Methods}{46}{subsection.12.1.5}
+\contentsline {section}{\numberline {12.2}Class ProfileController}{46}{section.12.2}
+\contentsline {subsection}{\numberline {12.2.1}Declaration}{46}{subsection.12.2.1}
+\contentsline {subsection}{\numberline {12.2.2}Field summary}{46}{subsection.12.2.2}
+\contentsline {subsection}{\numberline {12.2.3}Constructor summary}{46}{subsection.12.2.3}
+\contentsline {subsection}{\numberline {12.2.4}Method summary}{47}{subsection.12.2.4}
+\contentsline {subsection}{\numberline {12.2.5}Fields}{47}{subsection.12.2.5}
+\contentsline {subsection}{\numberline {12.2.6}Constructors}{47}{subsection.12.2.6}
+\contentsline {subsection}{\numberline {12.2.7}Methods}{47}{subsection.12.2.7}
+\contentsline {section}{\numberline {12.3}Class SettingController}{48}{section.12.3}
+\contentsline {subsection}{\numberline {12.3.1}Declaration}{48}{subsection.12.3.1}
+\contentsline {subsection}{\numberline {12.3.2}Constructor summary}{48}{subsection.12.3.2}
+\contentsline {subsection}{\numberline {12.3.3}Constructors}{48}{subsection.12.3.3}
+\contentsline {section}{\numberline {12.4}Class StatisticController}{48}{section.12.4}
+\contentsline {subsection}{\numberline {12.4.1}Declaration}{48}{subsection.12.4.1}
+\contentsline {subsection}{\numberline {12.4.2}Constructor summary}{48}{subsection.12.4.2}
+\contentsline {subsection}{\numberline {12.4.3}Constructors}{48}{subsection.12.4.3}
+\contentsline {chapter}{\numberline {13}Package com.retroMachines.game.gameelements}{49}{chapter.13}
+\contentsline {section}{\numberline {13.1}Class GameElement}{49}{section.13.1}
+\contentsline {subsection}{\numberline {13.1.1}Declaration}{49}{subsection.13.1.1}
+\contentsline {subsection}{\numberline {13.1.2}All known subclasses}{49}{subsection.13.1.2}
+\contentsline {subsection}{\numberline {13.1.3}Constructor summary}{49}{subsection.13.1.3}
+\contentsline {subsection}{\numberline {13.1.4}Method summary}{50}{subsection.13.1.4}
+\contentsline {subsection}{\numberline {13.1.5}Constructors}{50}{subsection.13.1.5}
+\contentsline {subsection}{\numberline {13.1.6}Methods}{50}{subsection.13.1.6}
+\contentsline {section}{\numberline {13.2}Class LightElement}{50}{section.13.2}
+\contentsline {subsection}{\numberline {13.2.1}Declaration}{50}{subsection.13.2.1}
+\contentsline {subsection}{\numberline {13.2.2}Constructor summary}{50}{subsection.13.2.2}
+\contentsline {subsection}{\numberline {13.2.3}Method summary}{50}{subsection.13.2.3}
+\contentsline {subsection}{\numberline {13.2.4}Constructors}{50}{subsection.13.2.4}
+\contentsline {subsection}{\numberline {13.2.5}Methods}{50}{subsection.13.2.5}
+\contentsline {subsection}{\numberline {13.2.6}Members inherited from class GameElement }{50}{subsection.13.2.6}
+\contentsline {section}{\numberline {13.3}Class MachineElement}{51}{section.13.3}
+\contentsline {subsection}{\numberline {13.3.1}Declaration}{51}{subsection.13.3.1}
+\contentsline {subsection}{\numberline {13.3.2}Constructor summary}{51}{subsection.13.3.2}
+\contentsline {subsection}{\numberline {13.3.3}Method summary}{51}{subsection.13.3.3}
+\contentsline {subsection}{\numberline {13.3.4}Constructors}{51}{subsection.13.3.4}
+\contentsline {subsection}{\numberline {13.3.5}Methods}{51}{subsection.13.3.5}
+\contentsline {subsection}{\numberline {13.3.6}Members inherited from class GameElement }{51}{subsection.13.3.6}
+\contentsline {section}{\numberline {13.4}Class MetalElement}{51}{section.13.4}
+\contentsline {subsection}{\numberline {13.4.1}Declaration}{51}{subsection.13.4.1}
+\contentsline {subsection}{\numberline {13.4.2}Constructor summary}{51}{subsection.13.4.2}
+\contentsline {subsection}{\numberline {13.4.3}Method summary}{51}{subsection.13.4.3}
+\contentsline {subsection}{\numberline {13.4.4}Constructors}{51}{subsection.13.4.4}
+\contentsline {subsection}{\numberline {13.4.5}Methods}{52}{subsection.13.4.5}
+\contentsline {subsection}{\numberline {13.4.6}Members inherited from class GameElement }{52}{subsection.13.4.6}
+\contentsline {section}{\numberline {13.5}Class RetroMan}{52}{section.13.5}
+\contentsline {subsection}{\numberline {13.5.1}Declaration}{52}{subsection.13.5.1}
+\contentsline {subsection}{\numberline {13.5.2}Field summary}{52}{subsection.13.5.2}
+\contentsline {subsection}{\numberline {13.5.3}Constructor summary}{52}{subsection.13.5.3}
+\contentsline {subsection}{\numberline {13.5.4}Method summary}{52}{subsection.13.5.4}
+\contentsline {subsection}{\numberline {13.5.5}Fields}{52}{subsection.13.5.5}
+\contentsline {subsection}{\numberline {13.5.6}Constructors}{52}{subsection.13.5.6}
+\contentsline {subsection}{\numberline {13.5.7}Methods}{53}{subsection.13.5.7}
