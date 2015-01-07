@@ -36,5 +36,9 @@ public class Tree {
 		//TODO: implement alpha conversion
 		return null;
 	}
+	
+	public String toString() {
+		return start.toString();
+	}
 
 }

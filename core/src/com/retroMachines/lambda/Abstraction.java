@@ -9,4 +9,9 @@ public class Abstraction extends Vertex {
 		this.tree = tree;
 		this.var = var;
 	}
+
+	@Override
+	public String toString() {
+		return "L" + var.toString() + "." + tree.toString();
+	}
 }

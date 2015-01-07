@@ -9,5 +9,7 @@ public abstract class Vertex {
 	public boolean setEdge(Vertex v) {
 		return edges.add(v);
 	}
+	
+	public abstract String toString();
 
 }
