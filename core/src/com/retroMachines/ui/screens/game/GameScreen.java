@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.tests.superkoalio.SuperKoalio.Koala;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;

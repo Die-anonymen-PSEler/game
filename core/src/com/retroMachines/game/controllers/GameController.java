@@ -5,7 +5,6 @@ import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
-import com.sun.javafx.font.Disposer;
 
 /**
  * GameController
@@ -86,5 +85,9 @@ public class GameController {
 	public RetroMan getRetroMan() {
 		// TODO Auto-generated method stub
 		return retroMan;
+	}
+	
+	private void collisionDetection() {
+		
 	}
 }
