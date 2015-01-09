@@ -1,6 +1,6 @@
 package com.retroMachines.game.Map;
 
-import com.retroMachines.lambda.Tree;
+import com.retroMachines.util.lambda.Tree;
 
 public class LambdaToMap {
 

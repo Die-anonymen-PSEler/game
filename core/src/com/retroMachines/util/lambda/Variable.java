@@ -1,4 +1,4 @@
-package com.retroMachines.lambda;
+package com.retroMachines.util.lambda;
 
 public class Variable extends Vertex{
 
@@ -11,9 +11,9 @@ public class Variable extends Vertex{
 	public int getId() {
 		return id;
 	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(id);
+	
+	public void setId(char i) {
+		id = i;
 	}
+
 }
