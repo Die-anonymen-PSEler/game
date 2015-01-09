@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
-import com.retroMachines.lambda.Tree;
+import com.retroMachines.util.lambda.Tree;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 public class EvaluationScreen extends AbstractScreen implements ContactListener {
