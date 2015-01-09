@@ -10,6 +10,8 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
     public static AssetManager manager = new AssetManager();
     public static Skin menuSkin;
     
+    public static final String[] assetNames = {};
+    
     
     
     /**
