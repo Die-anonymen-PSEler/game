@@ -18,6 +18,10 @@ public class RetroMachines extends Game {
 	private ProfileController profileController;
 	private SettingController settingController;
 		
+	/**
+	 * initializes the game (all the controllers) after started by the Android Launcher.
+	 * Afterwards it displays the loading screen to the user.
+	 */
 	@Override
 	public void create () {
 		profileController = new ProfileController(this);
