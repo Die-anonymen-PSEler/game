@@ -14,7 +14,6 @@ public class RetroMachines extends Game {
 	/**
 	 * controllers
 	 */
-	
 	private ProfileController profileController;
 	private SettingController settingController;
 		
