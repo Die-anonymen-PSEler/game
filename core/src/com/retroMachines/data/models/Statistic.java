@@ -2,15 +2,15 @@ package com.retroMachines.data.models;
 
 public class Statistic extends Model {
 	
-	private static final String TABLE_NAME = "statistics";
+	public static final String TABLE_NAME = "statistics";
 	
-	private static final String CREATE_TABLE_QUERY = "";
+	public static final String CREATE_TABLE_QUERY = "";
 	
-	private static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "";
 	
-	private static final String DELETE_TABLE_QUERY_PATTERN = "";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "";
 	
-	private static final String INSERT_TABLE_QUERY_PATTERN = "";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "";
 	
 	/**
 	 * the play time the player has spent on the game in minutes

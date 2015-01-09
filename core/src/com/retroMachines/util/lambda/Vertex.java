@@ -4,8 +4,8 @@ import java.util.Set;
 
 public abstract class Vertex {
 	
-	private Vertex next;
-	private Vertex family;
+	protected Vertex next;
+	protected Vertex family;
 	
 
 }

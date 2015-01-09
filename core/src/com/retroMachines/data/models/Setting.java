@@ -2,15 +2,15 @@ package com.retroMachines.data.models;
 
 public class Setting extends Model {
 	
-	private static final String TABLE_NAME = "settings";
+	public static final String TABLE_NAME = "settings";
 	
-	private static final String CREATE_TABLE_QUERY = "";
+	public static final String CREATE_TABLE_QUERY = "";
 	
-	private static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "";
 	
-	private static final String DELETE_TABLE_QUERY_PATTERN = "";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "";
 	
-	private static final String INSERT_TABLE_QUERY_PATTERN = "";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "";
 	
 	/**
 	 * the volume of the game
