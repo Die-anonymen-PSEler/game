@@ -118,6 +118,7 @@
 \vskip .13in
 \hbox{{\bf  Classes}}
 \entityintro{AssetManager}{com.retroMachines.data.AssetManager}{}
+\entityintro{RetroDatabase}{com.retroMachines.data.RetroDatabase}{}
 \vskip .1in
 \vskip .1in
 \section{\label{com.retroMachines.data.AssetManager}\index{AssetManager}Class AssetManager}{
@@ -379,6 +380,80 @@ the map loaded as a TiledMap
 \end{itemize}
 }
 }
+\section{\label{com.retroMachines.data.RetroDatabase}\index{RetroDatabase}Class RetroDatabase}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class RetroDatabase
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}\\ {\bf  implements} 
+com.badlogic.gdx.sql.Database}
+\subsection{Method summary}{
+\begin{verse}
+{\bf closeDatabase()} \\
+{\bf createSingleton()} \\
+{\bf execSQL(String)} \\
+{\bf getSingleton()} \\
+{\bf openOrCreateDatabase()} \\
+{\bf rawQuery(DatabaseCursor, String)} \\
+{\bf rawQuery(String)} \\
+{\bf setupDatabase()} \\
+\end{verse}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{closeDatabase()}
+{\bf  closeDatabase}\\
+\texttt{ void\ {\bf  closeDatabase}() throws com.badlogic.gdx.sql.SQLiteGdxException
+\label{com.retroMachines.data.RetroDatabase.closeDatabase()}}%end signature
+}%end item
+\item{ 
+\index{createSingleton()}
+{\bf  createSingleton}\\
+\texttt{public static void\ {\bf  createSingleton}()
+\label{com.retroMachines.data.RetroDatabase.createSingleton()}}%end signature
+}%end item
+\item{ 
+\index{execSQL(String)}
+{\bf  execSQL}\\
+\texttt{ void\ {\bf  execSQL}(\texttt{java.lang.String} {\bf  arg0}) throws com.badlogic.gdx.sql.SQLiteGdxException
+\label{com.retroMachines.data.RetroDatabase.execSQL(java.lang.String)}}%end signature
+}%end item
+\item{ 
+\index{getSingleton()}
+{\bf  getSingleton}\\
+\texttt{public static RetroDatabase\ {\bf  getSingleton}()
+\label{com.retroMachines.data.RetroDatabase.getSingleton()}}%end signature
+}%end item
+\item{ 
+\index{openOrCreateDatabase()}
+{\bf  openOrCreateDatabase}\\
+\texttt{ void\ {\bf  openOrCreateDatabase}() throws com.badlogic.gdx.sql.SQLiteGdxException
+\label{com.retroMachines.data.RetroDatabase.openOrCreateDatabase()}}%end signature
+}%end item
+\item{ 
+\index{rawQuery(DatabaseCursor, String)}
+{\bf  rawQuery}\\
+\texttt{ com.badlogic.gdx.sql.DatabaseCursor\ {\bf  rawQuery}(\texttt{com.badlogic.gdx.sql.DatabaseCursor} {\bf  arg0},
+\texttt{java.lang.String} {\bf  arg1}) throws com.badlogic.gdx.sql.SQLiteGdxException
+\label{com.retroMachines.data.RetroDatabase.rawQuery(com.badlogic.gdx.sql.DatabaseCursor, java.lang.String)}}%end signature
+}%end item
+\item{ 
+\index{rawQuery(String)}
+{\bf  rawQuery}\\
+\texttt{ com.badlogic.gdx.sql.DatabaseCursor\ {\bf  rawQuery}(\texttt{java.lang.String} {\bf  arg0}) throws com.badlogic.gdx.sql.SQLiteGdxException
+\label{com.retroMachines.data.RetroDatabase.rawQuery(java.lang.String)}}%end signature
+}%end item
+\item{ 
+\index{setupDatabase()}
+{\bf  setupDatabase}\\
+\texttt{ void\ {\bf  setupDatabase}()
+\label{com.retroMachines.data.RetroDatabase.setupDatabase()}}%end signature
+}%end item
+\end{itemize}
+}
+}
 }
 \chapter{Package com.retroMachines.game}{
 \label{com.retroMachines.game}\hskip -.05in
@@ -417,17 +492,82 @@ the map loaded as a TiledMap
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
 \vskip .13in
 \hbox{{\bf  Classes}}
+\entityintro{Model}{com.retroMachines.data.models.Model}{}
 \entityintro{Profile}{com.retroMachines.data.models.Profile}{}
 \entityintro{Setting}{com.retroMachines.data.models.Setting}{}
 \entityintro{Statistic}{com.retroMachines.data.models.Statistic}{}
 \vskip .1in
 \vskip .1in
+\section{\label{com.retroMachines.data.models.Model}\index{Model}Class Model}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class Model
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{All known subclasses}{Profile\small{\refdefined{com.retroMachines.data.models.Profile}}, Setting\small{\refdefined{com.retroMachines.data.models.Setting}}, Statistic\small{\refdefined{com.retroMachines.data.models.Statistic}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Model()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf hasRecordInSQL()} Checks if the database has a possibly previous copy for the model\\
+{\bf writeToSQL()} saves the model to the persistence background database\\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Model()}
+{\bf  Model}\\
+\texttt{public\ {\bf  Model}()
+\label{com.retroMachines.data.models.Model()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{hasRecordInSQL()}
+{\bf  hasRecordInSQL}\\
+\texttt{public abstract boolean\ {\bf  hasRecordInSQL}()
+\label{com.retroMachines.data.models.Model.hasRecordInSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+Checks if the database has a possibly previous copy for the model
+}
+\item{{\bf  Returns} -- 
+true if a records exists; false otherwise 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{writeToSQL()}
+{\bf  writeToSQL}\\
+\texttt{public abstract void\ {\bf  writeToSQL}()
+\label{com.retroMachines.data.models.Model.writeToSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+saves the model to the persistence background database
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+}
 \section{\label{com.retroMachines.data.models.Profile}\index{Profile}Class Profile}{
 \vskip .1in 
 \subsection{Declaration}{
 \small public class Profile
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
+\\ {\bf  extends} com.retroMachines.data.models.Model
+\refdefined{com.retroMachines.data.models.Model}}
 \subsection{Constructor summary}{
 \begin{verse}
 {\bf Profile(String, int, Setting, Statistic)} constructor for a new profile\\
@@ -438,9 +578,11 @@ the map loaded as a TiledMap
 {\bf getProfileId()} \\
 {\bf getProfileName()} \\
 {\bf getSetting()} \\
+{\bf hasRecordInSQL()} \\
 {\bf setProfileId(int)} \\
 {\bf setProfileName(String)} \\
 {\bf setSetting(Setting)} \\
+{\bf writeToSQL()} \\
 \end{verse}
 }
 \subsection{Constructors}{
@@ -514,6 +656,22 @@ the setting
 \end{itemize}
 }%end item
 \item{ 
+\index{hasRecordInSQL()}
+{\bf  hasRecordInSQL}\\
+\texttt{public abstract boolean\ {\bf  hasRecordInSQL}()
+\label{com.retroMachines.data.models.Profile.hasRecordInSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from Model{\small \refdefined{com.retroMachines.data.models.Model}} }
+
+Checks if the database has a possibly previous copy for the model
+}
+\item{{\bf  Returns} -- 
+true if a records exists; false otherwise 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
 \index{setProfileId(int)}
 {\bf  setProfileId}\\
 \texttt{public void\ {\bf  setProfileId}(\texttt{int} {\bf  profileId})
@@ -558,6 +716,36 @@ the setting
 }%end item
 \end{itemize}
 }%end item
+\item{ 
+\index{writeToSQL()}
+{\bf  writeToSQL}\\
+\texttt{public abstract void\ {\bf  writeToSQL}()
+\label{com.retroMachines.data.models.Profile.writeToSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from Model{\small \refdefined{com.retroMachines.data.models.Model}} }
+
+saves the model to the persistence background database
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Model }{
+\texttt{com.retroMachines.data.models.Model} {\small 
+\refdefined{com.retroMachines.data.models.Model}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public abstract boolean {\bf  hasRecordInSQL}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  writeToSQL}()
+}%end signature
+}%end item
 \end{itemize}
 }
 }
@@ -565,8 +753,8 @@ the setting
 \vskip .1in 
 \subsection{Declaration}{
 \small public class Setting
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
+\\ {\bf  extends} com.retroMachines.data.models.Model
+\refdefined{com.retroMachines.data.models.Model}}
 \subsection{Constructor summary}{
 \begin{verse}
 {\bf Setting(boolean, boolean, float)} \\
@@ -575,11 +763,13 @@ the setting
 \subsection{Method summary}{
 \begin{verse}
 {\bf getVolume()} \\
+{\bf hasRecordInSQL()} \\
 {\bf isLeftControl()} \\
 {\bf isSoundOnOff()} \\
 {\bf setLeftControl(boolean)} \\
 {\bf setSoundOnOff(boolean)} \\
 {\bf setVolume(float)} \\
+{\bf writeToSQL()} \\
 \end{verse}
 }
 \subsection{Constructors}{
@@ -606,6 +796,22 @@ the setting
 \begin{itemize}
 \item{{\bf  Returns} -- 
 the volume 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{hasRecordInSQL()}
+{\bf  hasRecordInSQL}\\
+\texttt{public abstract boolean\ {\bf  hasRecordInSQL}()
+\label{com.retroMachines.data.models.Setting.hasRecordInSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from Model{\small \refdefined{com.retroMachines.data.models.Model}} }
+
+Checks if the database has a possibly previous copy for the model
+}
+\item{{\bf  Returns} -- 
+true if a records exists; false otherwise 
 }%end item
 \end{itemize}
 }%end item
@@ -676,6 +882,36 @@ the soundOnOff
 }%end item
 \end{itemize}
 }%end item
+\item{ 
+\index{writeToSQL()}
+{\bf  writeToSQL}\\
+\texttt{public abstract void\ {\bf  writeToSQL}()
+\label{com.retroMachines.data.models.Setting.writeToSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from Model{\small \refdefined{com.retroMachines.data.models.Model}} }
+
+saves the model to the persistence background database
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Model }{
+\texttt{com.retroMachines.data.models.Model} {\small 
+\refdefined{com.retroMachines.data.models.Model}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public abstract boolean {\bf  hasRecordInSQL}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  writeToSQL}()
+}%end signature
+}%end item
 \end{itemize}
 }
 }
@@ -683,8 +919,8 @@ the soundOnOff
 \vskip .1in 
 \subsection{Declaration}{
 \small public class Statistic
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
+\\ {\bf  extends} com.retroMachines.data.models.Model
+\refdefined{com.retroMachines.data.models.Model}}
 \subsection{Constructor summary}{
 \begin{verse}
 {\bf Statistic(int, int, int)} creates a new instance of Statistic and assigns all the variables to the instance\\
@@ -695,9 +931,11 @@ the soundOnOff
 {\bf getLevelsComplete()} \\
 {\bf getPlaytime()} \\
 {\bf getStepCounter()} \\
+{\bf hasRecordInSQL()} \\
 {\bf setLevelsComplete(int)} \\
 {\bf setPlaytime(int)} \\
 {\bf setStepCounter(int)} \\
+{\bf writeToSQL()} \\
 \end{verse}
 }
 \subsection{Constructors}{
@@ -753,6 +991,22 @@ creates a new instance of Statistic and assigns all the variables to the instanc
 \label{com.retroMachines.data.models.Statistic.getStepCounter()}}%end signature
 }%end item
 \item{ 
+\index{hasRecordInSQL()}
+{\bf  hasRecordInSQL}\\
+\texttt{public abstract boolean\ {\bf  hasRecordInSQL}()
+\label{com.retroMachines.data.models.Statistic.hasRecordInSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from Model{\small \refdefined{com.retroMachines.data.models.Model}} }
+
+Checks if the database has a possibly previous copy for the model
+}
+\item{{\bf  Returns} -- 
+true if a records exists; false otherwise 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
 \index{setLevelsComplete(int)}
 {\bf  setLevelsComplete}\\
 \texttt{public void\ {\bf  setLevelsComplete}(\texttt{int} {\bf  levelsComplete})
@@ -769,6 +1023,36 @@ creates a new instance of Statistic and assigns all the variables to the instanc
 {\bf  setStepCounter}\\
 \texttt{public void\ {\bf  setStepCounter}(\texttt{int} {\bf  stepCounter})
 \label{com.retroMachines.data.models.Statistic.setStepCounter(int)}}%end signature
+}%end item
+\item{ 
+\index{writeToSQL()}
+{\bf  writeToSQL}\\
+\texttt{public abstract void\ {\bf  writeToSQL}()
+\label{com.retroMachines.data.models.Statistic.writeToSQL()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from Model{\small \refdefined{com.retroMachines.data.models.Model}} }
+
+saves the model to the persistence background database
+}
+\end{itemize}
+}%end item
+\end{itemize}
+}
+\subsection{Members inherited from class Model }{
+\texttt{com.retroMachines.data.models.Model} {\small 
+\refdefined{com.retroMachines.data.models.Model}}
+{\small 
+
+\vskip -2em
+\begin{itemize}
+\item{\vskip -1.5ex 
+\texttt{public abstract boolean {\bf  hasRecordInSQL}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public abstract void {\bf  writeToSQL}()
+}%end signature
 }%end item
 \end{itemize}
 }
@@ -791,7 +1075,7 @@ Abstrakte Screen Klasse auf die alle Anzeigen des Spiels handhabt.\vskip .1in
 \\ {\bf  extends} java.lang.Object
 \refdefined{java.lang.Object}\\ {\bf  implements} 
 com.badlogic.gdx.Screen}
-\subsection{All known subclasses}{EvaluationScreen\small{\refdefined{com.retroMachines.ui.screens.game.EvaluationScreen}}, GameScreen\small{\refdefined{com.retroMachines.ui.screens.game.GameScreen}}, ProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileMenuScreen}}, AboutMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AboutMenuScreen}}, CreateFirstProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}}, SettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.SettingsMenuScreen}}, CreateProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}}, ProfileManagementMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}}, AchievmentsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen}}, LoadMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LoadMenuScreen}}, LevelMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LevelMenuScreen}}, MenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}, MainMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MainMenuScreen}}, StageMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.StageMenuScreen}}, ProfileSettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen}}}
+\subsection{All known subclasses}{ProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileMenuScreen}}, AboutMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AboutMenuScreen}}, CreateFirstProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}}, SettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.SettingsMenuScreen}}, CreateProfileMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}}, ProfileManagementMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}}, AchievmentsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.AchievmentsMenuScreen}}, LoadMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LoadMenuScreen}}, LevelMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.LevelMenuScreen}}, MenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MenuScreen}}, MainMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.MainMenuScreen}}, StageMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.StageMenuScreen}}, ProfileSettingsMenuScreen\small{\refdefined{com.retroMachines.ui.screens.menus.ProfileSettingsMenuScreen}}, EvaluationScreen\small{\refdefined{com.retroMachines.ui.screens.game.EvaluationScreen}}, GameScreen\small{\refdefined{com.retroMachines.ui.screens.game.GameScreen}}}
 \subsection{Constructor summary}{
 \begin{verse}
 {\bf AbstractScreen(RetroMachines)} \\
@@ -1115,7 +1399,7 @@ Renders the Stage to the Screen.
 }
 \subsection{Method summary}{
 \begin{verse}
-{\bf create()} \\
+{\bf create()} initializes the game (all the controllers) after started by the Android Launcher.\\
 {\bf getProfileController()} \\
 {\bf getSettingController()} \\
 \end{verse}
@@ -1149,6 +1433,13 @@ Renders the Stage to the Screen.
 {\bf  create}\\
 \texttt{public void\ {\bf  create}()
 \label{com.retroMachines.RetroMachines.create()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+initializes the game (all the controllers) after started by the Android Launcher. Afterwards it displays the loading screen to the user.
+}
+\end{itemize}
 }%end item
 \item{ 
 \index{getProfileController()}
@@ -1204,177 +1495,6 @@ Renders the Stage to the Screen.
 }
 }
 }
-\chapter{Package com.retroMachines.ui.screens.game}{
-\label{com.retroMachines.ui.screens.game}\hskip -.05in
-\hbox to \hsize{\textit{ Package Contents\hfil Page}}
-\vskip .13in
-\hbox{{\bf  Classes}}
-\entityintro{EvaluationScreen}{com.retroMachines.ui.screens.game.EvaluationScreen}{}
-\entityintro{GameScreen}{com.retroMachines.ui.screens.game.GameScreen}{}
-\vskip .1in
-\vskip .1in
-\section{\label{com.retroMachines.ui.screens.game.EvaluationScreen}\index{EvaluationScreen}Class EvaluationScreen}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class EvaluationScreen
-\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
-\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf EvaluationScreen(RetroMachines, GameController)} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{EvaluationScreen(RetroMachines, GameController)}
-{\bf  EvaluationScreen}\\
-\texttt{public\ {\bf  EvaluationScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game},
-\texttt{com.retroMachines.game.controllers.GameController} {\bf  gameController})
-\label{com.retroMachines.ui.screens.game.EvaluationScreen(com.retroMachines.RetroMachines, com.retroMachines.game.controllers.GameController)}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class AbstractScreen }{
-\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
-\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
-{\small 
-
-\vskip -2em
-\begin{itemize}
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  dispose}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  hide}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  pause}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
-\texttt{int} {\bf  height})
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  resume}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  show}()
-}%end signature
-}%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.ui.screens.game.GameScreen}\index{GameScreen}Class GameScreen}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class GameScreen
-\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
-\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf GameScreen(RetroMachines, GameController)} \\
-\end{verse}
-}
-\subsection{Method summary}{
-\begin{verse}
-{\bf dispose()} \\
-{\bf render(float)} \\
-{\bf setMap(TiledMap)} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{GameScreen(RetroMachines, GameController)}
-{\bf  GameScreen}\\
-\texttt{public\ {\bf  GameScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game},
-\texttt{com.retroMachines.game.controllers.GameController} {\bf  gameController})
-\label{com.retroMachines.ui.screens.game.GameScreen(com.retroMachines.RetroMachines, com.retroMachines.game.controllers.GameController)}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Methods}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{dispose()}
-{\bf  dispose}\\
-\texttt{ void\ {\bf  dispose}()
-\label{com.retroMachines.ui.screens.game.GameScreen.dispose()}}%end signature
-}%end item
-\item{ 
-\index{render(float)}
-{\bf  render}\\
-\texttt{public void\ {\bf  render}(\texttt{float} {\bf  delta})
-\label{com.retroMachines.ui.screens.game.GameScreen.render(float)}}%end signature
-\begin{itemize}
-\item{
-{\bf  Description copied from com.retroMachines.ui.screens.AbstractScreen{\small \refdefined{com.retroMachines.ui.screens.AbstractScreen}} }
-
-Renders the Stage to the Screen.
-}
-\end{itemize}
-}%end item
-\item{ 
-\index{setMap(TiledMap)}
-{\bf  setMap}\\
-\texttt{public void\ {\bf  setMap}(\texttt{com.badlogic.gdx.maps.tiled.TiledMap} {\bf  map})
-\label{com.retroMachines.ui.screens.game.GameScreen.setMap(com.badlogic.gdx.maps.tiled.TiledMap)}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class AbstractScreen }{
-\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
-\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
-{\small 
-
-\vskip -2em
-\begin{itemize}
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  dispose}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  hide}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  pause}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
-\texttt{int} {\bf  height})
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  resume}()
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public void {\bf  show}()
-}%end signature
-}%end item
-\end{itemize}
-}
-}
-}
 \chapter{Package com.retroMachines.ui.screens.menus}{
 \label{com.retroMachines.ui.screens.menus}\hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -1385,7 +1505,7 @@ Renders the Stage to the Screen.
 \entityintro{CreateFirstProfileMenuScreen}{com.retroMachines.ui.screens.menus.CreateFirstProfileMenuScreen}{}
 \entityintro{CreateProfileMenuScreen}{com.retroMachines.ui.screens.menus.CreateProfileMenuScreen}{}
 \entityintro{LevelMenuScreen}{com.retroMachines.ui.screens.menus.LevelMenuScreen}{}
-\entityintro{LoadMenuScreen}{com.retroMachines.ui.screens.menus.LoadMenuScreen}{}
+\entityintro{LoadMenuScreen}{com.retroMachines.ui.screens.menus.LoadMenuScreen}{loading screen which appears after starting the App}
 \entityintro{MainMenuScreen}{com.retroMachines.ui.screens.menus.MainMenuScreen}{}
 \entityintro{MenuScreen}{com.retroMachines.ui.screens.menus.MenuScreen}{abstrakte MenuScreen klasse die die grundsätzliche Struktur eines Menüs wiederspiegelt.}
 \entityintro{ProfileManagementMenuScreen}{com.retroMachines.ui.screens.menus.ProfileManagementMenuScreen}{}
@@ -1718,6 +1838,7 @@ Renders the Stage to the Screen.
 }
 \section{\label{com.retroMachines.ui.screens.menus.LoadMenuScreen}\index{LoadMenuScreen}Class LoadMenuScreen}{
 \vskip .1in 
+loading screen which appears after starting the App\vskip .1in 
 \subsection{Declaration}{
 \small public class LoadMenuScreen
 \\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
@@ -1729,7 +1850,7 @@ Renders the Stage to the Screen.
 }
 \subsection{Method summary}{
 \begin{verse}
-{\bf show()} \\
+{\bf show()} the screen is displayed\\
 \end{verse}
 }
 \subsection{Constructors}{
@@ -1740,6 +1861,15 @@ Renders the Stage to the Screen.
 {\bf  LoadMenuScreen}\\
 \texttt{public\ {\bf  LoadMenuScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game})
 \label{com.retroMachines.ui.screens.menus.LoadMenuScreen(com.retroMachines.RetroMachines)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{game} -- the game which should be loaded while the screen is displayed}
+  \end{itemize}
+}%end item
+\end{itemize}
 }%end item
 \end{itemize}
 }
@@ -1749,8 +1879,15 @@ Renders the Stage to the Screen.
 \item{ 
 \index{show()}
 {\bf  show}\\
-\texttt{ void\ {\bf  show}()
+\texttt{public void\ {\bf  show}()
 \label{com.retroMachines.ui.screens.menus.LoadMenuScreen.show()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+the screen is displayed
+}
+\end{itemize}
 }%end item
 \end{itemize}
 }
@@ -2239,43 +2376,48 @@ abstrakte MenuScreen klasse die die grundsätzliche Struktur eines Menüs wieder
 }
 }
 }
-\chapter{Package com.retroMachines.lambda}{
-\label{com.retroMachines.lambda}\hskip -.05in
+\chapter{Package com.retroMachines.ui.screens.game}{
+\label{com.retroMachines.ui.screens.game}\hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
 \vskip .13in
 \hbox{{\bf  Classes}}
-\entityintro{Abstraction}{com.retroMachines.lambda.Abstraction}{}
-\entityintro{Application}{com.retroMachines.lambda.Application}{}
-\entityintro{Tree}{com.retroMachines.lambda.Tree}{}
-\entityintro{Variable}{com.retroMachines.lambda.Variable}{}
-\entityintro{Vertex}{com.retroMachines.lambda.Vertex}{}
+\entityintro{EvaluationScreen}{com.retroMachines.ui.screens.game.EvaluationScreen}{}
+\entityintro{GameScreen}{com.retroMachines.ui.screens.game.GameScreen}{}
 \vskip .1in
 \vskip .1in
-\section{\label{com.retroMachines.lambda.Abstraction}\index{Abstraction}Class Abstraction}{
+\section{\label{com.retroMachines.ui.screens.game.EvaluationScreen}\index{EvaluationScreen}Class EvaluationScreen}{
 \vskip .1in 
 \subsection{Declaration}{
-\small public class Abstraction
-\\ {\bf  extends} com.retroMachines.lambda.Vertex
-\refdefined{com.retroMachines.lambda.Vertex}}
+\small public class EvaluationScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}\\ {\bf  implements} 
+com.badlogic.gdx.physics.box2d.ContactListener}
 \subsection{Constructor summary}{
 \begin{verse}
-{\bf Abstraction(Tree, Variable)} \\
+{\bf EvaluationScreen(RetroMachines, GameController)} \\
 \end{verse}
 }
 \subsection{Method summary}{
 \begin{verse}
-{\bf toString()} \\
+{\bf beginContact(Contact)} ContactListener Section\\
+{\bf endContact(Contact)} \\
+{\bf pauseAnimation()} \\
+{\bf postSolve(Contact, ContactImpulse)} \\
+{\bf preSolve(Contact, Manifold)} \\
+{\bf render(float)} \\
+{\bf setLambaTerm(Tree)} assigns a lambda term to the screen for the animation\\
+{\bf startAnimation()} \\
 \end{verse}
 }
 \subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
-\index{Abstraction(Tree, Variable)}
-{\bf  Abstraction}\\
-\texttt{public\ {\bf  Abstraction}(\texttt{Tree} {\bf  tree},
-\texttt{Variable} {\bf  var})
-\label{com.retroMachines.lambda.Abstraction(com.retroMachines.lambda.Tree, com.retroMachines.lambda.Variable)}}%end signature
+\index{EvaluationScreen(RetroMachines, GameController)}
+{\bf  EvaluationScreen}\\
+\texttt{public\ {\bf  EvaluationScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game},
+\texttt{com.retroMachines.game.controllers.GameController} {\bf  gameController})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen(com.retroMachines.RetroMachines, com.retroMachines.game.controllers.GameController)}}%end signature
 }%end item
 \end{itemize}
 }
@@ -2283,278 +2425,151 @@ abstrakte MenuScreen klasse die die grundsätzliche Struktur eines Menüs wieder
 \vskip -2em
 \begin{itemize}
 \item{ 
-\index{toString()}
-{\bf  toString}\\
-\texttt{public java.lang.String\ {\bf  toString}()
-\label{com.retroMachines.lambda.Abstraction.toString()}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class Vertex }{
-\texttt{com.retroMachines.lambda.Vertex} {\small 
-\refdefined{com.retroMachines.lambda.Vertex}}
-{\small 
-
-\vskip -2em
-\begin{itemize}
-\item{\vskip -1.5ex 
-\texttt{public boolean {\bf  setEdge}(\texttt{Vertex} {\bf  v})
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public abstract String {\bf  toString}()
-}%end signature
-}%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.lambda.Application}\index{Application}Class Application}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class Application
-\\ {\bf  extends} com.retroMachines.lambda.Vertex
-\refdefined{com.retroMachines.lambda.Vertex}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf Application(Tree, Tree)} \\
-\end{verse}
-}
-\subsection{Method summary}{
-\begin{verse}
-{\bf toString()} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{Application(Tree, Tree)}
-{\bf  Application}\\
-\texttt{public\ {\bf  Application}(\texttt{Tree} {\bf  t1},
-\texttt{Tree} {\bf  t2})
-\label{com.retroMachines.lambda.Application(com.retroMachines.lambda.Tree, com.retroMachines.lambda.Tree)}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Methods}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{toString()}
-{\bf  toString}\\
-\texttt{public java.lang.String\ {\bf  toString}()
-\label{com.retroMachines.lambda.Application.toString()}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class Vertex }{
-\texttt{com.retroMachines.lambda.Vertex} {\small 
-\refdefined{com.retroMachines.lambda.Vertex}}
-{\small 
-
-\vskip -2em
-\begin{itemize}
-\item{\vskip -1.5ex 
-\texttt{public boolean {\bf  setEdge}(\texttt{Vertex} {\bf  v})
-}%end signature
-}%end item
-\item{\vskip -1.5ex 
-\texttt{public abstract String {\bf  toString}()
-}%end signature
-}%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.lambda.Tree}\index{Tree}Class Tree}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class Tree
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf Tree(String)} creates Tree representation of given lambda-term in string representation\\
-{\bf Tree(Vertex)} \\
-\end{verse}
-}
-\subsection{Method summary}{
-\begin{verse}
-{\bf alphaConversion(Variable)} fulfills alphConversion on given variable.\\
-{\bf betaReduction()} fulfills one step of beta-reduction\\
-{\bf toString()} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{Tree(String)}
-{\bf  Tree}\\
-\texttt{public\ {\bf  Tree}(\texttt{java.lang.String} {\bf  term})
-\label{com.retroMachines.lambda.Tree(java.lang.String)}}%end signature
+\index{beginContact(Contact)}
+{\bf  beginContact}\\
+\texttt{public void\ {\bf  beginContact}(\texttt{com.badlogic.gdx.physics.box2d.Contact} {\bf  contact})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.beginContact(com.badlogic.gdx.physics.box2d.Contact)}}%end signature
 \begin{itemize}
 \item{
 {\bf  Description}
 
-creates Tree representation of given lambda-term in string representation
+ContactListener Section
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{endContact(Contact)}
+{\bf  endContact}\\
+\texttt{ void\ {\bf  endContact}(\texttt{com.badlogic.gdx.physics.box2d.Contact} {\bf  arg0})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.endContact(com.badlogic.gdx.physics.box2d.Contact)}}%end signature
+}%end item
+\item{ 
+\index{pauseAnimation()}
+{\bf  pauseAnimation}\\
+\texttt{public void\ {\bf  pauseAnimation}()
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.pauseAnimation()}}%end signature
+}%end item
+\item{ 
+\index{postSolve(Contact, ContactImpulse)}
+{\bf  postSolve}\\
+\texttt{ void\ {\bf  postSolve}(\texttt{com.badlogic.gdx.physics.box2d.Contact} {\bf  arg0},
+\texttt{com.badlogic.gdx.physics.box2d.ContactImpulse} {\bf  arg1})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.postSolve(com.badlogic.gdx.physics.box2d.Contact, com.badlogic.gdx.physics.box2d.ContactImpulse)}}%end signature
+}%end item
+\item{ 
+\index{preSolve(Contact, Manifold)}
+{\bf  preSolve}\\
+\texttt{ void\ {\bf  preSolve}(\texttt{com.badlogic.gdx.physics.box2d.Contact} {\bf  arg0},
+\texttt{com.badlogic.gdx.physics.box2d.Manifold} {\bf  arg1})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.preSolve(com.badlogic.gdx.physics.box2d.Contact, com.badlogic.gdx.physics.box2d.Manifold)}}%end signature
+}%end item
+\item{ 
+\index{render(float)}
+{\bf  render}\\
+\texttt{public void\ {\bf  render}(\texttt{float} {\bf  delta})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.render(float)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from com.retroMachines.ui.screens.AbstractScreen{\small \refdefined{com.retroMachines.ui.screens.AbstractScreen}} }
+
+Renders the Stage to the Screen.
+}
+\end{itemize}
+}%end item
+\item{ 
+\index{setLambaTerm(Tree)}
+{\bf  setLambaTerm}\\
+\texttt{public void\ {\bf  setLambaTerm}(\texttt{com.retroMachines.util.lambda.Tree} {\bf  t})
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.setLambaTerm(com.retroMachines.util.lambda.Tree)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+assigns a lambda term to the screen for the animation
 }
 \item{
 {\bf  Parameters}
   \begin{itemize}
    \item{
-\texttt{term} -- string representation of labmda-term}
+\texttt{t} -- the lambda term in question}
   \end{itemize}
 }%end item
 \end{itemize}
 }%end item
 \item{ 
-\index{Tree(Vertex)}
-{\bf  Tree}\\
-\texttt{public\ {\bf  Tree}(\texttt{Vertex} {\bf  start})
-\label{com.retroMachines.lambda.Tree(com.retroMachines.lambda.Vertex)}}%end signature
+\index{startAnimation()}
+{\bf  startAnimation}\\
+\texttt{public void\ {\bf  startAnimation}()
+\label{com.retroMachines.ui.screens.game.EvaluationScreen.startAnimation()}}%end signature
 }%end item
 \end{itemize}
 }
-\subsection{Methods}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{alphaConversion(Variable)}
-{\bf  alphaConversion}\\
-\texttt{public Variable\ {\bf  alphaConversion}(\texttt{Variable} {\bf  var})
-\label{com.retroMachines.lambda.Tree.alphaConversion(com.retroMachines.lambda.Variable)}}%end signature
-\begin{itemize}
-\item{
-{\bf  Description}
-
-fulfills alphConversion on given variable. Creates new unique variable and replaces every appearance of var in lambda-term where needed. New Variable will be returned
-}
-\item{
-{\bf  Parameters}
-  \begin{itemize}
-   \item{
-\texttt{var} -- variable to change}
-  \end{itemize}
-}%end item
-\item{{\bf  Returns} -- 
-new created variable 
-}%end item
-\end{itemize}
-}%end item
-\item{ 
-\index{betaReduction()}
-{\bf  betaReduction}\\
-\texttt{public boolean\ {\bf  betaReduction}()
-\label{com.retroMachines.lambda.Tree.betaReduction()}}%end signature
-\begin{itemize}
-\item{
-{\bf  Description}
-
-fulfills one step of beta-reduction
-}
-\item{{\bf  Returns} -- 
-true if this tree has changed, false otherwise 
-}%end item
-\end{itemize}
-}%end item
-\item{ 
-\index{toString()}
-{\bf  toString}\\
-\texttt{public java.lang.String\ {\bf  toString}()
-\label{com.retroMachines.lambda.Tree.toString()}}%end signature
-}%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.lambda.Variable}\index{Variable}Class Variable}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class Variable
-\\ {\bf  extends} com.retroMachines.lambda.Vertex
-\refdefined{com.retroMachines.lambda.Vertex}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf Variable(char)} \\
-\end{verse}
-}
-\subsection{Method summary}{
-\begin{verse}
-{\bf getId()} \\
-{\bf toString()} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{Variable(char)}
-{\bf  Variable}\\
-\texttt{public\ {\bf  Variable}(\texttt{char} {\bf  id})
-\label{com.retroMachines.lambda.Variable(char)}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Methods}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{getId()}
-{\bf  getId}\\
-\texttt{public int\ {\bf  getId}()
-\label{com.retroMachines.lambda.Variable.getId()}}%end signature
-}%end item
-\item{ 
-\index{toString()}
-{\bf  toString}\\
-\texttt{public java.lang.String\ {\bf  toString}()
-\label{com.retroMachines.lambda.Variable.toString()}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class Vertex }{
-\texttt{com.retroMachines.lambda.Vertex} {\small 
-\refdefined{com.retroMachines.lambda.Vertex}}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
 {\small 
 
 \vskip -2em
 \begin{itemize}
 \item{\vskip -1.5ex 
-\texttt{public boolean {\bf  setEdge}(\texttt{Vertex} {\bf  v})
+\texttt{public void {\bf  dispose}()
 }%end signature
 }%end item
 \item{\vskip -1.5ex 
-\texttt{public abstract String {\bf  toString}()
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
 }%end signature
 }%end item
 \end{itemize}
 }
 }
-\section{\label{com.retroMachines.lambda.Vertex}\index{Vertex}Class Vertex}{
+\section{\label{com.retroMachines.ui.screens.game.GameScreen}\index{GameScreen}Class GameScreen}{
 \vskip .1in 
 \subsection{Declaration}{
-\small public abstract class Vertex
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
-\subsection{All known subclasses}{Application\small{\refdefined{com.retroMachines.lambda.Application}}, Abstraction\small{\refdefined{com.retroMachines.lambda.Abstraction}}, Variable\small{\refdefined{com.retroMachines.lambda.Variable}}}
+\small public class GameScreen
+\\ {\bf  extends} com.retroMachines.ui.screens.AbstractScreen
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
 \subsection{Constructor summary}{
 \begin{verse}
-{\bf Vertex()} \\
+{\bf GameScreen(RetroMachines, GameController)} \\
 \end{verse}
 }
 \subsection{Method summary}{
 \begin{verse}
-{\bf setEdge(Vertex)} \\
-{\bf toString()} \\
+{\bf dispose()} \\
+{\bf render(float)} \\
+{\bf setMap(TiledMap)} \\
 \end{verse}
 }
 \subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
-\index{Vertex()}
-{\bf  Vertex}\\
-\texttt{public\ {\bf  Vertex}()
-\label{com.retroMachines.lambda.Vertex()}}%end signature
+\index{GameScreen(RetroMachines, GameController)}
+{\bf  GameScreen}\\
+\texttt{public\ {\bf  GameScreen}(\texttt{com.retroMachines.RetroMachines} {\bf  game},
+\texttt{com.retroMachines.game.controllers.GameController} {\bf  gameController})
+\label{com.retroMachines.ui.screens.game.GameScreen(com.retroMachines.RetroMachines, com.retroMachines.game.controllers.GameController)}}%end signature
 }%end item
 \end{itemize}
 }
@@ -2562,179 +2577,66 @@ true if this tree has changed, false otherwise
 \vskip -2em
 \begin{itemize}
 \item{ 
-\index{setEdge(Vertex)}
-{\bf  setEdge}\\
-\texttt{public boolean\ {\bf  setEdge}(\texttt{Vertex} {\bf  v})
-\label{com.retroMachines.lambda.Vertex.setEdge(com.retroMachines.lambda.Vertex)}}%end signature
+\index{dispose()}
+{\bf  dispose}\\
+\texttt{ void\ {\bf  dispose}()
+\label{com.retroMachines.ui.screens.game.GameScreen.dispose()}}%end signature
 }%end item
 \item{ 
-\index{toString()}
-{\bf  toString}\\
-\texttt{public java.lang.String\ {\bf  toString}()
-\label{com.retroMachines.lambda.Vertex.toString()}}%end signature
-}%end item
-\end{itemize}
-}
-}
-}
-\chapter{Package com.retroMachines.lambda.test}{
-\label{com.retroMachines.lambda.test}\hskip -.05in
-\hbox to \hsize{\textit{ Package Contents\hfil Page}}
-\vskip .13in
-\hbox{{\bf  Classes}}
-\entityintro{AbstractTerm}{com.retroMachines.lambda.test.AbstractTerm}{}
-\entityintro{Main}{com.retroMachines.lambda.test.Main}{}
-\entityintro{Term1}{com.retroMachines.lambda.test.Term1}{Es soll der gegebene Ausdruck mittels der Lambda-Datenstruktur repräsentiert werden.}
-\entityintro{Term2}{com.retroMachines.lambda.test.Term2}{}
-\vskip .1in
-\vskip .1in
-\section{\label{com.retroMachines.lambda.test.AbstractTerm}\index{AbstractTerm}Class AbstractTerm}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public abstract class AbstractTerm
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
-\subsection{All known subclasses}{Term2\small{\refdefined{com.retroMachines.lambda.test.Term2}}, Term1\small{\refdefined{com.retroMachines.lambda.test.Term1}}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf AbstractTerm()} \\
-\end{verse}
-}
-\subsection{Method summary}{
-\begin{verse}
-{\bf toString()} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
+\index{render(float)}
+{\bf  render}\\
+\texttt{public void\ {\bf  render}(\texttt{float} {\bf  delta})
+\label{com.retroMachines.ui.screens.game.GameScreen.render(float)}}%end signature
 \begin{itemize}
+\item{
+{\bf  Description copied from com.retroMachines.ui.screens.AbstractScreen{\small \refdefined{com.retroMachines.ui.screens.AbstractScreen}} }
+
+Renders the Stage to the Screen.
+}
+\end{itemize}
+}%end item
 \item{ 
-\index{AbstractTerm()}
-{\bf  AbstractTerm}\\
-\texttt{public\ {\bf  AbstractTerm}()
-\label{com.retroMachines.lambda.test.AbstractTerm()}}%end signature
+\index{setMap(TiledMap)}
+{\bf  setMap}\\
+\texttt{public void\ {\bf  setMap}(\texttt{com.badlogic.gdx.maps.tiled.TiledMap} {\bf  map})
+\label{com.retroMachines.ui.screens.game.GameScreen.setMap(com.badlogic.gdx.maps.tiled.TiledMap)}}%end signature
 }%end item
 \end{itemize}
 }
-\subsection{Methods}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{toString()}
-{\bf  toString}\\
-\texttt{public java.lang.String\ {\bf  toString}()
-\label{com.retroMachines.lambda.test.AbstractTerm.toString()}}%end signature
-}%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.lambda.test.Main}\index{Main}Class Main}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class Main
-\\ {\bf  extends} java.lang.Object
-\refdefined{java.lang.Object}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf Main()} \\
-\end{verse}
-}
-\subsection{Method summary}{
-\begin{verse}
-{\bf main(String\lbrack \rbrack )} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{Main()}
-{\bf  Main}\\
-\texttt{public\ {\bf  Main}()
-\label{com.retroMachines.lambda.test.Main()}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Methods}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{main(String\lbrack \rbrack )}
-{\bf  main}\\
-\texttt{public static void\ {\bf  main}(\texttt{java.lang.String\lbrack \rbrack } {\bf  args})
-\label{com.retroMachines.lambda.test.Main.main(java.lang.String[])}}%end signature
-}%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.lambda.test.Term1}\index{Term1}Class Term1}{
-\vskip .1in 
-Es soll der gegebene Ausdruck mittels der Lambda-Datenstruktur repräsentiert werden. Hier geschieht das von Hand, soll aber später von einem Parser übernommen werden.\vskip .1in 
-\subsection{Declaration}{
-\small public class Term1
-\\ {\bf  extends} com.retroMachines.lambda.test.AbstractTerm
-\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf Term1()} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{Term1()}
-{\bf  Term1}\\
-\texttt{public\ {\bf  Term1}()
-\label{com.retroMachines.lambda.test.Term1()}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class AbstractTerm }{
-\texttt{com.retroMachines.lambda.test.AbstractTerm} {\small 
-\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
+\subsection{Members inherited from class AbstractScreen }{
+\texttt{com.retroMachines.ui.screens.AbstractScreen} {\small 
+\refdefined{com.retroMachines.ui.screens.AbstractScreen}}
 {\small 
 
 \vskip -2em
 \begin{itemize}
 \item{\vskip -1.5ex 
-\texttt{public String {\bf  toString}()
+\texttt{public void {\bf  dispose}()
 }%end signature
 }%end item
-\end{itemize}
-}
-}
-\section{\label{com.retroMachines.lambda.test.Term2}\index{Term2}Class Term2}{
-\vskip .1in 
-\subsection{Declaration}{
-\small public class Term2
-\\ {\bf  extends} com.retroMachines.lambda.test.AbstractTerm
-\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
-\subsection{Constructor summary}{
-\begin{verse}
-{\bf Term2()} \\
-\end{verse}
-}
-\subsection{Constructors}{
-\vskip -2em
-\begin{itemize}
-\item{ 
-\index{Term2()}
-{\bf  Term2}\\
-\texttt{public\ {\bf  Term2}()
-\label{com.retroMachines.lambda.test.Term2()}}%end signature
-}%end item
-\end{itemize}
-}
-\subsection{Members inherited from class AbstractTerm }{
-\texttt{com.retroMachines.lambda.test.AbstractTerm} {\small 
-\refdefined{com.retroMachines.lambda.test.AbstractTerm}}
-{\small 
-
-\vskip -2em
-\begin{itemize}
 \item{\vskip -1.5ex 
-\texttt{public String {\bf  toString}()
+\texttt{public void {\bf  hide}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  pause}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  render}(\texttt{float} {\bf  delta})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resize}(\texttt{int} {\bf  width},
+\texttt{int} {\bf  height})
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  resume}()
+}%end signature
+}%end item
+\item{\vskip -1.5ex 
+\texttt{public void {\bf  show}()
 }%end signature
 }%end item
 \end{itemize}
@@ -3384,6 +3286,242 @@ Call this method when the character is supposed to jump
   \end{itemize}
 }%end item
 \end{itemize}
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package com.retroMachines.util.lambda}{
+\label{com.retroMachines.util.lambda}\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{Abstraction}{com.retroMachines.util.lambda.Abstraction}{}
+\entityintro{Application}{com.retroMachines.util.lambda.Application}{}
+\entityintro{Tree}{com.retroMachines.util.lambda.Tree}{}
+\entityintro{Variable}{com.retroMachines.util.lambda.Variable}{}
+\entityintro{Vertex}{com.retroMachines.util.lambda.Vertex}{}
+\vskip .1in
+\vskip .1in
+\section{\label{com.retroMachines.util.lambda.Abstraction}\index{Abstraction}Class Abstraction}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Abstraction
+\\ {\bf  extends} com.retroMachines.util.lambda.Vertex
+\refdefined{com.retroMachines.util.lambda.Vertex}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Abstraction(char)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf alphaConversion()} \\
+{\bf betaReduction()} fulfills one step of beta-reduction\\
+{\bf getID()} \\
+{\bf setID(char)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Abstraction(char)}
+{\bf  Abstraction}\\
+\texttt{public\ {\bf  Abstraction}(\texttt{char} {\bf  id})
+\label{com.retroMachines.util.lambda.Abstraction(char)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{alphaConversion()}
+{\bf  alphaConversion}\\
+\texttt{public boolean\ {\bf  alphaConversion}()
+\label{com.retroMachines.util.lambda.Abstraction.alphaConversion()}}%end signature
+}%end item
+\item{ 
+\index{betaReduction()}
+{\bf  betaReduction}\\
+\texttt{public boolean\ {\bf  betaReduction}()
+\label{com.retroMachines.util.lambda.Abstraction.betaReduction()}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+fulfills one step of beta-reduction
+}
+\item{{\bf  Returns} -- 
+true if this tree has changed, false otherwise 
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{getID()}
+{\bf  getID}\\
+\texttt{public char\ {\bf  getID}()
+\label{com.retroMachines.util.lambda.Abstraction.getID()}}%end signature
+}%end item
+\item{ 
+\index{setID(char)}
+{\bf  setID}\\
+\texttt{public void\ {\bf  setID}(\texttt{char} {\bf  id})
+\label{com.retroMachines.util.lambda.Abstraction.setID(char)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.util.lambda.Application}\index{Application}Class Application}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Application
+\\ {\bf  extends} com.retroMachines.util.lambda.Vertex
+\refdefined{com.retroMachines.util.lambda.Vertex}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Application()} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf setChecked()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Application()}
+{\bf  Application}\\
+\texttt{public\ {\bf  Application}()
+\label{com.retroMachines.util.lambda.Application()}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{setChecked()}
+{\bf  setChecked}\\
+\texttt{public boolean\ {\bf  setChecked}()
+\label{com.retroMachines.util.lambda.Application.setChecked()}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.util.lambda.Tree}\index{Tree}Class Tree}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Tree
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Tree(String)} creates Tree representation of given lambda-term in string representation\\
+{\bf Tree(Vertex)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Tree(String)}
+{\bf  Tree}\\
+\texttt{public\ {\bf  Tree}(\texttt{java.lang.String} {\bf  term})
+\label{com.retroMachines.util.lambda.Tree(java.lang.String)}}%end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+creates Tree representation of given lambda-term in string representation
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{term} -- string representation of labmda-term}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
+\index{Tree(Vertex)}
+{\bf  Tree}\\
+\texttt{public\ {\bf  Tree}(\texttt{Vertex} {\bf  start})
+\label{com.retroMachines.util.lambda.Tree(com.retroMachines.util.lambda.Vertex)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.util.lambda.Variable}\index{Variable}Class Variable}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public class Variable
+\\ {\bf  extends} com.retroMachines.util.lambda.Vertex
+\refdefined{com.retroMachines.util.lambda.Vertex}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Variable(char)} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+{\bf getId()} \\
+{\bf setId(char)} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Variable(char)}
+{\bf  Variable}\\
+\texttt{public\ {\bf  Variable}(\texttt{char} {\bf  id})
+\label{com.retroMachines.util.lambda.Variable(char)}}%end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{getId()}
+{\bf  getId}\\
+\texttt{public int\ {\bf  getId}()
+\label{com.retroMachines.util.lambda.Variable.getId()}}%end signature
+}%end item
+\item{ 
+\index{setId(char)}
+{\bf  setId}\\
+\texttt{public void\ {\bf  setId}(\texttt{char} {\bf  i})
+\label{com.retroMachines.util.lambda.Variable.setId(char)}}%end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{com.retroMachines.util.lambda.Vertex}\index{Vertex}Class Vertex}{
+\vskip .1in 
+\subsection{Declaration}{
+\small public abstract class Vertex
+\\ {\bf  extends} java.lang.Object
+\refdefined{java.lang.Object}}
+\subsection{All known subclasses}{Application\small{\refdefined{com.retroMachines.util.lambda.Application}}, Abstraction\small{\refdefined{com.retroMachines.util.lambda.Abstraction}}, Variable\small{\refdefined{com.retroMachines.util.lambda.Variable}}}
+\subsection{Constructor summary}{
+\begin{verse}
+{\bf Vertex()} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Vertex()}
+{\bf  Vertex}\\
+\texttt{public\ {\bf  Vertex}()
+\label{com.retroMachines.util.lambda.Vertex()}}%end signature
 }%end item
 \end{itemize}
 }
