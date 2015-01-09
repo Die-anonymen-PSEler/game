@@ -14,10 +14,11 @@ public class RetroMachines extends Game {
 	/**
 	 * controllers
 	 */
-	
 	private ProfileController profileController;
 	private SettingController settingController;
-		
+
+	
+	
 	@Override
 	public void create () {
 		profileController = new ProfileController(this);

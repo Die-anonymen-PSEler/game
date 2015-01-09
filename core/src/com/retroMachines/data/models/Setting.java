@@ -1,6 +1,16 @@
 package com.retroMachines.data.models;
 
-public class Setting {
+public class Setting extends Model {
+	
+	private static final String TABLE_NAME = "settings";
+	
+	private static final String CREATE_TABLE_QUERY = "";
+	
+	private static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	
+	private static final String DELETE_TABLE_QUERY_PATTERN = "";
+	
+	private static final String INSERT_TABLE_QUERY_PATTERN = "";
 	
 	/**
 	 * the volume of the game
@@ -19,6 +29,7 @@ public class Setting {
 	private boolean leftControl;
 	
 	public Setting(boolean leftControl, boolean soundOnOff, float volume) {
+		super();
 		this.volume = volume;
 		this.soundOnOff = soundOnOff;
 		this.leftControl = leftControl;
@@ -67,6 +78,18 @@ public class Setting {
 	 */
 	public void setLeftControl(boolean leftControl) {
 		this.leftControl = leftControl;
+	}
+
+	@Override
+	public void writeToSQL() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean hasRecordInSQL() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	

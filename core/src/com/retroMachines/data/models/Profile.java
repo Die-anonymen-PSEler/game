@@ -1,6 +1,16 @@
 package com.retroMachines.data.models;
 
-public class Profile {
+public class Profile extends Model {
+	
+	private static final String TABLE_NAME = "profiles";
+	
+	private static final String CREATE_TABLE_QUERY = "";
+	
+	private static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	
+	private static final String DELETE_TABLE_QUERY_PATTERN = "";
+	
+	private static final String INSERT_TABLE_QUERY_PATTERN = "";
 	
 	/**
 	 * the name of the profile
@@ -30,6 +40,7 @@ public class Profile {
 	 * @param statistic statistics of the profile
 	 */
 	public Profile(String name, int profileId, Setting setting, Statistic statistic) {
+		super();
 		this.setProfileName(name);
 		this.setProfileId(profileId);
 		this.setSetting(setting);
@@ -75,5 +86,16 @@ public class Profile {
 	 */
 	public void setSetting(Setting setting) {
 		this.setting = setting;
+	}
+	@Override
+	public void writeToSQL() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean hasRecordInSQL() {
+		// TODO Auto-generated method stub
+		return false;
+		
 	}
 }

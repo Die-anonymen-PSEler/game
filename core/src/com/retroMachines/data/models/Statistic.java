@@ -1,6 +1,16 @@
 package com.retroMachines.data.models;
 
-public class Statistic {
+public class Statistic extends Model {
+	
+	private static final String TABLE_NAME = "statistics";
+	
+	private static final String CREATE_TABLE_QUERY = "";
+	
+	private static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	
+	private static final String DELETE_TABLE_QUERY_PATTERN = "";
+	
+	private static final String INSERT_TABLE_QUERY_PATTERN = "";
 	
 	/**
 	 * the play time the player has spent on the game in minutes
@@ -24,6 +34,7 @@ public class Statistic {
 	 * @param stepCounter
 	 */
 	public Statistic(int playtime, int levelsComplete, int stepCounter) {
+		super();
 		this.setPlaytime(playtime);
 		this.setLevelsComplete(levelsComplete);
 		this.setStepCounter(stepCounter);
@@ -51,5 +62,17 @@ public class Statistic {
 
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
+	}
+
+	@Override
+	public void writeToSQL() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean hasRecordInSQL() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
