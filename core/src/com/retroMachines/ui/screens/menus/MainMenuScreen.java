@@ -2,6 +2,7 @@ package com.retroMachines.ui.screens.menus;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,8 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.models.SettingsChangeListener;
 
-public class MainMenuScreen extends MenuScreen{
+public class MainMenuScreen extends MenuScreen implements SettingsChangeListener {
 	
 	private Skin skin;
 	
@@ -23,14 +25,20 @@ public class MainMenuScreen extends MenuScreen{
 	
 	private TextButton playButton;
 	
+	private Sound sound;
+	
+	private static final String SOUNDFILE = "";
+	
+	private long soundId;
+	
 	public MainMenuScreen(RetroMachines game) {
 		super(game);
-		
+		initialize();
 	}
 
 	public void show() {
+		soundId = sound.loop();
 	}
-	
 	
 	@Override
 	protected void initialize() {
@@ -47,7 +55,9 @@ public class MainMenuScreen extends MenuScreen{
         playButton.addListener(new PlayButtonClickListener());
         
         tableLeft.add(playButton).row();
+        //sound initialisieren
         
+        game.getSettingController().add(this);
 	}
 	
 	private class PlayButtonClickListener extends ClickListener {
@@ -84,5 +94,15 @@ public class MainMenuScreen extends MenuScreen{
 			//TODO implement this
 			game.setScreen(new ProfileMenuScreen(game));
 		}
+	}
+
+	@Override
+	public void onSettingsChanged() {
+		
+		// TODO Auto-generated method stub
+		float newVolume = game.getSettingController().getVolume();
+		sound.setVolume(, volume);
+		
+		
 	}
 }

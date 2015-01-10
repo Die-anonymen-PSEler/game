@@ -3,6 +3,7 @@ package com.retroMachines.game.controllers;
 import java.util.List;
 
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.models.Setting;
 import com.retroMachines.data.models.SettingsChangeListener;
 
 /**
@@ -12,6 +13,8 @@ import com.retroMachines.data.models.SettingsChangeListener;
  * 
  */
 public class SettingController {
+	
+	private Setting settings;
 
 	private final RetroMachines game;
 	/**
@@ -22,10 +25,16 @@ public class SettingController {
 
 	public SettingController(RetroMachines game) {
 		this.game = game;
+		settings = game.getProfileController().getProfile().getSetting();
 	}
 
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
+	}
+
+	public float getVolume() {
+		// TODO Auto-generated method stub
+		return settings.getVolume();
 	}
 
 }
