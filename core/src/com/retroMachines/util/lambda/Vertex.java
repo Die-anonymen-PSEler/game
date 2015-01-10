@@ -1,10 +1,14 @@
 package com.retroMachines.util.lambda;
 
-import java.util.Set;
-
 public abstract class Vertex {
 	
+	/**
+	 * reference to next input
+	 */
 	private Vertex next;
+	/**
+	 * reference to output tree
+	 */
 	private Vertex family;
 	
 

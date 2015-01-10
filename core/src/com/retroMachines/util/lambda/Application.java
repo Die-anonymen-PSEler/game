@@ -4,18 +4,30 @@ import java.util.LinkedList;
 
 public class Application extends Vertex {
 	
+	/**
+	 * list of all id's of vertices corresponding to this abstraction
+	 */
 	private LinkedList<Character> idlist;
-	private boolean checked;
+	/**
+	 * tells whether this application is already processed.
+	 * False until process is finished
+	 */
+	private boolean isChecked;
 
-	
+	/**
+	 * constructor
+	 * sets empty idList, isChecked to false
+	 */
 	public Application() {
 		idlist = new LinkedList<Character>();
-		checked = false;
+		isChecked = false;
 	}
 	
-	public boolean setChecked() {
-		checked = true;
-		return checked;
+	/**
+	 * sets isChecked to true
+	 */
+	public void setChecked() {
+		isChecked = true;
 	}
 
 }

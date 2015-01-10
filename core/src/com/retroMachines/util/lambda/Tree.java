@@ -2,7 +2,10 @@ package com.retroMachines.util.lambda;
 
 public class Tree {
 	
-	private Vertex start; //root of tree, op level of lamdbda term
+	/**
+	 * root of tree, top level of lambda term
+	 */
+	private Vertex start; 
 	
 	/**
 	 * creates Tree representation of given lambda-term in string representation
@@ -12,8 +15,20 @@ public class Tree {
 		//TODO: create tree from term
 	}
 	
+	/**
+	 * creates Tree object of given vertex.
+	 * @param start root of tree to create
+	 */
 	public Tree(Vertex start) {
 		this.start = start;
+	}
+	
+	/**
+	 * getter for start
+	 * @return start
+	 */
+	public Vertex getStart() {
+		return start;
 	}
 	
 
