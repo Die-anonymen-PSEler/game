@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 /**
  * AssetManager manages the different assets of the game like the images and fonts. It loads the required files 
  * for the view of the game. Other classes use this class to get their views.
- * @author RetroFactury
+ * @author RetroFactory
  *
  */
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
