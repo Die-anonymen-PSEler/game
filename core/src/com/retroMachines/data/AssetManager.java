@@ -6,6 +6,12 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+/**
+ * AssetManager manages the different assets of the game like the images and fonts. It loads the required files 
+ * for the view of the game. Other classes use this class to get their views.
+ * @author RetroFactury
+ *
+ */
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	
     public static AssetManager manager = new AssetManager();
@@ -13,7 +19,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
     public static Skin menuSkin;
     
     /**
-     * Contains all file references to the Files to load. 
+     * Contains all file references to the Files to load 
      */
     public static final String[] assetNames = {};
     
@@ -49,24 +55,30 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
     
     
 
-    // In here we'll put everything that needs to be loaded in this format:
-    // manager.load("file location in assets", fileType.class);
-    // 
-    // libGDX AssetManager currently supports: Pixmap, Texture, BitmapFont,
-    //     TextureAtlas, TiledAtlas, TiledMapRenderer, Music and Sound.
+
+    /**
+     * queueLoading loads the assets in the format:
+     * manager.load("file location in assets", fileType.class);
+     * 
+     * libGDX AssetManager currently supports: Pixmap, Texture, BitmapFont,
+     *  TextureAtlas, TiledAtlas, TiledMapRenderer, Music and Sound.
+     */
     public static void queueLoading() {
         manager.load("skins/MenuButtons.pack", TextureAtlas.class);
     }
 
-    //In here we'll create our skin, so we only have to create it once.
+    /**
+     * The basic menu is created to be used in the different menus
+     */
     public static void setMenuSkin() {
         if (menuSkin == null)
             menuSkin = new Skin(Gdx.files.internal("skins/ButtonSkin.json"),
                     manager.get("skins/MenuButtons.pack", TextureAtlas.class));
     }
-    // This function gets called every render() and the AssetManager pauses the loading each frame
-    // so we can still run menus and loading screens smoothly
     
+    /** This function gets called every render() call and the AssetManager pauses the loading of each frame
+     *  so that the menus and loading screens can run smoothly
+     */
     public boolean update() {
         return manager.update();
     }
