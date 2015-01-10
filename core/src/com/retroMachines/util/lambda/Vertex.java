@@ -5,11 +5,10 @@ public abstract class Vertex {
 	/**
 	 * reference to next input
 	 */
-	private Vertex next;
+	protected Vertex next;
 	/**
 	 * reference to output tree
 	 */
-	private Vertex family;
+	protected Vertex family;
 	
-
 }

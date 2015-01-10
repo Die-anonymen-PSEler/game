@@ -1,16 +1,41 @@
 package com.retroMachines.data.models;
 
+/**
+ * Statistics Class
+ * This class holds all information regarding the statistics of a single profile
+ * Every information stored within this class will be backed up to the sqlite database
+ * @author Retro Factory
+ *
+ */
 public class Statistic extends Model {
 	
-	private static final String TABLE_NAME = "statistics";
+	/**
+	 * the name of the table where the statistics are stored
+	 */
+	public static final String TABLE_NAME = "statistics";
 	
-	private static final String CREATE_TABLE_QUERY = "";
+	/**
+	 * a raw query that should be executed in case a table doesn't exist
+	 */
+	public static final String CREATE_TABLE_QUERY = "";
 	
-	private static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	/**
+	 * a pattern (that should be formatted with printf or similar) that updates a
+	 * row within the TABLE_NAME
+	 */
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "";
 	
-	private static final String DELETE_TABLE_QUERY_PATTERN = "";
+	/**
+	 * a pattern (that should be formatted with printf or similar) that deletes a
+	 * row within the TABLE_NAME
+	 */
+	public static final String DELETE_TABLE_QUERY_PATTERN = "";
 	
-	private static final String INSERT_TABLE_QUERY_PATTERN = "";
+	/**
+	 * a pattern (that should be formatted with printf or similar) that inserts a
+	 * row within the TABLE_NAME
+	 */
+	public static final String INSERT_TABLE_QUERY_PATTERN = "";
 	
 	/**
 	 * the play time the player has spent on the game in minutes

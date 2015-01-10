@@ -12,10 +12,20 @@ import com.retroMachines.ui.screens.AbstractScreen;
 
 public class EvaluationScreen extends AbstractScreen implements ContactListener {
 	
+	/**
+	 * reference to the GameController for it to handle events
+	 * that are broadcasted to the screen
+	 */
 	private GameController gameController;
 	
+	/**
+	 * the root of the lamba term structure for generation on the screen
+	 */
 	private Tree tree;
 	
+	/**
+	 * a stage to add the different actors to for the purpose of rendering
+	 */
 	private Stage stage;
 	
 	/**
@@ -39,11 +49,19 @@ public class EvaluationScreen extends AbstractScreen implements ContactListener 
 		this.tree = t;
 	}
 	
+	/**
+	 * sets animationProgress to true and triggers the animation
+	 * and displays it to the user
+	 */
 	public void startAnimation() {
 		animationInProgress = true;
 		// TODO start animation
 	}
 	
+	/**
+	 * sets animationInProgress to false and freezes the animation
+	 * in it's current position
+	 */
 	public void pauseAnimation() {
 		animationInProgress = false;
 		// TODO stop animation

@@ -1,9 +1,13 @@
 package com.retroMachines.game.controllers;
 
+import java.util.List;
+
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Profile;
 
 public class ProfileController {
+	
+	private String[] profileNames;
 	
 	/**
 	 * the currently active profile
@@ -27,6 +31,7 @@ public class ProfileController {
 	 */
 	public ProfileController(RetroMachines game) {
 		this.game = game;
+		profileNames = new String[MAX_PROFILE_NUMBER];
 	}
 
 
@@ -59,6 +64,10 @@ public class ProfileController {
 	 */
 	public boolean isValidUsername(String username) {
 		return false;
+	}
+	
+	public String[] getProfileNames() {
+		return profileNames;
 	}
 	
 	/**
