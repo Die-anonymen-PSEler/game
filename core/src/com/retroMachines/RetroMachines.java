@@ -6,6 +6,12 @@ import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
+/**
+ * The main class of the game "RetroMachines". It initializes profile and setting controller and sets 
+ * the loading screen. 
+ * @author RetroFactory
+ *
+ */
 public class RetroMachines extends Game {
 	
 	public static final int WIDTH = 0;
@@ -36,10 +42,18 @@ public class RetroMachines extends Game {
 		lms.dispose();
 	}
 
+	/**
+	 * Getter for the profile controller
+	 * @return the profile controller
+	 */
 	public ProfileController getProfileController() {
 		return profileController;
 	}
 
+	/**
+	 * Getter for the setting controller
+	 * @return the setting controller
+	 */
 	public SettingController getSettingController() {
 		return settingController;
 	}
