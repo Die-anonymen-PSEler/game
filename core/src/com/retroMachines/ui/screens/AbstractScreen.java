@@ -23,7 +23,7 @@ public abstract class AbstractScreen implements Screen {
 
     protected Stage stage = new Stage();
         
-    private final RetroMachines game;
+    protected final RetroMachines game;
     
     public AbstractScreen(RetroMachines game) {
     	this.game = game;

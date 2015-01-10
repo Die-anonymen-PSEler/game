@@ -84,5 +84,7 @@ public class ProfileController {
 	/**
 	 * 
 	 */
-	
+	public boolean createProfile(String name) {
+		return false;
+	}
 }

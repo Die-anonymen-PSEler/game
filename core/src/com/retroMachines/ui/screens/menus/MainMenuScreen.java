@@ -82,6 +82,7 @@ public class MainMenuScreen extends MenuScreen{
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
+			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
 }

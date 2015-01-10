@@ -3,6 +3,8 @@ package com.retroMachines;
 import com.badlogic.gdx.Game;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.ui.screens.menus.LoadMenuScreen;
+import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
 public class RetroMachines extends Game {
 	
@@ -25,6 +27,13 @@ public class RetroMachines extends Game {
 	public void create () {
 		profileController = new ProfileController(this);
 		settingController = new SettingController(this);
+		LoadMenuScreen lms = new LoadMenuScreen(this);
+		setScreen(lms);
+		
+		
+		
+		setScreen(new MainMenuScreen(this));
+		lms.dispose();
 	}
 
 	public ProfileController getProfileController() {

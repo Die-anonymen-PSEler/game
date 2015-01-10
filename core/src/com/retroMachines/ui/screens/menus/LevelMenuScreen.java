@@ -1,10 +1,13 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 
 public class LevelMenuScreen extends MenuScreen{
+	
+	private List<String> levelList;
 
 	public LevelMenuScreen(RetroMachines game) {
 		super(game);

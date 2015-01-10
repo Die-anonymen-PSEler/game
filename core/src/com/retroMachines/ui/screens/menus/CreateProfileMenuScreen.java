@@ -1,6 +1,8 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.ProfileController;
@@ -12,6 +14,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 * the profile contoller for this screen
 	 */
 	private final ProfileController profileController;
+	
+	TextField nameTextField;
 
 	public CreateProfileMenuScreen(RetroMachines game) {
 		super(game);
@@ -22,7 +26,17 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+		nameTextField = new TextField(profileController.getProfileName(), new Skin());
+	}
+	
+	private void createProfile() {
+		String name = nameTextField.getMessageText();
+		if (!profileController.createProfile(name)) {
+			// TODO SHOW ALERT
+		}
+		else {
+			game.setScreen(new ProfileMenuScreen(game));
+		}
 	}
 	
 	/**
@@ -33,7 +47,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
-			super.clicked(event, x, y);
+			createProfile();
 		}
 	}
 	
