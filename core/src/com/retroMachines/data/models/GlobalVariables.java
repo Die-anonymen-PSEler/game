@@ -44,21 +44,38 @@ public class GlobalVariables extends Model {
 		map = new HashMap<String, String>();
 	}
 	
-	private static void instanciate() {
+	/**
+	 * instantiate a global variable
+	 */
+	private static void instantiate() {
 		instance = new GlobalVariables();
 	}
 	
+	/**
+	 * getter for this class
+	 * @return this class
+	 */
 	public static GlobalVariables getSingleton() {
 		if (instance == null) {
-			instanciate();
+			instantiate();
 		}
 		return instance;
 	}
 	
+	/**
+	 * places the variable
+	 * @param key the key of the variable
+	 * @param value the value of the variable
+	 */
 	public void put(String key, String value) {
 		
 	}
 	
+	/**
+	 * gets the variable
+	 * @param key the key of the variable
+	 * @return the variable
+	 */
 	public String get(String key) {
 		if (map.containsKey(key)) {
 			return map.get(key);
@@ -71,16 +88,28 @@ public class GlobalVariables extends Model {
 		}
 	}
 	
+	/**
+	 * Fetches the variable of the background storage
+	 * @param key the key of the variable
+	 * @return the variable
+	 */
 	private String fetchFromBackgroundStorage(String key) {
 		return null;
 	}
 	
+	/**
+	 * this function controls if the variable has an record in SQL
+	 * @return true if a record exists
+	 */
 	@Override
 	public boolean hasRecordInSQL() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * writes the variable to the SQL
+	 */
 	@Override
 	public void writeToSQL() {
 		// TODO Auto-generated method stub
