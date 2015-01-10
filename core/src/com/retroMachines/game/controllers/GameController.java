@@ -96,6 +96,14 @@ public class GameController {
 		}
 	}
 	
+	public void goLeft() {
+		
+	}
+	
+	public void goRight() {
+		
+	}
+	
 	/**
 	 * returns the RetroMan instance
 	 * @return

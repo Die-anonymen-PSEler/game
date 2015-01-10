@@ -1,5 +1,7 @@
 package com.retroMachines.game.gameelements;
 
+import javafx.stage.StageStyle;
+
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,7 +26,7 @@ public class RetroMan {
 	 * if the character is jumping the attribute should be true
 	 * prevents jumping while the character is already in the air
 	 */
-	private boolean jumping;
+	private State state;
 	
 	/**
 	 * contains a potential gameelement if the character has picked one up
@@ -39,23 +41,60 @@ public class RetroMan {
 	/**
 	 * 
 	 */
+	private final Vector2 velocity;
+	
+	/**
+	 * 
+	 */
 	public RetroMan() {
 		pos = new Vector2();
+		velocity = new Vector2();
 	}
+	
+	
+	
+	
+	/**
+	 * jumping part
+	 */
 	
 	/**
 	 * 
 	 */
 	public void jump() {
-		jumping = true;
+		if (!canJump()) {
+			state = State.JUMPING;
+			velocity.add(9, 0);
+		}
 	}
 	
 	/**
 	 * Call this method when the character is supposed to jump
 	 */
 	public void landed() {
-		jumping = false;
+		if (canJump()) {
+			state = State.STANDING;
+		}
 	}
+	
+	
+	
+	
+	/**
+	 * Movement
+	 */
+	
+	public void goLeft() {
+		
+	}
+	
+	public void goRight() {
+		
+	}
+	
+	
+	
+	
 	
 	/**
 	 * 
@@ -86,10 +125,16 @@ public class RetroMan {
 	}
 
 	public boolean canJump() {
-		return !jumping;
+		return state != State.JUMPING;
 	}
 
 	public Vector2 getPos() {
 		return pos;
+	}
+	
+	private enum State{
+		STANDING,
+		RUNNIG,
+		JUMPING
 	}
 }
