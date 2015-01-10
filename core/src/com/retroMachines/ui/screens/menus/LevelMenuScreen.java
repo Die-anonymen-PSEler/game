@@ -20,12 +20,45 @@ public class LevelMenuScreen extends MenuScreen{
 		
 	}
 	
+	/**
+	 * Button to Return in MainmenuScreen
+	 * 
+	 * @author RetroMachines
+	 *
+	 */
 	private class ReturnButtonClickListener extends ClickListener {
 		
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
-			super.clicked(event, x, y);
+		}
+		
+	}
+	
+	/**
+	 * Used when level is locked
+	 * @author RetroMachines
+	 *
+	 */
+	private class LevellockedButtonClickListener extends ClickListener {
+		
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+		
+	}
+	
+	/**
+	 * Used when Level is unlcoked
+	 * @author RetroMachines
+	 *
+	 */
+	private class LevelunlockedButtonClickListener extends ClickListener {
+		
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
 		}
 		
 	}
