@@ -28,6 +28,10 @@ public class RetroDatabase implements Database {
 		singleton.setupDatabase();
 	}
 	
+	/**
+	 * Returns the only copy of the database
+	 * @return database reference
+	 */
 	public static RetroDatabase getSingleton() {
 		if (singleton == null) {
 			createSingleton();

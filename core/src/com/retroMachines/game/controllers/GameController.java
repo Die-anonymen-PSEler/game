@@ -31,6 +31,9 @@ public class GameController {
 	 */
 	private EvaluationScreen evaluationScreen;
 	
+	/**
+	 * the game Character that is controlled by the player
+	 */
 	private RetroMan retroMan;
 	
 	public GameController(RetroMachines game) {
@@ -47,13 +50,18 @@ public class GameController {
 		game.setScreen(gameScreen);
 	}
 	
+	/**
+	 * This method will remove the GameScreen and put up the EvaluationScreen
+	 * It will also trigger the evaluation
+	 */
 	private void enterEvaluation() {
 		evaluationScreen = new EvaluationScreen(game, this);
 		game.setScreen(evaluationScreen);
 	}
 	
 	/**
-	 * this method will be called
+	 * this method will be called once a level has been complete
+	 * including the evaluation. Afterwards the LevelMenuScreen will be shown to the user
 	 */
 	public void levelFinished() {
 		saveProgress();
@@ -62,6 +70,9 @@ public class GameController {
 		game.setScreen(new LevelMenuScreen(game));
 	}
 	
+	/**
+	 * disposes all objects that are in use by this controller.
+	 */
 	private void dispose() {
 		// TODO Auto-generated method stub
 		gameScreen.dispose();
@@ -74,19 +85,30 @@ public class GameController {
 	private void saveProgress() {
 		
 	}
-
+	
+	/**
+	 * delegates a jump call to the retroMan
+	 */
 	public void jumpRetroMan() {
 		// TODO Auto-generated method stub
 		if (retroMan.canJump()) {
 			retroMan.jump();
 		}
 	}
-
+	
+	/**
+	 * returns the RetroMan instance
+	 * @return
+	 */
 	public RetroMan getRetroMan() {
 		// TODO Auto-generated method stub
 		return retroMan;
 	}
 	
+	/**
+	 * performs a collision detection to stop the character 
+	 * in case of walls are anything solid standing in it's way
+	 */
 	private void collisionDetection() {
 		
 	}

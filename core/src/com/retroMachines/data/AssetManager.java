@@ -7,9 +7,14 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
+	
     public static AssetManager manager = new AssetManager();
+    
     public static Skin menuSkin;
     
+    /**
+     * Contains all file references to the Files to load. 
+     */
     public static final String[] assetNames = {};
     
     
