@@ -9,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
+import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends AbstractScreen {
 	
@@ -58,6 +60,25 @@ public class GameScreen extends AbstractScreen {
 		// TODO Auto-generated method stub
 		super.dispose();
 		
+	}
+	
+	/**
+	 * Returns Gameelement at given Pos in TiledMap and deletes it.
+	 * @param posObj Position in TiledMap of Gameelement
+	 * @return Gamelelemnt at this Pos  ( null when empy)
+	 */
+	public GameElement getGameElement(Vector2 posObj) {
+		return null;
+	}
+	
+	/**
+	 * Sets Gameelement at specific Position in tiledMap
+	 * @param posObj Position where The Object should Placed
+	 * @param element Eleement which should placed
+	 * @return false when element placed succesfull
+	 */
+	public boolean setGameElement(Vector2 posObj, GameElement element) {
+		return false;
 	}
 	
 	

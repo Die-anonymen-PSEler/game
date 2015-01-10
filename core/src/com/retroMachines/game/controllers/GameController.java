@@ -91,16 +91,26 @@ public class GameController {
 	 */
 	public void jumpRetroMan() {
 		// TODO Auto-generated method stub
-		if (retroMan.canJump()) {
-			retroMan.jump();
-		}
 	}
 	
-	public void goLeft() {
+	/**
+	 * delegates a interact call to the retroMan
+	 */
+	public void interactRetroMan() {
+		// TODO Auto-generated method stub
+	}
+	
+	/**
+	 * delegates a goLeft call to the retroMan
+	 */
+	public void goLeftRetroMan() {
 		
 	}
 	
-	public void goRight() {
+	/**
+	 * delegates a go right call to the retroMan
+	 */
+	public void goRightRetroMan() {
 		
 	}
 	

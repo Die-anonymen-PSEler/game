@@ -1,5 +1,7 @@
 package com.retroMachines.game.gameelements;
 
+import java.awt.image.TileObserver;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -41,6 +43,7 @@ public class RetroMan {
 	 */
 	private final Vector2 velocity;
 	
+	
 	/**
 	 * 
 	 */
@@ -69,7 +72,7 @@ public class RetroMan {
 	/**
 	 * Call this method when the character is supposed to jump
 	 */
-	public void landed() {
+	private void land() {
 		if (canJump()) {
 			state = State.STANDING;
 		}
@@ -79,19 +82,26 @@ public class RetroMan {
 	
 	
 	/**
-	 * Movement
+	 * RetroMan Goes Left
 	 */
-	
 	public void goLeft() {
 		
 	}
 	
+	/**
+	 * RetroMan Goes Right
+	 */
 	public void goRight() {
 		
 	}
 	
-	
-	
+	/**
+	 * Rturns the direction which the retroMan Face
+	 * @return FaceLeft true means Retroman looks left
+	 */
+	public boolean getFaceLeft() {
+		return faceLeft;
+	}
 	
 	
 	/**
@@ -103,11 +113,17 @@ public class RetroMan {
 	}
 	
 	/**
-	 * 
+	 * returns if retroman has already picked up an elemnt
 	 * @return
 	 */
 	public boolean hasPickedUpElement() {
 		return element != null;
+	}
+	
+	public GameElement layDownElement() {
+		GameElement g = element;
+		element = null;
+		return g;
 	}
 	
 	/**
@@ -122,7 +138,7 @@ public class RetroMan {
 		return null;
 	}
 
-	public boolean canJump() {
+	private boolean canJump() {
 		return state != State.JUMPING;
 	}
 
