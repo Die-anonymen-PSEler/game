@@ -1,5 +1,7 @@
 package com.retroMachines.ui.screens.menus;
 
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -60,6 +62,10 @@ public class LevelMenuScreen extends MenuScreen{
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
 		}
+		
+	}
+	
+	private class LevelSelectListener extends ClickListener {
 		
 	}
 	
