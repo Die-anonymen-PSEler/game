@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
@@ -56,5 +58,50 @@ public class GameScreen extends AbstractScreen {
 		// TODO Auto-generated method stub
 		super.dispose();
 		
+	}
+	
+	
+	/**
+	 * Listener when the user clicks on Button Right
+	 * @author Retro Factory
+	 */
+	private class RightButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * Listener when the user clicks on Button Left
+	 * @author Retro Factory
+	 */
+	private class LeftButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * Listener when the user clicks on Button Jump
+	 * @author Retro Factory
+	 */
+	private class JumpButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * Listener when the user clicks on Button Interact
+	 * @author Retro Factory
+	 */
+	private class InteractButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
 	}
 }
