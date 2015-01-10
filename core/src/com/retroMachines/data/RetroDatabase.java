@@ -23,7 +23,10 @@ public class RetroDatabase implements Database {
 		
 	}
 	
-	public static void createSingleton() {
+	/**
+	 * Instantiates a new singleton
+	 */
+	private static void createSingleton() {
 		singleton = new RetroDatabase();
 		singleton.setupDatabase();
 	}

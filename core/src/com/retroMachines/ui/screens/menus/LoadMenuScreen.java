@@ -16,11 +16,13 @@ public class LoadMenuScreen extends AbstractScreen{
 		super(game);
 		// TODO Auto-generated constructor stub
 	}
+    
     /**
      * the screen is displayed
      */
 	@Override
-    public void show() {; 
+    public void show() {
+		
     }
     
 }

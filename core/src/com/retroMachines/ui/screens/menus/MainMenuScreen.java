@@ -70,4 +70,18 @@ public class MainMenuScreen extends MenuScreen{
 			//TODO implement this
 		}
 	}
+	
+	private class StatisticsButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) { 
+			//TODO implement this
+		}
+	}
+	
+	private class ProfileMenuClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) { 
+			//TODO implement this
+		}
+	}
 }
