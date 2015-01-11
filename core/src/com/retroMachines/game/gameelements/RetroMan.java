@@ -1,15 +1,38 @@
 package com.retroMachines.game.gameelements;
 
-import java.awt.image.TileObserver;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * RetroMan Class
+ * This Class contains information regarding the character that may run through the world.
+ * It also provides a rendering method so the screen can show it to the user.
+ * It does not hold any information regarding the map he is moving on.
+ * Collision detection is also performed within the controller.
+ * @author RetroFactory
+ *
+ */
 public class RetroMan {
 	
+	/**
+	 * The maximum velocity the character is allowed to have in x direction 
+	 */
+	public static final float MAX_VELOCITY_X = 10f;
+	
+	/**
+	 * The maximum velocity the character is allowed to have in y direction 
+	 */
+	public static final float MAX_VELOCITY_Y = 10f;
+	
+	/**
+	 * the width of the character for collision purposes
+	 */
 	public static final float WIDTH = 5f;
 	
+	/**
+	 * the height of the character for collision purposes
+	 */
 	public static final float HEIGHT = 5f;
 	
 	/**
@@ -45,7 +68,8 @@ public class RetroMan {
 	
 	
 	/**
-	 * 
+	 * Constructs a new Object of the Retroman 
+	 * and sets his coordinates and velocity to 0,0
 	 */
 	public RetroMan() {
 		pos = new Vector2();
@@ -60,7 +84,8 @@ public class RetroMan {
 	 */
 	
 	/**
-	 * 
+	 * Attempts a jump in case the character is allowed to do so.
+	 * See canJump for further information as to the condition.
 	 */
 	public void jump() {
 		if (!canJump()) {
@@ -70,26 +95,45 @@ public class RetroMan {
 	}
 	
 	/**
-	 * Call this method when the character is supposed to jump
+	 * once the character has hit the bottom this method
+	 * should be called in order to release the jump prohibition.
 	 */
-	private void land() {
+	public void landed() {
 		if (canJump()) {
 			state = State.STANDING;
 		}
 	}
 	
+	/**
+	 * Checks whether the character is allowed to jump
+	 * in order to avoid double jumps in mid air.
+	 * @return true if the character can jump; false otherwise
+	 */
+	private boolean canJump() {
+		return state != State.JUMPING;
+	}
+	
+	
 	
 	
 	
 	/**
-	 * RetroMan Goes Left
+	 * moving
+	 */
+	
+	/**
+	 * Adds negative velocity to the character
+	 * however this does not update his position
+	 * a call to the update method is needed for that
 	 */
 	public void goLeft() {
 		
 	}
 	
 	/**
-	 * RetroMan Goes Right
+	 * Adds positive velocity to the character
+	 * however this does not update his position
+	 * a call to the update method is needed for that 
 	 */
 	public void goRight() {
 		
@@ -103,6 +147,21 @@ public class RetroMan {
 		return faceLeft;
 	}
 	
+	/**
+	 * 
+	 */
+	public void updateRetroMan() {
+		
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * interacting with gameeelements
+	 */
 	
 	/**
 	 * 
@@ -126,6 +185,27 @@ public class RetroMan {
 		return g;
 	}
 	
+	
+	/**
+	 * getters and setters
+	 */
+	
+	/**
+	 * Retrieves the position of the character as a Vector2
+	 * @return the current position as a Vector2
+	 */
+	public Vector2 getPos() {
+		return pos;
+	}
+	
+	
+	
+	
+	/**
+	 * rendering
+	 */
+	
+	
 	/**
 	 * 
 	 * @param deltaTime
@@ -137,18 +217,36 @@ public class RetroMan {
 		//TODO RENDER myself
 		return null;
 	}
-
-	private boolean canJump() {
-		return state != State.JUMPING;
-	}
-
-	public Vector2 getPos() {
-		return pos;
-	}
 	
+	
+	
+	
+	
+	
+	/**
+	 * subclasses and enums
+	 */
+	
+	/**
+	 * the states in which the figure can be in
+	 * @author lucabecker
+	 *
+	 */
 	private enum State{
+		/**
+		 * if the character is standing on solid ground and not moving he is STANDING
+		 */
 		STANDING,
+		
+		/**
+		 * if the characters x-velocity is not 0 and he is on solid ground he is RUNNING
+		 */
 		RUNNIG,
+		
+		/**
+		 * if the character is not on solid ground he is JUMPING.
+		 * his x-velocity may be 0
+		 */
 		JUMPING
 	}
 }
