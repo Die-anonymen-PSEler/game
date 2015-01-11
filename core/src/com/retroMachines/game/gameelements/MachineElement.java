@@ -1,6 +1,22 @@
 package com.retroMachines.game.gameelements;
 
+/**
+ * A machine element that represents the abstraction within the lambda calculus
+ * @author RetroFactory
+ *
+ */
 public class MachineElement extends GameElement {
+	
+	/**
+	 * The id of the color this machine element should have
+	 * the hex representation can be looked up within the constants class
+	 */
+	private int colorId;
+	
+	public MachineElement(int colorId) {
+		this.colorId = colorId;
+		// TODO load texture
+	}
 
 	@Override
 	public void render(float deltaTime) {
