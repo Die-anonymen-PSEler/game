@@ -101,8 +101,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
-		sound.setVolume(, volume);
-		
-		
+		sound.setVolume(soundId, newVolume);
 	}
 }
