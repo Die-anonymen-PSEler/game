@@ -16,15 +16,25 @@ import com.retroMachines.data.AssetManager;
 
 /**
  * Abstrakte Screen Klasse auf die alle Anzeigen des Spiels handhabt. 
- * @author Adrian
+ * @author RetroFactory
  *
  */
 public abstract class AbstractScreen implements Screen {
-
+	
+	/**
+	 * the Stage containing all the actors that belong within the screen
+	 */
     protected Stage stage = new Stage();
-        
+    
+    /**
+     * the gameObject so acces to Controllers is granted
+     */
     protected final RetroMachines game;
     
+    /**
+     * Screen class
+     * @param game the main game class
+     */
     public AbstractScreen(RetroMachines game) {
     	this.game = game;
 	}
@@ -65,13 +75,6 @@ public abstract class AbstractScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-    }
-    
-    protected class PlayButtonClickListener extends ClickListener {
-    	@Override
-		public void clicked(InputEvent event, float x, float y) {
-			// what shall happen?
-		}
     }
 
 }

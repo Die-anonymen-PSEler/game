@@ -6,6 +6,12 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
+/**
+ * This screen provides general settings regarding the game
+ * In particular this is the volume of the game
+ * @author RetroFactory
+ *
+ */
 public class SettingsMenuScreen  extends MenuScreen {
 	
 	private final SettingController settingController;

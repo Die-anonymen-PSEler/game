@@ -4,11 +4,22 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 
-
+/**
+ * this profile allows the user to edit a profile in depth
+ * and even delete it if we wishes.
+ * @author RetroFactory
+ *
+ */
 public class ProfileSettingsMenuScreen  extends MenuScreen {
+	
+	/**
+	 * the id of the profile that is edited by this screen
+	 */
+	private int profileId;
 
-	public ProfileSettingsMenuScreen(RetroMachines game) {
+	public ProfileSettingsMenuScreen(RetroMachines game, int id) {
 		super(game);
+		this.profileId = id;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -17,6 +28,8 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 	
 	/**
 	 * Listener when the button for left control has been clicked
@@ -47,6 +60,7 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	 * @author Retro Factory
 	 */
 	private class DeleteProfileButtonClickListener extends ClickListener {
+		
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub

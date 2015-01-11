@@ -5,10 +5,10 @@ import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
  * loading screen which appears after starting the App
- * @author Larissa
- *
+ * @author RetroFactory
  */
 public class LoadMenuScreen extends AbstractScreen{
+	
     /**
      * @param game the game which should be loaded while the screen is displayed
      */

@@ -8,6 +8,12 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
+/**
+ * ProfileMenuScreen shows all created profiles to the user and 
+ * offers to create more or delete a given profile
+ * @author RetroFactory
+ *
+ */
 public class ProfileMenuScreen extends MenuScreen{
 	
 	/**
@@ -55,6 +61,16 @@ public class ProfileMenuScreen extends MenuScreen{
 	 * @author Retro Factory
 	 */
 	private class SelectProfileButtonClickListener extends ClickListener {
+		
+		/**
+		 * the id of the profile so it can be selected afterwards
+		 */
+		private int id;
+		
+		public SelectProfileButtonClickListener(int id) {
+			this.id = id;
+		}
+		
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub

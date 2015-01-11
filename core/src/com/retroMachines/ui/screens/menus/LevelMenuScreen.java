@@ -1,12 +1,15 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 
+/**
+ * LevelMenuscreen displays the list of available levels to the user
+ * and initiates a new level once the user has picked one.
+ * @author RetroFactory
+ */
 public class LevelMenuScreen extends MenuScreen{
 	
 	private List<String> levelList;
@@ -42,7 +45,16 @@ public class LevelMenuScreen extends MenuScreen{
 	 * @author RetroMachines
 	 *
 	 */
-	private class LevellockedButtonClickListener extends ClickListener {
+	private class LevelLockedButtonClickListener extends ClickListener {
+		
+		/**
+		 * the id of the level so it can be started later on
+		 */
+		private int id;
+		
+		public LevelLockedButtonClickListener(int id) {
+			this.id = id;
+		}
 		
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
@@ -56,7 +68,16 @@ public class LevelMenuScreen extends MenuScreen{
 	 * @author RetroMachines
 	 *
 	 */
-	private class LevelunlockedButtonClickListener extends ClickListener {
+	private class LevelUnlockedButtonClickListener extends ClickListener {
+		
+		/**
+		 * the id of the level so it can be started later on
+		 */
+		private int id;
+		
+		public LevelUnlockedButtonClickListener(int id) {
+			this.id = id;
+		}
 		
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

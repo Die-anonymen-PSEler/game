@@ -13,6 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.SettingsChangeListener;
 
+/**
+ * The main menu of the game providing ways to all other screens of the game.
+ * It is the anchor of the game and is displayed right after the app has
+ * finished loading.
+ * @author RetroFactory
+ *
+ */
 public class MainMenuScreen extends MenuScreen implements SettingsChangeListener {
 	
 	private Skin skin;

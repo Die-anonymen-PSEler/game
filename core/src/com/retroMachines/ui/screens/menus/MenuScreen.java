@@ -7,8 +7,10 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * abstrakte MenuScreen klasse die die grundsätzliche Struktur eines Menüs wiederspiegelt.
- * @author lucabecker
+ * Abstract MenuScreen class that represents that basic
+ * style of a menu separated within two parts. On main part
+ * (the left side) and a small part for buttons and so on.
+ * @author RetroFactory
  *
  */
 public abstract class MenuScreen extends AbstractScreen {
@@ -18,13 +20,15 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	protected Table tableLeft;
 	
-	/*
+	/**
 	 * the table on the right side of the screen containing further information
 	 */
 	protected Table tableRight = new Table();
 	
-	
-
+	/**
+	 * Creates a new MenuScreen that can be displayed to the user afterwards
+	 * @param game
+	 */
 	public MenuScreen(RetroMachines game) {
 		super(game);
 		tableLeft = new Table();

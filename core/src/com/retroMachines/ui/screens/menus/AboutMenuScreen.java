@@ -5,7 +5,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.AbstractScreen;
 
-public class AboutMenuScreen extends AbstractScreen {
+/**
+ * this is the AboutMenuScreen where information about RetroFactory and the authors
+ * of this game is given.
+ * @author RetroFactory
+ *
+ */
+public class AboutMenuScreen extends MenuScreen {
+	
+	public static final String CREDIT = "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 
 	public AboutMenuScreen(RetroMachines game) {
 		super(game);
@@ -13,6 +21,7 @@ public class AboutMenuScreen extends AbstractScreen {
 	}
 
 	public void show() {
+		
 	}
 	
 	private class ReturnButtonClickListener extends ClickListener {
@@ -21,6 +30,12 @@ public class AboutMenuScreen extends AbstractScreen {
 			// TODO Auto-generated method stub
 			super.clicked(event, x, y);
 		}
+	}
+
+	@Override
+	protected void initialize() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

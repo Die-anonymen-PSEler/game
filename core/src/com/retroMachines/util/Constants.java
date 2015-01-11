@@ -1,5 +1,12 @@
 package com.retroMachines.util;
 
+/**
+ * Constants class
+ * This class holds constants that are available through out the entire game
+ * and may be used. 
+ * @author RetroFactory
+ *
+ */
 public class Constants {
 	
 	/**

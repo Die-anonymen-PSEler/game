@@ -6,8 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.ProfileController;
-import com.retroMachines.ui.screens.AbstractScreen;
 
+/**
+ * This Screen is responsible for creating a new Profile and 
+ * interacting with the user about it.
+ * @author RetroFactory
+ *
+ */
 public class CreateProfileMenuScreen  extends MenuScreen{
 	
 	/**
