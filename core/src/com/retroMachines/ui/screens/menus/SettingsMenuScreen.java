@@ -14,8 +14,15 @@ import com.retroMachines.ui.screens.AbstractScreen;
  */
 public class SettingsMenuScreen  extends MenuScreen {
 	
+	/**
+	 * the settings controller so changes can be commited
+	 */
 	private final SettingController settingController;
-
+	
+	/**
+	 * 
+	 * @param game
+	 */
 	public SettingsMenuScreen(RetroMachines game) {
 		super(game);
 		// TODO Auto-generated constructor stub
@@ -28,6 +35,11 @@ public class SettingsMenuScreen  extends MenuScreen {
 		
 	}
 	
+	/**
+	 * Listener for the louder button
+	 * @author RetroFactory
+	 *
+	 */
 	private class LouderButtonClickListener extends ClickListener{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
@@ -36,6 +48,11 @@ public class SettingsMenuScreen  extends MenuScreen {
 		}
 	}
 	
+	/**
+	 * listener for the quieter button
+	 * @author RetroFactory
+	 *
+	 */
 	private class QuieterButtonClickListener extends ClickListener{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
@@ -44,6 +61,11 @@ public class SettingsMenuScreen  extends MenuScreen {
 		}
 	}
 	
+	/**
+	 * listener for the volume on off button
+	 * @author RetroFactory
+	 *
+	 */
 	private class SoundOnOffButtonClickListener extends ClickListener{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

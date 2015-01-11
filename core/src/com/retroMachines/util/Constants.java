@@ -7,7 +7,7 @@ package com.retroMachines.util;
  * @author RetroFactory
  *
  */
-public class Constants {
+public abstract class Constants {
 	
 	/**
 	 * String array containing all possible colors for the gameElements
@@ -22,4 +22,9 @@ public class Constants {
 		"#663300", // brown
 		"#66FFFF" // light blue
 	};
+	
+	/**
+	 * this is the amount of which the volume may be changed by the user
+	 */
+	public static final float VOLUME_DELTA = 0.1f;
 }
