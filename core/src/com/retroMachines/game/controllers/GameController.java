@@ -1,6 +1,9 @@
 package com.retroMachines.game.controllers;
 
+import java.util.ArrayList;
+
 import com.retroMachines.RetroMachines;
+import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.ui.screens.game.GameScreen;
@@ -96,7 +99,14 @@ public class GameController {
 		
 	}
 	
-	
+	/**
+	 * Checks if all stackers have an element in it
+	 * @return true if alle stackers have an element in it
+	 */
+	private boolean checkPlacementofElements() {
+		ArrayList<GameElement> stackerElements = gameScreen.checkStackerPositions();
+		return false;
+	}
 	
 	
 	//--------------------------

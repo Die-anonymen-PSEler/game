@@ -1,17 +1,19 @@
 package com.retroMachines.ui.screens.game;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
-import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends AbstractScreen {
 	
@@ -65,11 +67,21 @@ public class GameScreen extends AbstractScreen {
 	/**
 	 * Returns Gameelement at given Pos in TiledMap and deletes it.
 	 * @param posObj Position in TiledMap of Gameelement
-	 * @return Gamelelemnt at this Pos  ( null when empy)
+	 * @return Gamelelemnt at this Pos  ( null when empty)
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
 		return null;
 	}
+	
+	/**
+	 * Returns a List of Gameelements wich are in the Stackers if one STacker doesnt have an Element in it it returns null
+	 * @return null if not alle stackers are field  else a list of GameElement which are in the stackers placed
+	 */
+	public ArrayList<GameElement> checkStackerPositions() {
+		ArrayList<GameElement> stackerElements = new ArrayList<GameElement>();
+		return stackerElements;
+	}
+	
 	
 	/**
 	 * Sets Gameelement at specific Position in tiledMap
