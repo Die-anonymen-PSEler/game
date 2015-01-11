@@ -30,6 +30,7 @@ public class ProfileController {
 	
 	/**
 	 * creates a new instance of the profile controller
+	 * and loads the data from the background as well as loading the last profile
 	 * @param game the game for calls towards the game
 	 */
 	public ProfileController(RetroMachines game) {
