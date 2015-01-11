@@ -10,6 +10,9 @@ public abstract class Model {
 	 */
 	protected Database db;
 	
+	/**
+	 * Makes an singele instantce of RetroDatabase
+	 */
 	public Model() {
 		db = RetroDatabase.getSingleton();
 	}

@@ -6,6 +6,7 @@ package com.retroMachines.data.models;
  *
  */
 public interface SettingsChangeListener {
+	
 	/**
 	 * sends a notification if game settings were changed
 	 */

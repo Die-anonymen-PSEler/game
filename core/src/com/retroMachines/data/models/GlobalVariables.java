@@ -37,8 +37,14 @@ public class GlobalVariables extends Model {
 	 */
 	private HashMap<String, String> map;
 	
+	/**
+	 * Private Instance of it selfe
+	 */
 	private static GlobalVariables instance;
 	
+	/**
+	 * Private Constructor which sets new empty map
+	 */
 	private GlobalVariables() {
 		super();
 		map = new HashMap<String, String>();

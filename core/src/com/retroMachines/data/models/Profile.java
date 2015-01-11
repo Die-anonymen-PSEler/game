@@ -72,6 +72,7 @@ public class Profile extends Model {
 		this.setSetting(setting);
 		this.statistic = statistic;
 	}
+	
 	/**
 	 * @return the name of the profile
 	 */
@@ -113,6 +114,7 @@ public class Profile extends Model {
 	public void setSetting(Setting setting) {
 		this.setting = setting;
 	}
+	
 	
 	@Override
 	public void writeToSQL() {

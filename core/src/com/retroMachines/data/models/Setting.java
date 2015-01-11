@@ -1,5 +1,11 @@
 package com.retroMachines.data.models;
 
+/**
+ * Stores the Setting informations of the Game
+ * 
+ * @author RetroFactory
+ *
+ */
 public class Setting extends Model {
 	
 	/**
@@ -46,6 +52,13 @@ public class Setting extends Model {
 	 */
 	private boolean leftControl;
 	
+	/**
+	 * Constructor which create an Instance of Settings with all needed Attributs
+	 * @param leftControl true if in Game the Controlbuttons of RetroMan changed Sites 
+	 * 		  (Steering on the right not Left and Jump and Interact Button on Left)
+	 * @param soundOnOff true if sound is enabled. false otherwise
+	 * @param volume actual volume setting 
+	 */
 	public Setting(boolean leftControl, boolean soundOnOff, float volume) {
 		super();
 		this.volume = volume;

@@ -64,27 +64,51 @@ public class Statistic extends Model {
 		this.setLevelsComplete(levelsComplete);
 		this.setStepCounter(stepCounter);
 	}
-
+	
+	/**
+	 * getter which returns the number of different completed Levels
+	 * @return number of completed Levels
+	 */
 	public int getLevelsComplete() {
 		return levelsComplete;
 	}
 
+	/**
+	 * setter which stores the Number of Completed Levels
+	 * @param levelsComplete number of completed Levels
+	 */
 	public void setLevelsComplete(int levelsComplete) {
 		this.levelsComplete = levelsComplete;
 	}
-
+	
+	/**
+	 * Getter for the Time the Player played the Game in sum
+	 * @return time the Player gamed
+	 */
 	public int getPlaytime() {
 		return playtime;
 	}
-
+	
+	/**
+	 * Sets new Playtime
+	 * @param playtime new Playtime
+	 */
 	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
 	}
-
+	
+	/**
+	 * Returns the number of steps the player made with his GameCharacter in Sum
+	 * @return number of Steps of the Gamecharacter
+	 */
 	public int getStepCounter() {
 		return stepCounter;
 	}
 
+	/**
+	 * Sets number of Steps which the Gamecharacter made
+	 * @param stepCounter new Number of Steps
+	 */
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
 	}
