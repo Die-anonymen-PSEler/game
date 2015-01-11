@@ -60,6 +60,17 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         game.getSettingController().add(this);
 	}
 	
+	/**
+	 * sets the sound to the new volume that was newly adjusted in the settings
+	 */
+	@Override
+	public void onSettingsChanged() {
+		
+		// TODO Auto-generated method stub
+		float newVolume = game.getSettingController().getVolume();
+		sound.setVolume(soundId, newVolume);
+	}
+	
 	private class PlayButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
@@ -94,13 +105,5 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 			//TODO implement this
 			game.setScreen(new ProfileMenuScreen(game));
 		}
-	}
-
-	@Override
-	public void onSettingsChanged() {
-		
-		// TODO Auto-generated method stub
-		float newVolume = game.getSettingController().getVolume();
-		sound.setVolume(soundId, newVolume);
 	}
 }
