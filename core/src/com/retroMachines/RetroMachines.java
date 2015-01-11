@@ -1,8 +1,11 @@
 package com.retroMachines;
 
 import com.badlogic.gdx.Game;
+import com.retroMachines.data.models.GlobalVariables;
+import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
@@ -14,16 +17,18 @@ import com.retroMachines.ui.screens.menus.MainMenuScreen;
  */
 public class RetroMachines extends Game {
 	
-	public static final int WIDTH = 0;
-
-
-	public static final int HEIGHT = 0;
+	/**
+	 * globalVariables that are stored within persistent Background storage
+	 */
+	private GlobalVariables globalVariables;
 	
 	/**
 	 * controllers
 	 */
 	private ProfileController profileController;
 	private SettingController settingController;
+	private GameController gameController;
+	private StatisticController statisticController;
 		
 	/**
 	 * initializes the game (all the controllers) after started by the Android Launcher.
@@ -33,6 +38,9 @@ public class RetroMachines extends Game {
 	public void create () {
 		profileController = new ProfileController(this);
 		settingController = new SettingController(this);
+		gameController = new GameController(this);
+		statisticController = new StatisticController(this);
+		globalVariables = GlobalVariables.getSingleton();
 		LoadMenuScreen lms = new LoadMenuScreen(this);
 		setScreen(lms);
 		
@@ -56,6 +64,22 @@ public class RetroMachines extends Game {
 	 */
 	public SettingController getSettingController() {
 		return settingController;
+	}
+	
+	/**
+	 * Getter for the gameController controller
+	 * @return the setting controller
+	 */
+	public GameController getGameController() {
+		return gameController;
+	}
+	
+	/**
+	 * Getter for the statistic controller
+	 * @return the setting controller
+	 */
+	public StatisticController getStatistcController() {
+		return statisticController;
 	}
 	
 }
