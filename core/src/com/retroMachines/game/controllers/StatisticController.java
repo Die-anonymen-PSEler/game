@@ -4,24 +4,26 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Statistic;
 
 /**
- * Controller which controlles the Stitistic and change them 
+ * Controller which controls the Statistic and changes them 
  * 
- * @author retroFactory
+ * @author RetroFactory
  *
  */
 public class StatisticController {
 	
 	/**
-	 * instance of the Game which is needed to get alle stistic informations
+	 * instance of the Game which is needed to get all statistic informations
 	 */
 	private final RetroMachines game;
 	
-	
+	/**
+	 * Private attribute of the Statistics Database which stores the statistic informations
+	 */
 	private Statistic statistic;
 	
 	/**
-	 * Constructor which starts an instantce of Statistic Controller  with the game as attribut
-	 * @param game attribut of Statistic Controller
+	 * Constructor which starts an instance of StatisticController  with the game as an attribute
+	 * @param game attribute of StatisticController
 	 */
 	public StatisticController(RetroMachines game) {
 		this.game = game;

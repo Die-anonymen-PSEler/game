@@ -12,58 +12,63 @@ import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 
 /**
- * GameController
- * This class represents the controller for the actual game.
- * It sets up levels and also disposes them afterwards.
- * It saves progress to the persistent storage.
+ * GameController This class represents the controller for the actual game. It
+ * sets up levels and also disposes them afterwards. It saves progress to the
+ * persistent storage.
+ * 
  * @author RetroFactory
- *
+ * 
  */
 public class GameController {
-	
+
 	/**
 	 * a reference to the main class for calls
 	 */
 	private final RetroMachines game;
-	
+
 	/**
 	 * The GameScreen for displaying the actual level to the player
 	 */
 	private GameScreen gameScreen;
-	
+
 	/**
 	 * The EvaluationScreen when the player triggers this part of the game
 	 */
 	private EvaluationScreen evaluationScreen;
-	
+
 	/**
-	 * the game Character that is controlled by the player
+	 * the game character that is controlled by the player
 	 */
 	private RetroMan retroMan;
-	
+
 	/**
-	 * the map that is currently active and may be shown to the user in case the gamescreen is also active
+	 * the map that is currently active and may be shown to the user in case the
+	 * gameScreen is also active
 	 */
 	private TiledMap map;
-	
+
 	/**
-	 * True if LevelMenu is shown No other Buttonclicks like steering of RetroMAn are now possible
-	 * True if LevelMenu, Hint or Task is shown, No other Buttonclicks like steering of RetroMAn are now possible
+	 * True if LevelMenu is shown. No other Button clicks like steering of
+	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
+	 * other Buttonclicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
-	
+
 	/**
 	 * makes an instance of GameController
+	 * 
 	 * @param game
 	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
 		retroMan = new RetroMan();
 	}
-	
+
 	/**
 	 * sets initializes a given level and fires it up
-	 * @param levelId the level to be started
+	 * 
+	 * @param levelId
+	 *            the level to be started
 	 */
 	public void startLevel(int levelId) {
 		boolean lefti = game.getSettingController().getLeftiMode();
@@ -71,164 +76,165 @@ public class GameController {
 		gameScreen.setMap(map);
 		game.setScreen(gameScreen);
 	}
-	
+
 	/**
-	 * This method will remove the GameScreen and put up the EvaluationScreen
-	 * It will also trigger the evaluation
+	 * This method removes the GameScreen and puts up the EvaluationScreen It
+	 * will also trigger the evaluation.
 	 */
 	private void enterEvaluation() {
 		evaluationScreen = new EvaluationScreen(game, this);
 		game.setScreen(evaluationScreen);
 	}
-	
+
 	/**
-	 * this method will be called once a level has been complete
-	 * including the evaluation. Afterwards the LevelMenuScreen will be shown to the user
+	 * this method will be called once a level has been complete including the
+	 * evaluation. Afterwards the LevelMenuScreen will be shown to the user
 	 */
 	public void levelFinished() {
 		saveProgress();
 		dispose();
-		
+
 		game.setScreen(new LevelMenuScreen(game));
 	}
-	
+
 	/**
 	 * disposes all objects that are in use by this controller.
 	 */
 	private void dispose() {
 		// TODO Auto-generated method stub
 		gameScreen.dispose();
-		
+
 	}
-	
+
 	/**
 	 * saves the progress to the persistent storage
 	 */
 	private void saveProgress() {
-		
+
 	}
-	
+
 	/**
 	 * Checks if all stackers have an element in it
+	 * 
 	 * @return true if alle stackers have an element in it
 	 */
 	private boolean checkPlacementofElements() {
 		ArrayList<GameElement> stackerElements = checkStackerPositions();
 		return false;
 	}
-	
-	//-------------------------------
-	//--------Show something---------
-	//-------------------------------
-	
+
+	// -------------------------------
+	// --------Show something---------
+	// -------------------------------
+
 	/**
 	 * Shows the Level Menu Screen on gameScreen
 	 */
 	public void showLevelMenuScreen() {
-		
+
 	}
-	
 
 	/**
 	 * Shows the Task Screen on gameScreen
 	 */
 	public void showTask() {
-		
+
 	}
-	
+
 	/**
 	 * Shows the Hint Screen on gameScreen
 	 */
 	public void showHint() {
-		
+
 	}
 
-	
-	//--------------------------
-	//--------Retro-Man---------
-	//--------------------------
-	
+	// --------------------------
+	// --------Retro-Man---------
+	// --------------------------
+
 	/**
-	 * delegates a jump call to the retroMan
+	 * delegates a jump call to retroMan
 	 */
 	public void jumpRetroMan() {
 		// TODO Auto-generated method stub
 	}
-	
+
 	/**
-	 * delegates a interact call to the retroMan
+	 * delegates an interact call to retroMan
 	 */
 	public void interactRetroMan() {
 		// TODO Auto-generated method stub
 	}
-	
+
 	/**
-	 * delegates a goLeft call to the retroMan
+	 * delegates a goLeft call to retroMan
 	 */
 	public void goLeftRetroMan() {
-		
+
 	}
-	
+
 	/**
-	 * delegates a go right call to the retroMan
+	 * delegates a goRight call to retroMan
 	 */
 	public void goRightRetroMan() {
-		
+
 	}
-	
+
 	/**
 	 * returns the RetroMan instance
+	 * 
 	 * @return
 	 */
 	public RetroMan getRetroMan() {
 		// TODO Auto-generated method stub
 		return retroMan;
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * Map Logic
 	 */
-	
-	
-	
+
 	/**
-	 * Returns Gameelement at given Pos in TiledMap and deletes it.
-	 * @param posObj Position in TiledMap of Gameelement
-	 * @return Gamelelemnt at this Pos  ( null when empty)
+	 * Returns GameElement at a given position in TiledMap and deletes it.
+	 * 
+	 * @param posObj
+	 *            Position in TiledMap of Gameelement
+	 * @return Gamelelemnt at this Pos ( null when empty)
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
 		return null;
 	}
-	
+
 	/**
-	 * Returns a List of Gameelements wich are in the Stackers if one STacker doesnt have an Element in it it returns null
-	 * @return null if not alle stackers are field  else a list of GameElement which are in the stackers placed
+	 * Returns a List of GameElements wich are in the Stackers. If one stacker
+	 * doesn't have an Element in it, it returns null
+	 * 
+	 * @return null if not all stackers are filled; else a list of GameElements
+	 *         which are placed in the stackers
 	 */
 	public ArrayList<GameElement> checkStackerPositions() {
 		ArrayList<GameElement> stackerElements = new ArrayList<GameElement>();
 		return stackerElements;
 	}
-	
-	
+
 	/**
-	 * Sets Gameelement at specific Position in tiledMap
-	 * @param posObj Position where The Object should Placed
-	 * @param element Eleement which should placed
-	 * @return false when element placed succesfull
+	 * Sets GameElement at a specific Position in tiledMap
+	 * 
+	 * @param posObj
+	 *            Position where the Object should be placed
+	 * @param element
+	 *            Element which should be placed
+	 * @return false when element was placed successfully
 	 */
 	public boolean setGameElement(Vector2 posObj, GameElement element) {
 		return false;
 	}
-	
+
 	/**
-	 * performs a collision detection to stop the character 
-	 * in case of walls are anything solid standing in it's way
+	 * performs a collision detection to stop the character in case of walls or
+	 * anything other solid standing in it's way
 	 */
 	private void collisionDetection() {
-		
+
 	}
 }

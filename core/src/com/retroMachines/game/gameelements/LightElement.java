@@ -8,7 +8,7 @@ package com.retroMachines.game.gameelements;
 public class LightElement extends GameElement {
 	
 	/**
-	 * Creates a new instance of the LightElement and assigns a texture to it
+	 * Creates a new instance of LightElement and assigns a texture to it
 	 * for rendering purposes.
 	 */
 	public LightElement() {

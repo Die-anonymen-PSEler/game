@@ -13,6 +13,10 @@ public class MachineElement extends GameElement {
 	 */
 	private int colorId;
 	
+	/**
+	 * Creates a new instance of MachineElement and assigns a texture to it
+	 * for rendering purposes.
+	 */
 	public MachineElement(int colorId) {
 		this.colorId = colorId;
 		// TODO load texture
