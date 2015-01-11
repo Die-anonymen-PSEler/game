@@ -14,20 +14,35 @@ import com.retroMachines.data.models.SettingsChangeListener;
  */
 public class SettingController {
 	
+	/**
+	 * Private Attribut of Settings Database which stores the setting informations
+	 */
 	private Setting settings;
-
+	
+	/**
+	 * Instance of the Game it selfe
+	 */
 	private final RetroMachines game;
+	
 	/**
 	 * list of classes which implement the interface SettingsChangeListener and
 	 * have to be notified if the settings are changed
 	 */
 	private List<SettingsChangeListener> toBeNotified;
-
+	
+	/**
+	 * Constructer which starts an instance of SettingController with all neede Informtaions
+	 * @param game instance of Game needed to get ProfileSettings
+	 */
 	public SettingController(RetroMachines game) {
 		this.game = game;
 		settings = game.getProfileController().getProfile().getSetting();
 	}
-
+	
+	/**
+	 * Adds a class to the List of Classes which must be notified if settings are changed
+	 * @param toBeAdded new Classes which should be notified when settings change
+	 */
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
 	}

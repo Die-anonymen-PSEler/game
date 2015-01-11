@@ -7,6 +7,9 @@ import com.retroMachines.data.models.Profile;
 
 public class ProfileController {
 	
+	/**
+	 * String array which stores the ProfileNames of exsiting Profiles
+	 */
 	private String[] profileNames;
 	
 	/**
@@ -66,6 +69,10 @@ public class ProfileController {
 		return false;
 	}
 	
+	/**
+	 * Getter for the Array of ProfileNames
+	 * @return
+	 */
 	public String[] getProfileNames() {
 		return profileNames;
 	}
@@ -82,7 +89,7 @@ public class ProfileController {
 	}
 	
 	/**
-	 * 
+	 * Method for creating a new Profile
 	 */
 	public boolean createProfile(String name) {
 		return false;
