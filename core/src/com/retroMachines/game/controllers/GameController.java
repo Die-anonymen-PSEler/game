@@ -39,6 +39,15 @@ public class GameController {
 	 */
 	private RetroMan retroMan;
 	
+	/**
+	 * True if LevelMenu is shown No other Buttonclicks like steering of RetroMAn are now possible
+	 */
+	private boolean LevelMenuisonScreen;
+	
+	/**
+	 * makes an instance of GameController
+	 * @param game
+	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
 		retroMan = new RetroMan();
@@ -108,6 +117,12 @@ public class GameController {
 		return false;
 	}
 	
+	/**
+	 * Shows the Level Menu Screen in gameScreen
+	 */
+	public void showLevelMenuScreen() {
+		
+	}
 	
 	//--------------------------
 	//--------Retro-Man---------
