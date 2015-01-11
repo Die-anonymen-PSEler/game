@@ -12,7 +12,10 @@ import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * 
+ * The screen class responsible for displaying the actual game to the user
+ * It's controller is the gameController which handles all logic.
+ * If something needs to be rendered for the game it should be placed within 
+ * this classes render method.
  * @author RetroFactory
  *
  */
