@@ -92,6 +92,21 @@ public class GameScreen extends AbstractScreen {
 		
 	}
 	
+	/**
+	 * Makes the LevelMenu visible or not
+	 * @return boolean true if now visible flase if not
+	 */
+	public boolean showLevelMenuScreen() {
+		return false;
+	}
+	
+	
+	
+	
+	
+	//-----------------------------------
+	//--------Retro-Man-Controlls--------
+	//-----------------------------------
 	
 	/**
 	 * Listener when the user clicks on Button Right
@@ -131,6 +146,58 @@ public class GameScreen extends AbstractScreen {
 	 * @author Retro Factory
 	 */
 	private class InteractButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	//------------------------------
+	//--------Other Buttons---------
+	//------------------------------
+	
+	/**
+	 * Button which start Evalution 
+	 * Gamecontroller checks if possible or not
+	 * @author Retro Factory
+	 */
+	private class TryEvaluationButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * Button which gives a little hint to make the level 
+	 * 
+	 * @author Retro Factory
+	 */
+	private class GetHintClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * Button which shows the Task of the Level 
+	 * 
+	 * @author Retro Factory
+	 */
+	private class GetTaskClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	/**
+	 * Button which shows the Level Menu and interuots the Game
+	 * 
+	 * @author Retro Factory
+	 */
+	private class MenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub

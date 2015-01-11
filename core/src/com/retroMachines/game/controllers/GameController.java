@@ -46,6 +46,15 @@ public class GameController {
 	 */
 	private TiledMap map;
 	
+	/**
+	 * True if LevelMenu is shown No other Buttonclicks like steering of RetroMAn are now possible
+	 */
+	private boolean LevelMenuisonScreen;
+	
+	/**
+	 * makes an instance of GameController
+	 * @param game
+	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
 		retroMan = new RetroMan();
@@ -106,6 +115,15 @@ public class GameController {
 		ArrayList<GameElement> stackerElements = checkStackerPositions();
 		return false;
 	}
+	
+	/**
+	 * Shows the Level Menu Screen in gameScreen
+	 */
+	public void showLevelMenuScreen() {
+		
+	}
+	
+	
 	
 	
 	//--------------------------
