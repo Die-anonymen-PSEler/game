@@ -46,8 +46,18 @@ public class GameController {
 	 * @param levelId the level to be started
 	 */
 	public void startLevel(int levelId) {
-		gameScreen = new GameScreen(game, this);
+		boolean lefti = getLeftiMode();
+		gameScreen = new GameScreen(game, this, lefti);
+		
 		game.setScreen(gameScreen);
+	}
+	
+	/**
+	 * Returns true if the Lefti Mode is activated for this Player
+	 * @return true when LeftiMode is activated 
+	 */
+	private Boolean getLeftiMode() {
+		return false;
 	}
 	
 	/**
@@ -85,6 +95,13 @@ public class GameController {
 	private void saveProgress() {
 		
 	}
+	
+	
+	
+	
+	//--------------------------
+	//--------Retro-Man---------
+	//--------------------------
 	
 	/**
 	 * delegates a jump call to the retroMan

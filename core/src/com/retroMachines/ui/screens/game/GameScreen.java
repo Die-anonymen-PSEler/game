@@ -24,7 +24,7 @@ public class GameScreen extends AbstractScreen {
 	private final GameController gameController;
 	
 	
-	public GameScreen(RetroMachines game, GameController gameController) {
+	public GameScreen(RetroMachines game, GameController gameController, boolean leftiMode) {
 		super(game);
 		this.gameController = gameController;
 		renderer = new OrthogonalTiledMapRenderer(map, 1 / 16f);
