@@ -12,8 +12,9 @@ import com.retroMachines.data.models.SettingsChangeListener;
  * @author RetroFactory
  * 
  */
-public class SettingController {
 
+public class SettingController implements OnProfileChangedListener {
+	
 	/**
 	 * Private attribute of the Settings Database which stores the setting
 	 * informations
@@ -40,6 +41,7 @@ public class SettingController {
 	 */
 	public SettingController(RetroMachines game) {
 		this.game = game;
+		game.getProfileController().addProfileChangedListener(this);
 		settings = game.getProfileController().getProfile().getSetting();
 	}
 
@@ -86,6 +88,12 @@ public class SettingController {
 	 */
 	public boolean getLeftiMode() {
 		return settings.isLeftControl();
+	}
+
+	@Override
+	public void profileChanged() {
+		// TODO Auto-generated method stub
+		settings = game.getProfileController().getProfile().getSetting();
 	}
 
 }

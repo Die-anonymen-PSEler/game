@@ -9,7 +9,7 @@ import com.retroMachines.data.models.Statistic;
  * @author RetroFactory
  *
  */
-public class StatisticController {
+public class StatisticController implements OnProfileChangedListener {
 	
 	/**
 	 * instance of the Game which is needed to get all statistic informations
@@ -27,6 +27,7 @@ public class StatisticController {
 	 */
 	public StatisticController(RetroMachines game) {
 		this.game = game;
+		game.getProfileController().addProfileChangedListener(this);
 		statistic = game.getProfileController().getProfile().getStatistic();
 	}
 	
@@ -41,5 +42,12 @@ public class StatisticController {
 			value = 1;
 		}
 		statistic.setStepCounter(statistic.getStepCounter() + value);
+	}
+
+
+	@Override
+	public void profileChanged() {
+		// TODO Auto-generated method stub
+		statistic = game.getProfileController().getProfile().getStatistic();
 	}
 }
