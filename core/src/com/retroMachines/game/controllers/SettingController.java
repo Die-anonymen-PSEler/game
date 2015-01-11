@@ -31,10 +31,22 @@ public class SettingController {
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
 	}
-
+	
+	/**
+	 * returns the currently set volume within the settings instance
+	 * @return a float variable within the range of 0-1.0
+	 */
 	public float getVolume() {
 		// TODO Auto-generated method stub
 		return settings.getVolume();
+	}
+	
+	/**
+	 * Returns true if the Lefti Mode is activated for this Player
+	 * @return true when LeftiMode is activated 
+	 */
+	public boolean getLeftiMode() {
+		return settings.isLeftControl();
 	}
 
 }

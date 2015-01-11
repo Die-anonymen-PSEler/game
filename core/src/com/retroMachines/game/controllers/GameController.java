@@ -2,6 +2,8 @@ package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
@@ -14,7 +16,7 @@ import com.retroMachines.ui.screens.menus.LevelMenuScreen;
  * This class represents the controller for the actual game.
  * It sets up levels and also disposes them afterwards.
  * It saves progress to the persistent storage.
- * @author lucabecker
+ * @author RetroFactory
  *
  */
 public class GameController {
@@ -39,6 +41,11 @@ public class GameController {
 	 */
 	private RetroMan retroMan;
 	
+	/**
+	 * the map that is currently active and may be shown to the user in case the gamescreen is also active
+	 */
+	private TiledMap map;
+	
 	public GameController(RetroMachines game) {
 		this.game = game;
 		retroMan = new RetroMan();
@@ -49,18 +56,10 @@ public class GameController {
 	 * @param levelId the level to be started
 	 */
 	public void startLevel(int levelId) {
-		boolean lefti = getLeftiMode();
+		boolean lefti = game.getSettingController().getLeftiMode();
 		gameScreen = new GameScreen(game, this, lefti);
-		
+		gameScreen.setMap(map);
 		game.setScreen(gameScreen);
-	}
-	
-	/**
-	 * Returns true if the Lefti Mode is activated for this Player
-	 * @return true when LeftiMode is activated 
-	 */
-	private Boolean getLeftiMode() {
-		return false;
 	}
 	
 	/**
@@ -104,7 +103,7 @@ public class GameController {
 	 * @return true if alle stackers have an element in it
 	 */
 	private boolean checkPlacementofElements() {
-		ArrayList<GameElement> stackerElements = gameScreen.checkStackerPositions();
+		ArrayList<GameElement> stackerElements = checkStackerPositions();
 		return false;
 	}
 	
@@ -148,6 +147,45 @@ public class GameController {
 	public RetroMan getRetroMan() {
 		// TODO Auto-generated method stub
 		return retroMan;
+	}
+	
+	
+	
+	
+	
+	/**
+	 * Map Logic
+	 */
+	
+	
+	
+	/**
+	 * Returns Gameelement at given Pos in TiledMap and deletes it.
+	 * @param posObj Position in TiledMap of Gameelement
+	 * @return Gamelelemnt at this Pos  ( null when empty)
+	 */
+	public GameElement getGameElement(Vector2 posObj) {
+		return null;
+	}
+	
+	/**
+	 * Returns a List of Gameelements wich are in the Stackers if one STacker doesnt have an Element in it it returns null
+	 * @return null if not alle stackers are field  else a list of GameElement which are in the stackers placed
+	 */
+	public ArrayList<GameElement> checkStackerPositions() {
+		ArrayList<GameElement> stackerElements = new ArrayList<GameElement>();
+		return stackerElements;
+	}
+	
+	
+	/**
+	 * Sets Gameelement at specific Position in tiledMap
+	 * @param posObj Position where The Object should Placed
+	 * @param element Eleement which should placed
+	 * @return false when element placed succesfull
+	 */
+	public boolean setGameElement(Vector2 posObj, GameElement element) {
+		return false;
 	}
 	
 	/**

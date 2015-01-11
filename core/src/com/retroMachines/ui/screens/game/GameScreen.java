@@ -1,31 +1,49 @@
 package com.retroMachines.ui.screens.game;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
-import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
 
+/**
+ * 
+ * @author RetroFactory
+ *
+ */
 public class GameScreen extends AbstractScreen {
 	
+	/**
+	 * the map that is currently active and may be shown to the user in case the gamescreen is also active
+	 */
 	private TiledMap map;
 	
+	/**
+	 * a render for displaying the map and everything else to the screen.
+	 */
 	private OrthogonalTiledMapRenderer renderer;
 	
+	/**
+	 * OrthographicCamera so we can look from the side onto our map. 
+	 */
 	private OrthographicCamera camera;
 	
+	/**
+	 * reference to the gameController for information regarding the user input
+	 */
 	private final GameController gameController;
 	
-	
+	/**
+	 * 
+	 * @param game
+	 * @param gameController
+	 * @param leftiMode
+	 */
 	public GameScreen(RetroMachines game, GameController gameController, boolean leftiMode) {
 		super(game);
 		this.gameController = gameController;
@@ -33,6 +51,10 @@ public class GameScreen extends AbstractScreen {
 		camera = new OrthographicCamera();
 	}
 	
+	/**
+	 * assigns a new TiledMap to the screen
+	 * @param map
+	 */
 	public void setMap(TiledMap map) {
 		this.map = map;
 	}
@@ -51,46 +73,23 @@ public class GameScreen extends AbstractScreen {
 		gameController.getRetroMan().render(delta);
 	}
 	
+	/**
+	 * performs the input detection and delegates calls to the controller so it can perform the logic
+	 */
 	private void inputDetection() {
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			gameController.jumpRetroMan();
 		}
 	}
 	
+	/**
+	 * abolishes the screen and cleans up behind it.
+	 */
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
 		
-	}
-	
-	/**
-	 * Returns Gameelement at given Pos in TiledMap and deletes it.
-	 * @param posObj Position in TiledMap of Gameelement
-	 * @return Gamelelemnt at this Pos  ( null when empty)
-	 */
-	public GameElement getGameElement(Vector2 posObj) {
-		return null;
-	}
-	
-	/**
-	 * Returns a List of Gameelements wich are in the Stackers if one STacker doesnt have an Element in it it returns null
-	 * @return null if not alle stackers are field  else a list of GameElement which are in the stackers placed
-	 */
-	public ArrayList<GameElement> checkStackerPositions() {
-		ArrayList<GameElement> stackerElements = new ArrayList<GameElement>();
-		return stackerElements;
-	}
-	
-	
-	/**
-	 * Sets Gameelement at specific Position in tiledMap
-	 * @param posObj Position where The Object should Placed
-	 * @param element Eleement which should placed
-	 * @return false when element placed succesfull
-	 */
-	public boolean setGameElement(Vector2 posObj, GameElement element) {
-		return false;
 	}
 	
 	
