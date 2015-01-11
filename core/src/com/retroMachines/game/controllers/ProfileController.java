@@ -1,5 +1,6 @@
 package com.retroMachines.game.controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.retroMachines.RetroMachines;
@@ -27,6 +28,8 @@ public class ProfileController {
 	 */
 	public static final int MAX_PROFILE_NUMBER = 5;
 	
+	public final List<OnProfileChangedListener> profileChangeListeners;
+	
 	
 	/**
 	 * creates a new instance of the profile controller
@@ -35,6 +38,7 @@ public class ProfileController {
 	 */
 	public ProfileController(RetroMachines game) {
 		this.game = game;
+		profileChangeListeners = new LinkedList<OnProfileChangedListener>();
 		profileNames = new String[MAX_PROFILE_NUMBER];
 	}
 
@@ -52,7 +56,7 @@ public class ProfileController {
 	 * @param profileName the name of the profile 
 	 */
 	public void changeActiveProfile(String profileName) {
-		
+		notifyProfileListeners();
 	}
 	
 	/**
@@ -94,5 +98,19 @@ public class ProfileController {
 	 */
 	public boolean createProfile(String name) {
 		return false;
+	}
+	
+	private void notifyProfileListeners() {
+		for(OnProfileChangedListener listener : profileChangeListeners) {
+			listener.profileChanged();
+		}
+	}
+	
+	public void addProfileChangedListener(OnProfileChangedListener listener) {
+		profileChangeListeners.add(listener);
+	}
+	
+	public void removeProfileChangedListener(OnProfileChangedListener listener) {
+		profileChangeListeners.remove(listener);
 	}
 }
