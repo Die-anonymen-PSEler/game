@@ -40,9 +40,9 @@ public class GameController {
 	private RetroMan retroMan;
 	
 	/**
-	 * True if LevelMenu is shown No other Buttonclicks like steering of RetroMAn are now possible
+	 * True if LevelMenu, Hint or Task is shown, No other Buttonclicks like steering of RetroMAn are now possible
 	 */
-	private boolean LevelMenuisonScreen;
+	private boolean SomethingOnScreen;
 	
 	/**
 	 * makes an instance of GameController
@@ -118,9 +118,23 @@ public class GameController {
 	}
 	
 	/**
-	 * Shows the Level Menu Screen in gameScreen
+	 * Shows the Level Menu Screen on gameScreen
 	 */
 	public void showLevelMenuScreen() {
+		
+	}
+	
+	/**
+	 * Shows the Task Screen on gameScreen
+	 */
+	public void showTask() {
+		
+	}
+	
+	/**
+	 * Shows the Hint Screen on gameScreen
+	 */
+	public void showHint() {
 		
 	}
 	

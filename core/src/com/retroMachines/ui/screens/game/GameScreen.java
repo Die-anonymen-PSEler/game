@@ -71,6 +71,23 @@ public class GameScreen extends AbstractScreen {
 	public boolean showLeveleMenuScreen() {
 		return false;
 	}
+	
+	/**
+	 * Makes the Hint visible or not
+	 * @return boolean true if now visible flase if not
+	 */
+	public boolean showHint() {
+		return false;
+	}
+	
+	/**
+	 * Makes the Task visible or not
+	 * @return boolean true if now visible flase if not
+	 */
+	public boolean showTask() {
+		return false;
+	}
+	
 	/**
 	 * Returns Gameelement at given Pos in TiledMap and deletes it.
 	 * @param posObj Position in TiledMap of Gameelement
