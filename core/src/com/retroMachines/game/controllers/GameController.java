@@ -50,7 +50,7 @@ public class GameController {
 	 * True if LevelMenu is shown No other Buttonclicks like steering of RetroMAn are now possible
 	 * True if LevelMenu, Hint or Task is shown, No other Buttonclicks like steering of RetroMAn are now possible
 	 */
-	private boolean somethingOnScreen;
+	private boolean popupScreenIsShown;
 	
 	/**
 	 * makes an instance of GameController

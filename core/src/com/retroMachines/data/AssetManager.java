@@ -14,8 +14,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  */
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	
+	/**
+	 * Defaul Construkter which starts an simple Instanz of Assetmanager
+	 */
     public static AssetManager manager = new AssetManager();
     
+    /**
+     * The Design of the Menus is stored here
+     */
     public static Skin menuSkin;
     
     /**

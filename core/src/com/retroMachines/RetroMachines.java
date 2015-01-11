@@ -23,11 +23,23 @@ public class RetroMachines extends Game {
 	private GlobalVariables globalVariables;
 	
 	/**
-	 * controllers
+	 * Profile controller controlls Profile Information
 	 */
 	private ProfileController profileController;
+	
+	/**
+	 * Setting Controller controls general and serspecific Settings
+	 */
 	private SettingController settingController;
+	
+	/**
+	 * GameController controlls Start and Playing of an Level and starts evaluation
+	 */
 	private GameController gameController;
+	
+	/**
+	 * Controlls Gamestatistics like PlayTime and so
+	 */
 	private StatisticController statisticController;
 		
 	/**
