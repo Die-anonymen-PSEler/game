@@ -6,12 +6,12 @@ import com.retroMachines.data.RetroDatabase;
 public abstract class Model {
 	
 	/**
-	 * The database connection that will execute queries to the sqlite file
+	 * The database connection that will execute queries to the SQLite file
 	 */
 	protected Database db;
 	
 	/**
-	 * Makes an singele instantce of RetroDatabase
+	 * Makes a single instance of RetroDatabase
 	 */
 	public Model() {
 		db = RetroDatabase.getSingleton();

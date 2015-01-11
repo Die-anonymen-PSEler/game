@@ -73,6 +73,11 @@ public class GameScreen extends AbstractScreen implements
 		this.gameController = gameController;
 		renderer = new OrthogonalTiledMapRenderer(map, 1 / 16f);
 		camera = new OrthographicCamera();
+		initialize();
+	}
+
+	public void initialize() {
+		game.getSettingController().add(this);
 	}
 
 	/**
@@ -143,6 +148,9 @@ public class GameScreen extends AbstractScreen implements
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
 		sound.setVolume(soundId, newVolume);
+		// changes the volume in the settings so that its saved while quitting
+		// the game
+		game.getSettingController().setVolume(newVolume);
 	}
 
 	// -----------------------------------

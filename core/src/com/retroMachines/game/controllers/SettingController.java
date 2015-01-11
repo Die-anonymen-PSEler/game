@@ -9,7 +9,7 @@ import com.retroMachines.data.models.SettingsChangeListener;
 /**
  * SettingsController
  * 
- * @author Retro Factory
+ * @author RetroFactory
  * 
  */
 public class SettingController {
@@ -20,7 +20,7 @@ public class SettingController {
 	private Setting settings;
 	
 	/**
-	 * Instance of the Game it selfe
+	 * Instance of the Game itself
 	 */
 	private final RetroMachines game;
 	
@@ -31,7 +31,7 @@ public class SettingController {
 	private List<SettingsChangeListener> toBeNotified;
 	
 	/**
-	 * Constructer which starts an instance of SettingController with all neede Informtaions
+	 * Constructor which starts an instance of SettingController with all needed informations
 	 * @param game instance of Game needed to get ProfileSettings
 	 */
 	public SettingController(RetroMachines game) {
@@ -45,6 +45,14 @@ public class SettingController {
 	 */
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
+	}
+	
+	/**
+	 * sets the Volume to a new loudness specified by the user in the SettingsMenuScreen
+	 * @param newVolume the new Volume of the sound
+	 */
+	public void setVolume(float newVolume) {
+		settings.setVolume(newVolume);
 	}
 	
 	/**

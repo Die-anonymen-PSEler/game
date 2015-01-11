@@ -69,6 +69,8 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
 		sound.setVolume(soundId, newVolume);
+		//changes the volume in the settings so that its saved while quitting the game
+		game.getSettingController().setVolume(newVolume);
 	}
 	
 	private class PlayButtonClickListener extends ClickListener {
