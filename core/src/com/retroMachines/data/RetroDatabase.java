@@ -2,6 +2,7 @@ package com.retroMachines.data;
 
 import com.badlogic.gdx.sql.Database;
 import com.badlogic.gdx.sql.DatabaseCursor;
+import com.badlogic.gdx.sql.DatabaseFactory;
 import com.badlogic.gdx.sql.SQLiteGdxException;
 
 /**
@@ -10,17 +11,27 @@ import com.badlogic.gdx.sql.SQLiteGdxException;
  * @author RetroFactory
  *
  */
-public class RetroDatabase implements Database {
-	
-	/**
-	 * The name of the database in the sqlite file
-	 */
-	private static final String DATABASE_NAME = "retroMachines";
+public class RetroDatabase {
 	
 	/**
 	 * a copy of the database
 	 */
-	private static RetroDatabase singleton;
+	private static Database dbHandler;
+	
+	/**
+	 * The name of the database in the sqlite file
+	 */
+	public static final String DATABASE_NAME = "retroMachines";
+	
+	/**
+	 * the version of the database
+	 */
+	private static final int DATABASE_VERSION = 1;
+	
+	/**
+	 * The query that should be executed when the database needs to be created
+	 */
+	private static final String DATABASE_CREATE = "";
 	
 	/**
 	 * private constructor to avoid double creation of the database connection
@@ -33,85 +44,26 @@ public class RetroDatabase implements Database {
 	 * Instantiates a new singleton
 	 */
 	private static void createSingleton() {
-		singleton = new RetroDatabase();
-		singleton.setupDatabase();
+		dbHandler = DatabaseFactory.getNewDatabase(DATABASE_NAME, DATABASE_VERSION, DATABASE_CREATE, null);
+		dbHandler.setupDatabase();
+		
+		try {
+			dbHandler.openOrCreateDatabase();
+			dbHandler.setupDatabase();
+		}
+		catch (SQLiteGdxException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Returns the only copy of the database
 	 * @return database reference
 	 */
-	public static RetroDatabase getSingleton() {
-		if (singleton == null) {
+	public static Database getSingleton() {
+		if (dbHandler == null) {
 			createSingleton();
 		}
-		return singleton;
+		return dbHandler;
 	}
-
-	/**
-	 * closes the existing database
-	 * @throws SQLiteGdxException is thrown when the database could not be closed
-	 */
-	@Override
-	public void closeDatabase() throws SQLiteGdxException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * executes a SQL query
-	 * @param arg0 the query as a String
-	 * @throws SQLiteGdxException is thrown when the query could not be executed
-	 */
-	@Override
-	public void execSQL(String arg0) throws SQLiteGdxException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Opens an existing database or creates a new one
-	 * @throws SQLiteGdxException is thrown when the database could not be opened or created
-	 */
-	@Override
-	public void openOrCreateDatabase() throws SQLiteGdxException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * executes a SQL query
-	 * @param arg0 the query as a String
-	 * @return a database cursor
-	 * @throws SQLiteGdxException is thrown when the query could not be executed
-	 */
-	@Override
-	public DatabaseCursor rawQuery(String arg0) throws SQLiteGdxException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param arg0
-	 * @param arg1
-	 * @return
-	 * @throws SQLiteGdxException
-	 */
-	@Override
-	public DatabaseCursor rawQuery(DatabaseCursor arg0, String arg1)
-			throws SQLiteGdxException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * sets up the database
-	 */
-	@Override
-	public void setupDatabase() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
