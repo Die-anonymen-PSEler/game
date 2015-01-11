@@ -134,4 +134,10 @@ public class GlobalVariables extends Model {
 		}
 	}
 
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

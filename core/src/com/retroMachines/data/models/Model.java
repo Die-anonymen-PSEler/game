@@ -11,6 +11,11 @@ public abstract class Model {
 	protected Database db;
 	
 	/**
+	 * the id of the row where the record is stored within the database
+	 */
+	protected int rowId;
+	
+	/**
 	 * Makes a single instance of RetroDatabase
 	 */
 	public Model() {
@@ -27,4 +32,6 @@ public abstract class Model {
 	 * saves the model to the persistence background database
 	 */
 	public abstract void writeToSQL();
+
+	public abstract void fetchFromSQL();
 }

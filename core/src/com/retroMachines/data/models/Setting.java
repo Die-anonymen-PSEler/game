@@ -71,6 +71,17 @@ public class Setting extends Model {
 		this.soundOnOff = soundOnOff;
 		this.leftControl = leftControl;
 	}
+	
+	/**
+	 * Constructor which creates a new instance of setting and attempts to
+	 * find forther attributes with the row id
+	 * @param rowId the id of the row where the record regarding this setting is stored.
+	 */
+	public Setting(int rowId) {
+		super();
+		this.rowId = rowId;
+		fetchFromSQL();	
+	}
 
 	@Override
 	public void writeToSQL() {
@@ -136,6 +147,12 @@ public class Setting extends Model {
 	 */
 	public void setLeftControl(boolean leftControl) {
 		this.leftControl = leftControl;
+	}
+
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

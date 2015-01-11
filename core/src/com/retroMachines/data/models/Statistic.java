@@ -67,6 +67,17 @@ public class Statistic extends Model {
 		this.setLevelsComplete(levelsComplete);
 		this.setStepCounter(stepCounter);
 	}
+	
+	/**
+	 * creates a new statistic object and attempts to fetch further information 
+	 * from the background storage
+	 * @param rowId the id of the row where the record is stored within the background storage
+	 */
+	public Statistic(int rowId) {
+		super();
+		this.rowId = rowId;
+		fetchFromSQL();
+	}
 
 	@Override
 	public void writeToSQL() {
@@ -139,6 +150,12 @@ public class Statistic extends Model {
 	 */
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
+	}
+
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

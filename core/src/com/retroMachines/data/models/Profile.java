@@ -77,6 +77,28 @@ public class Profile extends Model {
 		this.setSetting(setting);
 		this.statistic = statistic;
 	}
+	
+	/**
+	 * Creates a new profile and attempts to fetch the further data form the 
+	 * persistent background storage
+	 * @param name the name of the profile that has the record
+	 */
+	public Profile(String name) {
+		super();
+		this.profileName = name;
+		fetchFromSQL();
+	}
+	
+	/**
+	 * Creates a new profile and attempts to fetch the further data form the 
+	 * persistent background storage
+	 * @param rowId the id of the row where the record is stored
+	 */
+	public Profile(int rowId) {
+		super();
+		this.rowId = rowId;
+		fetchFromSQL();
+	}
 
 	@Override
 	public void writeToSQL() {
@@ -89,6 +111,12 @@ public class Profile extends Model {
 		// TODO Auto-generated method stub
 		return false;
 
+	}
+	
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*
@@ -138,6 +166,15 @@ public class Profile extends Model {
 	 */
 	public void setSetting(Setting setting) {
 		this.setting = setting;
+	}
+	
+	/**
+	 * get method for the statistic attribute
+	 * @return the statistic attribute associated with this profile
+	 */
+	public Statistic getStatistic() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
