@@ -65,8 +65,4 @@ public class LevelMenuScreen extends MenuScreen{
 		
 	}
 	
-	private class LevelSelectListener extends ClickListener {
-		
-	}
-	
 }
