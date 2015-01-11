@@ -70,8 +70,7 @@ public class ProfileController {
 
 	/**
 	 * Getter for the Array of ProfileNames
-	 * 
-	 * @return
+	 * @return a string array containing all profile names that are known.
 	 */
 	public String[] getProfileNames() {
 		return profileNames;

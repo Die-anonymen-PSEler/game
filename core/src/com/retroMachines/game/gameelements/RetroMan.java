@@ -160,8 +160,7 @@ public class RetroMan {
 
 	/**
 	 * returns if retroman has already picked up an elemnt
-	 * 
-	 * @return
+	 * @return true if the retroman currently holds a gameelement; false otherwise
 	 */
 	public boolean hasPickedUpElement() {
 		return element != null;

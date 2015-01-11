@@ -17,7 +17,7 @@ public class Variable extends Vertex{
 	
 	/**
 	 * getter for id.
-	 * @return
+	 * @return the id of the variable
 	 */
 	public int getId() {
 		return id;

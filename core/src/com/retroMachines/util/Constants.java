@@ -27,4 +27,9 @@ public abstract class Constants {
 	 * this is the amount of which the volume may be changed by the user
 	 */
 	public static final float VOLUME_DELTA = 0.1f;
+	
+	/**
+	 * this is the initial volume of the game
+	 */
+	public static final float INITIAL_VOLUME = 0.5f;
 }

@@ -182,8 +182,7 @@ public class GameController {
 
 	/**
 	 * returns the RetroMan instance
-	 * 
-	 * @return
+	 * @return the RetroMan instance that is held by this controller
 	 */
 	public RetroMan getRetroMan() {
 		// TODO Auto-generated method stub
