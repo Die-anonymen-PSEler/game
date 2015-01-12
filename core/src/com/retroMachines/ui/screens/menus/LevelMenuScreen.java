@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 
 /**
- * LevelMenuscreen displays the list of available levels to the user
+ * The LevelMenuScreen is part of the view of RetroMachines.
+ * It displays the list of available levels to the user
  * and initiates a new level once the user has picked one.
  * @author RetroFactory
  */
@@ -14,11 +15,18 @@ public class LevelMenuScreen extends MenuScreen{
 	
 	private List<String> levelList;
 
+	/**
+	 * The constructor to create a new instance of the LevelMenuScreen.
+	 * @param game The game which uses this screen.
+	 */
 	public LevelMenuScreen(RetroMachines game) {
 		super(game);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Initializes the LevelMenuScreen.
+	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
@@ -26,9 +34,9 @@ public class LevelMenuScreen extends MenuScreen{
 	}
 	
 	/**
-	 * Button to Return in MainmenuScreen
+	 * Button to return to the MainMenuScreen.
 	 * 
-	 * @author RetroMachines
+	 * @author RetroFactory
 	 *
 	 */
 	private class ReturnButtonClickListener extends ClickListener {
@@ -41,14 +49,14 @@ public class LevelMenuScreen extends MenuScreen{
 	}
 	
 	/**
-	 * Used when level is locked
-	 * @author RetroMachines
+	 * Used when level is locked.
+	 * @author RetroFactory
 	 *
 	 */
 	private class LevelLockedButtonClickListener extends ClickListener {
 		
 		/**
-		 * the id of the level so it can be started later on
+		 * the ID of the level so it can be started later on.
 		 */
 		private int id;
 		
@@ -64,14 +72,14 @@ public class LevelMenuScreen extends MenuScreen{
 	}
 	
 	/**
-	 * Used when Level is unlcoked
-	 * @author RetroMachines
+	 * Used when Level is unlocked and can be played.
+	 * @author RetroFactory
 	 *
 	 */
 	private class LevelUnlockedButtonClickListener extends ClickListener {
 		
 		/**
-		 * the id of the level so it can be started later on
+		 * the ID of the level so it can be started later on
 		 */
 		private int id;
 		

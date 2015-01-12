@@ -6,20 +6,31 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * this is the AboutMenuScreen where information about RetroFactory and the authors
- * of this game is given.
+ * The AboutMenuScreen is part of the view of RetroMachines.
+ * In it the informations about RetroFactory and the authors
+ * of this game are given.
  * @author RetroFactory
  *
  */
 public class AboutMenuScreen extends MenuScreen {
 	
+	/**
+	 * The developers of RetroMachine.
+	 */
 	public static final String CREDIT = "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 
+	/**
+	 * The constructor to create a new instance of the AboutMenuScreen.
+	 * @param game The game which uses the screen.
+	 */
 	public AboutMenuScreen(RetroMachines game) {
 		super(game);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Shows the AboutMenuScreen.
+	 */
 	public void show() {
 		
 	}
@@ -32,6 +43,9 @@ public class AboutMenuScreen extends MenuScreen {
 		}
 	}
 
+	/**
+	 * Initializes the screen.
+	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub

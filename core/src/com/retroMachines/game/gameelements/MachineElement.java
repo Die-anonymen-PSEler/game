@@ -8,8 +8,8 @@ package com.retroMachines.game.gameelements;
 public class MachineElement extends GameElement {
 	
 	/**
-	 * The id of the color this machine element should have
-	 * the hex representation can be looked up within the constants class
+	 * The ID of the color this machine element should have.
+	 * The hex representation can be looked up within the constants class.
 	 */
 	private int colorId;
 	

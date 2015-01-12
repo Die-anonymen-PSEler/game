@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * RetroMan Class This class contains information regarding the character that
+ * The RetroMan Class contains information regarding the character that
  * may run through the world. It also provides a rendering method so the screen
  * can show it to the user. It does not hold any information regarding the map
  * he is moving on. Collision detection is also performed within the controller.

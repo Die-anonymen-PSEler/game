@@ -8,8 +8,9 @@ import com.retroMachines.util.lambda.Tree;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * This class is part of the view of RetroMachines. It shows the evaluation of
- * the lambda term after all GameElements were placed in the stacks by the user.
+ * This class is part of the view of RetroMachines.
+ * It shows the evaluation of the lambda term after all GameElements 
+ * were placed in the stacks by the user.
  * The animation is started and ended in this screen and can be paused.
  * 
  * @author RetroFactory

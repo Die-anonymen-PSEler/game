@@ -4,7 +4,8 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Statistic;
 
 /**
- * Controller which controls the Statistic and changes them 
+ * The StatisticController is part of the controller of RetroMachines.
+ * It controls the statistics of the profile and changes them.
  * 
  * @author RetroFactory
  *
@@ -12,18 +13,18 @@ import com.retroMachines.data.models.Statistic;
 public class StatisticController implements OnProfileChangedListener {
 	
 	/**
-	 * instance of the Game which is needed to get all statistic informations
+	 * Instance of the Game which is needed to get all statistical informations.
 	 */
 	private final RetroMachines game;
 	
 	/**
-	 * Private attribute of the Statistics Database which stores the statistic informations
+	 * Private attribute of the statistics database which stores the statistical informations.
 	 */
 	private Statistic statistic;
 	
 	/**
-	 * Constructor which starts an instance of StatisticController  with the game as an attribute
-	 * @param game attribute of StatisticController
+	 * Constructor which starts an instance of StatisticController with the game as an attribute.
+	 * @param game Attribute of StatisticController.
 	 */
 	public StatisticController(RetroMachines game) {
 		this.game = game;
@@ -33,8 +34,8 @@ public class StatisticController implements OnProfileChangedListener {
 	
 	
 	/**
-	 * Increases the StepCounter of the current Statistic
-	 * @param amount
+	 * Increases the StepCounter of the current statistic.
+	 * @param amount Adds the amount to the StepCounter.
 	 */
 	public void incStepCounter(int amount) {
 		int value = amount;
@@ -44,7 +45,9 @@ public class StatisticController implements OnProfileChangedListener {
 		statistic.setStepCounter(statistic.getStepCounter() + value);
 	}
 
-
+	/**
+	 * Controls if the profile was changed.
+	 */
 	@Override
 	public void profileChanged() {
 		// TODO Auto-generated method stub

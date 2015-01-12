@@ -5,20 +5,21 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 
 /**
- * this profile allows the user to edit a profile in depth
- * and even delete it if we wishes.
+ * The ProfileSettingsMenuScreen is part of the view of RetroMachines.
+ * The profile allows the user to edit a profile in depth
+ * and even delete it if he wishes.
  * @author RetroFactory
  *
  */
 public class ProfileSettingsMenuScreen  extends MenuScreen {
 	
 	/**
-	 * the id of the profile that is edited by this screen
+	 * The ID of the profile that is edited by this screen.
 	 */
 	private int profileId;
 	
 	/**
-	 * int represents position in Character String Array in Constants.java 
+	 * The actualCharacter represents the position in Character-String-Array in Constants.java.
 	 */
 	private int actualCharacter;
 
@@ -28,6 +29,9 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Initializes this screen.
+	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub	
@@ -35,16 +39,17 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	
 	
 	/**
-	 * getter Method to get the int value wich represents position of character in String Array in Constants.java
-	 * @return int place in string array in Constants
+	 * Get Method to get the int value which represents position of the character in the 
+	 * String Array in Constants.java.
+	 * @return The place in string array in Constants.
 	 */
 	public int getActualCharacter(){
 		return actualCharacter;
 	}
 	
 	/**
-	 * Listener when the button for left control has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for left control has been clicked.
+	 * @author RetroFactory
 	 */
 	private class LeftControlButtonListener extends ClickListener {
 		@Override
@@ -55,8 +60,8 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	}
 	
 	/**
-	 * Listener when the button for right control has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for right control has been clicked.
+	 * @author RetroFactory
 	 */
 	private class RightControlButtonListener extends ClickListener {
 		@Override
@@ -67,8 +72,8 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	}
 	
 	/**
-	 * Listener when the button for deleting a profile has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for deleting a profile has been clicked.
+	 * @author RetroFactory
 	 */
 	private class DeleteProfileButtonClickListener extends ClickListener {
 		
@@ -81,7 +86,7 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	
 	/**
 	 * Listener when the button for ok a profile has been clicked
-	 * @author Retro Factory
+	 * @author RetroFactory
 	 */
 	private class AcceptButtonClickListener extends ClickListener {
 		@Override
@@ -92,8 +97,8 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	}
 	
 	/**
-	 * Listener when the button for change character of a profile has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for change character of a profile has been clicked.
+	 * @author RetroFactory
 	 */
 	private class NextCharacterButtonClickListener extends ClickListener {
 		@Override

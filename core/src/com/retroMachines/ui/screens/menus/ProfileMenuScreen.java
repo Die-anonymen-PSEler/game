@@ -9,26 +9,31 @@ import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * ProfileMenuScreen shows all created profiles to the user and 
- * offers to create more or delete a given profile
+ * The ProfileMenuScreen is part of the view of RetroMachines.
+ * It shows all created profiles to the user and 
+ * offers to create more or delete a given profile.
  * @author RetroFactory
  *
  */
 public class ProfileMenuScreen extends MenuScreen{
 	
-	/**
-	 * 
-	 */
 	private ProfileController profileController;
 	
 	private List<String> profileList;
 	
+	/**
+	 * The constructor to create a new instance of the ProfileMenuScreen.
+	 * @param game The game which  uses this screen.
+	 */
 	public ProfileMenuScreen(RetroMachines game) {
 		super(game);
 		profileController = game.getProfileController();
 		initialize();
 	}
 
+	/**
+	 * Initializes this screen.
+	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
@@ -46,8 +51,8 @@ public class ProfileMenuScreen extends MenuScreen{
 	
 	
 	/**
-	 * Listener when the button for creating a profile has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for creating a profile has been clicked.
+	 * @author RetroFactory
 	 */
 	private class AddProfileButtonClickListener extends ClickListener {
 		@Override
@@ -57,13 +62,13 @@ public class ProfileMenuScreen extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the button for selecting a profile has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for selecting a profile has been clicked.
+	 * @author RetroFactory
 	 */
 	private class SelectProfileButtonClickListener extends ClickListener {
 		
 		/**
-		 * the id of the profile so it can be selected afterwards
+		 * The ID of the profile so it can be selected afterwards.
 		 */
 		private int id;
 		
@@ -79,8 +84,8 @@ public class ProfileMenuScreen extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the button for selecting a profile has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for selecting a profile has been clicked.
+	 * @author RetroFactory
 	 */
 	private class ScrollUpButtonClickListener extends ClickListener {
 		@Override
@@ -91,8 +96,8 @@ public class ProfileMenuScreen extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the button for selecting a profile has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for selecting a profile has been clicked.
+	 * @author RetroFactory
 	 */
 	private class ScrollDownButtonClickListener extends ClickListener {
 		@Override

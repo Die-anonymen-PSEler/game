@@ -1,8 +1,8 @@
 package com.retroMachines.util;
 
 /**
- * Constants class
- * This class holds constants that are available through out the entire game
+ * Constants class is part of the model of RetroMachines.
+ * It contains the constants that are available through out the entire game
  * and may be used. 
  * @author RetroFactory
  *
@@ -10,8 +10,8 @@ package com.retroMachines.util;
 public abstract class Constants {
 	
 	/**
-	 * String array containing all possible colors for the gameElements
-	 * 7 colors are currently available
+	 * String array containing all possible colors for the gameElements.
+	 * 7 colors in total are available.
 	 */
 	public static final String[] COLOR_HEX = {
 		"#0033CC", // blue
@@ -24,19 +24,19 @@ public abstract class Constants {
 	};
 	
 	/**
-	 * String array containing path to all possible characters
+	 * String array containing path to all possible characters.
 	 */
 	public static final String[] pathCharacter = {
 		// TO-DO 
 	};
 	
 	/**
-	 * this is the amount of which the volume may be changed by the user
+	 * This is the amount of the volume that can be changed by the user.
 	 */
 	public static final float VOLUME_DELTA = 0.1f;
 	
 	/**
-	 * this is the initial volume of the game
+	 * This is the initial volume of the game.
 	 */
 	public static final float INITIAL_VOLUME = 0.5f;
 }

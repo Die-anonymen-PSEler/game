@@ -7,21 +7,22 @@ import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
+ * The SettingMenusScreen is part of the view of RetroMachines.
  * This screen provides general settings regarding the game
- * In particular this is the volume of the game
+ * in particular the volume of the sound of the game.
  * @author RetroFactory
  *
  */
 public class SettingsMenuScreen  extends MenuScreen {
 	
 	/**
-	 * the settings controller so changes can be commited
+	 * The setting controller, so changes can be committed.
 	 */
 	private final SettingController settingController;
 	
 	/**
-	 * 
-	 * @param game
+	 * The constructor to create a new instance of the SettingMenuScreen.
+	 * @param game The game that uses this screen.
 	 */
 	public SettingsMenuScreen(RetroMachines game) {
 		super(game);
@@ -29,6 +30,9 @@ public class SettingsMenuScreen  extends MenuScreen {
 		settingController = game.getSettingController();
 	}
 
+	/**
+	 * Initializes this screen.
+	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
@@ -36,7 +40,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 	}
 	
 	/**
-	 * Listener for the louder button
+	 * Listener for the louder button.
 	 * @author RetroFactory
 	 *
 	 */
@@ -49,7 +53,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 	}
 	
 	/**
-	 * listener for the quieter button
+	 * Listener for the quieter button.
 	 * @author RetroFactory
 	 *
 	 */
@@ -62,7 +66,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 	}
 	
 	/**
-	 * listener for the volume on off button
+	 * Listener for the volume on off button.
 	 * @author RetroFactory
 	 *
 	 */

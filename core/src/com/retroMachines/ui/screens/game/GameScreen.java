@@ -14,9 +14,10 @@ import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * This class is part of the view of RetroMachines. It displays the actual game
- * to the user. It's controller is the gameController which handles all the
- * logic. If something needs to be rendered for the game it should be placed
+ * This class is part of the view of RetroMachines. 
+ * It displays the actual game to the user. It's controller is 
+ * the gameController which handles all the logic. If something needs 
+ * to be rendered for the game it should be placed
  * within the render method of this class.
  * 
  * @author RetroFactory
