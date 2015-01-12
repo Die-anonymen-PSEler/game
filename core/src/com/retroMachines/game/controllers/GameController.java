@@ -145,63 +145,63 @@ public class GameController {
 	// --------------------------
 
 	/**
-	 * delegates a jump call to retroMan
+	 * Delegates a jump call to RetroMan.
 	 */
 	public void jumpRetroMan() {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * delegates an interact call to retroMan
+	 * Delegates an interact call to RetroMan.
 	 */
 	public void interactRetroMan() {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * delegates a goLeft call to retroMan
+	 * Delegates a goLeft call to RetroMan.
 	 */
 	public void goLeftRetroMan() {
 
 	}
 
 	/**
-	 * delegates a goRight call to retroMan
+	 * Delegates a goRight call to RetroMan.
 	 */
 	public void goRightRetroMan() {
 
 	}
 
 	/**
-	 * returns the RetroMan instance
-	 * @return the RetroMan instance that is held by this controller
+	 * Returns the instance of the RetroMan.
+	 * @return The instance of the RetroMan which is held by this controller.
 	 */
 	public RetroMan getRetroMan() {
 		// TODO Auto-generated method stub
 		return retroMan;
 	}
 
-	/**
-	 * Map Logic
-	 */
+	// --------------------------
+	// --------Map-logic---------
+	// --------------------------
 
 	/**
 	 * Returns GameElement at a given position in TiledMap and deletes it.
 	 * 
 	 * @param posObj
-	 *            Position in TiledMap of Gameelement
-	 * @return Gamelelemnt at this Pos ( null when empty)
+	 *            Position in TiledMap of the GameElement.
+	 * @return The GameElement at this position ( null when empty).
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
 		return null;
 	}
 
 	/**
-	 * Returns a List of GameElements wich are in the depots. If one depot
-	 * doesn't have an Element in it, it returns null
+	 * Returns a List of GameElements which are in the depots. If one depot
+	 * doesn't contain an Element, it returns null.
 	 * 
-	 * @return null if not all depots are filled; else a list of GameElements
-	 *         which are placed in the depots
+	 * @return Null, if not all depots are filled, else a list of GameElements
+	 *         which are placed in the depots.
 	 */
 	public ArrayList<GameElement> checkdepotPositions() {
 		ArrayList<GameElement> depotElements = new ArrayList<GameElement>();
@@ -209,21 +209,21 @@ public class GameController {
 	}
 
 	/**
-	 * Sets GameElement at a specific Position in tiledMap
+	 * Sets GameElement at a specific Position in the TiledMap.
 	 * 
 	 * @param posObj
-	 *            Position where the Object should be placed
+	 *            Position where the Object should be placed.
 	 * @param element
-	 *            Element which should be placed
-	 * @return false when element was placed successfully
+	 *            Element which should be placed.
+	 * @return True if the element was placed successfully; otherwise false.
 	 */
 	public boolean setGameElement(Vector2 posObj, GameElement element) {
 		return false;
 	}
 
 	/**
-	 * performs a collision detection to stop the character in case of walls or
-	 * anything other solid standing in it's way
+	 * Performs a collision detection to stop the character in case of walls or
+	 * any other solid object standing in the way.
 	 */
 	private void collisionDetection() {
 
