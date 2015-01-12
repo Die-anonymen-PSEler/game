@@ -49,9 +49,6 @@ public class GameController {
 	private TiledMap map;
 
 	/**
-<<<<<<< HEAD
-	 * makes an instance of GameController
-=======
 	 * True if LevelMenu is shown. No other Button clicks like steering of
 	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
 	 * other Buttonclicks like steering of RetroMan are now possible
@@ -60,8 +57,6 @@ public class GameController {
 
 	/**
 	 * Makes a new instance of the GameController.
->>>>>>> origin/master
-	 * 
 	 * @param game The game that is to be controlled.
 	 */
 	public GameController(RetroMachines game) {
@@ -70,14 +65,8 @@ public class GameController {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Initializes a given level and fires it up.
-=======
 	 * Sets and initializes a given level and starts it.
->>>>>>> origin/master
-	 * 
-	 * @param levelId
-	 *            ID of the level that is to be started.
+	 * @param levelId ID of the level that is to be started.
 	 */
 	public void startLevel(int levelId) {
 		boolean lefti = game.getSettingController().getLeftiMode();
