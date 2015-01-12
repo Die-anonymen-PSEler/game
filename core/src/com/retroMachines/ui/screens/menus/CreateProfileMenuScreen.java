@@ -20,8 +20,12 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	private final ProfileController profileController;
 	
-	TextField nameTextField;
-
+	private TextField nameTextField;
+	
+	/**
+	 * Creates a new CreateProfileMenuScreen
+	 * @param game
+	 */
 	public CreateProfileMenuScreen(RetroMachines game) {
 		super(game);
 		profileController = game.getProfileController();
@@ -34,6 +38,9 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		nameTextField = new TextField(profileController.getProfileName(), new Skin());
 	}
 	
+	/**
+	 * attempts to create a new profile
+	 */
 	private void createProfile() {
 		String name = nameTextField.getMessageText();
 		if (!profileController.createProfile(name)) {
