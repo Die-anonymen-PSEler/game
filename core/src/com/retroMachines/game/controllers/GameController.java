@@ -48,13 +48,6 @@ public class GameController {
 	private TiledMap map;
 
 	/**
-	 * True if LevelMenu is shown. No other Button clicks like steering of
-	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other Buttonclicks like steering of RetroMan are now possible
-	 */
-	private boolean popupScreenIsShown;
-
-	/**
 	 * makes an instance of GameController
 	 * 
 	 * @param game
@@ -65,7 +58,7 @@ public class GameController {
 	}
 
 	/**
-	 * sets initializes a given level and fires it up
+	 * Initializes a given level and fires it up.
 	 * 
 	 * @param levelId
 	 *            the level to be started
@@ -76,9 +69,16 @@ public class GameController {
 		gameScreen.setMap(map);
 		game.setScreen(gameScreen);
 	}
+	
+	/**
+	 * Cut a level short.
+	 */
+	public void abortLevel() {
+		
+	}
 
 	/**
-	 * This method removes the GameScreen and puts up the EvaluationScreen It
+	 * This method removes the GameScreen and puts up the EvaluationScreen. It
 	 * will also trigger the evaluation.
 	 */
 	private void enterEvaluation() {

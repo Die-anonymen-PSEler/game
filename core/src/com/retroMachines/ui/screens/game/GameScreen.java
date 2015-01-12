@@ -27,7 +27,7 @@ public class GameScreen extends AbstractScreen implements
 
 	/**
 	 * the map that is currently active and may be shown to the user in case the
-	 * gamescreen is also active
+	 * gameScreen is shown.
 	 */
 	private TiledMap map;
 
@@ -89,14 +89,14 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * is called when this screen should be displayed. Starts to play the sound
+	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
 	public void show() {
 		soundId = sound.loop();
 	}
 
 	/**
-	 * assigns a new TiledMap to the screen
+	 * Assigns a new TiledMap to the screen.
 	 * 
 	 * @param map
 	 */
@@ -119,8 +119,8 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * performs the input detection and delegates calls to the controller so it
-	 * can perform the logic
+	 * Performs the input detection and delegates calls to the controller so it
+	 * can perform the logic.
 	 */
 	private void inputDetection() {
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
@@ -129,7 +129,7 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * abolishes the screen and cleans up behind it.
+	 * Abolishes the screen and cleans up behind it.
 	 */
 	@Override
 	public void dispose() {
@@ -139,7 +139,7 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * Makes the LevelMenu visible or not
+	 * Makes the LevelMenu visible or not.
 	 * 
 	 * @return boolean true if now visible flase if not
 	 */

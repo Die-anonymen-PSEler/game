@@ -18,27 +18,32 @@ import com.retroMachines.ui.screens.AbstractScreen;
 public class EvaluationScreen extends AbstractScreen {
 
 	/**
-	 * reference to the GameController for it to handle events that are
-	 * broadcasted to the screen
+	 * Reference to the GameController for it to handle events that are
+	 * broadcasted to the screen.
 	 */
 	private GameController gameController;
 
 	/**
-	 * the root of the lamba term structure for generation on the screen
+	 * The root of the lambda term structure for generation on the screen.
 	 */
 	private Tree tree;
 
 	/**
-	 * a stage to add the different actors to for the purpose of rendering
+	 * A stage to add the different actors to for the purpose of rendering.
 	 */
 	private Stage stage;
 
 	/**
-	 * if true the render method will kick of the animation and render it to the
-	 * screen if false the render method will stop the animation
+	 * If true the render method will kick of the animation and render it to the
+	 * screen; if false the render method will stop the animation.
 	 */
 	private boolean animationInProgress;
 
+	/**
+	 * Creates a new instance of EvaluationScreen.
+	 * @param game the actual game
+	 * @param gameController the gameController of the actual game
+	 */
 	public EvaluationScreen(RetroMachines game, GameController gameController) {
 		super(game);
 		this.gameController = gameController;
@@ -47,7 +52,7 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * assigns a lambda term to the screen for the animation
+	 * Assigns a lambda term to the screen for the animation.
 	 * 
 	 * @param t
 	 *            the lambda term in question
@@ -57,8 +62,8 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * sets animationProgress to true and triggers the animation and displays it
-	 * to the user
+	 * Sets animationProgress to true and triggers the animation and displays it
+	 * to the user.
 	 */
 	public void startAnimation() {
 		animationInProgress = true;
@@ -66,8 +71,8 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * sets animationInProgress to false and freezes the animation in it's
-	 * current position
+	 * Sets animationInProgress to false and freezes the animation in it's
+	 * current position.
 	 */
 	public void pauseAnimation() {
 		animationInProgress = false;
