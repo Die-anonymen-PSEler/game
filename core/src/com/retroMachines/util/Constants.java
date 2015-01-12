@@ -24,6 +24,13 @@ public abstract class Constants {
 	};
 	
 	/**
+	 * String array containing path to all possible characters
+	 */
+	public static final String[] pathCharacter = {
+		// TO-DO 
+	};
+	
+	/**
 	 * this is the amount of which the volume may be changed by the user
 	 */
 	public static final float VOLUME_DELTA = 0.1f;

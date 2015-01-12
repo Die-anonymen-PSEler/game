@@ -16,6 +16,11 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	 * the id of the profile that is edited by this screen
 	 */
 	private int profileId;
+	
+	/**
+	 * int represents position in Character String Array in Constants.java 
+	 */
+	private int actualCharacter;
 
 	public ProfileSettingsMenuScreen(RetroMachines game, int id) {
 		super(game);
@@ -25,11 +30,17 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 	
 	
+	/**
+	 * getter Method to get the int value wich represents position of character in String Array in Constants.java
+	 * @return
+	 */
+	public int getActualCharacter(){
+		return 0;
+	}
 	
 	/**
 	 * Listener when the button for left control has been clicked
@@ -73,6 +84,18 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	 * @author Retro Factory
 	 */
 	private class AcceptButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+			super.clicked(event, x, y);
+		}
+	}
+	
+	/**
+	 * Listener when the button for change character of a profile has been clicked
+	 * @author Retro Factory
+	 */
+	private class NextCharacterButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
