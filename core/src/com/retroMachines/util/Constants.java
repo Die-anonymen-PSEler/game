@@ -13,7 +13,7 @@ public abstract class Constants {
 	 * String array containing all possible colors for the gameElements
 	 * 7 colors are currently available
 	 */
-	public static final String[] colorHex = {
+	public static final String[] COLOR_HEX = {
 		"#0033CC", // blue
 		"#00CC00", // green
 		"#FF3300", // red

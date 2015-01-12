@@ -1,9 +1,9 @@
 package com.retroMachines.game.gameelements;
 
 /**
- * A machine element that represents the abstraction within the lambda calculus
+ * This class is part of the model of RetroMachines.
+ * A machine element that represents the abstraction within the lambda calculus.
  * @author RetroFactory
- *
  */
 public class MachineElement extends GameElement {
 	

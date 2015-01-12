@@ -3,10 +3,9 @@ package com.retroMachines.game.gameelements;
 import com.retroMachines.util.Constants;
 
 /**
- * A metal element that represents the variable within the lambda calculus
- * 
+ * This class is part of the model of RetroMachines.
+ * A variable element that represents the application within the lambda calculus.
  * @author RetroFactory
- * 
  */
 public class MetalElement extends GameElement {
 
@@ -26,7 +25,7 @@ public class MetalElement extends GameElement {
 	@Override
 	public void render(float deltaTime) {
 		// TODO Auto-generated method stub
-		String color = Constants.colorHex[colorId];
+		String color = Constants.COLOR_HEX[colorId];
 	}
 
 }

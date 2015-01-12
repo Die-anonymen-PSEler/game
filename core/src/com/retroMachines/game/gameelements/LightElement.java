@@ -1,9 +1,9 @@
 package com.retroMachines.game.gameelements;
 
 /**
- * A light element that represents the application within the lambda calculus
+ * This class is part of the model of RetroMachines.
+ * A light element that represents the application within the lambda calculus.
  * @author RetroFactory
- *
  */
 public class LightElement extends GameElement {
 	
