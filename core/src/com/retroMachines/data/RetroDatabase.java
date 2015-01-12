@@ -6,42 +6,44 @@ import com.badlogic.gdx.sql.DatabaseFactory;
 import com.badlogic.gdx.sql.SQLiteGdxException;
 
 /**
- * The database manages the data of the game:
+ * The Database is part of the controller of MetroMachines.
+ * It manages the data of the game:
  * The current state of the game, the settings, the accessible levels, profiles etc.
+ * As a singleton only one instance can be created.
  * @author RetroFactory
  *
  */
 public class RetroDatabase {
 	
 	/**
-	 * a copy of the database
+	 * A copy of the database.
 	 */
 	private static Database dbHandler;
 	
 	/**
-	 * The name of the database in the sqlite file
+	 * The name of the database in the sqlite file.
 	 */
 	public static final String DATABASE_NAME = "retroMachines";
 	
 	/**
-	 * the version of the database
+	 * The version of the database.
 	 */
 	public static final int DATABASE_VERSION = 1;
 	
 	/**
-	 * The query that should be executed when the database needs to be created
+	 * The query that should be executed when the database needs to be created.
 	 */
 	public static final String DATABASE_CREATE = "";
 	
 	/**
-	 * private constructor to avoid double creation of the database connection
+	 * Private constructor to avoid double creation of the database connection.
 	 */
 	private RetroDatabase(){
 		
 	}
 	
 	/**
-	 * Instantiates a new singleton
+	 * Instantiates a new singleton.
 	 */
 	private static void createSingleton() {
 		dbHandler = DatabaseFactory.getNewDatabase(DATABASE_NAME, DATABASE_VERSION, DATABASE_CREATE, null);
@@ -57,8 +59,8 @@ public class RetroDatabase {
 	}
 	
 	/**
-	 * Returns the only copy of the database
-	 * @return database reference
+	 * Returns the only copy of the database.
+	 * @return The database reference.
 	 */
 	public static Database getSingleton() {
 		if (dbHandler == null) {
