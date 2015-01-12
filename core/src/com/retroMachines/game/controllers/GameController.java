@@ -10,6 +10,7 @@ import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
+import com.retroMachines.util.lambda.Tree;
 
 /**
  * The GameController is part of the controller of RetroMachines.
@@ -47,6 +48,11 @@ public class GameController {
 	 * gameScreen is active.
 	 */
 	private TiledMap map;
+	
+	/**
+	 * The lambdaTree represents the Lambdaterm in our Game
+	 */
+	private Tree lambdaTree;
 
 	/**
 <<<<<<< HEAD
@@ -94,15 +100,6 @@ public class GameController {
 	}
 
 	/**
-	 * Removes the GameScreen and puts up the EvaluationScreen. It
-	 * also triggers the evaluation.
-	 */
-	private void enterEvaluation() {
-		evaluationScreen = new EvaluationScreen(game, this);
-		game.setScreen(evaluationScreen);
-	}
-
-	/**
 	 * Finishes the level once it has been completed including the
 	 * evaluation. Afterwards the LevelMenuScreen will be shown to the user.
 	 */
@@ -127,16 +124,6 @@ public class GameController {
 	 */
 	private void saveProgress() {
 
-	}
-
-	/**
-	 * Checks if all the depots contain an element.
-	 * 
-	 * @return True if all the depots contain an element.
-	 */
-	private boolean checkPlacementofElements() {
-		ArrayList<GameElement> depotElements = checkdepotPositions();
-		return false;
 	}
 
 
@@ -227,5 +214,88 @@ public class GameController {
 	 */
 	private void collisionDetection() {
 
+	}
+	
+	// --------------------------
+	// --------Evaluation--------
+	// --------------------------
+	
+	/**
+	 * Starts the hole evaluation process
+	 */
+	public void evaluationClicked() {
+		if(checkPlacementofElements()){
+			buildlambdaTree();
+			enterEvaluationScreen();
+			evaluate();
+			checkEvaluationResult();			
+		}
+	}
+	
+	/**
+	 * Removes the GameScreen and puts up the EvaluationScreen. It
+	 * also triggers the evaluation.
+	 */
+	private void enterEvaluationScreen() {
+		evaluationScreen = new EvaluationScreen(game, this);
+		game.setScreen(evaluationScreen);
+	}
+	
+	/**
+	 * Checks if all the depots contain an element.
+	 * 
+	 * @return True if all the depots contain an element.
+	 */
+	private boolean checkPlacementofElements() {
+		ArrayList<GameElement> depotElements = checkdepotPositions();
+		return false;
+	}
+	
+	/**
+	 * Builds the lambdaTree for evaluation with data of the map
+	 */
+	private void buildlambdaTree() {
+		
+	}
+	
+	/**
+	 * Evaluates the lambdaTree as long as possible
+	 */
+	private void evaluate() {
+		
+	}
+	
+	/**
+	 * is called after evaluation and checks if the result the right one to finish the level
+	 */
+	private void checkEvaluationResult() {
+		
+	}
+	
+	/**
+	 * Fulfills one step of beta-reduction.
+	 * 
+	 * @return true if this abstraction has changed, false otherwise
+	 */
+	private boolean betaReduction() {
+		// TODO: beta reduction
+		return false;
+	}
+
+	/**
+	 * Fulfills alpha conversion. Makes sure that all vertices have unique id's.
+	 * 
+	 * @return true if at least one id changed, false if no id changed.
+	 */
+	private boolean alphaConversion() {
+		// TODO: implement alpha conversion
+		return false;
+	}
+	
+	/**
+	 * Updates the evaluation screen to animate the evaluation
+	 */
+	private void updateEvaluationScreen(){
+		
 	}
 }
