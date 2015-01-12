@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.SettingsChangeListener;
@@ -68,11 +67,6 @@ public class GameScreen extends AbstractScreen implements
 	 * other Buttonclicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
-	
-	/**
-	 * stage shows the pop up's
-	 */
-	private Stage stage;
 
 
 	/**
@@ -144,14 +138,7 @@ public class GameScreen extends AbstractScreen implements
 
 	}
 
-	/**
-	 * Makes the LevelMenu visible or not
-	 * 
-	 * @return boolean true if now visible flase if not
-	 */
-	public boolean showLevelMenuScreen() {
-		return false;
-	}
+
 
 	/**
 	 * sets the sound to the new volume that was newly adjusted in the settings
@@ -174,7 +161,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * Listener when the user clicks on Button Right
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
 	 */
 	private class RightButtonClickListener extends ClickListener {
 		@Override
@@ -186,7 +173,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * Listener when the user clicks on Button Left
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
 	 */
 	private class LeftButtonClickListener extends ClickListener {
 		@Override
@@ -198,7 +185,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * Listener when the user clicks on Button Jump
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
 	 */
 	private class JumpButtonClickListener extends ClickListener {
 		@Override
@@ -210,7 +197,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * Listener when the user clicks on Button Interact
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
 	 */
 	private class InteractButtonClickListener extends ClickListener {
 		@Override
@@ -219,8 +206,41 @@ public class GameScreen extends AbstractScreen implements
 		}
 	}
 
+
+	
+	
+	
+	// ------------------------------------
+	// --Show different views in the game--
+	// ------------------------------------
+
+	/**
+	 * Shows the TaskScreen on top of the game.
+	 */
+	private void showTask() {
+
+	}
+	
+	private void hideTask() {
+		
+	}
+
+	/**
+	 * Shows the HintScreen on top of the game.
+	 */
+	private void showHint() {
+
+	}
+	
+	private void hideHint() {
+		
+	}
+	
+	
+	
+	
 	// ------------------------------
-	// --------Other Buttons---------
+	// ----Other Button Listener-----
 	// ------------------------------
 
 	/**
