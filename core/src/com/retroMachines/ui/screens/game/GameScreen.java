@@ -28,7 +28,7 @@ public class GameScreen extends AbstractScreen implements
 
 	/**
 	 * the map that is currently active and may be shown to the user in case the
-	 * gamescreen is also active
+	 * gamescreen is also shown
 	 */
 	private TiledMap map;
 
@@ -64,8 +64,8 @@ public class GameScreen extends AbstractScreen implements
 	
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
-	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other Buttonclicks like steering of RetroMan are now possible
+	 * RetroMan are now possible True if LevelMenu, Hint or Task is shown. No
+	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
 	
@@ -104,7 +104,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * assigns a new TiledMap to the screen
 	 * 
-	 * @param map
+	 * @param map the tiled map for this screen.
 	 */
 	public void setMap(TiledMap map) {
 		this.map = map;
@@ -158,7 +158,6 @@ public class GameScreen extends AbstractScreen implements
 	 */
 	@Override
 	public void onSettingsChanged() {
-
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
 		sound.setVolume(soundId, newVolume);

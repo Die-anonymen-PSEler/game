@@ -27,15 +27,16 @@ public class ProfileController {
 	 * the amount of profiles allowed in the game
 	 */
 	public static final int MAX_PROFILE_NUMBER = 5;
-
+	
+	/**
+	 * The list of Listener that want to be notified about profile changes.
+	 */
 	public final List<OnProfileChangedListener> profileChangeListeners;
 
 	/**
 	 * creates a new instance of the profile controller and loads the data from
 	 * the background as well as loading the last profile
-	 * 
-	 * @param game
-	 *            the game for calls towards the game
+	 * @param game the game for calls towards the game 
 	 */
 	public ProfileController(RetroMachines game) {
 		this.game = game;
