@@ -9,8 +9,13 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.util.lambda.Tree;
 import com.retroMachines.ui.screens.AbstractScreen;
-
-public class EvaluationScreen extends AbstractScreen implements ContactListener {
+/**
+ * This class is part of the view of RetroMachines.
+ * It shows the evaluation of the 
+ * @author RetroFactory
+ *
+ */
+public class EvaluationScreen extends AbstractScreen {
 	
 	/**
 	 * reference to the GameController for it to handle events
@@ -84,40 +89,4 @@ public class EvaluationScreen extends AbstractScreen implements ContactListener 
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * ContactListener Section
-	 */
-	
-
-	@Override
-	public void beginContact(Contact contact) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void endContact(Contact contact) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {
-		// TODO Auto-generated method stub
-		
-	}
 }

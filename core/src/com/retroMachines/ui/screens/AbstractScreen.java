@@ -15,7 +15,8 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 
 /**
- * Abstrakte Screen Klasse auf die alle Anzeigen des Spiels handhabt. 
+ * This class is part of the view of RetroMachines.
+ * It handles all the prompts in the game. 
  * @author RetroFactory
  *
  */
