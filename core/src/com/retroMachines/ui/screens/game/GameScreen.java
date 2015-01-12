@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.SettingsChangeListener;
@@ -67,6 +68,11 @@ public class GameScreen extends AbstractScreen implements
 	 * other Buttonclicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
+	
+	/**
+	 * stage shows the pop up's
+	 */
+	private Stage stage;
 
 
 	/**
