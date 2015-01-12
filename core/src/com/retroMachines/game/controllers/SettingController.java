@@ -7,7 +7,9 @@ import com.retroMachines.data.models.Setting;
 import com.retroMachines.data.models.SettingsChangeListener;
 
 /**
- * SettingsController
+ * SettingsController is part of the controller of RetroMachines.
+ * It controls the different setting of the game e.g. the volume and 
+ * the side of the buttons in the game.
  * 
  * @author RetroFactory
  * 
@@ -17,27 +19,27 @@ public class SettingController implements OnProfileChangedListener {
 	
 	/**
 	 * Private attribute of the Settings Database which stores the setting
-	 * informations
+	 * informations.
 	 */
 	private Setting settings;
 
 	/**
-	 * Instance of the Game itself
+	 * Instance of the Game itself.
 	 */
 	private final RetroMachines game;
 
 	/**
-	 * list of classes which implement the interface SettingsChangeListener and
-	 * have to be notified if the settings are changed
+	 * List of classes which implement the interface SettingsChangeListener and
+	 * have to be notified if the settings are changed.
 	 */
 	private List<SettingsChangeListener> toBeNotified;
 
 	/**
 	 * Constructor which starts an instance of SettingController with all needed
-	 * information
+	 * information.
 	 * 
 	 * @param game
-	 *            instance of game needed to get the ProfileSettings
+	 *            Instance of the game that is needed to get the Profile settings.
 	 */
 	public SettingController(RetroMachines game) {
 		this.game = game;
@@ -46,11 +48,11 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * Adds a class to the list of classes which must be notified if settings
-	 * are changed
+	 * Adds a class to the list of classes which must be notified if the settings
+	 * are changed.
 	 * 
 	 * @param toBeAdded
-	 *            new Classes which should be notified when settings change
+	 *            The new class which should be notified when the settings are changed.
 	 */
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
@@ -61,20 +63,20 @@ public class SettingController implements OnProfileChangedListener {
 	 */
 
 	/**
-	 * sets the Volume to a new loudness specified by the user in the
-	 * SettingsMenuScreen
+	 * Assigns the volume to a new loudness specified by the user in the
+	 * SettingsMenuScreen.
 	 * 
 	 * @param newVolume
-	 *            the new Volume of the sound
+	 *            The new volume of the sound.
 	 */
 	public void setVolume(float newVolume) {
 		settings.setVolume(newVolume);
 	}
 
 	/**
-	 * returns the currently set volume within the settings instance
+	 * Returns the currently set volume within the settings instance.
 	 * 
-	 * @return a float variable within the range of 0-1.0
+	 * @return A float variable within the range of 0-1.0.
 	 */
 	public float getVolume() {
 		// TODO Auto-generated method stub
@@ -82,14 +84,17 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * Returns true if the LeftiMode is activated for this Player
+	 * Returns true if the LeftiMode is activated for this Player. False otherwise.
 	 * 
-	 * @return true when LeftiMode is activated
+	 * @return True when LeftiMode is activated
 	 */
 	public boolean getLeftiMode() {
 		return settings.isLeftControl();
 	}
 
+	/**
+	 * Controls if the profile was changed.
+	 */
 	@Override
 	public void profileChanged() {
 		// TODO Auto-generated method stub
