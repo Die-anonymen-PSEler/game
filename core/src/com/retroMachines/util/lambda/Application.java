@@ -2,29 +2,35 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+/**
+ * This class is part of the controller of RetroMachines. It models the
+ * application of our lambda term, the machines.
+ * 
+ * @author RetroFactory
+ * 
+ */
 public class Application extends Vertex {
-	
+
 	/**
-	 * list of all id's of vertices corresponding to this abstraction
+	 * List of all ID's of vertices corresponding to this abstraction.
 	 */
 	private LinkedList<Character> idlist;
 	/**
-	 * tells whether this application is already processed.
-	 * False until process is finished
+	 * Tells whether this application is already processed. False until process
+	 * is finished.
 	 */
 	private boolean isChecked;
 
 	/**
-	 * constructor
-	 * sets empty idList, isChecked to false
+	 * Constructor sets empty IDList, isChecked to false.
 	 */
 	public Application() {
 		idlist = new LinkedList<Character>();
 		isChecked = false;
 	}
-	
+
 	/**
-	 * sets isChecked to true
+	 * Sets isChecked to true.
 	 */
 	public void setChecked() {
 		isChecked = true;

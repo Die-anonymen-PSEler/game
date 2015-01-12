@@ -1,31 +1,43 @@
 package com.retroMachines.util.lambda;
 
-public class Variable extends Vertex{
+/**
+ * This class is part of the controller of RetroMachines. It models the variable
+ * of the lambda term (the metal Element).
+ * 
+ * @author RetroFactory
+ * 
+ */
+public class Variable extends Vertex {
 
 	/**
-	 * unique identifier of Variable
+	 * Unique identifier of Variable.
 	 */
-	private char id; 
-	
+	private char id;
+
 	/**
-	 * constructor
-	 * @param id id to set
+	 * Initializes a new instance of Variable.
+	 * 
+	 * @param id
+	 *            id to set
 	 */
-	public Variable (char id) {
+	public Variable(char id) {
 		this.id = id;
 	}
-	
+
 	/**
-	 * getter for id.
+	 * Getter for the ID.
+	 * 
 	 * @return the id of the variable
 	 */
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
-	 * setter for id
-	 * @param id id to set
+	 * Setter for the ID.
+	 * 
+	 * @param id
+	 *            id to set
 	 */
 	public void setId(char id) {
 		this.id = id;
