@@ -23,17 +23,17 @@ import com.retroMachines.data.AssetManager;
 public abstract class AbstractScreen implements Screen {
 	
 	/**
-	 * the Stage containing all the actors that belong within the screen
+	 * The stage containing all the actors that belong within the screen.
 	 */
     protected Stage stage = new Stage();
     
     /**
-     * the gameObject so access to Controllers is granted
+     * The gameObject so access to Controllers is granted.
      */
     protected final RetroMachines game;
     
     /**
-     * Screen class
+     * The screen class.
      * @param game the main game class
      */
     public AbstractScreen(RetroMachines game) {

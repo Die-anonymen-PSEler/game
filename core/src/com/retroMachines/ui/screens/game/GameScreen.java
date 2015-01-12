@@ -27,7 +27,7 @@ public class GameScreen extends AbstractScreen implements
 
 	/**
 	 * the map that is currently active and may be shown to the user in case the
-	 * gamescreen is also active
+	 * gameScreen is shown.
 	 */
 	private TiledMap map;
 
@@ -63,8 +63,8 @@ public class GameScreen extends AbstractScreen implements
 	
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
-	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other Buttonclicks like steering of RetroMan are now possible
+	 * RetroMan are now possible True if LevelMenu, Hint or Task is shown. No
+	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
 
@@ -89,16 +89,16 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * is called when this screen should be displayed. Starts to play the sound
+	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
 	public void show() {
 		soundId = sound.loop();
 	}
 
 	/**
-	 * assigns a new TiledMap to the screen
+	 * Assigns a new TiledMap to the screen.
 	 * 
-	 * @param map
+	 * @param map the tiled map for this screen.
 	 */
 	public void setMap(TiledMap map) {
 		this.map = map;
@@ -119,8 +119,8 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * performs the input detection and delegates calls to the controller so it
-	 * can perform the logic
+	 * Performs the input detection and delegates calls to the controller so it
+	 * can perform the logic.
 	 */
 	private void inputDetection() {
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
@@ -129,7 +129,7 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * abolishes the screen and cleans up behind it.
+	 * Abolishes the screen and cleans up behind it.
 	 */
 	@Override
 	public void dispose() {
@@ -139,13 +139,11 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 
-
 	/**
 	 * sets the sound to the new volume that was newly adjusted in the settings
 	 */
 	@Override
 	public void onSettingsChanged() {
-
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
 		sound.setVolume(soundId, newVolume);
