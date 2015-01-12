@@ -36,10 +36,10 @@ public class ProfileSettingsMenuScreen  extends MenuScreen {
 	
 	/**
 	 * getter Method to get the int value wich represents position of character in String Array in Constants.java
-	 * @return
+	 * @return int place in string array in Constants
 	 */
 	public int getActualCharacter(){
-		return 0;
+		return actualCharacter;
 	}
 	
 	/**
