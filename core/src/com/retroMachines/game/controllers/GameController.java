@@ -12,7 +12,8 @@ import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 
 /**
- * GameController This class represents the controller for the actual game. It
+ * The GameController is part of the controller of RetroMachines.
+ * This class represents the controller for the actual game. It
  * sets up levels and also disposes them afterwards. It saves progress to the
  * persistent storage.
  * 
@@ -22,28 +23,28 @@ import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 public class GameController {
 
 	/**
-	 * a reference to the main class for calls
+	 * A reference to the main class for the different calls.
 	 */
 	private final RetroMachines game;
 
 	/**
-	 * The GameScreen for displaying the actual level to the player
+	 * The GameScreen for displaying the actual level to the user.
 	 */
 	private GameScreen gameScreen;
 
 	/**
-	 * The EvaluationScreen when the player triggers this part of the game
+	 * The EvaluationScreen when the user triggers this part of the game.
 	 */
 	private EvaluationScreen evaluationScreen;
 
 	/**
-	 * the game character that is controlled by the player
+	 * The game character that is controlled by the user.
 	 */
 	private RetroMan retroMan;
 
 	/**
-	 * the map that is currently active and may be shown to the user in case the
-	 * gameScreen is also active
+	 * The map that is currently active and may be shown to the user if the
+	 * gameScreen is active.
 	 */
 	private TiledMap map;
 
@@ -55,9 +56,9 @@ public class GameController {
 	private boolean popupScreenIsShown;
 
 	/**
-	 * makes an instance of GameController
+	 * Makes a new instance of the GameController.
 	 * 
-	 * @param game
+	 * @param game The game that is to be controlled.
 	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
@@ -65,10 +66,10 @@ public class GameController {
 	}
 
 	/**
-	 * sets initializes a given level and fires it up
+	 * Sets and initializes a given level and starts it.
 	 * 
 	 * @param levelId
-	 *            the level to be started
+	 *            ID of the level that is to be started.
 	 */
 	public void startLevel(int levelId) {
 		boolean lefti = game.getSettingController().getLeftiMode();
@@ -78,8 +79,8 @@ public class GameController {
 	}
 
 	/**
-	 * This method removes the GameScreen and puts up the EvaluationScreen It
-	 * will also trigger the evaluation.
+	 * Removes the GameScreen and puts up the EvaluationScreen. It
+	 * also triggers the evaluation.
 	 */
 	private void enterEvaluation() {
 		evaluationScreen = new EvaluationScreen(game, this);
@@ -87,8 +88,8 @@ public class GameController {
 	}
 
 	/**
-	 * this method will be called once a level has been complete including the
-	 * evaluation. Afterwards the LevelMenuScreen will be shown to the user
+	 * Finishes the level once it has been completed including the
+	 * evaluation. Afterwards the LevelMenuScreen will be shown to the user.
 	 */
 	public void levelFinished() {
 		saveProgress();
@@ -98,7 +99,7 @@ public class GameController {
 	}
 
 	/**
-	 * disposes all objects that are in use by this controller.
+	 * Disposes all objects that are in use by this controller.
 	 */
 	private void dispose() {
 		// TODO Auto-generated method stub
@@ -107,46 +108,22 @@ public class GameController {
 	}
 
 	/**
-	 * saves the progress to the persistent storage
+	 * Saves the progress of the game to the persistent storage.
 	 */
 	private void saveProgress() {
 
 	}
 
 	/**
-	 * Checks if all stackers have an element in it
+	 * Checks if all the depots contain an element.
 	 * 
-	 * @return true if alle stackers have an element in it
+	 * @return True if all the depots contain an element.
 	 */
 	private boolean checkPlacementofElements() {
-		ArrayList<GameElement> stackerElements = checkStackerPositions();
+		ArrayList<GameElement> depotElements = checkdepotPositions();
 		return false;
 	}
 
-	// -------------------------------
-	// --------Show something---------
-	// -------------------------------
-
-	/**
-	 * Shows the Level Menu Screen on gameScreen
-	 */
-	public void showLevelMenuScreen() {
-
-	}
-
-	/**
-	 * Shows the Task Screen on gameScreen
-	 */
-	public void showTask() {
-
-	}
-
-	/**
-	 * Shows the Hint Screen on gameScreen
-	 */
-	public void showHint() {
-
-	}
 
 	// --------------------------
 	// --------Retro-Man---------
@@ -205,15 +182,15 @@ public class GameController {
 	}
 
 	/**
-	 * Returns a List of GameElements wich are in the Stackers. If one stacker
+	 * Returns a List of GameElements wich are in the depots. If one depot
 	 * doesn't have an Element in it, it returns null
 	 * 
-	 * @return null if not all stackers are filled; else a list of GameElements
-	 *         which are placed in the stackers
+	 * @return null if not all depots are filled; else a list of GameElements
+	 *         which are placed in the depots
 	 */
-	public ArrayList<GameElement> checkStackerPositions() {
-		ArrayList<GameElement> stackerElements = new ArrayList<GameElement>();
-		return stackerElements;
+	public ArrayList<GameElement> checkdepotPositions() {
+		ArrayList<GameElement> depotElements = new ArrayList<GameElement>();
+		return depotElements;
 	}
 
 	/**
