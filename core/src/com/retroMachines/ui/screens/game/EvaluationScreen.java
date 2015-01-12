@@ -89,7 +89,7 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * performs the next reduction on the lambda term and triggers the
+	 * Performs the next reduction on the lambda term and triggers the
 	 * animation.
 	 */
 	private void nextStep() {
