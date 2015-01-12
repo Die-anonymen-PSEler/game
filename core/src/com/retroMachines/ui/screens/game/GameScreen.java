@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.SettingsChangeListener;
@@ -63,10 +64,15 @@ public class GameScreen extends AbstractScreen implements
 	
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
-	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other Buttonclicks like steering of RetroMan are now possible
+	 * RetroMan are now possible True if LevelMenu, Hint or Task is shown. No
+	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
+	
+	/**
+	 * stage shows the pop up's
+	 */
+	private Stage stage;
 
 
 	/**
@@ -98,7 +104,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * Assigns a new TiledMap to the screen.
 	 * 
-	 * @param map
+	 * @param map the tiled map for this screen.
 	 */
 	public void setMap(TiledMap map) {
 		this.map = map;
@@ -152,7 +158,6 @@ public class GameScreen extends AbstractScreen implements
 	 */
 	@Override
 	public void onSettingsChanged() {
-
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
 		sound.setVolume(soundId, newVolume);

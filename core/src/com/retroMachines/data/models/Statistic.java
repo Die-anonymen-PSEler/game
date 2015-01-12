@@ -76,6 +76,13 @@ public class Statistic extends Model {
 		this.rowId = rowId;
 		fetchFromSQL();
 	}
+	
+	
+	
+	
+	/*
+	 * implemented methods
+	 */
 
 	@Override
 	public void writeToSQL() {
@@ -88,14 +95,21 @@ public class Statistic extends Model {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
+	}
 
+	
+	
 	/*
 	 * Getter and Setter
 	 */
 
 	/**
-	 * getter which returns the number of different completed Levels
-	 * 
+	 * Get method for the completed levels.
 	 * @return number of completed Levels
 	 */
 	public int getLevelsComplete() {
@@ -103,57 +117,42 @@ public class Statistic extends Model {
 	}
 
 	/**
-	 * setter which stores the Number of Completed Levels
-	 * 
-	 * @param levelsComplete
-	 *            number of completed Levels
+	 * Set method to assign a new amount of levels that were completed by the user.
+	 * @param levelsComplete the number of completed levels.
 	 */
 	public void setLevelsComplete(int levelsComplete) {
 		this.levelsComplete = levelsComplete;
 	}
 
 	/**
-	 * Getter for the Time the Player played the Game in sum
-	 * 
-	 * @return time the Player gamed
+	 * Get method that returns the time the user placed as an integer.
+	 * @return the time the player has played already.
 	 */
 	public int getPlaytime() {
 		return playtime;
 	}
 
 	/**
-	 * Sets new Playtime
-	 * 
-	 * @param playtime
-	 *            new Playtime
+	 * Assigns a new play time to this class.
+	 * @param playtime the name play time as an integer.
 	 */
 	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
 	}
 
 	/**
-	 * Returns the number of steps the player made with his GameCharacter in Sum
-	 * 
-	 * @return number of Steps of the Gamecharacter
+	 * Returns the number of steps the player made with the character.
+	 * @return number of steps made by the character.
 	 */
 	public int getStepCounter() {
 		return stepCounter;
 	}
 
 	/**
-	 * Sets number of Steps which the Gamecharacter made
-	 * 
-	 * @param stepCounter
-	 *            new Number of Steps
+	 * Sets number of steps which the character made.
+	 * @param stepCounter new number of steps made by the character.
 	 */
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
 	}
-
-	@Override
-	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
