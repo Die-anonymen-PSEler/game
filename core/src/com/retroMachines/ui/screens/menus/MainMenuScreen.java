@@ -14,8 +14,9 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.SettingsChangeListener;
 
 /**
- * The main menu of the game providing ways to all other screens of the game.
- * It is the anchor of the game and is displayed right after the app has
+ * The MainMenuScreen is part of the view of RetroMachines.
+ * The main menu of the game providing ways to all the other screens of the game.
+ * It is the anchor of the game and is displayed right after the application has
  * finished loading.
  * @author RetroFactory
  *
@@ -34,19 +35,32 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	
 	private Sound sound;
 	
+	/**
+	 * The path to the file for the sound.
+	 */
 	private static final String SOUNDFILE = "";
 	
 	private long soundId;
 	
+	/**
+	 * The constructor to create a new instance of the MainMenuScreen.
+	 * @param game The game that uses this screen.
+	 */
 	public MainMenuScreen(RetroMachines game) {
 		super(game);
 		initialize();
 	}
 
+	/**
+	 * Displays the MainMenuScreen.
+	 */
 	public void show() {
 		soundId = sound.loop();
 	}
 	
+	/**
+	 * Initializes the MainMenuScreen.
+	 */
 	@Override
 	protected void initialize() {
 		font = new BitmapFont();
@@ -68,7 +82,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	}
 	
 	/**
-	 * sets the sound to the new volume that was newly adjusted in the settings
+	 * Sets the sound to the new volume that was newly adjusted in the settings.
 	 */
 	@Override
 	public void onSettingsChanged() {

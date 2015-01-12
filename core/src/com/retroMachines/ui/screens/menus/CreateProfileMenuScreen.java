@@ -8,23 +8,24 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.ProfileController;
 
 /**
- * This Screen is responsible for creating a new Profile and 
- * interacting with the user about it.
+ * The CreateProfileMenuScreen is part of the view of RetroMachines.
+ * It is responsible for showing the creating of a new profile and the
+ * interaction with the user.
  * @author RetroFactory
  *
  */
 public class CreateProfileMenuScreen  extends MenuScreen{
 	
 	/**
-	 * the profile contoller for this screen
+	 * The ProfileController which is needed for this screen.
 	 */
 	private final ProfileController profileController;
 	
 	private TextField nameTextField;
 	
 	/**
-	 * Creates a new CreateProfileMenuScreen
-	 * @param game
+	 * Creates a new CreateProfileMenuScreen.
+	 * @param game The game which uses this screen.
 	 */
 	public CreateProfileMenuScreen(RetroMachines game) {
 		super(game);
@@ -32,6 +33,9 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		initialize();
 	}
 
+	/**
+	 * Initializes the CreateProfileMenuScreen.
+	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
@@ -39,7 +43,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	}
 	
 	/**
-	 * attempts to create a new profile
+	 * Attempts to create a new profile.
 	 */
 	private void createProfile() {
 		String name = nameTextField.getMessageText();
@@ -52,8 +56,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the user accepts the it's choice and wants to create the profile
-	 * @author Retro Factory
+	 * Listener when the user made his choices and wants to create the profile.
+	 * @author RetroFactory
 	 */
 	private class CreateProfileButtonClickListener extends ClickListener {
 		@Override
@@ -64,8 +68,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the user aborts the profile creation
-	 * @author Retro Factory
+	 * Listener when the user aborts the profile creation.
+	 * @author RetroFactory
 	 */
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
@@ -76,8 +80,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the button for left control has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for left control has been chosen.
+	 * @author RetroFactory
 	 */
 	private class LeftControlButtonClickListener extends ClickListener {
 		@Override
@@ -88,8 +92,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	}
 	
 	/**
-	 * Listener when the button for right control has been clicked
-	 * @author Retro Factory
+	 * Listener when the button for right control has been chosen.
+	 * @author RetroFactory
 	 */
 	private class RightControlButtonClickListener extends ClickListener {
 		@Override

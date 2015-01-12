@@ -7,7 +7,8 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * Abstract MenuScreen class that represents that basic
+ * The MenuScreen is part of the view of RetroMachines.
+ * Abstract MenuScreen class that represents the basic
  * style of a menu separated within two parts. On main part
  * (the left side) and a small part for buttons and so on.
  * @author RetroFactory
@@ -16,18 +17,18 @@ import com.retroMachines.ui.screens.AbstractScreen;
 public abstract class MenuScreen extends AbstractScreen {
 	
 	/**
-	 * the main table on the left side of a menu screen
+	 * The main table on the left side of a menu screen.
 	 */
 	protected Table tableLeft;
 	
 	/**
-	 * the table on the right side of the screen containing further information
+	 * The table on the right side of the screen containing further information.
 	 */
 	protected Table tableRight = new Table();
 	
 	/**
-	 * Creates a new MenuScreen that can be displayed to the user afterwards
-	 * @param game
+	 * Creates a new MenuScreen that can be displayed to the user afterwards.
+	 * @param game The game that uses this Screen.
 	 */
 	public MenuScreen(RetroMachines game) {
 		super(game);
@@ -46,8 +47,8 @@ public abstract class MenuScreen extends AbstractScreen {
 	
 	/**
 	 * Call this method to set up the menu screen. 
-	 * Only fill the Table with Buttons or whatever ui elements you have. The table will be added to 
-	 * the stage by the MenuScreen class
+	 * Only fills the Table with Buttons or other UI elements that are needed. The table will be added to 
+	 * the stage by the MenuScreen class.
 	 */
 	protected abstract void initialize();
 	
