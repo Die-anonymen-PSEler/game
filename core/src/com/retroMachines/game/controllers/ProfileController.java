@@ -6,25 +6,31 @@ import java.util.List;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Profile;
 
+/**
+ * The ProfileController is part of the controller of the RetroMachines.
+ * It controls the different profiles of the users.
+ * @author RetroFactory
+ *
+ */
 public class ProfileController {
 
 	/**
-	 * String array which stores the ProfileNames of exsiting Profiles
+	 * String array which stores the ProfileNames of existing Profiles.
 	 */
 	private String[] profileNames;
 
 	/**
-	 * the currently active profile
+	 * The currently active profile.
 	 */
 	private Profile profile;
 
 	/**
-	 * calls to the app can be made via this object
+	 * Calls to the application can be made via this object.
 	 */
 	private final RetroMachines game;
 
 	/**
-	 * the amount of profiles allowed in the game
+	 * The amount of profiles allowed in the game.
 	 */
 	public static final int MAX_PROFILE_NUMBER = 5;
 	
@@ -34,9 +40,9 @@ public class ProfileController {
 	public final List<OnProfileChangedListener> profileChangeListeners;
 
 	/**
-	 * creates a new instance of the profile controller and loads the data from
-	 * the background as well as loading the last profile
-	 * @param game the game for calls towards the game 
+	 * Creates a new instance of the profile controller and loads the data from
+	 * the background as well as loading the last profile.
+	 * @param game The game which is called to. 
 	 */
 	public ProfileController(RetroMachines game) {
 		this.game = game;
@@ -45,21 +51,21 @@ public class ProfileController {
 	}
 
 	/**
-	 * removes the currently active profile
+	 * Removes the currently active profile.
 	 */
 	public void deleteCurrentProfile() {
 	}
 
 	/**
-	 * checks if a given username is valid, meaning it is not occupied by
-	 * another profile already
+	 * Checks if a given user name is valid, meaning it is not occupied by
+	 * another profile already.
 	 */
 	public boolean isValidUsername(String username) {
 		return false;
 	}
 
 	/**
-	 * Method for creating a new Profile
+	 * Method for creating a new Profile.
 	 */
 	public boolean createProfile(String name) {
 		return false;
@@ -70,15 +76,15 @@ public class ProfileController {
 	 */
 
 	/**
-	 * Getter for the Array of ProfileNames
-	 * @return a string array containing all profile names that are known.
+	 * Getter for the Array of ProfileNames.
+	 * @return A string array containing all profile names that are known.
 	 */
 	public String[] getProfileNames() {
 		return profileNames;
 	}
 
 	/**
-	 * Get the name of the currently active user
+	 * Get the name of the currently active user.
 	 * 
 	 * @return The name of the currently active user; Empty String if no user is
 	 *         active.
@@ -91,17 +97,18 @@ public class ProfileController {
 	}
 
 	/**
-	 * @return the profile
+	 * Getter for the active profile.
+	 * @return The profile.
 	 */
 	public Profile getProfile() {
 		return profile;
 	}
 
 	/**
-	 * changes to the current profile to another profile
+	 * Changes the current profile to another profile.
 	 * 
 	 * @param profileName
-	 *            the name of the profile
+	 *            The name of the profile that is the next active profile.
 	 */
 	public void changeActiveProfile(String profileName) {
 		notifyProfileListeners();
@@ -114,10 +121,18 @@ public class ProfileController {
 		}
 	}
 	
+	/**
+	 * Adds a class to the list of profileChangeListeners that are notified when the active profile changes.
+	 * @param listener Class to be added.
+	 */
 	public void addProfileChangedListener(OnProfileChangedListener listener) {
 		profileChangeListeners.add(listener);
 	}
 	
+	/**
+	 * Removes a class from the list of profileChangedListeners.
+	 * @param listener Class to be removed.
+	 */
 	public void removeProfileChangedListener(OnProfileChangedListener listener) {
 		profileChangeListeners.remove(listener);
 	}
