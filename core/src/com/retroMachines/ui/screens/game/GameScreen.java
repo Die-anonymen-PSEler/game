@@ -14,10 +14,10 @@ import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * The screen class responsible for displaying the actual game to the user It's
- * controller is the gameController which handles all logic. If something needs
- * to be rendered for the game it should be placed within this classes render
- * method.
+ * This class is part of the view of RetroMachines. It displays the actual game
+ * to the user. It's controller is the gameController which handles all the
+ * logic. If something needs to be rendered for the game it should be placed
+ * within the render method of this class.
  * 
  * @author RetroFactory
  * 
@@ -60,6 +60,14 @@ public class GameScreen extends AbstractScreen implements
 	 * the soundID of the sound which is played while this screen is displayed
 	 */
 	private long soundId;
+	
+	/**
+	 * True if LevelMenu is shown. No other Button clicks like steering of
+	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
+	 * other Buttonclicks like steering of RetroMan are now possible
+	 */
+	private boolean popupScreenIsShown;
+
 
 	/**
 	 * 
