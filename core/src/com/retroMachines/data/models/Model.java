@@ -32,6 +32,9 @@ public abstract class Model {
 	 * saves the model to the persistence background database
 	 */
 	public abstract void writeToSQL();
-
+	
+	/**
+	 * attempts to fetch records from the background storage and saves them within the model
+	 */
 	public abstract void fetchFromSQL();
 }
