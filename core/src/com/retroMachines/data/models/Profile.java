@@ -9,7 +9,7 @@ package com.retroMachines.data.models;
 public class Profile extends Model {
 
 	/**
-	 * the name of the table where the profiles are stored
+	 * The name of the table where the profiles are stored.
 	 */
 	public static final String TABLE_NAME = "profiles";
 
@@ -57,7 +57,7 @@ public class Profile extends Model {
 	private Statistic statistic;
 
 	/**
-	 * constructor for a new profile
+	 * Creates a new profile and 
 	 * 
 	 * @param name
 	 *            Name of the profile
@@ -72,14 +72,14 @@ public class Profile extends Model {
 			Statistic statistic) {
 		super();
 		this.setProfileName(name);
-		this.setProfileId(profileId);
+		this.profileId = profileId;
 		this.setSetting(setting);
 		this.statistic = statistic;
 	}
 	
 	/**
 	 * Creates a new profile and attempts to fetch the further data form the 
-	 * persistent background storage
+	 * persistent background storage.
 	 * @param name the name of the profile that has the record
 	 */
 	public Profile(String name) {
@@ -90,7 +90,7 @@ public class Profile extends Model {
 	
 	/**
 	 * Creates a new profile and attempts to fetch the further data form the 
-	 * persistent background storage
+	 * persistent background storage.
 	 * @param rowId the id of the row where the record is stored
 	 */
 	public Profile(int rowId) {
@@ -117,12 +117,15 @@ public class Profile extends Model {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
+	
 	/*
 	 * Getter and Setter
 	 */
 
 	/**
+	 * Get method to retrieve the name of the profile.
 	 * @return the name of the profile
 	 */
 	public String getProfileName() {
@@ -130,45 +133,39 @@ public class Profile extends Model {
 	}
 
 	/**
-	 * @param profileName
-	 *            new name of the profile
+	 * Assigns a new profile name to the profile.
+	 * @param profileName the new name for the profile.
 	 */
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
 	}
 
 	/**
-	 * @return the Id of the profile
+	 * Get method to retrieve the profile's id.
+	 * @return the id of the profile
 	 */
 	public int getProfileId() {
 		return profileId;
 	}
 
 	/**
-	 * @param profileId
-	 *            new Id of the profile
-	 */
-	public void setProfileId(int profileId) {
-		this.profileId = profileId;
-	}
-
-	/**
-	 * @return the setting
+	 * Get method to retrieve the profile's settings.
+	 * @return the settings of the profile
 	 */
 	public Setting getSetting() {
 		return setting;
 	}
 
 	/**
-	 * @param setting
-	 *            the setting to set
+	 * Assigns a new settings object to the profile.
+	 * @param setting the setting to assign
 	 */
 	public void setSetting(Setting setting) {
 		this.setting = setting;
 	}
 	
 	/**
-	 * get method for the statistic attribute
+	 * Get method for the statistics of the profile
 	 * @return the statistic attribute associated with this profile
 	 */
 	public Statistic getStatistic() {

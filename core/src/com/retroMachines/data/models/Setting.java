@@ -73,7 +73,7 @@ public class Setting extends Model {
 	
 	/**
 	 * Constructor which creates a new instance of setting and attempts to
-	 * find forther attributes with the row id
+	 * find further attributes with the row id
 	 * @param rowId the id of the row where the record regarding this setting is stored.
 	 */
 	public Setting(int rowId) {
@@ -81,7 +81,12 @@ public class Setting extends Model {
 		this.rowId = rowId;
 		fetchFromSQL();	
 	}
-
+	
+	
+	/*
+	 * inherited methods
+	 */
+	
 	@Override
 	public void writeToSQL() {
 		// TODO Auto-generated method stub
@@ -92,6 +97,13 @@ public class Setting extends Model {
 	public boolean hasRecordInSQL() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*
@@ -106,8 +118,8 @@ public class Setting extends Model {
 	}
 
 	/**
-	 * @param volume
-	 *            the volume to set
+	 * Assigns a new volume to this object.
+	 * @param volume the new volume that is assigned. it's range may go from 0 to 1.0
 	 */
 	public void setVolume(float volume) {
 		if (volume > 1.0f || volume < 0.0f) {
@@ -117,41 +129,34 @@ public class Setting extends Model {
 	}
 
 	/**
-	 * @return true, if the sound is enabled; false otherwise
+	 * Get method to check whether sound is enabled or not.
+	 * @return true if sound is enabled; false otherwise.
 	 */
 	public boolean isSoundOnOff() {
 		return soundOnOff;
 	}
 
 	/**
-	 * @param soundOnOff
-	 *            the soundOnOff to set. True if the sound should be enabled,
-	 *            false otherwise
+	 * Enables or disables the sound in this setting.
+	 * @param soundOnOff true to enable sound; false to disable sound.
 	 */
 	public void setSoundOnOff(boolean soundOnOff) {
 		this.soundOnOff = soundOnOff;
 	}
 
 	/**
-	 * @return the leftControl. True if leftControl is enabled, false otherwise
+	 * Get method to check whether left or right control is enabled in this settings objects.
+	 * @return true if the left control; false equals right control.
 	 */
 	public boolean isLeftControl() {
 		return leftControl;
 	}
 
 	/**
-	 * @param leftControl
-	 *            the leftControl to set. True if the leftContol should be
-	 *            enabled, false otherwise
+	 * Set left control to this setting.
+	 * @param leftControl true if left control shall be enabled; false otherwise
 	 */
 	public void setLeftControl(boolean leftControl) {
 		this.leftControl = leftControl;
 	}
-
-	@Override
-	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

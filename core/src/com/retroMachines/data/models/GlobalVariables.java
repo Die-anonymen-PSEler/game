@@ -44,12 +44,13 @@ public class GlobalVariables extends Model {
 	private HashMap<String, String> map;
 
 	/**
-	 * Private Instance of it selfe
+	 * Private Instance of itself to implement the singleton pattern.
 	 */
 	private static GlobalVariables instance;
 
 	/**
-	 * Private Constructor which sets new empty map
+	 * Private constructor so this class can not be instantiated from the outside.
+	 * Please use getSingleton to retrieve a copy of this class.
 	 */
 	private GlobalVariables() {
 		super();
@@ -57,26 +58,23 @@ public class GlobalVariables extends Model {
 	}
 
 	/**
-	 * instantiate a global variable
+	 * Creates a new instance of GlobalVariables and saves it to the attribute.
 	 */
 	private static void instantiate() {
 		instance = new GlobalVariables();
 	}
 
 	/**
-	 * Fetches the variable of the background storage
-	 * 
-	 * @param key
-	 *            the key of the variable
-	 * @return the variable
+	 * Fetches the value from the persistent background storage.
+	 * @param key the key of the value.
+	 * @return the value that is associated with the key.
 	 */
 	private String fetchFromBackgroundStorage(String key) {
 		return null;
 	}
 
 	/**
-	 * this function controls if the variable has an record in SQL
-	 * 
+	 * This function checks if the persistent background storage has a record.
 	 * @return true if a record exists
 	 */
 	@Override
@@ -86,22 +84,30 @@ public class GlobalVariables extends Model {
 	}
 
 	/**
-	 * writes the variable to the SQL
+	 * Stores all keyValue pairs in the database for persistent storage.
 	 */
 	@Override
 	public void writeToSQL() {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void fetchFromSQL() {
+		// TODO Auto-generated method stub
+		
+	}
 
+	
+	
 	/*
 	 * Getter and Setter of this class
 	 */
 
 	/**
-	 * getter for this class
-	 * 
-	 * @return this class
+	 * Returns the only instance of this class. If none has been 
+	 * created yet one will be created first.
+	 * @return the singleton.
 	 */
 	public static GlobalVariables getSingleton() {
 		if (instance == null) {
@@ -111,23 +117,19 @@ public class GlobalVariables extends Model {
 	}
 
 	/**
-	 * places the variable
-	 * 
-	 * @param key
-	 *            the key of the variable
-	 * @param value
-	 *            the value of the variable
+	 * Stores a keyValue pair within this class.
+	 * If the key already exists it will override the previous value. 
+	 * @param key the key under which the value should be stored.
+	 * @param value the value that wil be stored.
 	 */
 	public void put(String key, String value) {
 
 	}
 
 	/**
-	 * gets the variable
-	 * 
-	 * @param key
-	 *            the key of the variable
-	 * @return the variable
+	 * Returns the value according to the key. 
+	 * @param key of the key value pair for lookup
+	 * @return the value that was found. null if the key does not exist.
 	 */
 	public String get(String key) {
 		if (map.containsKey(key)) {
@@ -139,11 +141,4 @@ public class GlobalVariables extends Model {
 			return result;
 		}
 	}
-
-	@Override
-	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
