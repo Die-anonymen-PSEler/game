@@ -26,12 +26,12 @@ public class RetroDatabase {
 	/**
 	 * the version of the database
 	 */
-	private static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 1;
 	
 	/**
 	 * The query that should be executed when the database needs to be created
 	 */
-	private static final String DATABASE_CREATE = "";
+	public static final String DATABASE_CREATE = "";
 	
 	/**
 	 * private constructor to avoid double creation of the database connection

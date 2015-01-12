@@ -2,6 +2,12 @@ package com.retroMachines.data.models;
 
 import java.util.HashMap;
 
+/**
+ * This class is part of the model of RetroMachines.
+ * It has knowledge about all attributes regarding the game itself.
+ * These attributes are for instance the last used profile.
+ * @author RetroFactory
+ */
 public class GlobalVariables extends Model {
 
 	/**

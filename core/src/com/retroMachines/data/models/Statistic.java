@@ -1,12 +1,10 @@
 package com.retroMachines.data.models;
 
 /**
- * Statistics Class This class holds all information regarding the statistics of
- * a single profile Every information stored within this class will be backed up
- * to the SQLite database
- * 
+ * This class is part of the model of RetroMachines.
+ * It has knowledge about all attributes regarding the statistics of a user.
+ * It saves information on every change that is made to this class.
  * @author RetroFactory
- * 
  */
 public class Statistic extends Model {
 

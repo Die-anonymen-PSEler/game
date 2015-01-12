@@ -1,11 +1,10 @@
 package com.retroMachines.data.models;
 
 /**
- * Profile Class This class contains all information regarding the profile of a
- * user It represents the model of each profile
- * 
+ * This class is part of the model of RetroMachines.
+ * It has knowledge about all attributes regarding the profile of a user.
+ * It saves information on every change that is made to this class.
  * @author RetroFactory
- * 
  */
 public class Profile extends Model {
 

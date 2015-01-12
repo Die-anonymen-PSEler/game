@@ -27,7 +27,7 @@ public abstract class AbstractScreen implements Screen {
     protected Stage stage = new Stage();
     
     /**
-     * the gameObject so acces to Controllers is granted
+     * the gameObject so access to Controllers is granted
      */
     protected final RetroMachines game;
     

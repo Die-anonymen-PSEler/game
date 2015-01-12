@@ -1,11 +1,10 @@
 package com.retroMachines.data.models;
 
 /**
- * Stores the Setting informations of the Game.
- * Every information stored within this class will be backed up to the SQLite database.
- * 
+ * This class is part of the model of RetroMachines.
+ * It has knowledge about all attributes regarding the settings of a profile.
+ * These attributes are saved every time a change to this settings file is made.
  * @author RetroFactory
- * 
  */
 public class Setting extends Model {
 
