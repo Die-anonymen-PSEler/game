@@ -12,7 +12,7 @@ import java.util.LinkedList;
 public class Abstraction extends Vertex {
 
 	/**
-	 * Unique identifier
+	 * Unique identifier.
 	 */
 	private char id;
 	/**
@@ -24,7 +24,7 @@ public class Abstraction extends Vertex {
 	 * Creates a new instance of this class.
 	 * 
 	 * @param id
-	 *            id to set
+	 *            ID to set.
 	 */
 	public Abstraction(char id) {
 		this.id = id;
@@ -34,7 +34,7 @@ public class Abstraction extends Vertex {
 	/**
 	 * Fulfills one step of beta-reduction.
 	 * 
-	 * @return true if this abstraction has changed, false otherwise
+	 * @return True if this abstraction has changed, false otherwise.
 	 */
 	public boolean betaReduction() {
 		// TODO: beta reduction
@@ -54,7 +54,7 @@ public class Abstraction extends Vertex {
 	/**
 	 * Getter for the ID.
 	 * 
-	 * @return id
+	 * @return ID
 	 */
 	public char getID() {
 		return id;

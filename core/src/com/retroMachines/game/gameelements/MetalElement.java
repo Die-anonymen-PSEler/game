@@ -10,7 +10,7 @@ import com.retroMachines.util.Constants;
 public class MetalElement extends GameElement {
 
 	/**
-	 * The id of the color this metal element should have the hex representation
+	 * The ID of the color this metal element should have the hex representation
 	 * can be looked up within the constants class
 	 */
 	private int colorId;
