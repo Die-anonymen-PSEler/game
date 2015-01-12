@@ -10,8 +10,8 @@ import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
 /**
- * The main class of the game "RetroMachines". It initializes profile and
- * setting controller and sets the loading screen.
+ * The main class of the game "RetroMachines". It initializes all the controllers and 
+ * starts the game.
  * 
  * @author RetroFactory
  * 
@@ -19,33 +19,33 @@ import com.retroMachines.ui.screens.menus.MainMenuScreen;
 public class RetroMachines extends Game {
 
 	/**
-	 * globalVariables that are stored within persistent Background storage
+	 * The Global Variables that are stored within persistent background storage.
 	 */
 	private GlobalVariables globalVariables;
 
 	/**
-	 * Profile controller controlls Profile Information
+	 * The Profile Controller controls the profile information.
 	 */
 	private ProfileController profileController;
 
 	/**
-	 * Setting Controller controls general and userspecific Settings
+	 * The Setting Controller controls the general and user specific settings.
 	 */
 	private SettingController settingController;
 
 	/**
-	 * GameController controls starting and playing the levels and starts the
-	 * evaluation
+	 * The Game Controller controls the starting and playing of the levels and starts the
+	 * evaluation.
 	 */
 	private GameController gameController;
 
 	/**
-	 * Controls Gamestatistics like PlayTime and so on
+	 * The Statistic Controller controls the game statistics like PlayTime etc.
 	 */
 	private StatisticController statisticController;
 
 	/**
-	 * initializes the game (all the controllers) after started by the Android
+	 * Initializes the game (all the controllers) after started by the Android
 	 * Launcher. Afterwards it displays the loading screen to the user.
 	 */
 	@Override
@@ -67,36 +67,36 @@ public class RetroMachines extends Game {
 	 */
 
 	/**
-	 * Getter for the profile controller
+	 * Getter for the Profile Controller.
 	 * 
-	 * @return the profile controller
+	 * @return The ProfileController.
 	 */
 	public ProfileController getProfileController() {
 		return profileController;
 	}
 
 	/**
-	 * Getter for the setting controller
+	 * Getter for the Setting Controller.
 	 * 
-	 * @return the setting controller
+	 * @return The SettingController.
 	 */
 	public SettingController getSettingController() {
 		return settingController;
 	}
 
 	/**
-	 * Getter for the gameController controller
+	 * Getter for the Game Controller.
 	 * 
-	 * @return the setting controller
+	 * @return The GameController.
 	 */
 	public GameController getGameController() {
 		return gameController;
 	}
 
 	/**
-	 * Getter for the statistic controller
+	 * Getter for the Statistic Controller.
 	 * 
-	 * @return the setting controller
+	 * @return The StatisticController.
 	 */
 	public StatisticController getStatisticController() {
 		return statisticController;
