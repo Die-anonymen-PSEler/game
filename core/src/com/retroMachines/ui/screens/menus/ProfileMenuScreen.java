@@ -63,6 +63,7 @@ public class ProfileMenuScreen extends MenuScreen{
 	
 	/**
 	 * Listener when the button for selecting a profile has been clicked.
+	 * Afterwards the main menu is shown.
 	 * @author RetroFactory
 	 */
 	private class SelectProfileButtonClickListener extends ClickListener {

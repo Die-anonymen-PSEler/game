@@ -46,7 +46,8 @@ public class RetroMachines extends Game {
 
 	/**
 	 * Initializes the game (all the controllers) after started by the Android
-	 * Launcher. Afterwards it displays the loading screen to the user.
+	 * Launcher. Afterwards it displays the loading screen to the user. When the
+	 * game is loaded the main menu appears.
 	 */
 	@Override
 	public void create() {
