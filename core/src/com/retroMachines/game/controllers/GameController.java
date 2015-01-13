@@ -11,6 +11,7 @@ import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.lambda.Tree;
+import com.retroMachines.util.lambda.Vertex;
 
 /**
  * The GameController is part of the controller of RetroMachines.
@@ -50,9 +51,20 @@ public class GameController {
 	private TiledMap map;
 	
 	/**
-	 * The lambdaTree represents the Lambdaterm in our Game
+	 * The lambdaTree represents the Lambda-term in our Game
 	 */
 	private Tree lambdaTree;
+	
+	/**
+	 * List of all gameElements in this level
+	 */
+	private ArrayList<Vertex> vertexList;
+	
+	/**
+	 * Contain index of gamenElement in {@value vertexList} which is currently hold by RetroMan.
+	 * -1, if nothing is hold.
+	 */
+	private int indexOfElementHold;
 
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of

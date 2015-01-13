@@ -2,6 +2,8 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * This class is part of the model of RetroMachines. It models the vertices
  * of the graph of the lambda term and represents the 3 gameelements.
@@ -35,6 +37,16 @@ public class Vertex {
 	 * List of all ID's of vertices corresponding to this abstraction.
 	 */
 	private LinkedList<Character> familyIdlist;
+	
+	/**
+	 * Position of vertex
+	 */
+	private Vector2 pos;
+	
+	/**
+	 * True if this vertex is placed in a depot, false otherwise
+	 */
+	private boolean isInDepot;
 	
 	// --------------------------
 	// --------Constructor-------
