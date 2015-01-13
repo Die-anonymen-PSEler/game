@@ -50,14 +50,13 @@ public class GameController {
 	private TiledMap map;
 	
 	/**
-	 * The lambdaTree represents the Lambdaterm in our Game
+	 * The lambdaTree represents the Lambda-term in our game.
 	 */
 	private Tree lambdaTree;
 
 	/**
-	 * True if LevelMenu is shown. No other Button clicks like steering of
-	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other Buttonclicks like steering of RetroMan are now possible
+	 * True if LevelMenu, Hint or Task is shown. No
+	 * other button clicks like steering of RetroMan are now possible.
 	 */
 	private boolean popupScreenIsShown;
 
@@ -210,7 +209,7 @@ public class GameController {
 	// --------------------------
 	
 	/**
-	 * Starts the hole evaluation process
+	 * Starts the evaluation process.
 	 */
 	public void evaluationClicked() {
 		if(checkPlacementofElements()){
@@ -241,21 +240,21 @@ public class GameController {
 	}
 	
 	/**
-	 * Builds the lambdaTree for evaluation with data of the map
+	 * Builds the lambdaTree for the evaluation with data of the map.
 	 */
 	private void buildlambdaTree() {
 		
 	}
 	
 	/**
-	 * Evaluates the lambdaTree as long as possible
+	 * Evaluates the lambdaTree as long as possible.
 	 */
 	private void evaluate() {
 		
 	}
 	
 	/**
-	 * is called after evaluation and checks if the result the right one to finish the level
+	 * Is called after the evaluation and checks if the result is the correct one to finish the level.
 	 */
 	private void checkEvaluationResult() {
 		
@@ -264,7 +263,7 @@ public class GameController {
 	/**
 	 * Fulfills one step of beta-reduction.
 	 * 
-	 * @return true if this abstraction has changed, false otherwise
+	 * @return True if this abstraction has changed, false otherwise.
 	 */
 	private boolean betaReduction() {
 		// TODO: beta reduction
@@ -272,9 +271,9 @@ public class GameController {
 	}
 
 	/**
-	 * Fulfills alpha conversion. Makes sure that all vertices have unique id's.
+	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
 	 * 
-	 * @return true if at least one id changed, false if no id changed.
+	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	private boolean alphaConversion() {
 		// TODO: implement alpha conversion
@@ -282,7 +281,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Updates the evaluation screen to animate the evaluation
+	 * Updates the evaluation screen to animate the evaluation.
 	 */
 	private void updateEvaluationScreen(){
 		

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 /**
  * This class is part of the model of RetroMachines. It models the vertices
- * of the graph of the lambda term and represents the 3 gameelements.
+ * of the graph of the lambda term and represents the 3 different game elements.
  * 
  * @author RetroFactory
  * 
@@ -12,17 +12,17 @@ import java.util.LinkedList;
 public class Vertex {
 
 	/**
-	 * Reference to next input
+	 * Reference to next input.
 	 */
 	private Vertex next;
 	
 	/**
-	 * Reference to the output tree
+	 * Reference to the output tree.
 	 */
 	private Vertex family;
 	
 	/**
-	 * The Gameelement type of each Vertex
+	 * The type of the game element of the vertex.
 	 */
 	private VertexType type;
 	
@@ -41,10 +41,10 @@ public class Vertex {
 	// --------------------------
 	
 	/**
-	 * Creates a new instance of Vertex class.
+	 * Creates a new instance of the Vertex class.
 	 * 
 	 * @param id
-	 *            id to set
+	 *            ID to set.
 	 */
 	public Vertex(char id,VertexType type) {
 		this.type = type;
@@ -59,11 +59,11 @@ public class Vertex {
 	// --------------------------
 	
 	/**
-	 * replace the oldId with the newId in IdList
-	 * needed when a parent Abstraction makes Betareduction or Alphaconversion
-	 * @param oldId id which should replaced
-	 * @param newId id which should take place of oldId
-	 * @return true if IdList contained the oldId
+	 * Replaces the oldId with the newId in the IdList.
+	 * It  is needed when a parent Abstraction performs a Beta-reduction or an Alpha-conversion.
+	 * @param oldId ID which should be replaced.
+	 * @param newId ID which should take place of the former ID.
+	 * @return true if the IdList contained the oldId and it was changed successfully.
 	 */
 	public boolean updateIdList(int oldId, int newId) {
 		return false;
@@ -78,28 +78,28 @@ public class Vertex {
 	// --------------------------
 	
 	/**
-	 * Getter for next Vertex in lambdatree.
+	 * Getter for next Vertex in lambda-tree.
 	 * 
-	 * @return the next Vertex in the lambdatree
+	 * @return The next Vertex in the lambda-tree.
 	 */
 	public Vertex getnext() {
 		return next;
 	}
 	
 	/**
-	 * Setter for next Vertex in the lambdatree
+	 * Setter for next Vertex in the lambda-tree.
 	 * 
 	 * @param next
-	 * 				next vertex to set
+	 * 				Next vertex that is to set.
 	 */
 	public void setnext(Vertex next) {
 		this.next = next;
 	}
 	
 	/**
-	 * Getter for the family tree of this vertex
+	 * Getter for the family tree of this vertex.
 	 * 
-	 * @return the family tree of this vertex
+	 * @return The family tree of this vertex.
 	 */
 	public Vertex getfamily() {
 		return family;
@@ -109,7 +109,7 @@ public class Vertex {
 	 * Getter for the ID.
 	 * 
 	 * @param family 
-	 * 				family start vertex to set
+	 * 				The start vertex for the family that is to set.
 	 */
 	public void setfamily(Vertex family) {
 		this.family = family;
@@ -119,7 +119,7 @@ public class Vertex {
 	/**
 	 * Getter for the ID.
 	 * 
-	 * @return the id of the variable
+	 * @return The ID of the vertex.
 	 */
 	public int getId() {
 		return id;
@@ -129,7 +129,7 @@ public class Vertex {
 	 * Setter for the ID.
 	 * 
 	 * @param id
-	 *            id to set
+	 *            ID that is to set.
 	 */
 	public void setId(char id) {
 		this.id = id;
