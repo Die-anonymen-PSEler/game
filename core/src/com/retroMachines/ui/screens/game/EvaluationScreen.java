@@ -70,6 +70,14 @@ public class EvaluationScreen extends AbstractScreen {
 		animationInProgress = true;
 		// TODO start animation
 	}
+	
+	/**
+	 * Updates the evaluation animation.
+	 * @return true animation finished successfully, false otherwise.
+	 */
+	public boolean updateScreen() {
+		return false;
+	}
 
 	/**
 	 * Sets animationInProgress to false and freezes the animation in it's
