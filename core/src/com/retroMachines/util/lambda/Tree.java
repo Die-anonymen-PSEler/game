@@ -13,16 +13,6 @@ public class Tree {
 	 */
 	private Vertex start;
 
-	/**
-	 * Creates the tree representation of a given lambda term in string
-	 * representation.
-	 * 
-	 * @param term
-	 *            string representation of the lambda term
-	 */
-	public Tree(String term) {
-		// TODO: create tree from term
-	}
 
 	/**
 	 * Creates the tree object of a given vertex.
