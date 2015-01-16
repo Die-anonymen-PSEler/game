@@ -3,6 +3,7 @@ package com.retroMachines.ui.screens.game;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.util.lambda.Tree;
 import com.retroMachines.ui.screens.AbstractScreen;
@@ -22,7 +23,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 * Reference to the GameController for it to handle events that are
 	 * broadcasted to the screen.
 	 */
-	private GameController gameController;
+	private EvaluationController evaController;
 
 	/**
 	 * The root of the lambda term structure for generation on the screen.
@@ -43,11 +44,11 @@ public class EvaluationScreen extends AbstractScreen {
 	/**
 	 * Creates a new instance of EvaluationScreen.
 	 * @param game the actual game
-	 * @param gameController the gameController of the actual game
+	 * @param evaluationController the gameController of the actual game
 	 */
-	public EvaluationScreen(RetroMachines game, GameController gameController) {
+	public EvaluationScreen(RetroMachines game, EvaluationController evaluationController) {
 		super(game);
-		this.gameController = gameController;
+		this.evaController = evaluationController;
 		stage = new Stage();
 		animationInProgress = false;
 	}

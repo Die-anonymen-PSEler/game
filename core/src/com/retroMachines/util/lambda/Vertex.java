@@ -81,8 +81,32 @@ public class Vertex {
 		return false;
 	}
 	
+	/**
+	 * Add element to IdList
+	 * @param addId id which should be added
+	 */
 	public void addFamilyIdList(char addId){
 		
+	}
+	
+	/**
+	 * Fulfills one step of beta-reduction.
+	 * 
+	 * @return True if this abstraction has changed, false otherwise.
+	 */
+	private boolean betaReduction() {
+		// TODO: beta reduction
+		return false;
+	}
+
+	/**
+	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
+	 * 
+	 * @return True if at least one ID has changed, false if no ID has changed.
+	 */
+	private boolean alphaConversion() {
+		// TODO: implement alpha conversion
+		return false;
 	}
 	
 	// --------------------------

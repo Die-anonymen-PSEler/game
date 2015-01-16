@@ -35,11 +35,6 @@ public class GameController {
 	private GameScreen gameScreen;
 
 	/**
-	 * The EvaluationScreen when the user triggers this part of the game.
-	 */
-	private EvaluationScreen evaluationScreen;
-
-	/**
 	 * The game character that is controlled by the user.
 	 */
 	private RetroMan retroMan;
@@ -49,16 +44,6 @@ public class GameController {
 	 * gameScreen is active.
 	 */
 	private TiledMap map;
-	
-	/**
-	 * The lambdaTree represents the Lambdaterm in our Game
-	 */
-	private Tree lambdaTree;
-	
-	/**
-	 * List of all gameElements in this level
-	 */
-	private ArrayList<Vertex> vertexList;
 	
 	/**
 	 * Contain index of gamenElement in {@value vertexList} which is currently hold by RetroMan.
@@ -81,6 +66,11 @@ public class GameController {
 		this.game = game;
 		retroMan = new RetroMan();
 	}
+	
+	/**
+	 * controls Evaluation
+	 */
+	private EvaluationController evaControl;
 
 	/**
 	 * Sets and initializes a given level and starts it.
@@ -226,20 +216,9 @@ public class GameController {
 	 */
 	public void evaluationClicked() {
 		if(checkPlacementofElements()){
-			buildlambdaTree();
-			enterEvaluationScreen();
-			evaluate();
+			evaControl = new EvaluationController(buildlambdaTree(), game);
 			checkEvaluationResult();			
 		}
-	}
-	
-	/**
-	 * Removes the GameScreen and puts up the EvaluationScreen. It
-	 * also triggers the evaluation.
-	 */
-	private void enterEvaluationScreen() {
-		evaluationScreen = new EvaluationScreen(game, this);
-		game.setScreen(evaluationScreen);
 	}
 	
 	/**
@@ -254,15 +233,10 @@ public class GameController {
 	
 	/**
 	 * Builds the lambdaTree for the evaluation with data of the map.
+	 * @return returns the Tree Object
 	 */
-	private void buildlambdaTree() {
-		
-	}
-	
-	/**
-	 * Evaluates the lambdaTree as long as possible.
-	 */
-	private void evaluate() {
+	private Tree buildlambdaTree() {
+		return null; 
 		
 	}
 	
@@ -270,33 +244,6 @@ public class GameController {
 	 * Is called after the evaluation and checks if the result is the correct one to finish the level.
 	 */
 	private void checkEvaluationResult() {
-		
-	}
-	
-	/**
-	 * Fulfills one step of beta-reduction.
-	 * 
-	 * @return True if this abstraction has changed, false otherwise.
-	 */
-	private boolean betaReduction() {
-		// TODO: beta reduction
-		return false;
-	}
-
-	/**
-	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
-	 * 
-	 * @return True if at least one ID has changed, false if no ID has changed.
-	 */
-	private boolean alphaConversion() {
-		// TODO: implement alpha conversion
-		return false;
-	}
-	
-	/**
-	 * Updates the evaluation screen to animate the evaluation.
-	 */
-	private void updateEvaluationScreen(){
 		
 	}
 }
