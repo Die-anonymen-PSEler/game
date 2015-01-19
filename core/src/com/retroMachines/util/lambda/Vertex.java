@@ -31,12 +31,13 @@ public class Vertex {
 	/**
 	 * Unique identifier of Variable.
 	 */
-	private char id;
+	private int color;
 	
 	/**
-	 * List of all ID's of vertices corresponding to this abstraction.
+	 * List of all color's of vertices corresponding to this abstraction.
+	 * color's are sorted after their size small to big 
 	 */
-	private LinkedList<Character> familyIdlist;
+	private LinkedList<Integer> familyColorlist;
 	
 	/**
 	 * Position of vertex
@@ -58,10 +59,11 @@ public class Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Vertex(char id,VertexType type) {
+	public Vertex(int color,VertexType type) {
 		this.type = type;
-		this.id = id;
-		this.familyIdlist = new LinkedList<Character>();
+		this.color = color;
+		this.familyColorlist = new LinkedList<Integer>();
+		this.familyColorlist.add(color);
 	}
 
 	
@@ -94,8 +96,7 @@ public class Vertex {
 	 * 
 	 * @return True if this abstraction has changed, false otherwise.
 	 */
-	private boolean betaReduction() {
-		// TODO: beta reduction
+	public boolean betaReduction() {
 		return false;
 	}
 
@@ -104,9 +105,80 @@ public class Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
-	private boolean alphaConversion() {
-		// TODO: implement alpha conversion
+	public boolean alphaConversion() {
+		LinkedList<Integer> nextFam = this.next.getFamilyColorList();
+		int sA = familyColorlist.size();
+		int sN = nextFam.size();
+		int newColor = this.familyColorlist.getLast() + 1;
+		// Dursucche Liste nach Doppelten farben
+		for (int i = 0; i < sA; i++) {
+			for (int j = 0; j < sN; j++) {
+				if (familyColorlist.get(i) == nextFam.get(j)) {
+					//Ersetze Farbe in eingelesener Familie
+					if (!this.next.renameFamily(nextFam.get(j), newColor)) {
+						// Fehler 
+						System.out.println("AlphaConversionError: " + this.color + ", " + this.type.toString());
+					}
+					newColor++;
+				}
+			}
+		}
 		return false;
+	}
+	
+	/**
+	 * replace OldColor with newColor in Hole Family
+	 * @param oldColor Color which should be replaced
+	 * @param newColor Color which should take place of OldColor
+	 * @return true if renamed family successful, false otherwise
+	 */
+	public boolean renameFamily(int oldColor, int newColor) {
+		int index = 0;
+		// Get Index of oldColor 
+		while(this.familyColorlist.get(index) < oldColor) {
+			index++;
+		}
+		
+		// Replace Color if
+		if (this.familyColorlist.get(index) == oldColor) {
+			
+			// Replace Color in family Color List
+			this.familyColorlist.remove(index);
+			if (familyColorlist.getLast() >= newColor) {
+				/* Falsche Sortierung/ newColor
+				 * New color ist immer größtes Element in gesamter Liste
+				 */
+				return false;
+			}
+			this.familyColorlist.addLast(newColor);
+			
+			// Replace own Color if needed
+			if (this.color == oldColor){
+				this.color = newColor;
+			}
+			
+			// Rename Family
+			if (this.family != null) {
+				
+				// Rename First in Family
+				if (this.family.renameFamily(oldColor, newColor)) {
+					//Irgendwo lief was schief
+					return false;
+				}
+				
+				// Rename the Others if they are no imaginary Friends  
+				Vertex renamePointer = this.family;
+				while(renamePointer.next != null) {
+					if (!renamePointer.next.renameFamily(oldColor, newColor)) {
+						//Irgendwo lief was schief
+						return false;
+					}
+					// Setze Pointer auf nächstes Family Vertex
+					renamePointer = renamePointer.next;
+				}
+			}
+		}
+		return true;
 	}
 	
 	// --------------------------
@@ -157,8 +229,8 @@ public class Vertex {
 	 * 
 	 * @return The ID of the vertex.
 	 */
-	public int getId() {
-		return id;
+	public int getColor() {
+		return color;
 	}
 
 	/**
@@ -167,11 +239,11 @@ public class Vertex {
 	 * @param id
 	 *            ID that is to set.
 	 */
-	public void setId(char id) {
-		this.id = id;
+	public void setId(int color) {
+		this.color = color;
 	}
 	
-	public LinkedList<Character> getFamilyIdList(){
-		return familyIdlist;
+	public LinkedList<Integer> getFamilyColorList(){
+		return familyColorlist;
 	}
 }
