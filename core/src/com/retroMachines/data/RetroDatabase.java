@@ -1,7 +1,6 @@
 package com.retroMachines.data;
 
 import com.badlogic.gdx.sql.Database;
-import com.badlogic.gdx.sql.DatabaseCursor;
 import com.badlogic.gdx.sql.DatabaseFactory;
 import com.badlogic.gdx.sql.SQLiteGdxException;
 

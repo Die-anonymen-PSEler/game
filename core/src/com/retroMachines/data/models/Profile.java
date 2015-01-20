@@ -16,25 +16,30 @@ public class Profile extends Model {
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
 	 */
-	public static final String CREATE_TABLE_QUERY = "";
+	public static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `" + TABLE_NAME + "` (\n" +
+            "\t`id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "\t`name`\tTEXT NOT NULL,\n" +
+            "\t`statisticId`\tINTEGER NOT NULL,\n" +
+            "\t`settingId`\tINTEGER NOT NULL\n" +
+            ");";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `name` = '%s', `statisticId` = '%s', `settingId` = '%s' WHERE id = %s;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = %s;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
 
 	/**
 	 * the name of the profile

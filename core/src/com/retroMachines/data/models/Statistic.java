@@ -16,19 +16,24 @@ public class Statistic extends Model {
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
 	 */
-	public static final String CREATE_TABLE_QUERY = "";
+	public static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `statistics` (\n" +
+            "\t`id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "\t`playtime`\tINTEGER NOT NULL DEFAULT 0,\n" +
+            "\t`levelCompleted`\tINTEGER NOT NULL DEFAULT 0,\n" +
+            "\t`stepCounter`\tINTEGER NOT NULL DEFAULT 0\n" +
+            ");";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `playtime` = '%s', `levelCompleted` = '%s', `stepCounter` = '%s' WHERE id = %s;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = %s;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts

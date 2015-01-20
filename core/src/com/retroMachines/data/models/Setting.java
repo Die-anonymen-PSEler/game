@@ -16,25 +16,30 @@ public class Setting extends Model {
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
 	 */
-	public static final String CREATE_TABLE_QUERY = "";
+	public static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `settings` (\n" +
+            "\t`id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "\t`volume`\tREAL NOT NULL DEFAULT 0.5,\n" +
+            "\t`soundOnOff`\tINTEGER NOT NULL DEFAULT 1,\n" +
+            "\t`leftControl`\tINTEGER NOT NULL DEFAULT 0\n" +
+            ");";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `volume` = '%s', `soundOnOff` = '%s', `leftControl` = '%s' WHERE id = %s;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = %s;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s','%s', '%s');";
 
 	/**
 	 * the volume of the game range 0.0f to 1.0f
