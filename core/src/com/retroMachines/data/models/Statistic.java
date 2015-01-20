@@ -39,7 +39,7 @@ public class Statistic extends Model {
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
 
 	/**
 	 * the play time the player has spent on the game in minutes
