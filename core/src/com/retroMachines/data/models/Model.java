@@ -27,6 +27,7 @@ public abstract class Model {
 	 * in order to update, insert and select data from it.
 	 */
 	public Model() {
+		rowId = -1;
 		db = RetroDatabase.getSingleton();
 	}
 	

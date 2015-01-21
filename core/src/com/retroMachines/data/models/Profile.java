@@ -1,5 +1,8 @@
 package com.retroMachines.data.models;
 
+import com.badlogic.gdx.sql.DatabaseCursor;
+import com.badlogic.gdx.sql.SQLiteGdxException;
+
 /**
  * This class is part of the model of RetroMachines.
  * It has knowledge about all attributes regarding the profile of a user.
@@ -26,6 +29,7 @@ public class Profile extends Model {
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
+	 * the order is name -> statisticId -> settingId -> rowId
 	 */
 	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `name` = '%s', `statisticId` = '%s', `settingId` = '%s' WHERE id = %s;";
 
@@ -40,6 +44,8 @@ public class Profile extends Model {
 	 * a row within the TABLE_NAME
 	 */
 	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
+	
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
 
 	/**
 	 * the name of the profile
@@ -107,20 +113,49 @@ public class Profile extends Model {
 	@Override
 	public void writeToSQL() {
 		// TODO Auto-generated method stub
-
+		if (hasRecordInSQL()) {
+			// update existing record in sqlite database
+			try {
+				db.rawQuery(String.format(UPDATE_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId, rowId));
+			} catch (SQLiteGdxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			// create new record in sqlite database
+		}
 	}
 
 	@Override
 	public boolean hasRecordInSQL() {
 		// TODO Auto-generated method stub
+		if (rowId != -1) {
+			try {
+				DatabaseCursor cursor = db.rawQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				return cursor.getCount() == 1;
+			} catch (SQLiteGdxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
-
 	}
 	
 	@Override
 	public void fetchFromSQL() {
 		// TODO Auto-generated method stub
-		
+		if (hasRecordInSQL()) {
+			try {
+				DatabaseCursor cursor = db.rawQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				setProfileName(cursor.getString(1));
+				setSetting(new Setting(cursor.getInt(3)));
+				setStatistic(new Statistic(cursor.getInt(2)));
+			} catch (SQLiteGdxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	
@@ -128,6 +163,10 @@ public class Profile extends Model {
 	/*
 	 * Getter and Setter
 	 */
+
+	public void setStatistic(Statistic statistic2) {
+		this.statistic = statistic2;		
+	}
 
 	/**
 	 * Get method to retrieve the name of the profile.
