@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * This class is part of the model of RetroMachines. It models the vertices
- * of the graph of the lambda term and represents the 3 different game elements.
+ * This class is part of the model of RetroMachines. 
+ * Vertices of the Graph of Gameelements extends this class
  * 
  * @author RetroFactory
  * 
  */
-public class Vertex {
-
+public abstract class Vertex {
+	
 	/**
 	 * Reference to next input.
 	 */
@@ -22,11 +22,6 @@ public class Vertex {
 	 * Reference to the output tree.
 	 */
 	private Vertex family;
-	
-	/**
-	 * The type of the game element of the vertex.
-	 */
-	private VertexType type;
 	
 	/**
 	 * Unique identifier of Variable.
@@ -54,19 +49,23 @@ public class Vertex {
 	// --------------------------
 	
 	/**
+	 * Default Public Constructor for Dummy Element
+	 */
+	public Vertex() {
+		
+	}
+	
+	/**
 	 * Creates a new instance of the Vertex class.
 	 * 
 	 * @param id
 	 *            ID to set.
 	 */
-	public Vertex(int color,VertexType type) {
-		this.type = type;
+	public Vertex(int color) {
 		this.color = color;
 		this.familyColorlist = new LinkedList<Integer>();
 		this.familyColorlist.add(color);
-	}
-
-	
+	}	
 	
 	// --------------------------
 	// ---------Methods----------
@@ -91,40 +90,51 @@ public class Vertex {
 		
 	}
 	
+	//---------------------------------------------------
+	//-------- Beta Reduction and Alpha Conversion ------
+	//---------------------------------------------------
+	
 	/**
 	 * Fulfills one step of beta-reduction.
 	 * 
-	 * @return True if this abstraction has changed, false otherwise.
+	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
 	public boolean betaReduction() {
-		return false;
+		return false;	
 	}
-
+	
 	/**
 	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	public boolean alphaConversion() {
-		LinkedList<Integer> nextFam = this.next.getFamilyColorList();
+		LinkedList<Integer> nextFam = this.next.familyColorlist;
+		boolean returnValue = false;
 		int sA = familyColorlist.size();
 		int sN = nextFam.size();
 		int newColor = this.familyColorlist.getLast() + 1;
-		// Dursucche Liste nach Doppelten farben
+		// Searched for double used colors
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
 				if (familyColorlist.get(i) == nextFam.get(j)) {
-					//Ersetze Farbe in eingelesener Familie
+					//Replace color in next family
 					if (!this.next.renameFamily(nextFam.get(j), newColor)) {
-						// Fehler 
-						System.out.println("AlphaConversionError: " + this.color + ", " + this.type.toString());
+						// Error
+						System.out.println("AlphaConversionError: " + this.color);
 					}
+					returnValue = true;
 					newColor++;
 				}
 			}
 		}
-		return false;
+		return returnValue;
 	}
+	
+	//---------------------------------------------------
+	//-------- Beta Reduction and Alpha Conversion ------
+	//------------------Help Methods---------------------
+	//---------------------------------------------------
 	
 	/**
 	 * replace OldColor with newColor in Hole Family
@@ -132,14 +142,14 @@ public class Vertex {
 	 * @param newColor Color which should take place of OldColor
 	 * @return true if renamed family successful, false otherwise
 	 */
-	public boolean renameFamily(int oldColor, int newColor) {
+	protected boolean renameFamily(int oldColor, int newColor) {
 		int index = 0;
 		// Get Index of oldColor 
 		while(this.familyColorlist.get(index) < oldColor) {
 			index++;
 		}
 		
-		// Replace Color if
+		// Replace Color 
 		if (this.familyColorlist.get(index) == oldColor) {
 			
 			// Replace Color in family Color List
@@ -162,7 +172,7 @@ public class Vertex {
 				
 				// Rename First in Family
 				if (this.family.renameFamily(oldColor, newColor)) {
-					//Irgendwo lief was schief
+					//Error
 					return false;
 				}
 				
@@ -170,15 +180,129 @@ public class Vertex {
 				Vertex renamePointer = this.family;
 				while(renamePointer.next != null) {
 					if (!renamePointer.next.renameFamily(oldColor, newColor)) {
-						//Irgendwo lief was schief
+						//Error
 						return false;
 					}
-					// Setze Pointer auf nächstes Family Vertex
+					// Set 
 					renamePointer = renamePointer.next;
 				}
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Creates a clone of this Vertex without Next and his hole Family
+	 * @param next
+	 * @return
+	 */
+	protected Vertex cloneMe(Vertex next){
+		return null;
+	}
+	
+	/**
+	 * Creates a clone of this Vertex and his hole Family
+	 * @return clone of Vertex with hole family and next coned
+	 */
+	protected Vertex cloneFamily(){
+		return null;
+	}
+	
+	/**
+	 * replaces all Elements of a specific color in family of start Vertex
+	 * @param start vertex which is parent of this Vertex and starts the beta Reduction
+	 * @return
+	 */
+	protected LinkedList<Integer> replaceInFamily(Vertex start) {
+		
+		LinkedList<Integer> listOfNewColors = new LinkedList<Integer>();
+		
+		// if family contains color, search and replace it
+		if (this.getFamilyColorlist().contains(start.getColor())) {
+			if (this.getfamily() != null) {
+				
+				// Check Family Vertexes before you check to replace the first in Family
+				listOfNewColors = this.getfamily().replaceInFamily(start);
+				
+				// Stop replacing of vertexes! betaReduction will know what to do
+				if (listOfNewColors == null) {
+					return null;
+				}
+				
+				//When there is a change in Family merge it with your list
+				if (!listOfNewColors.isEmpty()) {
+					//Remove the searched color from your list if it is replaced in your family
+					this.getFamilyColorlist().remove(start.getColor());
+					this.mergeMyColorList(listOfNewColors);
+				}
+				
+				//Replace Family Vertex if Color is ok
+				if (this.getfamily().getColor() == start.getColor()) {
+					Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+					this.setfamily(replaced);
+				}
+			} else {
+				// Error each Abstraction has family
+				return null;
+			}
+		}
+		
+		// if next Vertex contains color, search and replace it 
+		if (this.getnext() != null) {
+			
+			// Check all Vertexes next to you, before you check to replace the Next Vertex
+			listOfNewColors = this.getnext().replaceInFamily(start);
+			
+			// Stop replacing of vertexes! betaReduction will know what to do
+			if (listOfNewColors == null) {
+				return null;
+			}
+			
+			//Replace Next Vertex if Color and Type are Ok
+			if (this.getnext().getColor() == start.getColor()) {
+				Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+				this.setnext(replaced);
+			}
+		}
+		// At the End return the ColorList, if something is replaced;
+		return listOfNewColors;
+	}
+	
+	/**
+	 * Merges the given List with the color List of this Vertex
+	 * @param listToAdd List wich should be merged with this color List
+	 */
+	protected void mergeMyColorList(LinkedList<Integer> listToAdd) {
+		int lengthBoth = this.getFamilyColorlist().size();
+		lengthBoth =+ listToAdd.size();
+		LinkedList<Integer> newColorList = new LinkedList<Integer>();
+		for (int i = 0; i < lengthBoth; i++) {
+			
+			// if one list is empty add the rest of the other one to the end
+			if(this.getFamilyColorlist().isEmpty()) {
+				int l = listToAdd.size();
+				for (int j = 0; j < l; j++) {
+					newColorList.addLast(listToAdd.pollFirst());
+				}
+				break;
+			}
+			if(listToAdd.isEmpty()) {
+				int l = this.getFamilyColorlist().size();
+				for (int j = 0; j < l; j++) {
+					newColorList.addLast(this.getFamilyColorlist().pollFirst());
+				}
+				break;
+			}
+			
+			// if there are still elements in one List search the smallest one and add it to the new List
+			if (this.getFamilyColorlist().getFirst() < listToAdd.getFirst()) {
+				newColorList.addLast(this.getFamilyColorlist().pollFirst());
+			} else {
+				newColorList.addLast(listToAdd.pollFirst());
+			}
+			
+		}
+		this.setFamilyColorlist(newColorList);
 	}
 	
 	// --------------------------
@@ -214,36 +338,54 @@ public class Vertex {
 	}
 	
 	/**
-	 * Getter for the ID.
+	 * Setter for the family tree of this vertex.
 	 * 
 	 * @param family 
 	 * 				The start vertex for the family that is to set.
+	 * @return
+	 * 				false if type of Vertex is Variable , true otherwise
 	 */
-	public void setfamily(Vertex family) {
+	public boolean setfamily(Vertex family) {
 		this.family = family;
+		return true;
 	}
-
 	
 	/**
-	 * Getter for the ID.
+	 * Getter for the Color.
 	 * 
-	 * @return The ID of the vertex.
+	 * @return The Color of the vertex.
 	 */
 	public int getColor() {
 		return color;
 	}
 
 	/**
-	 * Setter for the ID.
+	 * Setter for the Color.
 	 * 
-	 * @param id
-	 *            ID that is to set.
+	 * @param color
+	 *          	Color that is to set.
 	 */
-	public void setId(int color) {
+	public void setColor(int color) {
 		this.color = color;
 	}
 	
-	public LinkedList<Integer> getFamilyColorList(){
+	/**
+	 * Getter for the familyColorList
+	 * 
+	 * @return The familyColorList of this Vertex
+	 */
+	public LinkedList<Integer> getFamilyColorlist(){
 		return familyColorlist;
 	}
+	
+	/**
+	 * Setter for the famiylColorList
+	 * 
+	 * @param familyColorlist
+	 * 				FamilyColorList that is to set
+	 */
+	protected void setFamilyColorlist(LinkedList<Integer> familyColorlist) {
+		this.familyColorlist = familyColorlist;
+	}
 }
+
