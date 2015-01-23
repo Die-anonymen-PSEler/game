@@ -42,9 +42,15 @@ public class Profile extends Model {
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
+	 * name -> statisticId -> settingId
 	 */
 	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
 	
+	/**
+	 * a pattern (that should be formatted with printf or similar) that selects a row
+	 * within the table
+	 * 0 -> id, 1 -> name, 2 -> statisticId, 3 -> settingId
+	 */
 	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
 
 	/**
@@ -124,6 +130,12 @@ public class Profile extends Model {
 		}
 		else {
 			// create new record in sqlite database
+			try {
+				db.rawQuery(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId));
+			} catch (SQLiteGdxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

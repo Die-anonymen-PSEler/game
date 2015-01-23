@@ -1,6 +1,9 @@
 package com.retroMachines;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.sql.Database;
+import com.retroMachines.data.RetroDatabase;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.ProfileController;
@@ -51,6 +54,7 @@ public class RetroMachines extends Game {
 	 */
 	@Override
 	public void create() {
+		RetroDatabase.getSingleton();
 		profileController = new ProfileController(this);
 		settingController = new SettingController(this);
 		gameController = new GameController(this);
@@ -62,6 +66,19 @@ public class RetroMachines extends Game {
 		setScreen(new MainMenuScreen(this));
 		lms.dispose();
 	}
+	
+	@Override
+	public void pause() {
+		super.pause();
+		RetroDatabase.closeDatabase();
+	}
+	
+	@Override
+	public void resume() {
+		super.resume();
+		RetroDatabase.reopenDatabase();
+	}
+	
 
 	/*
 	 * Getter and Setter

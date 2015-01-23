@@ -22,7 +22,7 @@ public class RetroDatabase {
 	/**
 	 * The name of the database in the sqlite file.
 	 */
-	public static final String DATABASE_NAME = "retroMachines";
+	public static final String DATABASE_NAME = "retroMachines.db";
 	
 	/**
 	 * The version of the database.
@@ -66,5 +66,23 @@ public class RetroDatabase {
 			createSingleton();
 		}
 		return dbHandler;
+	}
+	
+	public static void closeDatabase() {
+		try {
+			dbHandler.closeDatabase();
+		} catch (SQLiteGdxException e) {
+			// TODO Auto-generated catch block
+			
+		}
+	}
+	
+	public static void reopenDatabase() {
+		try {
+			dbHandler.openOrCreateDatabase();
+		} catch (SQLiteGdxException e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 }
