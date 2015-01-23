@@ -1,5 +1,10 @@
 package com.retroMachines.data.models;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import com.badlogic.gdx.sql.Database;
 import com.retroMachines.data.RetroDatabase;
 
@@ -13,9 +18,14 @@ import com.retroMachines.data.RetroDatabase;
 public abstract class Model {
 	
 	/**
+	 * the timeout for a query to be executed
+	 */
+	private static final int QUERY_TIMEOUT = 10;
+
+	/**
 	 * The database connection that will execute queries to the SQLite file.
 	 */
-	protected Database db;
+	protected Connection connection;
 	
 	/**
 	 * The id of the row where the record is stored within the database.
@@ -28,7 +38,19 @@ public abstract class Model {
 	 */
 	public Model() {
 		rowId = -1;
-		db = RetroDatabase.getSingleton();
+		connection = RetroDatabase.getConnection();
+	}
+	
+	protected Statement getStatement() {
+		Statement statement;
+		try {
+			statement = connection.createStatement();
+			statement.setQueryTimeout(QUERY_TIMEOUT);  // set timeout to 30 sec.
+			return statement;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**

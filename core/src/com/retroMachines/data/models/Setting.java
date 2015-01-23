@@ -1,5 +1,11 @@
 package com.retroMachines.data.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.retroMachines.data.RetroDatabase;
+
 /**
  * This class is part of the model of RetroMachines.
  * It has knowledge about all attributes regarding the settings of a profile.
@@ -12,6 +18,14 @@ public class Setting extends Model {
 	 * the name of the table where the settings are stored
 	 */
 	public static final String TABLE_NAME = "settings";
+	
+	private static final String KEY_ID = "id";
+	
+	private static final String KEY_VOLUME = "volume";
+	
+	private static final String KEY_SOUNDONOFF = "soundOnOff";
+	
+	private static final String KEY_LEFTCONTROL = "leftControl";
 
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
@@ -40,6 +54,13 @@ public class Setting extends Model {
 	 * a row within the TABLE_NAME
 	 */
 	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s','%s', '%s');";
+	
+	/**
+	 * a pattern (that should be formatted with printf or similar) that selects a row
+	 * within the table
+	 * 0 -> id, 1 -> volume, 2 -> soundOnOff, 3 -> leftControl
+	 */
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
 
 	/**
 	 * the volume of the game range 0.0f to 1.0f
@@ -94,21 +115,65 @@ public class Setting extends Model {
 	
 	@Override
 	public void writeToSQL() {
-		// TODO Auto-generated method stub
-
+		Statement st = getStatement();
+		if (hasRecordInSQL()) {
+			// records exists -> update
+			try {
+				st.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0, rowId));
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			// create record
+			try {
+				rowId = st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0), Statement.RETURN_GENERATED_KEYS);
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
 	public boolean hasRecordInSQL() {
-		// TODO Auto-generated method stub
-		return true;
+		Statement st = getStatement();
+		ResultSet rs;
+		try {
+			rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+			int size = RetroDatabase.countResultSet(rs);
+			rs.close();
+			st.close();
+			return size == 1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 
 	@Override
 	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
-		
+		if (hasRecordInSQL()) {
+			Statement st = getStatement();
+			try {
+				ResultSet rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				st.close();
+				soundOnOff = rs.getInt(KEY_SOUNDONOFF) == 1;
+				volume = rs.getFloat(KEY_VOLUME);
+				leftControl = rs.getInt(KEY_LEFTCONTROL) == 1;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			// well this is awkward
+		}
 	}
 
 	/*
