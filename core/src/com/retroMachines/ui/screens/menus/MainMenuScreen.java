@@ -6,11 +6,15 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.SettingsChangeListener;
 
 /**
@@ -31,7 +35,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	
 	private TextButtonStyle textButtonStyle;
 	
-	private TextButton playButton;
+	private Table table;
 	
 	private Sound sound;
 	
@@ -41,7 +45,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private static final String SOUNDFILE = "";
 	
 	private long soundId;
-	
+		
 	/**
 	 * The constructor to create a new instance of the MainMenuScreen.
 	 * @param game The game that uses this screen.
@@ -55,7 +59,32 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 * Displays the MainMenuScreen.
 	 */
 	public void show() {
-		soundId = sound.loop();
+		skin = AssetManager.menuSkin;
+		table = new Table();
+		Label title = new Label("RETROMACHINES",skin);
+		Button buttonPlay = new Button(skin, "default");
+		buttonPlay.addListener(new PlayButtonClickListener());
+		Button buttonSetting = new Button(skin, "default");
+		buttonSetting.addListener(new SettingButtonClickListener());
+		Button buttonAbout = new Button(skin, "default");
+		buttonAbout.addListener(new AboutButtonClickListener());
+		Button buttonStatistics = new Button(skin, "default");
+		buttonStatistics.addListener(new StatisticsButtonClickListener());
+		Button buttonProfileMenu = new Button(skin, "default");
+		buttonProfileMenu.addListener(new ProfileMenuClickListener());
+		table.add(title).row();
+		table.add(buttonPlay).row();
+	    table.add(buttonSetting).row();
+	    table.add(buttonAbout).row();
+	    table.add(buttonStatistics).row();
+	    table.add(buttonProfileMenu).row();
+	    table.setFillParent(true);
+	    stage.addActor(table);
+
+	    Gdx.input.setInputProcessor(stage);
+
+	        
+		//soundId = sound.loop();
 	}
 	
 	/**
@@ -63,22 +92,10 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	@Override
 	protected void initialize() {
-		font = new BitmapFont();
-		skin = new Skin();
-		buttonAtlas = new TextureAtlas(Gdx.files.internal(("skins/MenuButtons.pack")));
-		skin.addRegions(buttonAtlas);
-		textButtonStyle = new TextButtonStyle();
-        textButtonStyle.font = font;
-        textButtonStyle.up = skin.getDrawable("Back1");
-        
-        playButton = new TextButton("", textButtonStyle);
-        
-        playButton.addListener(new PlayButtonClickListener());
-        
-        tableLeft.add(playButton).row();
+
         //sound initialisieren
         
-        game.getSettingController().add(this);
+       // game.getSettingController().add(this);
 	}
 	
 	/**

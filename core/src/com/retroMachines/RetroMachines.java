@@ -9,6 +9,7 @@ import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
+
 /**
  * The main class of the game "RetroMachines". It initializes all the controllers and 
  * starts the game.
@@ -16,8 +17,12 @@ import com.retroMachines.ui.screens.menus.MainMenuScreen;
  * @author RetroFactory
  * 
  */
-public class RetroMachines extends Game {
+public class RetroMachines extends Game{
+	
+	public static final String TITLE="Game Project"; 
+    public static final int WIDTH=480,HEIGHT=800; // used later to set window size
 
+	
 	/**
 	 * The Global Variables that are stored within persistent background storage.
 	 */
@@ -51,16 +56,12 @@ public class RetroMachines extends Game {
 	 */
 	@Override
 	public void create() {
-		profileController = new ProfileController(this);
-		settingController = new SettingController(this);
-		gameController = new GameController(this);
-		statisticController = new StatisticController(this);
-		globalVariables = GlobalVariables.getSingleton();
-		LoadMenuScreen lms = new LoadMenuScreen(this);
-		setScreen(lms);
-
-		setScreen(new MainMenuScreen(this));
-		lms.dispose();
+		setScreen(new LoadMenuScreen(this));
+		//profileController = new ProfileController(this);
+		//settingController = new SettingController(this);
+		//gameController = new GameController(this);
+		//statisticController = new StatisticController(this);
+		//globalVariables = GlobalVariables.getSingleton();
 	}
 
 	/*
