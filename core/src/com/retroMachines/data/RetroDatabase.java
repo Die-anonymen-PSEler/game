@@ -1,5 +1,10 @@
 package com.retroMachines.data;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.badlogic.gdx.sql.Database;
 import com.badlogic.gdx.sql.DatabaseFactory;
 import com.badlogic.gdx.sql.SQLiteGdxException;
@@ -17,22 +22,12 @@ public class RetroDatabase {
 	/**
 	 * A copy of the database.
 	 */
-	private static Database dbHandler;
+	private static Connection connection;
 	
 	/**
 	 * The name of the database in the sqlite file.
 	 */
-	public static final String DATABASE_NAME = "retroMachines.db";
-	
-	/**
-	 * The version of the database.
-	 */
-	public static final int DATABASE_VERSION = 1;
-	
-	/**
-	 * The query that should be executed when the database needs to be created.
-	 */
-	public static final String DATABASE_CREATE = "";
+	public static final String DATABASE_NAME = "assets/testcase.db";
 	
 	/**
 	 * Private constructor to avoid double creation of the database connection.
@@ -45,14 +40,12 @@ public class RetroDatabase {
 	 * Instantiates a new singleton.
 	 */
 	private static void createSingleton() {
-		dbHandler = DatabaseFactory.getNewDatabase(DATABASE_NAME, DATABASE_VERSION, DATABASE_CREATE, null);
-		dbHandler.setupDatabase();
-		
 		try {
-			dbHandler.openOrCreateDatabase();
-			dbHandler.setupDatabase();
-		}
-		catch (SQLiteGdxException e) {
+			connection = DriverManager.getConnection("jdbc:sqlite:" + DATABASE_NAME);
+			connection.setAutoCommit(true);
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -61,28 +54,37 @@ public class RetroDatabase {
 	 * Returns the only copy of the database.
 	 * @return The database reference.
 	 */
-	public static Database getSingleton() {
-		if (dbHandler == null) {
+	public static Connection getConnection() {
+		if (connection == null) {
 			createSingleton();
 		}
-		return dbHandler;
+		return connection;
 	}
 	
 	public static void closeDatabase() {
 		try {
-			dbHandler.closeDatabase();
-		} catch (SQLiteGdxException e) {
-			// TODO Auto-generated catch block
-			
+			connection.close();
+			connection = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public static void reopenDatabase() {
+		createSingleton();
+	}
+	
+	public static int countResultSet(ResultSet set) {
+		int counter = 0;
 		try {
-			dbHandler.openOrCreateDatabase();
-		} catch (SQLiteGdxException e) {
+			while(set.next()) {
+				counter++;
+			}
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
+			return 0;
 		}
+		return counter;
 	}
 }

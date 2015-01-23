@@ -1,7 +1,12 @@
 package com.retroMachines.data.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import com.badlogic.gdx.sql.DatabaseCursor;
 import com.badlogic.gdx.sql.SQLiteGdxException;
+import com.retroMachines.data.RetroDatabase;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -15,6 +20,14 @@ public class Profile extends Model {
 	 * The name of the table where the profiles are stored.
 	 */
 	public static final String TABLE_NAME = "profiles";
+	
+	private static final String KEY_ID = "id";
+	
+	private static final String KEY_PROFILE_NAME = "name";
+	
+	private static final String KEY_STATISTIC = "statisticId";
+	
+	private static final String KEY_SETTING = "settingId";
 
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
@@ -59,11 +72,6 @@ public class Profile extends Model {
 	private String profileName;
 
 	/**
-	 * the id of the profile
-	 */
-	private int profileId;
-
-	/**
 	 * the settings for the profile
 	 */
 	private Setting setting;
@@ -89,20 +97,9 @@ public class Profile extends Model {
 			Statistic statistic) {
 		super();
 		this.setProfileName(name);
-		this.profileId = profileId;
+		this.rowId = profileId;
 		this.setSetting(setting);
 		this.statistic = statistic;
-	}
-	
-	/**
-	 * Creates a new profile and attempts to fetch the further data form the 
-	 * persistent background storage.
-	 * @param name the name of the profile that has the record
-	 */
-	public Profile(String name) {
-		super();
-		this.profileName = name;
-		fetchFromSQL();
 	}
 	
 	/**
@@ -118,22 +115,20 @@ public class Profile extends Model {
 
 	@Override
 	public void writeToSQL() {
-		// TODO Auto-generated method stub
+		Statement statement = getStatement();
 		if (hasRecordInSQL()) {
-			// update existing record in sqlite database
 			try {
-				db.rawQuery(String.format(UPDATE_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId, rowId));
-			} catch (SQLiteGdxException e) {
-				// TODO Auto-generated catch block
+				statement.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId, rowId));
+				statement.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		else {
-			// create new record in sqlite database
 			try {
-				db.rawQuery(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId));
-			} catch (SQLiteGdxException e) {
-				// TODO Auto-generated catch block
+				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId), Statement.RETURN_GENERATED_KEYS);
+				statement.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -143,10 +138,15 @@ public class Profile extends Model {
 	public boolean hasRecordInSQL() {
 		// TODO Auto-generated method stub
 		if (rowId != -1) {
+			Statement statement = getStatement();
+			ResultSet rs;
 			try {
-				DatabaseCursor cursor = db.rawQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
-				return cursor.getCount() == 1;
-			} catch (SQLiteGdxException e) {
+				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				int size = RetroDatabase.countResultSet(rs);
+				statement.close();
+				rs.close();
+				return size == 1;
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -158,12 +158,14 @@ public class Profile extends Model {
 	public void fetchFromSQL() {
 		// TODO Auto-generated method stub
 		if (hasRecordInSQL()) {
+			Statement statement = getStatement();
+			ResultSet rs;
 			try {
-				DatabaseCursor cursor = db.rawQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
-				setProfileName(cursor.getString(1));
-				setSetting(new Setting(cursor.getInt(3)));
-				setStatistic(new Statistic(cursor.getInt(2)));
-			} catch (SQLiteGdxException e) {
+				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				profileName = rs.getString(KEY_PROFILE_NAME);
+				setting = new Setting(rs.getInt(KEY_SETTING));
+				statistic = new Statistic(rs.getInt(KEY_STATISTIC));
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -201,7 +203,7 @@ public class Profile extends Model {
 	 * @return the id of the profile
 	 */
 	public int getProfileId() {
-		return profileId;
+		return rowId;
 	}
 
 	/**
