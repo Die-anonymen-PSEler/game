@@ -162,10 +162,10 @@ public class Setting extends Model {
 			Statement st = getStatement();
 			try {
 				ResultSet rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
-				st.close();
 				soundOnOff = rs.getInt(KEY_SOUNDONOFF) == 1;
 				volume = rs.getFloat(KEY_VOLUME);
 				leftControl = rs.getInt(KEY_LEFTCONTROL) == 1;
+				st.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

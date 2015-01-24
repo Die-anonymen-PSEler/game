@@ -1,5 +1,11 @@
 package com.retroMachines.data.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.retroMachines.data.RetroDatabase;
+
 /**
  * This class is part of the model of RetroMachines.
  * It has knowledge about all attributes regarding the statistics of a user.
@@ -12,6 +18,14 @@ public class Statistic extends Model {
 	 * the name of the table where the statistics are stored
 	 */
 	public static final String TABLE_NAME = "statistics";
+	
+	private static final String KEY_ID = "id";
+	
+	private static final String KEY_PLAYTIME = "playtime";
+	
+	private static final String KEY_LEVELCOMPLETED = "levelCompleted";
+	
+	private static final String KEY_STEPCOUNTER = "stepCounter";
 
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
@@ -40,7 +54,12 @@ public class Statistic extends Model {
 	 * a row within the TABLE_NAME
 	 */
 	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
-
+	
+	/**
+	 * select query to fetch data from the sqlite database
+	 */
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
+	
 	/**
 	 * the play time the player has spent on the game in minutes
 	 */
@@ -91,20 +110,59 @@ public class Statistic extends Model {
 
 	@Override
 	public void writeToSQL() {
-		// TODO Auto-generated method stub
-
+		Statement statement = getStatement();
+		if (hasRecordInSQL()) {
+			try {
+				statement.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, playtime, levelsComplete, stepCounter, rowId));
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, playtime, levelsComplete, stepCounter), Statement.RETURN_GENERATED_KEYS);
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
 	public boolean hasRecordInSQL() {
-		// TODO Auto-generated method stub
+		if (rowId != -1) {
+			Statement statement = getStatement();
+			ResultSet rs;
+			try {
+				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				int size = RetroDatabase.countResultSet(rs);
+				statement.close();
+				rs.close();
+				return size == 1;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 	
 	@Override
 	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
-		
+		if (hasRecordInSQL()) {
+			Statement statement = getStatement();
+			ResultSet rs;
+			try {
+				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				playtime = rs.getInt(KEY_PLAYTIME);
+				levelsComplete = rs.getInt(KEY_LEVELCOMPLETED);
+				stepCounter = rs.getInt(KEY_STEPCOUNTER);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	

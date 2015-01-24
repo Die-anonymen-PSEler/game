@@ -27,7 +27,7 @@ public class RetroDatabase {
 	/**
 	 * The name of the database in the sqlite file.
 	 */
-	public static final String DATABASE_NAME = "assets/testcase.db";
+	public static final String DATABASE_NAME = "assets/db/testcase.db";
 	
 	/**
 	 * Private constructor to avoid double creation of the database connection.

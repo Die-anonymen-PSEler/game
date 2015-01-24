@@ -178,8 +178,8 @@ public class Profile extends Model {
 	 * Getter and Setter
 	 */
 
-	public void setStatistic(Statistic statistic2) {
-		this.statistic = statistic2;		
+	public void setStatistic(Statistic statistic) {
+		this.statistic = statistic;		
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class Profile extends Model {
 	 */
 	public Statistic getStatistic() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.statistic;
 	}
 
 }
