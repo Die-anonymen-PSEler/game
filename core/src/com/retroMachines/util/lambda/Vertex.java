@@ -1,5 +1,6 @@
 package com.retroMachines.util.lambda;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
@@ -58,8 +59,8 @@ public abstract class Vertex {
 	/**
 	 * Creates a new instance of the Vertex class.
 	 * 
-	 * @param id
-	 *            ID to set.
+	 * @param color
+	 *            color to set.
 	 */
 	public Vertex(int color) {
 		this.color = color;
@@ -79,14 +80,37 @@ public abstract class Vertex {
 	 * @return true if the IdList contained the oldId and it was changed successfully.
 	 */
 	public boolean updateIdList(int oldId, int newId) {
-		return false;
+		boolean updated = false;
+		for(Integer id : familyColorlist) {
+			if (id == oldId) {
+				id = newId;
+				updated = true;
+				//break;
+			}
+		}
+		return updated;
 	}
 	
 	/**
 	 * Add element to IdList
 	 * @param addId id which should be added
 	 */
-	public void addFamilyIdList(char addId){
+	public void addFamilyIdList(int addId){
+		if (familyColorlist.contains(addId)) {
+			return; //list already contains id
+		}
+		int index = 0;
+		for (int id : familyColorlist) {
+			if (id > addId) {
+				index = familyColorlist.indexOf(id);
+				break;
+			}
+		}
+		if (index == 0) {
+			familyColorlist.addFirst(addId);
+		} else {
+			familyColorlist.add(index - 1, addId);
+		}
 		
 	}
 	
@@ -99,9 +123,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
-	public boolean betaReduction() {
-		return false;	
-	}
+	abstract public boolean betaReduction();
 	
 	/**
 	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
@@ -156,7 +178,7 @@ public abstract class Vertex {
 			this.familyColorlist.remove(index);
 			if (familyColorlist.getLast() >= newColor) {
 				/* Falsche Sortierung/ newColor
-				 * New color ist immer größtes Element in gesamter Liste
+				 * New color ist immer grï¿½ï¿½tes Element in gesamter Liste
 				 */
 				return false;
 			}
@@ -193,20 +215,16 @@ public abstract class Vertex {
 	
 	/**
 	 * Creates a clone of this Vertex without Next and his hole Family
-	 * @param next
-	 * @return
+	 * @param next vertex to clone
+	 * @return deep copy of next
 	 */
-	protected Vertex cloneMe(Vertex next){
-		return null;
-	}
+	abstract protected Vertex cloneMe(Vertex next);
 	
 	/**
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return clone of Vertex with hole family and next coned
 	 */
-	protected Vertex cloneFamily(){
-		return null;
-	}
+	abstract protected Vertex cloneFamily();
 	
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex

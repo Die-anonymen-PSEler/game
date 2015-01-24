@@ -105,4 +105,9 @@ public class Variable extends Vertex {
 		// At the End return the ColorList, if something is replaced;
 		return listOfNewColors;
 	}
+
+	@Override
+	protected Vertex cloneMe(Vertex next) {
+		return new Variable(next.getColor());
+	}
 }
