@@ -1,11 +1,9 @@
 package com.retroMachines.data.models;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.badlogic.gdx.sql.Database;
 import com.retroMachines.data.RetroDatabase;
 
 /**
@@ -69,4 +67,9 @@ public abstract class Model {
 	 * background storage and saves it to this object.
 	 */
 	public abstract void fetchFromSQL();
+	
+	/**
+	 * Destroys the object and removes it from the persistent background storage
+	 */
+	public abstract void destroy();
 }

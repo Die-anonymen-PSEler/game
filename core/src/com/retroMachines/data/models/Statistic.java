@@ -121,7 +121,12 @@ public class Statistic extends Model {
 		}
 		else {
 			try {
-				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, playtime, levelsComplete, stepCounter), Statement.RETURN_GENERATED_KEYS);
+				statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, playtime, levelsComplete, stepCounter));
+				ResultSet generatedKeys = statement.executeQuery("SELECT last_insert_rowid()");
+				if (generatedKeys.next()) {
+					this.rowId = generatedKeys.getInt(1);
+				}
+				generatedKeys.close();
 				statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -158,8 +163,21 @@ public class Statistic extends Model {
 				playtime = rs.getInt(KEY_PLAYTIME);
 				levelsComplete = rs.getInt(KEY_LEVELCOMPLETED);
 				stepCounter = rs.getInt(KEY_STEPCOUNTER);
+				rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Override
+	public void destroy() {
+		if (hasRecordInSQL()) {
+			Statement st = getStatement();
+			try {
+				st.executeUpdate(String.format(DELETE_TABLE_QUERY_PATTERN, rowId));
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -185,6 +203,7 @@ public class Statistic extends Model {
 	 */
 	public void setLevelsComplete(int levelsComplete) {
 		this.levelsComplete = levelsComplete;
+		writeToSQL();
 	}
 
 	/**

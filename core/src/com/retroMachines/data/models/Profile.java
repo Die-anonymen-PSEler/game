@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.badlogic.gdx.sql.DatabaseCursor;
-import com.badlogic.gdx.sql.SQLiteGdxException;
 import com.retroMachines.data.RetroDatabase;
 
 /**
@@ -93,12 +91,11 @@ public class Profile extends Model {
 	 * @param statistic
 	 *            statistics of the profile
 	 */
-	public Profile(String name, int profileId, Setting setting,
+	public Profile(String name, Setting setting,
 			Statistic statistic) {
 		super();
-		this.setProfileName(name);
-		this.rowId = profileId;
-		this.setSetting(setting);
+		this.profileName = name;
+		this.setting = setting;
 		this.statistic = statistic;
 	}
 	
@@ -127,6 +124,11 @@ public class Profile extends Model {
 		else {
 			try {
 				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId), Statement.RETURN_GENERATED_KEYS);
+				ResultSet generatedKeys = statement.executeQuery("SELECT last_insert_rowid()");
+				if (generatedKeys.next()) {
+					this.rowId = generatedKeys.getInt(1);
+				}
+				generatedKeys.close();
 				statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -162,11 +164,26 @@ public class Profile extends Model {
 			ResultSet rs;
 			try {
 				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				int settingId = rs.getInt(KEY_SETTING);
+				int statisticId = rs.getInt(KEY_STATISTIC);
 				profileName = rs.getString(KEY_PROFILE_NAME);
-				setting = new Setting(rs.getInt(KEY_SETTING));
-				statistic = new Statistic(rs.getInt(KEY_STATISTIC));
+				rs.close();
+				setting = new Setting(settingId);
+				statistic = new Statistic(statisticId);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Override
+	public void destroy() {
+		if (hasRecordInSQL()) {
+			Statement st = getStatement();
+			try {
+				st.executeUpdate(String.format(DELETE_TABLE_QUERY_PATTERN, rowId));
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -196,6 +213,7 @@ public class Profile extends Model {
 	 */
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
+		writeToSQL();
 	}
 
 	/**

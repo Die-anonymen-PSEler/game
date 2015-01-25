@@ -1,6 +1,11 @@
 package com.retroMachines.data.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
+
+import com.retroMachines.data.RetroDatabase;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -14,6 +19,10 @@ public class GlobalVariables extends Model {
 	 * the name of the table where the globalVariables are stored
 	 */
 	public static final String TABLE_NAME = "globalVariables";
+	
+	private static final String KEY_KEY = "key";
+	
+	private static final String KEY_VALUE = "value";
 
 	/**
 	 * a raw query that should be executed in case a table doesn't exist
@@ -43,6 +52,11 @@ public class GlobalVariables extends Model {
 	 * a row within the TABLE_NAME
 	 */
 	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `globalVariables` VALUES (null, '%s','%s');";
+	
+	/**
+	 * a pattern to select data from the database
+	 */
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`key` LIKE '%s';";
 
 	/**
 	 * HashMap to store keyValue-pairs for faster access
@@ -61,6 +75,7 @@ public class GlobalVariables extends Model {
 	private GlobalVariables() {
 		super();
 		map = new HashMap<String, String>();
+		fetchFromSQL();
 	}
 
 	/**
@@ -70,14 +85,6 @@ public class GlobalVariables extends Model {
 		instance = new GlobalVariables();
 	}
 
-	/**
-	 * Fetches the value from the persistent background storage.
-	 * @param key the key of the value.
-	 * @return the value that is associated with the key.
-	 */
-	private String fetchFromBackgroundStorage(String key) {
-		return null;
-	}
 
 	/**
 	 * This function checks if the persistent background storage has a record.
@@ -85,8 +92,22 @@ public class GlobalVariables extends Model {
 	 */
 	@Override
 	public boolean hasRecordInSQL() {
-		// TODO Auto-generated method stub
-		return false;
+		for (String key : map.keySet()) {
+			Statement st = getStatement();
+			ResultSet rs;
+			try {
+				rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, key));
+				if (RetroDatabase.countResultSet(rs) == 0) {
+					// key does not exist. write it back
+					st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, key, map.get(key).toString()));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+						
+		}
+		return true;
 	}
 
 	/**
@@ -94,14 +115,36 @@ public class GlobalVariables extends Model {
 	 */
 	@Override
 	public void writeToSQL() {
-		// TODO Auto-generated method stub
-
+		hasRecordInSQL();
+		for (String key : map.keySet()) {
+			Statement st = getStatement();
+			try {
+				st.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, key, map.get(key).toString()));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	@Override
 	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
-		
+		Statement st = getStatement();
+		try {
+			ResultSet rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, '%'));
+			while(rs.next()) {
+				map.put(rs.getString(KEY_KEY), rs.getString(KEY_VALUE));
+			}
+			rs.close();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void destroy() {
+		// nothing to do. just override the value
 	}
 
 	
@@ -129,7 +172,8 @@ public class GlobalVariables extends Model {
 	 * @param value the value that wil be stored.
 	 */
 	public void put(String key, String value) {
-
+		map.put(key, value);
+		writeToSQL();
 	}
 
 	/**
@@ -138,13 +182,6 @@ public class GlobalVariables extends Model {
 	 * @return the value that was found. null if the key does not exist.
 	 */
 	public String get(String key) {
-		if (map.containsKey(key)) {
-			return map.get(key);
-		} else {
-			String result = fetchFromBackgroundStorage(key);
-			map.put(key, result);
-			writeToSQL();
-			return result;
-		}
+		return map.get(key);
 	}
 }

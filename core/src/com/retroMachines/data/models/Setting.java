@@ -130,6 +130,11 @@ public class Setting extends Model {
 			// create record
 			try {
 				rowId = st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0), Statement.RETURN_GENERATED_KEYS);
+				ResultSet generatedKeys = st.executeQuery("SELECT last_insert_rowid()");
+				if (generatedKeys.next()) {
+					this.rowId = generatedKeys.getInt(1);
+				}
+				generatedKeys.close();
 				st.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -175,6 +180,21 @@ public class Setting extends Model {
 			// well this is awkward
 		}
 	}
+	
+	@Override
+	public void destroy() {
+		if (hasRecordInSQL()) {
+			Statement st = getStatement();
+			try {
+				st.executeUpdate(String.format(DELETE_TABLE_QUERY_PATTERN, rowId));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
 
 	/*
 	 * Getter and Setter
@@ -196,6 +216,7 @@ public class Setting extends Model {
 			throw new IllegalArgumentException("new volume is out of range");
 		}
 		this.volume = volume;
+		writeToSQL();
 	}
 
 	/**
