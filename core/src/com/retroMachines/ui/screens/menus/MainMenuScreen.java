@@ -34,8 +34,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	public static final String TITLE = "RETROMACHINES";
 	
-	private Skin skin;
-	
 	private BitmapFont font;
 	
 	private TextureAtlas buttonAtlas;
@@ -185,6 +183,10 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		public ExitDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
+			initialize();
+		}
+		
+		private void initialize() {
 			padTop(60); // set padding on top of the dialog title
 			padBottom(30); // set padding on bottom of the dialog title
 	        getButtonTable().defaults().height(50); // set buttons height

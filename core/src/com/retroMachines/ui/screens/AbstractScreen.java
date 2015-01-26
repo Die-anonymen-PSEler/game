@@ -32,6 +32,12 @@ public abstract class AbstractScreen implements Screen {
      */
     protected final RetroMachines game;
     
+    
+    /**
+     * The skin of all Screens
+     */
+	protected Skin skin;
+    
     /**
      * The screen class.
      * @param game the main game class

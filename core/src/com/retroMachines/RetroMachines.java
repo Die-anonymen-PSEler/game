@@ -23,7 +23,7 @@ import com.retroMachines.ui.screens.menus.MainMenuScreen;
 public class RetroMachines extends Game{
 	
 	public static final String TITLE="Game Project"; 
-    public static final int WIDTH=480,HEIGHT=800; // used later to set window size
+    public static final int WIDTH=1920,HEIGHT=1080; // used later to set window size
 
 	
 	/**

@@ -1,12 +1,16 @@
 package com.retroMachines.ui.screens.menus;
 
+
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.ProfileController;
-import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
  * The ProfileMenuScreen is part of the view of RetroMachines.
@@ -37,7 +41,11 @@ public class ProfileMenuScreen extends MenuScreen{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		profileList = new List<String>(new Skin());
+		skin = AssetManager.menuSkin;
+		profileList = new List<String>(skin);
+		profileList.setItems(new String[] {"Profile1","Profile2","Profile3"});
+
+	    Gdx.input.setInputProcessor(stage);
 		
 	}
 	

@@ -1,18 +1,32 @@
 {
+    
+    com.badlogic.gdx.graphics.Color: {
+        "green": { "a": 1, "b": 0, "g": 1, "r": 0 },
+        "white": { "a": 1, "b": 1, "g": 1, "r": 1 },
+        "red": { "a": 1, "b": 0, "g": 0, "r": 1 },
+        "black": { "a": 1, "b": 0, "g": 0, "r": 0 }
+    },
     "com.badlogic.gdx.graphics.g2d.BitmapFont": {
         "font": { "file": "fonts/LambdaGameFont.fnt" },
         "fontSmall": { "file": "fonts/LambdaGameFont20.fnt" },
     },
-    com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+    "com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
         "default": { titleFont: fontSmall, background: "WindowStyle" }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
         "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 }
     },
-    com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+    "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
         default: { "up": "ButtonBlank", "down": "ButtonBlankPressed", font: fontSmall}
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
-        "default": { "font": font}
+        "default": { "font": font }
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
+        "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: fontSmall }
+    },
+    com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+        "default": { vScroll: "ButtonBlank", hScrollKnob: "ButtonBlankPressed", background: "Default", hScroll: "DefaultPressed", 
+        "vScrollKnob": "WindowStyle" }
     }
 }
