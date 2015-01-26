@@ -1,6 +1,5 @@
 package com.retroMachines.util.lambda;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
@@ -144,6 +143,7 @@ public abstract class Vertex {
 					if (!this.next.renameFamily(nextFam.get(j), newColor)) {
 						// Error
 						System.out.println("AlphaConversionError: " + this.color);
+						//TODO: kein System.out, Exception oder Logcat
 					}
 					returnValue = true;
 					newColor++;
@@ -218,13 +218,13 @@ public abstract class Vertex {
 	 * @param next vertex to clone
 	 * @return deep copy of next
 	 */
-	abstract protected Vertex cloneMe(Vertex next);
+	abstract public Vertex cloneMe(Vertex next);
 	
 	/**
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return clone of Vertex with hole family and next coned
 	 */
-	abstract protected Vertex cloneFamily();
+	abstract public Vertex cloneFamily();
 	
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex

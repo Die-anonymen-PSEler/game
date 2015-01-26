@@ -63,7 +63,7 @@ public class Variable extends Vertex {
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
-	protected Vertex cloneFamily(){
+	public Vertex cloneFamily(){
 		Vertex clone = new Variable(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
 		return clone;
 	}
@@ -73,7 +73,7 @@ public class Variable extends Vertex {
 	 * @param start vertex which is parent of this Vertex and starts the beta Reduction
 	 * @return
 	 */
-	protected LinkedList<Integer> replaceInFamily(Vertex start) {
+	public LinkedList<Integer> replaceInFamily(Vertex start) {
 
 		LinkedList<Integer> listOfNewColors = new LinkedList<Integer>();
 		
@@ -107,7 +107,7 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	protected Vertex cloneMe(Vertex next) {
+	public Vertex cloneMe(Vertex next) {
 		return new Variable(next.getColor());
 	}
 }

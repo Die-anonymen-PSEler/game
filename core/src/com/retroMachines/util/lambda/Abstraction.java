@@ -84,7 +84,7 @@ public class Abstraction extends Vertex {
 	 * @param next
 	 * @return
 	 */
-	protected Vertex cloneMe(Vertex next){
+	public Vertex cloneMe(Vertex next){
 		return new Abstraction(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
 	}
 	
@@ -92,7 +92,7 @@ public class Abstraction extends Vertex {
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
-	protected Vertex cloneFamily(){
+	public Vertex cloneFamily(){
 		return new Abstraction(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
 	}		
 }

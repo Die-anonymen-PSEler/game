@@ -84,7 +84,7 @@ public class Application extends Vertex {
 	 * @param next
 	 * @return
 	 */
-	protected Vertex cloneMe(Vertex next){
+	public Vertex cloneMe(Vertex next){
 		Vertex clone = new Application(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
 		return clone;
 	}
@@ -93,7 +93,7 @@ public class Application extends Vertex {
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
-	protected Vertex cloneFamily(){
+	public Vertex cloneFamily(){
 		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
 		return clone;
 	}
