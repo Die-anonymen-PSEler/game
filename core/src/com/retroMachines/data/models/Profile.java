@@ -1,8 +1,11 @@
 package com.retroMachines.data.models;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import android.net.NetworkInfo.State;
 
 import com.retroMachines.data.RetroDatabase;
 
@@ -42,27 +45,27 @@ public class Profile extends Model {
 	 * a row within the TABLE_NAME
 	 * the order is name -> statisticId -> settingId -> rowId
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `name` = '%s', `statisticId` = '%s', `settingId` = '%s' WHERE id = %s;";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `name` = ?, `statisticId` = ?, `settingId` = ? WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = %s;";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 * name -> statisticId -> settingId
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, ?, ?, ?);";
 	
 	/**
 	 * a pattern (that should be formatted with printf or similar) that selects a row
 	 * within the table
 	 * 0 -> id, 1 -> name, 2 -> statisticId, 3 -> settingId
 	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = ?;";
 
 	/**
 	 * the name of the profile
@@ -113,24 +116,34 @@ public class Profile extends Model {
 
 	@Override
 	public void writeToSQL() {
-		Statement statement = getStatement();
 		if (hasRecordInSQL()) {
 			try {
-				statement.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId, rowId));
-				statement.close();
+				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
+				ps.setString(1, profileName);
+				ps.setInt(2, statistic.rowId);
+				ps.setInt(3, setting.rowId);
+				ps.setInt(4, rowId);
+				ps.executeUpdate();
+				ps.close();				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		else {
 			try {
-				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId));
-				ResultSet generatedKeys = statement.executeQuery("SELECT last_insert_rowid()");
+				PreparedStatement ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
+				ps.setString(1, profileName);
+				ps.setInt(2, statistic.rowId);
+				ps.setInt(3, setting.rowId);
+				ps.executeUpdate();
+				ps.close();
+				Statement st = getStatement();
+				ResultSet generatedKeys = st.executeQuery("SELECT last_insert_rowid()");
 				if (generatedKeys.next()) {
 					this.rowId = generatedKeys.getInt(1);
 				}
 				generatedKeys.close();
-				statement.close();
+				st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -141,12 +154,13 @@ public class Profile extends Model {
 	public boolean hasRecordInSQL() {
 		// TODO Auto-generated method stub
 		if (rowId != -1) {
-			Statement statement = getStatement();
 			ResultSet rs;
 			try {
-				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				rs = ps.executeQuery();
 				int size = RetroDatabase.countResultSet(rs);
-				statement.close();
+				ps.close();
 				rs.close();
 				return size == 1;
 			} catch (SQLException e) {
@@ -161,14 +175,16 @@ public class Profile extends Model {
 	public void fetchFromSQL() {
 		// TODO Auto-generated method stub
 		if (hasRecordInSQL()) {
-			Statement statement = getStatement();
 			ResultSet rs;
 			try {
-				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				rs = ps.executeQuery();
 				int settingId = rs.getInt(KEY_SETTING);
 				int statisticId = rs.getInt(KEY_STATISTIC);
 				profileName = rs.getString(KEY_PROFILE_NAME);
 				rs.close();
+				ps.close();
 				setting = new Setting(settingId);
 				statistic = new Statistic(statisticId);
 			} catch (SQLException e) {
@@ -181,9 +197,11 @@ public class Profile extends Model {
 	@Override
 	public void destroy() {
 		if (hasRecordInSQL()) {
-			Statement st = getStatement();
 			try {
-				st.executeUpdate(String.format(DELETE_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(DELETE_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				ps.executeUpdate();
+				ps.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

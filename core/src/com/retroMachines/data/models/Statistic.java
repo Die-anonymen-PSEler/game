@@ -1,5 +1,6 @@
 package com.retroMachines.data.models;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,24 +42,24 @@ public class Statistic extends Model {
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `playtime` = '%s', `levelCompleted` = '%s', `stepCounter` = '%s' WHERE id = %s;";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `playtime` = ?, `levelCompleted` =?, `stepCounter` = ? WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = %s;";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s', '%s', '%s');";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, ?, ?, ?);";
 	
 	/**
 	 * select query to fetch data from the sqlite database
 	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = ?;";
 	
 	/**
 	 * the play time the player has spent on the game in minutes
@@ -111,24 +112,33 @@ public class Statistic extends Model {
 
 	@Override
 	public void writeToSQL() {
-		Statement statement = getStatement();
 		if (hasRecordInSQL()) {
 			try {
-				statement.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, playtime, levelsComplete, stepCounter, rowId));
-				statement.close();
+				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
+				ps.setInt(1, playtime);
+				ps.setInt(2, levelsComplete);
+				ps.setInt(3, stepCounter);
+				ps.setInt(4, rowId);
+				ps.executeUpdate();
+				ps.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		else {
 			try {
-				statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, playtime, levelsComplete, stepCounter));
-				ResultSet generatedKeys = statement.executeQuery("SELECT last_insert_rowid()");
+				PreparedStatement ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
+				ps.setInt(1, playtime);
+				ps.setInt(2, levelsComplete);
+				ps.setInt(3, stepCounter);
+				ps.executeUpdate();
+				Statement st = getStatement();
+				ResultSet generatedKeys = st.executeQuery(SELECT_LASTINSERTEDID);
 				if (generatedKeys.next()) {
 					this.rowId = generatedKeys.getInt(1);
 				}
 				generatedKeys.close();
-				statement.close();
+				st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -138,12 +148,13 @@ public class Statistic extends Model {
 	@Override
 	public boolean hasRecordInSQL() {
 		if (rowId != -1) {
-			Statement statement = getStatement();
 			ResultSet rs;
 			try {
-				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				rs = ps.executeQuery();
 				int size = RetroDatabase.countResultSet(rs);
-				statement.close();
+				ps.close();
 				rs.close();
 				return size == 1;
 			} catch (SQLException e) {
@@ -157,14 +168,16 @@ public class Statistic extends Model {
 	@Override
 	public void fetchFromSQL() {
 		if (hasRecordInSQL()) {
-			Statement statement = getStatement();
 			ResultSet rs;
 			try {
-				rs = statement.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				rs = ps.executeQuery();
 				playtime = rs.getInt(KEY_PLAYTIME);
 				levelsComplete = rs.getInt(KEY_LEVELCOMPLETED);
 				stepCounter = rs.getInt(KEY_STEPCOUNTER);
 				rs.close();
+				ps.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -175,9 +188,10 @@ public class Statistic extends Model {
 	@Override
 	public void destroy() {
 		if (hasRecordInSQL()) {
-			Statement st = getStatement();
 			try {
-				st.executeUpdate(String.format(DELETE_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(DELETE_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

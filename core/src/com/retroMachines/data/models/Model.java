@@ -1,6 +1,7 @@
 package com.retroMachines.data.models;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -19,6 +20,11 @@ public abstract class Model {
 	 * the timeout for a query to be executed
 	 */
 	private static final int QUERY_TIMEOUT = 10;
+	
+	/**
+	 * select query to receive the id of the row that was inserted by an insert query
+	 */
+	public static final String SELECT_LASTINSERTEDID = "SELECT last_insert_rowid()";
 
 	/**
 	 * The database connection that will execute queries to the SQLite file.

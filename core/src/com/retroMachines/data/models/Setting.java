@@ -1,5 +1,6 @@
 package com.retroMachines.data.models;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,26 +42,26 @@ public class Setting extends Model {
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `volume` = '%s', `soundOnOff` = '%s', `leftControl` = '%s' WHERE id = %s;";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `volume` = ?, `soundOnOff` = ?, `leftControl` = ? WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = %s;";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, '%s','%s', '%s');";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, ?, ?, ?);";
 	
 	/**
 	 * a pattern (that should be formatted with printf or similar) that selects a row
 	 * within the table
 	 * 0 -> id, 1 -> volume, 2 -> soundOnOff, 3 -> leftControl
 	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = %s;";
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = ?;";
 
 	/**
 	 * the volume of the game range 0.0f to 1.0f
@@ -116,12 +117,16 @@ public class Setting extends Model {
 	
 	@Override
 	public void writeToSQL() {
-		Statement st = getStatement();
 		if (hasRecordInSQL()) {
 			// records exists -> update
 			try {
-				st.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0, rowId));
-				st.close();
+				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
+				ps.setFloat(1, volume);
+				ps.setInt(2, soundOnOff ? 1 : 0);
+				ps.setInt(3, leftControl ? 1 : 0);
+				ps.setInt(4, rowId);
+				ps.executeUpdate();
+				ps.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -130,7 +135,13 @@ public class Setting extends Model {
 		else {
 			// create record
 			try {
-				rowId = st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0));
+				PreparedStatement ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
+				ps.setFloat(1,  volume);
+				ps.setInt(2, soundOnOff ? 1 : 0);
+				ps.setInt(3, leftControl ? 1 : 0);
+				ps.executeUpdate();
+				ps.close();
+				Statement st = getStatement();
 				ResultSet generatedKeys = st.executeQuery("SELECT last_insert_rowid()");
 				if (generatedKeys.next()) {
 					this.rowId = generatedKeys.getInt(1);
@@ -146,13 +157,14 @@ public class Setting extends Model {
 
 	@Override
 	public boolean hasRecordInSQL() {
-		Statement st = getStatement();
 		ResultSet rs;
 		try {
-			rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+			ps.setInt(1, rowId);
+			rs = ps.executeQuery();
 			int size = RetroDatabase.countResultSet(rs);
 			rs.close();
-			st.close();
+			ps.close();
 			return size == 1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -165,13 +177,15 @@ public class Setting extends Model {
 	@Override
 	public void fetchFromSQL() {
 		if (hasRecordInSQL()) {
-			Statement st = getStatement();
 			try {
-				ResultSet rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				ResultSet rs = ps.executeQuery();
 				soundOnOff = rs.getInt(KEY_SOUNDONOFF) == 1;
 				volume = rs.getFloat(KEY_VOLUME);
 				leftControl = rs.getInt(KEY_LEFTCONTROL) == 1;
-				st.close();
+				ps.close();
+				rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -185,9 +199,10 @@ public class Setting extends Model {
 	@Override
 	public void destroy() {
 		if (hasRecordInSQL()) {
-			Statement st = getStatement();
 			try {
-				st.executeUpdate(String.format(DELETE_TABLE_QUERY_PATTERN, rowId));
+				PreparedStatement ps = connection.prepareStatement(DELETE_TABLE_QUERY_PATTERN);
+				ps.setInt(1, rowId);
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

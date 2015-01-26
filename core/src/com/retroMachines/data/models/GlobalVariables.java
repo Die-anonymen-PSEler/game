@@ -1,8 +1,8 @@
 package com.retroMachines.data.models;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 
 import com.retroMachines.data.RetroDatabase;
@@ -39,24 +39,24 @@ public class GlobalVariables extends Model {
 	 * please specify values in the follwing order
 	 * key, value, id (where clause)
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `globalVariables` SET `key` = '%s', `value` = '%s' WHERE key LIKE '%s';";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `globalVariables` SET `key` = ?, `value` = ? WHERE key LIKE ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
 	 * a row within the TABLE_NAME
 	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `globalVariables` WHERE id = %s;";
+	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `globalVariables` WHERE id = ?;";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that inserts
 	 * a row within the TABLE_NAME
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `globalVariables` VALUES (null, '%s','%s');";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `globalVariables` VALUES (null, ?, ?);";
 	
 	/**
 	 * a pattern to select data from the database
 	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`key` LIKE '%s';";
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`key` LIKE ?;";
 
 	/**
 	 * HashMap to store keyValue-pairs for faster access
@@ -93,13 +93,17 @@ public class GlobalVariables extends Model {
 	@Override
 	public boolean hasRecordInSQL() {
 		for (String key : map.keySet()) {
-			Statement st = getStatement();
 			ResultSet rs;
 			try {
-				rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, key));
+				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+				ps.setString(1, key);
+				rs = ps.executeQuery();
 				if (RetroDatabase.countResultSet(rs) == 0) {
 					// key does not exist. write it back
-					st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, key, map.get(key).toString()));
+					ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
+					ps.setString(1, key);
+					ps.setString(2, map.get(key).toString());
+					ps.executeUpdate();
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -117,9 +121,12 @@ public class GlobalVariables extends Model {
 	public void writeToSQL() {
 		hasRecordInSQL();
 		for (String key : map.keySet()) {
-			Statement st = getStatement();
 			try {
-				st.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, key, map.get(key).toString(), key));
+				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
+				ps.setString(1, key);
+				ps.setString(2, map.get(key).toString());
+				ps.setString(3, key);
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -129,9 +136,10 @@ public class GlobalVariables extends Model {
 	
 	@Override
 	public void fetchFromSQL() {
-		Statement st = getStatement();
 		try {
-			ResultSet rs = st.executeQuery(String.format(SELECT_TABLE_QUERY_PATTERN, '%'));
+			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+			ps.setString(1, "%");
+			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				map.put(rs.getString(KEY_KEY), rs.getString(KEY_VALUE));
 			}
