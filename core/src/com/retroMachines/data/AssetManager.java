@@ -65,7 +65,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
      *  TextureAtlas, TiledAtlas, TiledMapRenderer, Music and Sound.
      */
     public static void queueLoading() {
-        manager.load("skins/DefaultLambdaGame.pack", TextureAtlas.class);
+        manager.load("skins/LambdaGameDefault.pack", TextureAtlas.class);
     }
 
     /**
@@ -74,6 +74,6 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
     public static void setMenuSkin() {
         if (menuSkin == null)
             menuSkin = new Skin(Gdx.files.internal("skins/DefaultLambdaGame.json"),
-                    manager.get("skins/DefaultLambdaGame.pack", TextureAtlas.class));
+                    manager.get("skins/LambdaGameDefault.pack", TextureAtlas.class));
     }
 }

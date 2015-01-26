@@ -10,7 +10,7 @@
         "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 }
     },
     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-        default: { "up": "Default", "down": "DefaultPressed", font: fontSmall}
+        default: { "up": "ButtonBlank", "down": "ButtonBlankPressed", font: fontSmall}
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
         "default": { "font": font}

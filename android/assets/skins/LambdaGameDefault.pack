@@ -1,5 +1,5 @@
 
-DefaultLambdaGame.png
+LambdaGameDefault.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -10,16 +10,30 @@ WindowStyle
   orig: 150, 150
   offset: 0, 0
   index: -1
-Default
+ButtonBlank
   rotate: false
   xy: 1, 53
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-DefaultPressed
+ButtonBlankPressed
   rotate: false
   xy: 1, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Default
+  rotate: false
+  xy: 153, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+DefaultPressed
+  rotate: false
+  xy: 205, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0

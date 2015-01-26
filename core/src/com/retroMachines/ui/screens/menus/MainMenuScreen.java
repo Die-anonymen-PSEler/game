@@ -185,9 +185,16 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		public ExitDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
+			padTop(60); // set padding on top of the dialog title
+			padBottom(30); // set padding on bottom of the dialog title
+	        getButtonTable().defaults().height(50); // set buttons height
+	        getButtonTable().defaults().width(80); // set buttons height
+	        setModal(true);
+	        setMovable(false);
+	        setResizable(false);
 			text("Test");
-			button("yes", true);
-			button("no", false);
+			button("Yes", true);
+			button("No", false);
 		}
 		
 		protected void result(Object object) {
@@ -197,5 +204,17 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 				
 			}
 		}
+		
+		   @Override
+		   public float getPrefWidth() {
+		      // force dialog width
+		      return 480f;
+		   }
+
+		   @Override
+		   public float getPrefHeight() {
+		      // force dialog height
+		      return 200f;
+		   }
 	}
 }
