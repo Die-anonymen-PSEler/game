@@ -3,16 +3,23 @@ DefaultLambdaGame.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+WindowStyle
+  rotate: false
+  xy: 1, 105
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
 Default
   rotate: false
-  xy: 1, 1
+  xy: 1, 53
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 DefaultPressed
   rotate: false
-  xy: 53, 1
+  xy: 1, 1
   size: 50, 50
   orig: 50, 50
   offset: 0, 0

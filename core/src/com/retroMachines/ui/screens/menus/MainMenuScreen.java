@@ -1,12 +1,14 @@
 package com.retroMachines.ui.screens.menus;
 
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -26,6 +28,11 @@ import com.retroMachines.data.models.SettingsChangeListener;
  *
  */
 public class MainMenuScreen extends MenuScreen implements SettingsChangeListener {
+	
+	/**
+	 * The Title of this Screen.
+	 */
+	public static final String TITLE = "RETROMACHINES";
 	
 	private Skin skin;
 	
@@ -61,23 +68,37 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	public void show() {
 		skin = AssetManager.menuSkin;
 		table = new Table();
-		Label title = new Label("RETROMACHINES",skin);
+		
+		// Make Title
+		Label title = new Label(TITLE,skin);
+		
+		// Make Buttons
 		Button buttonPlay = new Button(skin, "default");
 		buttonPlay.addListener(new PlayButtonClickListener());
+		
 		Button buttonSetting = new Button(skin, "default");
 		buttonSetting.addListener(new SettingButtonClickListener());
+		
 		Button buttonAbout = new Button(skin, "default");
 		buttonAbout.addListener(new AboutButtonClickListener());
+		
 		Button buttonStatistics = new Button(skin, "default");
 		buttonStatistics.addListener(new StatisticsButtonClickListener());
+		
 		Button buttonProfileMenu = new Button(skin, "default");
 		buttonProfileMenu.addListener(new ProfileMenuClickListener());
+		
+		Button buttonExit = new Button(skin, "default");
+		buttonExit.addListener(new ExitClickListener());
+		
+		// Add Title and Buttons to View
 		table.add(title).row();
 		table.add(buttonPlay).row();
 	    table.add(buttonSetting).row();
 	    table.add(buttonAbout).row();
 	    table.add(buttonStatistics).row();
 	    table.add(buttonProfileMenu).row();
+	    table.add(buttonExit).row();
 	    table.setFillParent(true);
 	    stage.addActor(table);
 
@@ -115,6 +136,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
+			((Game)Gdx.app.getApplicationListener()).setScreen(new LevelMenuScreen(game));
 		}
 	}
 	
@@ -122,6 +144,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
+			((Game)Gdx.app.getApplicationListener()).setScreen(new SettingsMenuScreen(game));
 		}
 	}
 	
@@ -129,6 +152,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
+			((Game)Gdx.app.getApplicationListener()).setScreen(new AboutMenuScreen(game));
 		}
 	}
 	
@@ -136,6 +160,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
+			((Game)Gdx.app.getApplicationListener()).setScreen(new StatisticMenuScreen(game));
 		}
 	}
 	
@@ -143,7 +168,34 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			game.setScreen(new ProfileMenuScreen(game));
+			((Game)Gdx.app.getApplicationListener()).setScreen(new ProfileMenuScreen(game));
+		}
+	}
+	
+	private class ExitClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) { 
+			//TODO implement this
+			ExitDialog exitD = new ExitDialog("Do you wanna leave?", skin, "default");
+			exitD.show(stage);
+		}
+	}
+	
+	private class ExitDialog extends Dialog {
+		
+		public ExitDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			text("Test");
+			button("yes", true);
+			button("no", false);
+		}
+		
+		protected void result(Object object) {
+			if ((Boolean) object) {
+				Gdx.app.exit();
+			} else {
+				
+			}
 		}
 	}
 }
