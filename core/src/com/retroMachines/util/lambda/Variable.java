@@ -35,8 +35,17 @@ public class Variable extends Vertex {
 	}
 	
 	//------------------------------
-	//-------- Beta Reduction ------
+	//--------Alpha Conversion & Beta Reduction ------
 	//------------------------------
+	
+	/**
+	 * this method does nothing because there is no alpha conversion for variables
+	 */
+	@Override
+	public boolean alphaConversion() {
+		// no alpha conversion
+		return true;
+	}
 	
 	/**
 	 * Fulfills one step of beta-reduction for a Abstraction
@@ -110,4 +119,5 @@ public class Variable extends Vertex {
 	public Vertex cloneMe(Vertex next) {
 		return new Variable(next.getColor());
 	}
+
 }

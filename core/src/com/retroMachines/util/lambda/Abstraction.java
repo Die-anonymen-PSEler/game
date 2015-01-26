@@ -35,8 +35,18 @@ public class Abstraction extends Vertex {
 	}
 	
 	//------------------------------
-	//-------- Beta Reduction ------
+	//--------Alpha Conversion & Beta Reduction ------
 	//------------------------------
+	
+	/**
+	 * this method does nothing because there is no alpha conversion for abstractions
+	 */
+	@Override
+	public boolean alphaConversion() {
+		// no alpha conversion
+		return true;
+	}
+	
 	
 	/**
 	 * Fulfills one step of beta-reduction for a Abstraction
@@ -94,5 +104,6 @@ public class Abstraction extends Vertex {
 	 */
 	public Vertex cloneFamily(){
 		return new Abstraction(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
-	}		
+	}
+	
 }

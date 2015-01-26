@@ -129,30 +129,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
-	public boolean alphaConversion() {
-		LinkedList<Integer> nextFam = this.next.familyColorlist;
-		boolean returnValue = false;
-		int sA = familyColorlist.size();
-		int sN = nextFam.size();
-		int newColor = this.familyColorlist.getLast() + 1;
-		// Searched for double used colors
-		for (int i = 0; i < sA; i++) {
-			for (int j = 0; j < sN; j++) {
-				if (familyColorlist.get(i) == nextFam.get(j)) {
-					//Replace color in next family
-					if (!this.next.renameFamily(nextFam.get(j), newColor)) {
-						// Error
-						System.out.println("AlphaConversionError: " + this.color);
-						//TODO: kein System.out, Exception oder Logcat
-					}
-					returnValue = true;
-					newColor++;
-				}
-			}
-		}
-		return returnValue;
-	}
-	
+	abstract public boolean alphaConversion();
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//------------------Help Methods---------------------
@@ -404,6 +381,11 @@ public abstract class Vertex {
 	 */
 	protected void setFamilyColorlist(LinkedList<Integer> familyColorlist) {
 		this.familyColorlist = familyColorlist;
+	}
+	
+	public Vertex updateStart() {
+		//TODO: implement
+		return null;
 	}
 }
 

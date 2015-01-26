@@ -35,8 +35,37 @@ public class Application extends Vertex {
 	}
 	
 	//------------------------------
-	//-------- Beta Reduction ------
+	//-------- Alpha Conversion and Beta Reduction ------
 	//------------------------------
+	
+	/**
+	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
+	 * 
+	 * @return True if at least one ID has changed, false if no ID has changed.
+	 */
+	public boolean alphaConversion() {
+		LinkedList<Integer> nextFam = this.getnext().getFamilyColorlist();
+		boolean returnValue = false;
+		int sA = getFamilyColorlist().size();
+		int sN = nextFam.size();
+		int newColor = this.getFamilyColorlist().getLast() + 1;
+		// Searched for double used colors
+		for (int i = 0; i < sA; i++) {
+			for (int j = 0; j < sN; j++) {
+				if (getFamilyColorlist().get(i) == nextFam.get(j)) {
+					//Replace color in next family
+					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
+						// Error
+						System.out.println("AlphaConversionError: " + this.getColor());
+						//TODO: kein System.out, Exception oder Logcat
+					}
+					returnValue = true;
+					newColor++;
+				}
+			}
+		}
+		return returnValue;
+	}
 	
 	/**
 	 * Fulfills one step of beta-reduction for a Abstraction

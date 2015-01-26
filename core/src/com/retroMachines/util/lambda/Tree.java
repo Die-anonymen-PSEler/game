@@ -23,6 +23,15 @@ public class Tree {
 	public Tree(Vertex start) {
 		this.start = start;
 	}
+	
+	/**
+	 * One step of evaluation
+	 */
+	public void evaluate() {
+		start.alphaConversion();
+		start.betaReduction();
+		start = start.updateStart();
+	}
 
 	/**
 	 * Getter for the starting point.
@@ -31,6 +40,14 @@ public class Tree {
 	 */
 	public Vertex getStart() {
 		return start;
+	}
+	
+	/**
+	 * setter for starting point
+	 * @param start new start vertex
+	 */
+	public void setStart(Vertex start) {
+		this.start = start;
 	}
 
 }

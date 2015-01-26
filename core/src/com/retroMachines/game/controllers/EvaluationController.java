@@ -41,10 +41,12 @@ public class EvaluationController {
 	 * Removes the GameScreen and puts up the EvaluationScreen. It
 	 * also triggers the evaluation.
 	 */
-	private void enterEvaluationScreen() {
+	public void enterEvaluation() {
 		evaluationScreen = new EvaluationScreen(game, this);
 		game.setScreen(evaluationScreen);
+		lambdaTree.evaluate();
 	}
+	
 	
 	
 	/**
