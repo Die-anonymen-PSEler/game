@@ -24,7 +24,7 @@ public abstract class MenuScreen extends AbstractScreen {
 	/**
 	 * The table on the right side of the screen containing further information.
 	 */
-	protected Table tableRight = new Table();
+	protected Table tableRight;
 	
 	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.

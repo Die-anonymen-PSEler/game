@@ -134,7 +134,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			((Game)Gdx.app.getApplicationListener()).setScreen(new LevelMenuScreen(game));
+			game.setScreen(new LevelMenuScreen(game));
 		}
 	}
 	
@@ -142,7 +142,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			((Game)Gdx.app.getApplicationListener()).setScreen(new SettingsMenuScreen(game));
+			game.setScreen(new SettingsMenuScreen(game));
 		}
 	}
 	
@@ -150,7 +150,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			((Game)Gdx.app.getApplicationListener()).setScreen(new AboutMenuScreen(game));
+			game.setScreen(new AboutMenuScreen(game));
 		}
 	}
 	
@@ -158,7 +158,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			((Game)Gdx.app.getApplicationListener()).setScreen(new StatisticMenuScreen(game));
+			game.setScreen(new StatisticMenuScreen(game));
 		}
 	}
 	
@@ -166,7 +166,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			((Game)Gdx.app.getApplicationListener()).setScreen(new ProfileMenuScreen(game));
+			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
 	
