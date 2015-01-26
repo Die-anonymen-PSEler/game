@@ -95,6 +95,7 @@ public class Setting extends Model {
 		this.volume = volume;
 		this.soundOnOff = soundOnOff;
 		this.leftControl = leftControl;
+		writeToSQL();
 	}
 	
 	/**
@@ -129,7 +130,7 @@ public class Setting extends Model {
 		else {
 			// create record
 			try {
-				rowId = st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0), Statement.RETURN_GENERATED_KEYS);
+				rowId = st.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, volume, soundOnOff ? 1 : 0, leftControl ? 1 : 0));
 				ResultSet generatedKeys = st.executeQuery("SELECT last_insert_rowid()");
 				if (generatedKeys.next()) {
 					this.rowId = generatedKeys.getInt(1);
@@ -233,6 +234,7 @@ public class Setting extends Model {
 	 */
 	public void setSoundOnOff(boolean soundOnOff) {
 		this.soundOnOff = soundOnOff;
+		writeToSQL();
 	}
 
 	/**
@@ -249,5 +251,6 @@ public class Setting extends Model {
 	 */
 	public void setLeftControl(boolean leftControl) {
 		this.leftControl = leftControl;
+		writeToSQL();
 	}
 }

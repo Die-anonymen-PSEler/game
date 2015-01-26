@@ -9,6 +9,10 @@ public class ProfileTest {
 	
 	public static final String TEST_USER_IN_DB = "TestUser";
 	
+	public static final int TEST_STATISTICID = 1;
+	
+	public static final int TEST_SETTINGSID = 1;
+	
 	/**
 	 * the profile under test
 	 */
@@ -35,6 +39,7 @@ public class ProfileTest {
 		assertTrue("Statistic nicht identisch", testMe.getStatistic() == statistic);
 		setting.destroy();
 		statistic.destroy();
+		testMe.destroy();
 	}
 	
 	/**
@@ -44,6 +49,8 @@ public class ProfileTest {
 	public void testDBFetch() {
 		testMe = new Profile(1);
 		assertTrue("profil name stimmt nicht", testMe.getProfileName().equals(TEST_USER_IN_DB));
+		assertTrue("settings id stimmt nicht", testMe.getSetting().rowId == TEST_SETTINGSID);
+		assertTrue("statistic id stimmt nicht", testMe.getStatistic().rowId == TEST_STATISTICID);
 	}
 	
 	/**

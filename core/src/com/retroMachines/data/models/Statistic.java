@@ -88,6 +88,7 @@ public class Statistic extends Model {
 		this.setPlaytime(playtime);
 		this.setLevelsComplete(levelsComplete);
 		this.setStepCounter(stepCounter);
+		writeToSQL();
 	}
 	
 	/**
@@ -220,6 +221,7 @@ public class Statistic extends Model {
 	 */
 	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
+		writeToSQL();
 	}
 
 	/**
@@ -236,5 +238,6 @@ public class Statistic extends Model {
 	 */
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
+		writeToSQL();
 	}
 }

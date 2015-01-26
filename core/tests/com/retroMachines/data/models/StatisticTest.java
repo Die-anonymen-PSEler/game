@@ -21,6 +21,16 @@ public class StatisticTest {
 	public void tearDown() throws Exception {
 	}
 	
+	@Test
+	public void testCreate() {
+		Statistic statistic = new Statistic(TEST_PLAYTIME, TEST_LEVELCOMPLETED, TEST_STEPCOUNTER);
+		assertTrue("wrong playtime", TEST_PLAYTIME == statistic.getPlaytime());
+		assertTrue("wrong levels completed", TEST_LEVELCOMPLETED == statistic.getLevelsComplete());
+		assertTrue("wrong step counter", TEST_STEPCOUNTER == statistic.getStepCounter());
+		assertTrue("no record was created", statistic.hasRecordInSQL());
+		statistic.destroy();
+	}
+	
 	/**
 	 * fetch from db test
 	 */

@@ -2,7 +2,6 @@ package com.retroMachines.data.models;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class SettingTest {
@@ -23,6 +22,9 @@ public class SettingTest {
 	public void test() {
 		Setting setting = new Setting(TEST_LEFT, TEST_SOUNDONOFF, TEST_VOLUME);
 		assertTrue("volume is wrong", TEST_VOLUME == setting.getVolume());
+		assertTrue("soundonoff is wrong", TEST_SOUNDONOFF == setting.isSoundOnOff());
+		assertTrue("left is wrong", TEST_LEFT == setting.isLeftControl());
+		setting.destroy();
 	}
 	
 	/**

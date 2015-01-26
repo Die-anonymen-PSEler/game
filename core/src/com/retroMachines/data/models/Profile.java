@@ -97,6 +97,7 @@ public class Profile extends Model {
 		this.profileName = name;
 		this.setting = setting;
 		this.statistic = statistic;
+		writeToSQL();
 	}
 	
 	/**
@@ -123,7 +124,7 @@ public class Profile extends Model {
 		}
 		else {
 			try {
-				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId), Statement.RETURN_GENERATED_KEYS);
+				this.rowId = statement.executeUpdate(String.format(INSERT_TABLE_QUERY_PATTERN, profileName, statistic.rowId, setting.rowId));
 				ResultSet generatedKeys = statement.executeQuery("SELECT last_insert_rowid()");
 				if (generatedKeys.next()) {
 					this.rowId = generatedKeys.getInt(1);
@@ -196,7 +197,8 @@ public class Profile extends Model {
 	 */
 
 	public void setStatistic(Statistic statistic) {
-		this.statistic = statistic;		
+		this.statistic = statistic;
+		writeToSQL();
 	}
 
 	/**
@@ -238,6 +240,7 @@ public class Profile extends Model {
 	 */
 	public void setSetting(Setting setting) {
 		this.setting = setting;
+		writeToSQL();
 	}
 	
 	/**

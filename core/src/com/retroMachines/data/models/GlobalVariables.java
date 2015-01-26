@@ -39,7 +39,7 @@ public class GlobalVariables extends Model {
 	 * please specify values in the follwing order
 	 * key, value, id (where clause)
 	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `globalVariables` SET `key` = '%s', `value` = '%s' WHERE id = %s;";
+	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `globalVariables` SET `key` = '%s', `value` = '%s' WHERE key LIKE '%s';";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that deletes
@@ -119,7 +119,7 @@ public class GlobalVariables extends Model {
 		for (String key : map.keySet()) {
 			Statement st = getStatement();
 			try {
-				st.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, key, map.get(key).toString()));
+				st.executeUpdate(String.format(UPDATE_TABLE_QUERY_PATTERN, key, map.get(key).toString(), key));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
