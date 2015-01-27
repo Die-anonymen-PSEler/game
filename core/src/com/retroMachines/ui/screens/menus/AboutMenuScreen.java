@@ -67,7 +67,7 @@ public class AboutMenuScreen extends MenuScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
-			((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
+			game.setScreen(new MainMenuScreen(game));
 		}
 	}
 

@@ -1,6 +1,8 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
@@ -34,12 +36,15 @@ public abstract class MenuScreen extends AbstractScreen {
 	public MenuScreen(RetroMachines game) {
 		super(game);
 		table = new Table(AssetManager.menuSkin);
-		//tableRight = new Table();
 		stage = new Stage();
 		
 		initialize();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//tableRight.setFillParent(true);
+		
+		//Back and Home Button
+        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchMenuKey(true);
+		
 	}
 	
 	/**
@@ -49,5 +54,19 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	protected abstract void initialize();
 	
+    /**
+     * Renders the Stage to the Screen.
+     */
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act();
+        stage.draw();
+        
+        if (Gdx.input.isKeyPressed(Keys.BACK)){
+        	game.setScreen(new MainMenuScreen(game));
+        }
+    }
 	
 }
