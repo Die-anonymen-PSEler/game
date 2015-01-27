@@ -29,7 +29,9 @@
         "soundDown": { "up": "SoundDown", "down": "SoundDownPressed", "pressedOffsetY": -4 },
         "soundOff": { "up": "SoundOff", "down": "SoundOffPressed", "pressedOffsetY": -4 },
         "soundUp": { "up": "SoundUp", "down": "SoundUpPressed", "pressedOffsetY": -4 },
-        "statistic": { "up": "Statistic", "down": "StatisticPressed", "pressedOffsetY": -4 }
+        "statistic": { "up": "Statistic", "down": "StatisticPressed", "pressedOffsetY": -4 },
+        "back": { "up": "Back", "down": "BackPressed", "pressedOffsetY": -4 }
+
 
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {

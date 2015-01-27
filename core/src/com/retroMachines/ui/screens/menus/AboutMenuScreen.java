@@ -42,19 +42,21 @@ public class AboutMenuScreen extends MenuScreen {
 	public void show() {
 		skin = AssetManager.menuSkin;
 		table = new Table();
-		
+		table.debug();
 		
 		// Make Title
 		Label title = new Label(CREDIT,skin);
+		title.setFontScale(2);
 		title.setWrap(true);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
-		Button buttonReturn = new Button(skin, "default");
+		Button buttonReturn = new Button(skin, "back");
+		buttonReturn.pad(100);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
-		table.add(title).width(600).row();
-		table.add(buttonReturn).row();
+		table.add(buttonReturn).padTop(50).padLeft(50).left().row();
+		table.add(title).width(1000).expandX().expandY().row();
 	    table.setFillParent(true);
 	    stage.addActor(table);
 
