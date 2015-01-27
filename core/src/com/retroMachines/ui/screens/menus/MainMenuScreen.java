@@ -4,6 +4,7 @@ package com.retroMachines.ui.screens.menus;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -35,12 +36,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	public static final String TITLE = "RETROMACHINES";
 	
-	private BitmapFont font;
-	
-	private TextureAtlas buttonAtlas;
-	
-	private TextButtonStyle textButtonStyle;
-	
 	private Sound sound;
 	
 	/**
@@ -67,33 +62,33 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		table.debug();
 		// Make Title
 		Label title = new Label(TITLE,skin);
-		title.setFontScale(2);
+		title.setFontScale(3);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
-		Button buttonPlay = new Button(skin, "default");
+		Button buttonPlay = new Button(skin, "play");
 		buttonPlay.addListener(new PlayButtonClickListener());
-		buttonPlay.pad(100);
+		buttonPlay.pad(150);
 		
-		Button buttonSetting = new Button(skin, "default");
+		Button buttonSetting = new Button(skin, "settings");
 		buttonSetting.addListener(new SettingButtonClickListener());
-		buttonSetting.pad(50);
+		buttonSetting.pad(100);
 		
-		Button buttonAbout = new Button(skin, "default");
+		Button buttonAbout = new Button(skin, "info");
 		buttonAbout.addListener(new AboutButtonClickListener());
-		buttonAbout.pad(50);
+		buttonAbout.pad(100);
 		
-		Button buttonStatistics = new Button(skin, "default");
+		Button buttonStatistics = new Button(skin, "statistic");
 		buttonStatistics.addListener(new StatisticsButtonClickListener());
-		buttonStatistics.pad(50);
+		buttonStatistics.pad(100);
 		
-		Button buttonProfileMenu = new Button(skin, "default");
+		Button buttonProfileMenu = new Button(skin, "profile");
 		buttonProfileMenu.addListener(new ProfileMenuClickListener());
-		buttonProfileMenu.pad(50);
+		buttonProfileMenu.pad(100);
 		
-		Button buttonExit = new Button(skin, "default");
+		Button buttonExit = new Button(skin, "exit");
 		buttonExit.addListener(new ExitClickListener());
-		buttonExit.pad(50);
+		buttonExit.pad(100);
 		
 		//Sidebar
 		Table sidebar = new Table(skin);
@@ -102,14 +97,16 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		sidebar.add(buttonProfileMenu).padTop(20).row();
 		sidebar.add(buttonStatistics).padTop(20).row();
 		
+		//Left Part of Menu
+		Table mainPart = new Table(skin);
+		mainPart.add(buttonExit).padTop(50).padLeft(50).left().row();
+		mainPart.add(title).padTop(80).expandX().right().row();
+		mainPart.add(buttonPlay).padRight(500).padTop(100).expandX().right().row();
+		
+		
 		// Add Title and Buttons to View
-		table.add(buttonExit).padTop(20).left().padLeft(50).colspan(2).row();
-		table.add(title).padTop(20).colspan(2).expandX().row();
-		table.add().width(table.getWidth()*3 / 4);
-		table.add().width(table.getWidth() / 4).row();
-		table.add(buttonPlay).padTop(20);
-		table.add(sidebar).row();
-	    table.top();
+		table.add(mainPart).expandY().width(table.getWidth()*4 / 5).top();
+		table.add(sidebar).width(table.getWidth() / 5).row();
 	    
 	    stage.addActor(table);
 	    Gdx.input.setInputProcessor(stage);
@@ -186,7 +183,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			ExitDialog exitD = new ExitDialog("Do you wanna leave?", skin, "default");
+			ExitDialog exitD = new ExitDialog("Exit", skin, "default");
 			exitD.show(stage);
 		}
 	}
@@ -201,14 +198,18 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		private void initialize() {
 			padTop(60); // set padding on top of the dialog title
 			padBottom(30); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(50); // set buttons height
-	        getButtonTable().defaults().width(80); // set buttons height
+	        getButtonTable().defaults().height(120); // set buttons height
+	        getButtonTable().defaults().width(160); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
-			text("Test");
-			button("Yes", true);
-			button("No", false);
+	        Label dialogText = new Label("Do you realy want to leave us ?",skin);
+	        dialogText.setWrap(true);
+	        dialogText.setAlignment(Align.center);
+	        dialogText.setFontScale(1,2);
+			getContentTable().add(dialogText).width(700);
+			button("Yes", true).padRight(50);
+			button("No", false).padLeft(50);
 		}
 		
 		protected void result(Object object) {
@@ -222,13 +223,13 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		   @Override
 		   public float getPrefWidth() {
 		      // force dialog width
-		      return 480f;
+		      return 750;
 		   }
 
 		   @Override
 		   public float getPrefHeight() {
 		      // force dialog height
-		      return 200f;
+		      return 400;
 		   }
 	}
 }

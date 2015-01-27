@@ -1,5 +1,5 @@
 {
-    
+
     com.badlogic.gdx.graphics.Color: {
         "green": { "a": 1, "b": 0, "g": 1, "r": 0 },
         "white": { "a": 1, "b": 1, "g": 1, "r": 1 },
@@ -8,25 +8,40 @@
     },
     "com.badlogic.gdx.graphics.g2d.BitmapFont": {
         "font": { "file": "fonts/LambdaGameFont.fnt" },
-        "fontSmall": { "file": "fonts/LambdaGameFont20.fnt" },
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
-        "default": { titleFont: fontSmall, background: "WindowStyle" }
+        "default": { titleFont: font, background: "WindowStyle" }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
-        "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 }
+        "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 },
+        "abort": { "up": "Abort", "down": "AbortPressed", "pressedOffsetY": -4 },
+        "controlLeft": { "up": "ControlLeft", "down": "ControlLeftPressed", "pressedOffsetY": -4 },
+        "controlRight": { "up": "ControlRight", "down": "ControlRightPressed", "pressedOffsetY": -4 },
+        "exit": { "up": "Exit", "down": "ExitPressed", "pressedOffsetY": -4 },
+        "home": { "up": "Home", "down": "HomePressed", "pressedOffsetY": -4 },
+        "info": { "up": "Info", "down": "InfoPressed", "pressedOffsetY": -4 },
+        "ok": { "up": "Ok", "down": "OkPressed", "pressedOffsetY": -4 },
+        "play": { "up": "Play", "down": "PlayPressed", "pressedOffsetY": -4 },
+        "profile": { "up": "Profile", "down": "ProfilePressed", "pressedOffsetY": -4 },
+        "profileSettings": { "up": "ProfileSettings", "down": "ProfileSettingsPressed", "pressedOffsetY": -4 },
+        "settings": { "up": "Settings", "down": "SettingsPressed", "pressedOffsetY": -4 },
+        "settings2": { "up": "Settings2", "down": "Settings2Pressed", "pressedOffsetY": -4 },
+        "soundDown": { "up": "SoundDown", "down": "SoundDownPressed", "pressedOffsetY": -4 },
+        "soundOff": { "up": "SoundOff", "down": "SoundOffPressed", "pressedOffsetY": -4 },
+        "soundUp": { "up": "SoundUp", "down": "SoundUpPressed", "pressedOffsetY": -4 },
+        "statistic": { "up": "Statistic", "down": "StatisticPressed", "pressedOffsetY": -4 }
+
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
-        default: { "up": "ButtonBlank", "down": "ButtonBlankPressed", font: fontSmall}
+        default: { "up": "Blank", "down": "BlankPressed", font: font}
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
         "default": { "font": font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
-        "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: fontSmall }
+        "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: font}
     },
     com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
-        "default": { vScroll: "ButtonBlank", hScrollKnob: "ButtonBlankPressed", background: "Default", hScroll: "DefaultPressed", 
-        "vScrollKnob": "WindowStyle" }
+        "default": { "vScrollKnob": "Blank" }
     }
 }

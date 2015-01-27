@@ -1,0 +1,264 @@
+
+LambdaGame.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+WindowStyle
+  rotate: false
+  xy: 1, 105
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+Abort
+  rotate: false
+  xy: 1, 53
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+AbortPressed
+  rotate: false
+  xy: 1, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Blank
+  rotate: false
+  xy: 153, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+BlankPressed
+  rotate: false
+  xy: 53, 53
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ControlLeft
+  rotate: false
+  xy: 53, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ControlLeftPressed
+  rotate: false
+  xy: 153, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ControlRight
+  rotate: false
+  xy: 205, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ControlRightPressed
+  rotate: false
+  xy: 205, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Default
+  rotate: false
+  xy: 257, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+DefaultPressed
+  rotate: false
+  xy: 257, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Exit
+  rotate: false
+  xy: 309, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ExitPressed
+  rotate: false
+  xy: 309, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Home
+  rotate: false
+  xy: 361, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+HomePressed
+  rotate: false
+  xy: 361, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Info
+  rotate: false
+  xy: 413, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+InfoPressed
+  rotate: false
+  xy: 413, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Ok
+  rotate: false
+  xy: 465, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+OkPressed
+  rotate: false
+  xy: 465, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Play
+  rotate: false
+  xy: 517, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+PlayPressed
+  rotate: false
+  xy: 517, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Profile
+  rotate: false
+  xy: 569, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ProfilePressed
+  rotate: false
+  xy: 569, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ProfileSettings
+  rotate: false
+  xy: 621, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+ProfileSettingsPressed
+  rotate: false
+  xy: 621, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Settings
+  rotate: false
+  xy: 673, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Settings2
+  rotate: false
+  xy: 673, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Settings2Pressed
+  rotate: false
+  xy: 725, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SettingsPressed
+  rotate: false
+  xy: 725, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SoundDown
+  rotate: false
+  xy: 777, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SoundDownPressed
+  rotate: false
+  xy: 777, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SoundOff
+  rotate: false
+  xy: 829, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SoundOffPressed
+  rotate: false
+  xy: 829, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SoundUp
+  rotate: false
+  xy: 881, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+SoundUpPressed
+  rotate: false
+  xy: 881, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Statistic
+  rotate: false
+  xy: 933, 205
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+StatisticPressed
+  rotate: false
+  xy: 933, 153
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
