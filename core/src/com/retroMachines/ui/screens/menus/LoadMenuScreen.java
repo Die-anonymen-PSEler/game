@@ -48,10 +48,13 @@ public class LoadMenuScreen extends AbstractScreen{
         stage.act();
         stage.draw();
         
-        if(AssetManager.manager.update()){ // check if all files are loaded
+        if (game.getLoading()) {
+            if(AssetManager.manager.update()){ // check if all files are loaded
                 AssetManager.setMenuSkin(); // uses files to create menuSkin
                 ((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
+            }
         }
+
 	}
 
 }

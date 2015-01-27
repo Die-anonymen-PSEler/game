@@ -2,6 +2,7 @@ package com.retroMachines;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.sql.Database;
 import com.retroMachines.data.RetroDatabase;
 import com.retroMachines.data.models.GlobalVariables;
@@ -23,7 +24,10 @@ import com.retroMachines.ui.screens.menus.MainMenuScreen;
 public class RetroMachines extends Game{
 	
 	public static final String TITLE="Game Project"; 
-    public static final int WIDTH=1920,HEIGHT=1080; // used later to set window size
+    public static final int WIDTH=1920,HEIGHT=1080; // used later to set window size Desktop Mode
+    public static double virtWidth;
+    public static double virtHeight;
+    private boolean loading;
 
 	
 	/**
@@ -59,6 +63,7 @@ public class RetroMachines extends Game{
 	 */
 	@Override
 	public void create() {
+		loading = false;
 		setScreen(new LoadMenuScreen(this));
 		//RetroDatabase.getSingleton();
 		//profileController = new ProfileController(this);
@@ -66,6 +71,13 @@ public class RetroMachines extends Game{
 		//gameController = new GameController(this);
 		//statisticController = new StatisticController(this);
 		//globalVariables = GlobalVariables.getSingleton();
+		//Virtual Screens size
+		double height = 100;
+		double ppu = Gdx.graphics.getHeight() / height;
+		double width = Gdx.graphics.getWidth() / ppu;
+		virtHeight = ppu;
+		virtWidth = width;
+		loading = true;
 	}
 	
 	@Override
@@ -119,6 +131,14 @@ public class RetroMachines extends Game{
 	 */
 	public StatisticController getStatisticController() {
 		return statisticController;
+	}
+	
+	/**
+	 * Returns true if all needed Objects where initialized
+	 * @return true if loading is complete
+	 */
+	public boolean getLoading() {
+		return loading;
 	}
 
 }
