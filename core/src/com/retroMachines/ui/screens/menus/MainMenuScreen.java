@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -40,8 +41,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	
 	private TextButtonStyle textButtonStyle;
 	
-	private Table table;
-	
 	private Sound sound;
 	
 	/**
@@ -65,41 +64,54 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	public void show() {
 		skin = AssetManager.menuSkin;
-		table = new Table();
-		
+		table.debug();
 		// Make Title
 		Label title = new Label(TITLE,skin);
+		title.setFontScale(2);
+		title.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonPlay = new Button(skin, "default");
 		buttonPlay.addListener(new PlayButtonClickListener());
+		buttonPlay.pad(100);
 		
 		Button buttonSetting = new Button(skin, "default");
 		buttonSetting.addListener(new SettingButtonClickListener());
+		buttonSetting.pad(50);
 		
 		Button buttonAbout = new Button(skin, "default");
 		buttonAbout.addListener(new AboutButtonClickListener());
+		buttonAbout.pad(50);
 		
 		Button buttonStatistics = new Button(skin, "default");
 		buttonStatistics.addListener(new StatisticsButtonClickListener());
+		buttonStatistics.pad(50);
 		
 		Button buttonProfileMenu = new Button(skin, "default");
 		buttonProfileMenu.addListener(new ProfileMenuClickListener());
+		buttonProfileMenu.pad(50);
 		
 		Button buttonExit = new Button(skin, "default");
 		buttonExit.addListener(new ExitClickListener());
+		buttonExit.pad(50);
+		
+		//Sidebar
+		Table sidebar = new Table(skin);
+		sidebar.add(buttonSetting).padTop(20).row();
+		sidebar.add(buttonAbout).padTop(20).row();
+		sidebar.add(buttonProfileMenu).padTop(20).row();
+		sidebar.add(buttonStatistics).padTop(20).row();
 		
 		// Add Title and Buttons to View
-		table.add(title).row();
-		table.add(buttonPlay).row();
-	    table.add(buttonSetting).row();
-	    table.add(buttonAbout).row();
-	    table.add(buttonStatistics).row();
-	    table.add(buttonProfileMenu).row();
-	    table.add(buttonExit).row();
-	    table.setFillParent(true);
+		table.add(buttonExit).padTop(20).left().padLeft(50).colspan(2).row();
+		table.add(title).padTop(20).colspan(2).expandX().row();
+		table.add().width(table.getWidth()*3 / 4);
+		table.add().width(table.getWidth() / 4).row();
+		table.add(buttonPlay).padTop(20);
+		table.add(sidebar).row();
+	    table.top();
+	    
 	    stage.addActor(table);
-
 	    Gdx.input.setInputProcessor(stage);
 
 	        

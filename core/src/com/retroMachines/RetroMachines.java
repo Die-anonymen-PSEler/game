@@ -25,8 +25,6 @@ public class RetroMachines extends Game{
 	
 	public static final String TITLE="Game Project"; 
     public static final int WIDTH=1920,HEIGHT=1080; // used later to set window size Desktop Mode
-    public static double virtWidth;
-    public static double virtHeight;
     private boolean loading;
 
 	
@@ -72,11 +70,6 @@ public class RetroMachines extends Game{
 		//statisticController = new StatisticController(this);
 		//globalVariables = GlobalVariables.getSingleton();
 		//Virtual Screens size
-		double height = 100;
-		double ppu = Gdx.graphics.getHeight() / height;
-		double width = Gdx.graphics.getWidth() / ppu;
-		virtHeight = ppu;
-		virtWidth = width;
 		loading = true;
 	}
 	

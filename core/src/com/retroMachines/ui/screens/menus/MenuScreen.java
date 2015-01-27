@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
@@ -19,12 +20,12 @@ public abstract class MenuScreen extends AbstractScreen {
 	/**
 	 * The main table on the left side of a menu screen.
 	 */
-	protected Table tableLeft;
+	protected Table table;
 	
 	/**
 	 * The table on the right side of the screen containing further information.
 	 */
-	protected Table tableRight;
+	//protected Table tableRight;
 	
 	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.
@@ -32,17 +33,13 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	public MenuScreen(RetroMachines game) {
 		super(game);
-		tableLeft = new Table();
-		tableRight = new Table();
+		table = new Table(AssetManager.menuSkin);
+		//tableRight = new Table();
 		stage = new Stage();
 		
 		initialize();
-		
-		tableLeft.setFillParent(true);
-		tableRight.setFillParent(true);
-		stage.addActor(tableLeft);
-		stage.addActor(tableRight);
-		Gdx.input.setInputProcessor(stage);
+		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		//tableRight.setFillParent(true);
 	}
 	
 	/**
