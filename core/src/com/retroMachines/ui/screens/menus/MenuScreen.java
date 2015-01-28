@@ -26,11 +26,6 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 	protected Table table;
 	
 	/**
-	 * The table on the right side of the screen containing further information.
-	 */
-	//protected Table tableRight;
-	
-	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.
 	 * @param game The game that uses this Screen.
 	 */
@@ -77,9 +72,6 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
     public boolean keyDown(int keycode) {
     	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
     		game.setScreen(new MainMenuScreen(game));
-    	}
-    	if (keycode == Keys.SPACE) {
-    		System.out.println("a");
     	}
     	return false;
     }
