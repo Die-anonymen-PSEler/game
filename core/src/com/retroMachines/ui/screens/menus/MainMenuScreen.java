@@ -131,7 +131,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
     		if (exitDialog != null) {
         		exitDialog.show(stage);
         	} else {
-        		exitDialog = new ExitDialog("Exit", skin, "default");
+        		exitDialog = new ExitDialog("", skin, "default");
 				exitDialog.show(stage);
         	}
     	}
@@ -198,7 +198,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 			if(exitDialog != null) {
 				exitDialog.show(stage);
 			} else {
-				exitDialog = new ExitDialog("Exit", skin, "default");
+				exitDialog = new ExitDialog("", skin, "default");
 				exitDialog.show(stage);
 			}
 
@@ -213,20 +213,20 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		}
 		
 		private void initialize() {
-			padTop(60); // set padding on top of the dialog title
-			padBottom(30); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(120); // set buttons height
-	        getButtonTable().defaults().width(160); // set buttons height
+			padTop(screenWidth / 30f); // set padding on top of the dialog title
+			padBottom(screenWidth / 30f); // set padding on bottom of the dialog title
+	        getButtonTable().defaults().height(screenHeight/ 4f); // set buttons height
+	        getButtonTable().defaults().width(screenWidth / 4f); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
 	        Label dialogText = new Label("Do you realy want to leave us ?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
-	        dialogText.setFontScale(1,2);
-			getContentTable().add(dialogText).width(700);
-			button("Yes", true).padRight(50);
-			button("No", false).padLeft(50);
+	        dialogText.setFontScale((2.1f * screenWidth)/1920f);
+			getContentTable().add(dialogText).width(screenWidth / 1.5f);
+			button(new Button(skin, "ok"), true);
+			button(new Button(skin, "abort"), false);
 		}
 		
 		protected void result(Object object) {
@@ -240,13 +240,13 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		   @Override
 		   public float getPrefWidth() {
 		      // force dialog width
-		      return 750;
+		      return screenWidth / 1.5f;
 		   }
 
 		   @Override
 		   public float getPrefHeight() {
 		      // force dialog height
-		      return 400;
+		      return screenHeight / 1.8f;
 		   }
 	}
 }
