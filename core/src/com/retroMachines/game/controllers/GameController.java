@@ -3,6 +3,8 @@ package com.retroMachines.game.controllers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.gameelements.GameElement;
@@ -171,6 +173,9 @@ public class GameController {
 	 * @return The GameElement at this position ( null when empty).
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
+		Cell cell = layer.getCell((int)posObj.x, (int)posObj.y);
+		cell.getTile();
 		return null;
 	}
 
@@ -196,6 +201,11 @@ public class GameController {
 	 * @return True if the element was placed successfully; otherwise false.
 	 */
 	public boolean setGameElement(Vector2 posObj, GameElement element) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
+		Cell cell = layer.getCell((int)posObj.x, (int)posObj.y);
+		cell.getTile();
+		//TODO: Element in TiledMapTile umwandeln und setzen
+		//cell.setTile(element);
 		return false;
 	}
 
@@ -204,7 +214,35 @@ public class GameController {
 	 * any other solid object standing in the way.
 	 */
 	private void collisionDetection() {
-
+		int startX, startY, endX, endY;
+		if (retroMan.getVelocity().x != 0) {
+			startX = endX = (int)(retroMan.getPos().x + retroMan.WIDTH + retroMan.getVelocity().x);
+		} else {
+			startX = endX = (int)(retroMan.getPos().x + retroMan.getVelocity().x);
+		}
+		startY = (int)(retroMan.getPos().y);
+		endY = (int)(retroMan.getPos().y + retroMan.HEIGHT);
+		//alle Elementpositionen holen
+		//neue Position von retroMan speichern
+		//checken, ob es sich überlappt; wenn ja, velocity auf 0 
+		/*Rectangle koalaRect = rectPool.obtain();
+		koalaRect.set(koala.position.x, koala.position.y, Koala.WIDTH, Koala.HEIGHT);
+		int startX, startY, endX, endY;
+		if (koala.velocity.x > 0) {
+		startX = endX = (int)(koala.position.x + Koala.WIDTH + koala.velocity.x);
+		} else {
+		startX = endX = (int)(koala.position.x + koala.velocity.x);
+		}
+		startY = (int)(koala.position.y);
+		endY = (int)(koala.position.y + Koala.HEIGHT);
+		getTiles(startX, startY, endX, endY, tiles);
+		koalaRect.x += koala.velocity.x;
+		for (Rectangle tile : tiles) {
+		if (koalaRect.overlaps(tile)) {
+		koala.velocity.x = 0;
+		break;
+		}*/
+		}
 	}
 	
 	// --------------------------

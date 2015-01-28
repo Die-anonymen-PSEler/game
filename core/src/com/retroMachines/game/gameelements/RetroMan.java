@@ -62,7 +62,7 @@ public class RetroMan {
 	private Texture texture;
 
 	/**
-	 * 
+	 * the current velocity
 	 */
 	private final Vector2 velocity;
 
@@ -137,6 +137,10 @@ public class RetroMan {
 	 */
 	public boolean getFaceLeft() {
 		return faceLeft;
+	}
+	
+	public Vector2 getVelocity() {
+		return velocity;
 	}
 
 	/**
