@@ -46,12 +46,6 @@ public class GameController {
 	 * gameScreen is active.
 	 */
 	private TiledMap map;
-	
-	/**
-	 * Contain index of gamenElement in {@value vertexList} which is currently hold by RetroMan.
-	 * -1, if nothing is hold.
-	 */
-	private int indexOfElementHold;
 
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
@@ -224,7 +218,7 @@ public class GameController {
 		endY = (int)(retroMan.getPos().y + retroMan.HEIGHT);
 		//alle Elementpositionen holen
 		//neue Position von retroMan speichern
-		//checken, ob es sich überlappt; wenn ja, velocity auf 0 
+		//checken, ob es sich ï¿½berlappt; wenn ja, velocity auf 0 
 		/*Rectangle koalaRect = rectPool.obtain();
 		koalaRect.set(koala.position.x, koala.position.y, Koala.WIDTH, Koala.HEIGHT);
 		int startX, startY, endX, endY;
@@ -242,7 +236,6 @@ public class GameController {
 		koala.velocity.x = 0;
 		break;
 		}*/
-		}
 	}
 	
 	// --------------------------

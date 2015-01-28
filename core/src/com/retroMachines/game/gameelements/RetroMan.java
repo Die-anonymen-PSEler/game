@@ -55,6 +55,12 @@ public class RetroMan {
 	 * contains a potential gameelement if the character has picked one up
 	 */
 	private GameElement element;
+	
+	/**
+	 * Contain index of gamenElement in {@value vertexList} which is currently hold by RetroMan.
+	 * -1, if nothing is hold.
+	 */
+	private int indexOfElementHold;
 
 	/**
 	 * the texture of the character
