@@ -58,7 +58,6 @@ public class AboutMenuScreen extends MenuScreen {
 	protected void initialize() {
 		skin = AssetManager.menuSkin;
 		table = new Table();
-		table.debug();
 		
 		// Make Title
 		Label title = new Label(CREDIT,skin);

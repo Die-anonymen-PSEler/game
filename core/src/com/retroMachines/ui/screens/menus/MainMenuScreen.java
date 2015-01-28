@@ -58,7 +58,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	protected void initialize() {
 		
 		skin = AssetManager.menuSkin;
-		table.debug();
 		// Make Title
 		Label title = new Label(TITLE,skin);
 		title.setFontScale((3*screenWidth)/1920f);

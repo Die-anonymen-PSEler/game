@@ -54,7 +54,6 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		// TODO Auto-generated method stub
 		//nameTextField = new TextField(profileController.getProfileName(), new Skin());
 		skin = AssetManager.menuSkin;
-		table.debug();
 		// Make Title
 		Label title = new Label("Create Profile",skin);
 		title.setFontScale((3*screenWidth)/1920f);
