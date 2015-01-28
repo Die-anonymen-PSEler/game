@@ -14,14 +14,13 @@ public class LambdaTests {
 	
 	private Tree tree;
 	
-	@BeforeClass
-	public void setUpBeforeClass() {
+	@Before
+	public void setUp() throws Exception {
 		tree = new Tree(null);
 	}
 
-
-	@AfterClass
-	public void tearDownAfterClass() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		tree = null;
 	}
 
@@ -29,18 +28,18 @@ public class LambdaTests {
 	public void testEvaluateNull() {
 		tree.setStart(null);
 		try {
-		tree.evaluate();
-		} catch (NullPointerException) {
+			tree.evaluate();
+		} catch (NullPointerException e) {
 			fail("Case start == null not handled. NullPointerException thrown!");
 		}
 	}
 
 	@Test
 	public void testEvaluateVariable() {
-		Variable v = new Variable(0)
+		Variable v = new Variable(0);
 		tree.setStart(v);
 		tree.evaluate();
-		assertTrue(v.equals(tree.getStart()), "Evaluation of just one Variable should not change anything!");
+		assertTrue("Evaluation of just one Variable should not change anything!", v.equals(tree.getStart()));
 	}
 
 }
