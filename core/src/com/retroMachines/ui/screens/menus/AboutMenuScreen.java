@@ -75,8 +75,8 @@ public class AboutMenuScreen extends MenuScreen {
 		table.add(title).width(1000).expandX().expandY().row();
 	    table.setFillParent(true);
 	    stage.addActor(table);
-
-	    Gdx.input.setInputProcessor(inputMultiplexer);
+	    
+	    inputMultiplexer.addProcessor(stage);
 	}
 	
 }

@@ -1,22 +1,16 @@
 package com.retroMachines.ui.screens.menus;
 
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
@@ -55,14 +49,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	public MainMenuScreen(RetroMachines game) {
 		super(game);
-		initialize();
-	}
-
-	/**
-	 * Displays the MainMenuScreen.
-	 */
-	public void show() {
-		super.show();
 	}
 	
 	/**
@@ -118,8 +104,8 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		
 		// Add Title and Buttons to View
-		table.add(mainPart).expandY().width(table.getWidth()*4 / 5).top();
-		table.add(sidebar).width(table.getWidth() / 5).row();
+		table.add(mainPart).expandY().width(Gdx.graphics.getWidth() * (4 / 5f)).top();
+		table.add(sidebar).width(Gdx.graphics.getWidth() / 5f).row();
 	    
 	    stage.addActor(table);
 	    inputMultiplexer.addProcessor(stage);

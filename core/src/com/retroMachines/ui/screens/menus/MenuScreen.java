@@ -32,10 +32,11 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 	public MenuScreen(RetroMachines game) {
 		super(game);
 		table = new Table(AssetManager.menuSkin);
+		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		stage = new Stage();
 		initialize();
 		inputMultiplexer.addProcessor(this);
-		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());		
+				
 	}
 	
 	@Override
