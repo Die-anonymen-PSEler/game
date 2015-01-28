@@ -383,9 +383,16 @@ public abstract class Vertex {
 		this.familyColorlist = familyColorlist;
 	}
 	
+	/**
+	 * updates start vertex. This vertex if family is null.
+	 * @return
+	 */
 	public Vertex updateStart() {
-		//TODO: implement
-		return null;
+		if (family == null) {
+			return this;
+		} else {
+			return family;
+		}
 	}
 }
 
