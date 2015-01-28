@@ -1,6 +1,7 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,17 +18,12 @@ import com.retroMachines.ui.screens.AbstractScreen;
  * @author RetroFactory
  *
  */
-public abstract class MenuScreen extends AbstractScreen {
+public abstract class MenuScreen extends AbstractScreen implements InputProcessor {
 	
 	/**
 	 * The main table on the left side of a menu screen.
 	 */
 	protected Table table;
-	
-	/**
-	 * The table on the right side of the screen containing further information.
-	 */
-	//protected Table tableRight;
 	
 	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.
@@ -37,14 +33,21 @@ public abstract class MenuScreen extends AbstractScreen {
 		super(game);
 		table = new Table(AssetManager.menuSkin);
 		stage = new Stage();
-		
 		initialize();
-		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
-		//Back and Home Button
-        Gdx.input.setCatchBackKey(true);
-        Gdx.input.setCatchMenuKey(true);
-		
+		inputMultiplexer.addProcessor(this);
+		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());		
+	}
+	
+	@Override
+	public void show() {
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		super.show();
+	}
+	
+	@Override
+	public void dispose() {
+		Gdx.input.setInputProcessor(null);
+		super.dispose();
 	}
 	
 	/**
@@ -63,10 +66,55 @@ public abstract class MenuScreen extends AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
-        
-        if (Gdx.input.isKeyPressed(Keys.BACK)){
-        	game.setScreen(new MainMenuScreen(game));
-        }
+    }
+    
+    @Override
+    public boolean keyDown(int keycode) {
+    	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
+    		game.setScreen(new MainMenuScreen(game));
+    	}
+    	return false;
+    }
+    
+    @Override
+    public boolean keyTyped(char character) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean keyUp(int keycode) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean scrolled(int amount) {
+    	// TODO Auto-generated method stub
+    	return false;
     }
 	
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
+    
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    	// TODO Auto-generated method stub
+    	return false;
+    }
 }

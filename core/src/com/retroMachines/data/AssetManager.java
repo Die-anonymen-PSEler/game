@@ -72,8 +72,9 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
      * The basic menu is created to be used in the different menus.
      */
     public static void setMenuSkin() {
-        if (menuSkin == null)
+        if (menuSkin == null) {
             menuSkin = new Skin(Gdx.files.internal("skins/DefaultLambdaGame.json"),
                     manager.get("skins/LambdaGame.pack", TextureAtlas.class));
+        }
     }
 }
