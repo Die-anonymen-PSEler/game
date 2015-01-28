@@ -36,7 +36,6 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	public CreateProfileMenuScreen(RetroMachines game) {
 		super(game);
 		profileController = game.getProfileController();
-		initialize();
 	}
 	
 	/**
@@ -57,7 +56,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		Button buttonOk = new Button(skin, "play");
 		buttonOk.addListener(new CreateProfileButtonClickListener());
 		buttonOk.pad(150);
-		Button buttonAbort = new Button(skin, "play");
+		Button buttonAbort = new Button(skin, "abort");
 		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
 		buttonAbort.pad(150);
 		
@@ -112,7 +111,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
-			super.clicked(event, x, y);
+			game.setScreen(new MainMenuScreen(game));
 		}
 	}
 	

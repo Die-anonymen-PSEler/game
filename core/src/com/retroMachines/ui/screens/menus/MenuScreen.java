@@ -25,14 +25,18 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 	 */
 	protected Table table;
 	
+	protected float screenWidth;
+	protected float screenHeight;
 	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.
 	 * @param game The game that uses this Screen.
 	 */
 	public MenuScreen(RetroMachines game) {
 		super(game);
+		screenWidth = Gdx.graphics.getWidth();
+		screenHeight = Gdx.graphics.getHeight();
 		table = new Table(AssetManager.menuSkin);
-		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		table.setBounds(0, 0, screenWidth, screenHeight);
 		stage = new Stage();
 		initialize();
 		inputMultiplexer.addProcessor(this);

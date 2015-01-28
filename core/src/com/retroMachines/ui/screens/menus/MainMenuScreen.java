@@ -61,46 +61,46 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		table.debug();
 		// Make Title
 		Label title = new Label(TITLE,skin);
-		title.setFontScale(3);
+		title.setFontScale((3*Gdx.graphics.getWidth())/1920f);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonPlay = new Button(skin, "play");
 		buttonPlay.addListener(new PlayButtonClickListener());
-		buttonPlay.pad(150);
+		buttonPlay.pad(screenHeight / 5);
 		
 		Button buttonSetting = new Button(skin, "settings");
 		buttonSetting.addListener(new SettingButtonClickListener());
-		buttonSetting.pad(100);
+		buttonSetting.pad((Gdx.graphics.getWidth() / 20f ));
 		
 		Button buttonAbout = new Button(skin, "info");
 		buttonAbout.addListener(new AboutButtonClickListener());
-		buttonAbout.pad(100);
+		buttonAbout.pad((Gdx.graphics.getWidth() / 20f ));
 		
 		Button buttonStatistics = new Button(skin, "statistic");
 		buttonStatistics.addListener(new StatisticsButtonClickListener());
-		buttonStatistics.pad(100);
+		buttonStatistics.pad((Gdx.graphics.getWidth() / 20f ));
 		
 		Button buttonProfileMenu = new Button(skin, "profile");
 		buttonProfileMenu.addListener(new ProfileMenuClickListener());
-		buttonProfileMenu.pad(100);
+		buttonProfileMenu.pad((Gdx.graphics.getWidth() / 20f ));
 		
 		Button buttonExit = new Button(skin, "exit");
 		buttonExit.addListener(new ExitClickListener());
-		buttonExit.pad(100);
+		buttonExit.pad((Gdx.graphics.getWidth() / 20f ));
 		
 		//Sidebar
 		Table sidebar = new Table(skin);
-		sidebar.add(buttonSetting).padTop(20).row();
-		sidebar.add(buttonAbout).padTop(20).row();
-		sidebar.add(buttonProfileMenu).padTop(20).row();
-		sidebar.add(buttonStatistics).padTop(20).row();
+		sidebar.add(buttonSetting).padTop((Gdx.graphics.getWidth() / 75f )).row();
+		sidebar.add(buttonAbout).padTop((Gdx.graphics.getWidth() / 75f )).row();
+		sidebar.add(buttonProfileMenu).padTop((Gdx.graphics.getWidth() / 75f )).row();
+		sidebar.add(buttonStatistics).padTop((Gdx.graphics.getWidth() / 75f )).padBottom((Gdx.graphics.getWidth() / 75f )).row();
 		
 		//Left Part of Menu
 		Table mainPart = new Table(skin);
-		mainPart.add(buttonExit).padTop(50).padLeft(50).left().row();
-		mainPart.add(title).padTop(80).expandX().right().row();
-		mainPart.add(buttonPlay).padRight(500).padTop(100).expandX().right().row();
+		mainPart.add(buttonExit).padTop((Gdx.graphics.getWidth() / 70f )).padLeft((Gdx.graphics.getHeight() / 90f )).left().row();
+		mainPart.add(title).padTop((Gdx.graphics.getWidth() / 20f )).expandX().right().row();
+		mainPart.add(buttonPlay).padLeft(500).left().row();
 		
 		
 		// Add Title and Buttons to View
@@ -188,7 +188,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			game.setScreen(new ProfileMenuScreen(game));
+			game.setScreen(new CreateProfileMenuScreen(game));
 		}
 	}
 	

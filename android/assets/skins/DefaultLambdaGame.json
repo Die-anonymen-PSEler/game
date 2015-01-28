@@ -47,6 +47,6 @@
         "default": { "vScrollKnob": "Blank" }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": { 
-        "default":  { "font":  font, "fontColor":  white, background: "WindowStyle" }
+        "default":  { "font":  font, "fontColor":  white, "background": "WindowStyle","cursor":  "GrauPixel"  }
     }
 }
