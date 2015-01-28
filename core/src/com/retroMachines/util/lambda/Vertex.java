@@ -34,16 +34,6 @@ public abstract class Vertex {
 	 */
 	private LinkedList<Integer> familyColorList;
 	
-	/**
-	 * Position of vertex
-	 */
-	private Vector2 pos;
-	
-	/**
-	 * True if this vertex is placed in a depot, false otherwise
-	 */
-	private boolean isInDepot;
-	
 	// --------------------------
 	// --------Constructor-------
 	// --------------------------
