@@ -15,8 +15,8 @@
     "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
         "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 },
         "abort": { "up": "Abort", "down": "AbortPressed", "pressedOffsetY": -4 },
-        "controlLeft": { "up": "ControlLeft", "down": "ControlLeftPressed", "pressedOffsetY": -4 },
-        "controlRight": { "up": "ControlRight", "down": "ControlRightPressed", "pressedOffsetY": -4 },
+        "controlLeft": { "up": "ControlLeft", "down": "ControlLeftPressed", "pressedOffsetY": -4, "checked": "ControlLeftPressed"},
+        "controlRight": { "up": "ControlRight", "down": "ControlRightPressed", "pressedOffsetY": -4, "checked": "ControlRightPressed" },
         "exit": { "up": "Exit", "down": "ExitPressed", "pressedOffsetY": -4 },
         "home": { "up": "Home", "down": "HomePressed", "pressedOffsetY": -4 },
         "info": { "up": "Info", "down": "InfoPressed", "pressedOffsetY": -4 },
@@ -30,7 +30,8 @@
         "soundOff": { "up": "SoundOff", "down": "SoundOffPressed", "pressedOffsetY": -4 },
         "soundUp": { "up": "SoundUp", "down": "SoundUpPressed", "pressedOffsetY": -4 },
         "statistic": { "up": "Statistic", "down": "StatisticPressed", "pressedOffsetY": -4 },
-        "back": { "up": "Back", "down": "BackPressed", "pressedOffsetY": -4 }
+        "back": { "up": "Back", "down": "BackPressed", "pressedOffsetY": -4 },
+        "nextChar": { "up": "NextChar", "down": "NextCharPressed", "pressedOffsetY": -4 }
 
 
     },

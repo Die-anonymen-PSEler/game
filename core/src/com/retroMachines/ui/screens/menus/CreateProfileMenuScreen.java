@@ -1,14 +1,19 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.ProfileController;
@@ -29,6 +34,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	
 	
 	private TextField nameTextField;
+	private Button buttonRightMode;
+	private Button buttonLeftMode;
 	
 	/**
 	 * Creates a new CreateProfileMenuScreen.
@@ -57,28 +64,74 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		Button buttonOk = new Button(skin, "ok");
 		buttonOk.addListener(new CreateProfileButtonClickListener());
 		buttonOk.pad(screenHeight / 10f);
+		
 		Button buttonAbort = new Button(skin, "abort");
 		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
 		buttonAbort.pad(screenHeight / 10f);
 		
+		buttonLeftMode = new Button(skin, "controlLeft");
+		buttonLeftMode.addListener(new LeftControlButtonClickListener());
+		buttonLeftMode.pad(screenHeight / 10f);
 		
-		//Button
-		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).padRight(screenWidth / 25f);
-		buttonTable.add(buttonOk).padLeft(screenWidth / 25f);
+		buttonRightMode = new Button(skin, "controlRight");
+		buttonRightMode.addListener(new RightControlButtonClickListener());
+		buttonRightMode.pad(screenHeight / 10f);
+		buttonRightMode.setChecked(true);
+		
+		Button buttonNextChar = new Button(skin, "nextChar");
+		buttonNextChar.addListener(new NextCharButtonClickListener());
+		buttonNextChar.pad(screenHeight / 10f);
+		
 		
 		// Make Textfield
-		nameTextField = new TextField("ProfileName", skin);
-		nameTextField.setHeight(10*screenHeight / 1080f);
+		nameTextField = new TextField("", skin);
+		nameTextField.setHeight(50*screenHeight / 1080f);
 		nameTextField.setMaxLength(12);
 		TextFieldStyle nameTextStyle = nameTextField.getStyle();
 		nameTextStyle.background.setLeftWidth(nameTextStyle.background.getLeftWidth() + 20);
 		nameTextStyle.background.setRightWidth(nameTextStyle.background.getRightWidth() + 20);
+		nameTextStyle.font.scale((1.25f * screenWidth)/1920f);
+		nameTextStyle.cursor.setMinWidth((13f * screenWidth)/1920f);
 		
-		table.add(title).expandX().padTop(screenHeight/ 25f).row();
-		table.add(nameTextField).width(screenWidth / 3).padTop(screenHeight/ 25f).row();
-		table.add(buttonTable).padTop(screenHeight/ 25f).row();
-	    
+		
+		//Make Image
+		Image charImage = new Image();
+		charImage.setDrawable(new TextureRegionDrawable(
+		        new TextureRegion(new Texture(Gdx.files.internal("Serious2.png")))));
+		charImage.setScaling(Scaling.fit);
+		
+		// Build Tables
+		
+
+		
+		//ButtonTables
+		Table buttonTable = new Table(skin);
+		buttonTable.add(buttonAbort).padRight(screenWidth / 25f);
+		buttonTable.add(buttonOk).padLeft(screenWidth / 25f);
+		
+		Table leftiTable = new Table(skin);
+		leftiTable.add(buttonLeftMode).padRight(screenWidth / 25f);
+		leftiTable.add(buttonRightMode).padLeft(screenWidth / 25f);
+		
+		//ImageTable
+		Table imageTable = new Table(skin);
+		imageTable.add(buttonNextChar).left().padRight(screenWidth / 100f);
+		imageTable.add(charImage).padTop(screenHeight/ 50f).height((3*screenHeight) / 5f).width(2*(screenWidth) / 8f);
+		
+		
+		//RightTable
+		Table rightTable = new Table(skin);
+		rightTable.add("Name").padTop(screenHeight/ 30f).row();
+		rightTable.add(nameTextField).height(40*((3*screenWidth)/1920f)).width(screenWidth / 2).padTop(screenHeight/ 50f).row();
+		rightTable.add("Steuerung").padTop(screenHeight/ 25f).row();
+		rightTable.add(leftiTable).expandX().padTop(screenHeight/ 50f).row();
+		
+		//MainTable
+		table.add(title).expandX().expandX().colspan(2).padTop(screenHeight/ 25f).row();
+		table.add(imageTable).width(screenWidth * (4 / 9f));
+		table.add(rightTable).width(screenWidth * (5 / 9f)).row();
+		table.add(buttonTable).colspan(2).padTop(screenHeight/ 25f).row();
+		
 	    stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 
@@ -128,8 +181,9 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class LeftControlButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-			super.clicked(event, x, y);
+			buttonRightMode.setChecked(false);
+			buttonLeftMode.setChecked(true);
+			//TODO Save Lefti Change
 		}
 	}
 	
@@ -140,8 +194,20 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class RightControlButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-			super.clicked(event, x, y);
+			buttonLeftMode.setChecked(false);
+			buttonRightMode.setChecked(true);
+			//TODO Save Lefti Change
+		}
+	}
+	
+	/**
+	 * Listener when the button for right control has been chosen.
+	 * @author RetroFactory
+	 */
+	private class NextCharButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			//TODO Change Char Pic and save it
 		}
 	}
 }
