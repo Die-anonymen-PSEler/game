@@ -95,7 +95,7 @@ public class Abstraction extends Vertex {
 	 * @return
 	 */
 	public Vertex cloneMe(Vertex next){
-		return new Abstraction(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
+		return new Abstraction(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
 	}
 	
 	/**
@@ -103,7 +103,7 @@ public class Abstraction extends Vertex {
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		return new Abstraction(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
+		return new Abstraction(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
 	}
 	
 }

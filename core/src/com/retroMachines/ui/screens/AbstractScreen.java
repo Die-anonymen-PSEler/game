@@ -2,6 +2,7 @@ package com.retroMachines.ui.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -37,6 +38,11 @@ public abstract class AbstractScreen implements Screen {
      * The skin of all Screens
      */
 	protected Skin skin;
+	
+	/**
+	 * input multiplexer for multiple input processors
+	 */
+	protected InputMultiplexer inputMultiplexer;
     
     /**
      * The screen class.
@@ -44,6 +50,7 @@ public abstract class AbstractScreen implements Screen {
      */
     public AbstractScreen(RetroMachines game) {
     	this.game = game;
+    	inputMultiplexer = new InputMultiplexer();
 	}
 
     

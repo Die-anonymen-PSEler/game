@@ -44,15 +44,15 @@ public class Application extends Vertex {
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	public boolean alphaConversion() {
-		LinkedList<Integer> nextFam = this.getnext().getFamilyColorlist();
+		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
 		boolean returnValue = false;
-		int sA = getFamilyColorlist().size();
+		int sA = getFamilyColorList().size();
 		int sN = nextFam.size();
-		int newColor = this.getFamilyColorlist().getLast() + 1;
+		int newColor = this.getFamilyColorList().getLast() + 1;
 		// Searched for double used colors
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
-				if (getFamilyColorlist().get(i) == nextFam.get(j)) {
+				if (getFamilyColorList().get(i) == nextFam.get(j)) {
 					//Replace color in next family
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
@@ -114,7 +114,7 @@ public class Application extends Vertex {
 	 * @return
 	 */
 	public Vertex cloneMe(Vertex next){
-		Vertex clone = new Application(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
+		Vertex clone = new Application(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
 		return clone;
 	}
 	
@@ -123,7 +123,7 @@ public class Application extends Vertex {
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
+		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
 		return clone;
 	}
 }

@@ -35,15 +35,18 @@
 
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
-        default: { "up": "Blank", "down": "BlankPressed", font: font}
+        default: { "up": "Blank", "down": "BlankPressed", font: font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
         "default": { "font": font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
-        "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: font}
+        "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: font }
     },
-    com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+    "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
         "default": { "vScrollKnob": "Blank" }
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": { 
+        "default":  { "font":  font, "fontColor":  white, background: "WindowStyle" }
     }
 }

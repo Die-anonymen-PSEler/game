@@ -1,22 +1,16 @@
 package com.retroMachines.ui.screens.menus;
 
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
@@ -55,13 +49,14 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	public MainMenuScreen(RetroMachines game) {
 		super(game);
-		initialize();
 	}
-
+	
 	/**
-	 * Displays the MainMenuScreen.
+	 * Initializes the MainMenuScreen.
 	 */
-	public void show() {
+	@Override
+	protected void initialize() {
+		
 		skin = AssetManager.menuSkin;
 		table.debug();
 		// Make Title
@@ -109,21 +104,11 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		
 		// Add Title and Buttons to View
-		table.add(mainPart).expandY().width(table.getWidth()*4 / 5).top();
-		table.add(sidebar).width(table.getWidth() / 5).row();
+		table.add(mainPart).expandY().width(Gdx.graphics.getWidth() * (4 / 5f)).top();
+		table.add(sidebar).width(Gdx.graphics.getWidth() / 5f).row();
 	    
 	    stage.addActor(table);
-	    Gdx.input.setInputProcessor(stage);
-
-	        
-		//soundId = sound.loop();
-	}
-	
-	/**
-	 * Initializes the MainMenuScreen.
-	 */
-	@Override
-	protected void initialize() {
+	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
         
@@ -139,15 +124,19 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
-        
-        if (Gdx.input.isKeyPressed(Keys.BACK)){
-        	if (exitDialog != null) {
+    }
+    
+    @Override
+    public boolean keyDown(int keycode) {
+    	if (keycode == Keys.BACK) {
+    		if (exitDialog != null) {
         		exitDialog.show(stage);
         	} else {
         		exitDialog = new ExitDialog("Exit", skin, "default");
 				exitDialog.show(stage);
         	}
-        }
+    	}
+    	return false;
     }
 	
 	/**

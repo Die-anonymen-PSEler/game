@@ -23,7 +23,7 @@ public class ProfileMenuScreen extends MenuScreen{
 	
 	private ProfileController profileController;
 	
-	private List<String> profileList;
+	private List profileList;
 	
 	/**
 	 * The constructor to create a new instance of the ProfileMenuScreen.

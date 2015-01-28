@@ -61,6 +61,10 @@ public class RetroMachines extends Game{
 	 */
 	@Override
 	public void create() {
+		//Back and Home Button
+        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchMenuKey(true);
+        
 		loading = false;
 		setScreen(new LoadMenuScreen(this));
 		//RetroDatabase.getSingleton();

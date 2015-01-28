@@ -119,7 +119,8 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goLeft() {
-
+		velocity.add(0,-9);
+		updateRetroMan();
 	}
 
 	/**
@@ -127,13 +128,15 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
+		velocity.add(0,9);
+		updateRetroMan();
 
 	}
 
 	/**
-	 * Rturns the direction which the retroMan Face
+	 * Returns the direction which the retroMan Face
 	 * 
-	 * @return FaceLeft true means Retroman looks left
+	 * @return FaceLeft true means the RetroMan is looking to the left
 	 */
 	public boolean getFaceLeft() {
 		return faceLeft;
@@ -151,7 +154,7 @@ public class RetroMan {
 	}
 
 	/**
-	 * interacting with gameeelements
+	 * Interacting with the game elements.
 	 */
 
 	/**
@@ -163,8 +166,8 @@ public class RetroMan {
 	}
 
 	/**
-	 * returns if retroman has already picked up an elemnt
-	 * @return true if the retroman currently holds a gameelement; false otherwise
+	 * Returns true if the RetroMan has already picked up an element.
+	 * @return true if the RetroMan currently holds a game element; false otherwise.
 	 */
 	public boolean hasPickedUpElement() {
 		return element != null;
@@ -210,9 +213,9 @@ public class RetroMan {
 	 */
 
 	/**
-	 * the states in which the figure can be in
+	 * The states in which the figure can be in.
 	 * 
-	 * @author lucabecker
+	 * @author RetroMachines
 	 * 
 	 */
 	private enum State {

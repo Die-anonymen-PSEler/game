@@ -40,6 +40,22 @@ public class AboutMenuScreen extends MenuScreen {
 	 * Shows the AboutMenuScreen.
 	 */
 	public void show() {
+		super.show();
+	}
+	
+	private class ReturnButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+			game.setScreen(new MainMenuScreen(game));
+		}
+	}
+
+	/**
+	 * Initializes the screen.
+	 */
+	@Override
+	protected void initialize() {
 		skin = AssetManager.menuSkin;
 		table = new Table();
 		table.debug();
@@ -59,25 +75,8 @@ public class AboutMenuScreen extends MenuScreen {
 		table.add(title).width(1000).expandX().expandY().row();
 	    table.setFillParent(true);
 	    stage.addActor(table);
-
-	    Gdx.input.setInputProcessor(stage);
-	}
-	
-	private class ReturnButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-			game.setScreen(new MainMenuScreen(game));
-		}
-	}
-
-	/**
-	 * Initializes the screen.
-	 */
-	@Override
-	protected void initialize() {
-		// TODO Auto-generated method stub
-		
+	    
+	    inputMultiplexer.addProcessor(stage);
 	}
 	
 }

@@ -1,10 +1,15 @@
 package com.retroMachines.ui.screens.menus;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.ProfileController;
 
 /**
@@ -21,6 +26,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	private final ProfileController profileController;
 	
+	
 	private TextField nameTextField;
 	
 	/**
@@ -32,14 +38,45 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		profileController = game.getProfileController();
 		initialize();
 	}
-
+	
 	/**
 	 * Initializes the CreateProfileMenuScreen.
 	 */
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		nameTextField = new TextField(profileController.getProfileName(), new Skin());
+		//nameTextField = new TextField(profileController.getProfileName(), new Skin());
+		skin = AssetManager.menuSkin;
+		table.debug();
+		// Make Title
+		Label title = new Label("Create Profile",skin);
+		title.setFontScale(3);
+		title.setAlignment(Align.center);
+		
+		// Make Buttons
+		Button buttonOk = new Button(skin, "play");
+		buttonOk.addListener(new CreateProfileButtonClickListener());
+		buttonOk.pad(150);
+		Button buttonAbort = new Button(skin, "play");
+		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
+		buttonAbort.pad(150);
+		
+		
+		//Button
+		Table buttonTable = new Table(skin);
+		buttonTable.add(buttonAbort).width(Gdx.graphics.getWidth()/2);
+		buttonTable.add(buttonOk).width(Gdx.graphics.getWidth()/2);
+		
+		// Make Textfield
+		nameTextField = new TextField("ProfileName", skin);
+		
+		table.add(title).expandX().padTop(50).row();
+		table.add(nameTextField).padTop(50).row();
+		table.add(buttonTable).padTop(50).row();
+	    
+	    stage.addActor(table);
+		inputMultiplexer.addProcessor(stage);
+
 	}
 	
 	/**

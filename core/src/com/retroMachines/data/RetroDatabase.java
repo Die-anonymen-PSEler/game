@@ -62,11 +62,14 @@ public class RetroDatabase {
 	}
 	
 	public static void closeDatabase() {
-		try {
-			connection.close();
-			connection = null;
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (connection != null) {
+			// check if connection was initialized
+			try {
+				connection.close();
+				connection = null;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
