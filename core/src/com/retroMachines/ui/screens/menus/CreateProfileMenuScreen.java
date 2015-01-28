@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
@@ -49,29 +50,34 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		table.debug();
 		// Make Title
 		Label title = new Label("Create Profile",skin);
-		title.setFontScale(3);
+		title.setFontScale((3*screenWidth)/1920f);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
-		Button buttonOk = new Button(skin, "play");
+		Button buttonOk = new Button(skin, "ok");
 		buttonOk.addListener(new CreateProfileButtonClickListener());
-		buttonOk.pad(150);
+		buttonOk.pad(screenHeight / 10f);
 		Button buttonAbort = new Button(skin, "abort");
 		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
-		buttonAbort.pad(150);
+		buttonAbort.pad(screenHeight / 10f);
 		
 		
 		//Button
 		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).width(Gdx.graphics.getWidth()/2);
-		buttonTable.add(buttonOk).width(Gdx.graphics.getWidth()/2);
+		buttonTable.add(buttonAbort).padRight(screenWidth / 25f);
+		buttonTable.add(buttonOk).padLeft(screenWidth / 25f);
 		
 		// Make Textfield
 		nameTextField = new TextField("ProfileName", skin);
+		nameTextField.setHeight(10*screenHeight / 1080f);
+		nameTextField.setMaxLength(12);
+		TextFieldStyle nameTextStyle = nameTextField.getStyle();
+		nameTextStyle.background.setLeftWidth(nameTextStyle.background.getLeftWidth() + 20);
+		nameTextStyle.background.setRightWidth(nameTextStyle.background.getRightWidth() + 20);
 		
-		table.add(title).expandX().padTop(50).row();
-		table.add(nameTextField).padTop(50).row();
-		table.add(buttonTable).padTop(50).row();
+		table.add(title).expandX().padTop(screenHeight/ 25f).row();
+		table.add(nameTextField).width(screenWidth / 3).padTop(screenHeight/ 25f).row();
+		table.add(buttonTable).padTop(screenHeight/ 25f).row();
 	    
 	    stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
