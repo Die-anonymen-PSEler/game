@@ -28,7 +28,7 @@ public class StatisticTest {
 		assertTrue("wrong levels completed", TEST_LEVELCOMPLETED == statistic.getLevelsComplete());
 		assertTrue("wrong step counter", TEST_STEPCOUNTER == statistic.getStepCounter());
 		assertTrue("no record was created", statistic.hasRecordInSQL());
-		statistic.destroy();
+		statistic.destroy()
 	}
 	
 	/**
