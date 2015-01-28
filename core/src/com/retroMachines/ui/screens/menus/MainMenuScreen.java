@@ -62,6 +62,15 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 * Displays the MainMenuScreen.
 	 */
 	public void show() {
+		super.show();
+	}
+	
+	/**
+	 * Initializes the MainMenuScreen.
+	 */
+	@Override
+	protected void initialize() {
+		
 		skin = AssetManager.menuSkin;
 		table.debug();
 		// Make Title
@@ -113,17 +122,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		table.add(sidebar).width(table.getWidth() / 5).row();
 	    
 	    stage.addActor(table);
-	    Gdx.input.setInputProcessor(stage);
-
-	        
-		//soundId = sound.loop();
-	}
-	
-	/**
-	 * Initializes the MainMenuScreen.
-	 */
-	@Override
-	protected void initialize() {
+	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
         
@@ -139,15 +138,19 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
-        
-        if (Gdx.input.isKeyPressed(Keys.BACK)){
-        	if (exitDialog != null) {
+    }
+    
+    @Override
+    public boolean keyDown(int keycode) {
+    	if (keycode == Keys.BACK) {
+    		if (exitDialog != null) {
         		exitDialog.show(stage);
         	} else {
         		exitDialog = new ExitDialog("Exit", skin, "default");
 				exitDialog.show(stage);
         	}
-        }
+    	}
+    	return false;
     }
 	
 	/**
