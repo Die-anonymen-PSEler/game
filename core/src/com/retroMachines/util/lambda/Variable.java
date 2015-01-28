@@ -73,7 +73,7 @@ public class Variable extends Vertex {
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		Vertex clone = new Variable(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorlist());
+		Vertex clone = new Variable(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
 		return clone;
 	}
 	

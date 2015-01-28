@@ -32,7 +32,7 @@ public abstract class Vertex {
 	 * List of all color's of vertices corresponding to this abstraction.
 	 * color's are sorted after their size small to big 
 	 */
-	private LinkedList<Integer> familyColorlist;
+	private LinkedList<Integer> familyColorList;
 	
 	/**
 	 * Position of vertex
@@ -63,8 +63,8 @@ public abstract class Vertex {
 	 */
 	public Vertex(int color) {
 		this.color = color;
-		this.familyColorlist = new LinkedList<Integer>();
-		this.familyColorlist.add(color);
+		this.familyColorList = new LinkedList<Integer>();
+		this.familyColorList.add(color);
 	}	
 	
 	// --------------------------
@@ -80,7 +80,7 @@ public abstract class Vertex {
 	 */
 	public boolean updateIdList(int oldId, int newId) {
 		boolean updated = false;
-		for(Integer id : familyColorlist) {
+		for(Integer id : familyColorList) {
 			if (id == oldId) {
 				id = newId;
 				updated = true;
@@ -95,20 +95,20 @@ public abstract class Vertex {
 	 * @param addId id which should be added
 	 */
 	public void addFamilyIdList(int addId){
-		if (familyColorlist.contains(addId)) {
+		if (familyColorList.contains(addId)) {
 			return; //list already contains id
 		}
 		int index = 0;
-		for (int id : familyColorlist) {
+		for (int id : familyColorList) {
 			if (id > addId) {
-				index = familyColorlist.indexOf(id);
+				index = familyColorList.indexOf(id);
 				break;
 			}
 		}
 		if (index == 0) {
-			familyColorlist.addFirst(addId);
+			familyColorList.addFirst(addId);
 		} else {
-			familyColorlist.add(index - 1, addId);
+			familyColorList.add(index - 1, addId);
 		}
 		
 	}
@@ -144,22 +144,22 @@ public abstract class Vertex {
 	protected boolean renameFamily(int oldColor, int newColor) {
 		int index = 0;
 		// Get Index of oldColor 
-		while(this.familyColorlist.get(index) < oldColor) {
+		while(this.familyColorList.get(index) < oldColor) {
 			index++;
 		}
 		
 		// Replace Color 
-		if (this.familyColorlist.get(index) == oldColor) {
+		if (this.familyColorList.get(index) == oldColor) {
 			
 			// Replace Color in family Color List
-			this.familyColorlist.remove(index);
-			if (familyColorlist.getLast() >= newColor) {
+			this.familyColorList.remove(index);
+			if (familyColorList.getLast() >= newColor) {
 				/* Falsche Sortierung/ newColor
 				 * New color ist immer gr��tes Element in gesamter Liste
 				 */
 				return false;
 			}
-			this.familyColorlist.addLast(newColor);
+			this.familyColorList.addLast(newColor);
 			
 			// Replace own Color if needed
 			if (this.color == oldColor){
@@ -213,7 +213,7 @@ public abstract class Vertex {
 		LinkedList<Integer> listOfNewColors = new LinkedList<Integer>();
 		
 		// if family contains color, search and replace it
-		if (this.getFamilyColorlist().contains(start.getColor())) {
+		if (this.getFamilyColorList().contains(start.getColor())) {
 			if (this.getfamily() != null) {
 				
 				// Check Family Vertexes before you check to replace the first in Family
@@ -227,7 +227,7 @@ public abstract class Vertex {
 				//When there is a change in Family merge it with your list
 				if (!listOfNewColors.isEmpty()) {
 					//Remove the searched color from your list if it is replaced in your family
-					this.getFamilyColorlist().remove(start.getColor());
+					this.getFamilyColorList().remove(start.getColor());
 					this.mergeMyColorList(listOfNewColors);
 				}
 				
@@ -268,13 +268,13 @@ public abstract class Vertex {
 	 * @param listToAdd List wich should be merged with this color List
 	 */
 	protected void mergeMyColorList(LinkedList<Integer> listToAdd) {
-		int lengthBoth = this.getFamilyColorlist().size();
+		int lengthBoth = this.getFamilyColorList().size();
 		lengthBoth =+ listToAdd.size();
 		LinkedList<Integer> newColorList = new LinkedList<Integer>();
 		for (int i = 0; i < lengthBoth; i++) {
 			
 			// if one list is empty add the rest of the other one to the end
-			if(this.getFamilyColorlist().isEmpty()) {
+			if(this.getFamilyColorList().isEmpty()) {
 				int l = listToAdd.size();
 				for (int j = 0; j < l; j++) {
 					newColorList.addLast(listToAdd.pollFirst());
@@ -282,16 +282,16 @@ public abstract class Vertex {
 				break;
 			}
 			if(listToAdd.isEmpty()) {
-				int l = this.getFamilyColorlist().size();
+				int l = this.getFamilyColorList().size();
 				for (int j = 0; j < l; j++) {
-					newColorList.addLast(this.getFamilyColorlist().pollFirst());
+					newColorList.addLast(this.getFamilyColorList().pollFirst());
 				}
 				break;
 			}
 			
 			// if there are still elements in one List search the smallest one and add it to the new List
-			if (this.getFamilyColorlist().getFirst() < listToAdd.getFirst()) {
-				newColorList.addLast(this.getFamilyColorlist().pollFirst());
+			if (this.getFamilyColorList().getFirst() < listToAdd.getFirst()) {
+				newColorList.addLast(this.getFamilyColorList().pollFirst());
 			} else {
 				newColorList.addLast(listToAdd.pollFirst());
 			}
@@ -369,18 +369,18 @@ public abstract class Vertex {
 	 * 
 	 * @return The familyColorList of this Vertex
 	 */
-	public LinkedList<Integer> getFamilyColorlist(){
-		return familyColorlist;
+	public LinkedList<Integer> getFamilyColorList(){
+		return familyColorList;
 	}
 	
 	/**
 	 * Setter for the famiylColorList
 	 * 
-	 * @param familyColorlist
+	 * @param familyColorList
 	 * 				FamilyColorList that is to set
 	 */
-	protected void setFamilyColorlist(LinkedList<Integer> familyColorlist) {
-		this.familyColorlist = familyColorlist;
+	protected void setFamilyColorlist(LinkedList<Integer> familyColorList) {
+		this.familyColorList = familyColorList;
 	}
 	
 	/**
