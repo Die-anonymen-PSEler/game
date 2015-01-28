@@ -62,7 +62,7 @@ public class RetroMan {
 	private Texture texture;
 
 	/**
-	 * 
+	 * die ist da
 	 */
 	private final Vector2 velocity;
 
