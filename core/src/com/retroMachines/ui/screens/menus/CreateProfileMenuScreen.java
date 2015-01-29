@@ -126,7 +126,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		rightTable.add(leftiTable).expandX().padTop(screenHeight/ 50f).row();
 		
 		//MainTable
-		table.add(title).expandX().expandX().colspan(2).padTop(screenHeight/ 25f).row();
+		table.add(title).expandX().colspan(2).padTop(screenHeight/ 25f).row();
 		table.add(imageTable).width(screenWidth * (4 / 9f));
 		table.add(rightTable).width(screenWidth * (5 / 9f)).row();
 		table.add(buttonTable).colspan(2).padTop(screenHeight/ 25f).row();

@@ -136,156 +136,170 @@ InfoPressed
   orig: 50, 50
   offset: 0, 0
   index: -1
-NextChar
+Locked
   rotate: false
   xy: 517, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-NextCharPressed
+LockedPressed
   rotate: false
   xy: 517, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Ok
+NextChar
   rotate: false
   xy: 569, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-OkPressed
+NextCharPressed
   rotate: false
   xy: 569, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Play
+Ok
   rotate: false
   xy: 621, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-PlayPressed
+OkPressed
   rotate: false
   xy: 621, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Profile
+Play
   rotate: false
   xy: 673, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-ProfilePressed
+PlayPressed
   rotate: false
   xy: 673, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-ProfileSettings
+Profile
   rotate: false
   xy: 725, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-ProfileSettingsPressed
+ProfilePressed
   rotate: false
   xy: 725, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Settings
+ProfileSettings
   rotate: false
   xy: 777, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Settings2
+ProfileSettingsPressed
   rotate: false
   xy: 777, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Settings2Pressed
+Settings
   rotate: false
   xy: 829, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SettingsPressed
+Settings2
   rotate: false
   xy: 829, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundDown
+Settings2Pressed
   rotate: false
   xy: 881, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundDownPressed
+SettingsPressed
   rotate: false
   xy: 881, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundOff
+SoundDown
   rotate: false
   xy: 933, 205
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundOffPressed
+SoundDownPressed
   rotate: false
   xy: 933, 153
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundUp
+SoundOff
   rotate: false
   xy: 105, 53
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundUpPressed
+SoundOffPressed
   rotate: false
   xy: 105, 1
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Statistic
+SoundUp
   rotate: false
   xy: 157, 101
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-StatisticPressed
+SoundUpPressed
   rotate: false
   xy: 157, 49
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Statistic
+  rotate: false
+  xy: 209, 101
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+StatisticPressed
+  rotate: false
+  xy: 209, 49
   size: 50, 50
   orig: 50, 50
   offset: 0, 0

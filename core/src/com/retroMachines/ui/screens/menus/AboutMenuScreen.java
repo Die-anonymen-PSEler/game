@@ -25,8 +25,6 @@ public class AboutMenuScreen extends MenuScreen {
 	 */
 	public static final String CREDIT = "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 	
-	private Table table;
-	
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
 	 * @param game The game which uses the screen.
@@ -42,14 +40,6 @@ public class AboutMenuScreen extends MenuScreen {
 	public void show() {
 		super.show();
 	}
-	
-	private class ReturnButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-			game.setScreen(new MainMenuScreen(game));
-		}
-	}
 
 	/**
 	 * Initializes the screen.
@@ -57,7 +47,7 @@ public class AboutMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		skin = AssetManager.menuSkin;
-		table = new Table();
+		table.debug();
 		
 		// Make Title
 		Label title = new Label(CREDIT,skin);
@@ -72,10 +62,26 @@ public class AboutMenuScreen extends MenuScreen {
 		
 		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left().row();
 		table.add(title).width(screenWidth/1.5f).expandX().expandY().row();
-	    table.setFillParent(true);
+		
 	    stage.addActor(table);
 	    
 	    inputMultiplexer.addProcessor(stage);
 	}
+	
+	
+	/**
+	 * Button to return to the MainMenuScreen.
+	 * 
+	 * @author RetroFactory
+	 *
+	 */
+	private class ReturnButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+			game.setScreen(new MainMenuScreen(game));
+		}
+	}
+
 	
 }

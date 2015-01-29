@@ -15,7 +15,7 @@
     "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
         "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 },
         "abort": { "up": "Abort", "down": "AbortPressed", "pressedOffsetY": -4 },
-        "controlLeft": { "up": "ControlLeft", "down": "ControlLeftPressed", "pressedOffsetY": -4, "checked": "ControlLeftPressed"},
+        "controlLeft": { "up": "ControlLeft", "down": "ControlLeftPressed", "pressedOffsetY": -4, "checked": "ControlLeftPressed" },
         "controlRight": { "up": "ControlRight", "down": "ControlRightPressed", "pressedOffsetY": -4, "checked": "ControlRightPressed" },
         "exit": { "up": "Exit", "down": "ExitPressed", "pressedOffsetY": -4 },
         "home": { "up": "Home", "down": "HomePressed", "pressedOffsetY": -4 },
@@ -36,7 +36,8 @@
 
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
-        default: { "up": "Blank", "down": "BlankPressed", font: font }
+        "default": { "up": "Blank", "down": "BlankPressed", font: font },
+        "locked": { "up": "Locked", "down": "LockedPressed", font: font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
         "default": { "font": font }

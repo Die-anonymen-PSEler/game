@@ -113,17 +113,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         
        // game.getSettingController().add(this);
 	}
-	
-	/**
-     * Renders the Stage to the Screen.
-     */
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
-        stage.draw();
-    }
     
     @Override
     public boolean keyDown(int keycode) {
@@ -220,11 +209,11 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
-	        Label dialogText = new Label("Do you realy want to leave us ?",skin);
+	        Label dialogText = new Label("Wirklich Verlassen ?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
 	        dialogText.setFontScale((2.1f * screenWidth)/1920f);
-			getContentTable().add(dialogText).width(screenWidth / 1.5f);
+			getContentTable().add(dialogText).width(screenWidth / 1.7f);
 			button(new Button(skin, "ok"), true);
 			button(new Button(skin, "abort"), false);
 		}
