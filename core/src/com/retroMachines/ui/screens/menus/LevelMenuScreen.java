@@ -92,19 +92,6 @@ public class LevelMenuScreen extends MenuScreen{
 		
 	}
 	
-	 @Override
-	    public boolean keyDown(int keycode) {
-	    	if (keycode == Keys.BACK) {
-	    		if (lockedDialog != null) {
-	    			lockedDialog.show(stage);
-	        	} else {
-	        		lockedDialog = new LockedDialog("", skin, "default");
-	        		lockedDialog.show(stage);
-	        	}
-	    	}
-	    	return false;
-	    }
-	
 	/**
 	 * Button to return to the MainMenuScreen.
 	 * 

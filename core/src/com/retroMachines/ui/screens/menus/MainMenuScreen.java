@@ -176,7 +176,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
 			//TODO implement this
-			game.setScreen(new CreateProfileMenuScreen(game));
+			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
 	

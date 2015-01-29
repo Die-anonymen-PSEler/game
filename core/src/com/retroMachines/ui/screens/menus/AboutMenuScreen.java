@@ -35,13 +35,6 @@ public class AboutMenuScreen extends MenuScreen {
 	}
 
 	/**
-	 * Shows the AboutMenuScreen.
-	 */
-	public void show() {
-		super.show();
-	}
-
-	/**
 	 * Initializes the screen.
 	 */
 	@Override

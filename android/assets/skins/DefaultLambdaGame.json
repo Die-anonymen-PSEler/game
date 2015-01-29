@@ -46,7 +46,7 @@
         "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
-        "default": { "vScrollKnob": "Blank" }
+        "default": { "vScrollKnob": "GrauPixel" , "hScrollKnob": "GrauPixel"}
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": { 
         "default":  { "font":  font, "fontColor":  white, "background": "WindowStyle","cursor":  "GrauPixel"  }
