@@ -169,7 +169,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
-			game.setScreen(new MainMenuScreen(game));
+			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
 	
