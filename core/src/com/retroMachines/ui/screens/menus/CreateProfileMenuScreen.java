@@ -1,6 +1,7 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -143,6 +144,14 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	    stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 
+	}
+	
+	@Override
+    public boolean keyDown(int keycode) {
+    	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
+    		game.setScreen(new ProfileMenuScreen(game));
+    	}
+    	return false;
 	}
 	
 	/**

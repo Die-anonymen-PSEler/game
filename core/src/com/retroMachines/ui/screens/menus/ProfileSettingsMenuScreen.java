@@ -1,6 +1,7 @@
 package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -137,6 +138,14 @@ skin = AssetManager.menuSkin;
 	 */
 	public int getActualCharacter(){
 		return actualCharacter;
+	}
+	
+	@Override
+    public boolean keyDown(int keycode) {
+    	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
+    		game.setScreen(new SettingsMenuScreen(game));
+    	}
+    	return false;
 	}
 	
 	/**
