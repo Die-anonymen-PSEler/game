@@ -43,18 +43,25 @@ public class AboutMenuScreen extends MenuScreen {
 		table.debug();
 		
 		// Make Title
-		Label title = new Label(CREDIT,skin);
+		Label title = new Label("Credits",skin);
 		title.setWrap(true);
 		title.setFontScale((2.5f*screenWidth)/1920f);
 		title.setAlignment(Align.center);
+		
+		// Make Text
+		Label aboutText = new Label(CREDIT,skin);
+		aboutText.setWrap(true);
+		aboutText.setFontScale((2.5f*screenWidth)/1920f);
+		aboutText.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonReturn = new Button(skin, "back");
 		buttonReturn.pad(screenHeight / 10f);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
-		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left().row();
-		table.add(title).width(screenWidth/1.5f).expandX().expandY().row();
+		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left();
+		table.add(title).width(screenWidth/2f).right().padRight((screenWidth / 2f) - (screenWidth / 4f) ).expandX().row();
+		table.add(aboutText).width(screenWidth/1.5f).colspan(2).expandX().expandY().row();
 		
 	    stage.addActor(table);
 	    
