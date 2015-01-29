@@ -51,13 +51,22 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		//nameTextField = new TextField(profileController.getProfileName(), new Skin());
 		skin = AssetManager.menuSkin;
+		
 		// Make Title
 		Label title = new Label("Create Profile",skin);
 		title.setFontScale((3*screenWidth)/1920f);
 		title.setAlignment(Align.center);
+		
+		//Profile Name
+		Label profileName = new Label("Name",skin);
+		profileName.setFontScale((2f*screenWidth)/1920f);
+		profileName.setAlignment(Align.center);
+		
+		//Subtitle LeftiMode
+		Label steeringTitle = new Label("Steuerung", skin);
+		steeringTitle.setFontScale((2f*screenWidth)/1920f);
+		steeringTitle.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonOk = new Button(skin, "ok");
@@ -120,9 +129,9 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		
 		//RightTable
 		Table rightTable = new Table(skin);
-		rightTable.add("Name").padTop(screenHeight/ 30f).row();
+		rightTable.add(profileName).padTop(screenHeight/ 30f).row();
 		rightTable.add(nameTextField).height(40*((3*screenWidth)/1920f)).width(screenWidth / 2).padTop(screenHeight/ 50f).row();
-		rightTable.add("Steuerung").padTop(screenHeight/ 25f).row();
+		rightTable.add(steeringTitle).padTop(screenHeight/ 20f).row();
 		rightTable.add(leftiTable).expandX().padTop(screenHeight/ 50f).row();
 		
 		//MainTable
@@ -168,7 +177,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			// TODO  No Abort Possible if there is no other Profile
 			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
