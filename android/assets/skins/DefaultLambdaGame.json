@@ -51,7 +51,10 @@
     "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
         "default": { "vScrollKnob": "GrauPixel" , "hScrollKnob": "GrauPixel"}
     },
-    "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": { 
-        "default":  { "font":  font, "fontColor":  white, "background": "WindowStyle","cursor":  "GrauPixel"  }
+    "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+        "default": { "font": font, "fontColor": white, "background": "WindowStyle", "cursor": "GrauPixel" }
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
+        "default-horizontal": { "background":  "GrauPixel", "knob": "Blank",}
     }
 }
