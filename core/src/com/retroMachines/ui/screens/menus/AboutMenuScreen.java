@@ -40,7 +40,6 @@ public class AboutMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		skin = AssetManager.menuSkin;
-		table.debug();
 		
 		// Make Title
 		Label title = new Label("Credits",skin);

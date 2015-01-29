@@ -26,7 +26,6 @@ public class StatisticMenuScreen  extends MenuScreen {
 	@Override
 	protected void initialize() {
 		skin = AssetManager.menuSkin;
-		table.debug();
 		
 		// Make Title
 		Label title = new Label("Statitik",skin);
