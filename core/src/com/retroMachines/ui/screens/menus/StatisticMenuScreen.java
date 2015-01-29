@@ -39,8 +39,9 @@ public class StatisticMenuScreen  extends MenuScreen {
 		buttonReturn.pad(screenHeight / 10f);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
-		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left().row();
-		table.add(title).width(screenWidth/1.5f).expandX().expandY().row();
+		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left();
+		table.add(title).width(screenWidth/2f).right().padRight((screenWidth / 2f) - (screenWidth / 4f) ).expandX().row();
+		table.add(" Statistik Kram").expandY().colspan(2);
 		
 	    stage.addActor(table);
 	    
