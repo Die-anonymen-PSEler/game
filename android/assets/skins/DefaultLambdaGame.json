@@ -31,7 +31,10 @@
         "soundUp": { "up": "SoundUp", "down": "SoundUpPressed", "pressedOffsetY": -4 },
         "statistic": { "up": "Statistic", "down": "StatisticPressed", "pressedOffsetY": -4 },
         "back": { "up": "Back", "down": "BackPressed", "pressedOffsetY": -4 },
-        "nextChar": { "up": "NextChar", "down": "NextCharPressed", "pressedOffsetY": -4 }
+        "nextChar": { "up": "NextChar", "down": "NextCharPressed", "pressedOffsetY": -4 },
+        "addProfile": { "up": "AddProfile", "down": "AddProfilePressed", "pressedOffsetY": -4 },
+        "deleteProfile": { "up": "DeleteProfile", "down": "DeleteProfilePressed", "pressedOffsetY": -4 },
+        "changeProfile": { "up": "ChangeProfile", "down": "ChangeProfilePressed", "pressedOffsetY": -4 }
 
 
     },
