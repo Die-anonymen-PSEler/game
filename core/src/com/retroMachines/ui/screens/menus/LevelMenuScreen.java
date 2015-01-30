@@ -23,14 +23,20 @@ public class LevelMenuScreen extends MenuScreen{
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float LEVELBUTTONSIZE = 6f;
+	private final static float PADING30 = 30f;
 	private final static float DEFAULTPADINGx2 = 50f;
 	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE2_1 =  2.1f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
 	private final static float ONE_8th = (1f / 8f);
+	private final static float ONE_4th = (1f / 4f);
 	private final static int COLSPANx2 = 2;
 	private final static int NUMLEVEL = 15;
+	private final static float DIALOGTEXTWIDTH = (5f / 8f);
+	private final static float DIALOGWIDTH = (2f / 3f);
+	private final static float DIALOGHEIGHT = (5f / 9f);
 	
 	
 	private List<String> levelList;
@@ -174,18 +180,18 @@ public class LevelMenuScreen extends MenuScreen{
 		}
 		
 		private void initialize() {
-			padTop(screenWidth / 30f); // set padding on top of the dialog title
-			padBottom(screenWidth / 35f); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight/ 4f); // set buttons height
-	        getButtonTable().defaults().width(screenWidth / 4f); // set buttons height
+			padTop(screenWidth / PADING30 ); // set padding on top of the dialog title
+			padBottom(screenWidth / PADING30); // set padding on bottom of the dialog title
+	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
+	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
 	        Label dialogText = new Label("Nicht Freigeschaltet",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
-	        dialogText.setFontScale((2.1f * screenWidth)/1920f);
-			getContentTable().add(dialogText).width(screenWidth / 1.5f);
+	        dialogText.setFontScale((FONTSIZE2_1 * screenWidth) / DIVIDEWIDTHDEFAULT);
+			getContentTable().add(dialogText).width(screenWidth * DIALOGTEXTWIDTH);
 			button(new Button(skin, "ok"), true);
 		}
 		
@@ -196,13 +202,13 @@ public class LevelMenuScreen extends MenuScreen{
 		   @Override
 		   public float getPrefWidth() {
 		      // force dialog width
-		      return screenWidth / 1.5f;
+		      return screenWidth * DIALOGWIDTH;
 		   }
 
 		   @Override
 		   public float getPrefHeight() {
 		      // force dialog height
-		      return screenHeight / 1.8f;
+		      return screenHeight * DIALOGHEIGHT;
 		   }
 	}
 	
