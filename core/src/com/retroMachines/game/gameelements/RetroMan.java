@@ -39,7 +39,7 @@ public class RetroMan {
 	/**
 	 * true if the character is looking to the left; false otherwise
 	 */
-	private boolean faceLeft;
+	private boolean faceLeft = false;
 
 	/**
 	 * the position of the character on the screen
@@ -53,7 +53,7 @@ public class RetroMan {
 	private State state;
 
 	/**
-	 * contains a potential gameelement if the character has picked one up
+	 * contains a potential gameElement if the character has picked one up
 	 */
 	private GameElement element;
 
@@ -127,7 +127,11 @@ public class RetroMan {
 	 */
 	public void jump() {
 		if (canJump()) {
-			state = State.JUMPING;
+			if (hasPickedUpElement()) {
+				state = State.JUMPINGE;
+			} else {
+				state = State.JUMPING;
+			}
 			velocity.add(0, 9);
 		}
 	}
@@ -137,7 +141,19 @@ public class RetroMan {
 	 * order to release the jump prohibition.
 	 */
 	public void landed() {
-			state = State.STANDING;
+		if (faceLeft) {
+		if (hasPickedUpElement()) {
+			state = State.STANDINGELEFT;
+		} else {
+			state = State.STANDINGLEFT;
+		}
+		} else {
+			if (hasPickedUpElement()) {
+				state = State.STANDINGERIGHT;
+			} else {
+				state = State.STANDINGRIGHT;
+			}
+		}
 	}
 
 	/**
@@ -147,7 +163,11 @@ public class RetroMan {
 	 * @return true if the character can jump; false otherwise
 	 */
 	private boolean canJump() {
-		return state != State.JUMPING;
+		if (state == state.JUMPINGLEFT || state == state.JUMPINGRIGHT || 
+				state == state.JUMPINGELEFT || state == state.JUMPINGERIGHT) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -160,7 +180,13 @@ public class RetroMan {
 	 */
 	public void goLeft() {
 		velocity.add(-9, 0);
-		state = state.RUNNINGLEFT;
+		faceLeft = true;
+		if (hasPickedUpElement()) {
+			state = State.RUNNINGLEFTE;
+		} else {
+			state = State.RUNNINGLEFT;
+		}
+
 		//updateRetroMan(deltaTime);
 	}
 
@@ -170,7 +196,13 @@ public class RetroMan {
 	 */
 	public void goRight() {
 		velocity.add(9, 0);
-		state = state.RUNNING;
+		faceLeft = false;
+		if (hasPickedUpElement()) {
+			state = State.RUNNINGRIGHTE;
+		}
+		else {
+		state = State.RUNNINGRIGHT;
+		}
 		//updateRetroMan(deltaTime);
 	}
 
@@ -254,6 +286,49 @@ public class RetroMan {
 		return null;
 	}
 
+	private void renderRetroMan(float deltaTime) {
+		// based on the RetroMan state, get the animation frame
+		TextureRegion frame = null;
+		switch (state) {
+		case STANDINGRIGHT:
+			frame = standRight.getKeyFrame(stateTime);
+			break;
+		case STANDINGERIGHT:
+			frame = standERight.getKeyFrame(stateTime);
+			break;
+		case STANDINGLEFT:
+			frame = standLeft.getKeyFrame(stateTime);
+			break;
+		case STANDINGELEFT:
+			frame = standELeft.getKeyFrame(stateTime);
+			break;
+		case RUNNINGRIGHT:
+			frame = runningRight.getKeyFrame(stateTime);
+			break;
+		case RUNNINGRIGHTE:
+			frame = runningRightE.getKeyFrame(stateTime);
+			break;
+		case RUNNINGLEFT:
+			frame = runningLeft.getKeyFrame(stateTime);
+			break;
+		case RUNNINGLEFTE:
+			frame = runningLeftE.getKeyFrame(stateTime);
+			break;
+		case JUMPINGRIGHT:
+			frame = jumpingRight.getKeyFrame(stateTime);
+			break;
+		case JUMPINGERIGHT:
+			frame = jumpingERight.getKeyFrame(stateTime);
+			break;
+		case JUMPINGLEFT:
+			frame = jumpingLeft.getKeyFrame(stateTime);
+			break;
+		case JUMPINGELEFT:
+			frame = jumpingELeft.getKeyFrame(stateTime);
+			break;
+		}
+	}
+	
 	/**
 	 * subclasses and enums
 	 */
@@ -266,59 +341,76 @@ public class RetroMan {
 	 */
 	private enum State {
 		/**
-		 * if the character is standing on solid ground and not moving he is
-		 * STANDING
+		 * if the character is facing right and is standing on solid ground and not moving he is
+		 * STANDINGRIGHT
 		 */
-		STANDING,
-
-		/**
-		 * if the character is standing on solid ground and he is carrying an element and he is
-		 * not moving he is STANDINGE
-		 */
-		//STANDINGE,
+		STANDINGRIGHT,
 		
 		/**
-		 * if the characters x-velocity is not 0 (and x-velocity is >0 )and he is on solid ground he is
-		 * RUNNING(RIGHT)
+		 * if the character is facing left and is standing on solid ground and not moving he is
+		 * STANDINGLEFT
 		 */
-		RUNNING,
-		//RUNNIGRIGHT,
+		STANDINGLEFT,
+
+		/**
+		 * if the character is facing right and is standing on solid ground and he is carrying an 
+		 * element and he is not moving he is STANDINGERIGHT
+		 */
+		STANDINGERIGHT,
+		
+		/**
+		 * if the character is facing left and is standing on solid ground and he is carrying an 
+		 * element and he is not moving he is STANDINGELEFT
+		 */
+		STANDINGELEFT,
+		
+		/**
+		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is on solid ground he is
+		 * RUNNINGRIGHT
+		 */
+		RUNNINGRIGHT,
 
 		/**
 		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is carrying an element and
 		 * he is on solid ground he is RUNNINGRIGHTE
 		 */
-		//RUNNINGRIGHTE,
+		RUNNINGRIGHTE,
 		
 		/**
 		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is on solid ground he is
 		 * RUNNINGLEFT
 		 */
-		//RUNNINGLEFT,
+		RUNNINGLEFT,
 		
 		/**
 		 * if the characters x-velocity is not 0 and x-velocity is <0. He is carrying an element and
 		 * he is on solid ground he is RUNNINGLEFTE
 		 */
-		//RUNNINGLEFTE,
-		
-		 /** if the characters x-velocity is not 0 and x-velocity is <0 and he is
-		 * on solid ground he is RUNNINGLEFT
-		 */
-		RUNNINGLEFT,
-
+		RUNNINGLEFTE,
 
 		/**
-		 * if the character is not on solid ground he is JUMPING. his x-velocity
+		 * if the character is facing right and is not on solid ground then he is JUMPINGLEFT. His x-velocity
 		 * may be 0
 		 */
-		JUMPING,	
+		JUMPINGRIGHT,	
 		
 		/**
-		 * if the character is not on solid ground and he is carrying an element, he is JUMPINGE. 
-		 * his x-velocity may be 0
+		 * if the character is facing left and is not on solid ground and he is carrying an element, 
+		 * he is JUMPINGERIght. His x-velocity may be 0
 		 */
-		//JUMPINGE		
+		JUMPINGERIGHT,
+		
+		/**
+		 * if the character is facing left and is not on solid ground then he is JUMPINGLEFT. His x-velocity
+		 * may be 0
+		 */
+		JUMPINGLEFT,	
+		
+		/**
+		 * if the character is facing left and is not on solid ground and he is carrying an element, 
+		 * he is JUMPINGELEFT. His x-velocity may be 0
+		 */
+		JUMPINGELEFT		
 
 	}
 
