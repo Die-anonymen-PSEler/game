@@ -2,6 +2,8 @@ package com.retroMachines.ui.screens.menus;
 
 
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -67,6 +69,7 @@ public class ProfileMenuScreen extends MenuScreen{
 		// Make Profile List
 		profileList = new List<String>(skin);
 		profileList.setItems(Profile.getAllProfiles());
+		
 		
 		profileList.getStyle().font.setScale((2.5f * screenWidth)/1920f);
 		Table scrollTable = new Table(skin);

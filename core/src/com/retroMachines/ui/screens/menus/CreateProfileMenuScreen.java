@@ -181,12 +181,13 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 * Attempts to create a new profile.
 	 */
 	private void createProfile() {
-		String name = nameTextField.getMessageText();
-		if (!profileController.isValidUsername(name)) {
+		String name = nameTextField.getText();
+		if (profileController.canUserBeCreated(name)) {
 			profileController.createProfile(name);
+			game.setScreen(new ProfileMenuScreen(game));
 		}
 		else {
-			game.setScreen(new ProfileMenuScreen(game));
+			
 		}
 	}
 	
@@ -197,7 +198,6 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class CreateProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
 			createProfile();
 		}
 	}
@@ -210,7 +210,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO  No Abort Possible if there is no other Profile
-			game.setScreen(new ProfileMenuScreen(game));
+			game.previousScreen();
 		}
 	}
 	

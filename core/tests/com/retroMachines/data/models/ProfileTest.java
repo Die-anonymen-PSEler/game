@@ -72,4 +72,18 @@ public class ProfileTest {
 		assertTrue("zu viele profile. sollte nur eines geben", profiles.length == 1);
 		assertTrue("falsches profil an erster stelle", profiles[0].equals(TEST_USER_IN_DB));
 	}
+	
+	@Test
+	public void testGetallProfilesWithCreate() {
+		String[] profiles = Profile.getAllProfiles();
+		assertTrue("zu viele profile. sollte nur eines geben", profiles.length == 1);
+		assertTrue("falsches profil an erster stelle", profiles[0].equals(TEST_USER_IN_DB));
+		
+		Statistic statistic = new Statistic();
+		Setting setting = new Setting();
+		Profile profile = new Profile("Luca", setting, statistic);
+		
+		assertTrue("falsche anzahl an profilen", Profile.getAllProfiles().length == 2);
+		profile.destroy();
+	}
 }
