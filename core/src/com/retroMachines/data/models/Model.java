@@ -28,7 +28,7 @@ public abstract class Model {
 	/**
 	 * The database connection that will execute queries to the SQLite file.
 	 */
-	protected Connection connection;
+	protected static Connection connection;
 	
 	/**
 	 * The id of the row where the record is stored within the database.

@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
+import com.retroMachines.game.controllers.ProfileController;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -28,6 +29,8 @@ public class Profile extends Model {
 	private static final String KEY_STATISTIC = "statisticId";
 	
 	private static final String KEY_SETTING = "settingId";
+	
+	private static final String KEY_LENGTH = "LENGTH";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
@@ -54,7 +57,7 @@ public class Profile extends Model {
 	 * within the table
 	 * 0 -> id, 1 -> name, 2 -> statisticId, 3 -> settingId
 	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = ?;";
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT *, COUNT(*) AS LENGTH FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` LIKE ?;";
 
 	/**
 	 * the name of the profile
@@ -191,6 +194,25 @@ public class Profile extends Model {
 				Gdx.app.error("SQLException", "DELETE query failed | destroy");
 			}
 		}
+	}
+	
+	public static String[] getAllProfiles() {
+		if (connection == null) {
+			connection = RetroDatabase.getConnection();
+		}
+		try {
+			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+			ps.setString(1, "%");
+			ResultSet rs = ps.executeQuery();
+			String[] result = new String[rs.getInt(KEY_LENGTH)];
+			for (int i = 0; rs.next(); i++) {
+				result[i] = rs.getString(KEY_PROFILE_NAME);
+			}
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	

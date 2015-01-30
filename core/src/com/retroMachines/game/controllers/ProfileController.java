@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.data.models.Profile;
 
 /**
@@ -32,7 +33,7 @@ public class ProfileController {
 	/**
 	 * The amount of profiles allowed in the game.
 	 */
-	public static final int MAX_PROFILE_NUMBER = 5;
+	public static final int MAX_PROFILE_NUMBER = 5; 
 	
 	/**
 	 * The list of Listener that want to be notified about profile changes.
@@ -47,7 +48,7 @@ public class ProfileController {
 	public ProfileController(RetroMachines game) {
 		this.game = game;
 		profileChangeListeners = new LinkedList<OnProfileChangedListener>();
-		profileNames = new String[MAX_PROFILE_NUMBER];
+		profileNames = Profile.getAllProfiles();
 	}
 
 	/**
@@ -141,6 +142,16 @@ public class ProfileController {
 	 */
 	public void removeProfileChangedListener(OnProfileChangedListener listener) {
 		profileChangeListeners.remove(listener);
+	}
+
+	public boolean loadLastProfile() {
+		GlobalVariables gv = GlobalVariables.getSingleton();
+		int id = Integer.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));
+		if (id == -1) {
+			return false;
+		}
+		profile = new Profile(id);
+		return true;
 	}
 
 }

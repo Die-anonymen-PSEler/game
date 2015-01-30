@@ -23,6 +23,11 @@ public class GlobalVariables extends Model {
 	private static final String KEY_KEY = "key";
 	
 	private static final String KEY_VALUE = "value";
+	
+	/**
+	 * the key for the lastusedprofile id
+	 */
+	public static final String KEY_LAST_USED_PROFILE = "lastUsedProfile";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
