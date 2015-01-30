@@ -67,12 +67,22 @@ public class RetroMan {
 	 * the texture of the character
 	 */
 	private Texture texture;
-
-	private Animation stand;
+	
+	private float stateTime;
+	
+	private Animation standRight;
+	private Animation standLeft;
+	private Animation standERight;
+	private Animation standELeft;
 	private Animation runningRight;
+	private Animation runningRightE;
 	private Animation runningLeft;
-	private Animation jumping;
-
+	private Animation runningLeftE;
+	private Animation jumpingRight;
+	private Animation jumpingLeft;
+	private Animation jumpingERight;
+	private Animation jumpingELeft;
+	
 	/**
 	 * the current velocity
 	 */
@@ -85,6 +95,26 @@ public class RetroMan {
 	public RetroMan() {
 		pos = new Vector2();
 		velocity = new Vector2();
+		
+		//The animation
+		texture = new Texture("map/Animation.png");
+		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+		standRight = new Animation(0, regions[0]);
+		standLeft = new Animation(0, regions[7]);
+		standERight = new Animation(0, regions[2]);
+		standELeft = new Animation(0, regions[5]);
+		runningRight = new Animation(0.15f, regions[0], regions[1]);
+		runningRight.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+		runningRightE = new Animation(0.15f, regions[2], regions[3]);
+		runningRightE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+		runningLeft = new Animation(0.15f, regions[6], regions[7]);
+		runningLeft.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+		runningLeftE = new Animation(0.15f, regions[4], regions[5]);
+		runningLeftE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+		jumpingRight = new Animation(0, regions[8]);
+		jumpingLeft = new Animation(0, regions[10]);
+		jumpingERight = new Animation(0, regions[9]);
+		jumpingELeft = new Animation(0, regions[11]);
 	}
 
 	/**
@@ -130,7 +160,7 @@ public class RetroMan {
 	 */
 	public void goLeft() {
 		velocity.add(-9, 0);
-		updateRetroMan();
+		//updateRetroMan(deltaTime);
 	}
 
 	/**
@@ -138,9 +168,9 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
-		velocity.add(9, 0);
-		updateRetroMan();
 
+		velocity.add(9, 0);
+		//updateRetroMan(deltaTime);
 	}
 
 	/**
@@ -159,7 +189,10 @@ public class RetroMan {
 	/**
 	 * 
 	 */
-	public void updateRetroMan() {
+	public void updateRetroMan(float deltaTime) {
+		if (deltaTime == 0) {
+			return;
+		}
 
 	}
 
@@ -238,22 +271,53 @@ public class RetroMan {
 		STANDING,
 
 		/**
-		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is
-		 * on solid ground he is RUNNINGRIGHT
+		 * if the character is standing on solid ground and he is carrying an element and he is
+		 * not moving he is STANDINGE
 		 */
-		RUNNIGRIGHT,
+		//STANDINGE,
+		
+		/**
+		 * if the characters x-velocity is not 0 (and x-velocity is >0 )and he is on solid ground he is
+		 * RUNNING(RIGHT)
+		 */
+		RUNNING,
+		//RUNNIGRIGHT,
 
 		/**
-		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is
+		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is carrying an element and
+		 * he is on solid ground he is RUNNINGRIGHTE
+		 */
+		//RUNNINGRIGHTE,
+		
+		/**
+		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is on solid ground he is
+		 * RUNNINGLEFT
+		 */
+		//RUNNINGLEFT,
+		
+		/**
+		 * if the characters x-velocity is not 0 and x-velocity is <0. He is carrying an element and
+		 * he is on solid ground he is RUNNINGLEFTE
+		 */
+		//RUNNINGLEFTE,
+		
+		 /** if the characters x-velocity is not 0 and x-velocity is <0 and he is
 		 * on solid ground he is RUNNINGLEFT
 		 */
-		RUNNIGLEFT,
+		RUNNINGLEFT,
+
 
 		/**
 		 * if the character is not on solid ground he is JUMPING. his x-velocity
 		 * may be 0
 		 */
-		JUMPING
+		JUMPING,	
+		
+		/**
+		 * if the character is not on solid ground and he is carrying an element, he is JUMPINGE. 
+		 * his x-velocity may be 0
+		 */
+		//JUMPINGE		
 
 	}
 
