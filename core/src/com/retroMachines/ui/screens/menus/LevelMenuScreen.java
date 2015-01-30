@@ -23,26 +23,12 @@ public class LevelMenuScreen extends MenuScreen{
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float LEVELBUTTONSIZE = 6f;
-	private final static float DEFAULTPADING = 25f;
 	private final static float DEFAULTPADINGx2 = 50f;
 	private final static float DEFAULTPADINGx4 = 100f;
-	private final static float FONTSIZE3 =  3f;
 	private final static float FONTSIZE2_5 =  2.5f;
-	private final static float DIVIDEHEIGHTDEFAULT = 1080f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float TEXTFIELDHEIGHTMULTIPLIKATOR = 50f;
-	private final static float TEXTFIELDTABLEWIDTH = 2f;
-	private final static float TEXTFIELDTABLEHEIGHT = 120f;
-	private final static float TEXTFIELDFONTSIZE = 0.3f;
-	private final static float TEXTFIELDCURSORSIZE = 13f;
-	private final static float IMAGEHEIGHT = (3f / 5f);
-	private final static float IMAGEWIDTH = (1f /4f);
-	private final static float IMAGETABLEWIDTH = (4f / 9f);
-	private final static float RIGHTTABLEWIDTH = (5f / 9f);
-	private final static float HALFOFSCREEN = 2f;
-	private final static float ONE_8th_OFSCREEN = (1f / 8f);
-	private final static int PROFILENAMELENGTH = 12;
-	private final static int TEXTFIELDBORDEROFFSET = 20;
+	private final static float HALF = (1f / 2f);
+	private final static float ONE_8th = (1f / 8f);
 	private final static int COLSPANx2 = 2;
 	private final static int NUMLEVEL = 15;
 	
@@ -105,7 +91,7 @@ public class LevelMenuScreen extends MenuScreen{
 		
 		//Make Table
 		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
-		table.add(title).width(screenWidth / (2 * ONE_8th_OFSCREEN)).right().padRight((screenWidth / HALFOFSCREEN) - (screenWidth / ONE_8th_OFSCREEN) ).expandX().row();
+		table.add(title).width(screenWidth * (2 * ONE_8th)).right().padRight((screenWidth * HALF) - (screenWidth * ONE_8th) ).expandX().row();
 		table.add(levelTable).colspan(COLSPANx2).expandY();
 		
 		
