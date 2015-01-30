@@ -92,9 +92,9 @@ public class SettingsMenuScreen  extends MenuScreen {
 		volumeSlider = new Slider(SLIDERMIN, SLIDERMAX, SLIDERSTEPSIZE, false, skin);
 		volumeSlider.getStyle().background.setMinHeight(screenHeight * SLIDERBACKGROUNDSIZE);
 		volumeSlider.getStyle().knob.setMinHeight(screenHeight * SLIDERKNOBSIZE);
-		volumeSlider.addListener(new SliderListner());
 		// TODO get Volume of Phone
 		volumeSlider.setValue(SLIDERMAX / 2);
+		volumeSlider.addListener(new SliderListner());
 		
 		
 		//Make Table
@@ -124,8 +124,10 @@ public class SettingsMenuScreen  extends MenuScreen {
 		public void changed(ChangeEvent event, Actor actor) {
 			if (volumeSlider.getValue() == 0) {
 				buttonSoundOff.setChecked(true);
+			} else {
+				buttonSoundOff.setChecked(false);
 			}
-			settingController.setVolume(volumeSlider.getValue());
+			settingController.setVolume(volumeSlider.getValue() / (float)SLIDERMAX);
 				
 		}
 		
@@ -141,8 +143,10 @@ public class SettingsMenuScreen  extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			if (volumeSlider.getValue() <= 95) {
 				volumeSlider.setValue(volumeSlider.getValue() + 5);
-				settingController.setVolume(volumeSlider.getValue() / 100f);
+			} else {
+				volumeSlider.setValue(100);
 			}
+			settingController.setVolume(volumeSlider.getValue() / (float)SLIDERMAX);
 		}
 	}
 	
@@ -156,8 +160,10 @@ public class SettingsMenuScreen  extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			if (volumeSlider.getValue() >= 5) {
 				volumeSlider.setValue(volumeSlider.getValue() - 5);
-				settingController.setVolume(volumeSlider.getValue() / 100f);
+			} else {
+				volumeSlider.setValue(0);
 			}
+			settingController.setVolume(volumeSlider.getValue() / (float)SLIDERMAX);
 		}
 	}
 	
@@ -172,12 +178,12 @@ public class SettingsMenuScreen  extends MenuScreen {
 			if (volumeSlider.getValue() == 0) {
 				buttonSoundOff.setChecked(false);
 				volumeSlider.setValue(20);
-				settingController.setVolume(20);
+				settingController.setVolume(20 / (float)SLIDERMAX);
 				
 			} else {
 				buttonSoundOff.setChecked(true);
 				volumeSlider.setValue(0);
-				settingController.setVolume(0);
+				settingController.setVolume(0 / (float)SLIDERMAX);
 			}
 
 		}
