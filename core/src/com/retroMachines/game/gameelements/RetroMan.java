@@ -128,9 +128,17 @@ public class RetroMan {
 	public void jump() {
 		if (canJump()) {
 			if (hasPickedUpElement()) {
-				state = State.JUMPINGE;
+				if (faceLeft) {
+					state = State.JUMPINGELEFT;
+				} else {
+					state = State.JUMPINGERIGHT;
+				}
 			} else {
-				state = State.JUMPING;
+				if (faceLeft) {
+					state = State.JUMPINGLEFT;
+				} else {
+					state = State.JUMPINGRIGHT;
+				}
 			}
 			velocity.add(0, 9);
 		}
@@ -163,8 +171,8 @@ public class RetroMan {
 	 * @return true if the character can jump; false otherwise
 	 */
 	private boolean canJump() {
-		if (state == state.JUMPINGLEFT || state == state.JUMPINGRIGHT || 
-				state == state.JUMPINGELEFT || state == state.JUMPINGERIGHT) {
+		if (state == State.JUMPINGLEFT || state == State.JUMPINGRIGHT || 
+				state == State.JUMPINGELEFT || state == State.JUMPINGERIGHT) {
 			return false;
 		}
 		return true;
@@ -282,6 +290,8 @@ public class RetroMan {
 		if (hasPickedUpElement()) {
 			element.render(deltaTime);
 		}
+		// render the RetroMan
+		renderRetroMan(deltaTime);
 		// TODO RENDER myself
 		return null;
 	}
