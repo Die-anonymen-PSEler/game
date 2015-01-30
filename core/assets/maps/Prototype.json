@@ -1,0 +1,93 @@
+{
+    "level": {
+        "description": "Level das (lambda x . x x)(y) darstellt",
+        "hasTutorialScreen": true,
+        "levelid": -1,
+        "data": {
+            "Gameelements": [
+                {
+                    "color": 2,
+                    "type": "Var",
+                    "posx": 5,
+                    "posy": 5
+                },
+                {
+                    "color": 1,
+                    "type": "Var",
+                    "posx": 60,
+                    "posy": 300
+                },
+                {
+                    "color": 2,
+                    "type": "Var",
+                    "posx": 3,
+                    "posy": 5
+                },
+                {
+                    "color": 2,
+                    "type": "Abs",
+                    "posx": 10,
+                    "posy": 5
+                }
+            ],
+            "Tree": [
+                {
+                    "color": -1,
+                    "family": [
+                        {
+                            "color": -1,
+                            "family": [ ]
+                        },
+                        {
+                            "color": -1,
+                            "family": [ ]
+                        }
+                    ]
+                },
+                {
+                    "color": -1,
+                    "family": [
+                    ]
+                }
+            ],
+            "Target": [
+                {
+                    "color": 1,
+                    "type": "Var",
+                    "family": [ ]
+                },
+                {
+                    "color": 1,
+                    "type": "Var",
+                    "family": [ ]
+                }
+            ],
+            "Hint": [
+                {
+                    "color": 1,
+                    "type": "Abs",
+                    "family": [
+                        {
+                            "color": 1,
+                            "type": "Var",
+                            "family": [ ]
+                        },
+                        {
+                            "color": 1,
+                            "type": "Var",
+                            "family": [ ]
+                        }
+                    ]
+                },
+                {
+                    "color": 2,
+                    "type": "Var",
+                    "family": [
+                    ]
+                }
+            ]
+        }
+    }
+   
+
+}
