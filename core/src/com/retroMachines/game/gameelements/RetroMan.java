@@ -160,6 +160,7 @@ public class RetroMan {
 	 */
 	public void goLeft() {
 		velocity.add(-9, 0);
+		state = state.RUNNINGLEFT;
 		//updateRetroMan(deltaTime);
 	}
 
@@ -168,8 +169,8 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
-
 		velocity.add(9, 0);
+		state = state.RUNNING;
 		//updateRetroMan(deltaTime);
 	}
 
