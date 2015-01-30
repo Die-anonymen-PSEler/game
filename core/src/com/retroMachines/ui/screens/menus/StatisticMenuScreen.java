@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.game.controllers.StatisticController;
 
 public class StatisticMenuScreen  extends MenuScreen {
 
@@ -28,6 +29,8 @@ public class StatisticMenuScreen  extends MenuScreen {
 	private Label playTime;
 	private Label completedLevel;
 	
+	private StatisticController statisticController;
+	
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
 	 * @param game The game which uses the screen.
@@ -42,6 +45,7 @@ public class StatisticMenuScreen  extends MenuScreen {
 	 */
 	@Override
 	protected void initialize() {
+		statisticController = game.getStatisticController();
 		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
@@ -59,7 +63,7 @@ public class StatisticMenuScreen  extends MenuScreen {
 		timeLeft.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);
 		timeLeft.setAlignment(Align.right);
 		
-		Label completedLevelLeft = new Label("abgeschlossene Level:", skin);
+		Label completedLevelLeft = new Label("Abgeschlossene Level:", skin);
 		completedLevelLeft.setWrap(true);
 		completedLevelLeft.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);
 		completedLevelLeft.setAlignment(Align.center);
@@ -67,14 +71,17 @@ public class StatisticMenuScreen  extends MenuScreen {
 		steps = new Label("Text", skin);
 		steps.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);
 		steps.setAlignment(Align.left);
+		steps.setText(statisticController.getStepCounter() + "");
 		
 		playTime = new Label("Text", skin);
 		playTime.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);
 		playTime.setAlignment(Align.left);
+		playTime.setText(statisticController.getPlaytime() + "");
 		
 		completedLevel = new Label("Text", skin);
 		completedLevel.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);
 		completedLevel.setAlignment(Align.left);
+		completedLevel.setText(statisticController.getLevelsCompleted() + "");
 		
 		// Make Buttons
 		

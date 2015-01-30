@@ -53,4 +53,16 @@ public class StatisticController implements OnProfileChangedListener {
 		// TODO Auto-generated method stub
 		statistic = game.getProfileController().getProfile().getStatistic();
 	}
+	
+	public int getPlaytime() {
+		return statistic.getPlaytime();
+	}
+	
+	public int getStepCounter() {
+		return statistic.getStepCounter();
+	}
+	
+	public int getLevelsCompleted() {
+		return statistic.getLevelsComplete();
+	}
 }
