@@ -88,10 +88,13 @@ public class SettingController implements OnProfileChangedListener {
 	 * 
 	 * @return True when LeftiMode is activated
 	 */
-	public boolean getLeftiMode() {
+	public boolean getLeftMode() {
 		return settings.isLeftControl();
 	}
-
+	
+	public void setLeftMode(boolean enabled) {
+		settings.setLeftControl(enabled);
+	}
 	/**
 	 * Controls if the profile was changed.
 	 */

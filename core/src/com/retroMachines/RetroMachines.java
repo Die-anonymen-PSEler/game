@@ -75,15 +75,22 @@ public class RetroMachines extends Game{
 		loading = false;
 		setScreen(new LoadMenuScreen(this));
 		RetroDatabase.getConnection();	// starts a connection to the database
+		globalVariables = GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
+		
 		boolean profileExists = profileController.loadLastProfile();
+		if (profileExists) {
+			// a profile is available for loading
+			settingController = new SettingController(this);
+			statisticController = new StatisticController(this);
+		}
+		else {
+			// no profile go to createprofilemenuscreen
+		}
 		
 		
-		//
-		//settingController = new SettingController(this);
+		
 		//gameController = new GameController(this);
-		//statisticController = new StatisticController(this);
-		//globalVariables = GlobalVariables.getSingleton();
 		//Virtual Screens size
 		loading = true;
 	}

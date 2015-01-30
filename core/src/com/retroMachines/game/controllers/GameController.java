@@ -74,8 +74,8 @@ public class GameController {
 	 *            ID of the level that is to be started.
 	 */
 	public void startLevel(int levelId) {
-		boolean lefti = game.getSettingController().getLeftiMode();
-		gameScreen = new GameScreen(game, this, lefti);
+		boolean left = game.getSettingController().getLeftMode();
+		gameScreen = new GameScreen(game, this, left);
 		gameScreen.setMap(map);
 		game.setScreen(gameScreen);
 	}

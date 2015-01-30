@@ -17,7 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.models.Statistic;
 import com.retroMachines.game.controllers.ProfileController;
+import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.game.controllers.StatisticController;
 
 /**
  * The CreateProfileMenuScreen is part of the view of RetroMachines.
@@ -53,6 +56,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private final static int TEXTFIELDBORDEROFFSET = 20;
 	private final static int COLSPANx2 = 2;
 	private final ProfileController profileController;
+	private final SettingController settingController;
 
 	private TextField nameTextField;
 	private Button buttonRightMode;
@@ -65,6 +69,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	public CreateProfileMenuScreen(RetroMachines game) {
 		super(game);
 		profileController = game.getProfileController();
+		settingController = game.getSettingController();
 	}
 	
 	/**
@@ -184,6 +189,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		String name = nameTextField.getText();
 		if (profileController.canUserBeCreated(name)) {
 			profileController.createProfile(name);
+			settingController.setLeftMode(buttonLeftMode.isChecked());
 			game.setScreen(new ProfileMenuScreen(game));
 		}
 		else {
