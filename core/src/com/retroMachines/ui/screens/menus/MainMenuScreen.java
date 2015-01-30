@@ -137,6 +137,10 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
     	}
     	return false;
     }
+    
+    private void disposeMusic() {
+    	music.dispose();
+    }
 	
 	/**
 	 * Sets the sound to the new volume that was newly adjusted in the settings.
@@ -154,7 +158,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private class PlayButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
-			//TODO implement this
+			disposeMusic();
 			game.setScreen(new LevelMenuScreen(game));
 		}
 	}
@@ -162,7 +166,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private class SettingButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
-			//TODO implement this
+			disposeMusic();
 			game.setScreen(new SettingsMenuScreen(game));
 		}
 	}
@@ -170,7 +174,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private class AboutButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
-			//TODO implement this
+			disposeMusic();
 			game.setScreen(new AboutMenuScreen(game));
 		}
 	}
@@ -178,7 +182,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private class StatisticsButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
-			//TODO implement this
+			disposeMusic();
 			game.setScreen(new StatisticMenuScreen(game));
 		}
 	}
@@ -186,7 +190,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private class ProfileMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
-			//TODO implement this
+			disposeMusic();
 			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
@@ -194,7 +198,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private class ExitClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) { 
-			//TODO implement this
+			disposeMusic();
 			if(exitDialog != null) {
 				exitDialog.show(stage);
 			} else {
