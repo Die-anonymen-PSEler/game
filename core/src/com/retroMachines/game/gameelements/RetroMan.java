@@ -3,6 +3,7 @@ package com.retroMachines.game.gameelements;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.g2d.Animation;
 
 /**
  * The RetroMan Class contains information regarding the character that
@@ -66,6 +67,11 @@ public class RetroMan {
 	 * the texture of the character
 	 */
 	private Texture texture;
+	
+	private Animation stand;
+	private Animation runningRight;
+	private Animation runningLeft;
+	private Animation jumping;
 
 	/**
 	 * the current velocity
@@ -230,17 +236,24 @@ public class RetroMan {
 		 * STANDING
 		 */
 		STANDING,
+		
+		/**
+		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is on solid ground he is
+		 * RUNNINGRIGHT
+		 */
+		RUNNIGRIGHT,
 
 		/**
-		 * if the characters x-velocity is not 0 and he is on solid ground he is
-		 * RUNNING
+		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is on solid ground he is
+		 * RUNNINGLEFT
 		 */
-		RUNNIG,
-
+		RUNNIGLEFT,
+		
 		/**
 		 * if the character is not on solid ground he is JUMPING. his x-velocity
 		 * may be 0
 		 */
-		JUMPING
+		JUMPING	
+		
 	}
 }
