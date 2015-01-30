@@ -82,7 +82,7 @@ public class ProfileController {
 	 * Method for creating a new Profile.
 	 */
 	public void createProfile(String name) {
-		if (!isValidUsername(name)) {
+		if (!CanUserBeCreated(name)) {
 			return;
 		}
 		Statistic statistic = new Statistic();
