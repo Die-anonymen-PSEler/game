@@ -28,6 +28,22 @@ import com.retroMachines.game.controllers.ProfileController;
  */
 public class ProfileMenuScreen extends MenuScreen{
 	
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DEFAULTKNOBSIZE = 15f;
+	private final static float DEFAULTPADING = 25f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE3 =  3f;
+	private final static float FONTSIZE2_5 =  2.5f;
+	private final static float FONTSIZE2_1 =  2.1f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float HALF = (1f / 2f);
+	private final static float ONE_4th = (1f / 4f);
+	private final static float ONE_5th = (1f / 5f);
+	private final static float TWO_3th = (2f / 3f);
+	private final static float ONE_9th = (1f / 9f);
+	private final static int COLSPANx2 = 2;
+	
 	/**
 	 * 
 	 */
@@ -59,49 +75,50 @@ public class ProfileMenuScreen extends MenuScreen{
 	protected void initialize() {
 		// TODO Auto-generated method stub
 		skin = AssetManager.getMenuSkin();
+		table.debug();
 		
 		// Make Title
 		Label title = new Label("Profile",skin);
 		title.setWrap(true);
-		title.setFontScale((3f * screenWidth)/1920f);
+		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 			
 		// Make Profile List
 		profileList = new List<String>(skin);
 		profileList.setItems(Profile.getAllProfiles());
 		
-		
-		profileList.getStyle().font.setScale((2.5f * screenWidth)/1920f);
+
+		profileList.getStyle().font.setScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		Table scrollTable = new Table(skin);
 		scrollTable.add(profileList);
 		ScrollPane profileScroll = new ScrollPane(scrollTable, skin);
-		profileScroll.getStyle().hScrollKnob.setMinWidth((15f * screenWidth)/1920f);
+		profileScroll.getStyle().hScrollKnob.setMinWidth((DEFAULTKNOBSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		
 		// Make Buttons
 		Button buttonReturn = new Button(skin, "back");
-		buttonReturn.pad(screenHeight / 10f);
+		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		Button buttonSelectProfile = new Button(skin, "changeProfile");
-		buttonSelectProfile.pad(screenHeight / 10f);
+		buttonSelectProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSelectProfile.addListener(new SelectProfileButtonClickListener());
 		Button buttonAddProfile = new Button(skin, "addProfile");
-		buttonAddProfile.pad(screenHeight / 10f);
+		buttonAddProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonAddProfile.addListener(new AddProfileButtonClickListener());
 		Button buttonDeleteProfile = new Button(skin, "deleteProfile");
-		buttonDeleteProfile.pad(screenHeight / 10f);
+		buttonDeleteProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonDeleteProfile.addListener(new DeleteProfileButtonClickListener());
 		
 		//Button Table
 		Table buttons = new Table(skin);
-		buttons.add(buttonDeleteProfile).center().padLeft(screenWidth / 9f).padRight(screenWidth / 9f).width(screenWidth / 9f);
-		buttons.add(buttonAddProfile).center().padLeft(screenWidth / 9f).padRight(screenWidth / 9f).width(screenWidth / 9f);
-		buttons.add(buttonSelectProfile).center().padLeft(screenWidth / 9f).padRight(screenWidth / 9f).width(screenWidth / 9f);
+		buttons.add(buttonDeleteProfile).center().padLeft(screenWidth * ONE_9th).padRight(screenWidth * ONE_9th).width(screenWidth * ONE_9th);
+		buttons.add(buttonAddProfile).center().padLeft(screenWidth * ONE_9th).padRight(screenWidth * ONE_9th).width(screenWidth * ONE_9th);
+		buttons.add(buttonSelectProfile).center().padLeft(screenWidth * ONE_9th).padRight(screenWidth * ONE_9th).width(screenWidth * ONE_9th);
 		
 		// Make Table
-		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left();
-		table.add(title).width(screenWidth / 2.5f).right().padRight((screenWidth / 2f) - (screenWidth / 5f) ).expandX().row();
-		table.add(profileScroll).expandY().colspan(2).padTop(screenHeight / 20f).padBottom(screenHeight / 20f).row();
-		table.add(buttons).colspan(2).row();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
+		table.add(title).width(screenWidth * (2 * ONE_5th)).right().padRight((screenWidth * HALF) - (screenWidth * ONE_5th) ).expandX().row();
+		table.add(profileScroll).expandY().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADING).padBottom(screenHeight / DEFAULTPADING).row();
+		table.add(buttons).colspan(COLSPANx2).row();
 		
 		
 		stage.addActor(table);
@@ -176,24 +193,24 @@ private class DeleteDialog extends Dialog {
 		}
 		
 		private void initialize() {
-			padTop(screenWidth / 30f); // set padding on top of the dialog title
-			padBottom(screenWidth / 35f); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight/ 4f); // set buttons height
-	        getButtonTable().defaults().width(screenWidth / 4f); // set buttons height
+			padTop(screenWidth / DEFAULTPADING); // set padding on top of the dialog title
+			padBottom(screenWidth / DEFAULTPADING); // set padding on bottom of the dialog title
+	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
+	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
 	        Label dialogText = new Label("Profil wirklich l�schen?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
-	        dialogText.setFontScale((2.1f * screenWidth)/1920f);
-			getContentTable().add(dialogText).width(screenWidth / 1.5f);
+	        dialogText.setFontScale((FONTSIZE2_1 * screenWidth) / DIVIDEWIDTHDEFAULT);
+			getContentTable().add(dialogText).width(screenWidth * TWO_3th);
 			button(new Button(skin, "ok"), true);
 			button(new Button(skin, "abort"), false);
 		}
 		
 		protected void result(Object object) {
-			//TODO Profile l�schen
+			//TODO Profile löschen
 		}
 		
 		   @Override

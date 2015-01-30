@@ -25,7 +25,20 @@ import com.retroMachines.data.AssetManager;
  * 
  */
 public class ProfileSettingsMenuScreen extends MenuScreen {
-
+	
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DEFAULTPADING = 25f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE2_5 =  2.5f;
+	private final static float FONTSIZE2 =  2f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float TWO_8th = (2f / 8f);
+	private final static float THREE_5th = (3f / 5f);
+	private final static float FOUR_9th = (4f / 9f);
+	private final static float FIVE_9th = (5f / 9f);
+	private final static int COLSPANx2 = 2;
+	
 	/**
 	 * The ID of the profile that is edited by this screen.
 	 */
@@ -54,42 +67,42 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		skin = AssetManager.getMenuSkin();
 
 		// Make Title
-		Label title = new Label("Create Profile", skin);
-		title.setFontScale((3 * screenWidth) / 1920f);
+		Label title = new Label("Profil Einstellungen", skin);
+		title.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
 		// Profile Name
 		// TODO get Profile Name
 		Label profileName = new Label("Profile Name", skin);
-		profileName.setFontScale((2f * screenWidth) / 1920f);
+		profileName.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		profileName.setAlignment(Align.center);
 
 		// Subtitle LeftiMode
 		Label steeringTitle = new Label("Steuerung", skin);
-		steeringTitle.setFontScale((2f * screenWidth) / 1920f);
+		steeringTitle.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		steeringTitle.setAlignment(Align.center);
 
 		// Make Buttons
 		Button buttonOk = new Button(skin, "ok");
 		buttonOk.addListener(new AcceptButtonClickListener());
-		buttonOk.pad(screenHeight / 10f);
+		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		Button buttonAbort = new Button(skin, "abort");
 		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
-		buttonAbort.pad(screenHeight / 10f);
+		buttonAbort.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		buttonLeftMode = new Button(skin, "controlLeft");
 		buttonLeftMode.addListener(new LeftControlButtonClickListener());
-		buttonLeftMode.pad(screenHeight / 10f);
+		buttonLeftMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		buttonRightMode = new Button(skin, "controlRight");
 		buttonRightMode.addListener(new RightControlButtonClickListener());
-		buttonRightMode.pad(screenHeight / 10f);
+		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonRightMode.setChecked(true);
 
 		Button buttonNextChar = new Button(skin, "nextChar");
 		buttonNextChar.addListener(new NextCharButtonClickListener());
-		buttonNextChar.pad(screenHeight / 10f);
+		buttonNextChar.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		// Make Image
 		Image charImage = new Image();
@@ -101,30 +114,30 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// ButtonTables
 		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).padRight(screenWidth / 25f);
-		buttonTable.add(buttonOk).padLeft(screenWidth / 25f);
+		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADING);
+		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADING);
 
 		Table leftiTable = new Table(skin);
-		leftiTable.add(buttonLeftMode).padRight(screenWidth / 25f);
-		leftiTable.add(buttonRightMode).padLeft(screenWidth / 25f);
+		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADING);
+		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADING);
 
 		// ImageTable
 		Table imageTable = new Table(skin);
-		imageTable.add(buttonNextChar).left().padRight(screenWidth / 100f);
-		imageTable.add(charImage).padTop(screenHeight / 50f)
-				.height((3 * screenHeight) / 5f).width(2 * (screenWidth) / 8f);
+		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADINGx4);
+		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADINGx2)
+				.height((screenHeight) * THREE_5th).width((screenWidth) * TWO_8th);
 
 		// RightTable
 		Table rightTable = new Table(skin);
-		rightTable.add(profileName).padTop(screenHeight / 30f).row();
-		rightTable.add(steeringTitle).padTop(screenHeight / 10f).row();
-		rightTable.add(leftiTable).expandX().padTop(screenHeight / 50f).row();
+		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADING).row();
+		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADING).row();
+		rightTable.add(leftiTable).expandX().padTop(screenHeight / DEFAULTPADINGx2).row();
 
 		// MainTable
-		table.add(title).expandX().colspan(2).padTop(screenHeight / 25f).row();
-		table.add(imageTable).width(screenWidth * (4 / 9f));
-		table.add(rightTable).width(screenWidth * (5 / 9f)).row();
-		table.add(buttonTable).colspan(2).padTop(screenHeight / 25f).row();
+		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADING).row();
+		table.add(imageTable).width(screenWidth * FOUR_9th);
+		table.add(rightTable).width(screenWidth * FIVE_9th).row();
+		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADING).row();
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
