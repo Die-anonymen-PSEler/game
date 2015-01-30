@@ -7,6 +7,8 @@ import java.util.List;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
+import com.google.gson.Gson;
+import com.retroMachines.util.lambda.data.Data;
 
 public class LambdaUtil {
 	
@@ -23,14 +25,20 @@ public class LambdaUtil {
 	/**
 	 * creates LambdaTree based on JSON description of level
 	 */
-	public Tree createTreeFromJason(String fileName) {
+	public Tree createTreeFromJson(String fileName) {
 		tree = new Tree(null);
-		FileHandle file = new FileHandle(new File(fileName));
-		JsonReader reader = new JsonReader();
-		JsonValue value = reader.parse(file);
-		JsonValue JTree = value.get("level").get("data").get("Tree"); //contains tree object
-		System.out.println(JTree.toString());
+		//create classes with gson
+		Gson gson = new Gson();
+		//TODO: some fancy stuff
 		return tree;
+	}
+	
+	/**
+	 * dient zu Testzwecken
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new LambdaUtil().createTreeFromJson(null);
 	}
 	
 	public void registerNewListener(OnNextLambdaStepListener listener) {
