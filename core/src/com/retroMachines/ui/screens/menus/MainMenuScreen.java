@@ -112,7 +112,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         //sound initialisieren
 	    music = AssetManager.music;
 	    music.play();
-	    //music.setLooping(true);
+	    music.setLooping(true);
         
        // game.getSettingController().add(this);
 	}
