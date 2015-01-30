@@ -39,8 +39,13 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private final static float FONTSIZE3 =  3f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
+	private final static float ONE_4th = (1f / 4f);
 	private final static float ONE_5th = (1f / 5f);
 	private final static float FOUR_5th = (4f / 5f);
+	private final static float DIALOGTEXTWIDTH = (10f / 17f);
+	private final static float DIALOGWIDTH = (2f / 3f);
+	private final static float DIALOGHEIGHT = (5f / 9f);
+	
 	
 	private ExitDialog exitDialog;
 	
@@ -210,16 +215,16 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		private void initialize() {
 			padTop(screenWidth / 30f); // set padding on top of the dialog title
 			padBottom(screenWidth / 30f); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight/ 4f); // set buttons height
-	        getButtonTable().defaults().width(screenWidth / 4f); // set buttons height
+	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
+	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
 	        Label dialogText = new Label("Wirklich Verlassen ?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
-	        dialogText.setFontScale((2.1f * screenWidth)/1920f);
-			getContentTable().add(dialogText).width(screenWidth / 1.7f);
+	        dialogText.setFontScale((2.1f * screenWidth) / DIVIDEWIDTHDEFAULT);
+			getContentTable().add(dialogText).width(screenWidth * DIALOGTEXTWIDTH);
 			button(new Button(skin, "ok"), true);
 			button(new Button(skin, "abort"), false);
 		}
@@ -235,13 +240,13 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		   @Override
 		   public float getPrefWidth() {
 		      // force dialog width
-		      return screenWidth / 1.5f;
+		      return screenWidth * DIALOGWIDTH;
 		   }
 
 		   @Override
 		   public float getPrefHeight() {
 		      // force dialog height
-		      return screenHeight / 1.8f;
+		      return screenHeight * DIALOGHEIGHT;
 		   }
 	}
 }
