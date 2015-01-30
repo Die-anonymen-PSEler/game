@@ -118,7 +118,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
-	    //music = AssetManager.getMusic();
+	    music = AssetManager.getMusic();
 	    //music.play();
 	    //music.setLooping(true);
         
