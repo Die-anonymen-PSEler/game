@@ -45,7 +45,7 @@ public class ProfileMenuScreen extends MenuScreen{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		skin = AssetManager.menuSkin;
+		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
 		Label title = new Label("Profile",skin);

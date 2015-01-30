@@ -38,7 +38,7 @@ public class LevelMenuScreen extends MenuScreen{
 	 */
 	@Override
 	protected void initialize() {
-		skin = AssetManager.menuSkin;
+		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
 		Label title = new Label("Level",skin);

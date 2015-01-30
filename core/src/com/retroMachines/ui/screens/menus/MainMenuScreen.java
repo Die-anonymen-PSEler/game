@@ -35,13 +35,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private ExitDialog exitDialog;
 	
 	private Music music;
-	
-	/**
-	 * The path to the file for the sound.
-	 */
-	private static final String SOUNDFILE = "";
-	
-	private long soundId;
 		
 	/**
 	 * The constructor to create a new instance of the MainMenuScreen.
@@ -57,7 +50,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	@Override
 	protected void initialize() {
 		
-		skin = AssetManager.menuSkin;
+		skin = AssetManager.getMenuSkin();
 		// Make Title
 		Label title = new Label(TITLE,skin);
 		title.setFontScale((3*screenWidth)/1920f);
@@ -110,7 +103,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
-	    music = AssetManager.music;
+	    music = AssetManager.getMusic();
 	    music.play();
 	    music.setLooping(true);
         

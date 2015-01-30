@@ -89,7 +89,7 @@ public class GameScreen extends AbstractScreen implements
 
 	public void initialize() {
 		game.getSettingController().add(this);
-		music = AssetManager.music;
+		music = AssetManager.getMusic();
 	}
 
 	/**

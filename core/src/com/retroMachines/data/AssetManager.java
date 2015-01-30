@@ -26,12 +26,12 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * The design of the menus is stored here.
 	 */
-	public static Skin menuSkin;
+	private static Skin menuSkin;
 
 	/**
 	 * The music which is played during the game is stored here.
 	 */
-	public static Music music;
+	private static Music music;
 
 	/**
 	 * Contains all file references to the files that need to be loaded.
@@ -76,6 +76,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 					Music.class);
 		}
 	}
+	
+	public static Music getMusic() {
+		return music;
+	}
 
 	// -----------------------
 	// -----Menu Skins--------
@@ -101,5 +105,9 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 					Gdx.files.internal("skins/DefaultLambdaGame.json"),
 					manager.get("skins/LambdaGame.pack", TextureAtlas.class));
 		}
+	}
+	
+	public static Skin getMenuSkin() {
+		return menuSkin;
 	}
 }
