@@ -4,8 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.ui.screens.AbstractScreen;
@@ -36,6 +41,8 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 		table = new Table(AssetManager.menuSkin);
+		table.background(new TextureRegionDrawable(
+		        new TextureRegion(new Texture(Gdx.files.internal("BackgroundMenu.png")))));
 		table.setBounds(0, 0, screenWidth, screenHeight);
 		stage = new Stage();
 		initialize();
@@ -71,6 +78,7 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+        
     }
     
     @Override

@@ -98,8 +98,8 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		//Left Part of Menu
 		Table mainPart = new Table(skin);
 		mainPart.add(buttonExit).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left().row();
-		mainPart.add(title).padTop(screenHeight / 20f).expandX().right().row();
-		mainPart.add(buttonPlay).padLeft((screenWidth / 2f) - (screenHeight / 5f) - (buttonPlay.getWidth() / 2f)).left().row();
+		mainPart.add(title).padTop(screenHeight / 50f).expandX().right().row();
+		mainPart.add(buttonPlay).padTop(screenHeight / 100f).padLeft((screenWidth / 2f) - (screenHeight / 5f) - (buttonPlay.getWidth() / 2f)).left().row();
 		
 		
 		// Add Title and Buttons to View
