@@ -65,4 +65,11 @@ public class ProfileTest {
 		assertTrue("profile name stimmt nicht", profileTest.getProfileName().equals(tempName));
 		profileTest.setProfileName(TEST_USER_IN_DB);
 	}
+	
+	@Test
+	public void testGetAllProfiles() {
+		String[] profiles = Profile.getAllProfiles();
+		assertTrue("zu viele profile. sollte nur eines geben", profiles.length == 1);
+		assertTrue("falsches profil an erster stelle", profiles[0].equals(TEST_USER_IN_DB));
+	}
 }
