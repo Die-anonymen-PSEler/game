@@ -10,7 +10,7 @@
         "font": { "file": "fonts/LambdaGameFont.fnt" },
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
-        "default": { titleFont: font, background: "WindowStyle" }
+        "default": { titleFont: font, background: "SelectionStyleWhite" }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
         "default": { "up": "Default", "down": "DefaultPressed", "pressedOffsetY": -4 },
@@ -46,13 +46,13 @@
         "default": { "font": font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
-        "default": { fontColorUnselected: white, selection: "WindowStyle", fontColorSelected: white, font: font }
+        "default": { fontColorUnselected: white, selection: "SelectionStyleGrey", fontColorSelected: white, font: font }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
         "default": { "vScrollKnob": "GrauPixel" , "hScrollKnob": "GrauPixel"}
     },
     "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
-        "default": { "font": font, "fontColor": white, "background": "WindowStyle", "cursor": "GrauPixel" }
+        "default": { "font": font, "fontColor": white, "background": "SelectionStyleGrey", "cursor": "GrauPixel" }
     },
     "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
         "default-horizontal": { "background":  "GrauPixel", "knob": "Blank",}
