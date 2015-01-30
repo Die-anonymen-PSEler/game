@@ -10,7 +10,16 @@ import com.retroMachines.data.AssetManager;
 
 public class StatisticMenuScreen  extends MenuScreen {
 
-
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE2_5 =  2.5f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float HALF = (1f / 2f);
+	private final static float HALFTITEWIDTH = (1f / 4f);
+	private final static float TITLEWIDTH = (1f / 2f);
+	private final static int COLSPANx2 = 2;
+	
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
 	 * @param game The game which uses the screen.
@@ -30,17 +39,17 @@ public class StatisticMenuScreen  extends MenuScreen {
 		// Make Title
 		Label title = new Label("Statitik",skin);
 		title.setWrap(true);
-		title.setFontScale((2.5f*screenWidth)/1920f);
+		title.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonReturn = new Button(skin, "back");
-		buttonReturn.pad(screenHeight / 10f);
+		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
-		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left();
-		table.add(title).width(screenWidth/2f).right().padRight((screenWidth / 2f) - (screenWidth / 4f) ).expandX().row();
-		table.add(" Statistik Kram").expandY().colspan(2);
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
+		table.add(title).width(screenWidth * TITLEWIDTH).right().padRight((screenWidth * HALF) - (screenWidth * HALFTITEWIDTH) ).expandX().row();
+		table.add(" Statistik Kram").expandY().colspan(COLSPANx2);
 		
 	    stage.addActor(table);
 	    

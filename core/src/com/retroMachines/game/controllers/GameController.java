@@ -14,10 +14,9 @@ import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.lambda.Tree;
 
 /**
- * The GameController is part of the controller of RetroMachines.
- * This class represents the controller for the actual game. It
- * sets up levels and also disposes them afterwards. It saves progress to the
- * persistent storage.
+ * The GameController is part of the controller of RetroMachines. This class
+ * represents the controller for the actual game. It sets up levels and also
+ * disposes them afterwards. It saves progress to the persistent storage.
  * 
  * @author RetroFactory
  * 
@@ -54,13 +53,15 @@ public class GameController {
 
 	/**
 	 * Makes a new instance of the GameController.
-	 * @param game The game that is to be controlled.
+	 * 
+	 * @param game
+	 *            The game that is to be controlled.
 	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
 		retroMan = new RetroMan();
 	}
-	
+
 	/**
 	 * controls Evaluation
 	 */
@@ -68,7 +69,9 @@ public class GameController {
 
 	/**
 	 * Sets and initializes a given level and starts it.
-	 * @param levelId ID of the level that is to be started.
+	 * 
+	 * @param levelId
+	 *            ID of the level that is to be started.
 	 */
 	public void startLevel(int levelId) {
 		boolean lefti = game.getSettingController().getLeftiMode();
@@ -76,17 +79,17 @@ public class GameController {
 		gameScreen.setMap(map);
 		game.setScreen(gameScreen);
 	}
-	
+
 	/**
 	 * Cut a level short.
 	 */
 	public void abortLevel() {
-		
+
 	}
 
 	/**
-	 * Finishes the level once it has been completed including the
-	 * evaluation. Afterwards the LevelMenuScreen will be shown to the user.
+	 * Finishes the level once it has been completed including the evaluation.
+	 * Afterwards the LevelMenuScreen will be shown to the user.
 	 */
 	public void levelFinished() {
 		saveProgress();
@@ -111,6 +114,9 @@ public class GameController {
 
 	}
 
+	public void setPopupScreenIsShown(boolean isShown) {
+		popupScreenIsShown = isShown;
+	}
 
 	// --------------------------
 	// --------Retro-Man---------
@@ -127,29 +133,40 @@ public class GameController {
 	 * Delegates an interact call to RetroMan.
 	 */
 	public void interactRetroMan() {
-		// TODO Auto-generated method stub
+		GameElement element = standsBesideGameElement();
+		if (retroMan.hasPickedUpElement()) {
+			if (element != null) {
+				return;
+			} else {
+				retroMan.layDownElement();
+			}
+		} else {
+			if (element != null) {
+				retroMan.pickupElement(element);
+			}
+		}
 	}
 
 	/**
 	 * Delegates a goLeft call to RetroMan.
 	 */
 	public void goLeftRetroMan() {
-
+		retroMan.goLeft();
 	}
 
 	/**
 	 * Delegates a goRight call to RetroMan.
 	 */
 	public void goRightRetroMan() {
-
+		retroMan.goRight();
 	}
 
 	/**
 	 * Returns the instance of the RetroMan.
+	 * 
 	 * @return The instance of the RetroMan which is held by this controller.
 	 */
 	public RetroMan getRetroMan() {
-		// TODO Auto-generated method stub
 		return retroMan;
 	}
 
@@ -166,7 +183,7 @@ public class GameController {
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
-		Cell cell = layer.getCell((int)posObj.x, (int)posObj.y);
+		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
 		cell.getTile();
 		return null;
 	}
@@ -194,11 +211,20 @@ public class GameController {
 	 */
 	public boolean setGameElement(Vector2 posObj, GameElement element) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
-		Cell cell = layer.getCell((int)posObj.x, (int)posObj.y);
+		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
 		cell.getTile();
-		//TODO: Element in TiledMapTile umwandeln und setzen
-		//cell.setTile(element);
+		// TODO: Element in TiledMapTile umwandeln und setzen
+		// cell.setTile(element);
 		return false;
+	}
+
+	/**
+	 * Checks if RetroMan stands beside a GameElement that he can pick up.
+	 * 
+	 * @return if he stands next to a GameElement the element; null otherwise.
+	 */
+	private GameElement standsBesideGameElement() {
+		return null;
 	}
 
 	/**
@@ -208,48 +234,44 @@ public class GameController {
 	private void collisionDetection() {
 		int startX, startY, endX, endY;
 		if (retroMan.getVelocity().x != 0) {
-			startX = endX = (int)(retroMan.getPos().x + retroMan.WIDTH + retroMan.getVelocity().x);
+			startX = endX = (int) (retroMan.getPos().x + retroMan.WIDTH + retroMan
+					.getVelocity().x);
 		} else {
-			startX = endX = (int)(retroMan.getPos().x + retroMan.getVelocity().x);
+			startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
 		}
-		startY = (int)(retroMan.getPos().y);
-		endY = (int)(retroMan.getPos().y + retroMan.HEIGHT);
-		//alle Elementpositionen holen
-		//neue Position von retroMan speichern
-		//checken, ob es sich �berlappt; wenn ja, velocity auf 0 
-		/*Rectangle koalaRect = rectPool.obtain();
-		koalaRect.set(koala.position.x, koala.position.y, Koala.WIDTH, Koala.HEIGHT);
-		int startX, startY, endX, endY;
-		if (koala.velocity.x > 0) {
-		startX = endX = (int)(koala.position.x + Koala.WIDTH + koala.velocity.x);
-		} else {
-		startX = endX = (int)(koala.position.x + koala.velocity.x);
-		}
-		startY = (int)(koala.position.y);
-		endY = (int)(koala.position.y + Koala.HEIGHT);
-		getTiles(startX, startY, endX, endY, tiles);
-		koalaRect.x += koala.velocity.x;
-		for (Rectangle tile : tiles) {
-		if (koalaRect.overlaps(tile)) {
-		koala.velocity.x = 0;
-		break;
-		}*/
+		startY = (int) (retroMan.getPos().y);
+		endY = (int) (retroMan.getPos().y + retroMan.HEIGHT);
+		// alle Elementpositionen holen
+		// neue Position von retroMan speichern
+		// checken, ob es sich �berlappt; wenn ja, velocity auf 0
+		/*
+		 * Rectangle koalaRect = rectPool.obtain();
+		 * koalaRect.set(koala.position.x, koala.position.y, Koala.WIDTH,
+		 * Koala.HEIGHT); int startX, startY, endX, endY; if (koala.velocity.x >
+		 * 0) { startX = endX = (int)(koala.position.x + Koala.WIDTH +
+		 * koala.velocity.x); } else { startX = endX = (int)(koala.position.x +
+		 * koala.velocity.x); } startY = (int)(koala.position.y); endY =
+		 * (int)(koala.position.y + Koala.HEIGHT); getTiles(startX, startY,
+		 * endX, endY, tiles); koalaRect.x += koala.velocity.x; for (Rectangle
+		 * tile : tiles) { if (koalaRect.overlaps(tile)) { koala.velocity.x = 0;
+		 * break; }
+		 */
 	}
-	
+
 	// --------------------------
 	// --------Evaluation--------
 	// --------------------------
-	
+
 	/**
 	 * Starts the evaluation process.
 	 */
 	public void evaluationClicked() {
-		if(checkPlacementofElements()){
+		if (checkPlacementofElements()) {
 			evaControl = new EvaluationController(buildlambdaTree(), game);
-			checkEvaluationResult();			
+			checkEvaluationResult();
 		}
 	}
-	
+
 	/**
 	 * Checks if all the depots contain an element.
 	 * 
@@ -259,20 +281,22 @@ public class GameController {
 		ArrayList<GameElement> depotElements = checkdepotPositions();
 		return false;
 	}
-	
+
 	/**
 	 * Builds the lambdaTree for the evaluation with data of the map.
+	 * 
 	 * @return returns the Tree Object
 	 */
 	private Tree buildlambdaTree() {
-		return null; 
-		
+		return null;
+
 	}
-	
+
 	/**
-	 * Is called after the evaluation and checks if the result is the correct one to finish the level.
+	 * Is called after the evaluation and checks if the result is the correct
+	 * one to finish the level.
 	 */
 	private void checkEvaluationResult() {
-		
+
 	}
 }

@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
-import com.retroMachines.game.controllers.ProfileController;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -29,8 +28,6 @@ public class Profile extends Model {
 	private static final String KEY_STATISTIC = "statisticId";
 	
 	private static final String KEY_SETTING = "settingId";
-	
-	private static final String KEY_LENGTH = "LENGTH";
 
 	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
@@ -50,14 +47,14 @@ public class Profile extends Model {
 	 * a row within the TABLE_NAME
 	 * name -> statisticId -> settingId
 	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, ?, ?, ?);";
+	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "`(name, statisticId, settingId) VALUES (?, ?, ?);";
 	
 	/**
 	 * a pattern (that should be formatted with printf or similar) that selects a row
 	 * within the table
 	 * 0 -> id, 1 -> name, 2 -> statisticId, 3 -> settingId
 	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT *, COUNT(*) AS LENGTH FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` LIKE ?;";
+	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM " + TABLE_NAME + " WHERE profiles.id LIKE ?;";
 
 	/**
 	 * the name of the profile
@@ -124,6 +121,7 @@ public class Profile extends Model {
 		else {
 			try {
 				PreparedStatement ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
+				
 				ps.setString(1, profileName);
 				ps.setInt(2, statistic.rowId);
 				ps.setInt(3, setting.rowId);
@@ -204,9 +202,14 @@ public class Profile extends Model {
 			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
 			ps.setString(1, "%");
 			ResultSet rs = ps.executeQuery();
-			String[] result = new String[rs.getInt(KEY_LENGTH)];
-			for (int i = 0; rs.next(); i++) {
-				result[i] = rs.getString(KEY_PROFILE_NAME);
+			int size = RetroDatabase.countResultSet(rs);
+			rs.close();
+			rs = ps.executeQuery();
+			String[] result = new String[size];
+			int counter = 0;
+			while(rs.next()) {
+				result[counter] = rs.getString(KEY_PROFILE_NAME);
+				counter++;
 			}
 			rs.close();
 			ps.close();
@@ -214,6 +217,7 @@ public class Profile extends Model {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("zeit für null");
 		return null;
 	}
 	

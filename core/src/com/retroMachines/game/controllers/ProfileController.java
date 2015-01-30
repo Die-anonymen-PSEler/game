@@ -58,6 +58,7 @@ public class ProfileController {
 	 */
 	public void deleteCurrentProfile() {
 		profile.destroy();
+		profileNames = Profile.getAllProfiles();
 		notifyProfileListeners();
 	}
 
@@ -65,7 +66,7 @@ public class ProfileController {
 	 * Checks if a given user name is valid, meaning it is not occupied by
 	 * another profile already.
 	 */
-	public boolean CanUserBeCreated(String username) {
+	public boolean canUserBeCreated(String username) {
 		String names[] = profileNames;
 		if (profileNames.length == MAX_PROFILE_NUMBER) {
 			return false;
@@ -82,12 +83,13 @@ public class ProfileController {
 	 * Method for creating a new Profile.
 	 */
 	public void createProfile(String name) {
-		if (!CanUserBeCreated(name)) {
+		if (!canUserBeCreated(name)) {
 			return;
 		}
 		Statistic statistic = new Statistic();
 		Setting setting = new Setting();
 		profile = new Profile(name, setting, statistic);
+		profileNames = Profile.getAllProfiles();
 		notifyProfileListeners();
 	}
 

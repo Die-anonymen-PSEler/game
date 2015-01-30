@@ -55,16 +55,6 @@ public class GameScreen extends AbstractScreen implements
 	private Music music;
 
 	/**
-	 * file path of the soundfile
-	 */
-	private static final String SOUNDFILE = "sound/random%20silly%20chip%20song.ogg";
-
-	/**
-	 * the soundID of the sound which is played while this screen is displayed
-	 */
-	private long soundId;
-	
-	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
 	 * RetroMan are now possible True if LevelMenu, Hint or Task is shown. No
 	 * other ButtonClicks like steering of RetroMan are now possible
@@ -168,7 +158,7 @@ public class GameScreen extends AbstractScreen implements
 	private class RightButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			gameController.goRightRetroMan();
 		}
 	}
 
@@ -180,7 +170,7 @@ public class GameScreen extends AbstractScreen implements
 	private class LeftButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			gameController.goLeftRetroMan();
 		}
 	}
 
@@ -192,7 +182,7 @@ public class GameScreen extends AbstractScreen implements
 	private class JumpButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			gameController.jumpRetroMan();
 		}
 	}
 
@@ -204,7 +194,7 @@ public class GameScreen extends AbstractScreen implements
 	private class InteractButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			gameController.interactRetroMan();
 		}
 	}
 
@@ -265,7 +255,7 @@ public class GameScreen extends AbstractScreen implements
 	private class GetHintClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			showHint();
 		}
 	}
 
@@ -277,19 +267,21 @@ public class GameScreen extends AbstractScreen implements
 	private class GetTaskClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			showTask();
 		}
 	}
 
 	/**
-	 * Button which shows the Level Menu and interuots the Game
+	 * Button which shows the Level Menu and interrupts the Game
 	 * 
 	 * @author Retro Factory
 	 */
 	private class MenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			//TODO: show level menu
+			pause();
+			gameController.setPopupScreenIsShown(true);
 		}
 	}
 }

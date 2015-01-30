@@ -145,8 +145,6 @@ public class RetroMachines extends Game{
 	public void setScreen(Screen screen) {
 		screenStack.push(screen);
 		super.setScreen(screen);
-		System.out.println("set screen");
-		System.out.println(screenStack);
 	}
 	
 	/**

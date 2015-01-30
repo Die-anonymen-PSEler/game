@@ -2,6 +2,8 @@ package com.retroMachines.ui.screens.menus;
 
 
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -85,6 +87,7 @@ public class ProfileMenuScreen extends MenuScreen{
 		profileList = new List<String>(skin);
 		profileList.setItems(Profile.getAllProfiles());
 		
+
 		profileList.getStyle().font.setScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		Table scrollTable = new Table(skin);
 		scrollTable.add(profileList);
@@ -197,7 +200,7 @@ private class DeleteDialog extends Dialog {
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
-	        Label dialogText = new Label("Profil wirklich löschen?",skin);
+	        Label dialogText = new Label("Profil wirklich lï¿½schen?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
 	        dialogText.setFontScale((FONTSIZE2_1 * screenWidth) / DIVIDEWIDTHDEFAULT);
@@ -207,7 +210,7 @@ private class DeleteDialog extends Dialog {
 		}
 		
 		protected void result(Object object) {
-			//TODO Profile lï¿½schen
+			//TODO Profile lÃ¶schen
 		}
 		
 		   @Override
