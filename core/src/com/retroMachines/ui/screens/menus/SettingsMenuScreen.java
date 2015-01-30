@@ -124,6 +124,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			if (volumeSlider.getValue() <= 95) {
 				volumeSlider.setValue(volumeSlider.getValue() + 5);
+				settingController.setVolume(volumeSlider.getValue() / 100f);
 			}
 		}
 	}
@@ -138,6 +139,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			if (volumeSlider.getValue() >= 5) {
 				volumeSlider.setValue(volumeSlider.getValue() - 5);
+				settingController.setVolume(volumeSlider.getValue() / 100f);
 			}
 		}
 	}
@@ -151,6 +153,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			volumeSlider.setValue(0);
+			settingController.setVolume(0);
 		}
 	}
 	
@@ -163,8 +166,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Get Profile ID
-			int id = 0;
-			game.setScreen(new ProfileSettingsMenuScreen(game,id));
+			game.setScreen(new ProfileSettingsMenuScreen(game));
 		}
 	}
 	

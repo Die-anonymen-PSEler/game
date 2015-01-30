@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.game.controllers.ProfileController;
+import com.retroMachines.game.controllers.SettingController;
 
 /**
  * The ProfileSettingsMenuScreen is part of the view of RetroMachines. The
@@ -39,10 +41,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private final static float FIVE_9th = (5f / 9f);
 	private final static int COLSPANx2 = 2;
 	
-	/**
-	 * The ID of the profile that is edited by this screen.
-	 */
-	private int profileId;
+	private SettingController settingController;
 
 	/**
 	 * The actualCharacter represents the position in Character-String-Array in
@@ -53,10 +52,8 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private Button buttonRightMode;
 	private Button buttonLeftMode;
 
-	public ProfileSettingsMenuScreen(RetroMachines game, int id) {
-		super(game);
-		this.profileId = id;
-		// TODO Auto-generated constructor stub
+	public ProfileSettingsMenuScreen(RetroMachines game) {
+		super(game);		
 	}
 
 	/**
@@ -64,6 +61,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 */
 	@Override
 	protected void initialize() {
+		settingController = game.getSettingController();
 		skin = AssetManager.getMenuSkin();
 
 		// Make Title
@@ -98,7 +96,15 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonRightMode = new Button(skin, "controlRight");
 		buttonRightMode.addListener(new RightControlButtonClickListener());
 		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonRightMode.setChecked(true);
+		
+		if (settingController.getLeftMode()) {
+			buttonLeftMode.setChecked(true);
+			buttonRightMode.setChecked(false);
+		}
+		else {
+			buttonLeftMode.setChecked(false);
+			buttonRightMode.setChecked(true);
+		}
 
 		Button buttonNextChar = new Button(skin, "nextChar");
 		buttonNextChar.addListener(new NextCharButtonClickListener());
@@ -153,14 +159,6 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		return actualCharacter;
 	}
 
-	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-			game.setScreen(new SettingsMenuScreen(game));
-		}
-		return false;
-	}
-
 	/**
 	 * Listener when the user aborts the profile creation.
 	 * 
@@ -169,7 +167,6 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
 			game.setScreen(new SettingsMenuScreen(game));
 		}
 	}
@@ -182,7 +179,8 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private class AcceptButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			settingController.setLeftMode(buttonLeftMode.isChecked());
+			game.setScreen(new MainMenuScreen(game));
 			super.clicked(event, x, y);
 		}
 	}
@@ -197,7 +195,6 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			buttonRightMode.setChecked(false);
 			buttonLeftMode.setChecked(true);
-			// TODO Save Lefti Change
 		}
 	}
 
