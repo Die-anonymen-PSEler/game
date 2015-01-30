@@ -98,7 +98,7 @@ public class RetroMan {
 	public void jump() {
 		if (canJump()) {
 			state = State.JUMPING;
-			velocity.add(9, 0);
+			velocity.add(0, 9);
 		}
 	}
 
@@ -129,7 +129,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goLeft() {
-		velocity.add(0, -9);
+		velocity.add(-9, 0);
 		updateRetroMan();
 	}
 
@@ -138,7 +138,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
-		velocity.add(0, 9);
+		velocity.add(9, 0);
 		updateRetroMan();
 
 	}
