@@ -96,7 +96,7 @@ public class RetroMan {
 	 * for further information as to the condition.
 	 */
 	public void jump() {
-		if (!canJump()) {
+		if (canJump()) {
 			state = State.JUMPING;
 			velocity.add(9, 0);
 		}
@@ -107,9 +107,7 @@ public class RetroMan {
 	 * order to release the jump prohibition.
 	 */
 	public void landed() {
-		if (canJump()) {
 			state = State.STANDING;
-		}
 	}
 
 	/**
