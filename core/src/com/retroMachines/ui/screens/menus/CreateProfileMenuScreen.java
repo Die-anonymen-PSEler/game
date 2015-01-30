@@ -182,7 +182,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	private void createProfile() {
 		String name = nameTextField.getMessageText();
-		if (!profileController.isValidUsername(name)) {
+		if (!profileController.CanUserBeCreated(name)) {
 			profileController.createProfile(name);
 		}
 		else {
