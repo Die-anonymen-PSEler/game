@@ -24,7 +24,7 @@ public class AboutMenuScreen extends MenuScreen {
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
 	private final static float TWO_3rd = (2f / 3f);
-	private final static float CENTERTITLE = 4f;
+	private final static float CENTERTITLE = (1f / 4f);
 	private final static int COLSPANx2 = 2;
 	
 	/**
@@ -47,7 +47,6 @@ public class AboutMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		skin = AssetManager.getMenuSkin();
-		
 		// Make Title
 		Label title = new Label("Credits",skin);
 		title.setWrap(true);
@@ -66,7 +65,7 @@ public class AboutMenuScreen extends MenuScreen {
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
 		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
-		table.add(title).width(screenWidth * HALF).right().padRight((screenWidth / HALF) - (screenWidth / CENTERTITLE) ).expandX().row();
+		table.add(title).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
 		table.add(aboutText).width(screenWidth * TWO_3rd).colspan(COLSPANx2).expandX().expandY().row();
 		
 	    stage.addActor(table);
