@@ -61,6 +61,7 @@ public class ProfileController {
 		int id = profileNames.get(name);
 		new Profile(id).destroy();
 		profileNames = Profile.getProfileNameIdMap();
+		notifyProfileListeners();
 	}
 
 	/**

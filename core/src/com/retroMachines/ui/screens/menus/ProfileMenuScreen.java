@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.Profile;
+import com.retroMachines.game.controllers.OnProfileChangedListener;
 import com.retroMachines.game.controllers.ProfileController;
 
 /**
@@ -26,7 +27,7 @@ import com.retroMachines.game.controllers.ProfileController;
  * @author RetroFactory
  *
  */
-public class ProfileMenuScreen extends MenuScreen{
+public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedListener{
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float DEFAULTKNOBSIZE = 15f;
@@ -73,6 +74,7 @@ public class ProfileMenuScreen extends MenuScreen{
 	@Override
 	protected void initialize() {
 		profileController = game.getProfileController();
+		profileController.addProfileChangedListener(this);
 		// TODO Auto-generated method stub
 		skin = AssetManager.getMenuSkin();
 		
@@ -123,7 +125,15 @@ public class ProfileMenuScreen extends MenuScreen{
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 		
-	}	
+	}
+	
+	@Override
+	public void profileChanged() {
+		profileList.clearItems();
+		System.out.println(Profile.getAllProfiles().length);
+		profileList.setItems(Profile.getAllProfiles());
+		
+	}
 	
 	/**
 	 * Listener when the button for creating a profile has been clicked.
@@ -184,7 +194,7 @@ public class ProfileMenuScreen extends MenuScreen{
 		}
 	}
 	
-private class DeleteDialog extends Dialog {
+	private class DeleteDialog extends Dialog {
 		
 		public DeleteDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
@@ -194,15 +204,15 @@ private class DeleteDialog extends Dialog {
 		private void initialize() {
 			padTop(screenWidth / DEFAULTPADING); // set padding on top of the dialog title
 			padBottom(screenWidth / DEFAULTPADING); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
-	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
-	        setModal(true);
-	        setMovable(false);
-	        setResizable(false);
-	        Label dialogText = new Label("Profil wirklich löschen?",skin);
-	        dialogText.setWrap(true);
-	        dialogText.setAlignment(Align.center);
-	        dialogText.setFontScale((FONTSIZE2_1 * screenWidth) / DIVIDEWIDTHDEFAULT);
+			getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
+			getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
+			setModal(true);
+			setMovable(false);
+			setResizable(false);
+			Label dialogText = new Label("Profil wirklich löschen?",skin);
+			dialogText.setWrap(true);
+			dialogText.setAlignment(Align.center);
+			dialogText.setFontScale((FONTSIZE2_1 * screenWidth) / DIVIDEWIDTHDEFAULT);
 			getContentTable().add(dialogText).width(screenWidth * TWO_3th);
 			button(new Button(skin, "ok"), true);
 			button(new Button(skin, "abort"), false);
@@ -215,17 +225,19 @@ private class DeleteDialog extends Dialog {
 				this.remove();
 			}
 		}
-		
-		   @Override
-		   public float getPrefWidth() {
-		      // force dialog width
-		      return screenWidth / 1.5f;
-		   }
+	
+		@Override
+		public float getPrefWidth() {
+		// force dialog width
+			return screenWidth / 1.5f;
+		}
 
-		   @Override
-		   public float getPrefHeight() {
-		      // force dialog height
-		      return screenHeight / 1.8f;
-		   }
+		@Override
+		public float getPrefHeight() {
+		// force dialog height
+			return screenHeight / 1.8f;
+		}
 	}
+
+
 }
