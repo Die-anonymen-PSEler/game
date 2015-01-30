@@ -31,9 +31,29 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	/**
 	 * The ProfileController which is needed for this screen.
 	 */
+	
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DEFAULTPADING = 25f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE3 =  3f;
+	private final static float FONTSIZE2 =  2f;
+	private final static float DIVIDEHEIGHTDEFAULT = 1080f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float TEXTFIELDHEIGHTMULTIPLIKATOR = 50f;
+	private final static float TEXTFIELDTABLEWIDTH = 2f;
+	private final static float TEXTFIELDTABLEHEIGHT = 120f;
+	private final static float TEXTFIELDFONTSIZE = 0.3f;
+	private final static float TEXTFIELDCURSORSIZE = 13f;
+	private final static float IMAGEHEIGHT = (3f / 5f);
+	private final static float IMAGEWIDTH = (1f /4f);
+	private final static float IMAGETABLEWIDTH = (4f / 9f);
+	private final static float RIGHTTABLEWIDTH = (5f / 9f);
+	private final static int PROFILENAMELENGTH = 12;
+	private final static int TEXTFIELDBORDEROFFSET = 20;
+	private final static int COLSPANx2 = 2;
 	private final ProfileController profileController;
-	
-	
+
 	private TextField nameTextField;
 	private Button buttonRightMode;
 	private Button buttonLeftMode;
@@ -56,51 +76,54 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		
 		// Make Title
 		Label title = new Label("Create Profile",skin);
-		title.setFontScale((3*screenWidth)/1920f);
+		title.setFontScale((FONTSIZE3*screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 		
 		//Profile Name
 		Label profileName = new Label("Name",skin);
-		profileName.setFontScale((2f*screenWidth)/1920f);
+		profileName.setFontScale((FONTSIZE2*screenWidth) / DIVIDEWIDTHDEFAULT);
 		profileName.setAlignment(Align.center);
 		
 		//Subtitle LeftiMode
 		Label steeringTitle = new Label("Steuerung", skin);
-		steeringTitle.setFontScale((2f*screenWidth)/1920f);
+		steeringTitle.setFontScale((2f*screenWidth) / DIVIDEWIDTHDEFAULT);
 		steeringTitle.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonOk = new Button(skin, "ok");
 		buttonOk.addListener(new CreateProfileButtonClickListener());
-		buttonOk.pad(screenHeight / 10f);
+		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		Button buttonAbort = new Button(skin, "abort");
 		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
-		buttonAbort.pad(screenHeight / 10f);
+		buttonAbort.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		buttonLeftMode = new Button(skin, "controlLeft");
 		buttonLeftMode.addListener(new LeftControlButtonClickListener());
-		buttonLeftMode.pad(screenHeight / 10f);
+		buttonLeftMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		buttonRightMode = new Button(skin, "controlRight");
 		buttonRightMode.addListener(new RightControlButtonClickListener());
-		buttonRightMode.pad(screenHeight / 10f);
+		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonRightMode.setChecked(true);
 		
 		Button buttonNextChar = new Button(skin, "nextChar");
 		buttonNextChar.addListener(new NextCharButtonClickListener());
-		buttonNextChar.pad(screenHeight / 10f);
+		buttonNextChar.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		
 		// Make Textfield
 		nameTextField = new TextField("", skin);
-		nameTextField.setHeight(52*screenHeight / 1080f);
-		nameTextField.setMaxLength(12);
+		nameTextField.setHeight(TEXTFIELDHEIGHTMULTIPLIKATOR * screenHeight / DIVIDEHEIGHTDEFAULT);
+		nameTextField.setMaxLength(PROFILENAMELENGTH);
 		TextFieldStyle nameTextStyle = nameTextField.getStyle();
-		nameTextStyle.background.setLeftWidth(nameTextStyle.background.getLeftWidth() + 20);
-		nameTextStyle.background.setRightWidth(nameTextStyle.background.getRightWidth() + 20);
-		nameTextStyle.font.scale((0.3f * screenWidth)/1920f);
-		nameTextStyle.cursor.setMinWidth((13f * screenWidth)/1920f);
+		// ADD 20 pixel to left and right border of Textfield
+		nameTextStyle.background.setLeftWidth(nameTextStyle.background.getLeftWidth() + TEXTFIELDBORDEROFFSET);
+		nameTextStyle.background.setRightWidth(nameTextStyle.background.getRightWidth() + TEXTFIELDBORDEROFFSET);
+		// font size fit in Textfield
+		nameTextStyle.font.scale((TEXTFIELDFONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
+		// cursor size in Textfield
+		nameTextStyle.cursor.setMinWidth((TEXTFIELDCURSORSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		
 		
 		//Make Image
@@ -115,31 +138,31 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		
 		//ButtonTables
 		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).padRight(screenWidth / 25f);
-		buttonTable.add(buttonOk).padLeft(screenWidth / 25f);
+		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADING);
+		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADING);
 		
 		Table leftiTable = new Table(skin);
-		leftiTable.add(buttonLeftMode).padRight(screenWidth / 25f);
-		leftiTable.add(buttonRightMode).padLeft(screenWidth / 25f);
+		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADING);
+		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADING);
 		
 		//ImageTable
 		Table imageTable = new Table(skin);
-		imageTable.add(buttonNextChar).left().padRight(screenWidth / 100f);
-		imageTable.add(charImage).padTop(screenHeight/ 50f).height((3*screenHeight) / 5f).width(2*(screenWidth) / 8f);
+		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADINGx4);
+		imageTable.add(charImage).padTop(screenHeight/ DEFAULTPADINGx2).height(screenHeight * IMAGEHEIGHT).width(screenWidth * IMAGEWIDTH);
 		
 		
 		//RightTable
 		Table rightTable = new Table(skin);
-		rightTable.add(profileName).padTop(screenHeight/ 30f).row();
-		rightTable.add(nameTextField).height(41*((3*screenWidth)/1920f)).width(screenWidth / 2).padTop(screenHeight/ 50f).row();
-		rightTable.add(steeringTitle).padTop(screenHeight/ 20f).row();
-		rightTable.add(leftiTable).expandX().padTop(screenHeight/ 50f).row();
+		rightTable.add(profileName).padTop(screenHeight/ DEFAULTPADING).row();
+		rightTable.add(nameTextField).height(TEXTFIELDTABLEHEIGHT * ((screenWidth) / DIVIDEWIDTHDEFAULT)).width(screenWidth / TEXTFIELDTABLEWIDTH).padTop(screenHeight/ DEFAULTPADINGx2).row();
+		rightTable.add(steeringTitle).padTop(screenHeight/ DEFAULTPADING).row();
+		rightTable.add(leftiTable).expandX().padTop(screenHeight/ DEFAULTPADINGx2).row();
 		
 		//MainTable
-		table.add(title).expandX().colspan(2).padTop(screenHeight/ 25f).row();
-		table.add(imageTable).width(screenWidth * (4 / 9f));
-		table.add(rightTable).width(screenWidth * (5 / 9f)).row();
-		table.add(buttonTable).colspan(2).padTop(screenHeight/ 25f).row();
+		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight/ DEFAULTPADING).row();
+		table.add(imageTable).width(screenWidth * IMAGETABLEWIDTH);
+		table.add(rightTable).width(screenWidth * RIGHTTABLEWIDTH).row();
+		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight/ DEFAULTPADING).row();
 		
 	    stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
