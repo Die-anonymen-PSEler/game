@@ -30,16 +30,6 @@ public class Profile extends Model {
 	private static final String KEY_SETTING = "settingId";
 
 	/**
-	 * a raw query that should be executed in case a table doesn't exist
-	 */
-	public static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `" + TABLE_NAME + "` (\n" +
-            "\t`id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "\t`name`\tTEXT NOT NULL,\n" +
-            "\t`statisticId`\tINTEGER NOT NULL,\n" +
-            "\t`settingId`\tINTEGER NOT NULL\n" +
-            ");";
-
-	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 * the order is name -> statisticId -> settingId -> rowId
@@ -261,7 +251,6 @@ public class Profile extends Model {
 	 * @return the statistic attribute associated with this profile
 	 */
 	public Statistic getStatistic() {
-		// TODO Auto-generated method stub
 		return this.statistic;
 	}
 

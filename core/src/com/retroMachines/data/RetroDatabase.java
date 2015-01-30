@@ -5,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.badlogic.gdx.sql.Database;
-import com.badlogic.gdx.sql.DatabaseFactory;
-import com.badlogic.gdx.sql.SQLiteGdxException;
-
 /**
  * The Database is part of the controller of MetroMachines.
  * It manages the data of the game:

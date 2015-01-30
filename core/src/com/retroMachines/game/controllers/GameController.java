@@ -9,11 +9,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
-import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.lambda.Tree;
-import com.retroMachines.util.lambda.Vertex;
 
 /**
  * The GameController is part of the controller of RetroMachines.

@@ -25,15 +25,6 @@ public class GlobalVariables extends Model {
 	private static final String KEY_VALUE = "value";
 
 	/**
-	 * a raw query that should be executed in case a table doesn't exist
-	 */
-	public static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `globalVariables` (\n" +
-            "\t`id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "\t`key`\tTEXT NOT NULL,\n" +
-            "\t`value`\tTEXT\n" +
-            ");";
-
-	/**
 	 * a pattern (that should be formatted with printf or similar) that updates
 	 * a row within the TABLE_NAME
 	 * please specify values in the follwing order

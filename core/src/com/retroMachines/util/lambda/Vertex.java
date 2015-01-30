@@ -2,8 +2,6 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
-import com.badlogic.gdx.math.Vector2;
-
 /**
  * This class is part of the model of RetroMachines. 
  * Vertices of the Graph of Gameelements extends this class
