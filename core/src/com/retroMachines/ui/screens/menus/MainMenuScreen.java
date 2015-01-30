@@ -37,24 +37,10 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	private final static float DEFAULTPADINGx2 = 50f;
 	private final static float DEFAULTPADINGx4 = 100f;
 	private final static float FONTSIZE3 =  3f;
-	private final static float FONTSIZE2 =  2f;
-	private final static float DIVIDEHEIGHTDEFAULT = 1080f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float TEXTFIELDHEIGHTMULTIPLIKATOR = 50f;
-	private final static float TEXTFIELDTABLEWIDTH = 2f;
-	private final static float TEXTFIELDTABLEHEIGHT = 120f;
-	private final static float TEXTFIELDFONTSIZE = 0.3f;
-	private final static float TEXTFIELDCURSORSIZE = 13f;
-	private final static float IMAGEHEIGHT = (3f / 5f);
-	private final static float IMAGEWIDTH = (1f /4f);
-	private final static float IMAGETABLEWIDTH = (4f / 9f);
-	private final static float RIGHTTABLEWIDTH = (5f / 9f);
 	private final static float HALF = (1f / 2f);
 	private final static float ONE_5th = (1f / 5f);
 	private final static float FOUR_5th = (4f / 5f);
-	private final static int PROFILENAMELENGTH = 12;
-	private final static int TEXTFIELDBORDEROFFSET = 20;
-	private final static int COLSPANx2 = 2;
 	
 	private ExitDialog exitDialog;
 	
