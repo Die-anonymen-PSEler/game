@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
@@ -217,8 +218,27 @@ public class Profile extends Model {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("zeit für null");
 		return null;
+	}
+	
+	public static HashMap<String, Integer> getProfileNameIdMap() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		if (connection == null) {
+			connection = RetroDatabase.getConnection();
+		}
+		try {
+			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
+			ps.setString(1, "%");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getString(KEY_PROFILE_NAME), rs.getInt(KEY_ID));
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
 	}
 	
 	

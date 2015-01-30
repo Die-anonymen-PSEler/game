@@ -64,8 +64,7 @@ public class ProfileMenuScreen extends MenuScreen{
 	 * @param game The game which  uses this screen.
 	 */
 	public ProfileMenuScreen(RetroMachines game) {
-		super(game);
-		profileController = game.getProfileController();
+		super(game);		
 	}
 
 	/**
@@ -73,9 +72,9 @@ public class ProfileMenuScreen extends MenuScreen{
 	 */
 	@Override
 	protected void initialize() {
+		profileController = game.getProfileController();
 		// TODO Auto-generated method stub
 		skin = AssetManager.getMenuSkin();
-		table.debug();
 		
 		// Make Title
 		Label title = new Label("Profile",skin);
@@ -86,7 +85,7 @@ public class ProfileMenuScreen extends MenuScreen{
 		// Make Profile List
 		profileList = new List<String>(skin);
 		profileList.setItems(Profile.getAllProfiles());
-		
+		profileList.setSelected(profileController.getProfileName());
 
 		profileList.getStyle().font.setScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		Table scrollTable = new Table(skin);
@@ -200,7 +199,7 @@ private class DeleteDialog extends Dialog {
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
-	        Label dialogText = new Label("Profil wirklich l�schen?",skin);
+	        Label dialogText = new Label("Profil wirklich löschen?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
 	        dialogText.setFontScale((FONTSIZE2_1 * screenWidth) / DIVIDEWIDTHDEFAULT);
@@ -210,7 +209,11 @@ private class DeleteDialog extends Dialog {
 		}
 		
 		protected void result(Object object) {
-			//TODO Profile löschen
+			if ((Boolean) object) {
+				profileController.deleteProfile(profileList.getSelected());
+			} else {
+				this.remove();
+			}
 		}
 		
 		   @Override

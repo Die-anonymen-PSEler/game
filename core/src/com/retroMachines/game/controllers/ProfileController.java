@@ -1,5 +1,6 @@
 package com.retroMachines.game.controllers;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ProfileController {
 	/**
 	 * String array which stores the ProfileNames of existing Profiles.
 	 */
-	private String[] profileNames;
+	private HashMap<String, Integer> profileNames;
 
 	/**
 	 * The currently active profile.
@@ -50,16 +51,16 @@ public class ProfileController {
 	public ProfileController(RetroMachines game) {
 		this.game = game;
 		profileChangeListeners = new LinkedList<OnProfileChangedListener>();
-		profileNames = Profile.getAllProfiles();
+		profileNames = Profile.getProfileNameIdMap();
 	}
 
 	/**
 	 * Removes the currently active profile.
 	 */
-	public void deleteCurrentProfile() {
-		profile.destroy();
-		profileNames = Profile.getAllProfiles();
-		notifyProfileListeners();
+	public void deleteProfile(String name) {
+		int id = profileNames.get(name);
+		new Profile(id).destroy();
+		profileNames = Profile.getProfileNameIdMap();
 	}
 
 	/**
@@ -67,11 +68,10 @@ public class ProfileController {
 	 * another profile already.
 	 */
 	public boolean canUserBeCreated(String username) {
-		String names[] = profileNames;
-		if (profileNames.length == MAX_PROFILE_NUMBER) {
+		if (profileNames.size() == MAX_PROFILE_NUMBER) {
 			return false;
 		}
-		for (String name : names) {
+		for (String name : profileNames.keySet()) {
 			if (name.equals(username)) {
 				return false;
 			}
@@ -89,21 +89,13 @@ public class ProfileController {
 		Statistic statistic = new Statistic();
 		Setting setting = new Setting();
 		profile = new Profile(name, setting, statistic);
-		profileNames = Profile.getAllProfiles();
+		profileNames = Profile.getProfileNameIdMap();
 		notifyProfileListeners();
 	}
 
 	/*
 	 * Getter and Setter
 	 */
-
-	/**
-	 * Getter for the Array of ProfileNames.
-	 * @return A string array containing all profile names that are known.
-	 */
-	public String[] getProfileNames() {
-		return profileNames;
-	}
 
 	/**
 	 * Get the name of the currently active user.
@@ -133,6 +125,8 @@ public class ProfileController {
 	 *            The name of the profile that is the next active profile.
 	 */
 	public void changeActiveProfile(String profileName) {
+		int id = profileNames.get(profileName);
+		profile = new Profile(id);
 		notifyProfileListeners();
 	}
 
