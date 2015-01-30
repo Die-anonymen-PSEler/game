@@ -82,7 +82,7 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
     @Override
     public boolean keyDown(int keycode) {
     	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-    		game.setScreen(new MainMenuScreen(game));
+    		game.previousScreen();
     	}
     	return false;
     }
