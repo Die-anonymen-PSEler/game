@@ -15,6 +15,12 @@ import com.retroMachines.data.RetroDatabase;
  * @author RetroFactory
  */
 public class Setting extends Model {
+	
+	public static final float DEFAULT_VOLUME = 0.5f;
+	
+	public static final boolean DEFAULT_SOUNDONOFF = true;
+	
+	public static final boolean DEFAULT_LEFTCONTROL = false;
 
 	/**
 	 * the name of the table where the settings are stored
@@ -99,6 +105,13 @@ public class Setting extends Model {
 		super();
 		this.rowId = rowId;
 		fetchFromSQL();	
+	}
+	
+	/**
+	 * Contructor which creates a new settings instance and assigns the default values
+	 */
+	public Setting() {
+		this(DEFAULT_LEFTCONTROL, DEFAULT_SOUNDONOFF, DEFAULT_VOLUME);		
 	}
 	
 	

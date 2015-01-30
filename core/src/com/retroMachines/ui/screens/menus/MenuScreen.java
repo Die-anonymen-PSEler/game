@@ -38,7 +38,7 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 		super(game);
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-		table = new Table(AssetManager.menuSkin);
+		table = new Table(AssetManager.getMenuSkin());
 		table.background(new TextureRegionDrawable(
 		        new TextureRegion(new Texture(Gdx.files.internal("BackgroundMenu.png")))));
 		table.setBounds(0, 0, screenWidth, screenHeight);
@@ -82,7 +82,7 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
     @Override
     public boolean keyDown(int keycode) {
     	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-    		game.setScreen(new MainMenuScreen(game));
+    		game.previousScreen();
     	}
     	return false;
     }

@@ -72,7 +72,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	@Override
 	protected void initialize() {
-		skin = AssetManager.menuSkin;
+		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
 		Label title = new Label("Create Profile",skin);
@@ -172,7 +172,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	@Override
     public boolean keyDown(int keycode) {
     	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-    		game.setScreen(new ProfileMenuScreen(game));
+    		game.previousScreen();
     	}
     	return false;
 	}
@@ -182,8 +182,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	private void createProfile() {
 		String name = nameTextField.getMessageText();
-		if (!profileController.createProfile(name)) {
-			// TODO SHOW ALERT
+		if (!profileController.isValidUsername(name)) {
+			profileController.createProfile(name);
 		}
 		else {
 			game.setScreen(new ProfileMenuScreen(game));

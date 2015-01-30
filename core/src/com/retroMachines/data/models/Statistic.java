@@ -15,6 +15,12 @@ import com.retroMachines.data.RetroDatabase;
  * @author RetroFactory
  */
 public class Statistic extends Model {
+	
+	public static final int DEFAULT_PLAYTIME = 0;
+	
+	public static final int DEFAULT_STEPCOUNTER = 0;
+	
+	public static final int DEFAULT_LEVELCOMPLETED = 0;
 
 	/**
 	 * the name of the table where the statistics are stored
@@ -92,6 +98,14 @@ public class Statistic extends Model {
 		super();
 		this.rowId = rowId;
 		fetchFromSQL();
+	}
+	
+	/**
+	 * Creates a new statistic object and assigns it the default values and writes the object 
+	 * to the persistent background storage
+	 */
+	public Statistic() {
+		this(DEFAULT_PLAYTIME, DEFAULT_LEVELCOMPLETED, DEFAULT_STEPCOUNTER);
 	}
 	
 	

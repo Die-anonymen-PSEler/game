@@ -31,17 +31,34 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 * The Title of this Screen.
 	 */
 	public static final String TITLE = "RETROMACHINES";
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DEFAULTBUTTONSIZEx2 = 5f;
+	private final static float DEFAULTPADING = 25f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE3 =  3f;
+	private final static float FONTSIZE2 =  2f;
+	private final static float DIVIDEHEIGHTDEFAULT = 1080f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float TEXTFIELDHEIGHTMULTIPLIKATOR = 50f;
+	private final static float TEXTFIELDTABLEWIDTH = 2f;
+	private final static float TEXTFIELDTABLEHEIGHT = 120f;
+	private final static float TEXTFIELDFONTSIZE = 0.3f;
+	private final static float TEXTFIELDCURSORSIZE = 13f;
+	private final static float IMAGEHEIGHT = (3f / 5f);
+	private final static float IMAGEWIDTH = (1f /4f);
+	private final static float IMAGETABLEWIDTH = (4f / 9f);
+	private final static float RIGHTTABLEWIDTH = (5f / 9f);
+	private final static float HALF = (1f / 2f);
+	private final static float ONE_5th = (1f / 5f);
+	private final static float FOUR_5th = (4f / 5f);
+	private final static int PROFILENAMELENGTH = 12;
+	private final static int TEXTFIELDBORDEROFFSET = 20;
+	private final static int COLSPANx2 = 2;
 	
 	private ExitDialog exitDialog;
 	
 	private Music music;
-	
-	/**
-	 * The path to the file for the sound.
-	 */
-	private static final String SOUNDFILE = "";
-	
-	private long soundId;
 		
 	/**
 	 * The constructor to create a new instance of the MainMenuScreen.
@@ -57,60 +74,60 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	@Override
 	protected void initialize() {
 		
-		skin = AssetManager.menuSkin;
+		skin = AssetManager.getMenuSkin();
 		// Make Title
 		Label title = new Label(TITLE,skin);
-		title.setFontScale((3*screenWidth)/1920f);
+		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
 		Button buttonPlay = new Button(skin, "play");
 		buttonPlay.addListener(new PlayButtonClickListener());
-		buttonPlay.pad(screenHeight / 5);
+		buttonPlay.pad(screenHeight / (DEFAULTBUTTONSIZEx2));
 		
 		Button buttonSetting = new Button(skin, "settings");
 		buttonSetting.addListener(new SettingButtonClickListener());
-		buttonSetting.pad(screenHeight / 10f);
+		buttonSetting.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		Button buttonAbout = new Button(skin, "info");
 		buttonAbout.addListener(new AboutButtonClickListener());
-		buttonAbout.pad(screenHeight / 10f);
+		buttonAbout.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		Button buttonStatistics = new Button(skin, "statistic");
 		buttonStatistics.addListener(new StatisticsButtonClickListener());
-		buttonStatistics.pad(screenHeight / 10f);
+		buttonStatistics.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		Button buttonProfileMenu = new Button(skin, "profile");
 		buttonProfileMenu.addListener(new ProfileMenuClickListener());
-		buttonProfileMenu.pad(screenHeight / 10f);
+		buttonProfileMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		Button buttonExit = new Button(skin, "exit");
 		buttonExit.addListener(new ExitClickListener());
-		buttonExit.pad(screenHeight / 10f);
+		buttonExit.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
 		//Sidebar
 		Table sidebar = new Table(skin);
-		sidebar.add(buttonSetting).padTop(screenHeight / 25f).row();
-		sidebar.add(buttonAbout).padTop(screenHeight / 25f).row();
-		sidebar.add(buttonProfileMenu).padTop(screenHeight / 25f).row();
-		sidebar.add(buttonStatistics).padTop(screenHeight / 25f).padBottom(screenHeight / 25f).row();
+		sidebar.add(buttonSetting).padTop(screenHeight / DEFAULTPADING).row();
+		sidebar.add(buttonAbout).padTop(screenHeight / DEFAULTPADING).row();
+		sidebar.add(buttonProfileMenu).padTop(screenHeight / DEFAULTPADING).row();
+		sidebar.add(buttonStatistics).padTop(screenHeight / DEFAULTPADING).padBottom(screenHeight / DEFAULTPADING).row();
 		
 		//Left Part of Menu
 		Table mainPart = new Table(skin);
-		mainPart.add(buttonExit).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left().row();
-		mainPart.add(title).padTop(screenHeight / 50f).expandX().right().row();
-		mainPart.add(buttonPlay).padTop(screenHeight / 100f).padLeft((screenWidth / 2f) - (screenHeight / 5f) - (buttonPlay.getWidth() / 2f)).left().row();
+		mainPart.add(buttonExit).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left().row();
+		mainPart.add(title).padTop(screenHeight / DEFAULTPADINGx2).expandX().right().row();
+		mainPart.add(buttonPlay).padTop(screenHeight / DEFAULTPADINGx4).padLeft((HALF * screenWidth) - (ONE_5th * screenHeight) - (buttonPlay.getWidth() * HALF)).left().row();
 		
 		
 		// Add Title and Buttons to View
-		table.add(mainPart).expandY().width(screenWidth * (4 / 5f)).top();
-		table.add(sidebar).width(screenWidth / 5f).row();
+		table.add(mainPart).expandY().width(screenWidth * FOUR_5th).top();
+		table.add(sidebar).width(screenWidth * ONE_5th).row();
 	    
 	    stage.addActor(table);
 	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
-	    music = AssetManager.music;
+	    music = AssetManager.getMusic();
 	    music.play();
 	    music.setLooping(true);
         

@@ -21,6 +21,18 @@ import com.retroMachines.data.AssetManager;
  */
 public class LevelMenuScreen extends MenuScreen{
 	
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float LEVELBUTTONSIZE = 6f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float FONTSIZE2_5 =  2.5f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float HALF = (1f / 2f);
+	private final static float ONE_8th = (1f / 8f);
+	private final static int COLSPANx2 = 2;
+	private final static int NUMLEVEL = 15;
+	
+	
 	private List<String> levelList;
 	private LockedDialog lockedDialog; 
 
@@ -38,22 +50,21 @@ public class LevelMenuScreen extends MenuScreen{
 	 */
 	@Override
 	protected void initialize() {
-		skin = AssetManager.menuSkin;
+		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
 		Label title = new Label("Level",skin);
 		title.setWrap(true);
-		title.setFontScale((2.5f*screenWidth)/1920f);
+		title.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
 		
 		//Level Buttons + Table
 		Table levelTable = new Table(skin);
-		int nLevel = 15;
 		int unlocked = 4;
-		//TODO get Num Of Levels?
-		for(int i = 0; i < nLevel; i++) {
+		//TODO get Num Of Levels unlocked?
+		for(int i = 0; i < NUMLEVEL; i++) {
 			Integer iToString = new Integer(i + 1);
 			TextButton ilevel;			
 			if (i >= unlocked) {
@@ -63,25 +74,25 @@ public class LevelMenuScreen extends MenuScreen{
 				ilevel = new TextButton(iToString.toString(), skin);
 				ilevel.addListener(new LevelUnlockedButtonClickListener(i));
 			}
-			ilevel.getStyle().font.setScale((2.5f*screenWidth)/1920f);
+			ilevel.getStyle().font.setScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 			
 			if (i % 5 == 4 && i > 0) {
-				levelTable.add(ilevel).width(screenWidth / 6f).height(screenHeight / 6f).pad(screenHeight / 100f).row();
+				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE).height(screenHeight / LEVELBUTTONSIZE).pad(screenHeight / DEFAULTPADINGx4).row();
 			} else {
-				levelTable.add(ilevel).width(screenWidth / 6f).height(screenHeight / 6f).pad(screenHeight / 100f);
+				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE).height(screenHeight / LEVELBUTTONSIZE).pad(screenHeight / DEFAULTPADINGx4);
 			}
 		}
 		
 		// Back Button
 		Button buttonReturn = new Button(skin, "back");
-		buttonReturn.pad(screenHeight / 10f);
+		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
 		
 		//Make Table
-		table.add(buttonReturn).padTop(screenHeight / 50f).padLeft(screenWidth/ 100f).left();
-		table.add(title).width(screenWidth/4f).right().padRight((screenWidth / 2f) - (screenWidth / 8f) ).expandX().row();
-		table.add(levelTable).colspan(2).expandY();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
+		table.add(title).width(screenWidth * (2 * ONE_8th)).right().padRight((screenWidth * HALF) - (screenWidth * ONE_8th) ).expandX().row();
+		table.add(levelTable).colspan(COLSPANx2).expandY();
 		
 		
 	    stage.addActor(table);

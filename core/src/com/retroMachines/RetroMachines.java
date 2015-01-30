@@ -1,9 +1,10 @@
 package com.retroMachines;
 
-import com.badlogic.gdx.ApplicationListener;
+import java.util.Stack;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.sql.Database;
+import com.badlogic.gdx.Screen;
 import com.retroMachines.data.RetroDatabase;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
@@ -11,7 +12,6 @@ import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
-import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
 
 /**
@@ -26,6 +26,8 @@ public class RetroMachines extends Game{
 	public static final String TITLE="Game Project"; 
     public static final int WIDTH=1280,HEIGHT=720; // used later to set window size Desktop Mode
     private boolean loading;
+    
+    private final Stack<Screen> screenStack;
 
 	
 	/**
@@ -53,6 +55,11 @@ public class RetroMachines extends Game{
 	 * The Statistic Controller controls the game statistics like PlayTime etc.
 	 */
 	private StatisticController statisticController;
+	
+	public RetroMachines() {
+		super();
+		screenStack = new Stack<Screen>();
+	}
 
 	/**
 	 * Initializes the game (all the controllers) after started by the Android
@@ -67,8 +74,12 @@ public class RetroMachines extends Game{
         
 		loading = false;
 		setScreen(new LoadMenuScreen(this));
-		//RetroDatabase.getSingleton();
-		//profileController = new ProfileController(this);
+		RetroDatabase.getConnection();	// starts a connection to the database
+		profileController = new ProfileController(this);
+		boolean profileExists = profileController.loadLastProfile();
+		
+		
+		//
 		//settingController = new SettingController(this);
 		//gameController = new GameController(this);
 		//statisticController = new StatisticController(this);
@@ -80,7 +91,7 @@ public class RetroMachines extends Game{
 	@Override
 	public void pause() {
 		super.pause();
-		RetroDatabase.closeDatabase();
+		//RetroDatabase.closeDatabase();
 	}
 	
 	@Override
@@ -128,6 +139,24 @@ public class RetroMachines extends Game{
 	 */
 	public StatisticController getStatisticController() {
 		return statisticController;
+	}
+	
+	@Override
+	public void setScreen(Screen screen) {
+		screenStack.push(screen);
+		super.setScreen(screen);
+		System.out.println("set screen");
+		System.out.println(screenStack);
+	}
+	
+	/**
+	 * reloads the previous screen.
+	 */
+	public void previousScreen() {
+		if (screenStack.size() >= 2) {
+			screenStack.pop(); // remove current screen.
+			setScreen(screenStack.pop()); // set the screen before.
+		}
 	}
 	
 	/**
