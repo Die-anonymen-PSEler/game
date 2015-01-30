@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.models.Profile;
 import com.retroMachines.game.controllers.ProfileController;
 
 /**
@@ -25,9 +26,19 @@ import com.retroMachines.game.controllers.ProfileController;
  */
 public class ProfileMenuScreen extends MenuScreen{
 	
+	/**
+	 * 
+	 */
 	private ProfileController profileController;
 	
+	/**
+	 * 
+	 */
 	private DeleteDialog deleteDialog;
+	
+	/**
+	 * 
+	 */
 	private List<String> profileList;
 	
 	/**
@@ -55,8 +66,7 @@ public class ProfileMenuScreen extends MenuScreen{
 			
 		// Make Profile List
 		profileList = new List<String>(skin);
-		profileList.setItems(new String[] {"Profile1","Profile2","Profile3","Profile4","Profile5","Profile6", "Profile7",
-								"Profile8", "Profile9", "Profile10", "Profile11", "Profile12", "Profile13", "Profile14"});
+		profileList.setItems(Profile.getAllProfiles());
 		
 		profileList.getStyle().font.setScale((2.5f * screenWidth)/1920f);
 		Table scrollTable = new Table(skin);
@@ -137,6 +147,7 @@ public class ProfileMenuScreen extends MenuScreen{
 		public void clicked(InputEvent event, float x, float y) {
 			//TODO  Is it Right ?
 			game.getProfileController().changeActiveProfile(profileList.getSelected());
+			game.setScreen(new MainMenuScreen(game));
 		}
 	}
 	
@@ -169,7 +180,7 @@ private class DeleteDialog extends Dialog {
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
-	        Label dialogText = new Label("Profil wirklich löschen?",skin);
+	        Label dialogText = new Label("Profil wirklich lï¿½schen?",skin);
 	        dialogText.setWrap(true);
 	        dialogText.setAlignment(Align.center);
 	        dialogText.setFontScale((2.1f * screenWidth)/1920f);
@@ -179,7 +190,7 @@ private class DeleteDialog extends Dialog {
 		}
 		
 		protected void result(Object object) {
-			//TODO Profile löschen
+			//TODO Profile lï¿½schen
 		}
 		
 		   @Override

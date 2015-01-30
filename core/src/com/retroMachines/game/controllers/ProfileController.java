@@ -6,6 +6,8 @@ import java.util.List;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.data.models.Profile;
+import com.retroMachines.data.models.Setting;
+import com.retroMachines.data.models.Statistic;
 
 /**
  * The ProfileController is part of the controller of the RetroMachines.
@@ -55,6 +57,8 @@ public class ProfileController {
 	 * Removes the currently active profile.
 	 */
 	public void deleteCurrentProfile() {
+		profile.destroy();
+		notifyProfileListeners();
 	}
 
 	/**
@@ -74,8 +78,14 @@ public class ProfileController {
 	/**
 	 * Method for creating a new Profile.
 	 */
-	public boolean createProfile(String name) {
-		return false;
+	public void createProfile(String name) {
+		if (!isValidUsername(name)) {
+			return;
+		}
+		Statistic statistic = new Statistic();
+		Setting setting = new Setting();
+		profile = new Profile(name, setting, statistic);
+		notifyProfileListeners();
 	}
 
 	/*

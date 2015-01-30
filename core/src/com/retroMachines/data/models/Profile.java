@@ -208,6 +208,8 @@ public class Profile extends Model {
 			for (int i = 0; rs.next(); i++) {
 				result[i] = rs.getString(KEY_PROFILE_NAME);
 			}
+			rs.close();
+			ps.close();
 			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();

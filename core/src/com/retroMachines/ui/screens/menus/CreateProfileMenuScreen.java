@@ -182,8 +182,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	private void createProfile() {
 		String name = nameTextField.getMessageText();
-		if (!profileController.createProfile(name)) {
-			// TODO SHOW ALERT
+		if (!profileController.isValidUsername(name)) {
+			profileController.createProfile(name);
 		}
 		else {
 			game.setScreen(new ProfileMenuScreen(game));
