@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 /**
- * The RetroMan Class contains information regarding the character that
- * may run through the world. It also provides a rendering method so the screen
- * can show it to the user. It does not hold any information regarding the map
- * he is moving on. Collision detection is also performed within the controller.
+ * The RetroMan Class contains information regarding the character that may run
+ * through the world. It also provides a rendering method so the screen can show
+ * it to the user. It does not hold any information regarding the map he is
+ * moving on. Collision detection is also performed within the controller.
  * 
  * @author RetroFactory
  * 
@@ -56,10 +56,10 @@ public class RetroMan {
 	 * contains a potential gameelement if the character has picked one up
 	 */
 	private GameElement element;
-	
+
 	/**
-	 * Contain index of gamenElement in {@value vertexList} which is currently hold by RetroMan.
-	 * -1, if nothing is hold.
+	 * Contain index of gamenElement in {@value vertexList} which is currently
+	 * hold by RetroMan. -1, if nothing is hold.
 	 */
 	private int indexOfElementHold;
 
@@ -67,7 +67,7 @@ public class RetroMan {
 	 * the texture of the character
 	 */
 	private Texture texture;
-	
+
 	private Animation stand;
 	private Animation runningRight;
 	private Animation runningLeft;
@@ -131,7 +131,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goLeft() {
-		velocity.add(0,-9);
+		velocity.add(0, -9);
 		updateRetroMan();
 	}
 
@@ -140,7 +140,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
-		velocity.add(0,9);
+		velocity.add(0, 9);
 		updateRetroMan();
 
 	}
@@ -153,7 +153,7 @@ public class RetroMan {
 	public boolean getFaceLeft() {
 		return faceLeft;
 	}
-	
+
 	public Vector2 getVelocity() {
 		return velocity;
 	}
@@ -179,7 +179,9 @@ public class RetroMan {
 
 	/**
 	 * Returns true if the RetroMan has already picked up an element.
-	 * @return true if the RetroMan currently holds a game element; false otherwise.
+	 * 
+	 * @return true if the RetroMan currently holds a game element; false
+	 *         otherwise.
 	 */
 	public boolean hasPickedUpElement() {
 		return element != null;
@@ -236,24 +238,25 @@ public class RetroMan {
 		 * STANDING
 		 */
 		STANDING,
-		
+
 		/**
-		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is on solid ground he is
-		 * RUNNINGRIGHT
+		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is
+		 * on solid ground he is RUNNINGRIGHT
 		 */
 		RUNNIGRIGHT,
 
 		/**
-		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is on solid ground he is
-		 * RUNNINGLEFT
+		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is
+		 * on solid ground he is RUNNINGLEFT
 		 */
 		RUNNIGLEFT,
-		
+
 		/**
 		 * if the character is not on solid ground he is JUMPING. his x-velocity
 		 * may be 0
 		 */
-		JUMPING	
-		
+		JUMPING
+
 	}
+
 }
