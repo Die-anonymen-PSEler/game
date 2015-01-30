@@ -61,7 +61,13 @@ public class ProfileController {
 	 * another profile already.
 	 */
 	public boolean isValidUsername(String username) {
-		return false;
+		String names[] = profileNames;
+		for (String name : names) {
+			if (name.equals(username)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
