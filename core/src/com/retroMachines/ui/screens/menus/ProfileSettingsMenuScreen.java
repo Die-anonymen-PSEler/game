@@ -86,7 +86,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		Button buttonAbort = new Button(skin, "abort");
-		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
+		buttonAbort.addListener(new ReturnButtonClickListener());
 		buttonAbort.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		buttonLeftMode = new Button(skin, "controlLeft");
@@ -157,18 +157,6 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 */
 	public int getActualCharacter() {
 		return actualCharacter;
-	}
-
-	/**
-	 * Listener when the user aborts the profile creation.
-	 * 
-	 * @author RetroFactory
-	 */
-	private class AbortCreateProfileButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			game.setScreen(new SettingsMenuScreen(game));
-		}
 	}
 
 	/**

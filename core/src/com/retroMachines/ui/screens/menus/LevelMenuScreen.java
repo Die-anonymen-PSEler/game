@@ -73,7 +73,6 @@ public class LevelMenuScreen extends MenuScreen{
 		//Level Buttons + Table
 		Table levelTable = new Table(skin);
 		int unlocked = statisticController.getLevelsCompleted();
-		//TODO get Num Of Levels unlocked?
 		for(int i = 0; i < NUMLEVEL; i++) {
 			Integer iToString = new Integer(i + 1);
 			TextButton ilevel;			
@@ -109,20 +108,6 @@ public class LevelMenuScreen extends MenuScreen{
 	    
 	    inputMultiplexer.addProcessor(stage);
 		
-	}
-	
-	/**
-	 * Button to return to the MainMenuScreen.
-	 * 
-	 * @author RetroFactory
-	 *
-	 */
-	private class ReturnButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-			game.setScreen(new MainMenuScreen(game));
-		}
 	}
 	
 	/**

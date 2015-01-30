@@ -113,19 +113,4 @@ public class StatisticMenuScreen  extends MenuScreen {
 	    
 	    inputMultiplexer.addProcessor(stage);
 	}
-	
-	/**
-	 * Button to return to the MainMenuScreen.
-	 * 
-	 * @author RetroFactory
-	 *
-	 */
-	private class ReturnButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-			game.setScreen(new MainMenuScreen(game));
-		}
-	}
-	
 }

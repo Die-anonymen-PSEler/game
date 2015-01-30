@@ -6,8 +6,10 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -128,4 +130,18 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
     	// TODO Auto-generated method stub
     	return false;
     }
+    
+	/**
+	 * Button to return to the MainMenuScreen.
+	 * 
+	 * @author RetroFactory
+	 *
+	 */
+	protected class ReturnButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+			game.previousScreen();
+		}
+	}
 }
