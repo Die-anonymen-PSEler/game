@@ -34,6 +34,7 @@ public class LoadMenuScreen extends AbstractScreen{
         //Assets.manager.clear(); 
         //not necessary, only when splash called more then once
         AssetManager.queueLoading(); 
+        AssetManager.loadMusic();
     }
     
 	public void render(float delta) {
@@ -45,6 +46,7 @@ public class LoadMenuScreen extends AbstractScreen{
         if (game.getLoading()) {
             if(AssetManager.manager.update()){ // check if all files are loaded
                 AssetManager.setMenuSkin(); // uses files to create menuSkin
+                AssetManager.setMusic();
                 game.setScreen(new MainMenuScreen(game));
             }
         }

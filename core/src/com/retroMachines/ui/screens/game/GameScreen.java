@@ -2,6 +2,7 @@ package com.retroMachines.ui.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
@@ -50,12 +52,12 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * the sound which is played while this screen is displayed
 	 */
-	private Sound sound;
+	private Music music;
 
 	/**
 	 * file path of the soundfile
 	 */
-	private static final String SOUNDFILE = "";
+	private static final String SOUNDFILE = "sound/random%20silly%20chip%20song.ogg";
 
 	/**
 	 * the soundID of the sound which is played while this screen is displayed
@@ -87,13 +89,14 @@ public class GameScreen extends AbstractScreen implements
 
 	public void initialize() {
 		game.getSettingController().add(this);
+		music = AssetManager.music;
 	}
 
 	/**
 	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
 	public void show() {
-		soundId = sound.loop();
+		music.play();
 	}
 
 	/**
@@ -147,7 +150,7 @@ public class GameScreen extends AbstractScreen implements
 	public void onSettingsChanged() {
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
-		sound.setVolume(soundId, newVolume);
+		music.setVolume(newVolume);
 		// changes the volume in the settings so that its saved while quitting
 		// the game
 		game.getSettingController().setVolume(newVolume);

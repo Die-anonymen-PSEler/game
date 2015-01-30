@@ -3,6 +3,7 @@ package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -33,7 +34,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	
 	private ExitDialog exitDialog;
 	
-	private Sound sound;
+	private Music music;
 	
 	/**
 	 * The path to the file for the sound.
@@ -109,6 +110,9 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
+	    music = AssetManager.music;
+	    music.play();
+	    //music.setLooping(true);
         
        // game.getSettingController().add(this);
 	}
@@ -134,7 +138,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
-		sound.setVolume(soundId, newVolume);
+		music.setVolume(newVolume);
 		//changes the volume in the settings so that its saved while quitting the game
 		game.getSettingController().setVolume(newVolume);
 	}
