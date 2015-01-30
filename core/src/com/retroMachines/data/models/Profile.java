@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
 
 /**
@@ -124,7 +125,7 @@ public class Profile extends Model {
 				ps.executeUpdate();
 				ps.close();				
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
 			}
 		}
 		else {
@@ -143,14 +144,13 @@ public class Profile extends Model {
 				generatedKeys.close();
 				st.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
 			}
 		}
 	}
 
 	@Override
 	public boolean hasRecordInSQL() {
-		// TODO Auto-generated method stub
 		if (rowId != -1) {
 			ResultSet rs;
 			try {
@@ -162,8 +162,7 @@ public class Profile extends Model {
 				rs.close();
 				return size == 1;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "UPDATE query failed | hasrecordinsql");
 			}
 		}
 		return false;
@@ -171,7 +170,6 @@ public class Profile extends Model {
 	
 	@Override
 	public void fetchFromSQL() {
-		// TODO Auto-generated method stub
 		if (hasRecordInSQL()) {
 			ResultSet rs;
 			try {
@@ -186,8 +184,7 @@ public class Profile extends Model {
 				setting = new Setting(settingId);
 				statistic = new Statistic(statisticId);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "SELECT query failed | fetchfromsql");
 			}
 		}
 	}
@@ -201,7 +198,7 @@ public class Profile extends Model {
 				ps.executeUpdate();
 				ps.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "DELETE query failed | destroy");
 			}
 		}
 	}

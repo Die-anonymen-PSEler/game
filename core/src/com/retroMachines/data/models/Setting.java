@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
 
 /**
@@ -128,8 +129,7 @@ public class Setting extends Model {
 				ps.executeUpdate();
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
 			}
 		}
 		else {
@@ -149,8 +149,7 @@ public class Setting extends Model {
 				generatedKeys.close();
 				st.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "INSERT / SELECT query failed | write2sql");
 			}
 		}
 	}
@@ -167,13 +166,11 @@ public class Setting extends Model {
 			ps.close();
 			return size == 1;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Gdx.app.error("SQLException", "SELECT query failed | hasRecord");
 		}
 		return false;
 	}
 	
-
 	@Override
 	public void fetchFromSQL() {
 		if (hasRecordInSQL()) {
@@ -187,12 +184,11 @@ public class Setting extends Model {
 				ps.close();
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "SELECT query failed | fetch from sql");
 			}
 		}
 		else {
-			// well this is awkward
+			Gdx.app.error("DBFailure", "Versuchter Zugriff auf ein nicht existierendes Profil");
 		}
 	}
 	
@@ -204,7 +200,7 @@ public class Setting extends Model {
 				ps.setInt(1, rowId);
 				ps.executeUpdate();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "DELETE query failed | destroy");
 			}
 		}
 	}

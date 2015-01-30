@@ -45,6 +45,11 @@ public abstract class Model {
 		connection = RetroDatabase.getConnection();
 	}
 	
+	/**
+	 * This method creates a statement that can be used to execute a sql statement.
+	 * The timeout for this statement is 30 seconds.
+	 * @return the statement created for the current connection.
+	 */
 	protected Statement getStatement() {
 		Statement statement;
 		try {

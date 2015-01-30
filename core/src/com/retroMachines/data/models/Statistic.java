@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
 
 /**
@@ -122,7 +123,7 @@ public class Statistic extends Model {
 				ps.executeUpdate();
 				ps.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
 			}
 		}
 		else {
@@ -140,7 +141,7 @@ public class Statistic extends Model {
 				generatedKeys.close();
 				st.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "INSERT / SELECT query failed | write2sql");
 			}
 		}
 	}
@@ -158,8 +159,7 @@ public class Statistic extends Model {
 				rs.close();
 				return size == 1;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "SELECT query failed | hasRecord method");
 			}
 		}
 		return false;
@@ -179,8 +179,7 @@ public class Statistic extends Model {
 				rs.close();
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "SELECT query failed | fetch method");
 			}
 		}
 	}
@@ -193,7 +192,7 @@ public class Statistic extends Model {
 				ps.setInt(1, rowId);
 				ps.executeUpdate();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Gdx.app.error("SQLException", "DELETE query failed | destroy method");
 			}
 		}
 	}
