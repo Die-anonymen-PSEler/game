@@ -27,7 +27,7 @@
         "settings": { "up": "Settings", "down": "SettingsPressed", "pressedOffsetY": -4 },
         "settings2": { "up": "Settings2", "down": "Settings2Pressed", "pressedOffsetY": -4 },
         "soundDown": { "up": "SoundDown", "down": "SoundDownPressed", "pressedOffsetY": -4 },
-        "soundOff": { "up": "SoundOff", "down": "SoundOffPressed", "pressedOffsetY": -4 },
+        "soundOff": { "up": "SoundOff", "down": "SoundOff", "pressedOffsetY": -4 , "checked": "SoundOn"},
         "soundUp": { "up": "SoundUp", "down": "SoundUpPressed", "pressedOffsetY": -4 },
         "statistic": { "up": "Statistic", "down": "StatisticPressed", "pressedOffsetY": -4 },
         "back": { "up": "Back", "down": "BackPressed", "pressedOffsetY": -4 },

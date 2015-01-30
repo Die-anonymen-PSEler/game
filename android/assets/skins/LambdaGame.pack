@@ -339,30 +339,44 @@ SoundOffPressed
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundUp
+SoundOn
   rotate: false
   xy: 921, 101
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-SoundUpPressed
+SoundOnPressed
   rotate: false
   xy: 973, 101
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-Statistic
+SoundUp
   rotate: false
   xy: 573, 49
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-StatisticPressed
+SoundUpPressed
   rotate: false
   xy: 625, 49
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+Statistic
+  rotate: false
+  xy: 677, 49
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+StatisticPressed
+  rotate: false
+  xy: 729, 49
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
