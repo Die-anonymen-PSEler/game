@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.game.controllers.StatisticController;
 
 /**
  * The LevelMenuScreen is part of the view of RetroMachines.
@@ -41,6 +42,8 @@ public class LevelMenuScreen extends MenuScreen{
 	
 	private List<String> levelList;
 	private LockedDialog lockedDialog; 
+	
+	private StatisticController statisticController;
 
 	/**
 	 * The constructor to create a new instance of the LevelMenuScreen.
@@ -56,6 +59,7 @@ public class LevelMenuScreen extends MenuScreen{
 	 */
 	@Override
 	protected void initialize() {
+		statisticController = game.getStatisticController();
 		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
@@ -68,7 +72,7 @@ public class LevelMenuScreen extends MenuScreen{
 		
 		//Level Buttons + Table
 		Table levelTable = new Table(skin);
-		int unlocked = 4;
+		int unlocked = statisticController.getLevelsCompleted();
 		//TODO get Num Of Levels unlocked?
 		for(int i = 0; i < NUMLEVEL; i++) {
 			Integer iToString = new Integer(i + 1);
