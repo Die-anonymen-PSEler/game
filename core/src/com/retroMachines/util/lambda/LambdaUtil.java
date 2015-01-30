@@ -11,6 +11,13 @@ public class LambdaUtil {
 		observers = new ArrayList<OnNextLambdaStepListener>();
 	}
 	
+	/**
+	 * creates LambdaTree based on JSON description of level
+	 */
+	public Tree createTreeFromJason() {
+		return null;
+	}
+	
 	public void registerNewListener(OnNextLambdaStepListener listener) {
 		if (!observers.contains(listener)) {
 			observers.add(listener);
