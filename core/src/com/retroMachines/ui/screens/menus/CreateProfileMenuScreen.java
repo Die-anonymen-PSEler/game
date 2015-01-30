@@ -94,12 +94,12 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		
 		// Make Textfield
 		nameTextField = new TextField("", skin);
-		nameTextField.setHeight(50*screenHeight / 1080f);
+		nameTextField.setHeight(52*screenHeight / 1080f);
 		nameTextField.setMaxLength(12);
 		TextFieldStyle nameTextStyle = nameTextField.getStyle();
 		nameTextStyle.background.setLeftWidth(nameTextStyle.background.getLeftWidth() + 20);
 		nameTextStyle.background.setRightWidth(nameTextStyle.background.getRightWidth() + 20);
-		nameTextStyle.font.scale((1.25f * screenWidth)/1920f);
+		nameTextStyle.font.scale((0.3f * screenWidth)/1920f);
 		nameTextStyle.cursor.setMinWidth((13f * screenWidth)/1920f);
 		
 		
@@ -131,7 +131,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		//RightTable
 		Table rightTable = new Table(skin);
 		rightTable.add(profileName).padTop(screenHeight/ 30f).row();
-		rightTable.add(nameTextField).height(40*((3*screenWidth)/1920f)).width(screenWidth / 2).padTop(screenHeight/ 50f).row();
+		rightTable.add(nameTextField).height(41*((3*screenWidth)/1920f)).width(screenWidth / 2).padTop(screenHeight/ 50f).row();
 		rightTable.add(steeringTitle).padTop(screenHeight/ 20f).row();
 		rightTable.add(leftiTable).expandX().padTop(screenHeight/ 50f).row();
 		
