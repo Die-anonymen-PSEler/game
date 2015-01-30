@@ -61,8 +61,11 @@ public class ProfileController {
 	 * Checks if a given user name is valid, meaning it is not occupied by
 	 * another profile already.
 	 */
-	public boolean isValidUsername(String username) {
+	public boolean CanUserBeCreated(String username) {
 		String names[] = profileNames;
+		if (profileNames.length == MAX_PROFILE_NUMBER) {
+			return false;
+		}
 		for (String name : names) {
 			if (name.equals(username)) {
 				return false;
