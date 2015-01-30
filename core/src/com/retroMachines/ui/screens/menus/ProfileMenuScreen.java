@@ -130,7 +130,6 @@ public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedLis
 	@Override
 	public void profileChanged() {
 		profileList.clearItems();
-		System.out.println(Profile.getAllProfiles().length);
 		profileList.setItems(Profile.getAllProfiles());
 		
 	}
