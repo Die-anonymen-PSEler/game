@@ -1,11 +1,13 @@
 package com.retroMachines.ui.screens.menus;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -44,6 +46,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 	private final SettingController settingController;
 	
 	private Slider volumeSlider;
+	private Button buttonSoundOff;
 	
 	/**
 	 * The constructor to create a new instance of the SettingMenuScreen.
@@ -78,7 +81,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		Button buttonQuieter = new Button(skin, "soundDown");
 		buttonQuieter.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuieter.addListener(new QuieterButtonClickListener());
-		Button buttonSoundOff = new Button(skin, "soundOff");
+		buttonSoundOff = new Button(skin, "soundOff");
 		buttonSoundOff.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSoundOff.addListener(new SoundOnOffButtonClickListener());
 		Button buttonProfileSettings = new Button(skin, "profileSettings");
@@ -89,6 +92,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		volumeSlider = new Slider(SLIDERMIN, SLIDERMAX, SLIDERSTEPSIZE, false, skin);
 		volumeSlider.getStyle().background.setMinHeight(screenHeight * SLIDERBACKGROUNDSIZE);
 		volumeSlider.getStyle().knob.setMinHeight(screenHeight * SLIDERKNOBSIZE);
+		volumeSlider.addListener(new SliderListner());
 		// TODO get Volume of Phone
 		volumeSlider.setValue(SLIDERMAX / 2);
 		
@@ -111,6 +115,19 @@ public class SettingsMenuScreen  extends MenuScreen {
 	    stage.addActor(table);
 	    
 	    inputMultiplexer.addProcessor(stage);
+		
+	}
+	
+	private class SliderListner extends ChangeListener {
+
+		@Override
+		public void changed(ChangeEvent event, Actor actor) {
+			if (volumeSlider.getValue() == 0) {
+				buttonSoundOff.setChecked(true);
+			}
+			settingController.setVolume(volumeSlider.getValue());
+				
+		}
 		
 	}
 	
@@ -152,8 +169,17 @@ public class SettingsMenuScreen  extends MenuScreen {
 	private class SoundOnOffButtonClickListener extends ClickListener{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			volumeSlider.setValue(0);
-			settingController.setVolume(0);
+			if (volumeSlider.getValue() == 0) {
+				buttonSoundOff.setChecked(false);
+				volumeSlider.setValue(20);
+				settingController.setVolume(20);
+				
+			} else {
+				buttonSoundOff.setChecked(true);
+				volumeSlider.setValue(0);
+				settingController.setVolume(0);
+			}
+
 		}
 	}
 	
