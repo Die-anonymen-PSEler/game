@@ -179,6 +179,10 @@ public class GlobalVariables extends Model {
 		map.put(key, value);
 		writeToSQL();
 	}
+	
+	public void put(String key, int value) {
+		put(key, String.valueOf(value));
+	}
 
 	/**
 	 * Returns the value according to the key. 

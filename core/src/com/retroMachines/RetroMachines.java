@@ -5,13 +5,16 @@ import java.util.Stack;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.RetroDatabase;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.game.controllers.StatisticController;
+import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
+import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
 
 /**
@@ -25,7 +28,6 @@ public class RetroMachines extends Game{
 	
 	public static final String TITLE="Game Project"; 
     public static final int WIDTH=1280,HEIGHT=720; // used later to set window size Desktop Mode
-    private boolean loading;
     
     private final Stack<Screen> screenStack;
 
@@ -72,27 +74,26 @@ public class RetroMachines extends Game{
         Gdx.input.setCatchBackKey(true);
         Gdx.input.setCatchMenuKey(true);
         
-		loading = false;
 		setScreen(new LoadMenuScreen(this));
+		AssetManager.initialize();
+		
+		
 		RetroDatabase.getConnection();	// starts a connection to the database
 		globalVariables = GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
-		
 		boolean profileExists = profileController.loadLastProfile();
+		settingController = new SettingController(this);
+		statisticController = new StatisticController(this);
+		gameController = new GameController(this);
+		
 		if (profileExists) {
 			// a profile is available for loading
-			settingController = new SettingController(this);
-			statisticController = new StatisticController(this);
+			setScreen(new MainMenuScreen(this));
 		}
 		else {
 			// no profile go to createprofilemenuscreen
+			setScreen(new CreateProfileMenuScreen(this));
 		}
-		
-		
-		
-		//gameController = new GameController(this);
-		//Virtual Screens size
-		loading = true;
 	}
 	
 	@Override
@@ -163,13 +164,4 @@ public class RetroMachines extends Game{
 			setScreen(screenStack.pop()); // set the screen before.
 		}
 	}
-	
-	/**
-	 * Returns true if all needed Objects where initialized
-	 * @return true if loading is complete
-	 */
-	public boolean getLoading() {
-		return loading;
-	}
-
 }

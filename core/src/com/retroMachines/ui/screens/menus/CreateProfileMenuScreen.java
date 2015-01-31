@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.models.Profile;
 import com.retroMachines.data.models.Statistic;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
@@ -215,8 +216,12 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO  No Abort Possible if there is no other Profile
-			game.previousScreen();
+			if (Profile.getAllProfiles().length > 0) {
+				game.previousScreen();
+			}
+			else {
+				// TODO notice about the issue
+			}
 		}
 	}
 	

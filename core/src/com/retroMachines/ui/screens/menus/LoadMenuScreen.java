@@ -42,15 +42,6 @@ public class LoadMenuScreen extends AbstractScreen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
-        
-        if (game.getLoading()) {
-            if(AssetManager.manager.update()){ // check if all files are loaded
-                AssetManager.setMenuSkin(); // uses files to create menuSkin
-                AssetManager.setMusic();
-                game.setScreen(new MainMenuScreen(game));
-            }
-        }
-
 	}
 
 }

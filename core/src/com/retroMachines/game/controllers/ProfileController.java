@@ -59,8 +59,20 @@ public class ProfileController {
 	 */
 	public void deleteProfile(String name) {
 		int id = profileNames.get(name);
+		boolean activeProfileKilled = (id == profile.getProfileId());
 		new Profile(id).destroy();
 		profileNames = Profile.getProfileNameIdMap();
+		if (profileNames.size() == 0) {
+			GlobalVariables gv = GlobalVariables.getSingleton();
+			gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, "-1");
+		}
+		else {
+			if (activeProfileKilled) {
+				id = profileNames.get(name);
+				profile = new Profile(id);
+				updateLastUsedProfile();
+			}
+		}
 		notifyProfileListeners();
 	}
 
@@ -91,6 +103,7 @@ public class ProfileController {
 		Setting setting = new Setting();
 		profile = new Profile(name, setting, statistic);
 		profileNames = Profile.getProfileNameIdMap();
+		updateLastUsedProfile();
 		notifyProfileListeners();
 	}
 
@@ -128,7 +141,12 @@ public class ProfileController {
 	public void changeActiveProfile(String profileName) {
 		int id = profileNames.get(profileName);
 		profile = new Profile(id);
+		updateLastUsedProfile();
 		notifyProfileListeners();
+	}
+	
+	private void updateLastUsedProfile() {
+		GlobalVariables.getSingleton().put(GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
 	}
 
 	

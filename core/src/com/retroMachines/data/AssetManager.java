@@ -42,8 +42,14 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * Loads all relevant objects into the cache of the game for flawless
 	 * drawing.
 	 */
-	public void initialize() {
-		// TODO implement here
+	public static void initialize() {
+		manager.finishLoading();
+		manager.load("music/musicfile.ogg", Music.class);
+		manager.finishLoading();
+		menuSkin = new Skin(
+				Gdx.files.internal("skins/DefaultLambdaGame.json"),
+				manager.get("skins/LambdaGame.pack", TextureAtlas.class));
+		manager.finishLoading();
 	}
 
 	/**
@@ -64,17 +70,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
      * 
      */
 	public static void loadMusic() {
-		manager.load("music/musicfile.ogg", Music.class);
-	}
-
-	/**
-     * The sound is loaded.
-     */
-	public static void setMusic() {
-		if (music == null) {
-			music = manager.get("music/musicfile.ogg",
-					Music.class);
-		}
+		
 	}
 	
 	public static Music getMusic() {
@@ -94,17 +90,6 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	public static void queueLoading() {
 		manager.load("skins/LambdaGame.pack", TextureAtlas.class);
-	}
-
-	/**
-	 * The basic menu is created to be used in the different menus.
-	 */
-	public static void setMenuSkin() {
-		if (menuSkin == null) {
-			menuSkin = new Skin(
-					Gdx.files.internal("skins/DefaultLambdaGame.json"),
-					manager.get("skins/LambdaGame.pack", TextureAtlas.class));
-		}
 	}
 	
 	public static Skin getMenuSkin() {

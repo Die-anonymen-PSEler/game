@@ -4,6 +4,7 @@ package com.retroMachines.ui.screens.menus;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -98,7 +99,7 @@ public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedLis
 		// Make Buttons
 		Button buttonReturn = new Button(skin, "back");
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonReturn.addListener(new ReturnButtonClickListener());
+		buttonReturn.addListener(new ProfileReturnButtonClickListener());
 		Button buttonSelectProfile = new Button(skin, "changeProfile");
 		buttonSelectProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSelectProfile.addListener(new SelectProfileButtonClickListener());
@@ -127,11 +128,31 @@ public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedLis
 		
 	}
 	
+	
+	
 	@Override
 	public void profileChanged() {
 		profileList.clearItems();
 		profileList.setItems(Profile.getAllProfiles());
 		
+	}
+	
+	private class ProfileReturnButtonClickListener extends MenuScreen.ReturnButtonClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.setScreen(new MainMenuScreen(game));
+		}
+	}
+	
+	@Override
+	public boolean keyDown(int keycode) {
+		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
+    		game.previousScreen();
+    		return true;
+    	}
+		else {
+			return super.keyDown(keycode);
+		}
 	}
 	
 	/**

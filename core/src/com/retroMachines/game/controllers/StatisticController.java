@@ -29,7 +29,10 @@ public class StatisticController implements OnProfileChangedListener {
 	public StatisticController(RetroMachines game) {
 		this.game = game;
 		game.getProfileController().addProfileChangedListener(this);
-		statistic = game.getProfileController().getProfile().getStatistic();
+		if (game.getProfileController().getProfile() != null) {
+			// no profile available waiting for notification
+			statistic = game.getProfileController().getProfile().getStatistic();
+		}
 	}
 	
 	
