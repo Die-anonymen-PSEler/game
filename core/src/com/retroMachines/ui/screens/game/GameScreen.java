@@ -157,7 +157,9 @@ public class GameScreen extends AbstractScreen implements
 	private class RightButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			gameController.goRightRetroMan();
+			if (!popupScreenIsShown) {
+				gameController.goRightRetroMan();
+			}
 		}
 	}
 
@@ -169,7 +171,9 @@ public class GameScreen extends AbstractScreen implements
 	private class LeftButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			gameController.goLeftRetroMan();
+			if (!popupScreenIsShown) {
+				gameController.goLeftRetroMan();
+			}
 		}
 	}
 
@@ -181,7 +185,9 @@ public class GameScreen extends AbstractScreen implements
 	private class JumpButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			gameController.jumpRetroMan();
+			if (!popupScreenIsShown) {
+				gameController.jumpRetroMan();
+			}
 		}
 	}
 
@@ -193,7 +199,9 @@ public class GameScreen extends AbstractScreen implements
 	private class InteractButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			gameController.interactRetroMan();
+			if (!popupScreenIsShown) {
+				gameController.interactRetroMan();
+			}
 		}
 	}
 
@@ -280,7 +288,6 @@ public class GameScreen extends AbstractScreen implements
 		public void clicked(InputEvent event, float x, float y) {
 			//TODO: show level menu
 			pause();
-			gameController.setPopupScreenIsShown(true);
 		}
 	}
 }

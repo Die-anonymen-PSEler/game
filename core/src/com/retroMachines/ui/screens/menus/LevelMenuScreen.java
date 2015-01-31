@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.StatisticController;
 
 /**
@@ -44,6 +45,8 @@ public class LevelMenuScreen extends MenuScreen{
 	private LockedDialog lockedDialog; 
 	
 	private StatisticController statisticController;
+	
+	private GameController gameController;
 
 	/**
 	 * The constructor to create a new instance of the LevelMenuScreen.
@@ -60,6 +63,8 @@ public class LevelMenuScreen extends MenuScreen{
 	@Override
 	protected void initialize() {
 		statisticController = game.getStatisticController();
+		gameController = game.getGameController();
+		
 		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
@@ -157,6 +162,7 @@ public class LevelMenuScreen extends MenuScreen{
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO Auto-generated method stub
+			gameController.startLevel(id);
 		}
 		
 	}

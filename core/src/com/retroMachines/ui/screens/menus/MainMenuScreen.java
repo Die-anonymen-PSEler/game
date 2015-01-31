@@ -139,7 +139,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
     }
     
     private void disposeMusic() {
-    	music.dispose();
+    	//music.dispose();
     }
 	
 	/**

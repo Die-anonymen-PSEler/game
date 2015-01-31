@@ -195,7 +195,7 @@ public class GameController {
 	 * @return Null, if not all depots are filled, else a list of GameElements
 	 *         which are placed in the depots.
 	 */
-	public ArrayList<GameElement> checkdepotPositions() {
+	public ArrayList<GameElement> checkDepotPositions() {
 		ArrayList<GameElement> depotElements = new ArrayList<GameElement>();
 		return depotElements;
 	}
@@ -278,7 +278,7 @@ public class GameController {
 	 * @return True if all the depots contain an element.
 	 */
 	private boolean checkPlacementofElements() {
-		ArrayList<GameElement> depotElements = checkdepotPositions();
+		ArrayList<GameElement> depotElements = checkDepotPositions();
 		return false;
 	}
 
