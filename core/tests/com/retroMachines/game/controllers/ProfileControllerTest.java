@@ -51,10 +51,10 @@ public class ProfileControllerTest {
 	 * check if two profiles with the same name can be created
 	 */
 	@Test
-	public void test3() {
+	public void testDoubleUserName() {
 		profileController.createProfile("name");
 		profileController.changeActiveProfile("name");
-		assertFalse("profil mit gleichem Namen möglich", profileController.canUserBeCreated("name"));
+		assertFalse("profil mit gleichem Namen mÃ¶glich", profileController.canUserBeCreated("name"));
 		profileController.changeActiveProfile("TestUser");
 		profileController.deleteProfile("name");
 	}
@@ -63,17 +63,15 @@ public class ProfileControllerTest {
 	 * check if more than 5 profiles can be created
 	 */
 	@Test
-	public void test4() {
-		profileController.createProfile("name2");
-		profileController.createProfile("name3");
-		profileController.createProfile("name4");
-		profileController.createProfile("name5");
-		assertFalse("mehr als 5 profile möglich", profileController.canUserBeCreated("name6"));
-		profileController.changeActiveProfile("TestUser");
-		profileController.deleteProfile("name2");
-		profileController.deleteProfile("name3");
-		profileController.deleteProfile("name4");
-		profileController.deleteProfile("name5");
+	public void testMaximumProfiles() {
+		for (int i = 0; i < ProfileController.MAX_PROFILE_NUMBER - 1; i++) {
+			// -1 assuming one test profile already exists
+			profileController.createProfile("profile " + i);
+		}
+		assertFalse("mehr als " + ProfileController.MAX_PROFILE_NUMBER + " profile mÃ¶glich", profileController.canUserBeCreated("too much"));
+		for (int i = 0; i < ProfileController.MAX_PROFILE_NUMBER - 1; i++) {
+			profileController.deleteProfile("profile " + i);
+		}
 	}
 	
 	
