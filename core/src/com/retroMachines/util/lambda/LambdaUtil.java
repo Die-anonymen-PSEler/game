@@ -1,14 +1,14 @@
 package com.retroMachines.util.lambda;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.JsonValue;
 import com.google.gson.Gson;
-import com.retroMachines.util.lambda.data.Data;
+import com.google.gson.GsonBuilder;
 
 public class LambdaUtil {
 	
@@ -26,11 +26,24 @@ public class LambdaUtil {
 	 * creates LambdaTree based on JSON description of level
 	 */
 	public Tree createTreeFromJson(String fileName) {
-		tree = new Tree(null);
-		//create classes with gson
-		Gson gson = new Gson();
-		//TODO: some fancy stuff
-		return tree;
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(fileName));
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+			return null;
+		}
+		
+		Gson gson = new GsonBuilder().create();
+		com.retroMachines.util.lambda.data.Root root = gson.fromJson(br, com.retroMachines.util.lambda.data.Root.class);
+		System.out.println(gson.toJson(root));
+		//Problem: data ist leer, siehe syso
+		try {
+			br.close();
+		} catch (IOException e) {
+			System.out.println("Could not close BufferedReader!");
+		}
+		return null;
 	}
 	
 	/**
@@ -38,7 +51,8 @@ public class LambdaUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new LambdaUtil().createTreeFromJson(null);
+		String fileName = ("/home/maik/git/game/core/assets/maps/Prototype.json");
+		new LambdaUtil().createTreeFromJson(fileName);
 	}
 	
 	public void registerNewListener(OnNextLambdaStepListener listener) {

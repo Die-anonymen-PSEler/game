@@ -1,9 +1,9 @@
 
 package com.retroMachines.util.lambda.data;
 
-import java.util.List;
 
 public class Level{
+	
    	private Data data;
    	private String description;
    	private boolean hasTutorialScreen;
