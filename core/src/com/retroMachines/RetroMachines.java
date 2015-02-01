@@ -83,6 +83,7 @@ public class RetroMachines extends Game{
 		profileController = new ProfileController(this);
 		boolean profileExists = profileController.loadLastProfile();
 		settingController = new SettingController(this);
+		settingController.initialize();
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);
 		
