@@ -45,13 +45,6 @@ public class GameController {
 	private TiledMap map;
 
 	/**
-	 * True if LevelMenu is shown. No other Button clicks like steering of
-	 * RetroMAn are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other Buttonclicks like steering of RetroMan are now possible
-	 */
-	private boolean popupScreenIsShown;
-
-	/**
 	 * Makes a new instance of the GameController.
 	 * 
 	 * @param game
@@ -112,10 +105,6 @@ public class GameController {
 	 */
 	private void saveProgress() {
 
-	}
-
-	public void setPopupScreenIsShown(boolean isShown) {
-		popupScreenIsShown = isShown;
 	}
 
 	// --------------------------

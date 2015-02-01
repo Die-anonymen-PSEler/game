@@ -1,7 +1,6 @@
 
 package com.retroMachines.util.lambda.data;
 
-import java.util.List;
 
 public class Gameelements{
    	private Number color;

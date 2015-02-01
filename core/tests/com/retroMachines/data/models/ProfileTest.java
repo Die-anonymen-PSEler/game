@@ -2,12 +2,16 @@ package com.retroMachines.data.models;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class ProfileTest {
 	
 	public static final String TEST_USER_IN_DB = "TestUser";
+	
+	public static final int TEST_USER_IN_DB_ID = 1;
 	
 	public static final int TEST_STATISTICID = 1;
 	
@@ -85,5 +89,14 @@ public class ProfileTest {
 		
 		assertTrue("falsche anzahl an profilen", Profile.getAllProfiles().length == 2);
 		profile.destroy();
+		statistic.destroy();
+		setting.destroy();
+	}
+	
+	@Test
+	public void testGetHashMap() {
+		HashMap<String, Integer> map = Profile.getProfileNameIdMap();
+		assertTrue("hashmap hat zu viele einträge", map.size() == 1);
+		assertTrue("falsches mapping", map.get(TEST_USER_IN_DB) == TEST_USER_IN_DB_ID);
 	}
 }
