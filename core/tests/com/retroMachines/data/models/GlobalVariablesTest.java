@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.retroMachines.data.models.GlobalVariables;
+
 public class GlobalVariablesTest {
 	
 	private static final String KEY_LASTUSEDPROFILE = "lastUsedProfile";
