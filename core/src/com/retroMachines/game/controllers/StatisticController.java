@@ -28,13 +28,20 @@ public class StatisticController implements OnProfileChangedListener {
 	 */
 	public StatisticController(RetroMachines game) {
 		this.game = game;
+		initialize();
+		
+	}
+	
+	/**
+	 * Completes the setup of the controller.
+	 */
+	public void initialize() {
 		game.getProfileController().addProfileChangedListener(this);
 		if (game.getProfileController().getProfile() != null) {
 			// no profile available waiting for notification
 			statistic = game.getProfileController().getProfile().getStatistic();
 		}
 	}
-	
 	
 	/**
 	 * Increases the StepCounter of the current statistic.
@@ -53,7 +60,6 @@ public class StatisticController implements OnProfileChangedListener {
 	 */
 	@Override
 	public void profileChanged() {
-		// TODO Auto-generated method stub
 		statistic = game.getProfileController().getProfile().getStatistic();
 	}
 	
