@@ -1,5 +1,6 @@
 package com.retroMachines.game.controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.retroMachines.RetroMachines;
@@ -32,7 +33,7 @@ public class SettingController implements OnProfileChangedListener {
 	 * List of classes which implement the interface SettingsChangeListener and
 	 * have to be notified if the settings are changed.
 	 */
-	private List<SettingsChangeListener> toBeNotified;
+	private final List<SettingsChangeListener> toBeNotified;
 
 	/**
 	 * Constructor which starts an instance of SettingController with all needed
@@ -43,6 +44,13 @@ public class SettingController implements OnProfileChangedListener {
 	 */
 	public SettingController(RetroMachines game) {
 		this.game = game;
+		toBeNotified = new LinkedList<SettingsChangeListener>();
+	}
+	
+	/**
+	 * completes the setup of the controller
+	 */
+	public void initialize() {
 		game.getProfileController().addProfileChangedListener(this);
 		if (game.getProfileController().getProfile() != null) {
 			// no profile available waiting for notification
@@ -60,6 +68,16 @@ public class SettingController implements OnProfileChangedListener {
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
 	}
+	
+	public void removeListener(SettingsChangeListener listener) {
+		toBeNotified.remove(listener);
+	}
+	
+	private void notifyListeners() {
+		for (SettingsChangeListener listener : toBeNotified) {
+			listener.onSettingsChanged();
+		}
+	}
 
 	/*
 	 * Getter and Setter
@@ -74,6 +92,7 @@ public class SettingController implements OnProfileChangedListener {
 	 */
 	public void setVolume(float newVolume) {
 		settings.setVolume(newVolume);
+		notifyListeners();
 	}
 
 	/**
@@ -95,9 +114,25 @@ public class SettingController implements OnProfileChangedListener {
 		return settings.isLeftControl();
 	}
 	
+	/**
+	 * Sets the left mode for the current setting and notifies listeners
+	 * @param enabled true to enable left mode; false to disable (aka right mode)
+	 */
 	public void setLeftMode(boolean enabled) {
 		settings.setLeftControl(enabled);
+		notifyListeners();
 	}
+	
+	/**
+	 * This method should only be used for DEBUG purposes only!
+	 * Assigns a settings object to this controller.
+	 * normally this controller should be linked to the profile
+	 * @param setting
+	 */
+	public void setSetting(Setting setting) {
+		this.settings = setting;
+	}
+	
 	/**
 	 * Controls if the profile was changed.
 	 */
@@ -105,6 +140,6 @@ public class SettingController implements OnProfileChangedListener {
 	public void profileChanged() {
 		// TODO Auto-generated method stub
 		settings = game.getProfileController().getProfile().getSetting();
+		notifyListeners();
 	}
-
 }

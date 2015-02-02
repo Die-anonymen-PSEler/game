@@ -60,7 +60,10 @@ public class ProfileController {
 	public void deleteProfile(String name) {
 		int id = profileNames.get(name);
 		boolean activeProfileKilled = (id == profile.getProfileId());
-		new Profile(id).destroy();
+		Profile deleteMe = new Profile(id);
+		deleteMe.getSetting().destroy();
+		deleteMe.getStatistic().destroy();
+		deleteMe.destroy();
 		profileNames = Profile.getProfileNameIdMap();
 		if (profileNames.size() == 0) {
 			GlobalVariables gv = GlobalVariables.getSingleton();
@@ -68,7 +71,8 @@ public class ProfileController {
 		}
 		else {
 			if (activeProfileKilled) {
-				id = profileNames.get(name);
+				String key = (String) profileNames.keySet().toArray()[0];
+				id = profileNames.get(key);
 				profile = new Profile(id);
 				updateLastUsedProfile();
 			}
