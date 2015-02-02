@@ -4,7 +4,7 @@
         "hasTutorialScreen": true,
         "levelid": -1,
         "data": {
-            "Gameelements": [
+            "gameelements": [
                 {
                     "color": 2,
                     "type": "Var",
@@ -30,7 +30,7 @@
                     "posy": 5
                 }
             ],
-            "Tree": [
+            "tree": [
                 {
                     "color": -1,
                     "family": [
@@ -49,7 +49,7 @@
                     "family": [ ]
                 }
             ],
-            "Target": [
+            "target": [
                 {
                     "color": 1,
                     "type": "Var",
@@ -61,7 +61,7 @@
                     "family": [ ]
                 }
             ],
-            "Hint": [
+            "hint": [
                 {
                     "color": 1,
                     "type": "Abs",
