@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Laufebenen" tilewidth="64" tileheight="64">
+  <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="17" name="Tür" tilewidth="64" tileheight="64">
+  <image source="Tür.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="33" name="Maschinen" tilewidth="64" tileheight="64">
+  <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="49" name="Ampeln" tilewidth="64" tileheight="64">
+  <image source="Ampeln.png" trans="0000ff" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="53" name="Metallobjekte" tilewidth="64" tileheight="64">
+  <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="69" name="Rohre" tilewidth="64" tileheight="64">
+  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <imagelayer name="Hintergrund">
+  <image source="Hintergrund.png"/>
+ </imagelayer>
+ <layer name="Laufebene" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztkVsLgCAMhbXsHtX//7VN8MCQeckH7cHBRwjb2acp1esvNRMrod3Xcjfw2DJ6JFecazr7rjnuvGLeNf9HzPvrnWrUSAyJHrwfx3+/VEZo90NMhfPI0AUZ2G2Io9DBZlzE6cjN4Ls5sXnckyNlGKHPB317wEGaCe0CS6cpL1rqBPA=
+  </data>
+ </layer>
+ <layer name="Tür offen" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0BuIA7HEANovDcQyA2i/PBArDKD9o2AUjAIGBgCX9gCm
+  </data>
+ </layer>
+ <layer name="Tür" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0BuIArHYANovCcRSA2i/LBDLDaD9o2AUjAIGBgBnrgCa
+  </data>
+ </layer>
+ <layer name="Ablagen" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDFfgi0bTG7gBsQ8Quw6Q/SDgOYB2gwAo7L0YBi4ORsEowAUAu7QCnw==
+  </data>
+ </layer>
+ <layer name="Objekte" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF6MBmoB1AIrAaaAfQEAxnv42C4QOUBtoBo2AUkAEApVQA0w==
+  </data>
+ </layer>
+</map>

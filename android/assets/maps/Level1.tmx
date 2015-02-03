@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Tür" tilewidth="64" tileheight="64">
+  <image source="Tür.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="17" name="Rohre" tilewidth="64" tileheight="64">
+  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="33" name="Maschinen" tilewidth="64" tileheight="64">
+  <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="49" name="Metallobjekte" tilewidth="64" tileheight="64">
+  <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="Laufebenen" tilewidth="64" tileheight="64">
+  <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <imagelayer name="Hintergrund">
+  <image source="Hintergrund.png"/>
+ </imagelayer>
+ <layer name="Laufebene" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUoAM3IPaAYkco7T9AbvGkodkeaJiQH5HDhVg9gxE4M0DilRZmEoP9gNiHBPXEmukyxLD7KB5QDADlkzR4
+  </data>
+ </layer>
+ <layer name="Tür offen" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0BuwAzHHANrPDcQ8A2g/PxALDKD9o2AUjAIGBgAVpwBG
+  </data>
+ </layer>
+ <layer name="Tür" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0BuwAjHbANrPCcRcA2g/LxDzDaD9o2AUjAIGBgDlUAA6
+  </data>
+ </layer>
+ <layer name="Ablagen" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKRASQH2gGjYBQMIgAAVJAAGg==
+  </data>
+ </layer>
+ <layer name="Objekte" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DwAsOBdsAoGAWjYBQMUwAAD28AMg==
+  </data>
+ </layer>
+</map>

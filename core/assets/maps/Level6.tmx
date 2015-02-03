@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Tür" tilewidth="64" tileheight="64">
+  <image source="Tür.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="17" name="Rohre" tilewidth="64" tileheight="64">
+  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="33" name="Maschinen" tilewidth="64" tileheight="64">
+  <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="49" name="Metallobjekte" tilewidth="64" tileheight="64">
+  <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="Laufebenen" tilewidth="64" tileheight="64">
+  <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="81" name="Ampeln" tilewidth="64" tileheight="64">
+  <image source="Ampeln.png" trans="0000ff" width="128" height="128"/>
+ </tileset>
+ <imagelayer name="Hintergrund">
+  <image source="Hintergrund.png"/>
+ </imagelayer>
+ <layer name="Laufebene" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DwAjcg9sCC/QfSUSMM4IqDoRwPzkDsOIB2BwCxD9QN9MYgu11IwD4kqgdhLyLVuY/iAcUAw6wxCQ==
+  </data>
+ </layer>
+ <layer name="Tür offen" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0BuwAzHHANrPDcQ8A2g/PxALDKD9o2AUjAIGBgAVpwBG
+  </data>
+ </layer>
+ <layer name="Tür" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0BuwAjHbANrPCcRcA2g/LxDzDaD9o2AUjAIGBgDlUAA6
+  </data>
+ </layer>
+ <layer name="Ablagen" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowA/kMRB0wuI4qDpBYSAWAKIBQfIfhCQxMKmZzyAwkAMiqWgtCBeHbQDAxH+yAAU7mJImN75YRSMAmoBADu/Ai4=
+  </data>
+ </layer>
+ <objectgroup draworder="index" name="Objektebene 1">
+  <object name="grünesMetallObjekt" gid="51" x="830" y="702"/>
+  <object name="blauesMetallObjekt" gid="49" x="960" y="514"/>
+  <object name="pinkesMetallObjekt" gid="58" x="832" y="320"/>
+  <object name="rotesMetallObjekt" gid="57" x="576" y="320"/>
+  <object name="rotesMetallObjekt" gid="57" x="702" y="318"/>
+  <object name="roteMaschine" gid="42" x="1086" y="706"/>
+  <object name="pinkeMaschine" gid="41" x="640" y="512"/>
+  <object name="grüneMaschine" gid="38" x="832" y="512"/>
+ </objectgroup>
+</map>
