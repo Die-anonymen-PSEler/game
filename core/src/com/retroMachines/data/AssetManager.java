@@ -1,11 +1,14 @@
 package com.retroMachines.data;
 
+import java.util.LinkedList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.retroMachines.util.Constants;
 
 /**
  * The AssetManager is part of the controller of the RetroMachines. It manages
@@ -37,6 +40,13 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * Contains all file references to the files that need to be loaded.
 	 */
 	public static final String[] assetNames = {};
+	
+	/**
+	 * maps cached within the asset manager
+	 */
+	private static final LinkedList<TiledMap> maps = new LinkedList<TiledMap>();
+	
+	private static final LinkedList<OnProgressChanged> listeners = new LinkedList<AssetManager.OnProgressChanged>();
 
 	/**
 	 * Loads all relevant objects into the cache of the game for flawless
@@ -45,11 +55,39 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static void initialize() {
 		manager.finishLoading();
 		manager.load("music/musicfile.ogg", Music.class);
+		notifyListeners(30);
 		manager.finishLoading();
 		menuSkin = new Skin(
 				Gdx.files.internal("skins/DefaultLambdaGame.json"),
 				manager.get("skins/LambdaGame.pack", TextureAtlas.class));
+		notifyListeners(66);
+		TmxMapLoader loader = new TmxMapLoader();
+		for (int i = 1; i < Constants.MAX_LEVEL_ID; i++) {
+			maps.add(loader.load("assets/maps/Level" + i + ".tmx"));
+			notifyListeners((int) (i / (float)Constants.MAX_LEVEL_ID));
+		}
 		manager.finishLoading();
+	}
+	
+	/**
+	 * registers the listener to be notified about changes when the assertmanager finishes
+	 * @param listener
+	 */
+	public static void addListener(OnProgressChanged listener) {
+		listeners.add(listener);
+	}
+	
+	public static void removeListener(OnProgressChanged listener) {
+		listeners.remove(listener);
+	}
+	
+	/**
+	 * @param value range 0 - 100
+	 */
+	private static void notifyListeners(int value) {
+		for (OnProgressChanged listener : listeners) {
+			listener.progressChanged(value);
+		}
 	}
 
 	/**
@@ -60,7 +98,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return The map, it is loaded as a TiledMap.
 	 */
 	public static TiledMap loadMap(int levelId) {
-		return new TmxMapLoader().load(("/maps/level" + levelId + ".tmx"));
+		return maps.get(levelId);
 	}
 
 	// -----------------------
@@ -94,5 +132,13 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	
 	public static Skin getMenuSkin() {
 		return menuSkin;
+	}
+	
+	/**
+	 * implement this listeners to be notified about the state of the game loading files
+	 * @author lucabecker
+	 */
+	public interface OnProgressChanged {
+		public void progressChanged(int value);
 	}
 }

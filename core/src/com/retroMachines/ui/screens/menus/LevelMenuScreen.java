@@ -14,6 +14,7 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.StatisticController;
+import com.retroMachines.util.Constants;
 
 /**
  * The LevelMenuScreen is part of the view of RetroMachines.
@@ -78,7 +79,7 @@ public class LevelMenuScreen extends MenuScreen{
 		//Level Buttons + Table
 		Table levelTable = new Table(skin);
 		int unlocked = statisticController.getLevelsCompleted();
-		for(int i = 0; i < NUMLEVEL; i++) {
+		for(int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
 			Integer iToString = new Integer(i + 1);
 			TextButton ilevel;			
 			if (i >= unlocked) {

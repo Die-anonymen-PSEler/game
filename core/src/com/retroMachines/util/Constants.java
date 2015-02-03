@@ -39,4 +39,9 @@ public abstract class Constants {
 	 * This is the initial volume of the game.
 	 */
 	public static final float INITIAL_VOLUME = 0.5f;
+	
+	/**
+	 * the id of the last level of the game
+	 */
+	public static final int MAX_LEVEL_ID = 6;
 }

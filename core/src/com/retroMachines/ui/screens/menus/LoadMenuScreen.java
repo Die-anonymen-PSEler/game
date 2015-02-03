@@ -12,7 +12,7 @@ import com.retroMachines.data.AssetManager;
  * It shows the loading screen which appears after starting the application.
  * @author RetroFactory
  */
-public class LoadMenuScreen extends AbstractScreen{
+public class LoadMenuScreen extends AbstractScreen implements AssetManager.OnProgressChanged{
 	
 	private RetroMachines game;
 	
@@ -23,7 +23,7 @@ public class LoadMenuScreen extends AbstractScreen{
     public LoadMenuScreen(RetroMachines game) {
 		super(game);
 		this.game = game;
-		// TODO Auto-generated constructor stub
+		AssetManager.addListener(this);
 	}
     
     /**
@@ -31,10 +31,6 @@ public class LoadMenuScreen extends AbstractScreen{
      */
 	@Override
     public void show() {
-        //Assets.manager.clear(); 
-        //not necessary, only when splash called more then once
-        AssetManager.queueLoading(); 
-        AssetManager.loadMusic();
     }
     
 	public void render(float delta) {
@@ -42,6 +38,11 @@ public class LoadMenuScreen extends AbstractScreen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+	}
+
+	@Override
+	public void progressChanged(int value) {
+		
 	}
 
 }
