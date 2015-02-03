@@ -27,6 +27,8 @@ import com.retroMachines.ui.screens.AbstractScreen;
 public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener {
 
+	public static final int OBJECT_LAYER = 5;
+	
 	/**
 	 * the map that is currently active and may be shown to the user in case the
 	 * gameScreen is shown.

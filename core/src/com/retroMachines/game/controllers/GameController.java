@@ -2,9 +2,13 @@ package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.gameelements.GameElement;
@@ -22,6 +26,11 @@ import com.retroMachines.util.lambda.Tree;
  * 
  */
 public class GameController {
+
+	/**
+	 * the layer where the walls are retroMan can't go trough
+	 */
+	public static final int WALL_LAYER = 5;
 
 	/**
 	 * A reference to the main class for the different calls.
@@ -222,29 +231,32 @@ public class GameController {
 	 */
 	private void collisionDetection() {
 		int startX, startY, endX, endY;
-		if (retroMan.getVelocity().x != 0) {
+		if (retroMan.getVelocity().x > 0) {
 			startX = endX = (int) (retroMan.getPos().x + retroMan.WIDTH + retroMan
 					.getVelocity().x);
 		} else {
 			startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
 		}
-		startY = (int) (retroMan.getPos().y);
-		endY = (int) (retroMan.getPos().y + retroMan.HEIGHT);
-		// alle Elementpositionen holen
-		// neue Position von retroMan speichern
-		// checken, ob es sich �berlappt; wenn ja, velocity auf 0
-		/*
-		 * Rectangle koalaRect = rectPool.obtain();
-		 * koalaRect.set(koala.position.x, koala.position.y, Koala.WIDTH,
-		 * Koala.HEIGHT); int startX, startY, endX, endY; if (koala.velocity.x >
-		 * 0) { startX = endX = (int)(koala.position.x + Koala.WIDTH +
-		 * koala.velocity.x); } else { startX = endX = (int)(koala.position.x +
-		 * koala.velocity.x); } startY = (int)(koala.position.y); endY =
-		 * (int)(koala.position.y + Koala.HEIGHT); getTiles(startX, startY,
-		 * endX, endY, tiles); koalaRect.x += koala.velocity.x; for (Rectangle
-		 * tile : tiles) { if (koalaRect.overlaps(tile)) { koala.velocity.x = 0;
-		 * break; }
-		 */
+		if (retroMan.getVelocity().y > 0) {
+			startY = endY = (int) (retroMan.getPos().y + retroMan.HEIGHT + retroMan
+					.getVelocity().y);
+		} else {
+			startY = endY = (int) (retroMan.getPos().y + retroMan.getVelocity().y);
+		}
+		TiledMapTileLayer collisionObjectLayer = (TiledMapTileLayer) map
+				.getLayers().get(WALL_LAYER);
+		MapObjects objects = collisionObjectLayer.getObjects();
+		Rectangle playerRectangle = new Rectangle((float) startX,
+				(float) startY, (float) endX, (float) endY);
+
+		for (RectangleMapObject rectangleObject : objects
+				.getByType(RectangleMapObject.class)) {
+
+			Rectangle rectangle = rectangleObject.getRectangle();
+			if (Intersector.overlaps(rectangle, playerRectangle)) {
+				// TODO: retroMan anhalten
+			}
+		}
 	}
 
 	// --------------------------
