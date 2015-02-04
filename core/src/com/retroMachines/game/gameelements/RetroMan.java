@@ -3,6 +3,7 @@ package com.retroMachines.game.gameelements;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
@@ -30,12 +31,12 @@ public class RetroMan {
 	/**
 	 * the width of the character for collision purposes
 	 */
-	public static final float WIDTH = 5f;
+	public static final float WIDTH = 1.25f;
 
 	/**
 	 * the height of the character for collision purposes
 	 */
-	public static final float HEIGHT = 5f;
+	public static final float HEIGHT = 1.25f;
 
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -94,8 +95,14 @@ public class RetroMan {
 	 * velocity to 0,0
 	 */
 	public RetroMan() {
-		pos = new Vector2();
+		this(15, 10);
+	}
+	
+	public RetroMan(float x, float y) {
+		pos = new Vector2(x, y);
 		velocity = new Vector2();
+		
+		state = State.STANDINGRIGHT;
 		
 		//The animation
 		texture = new Texture("map/Animation.png");
@@ -188,15 +195,13 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goLeft() {
-		velocity.add(-9, 0);
+		velocity.add(-0.5f, 0);
 		faceLeft = true;
 		if (hasPickedUpElement()) {
 			state = State.RUNNINGLEFTE;
 		} else {
 			state = State.RUNNINGLEFT;
 		}
-
-		//updateRetroMan(deltaTime);
 	}
 
 	/**
@@ -204,7 +209,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
-		velocity.add(9, 0);
+		velocity.add(0.5f, 0);
 		faceLeft = false;
 		if (hasPickedUpElement()) {
 			state = State.RUNNINGRIGHTE;
@@ -212,7 +217,6 @@ public class RetroMan {
 		else {
 		state = State.RUNNINGRIGHT;
 		}
-		//updateRetroMan(deltaTime);
 	}
 
 	/**
@@ -235,7 +239,9 @@ public class RetroMan {
 		if (deltaTime == 0) {
 			return;
 		}
-
+		pos.add(velocity);
+		velocity.x  = 0;
+		velocity.y = 0;
 	}
 
 	/**
@@ -287,7 +293,7 @@ public class RetroMan {
 	 * 
 	 * @param deltaTime
 	 */
-	public TextureRegion render(float deltaTime) {
+	public TextureRegion render(BatchTiledMapRenderer renderer, float deltaTime) {
 		if (hasPickedUpElement()) {
 			//TODO Ändern
 			Batch batch = null;
@@ -295,12 +301,12 @@ public class RetroMan {
 			element.draw(batch, parentAlpha);
 		}
 		// render the RetroMan
-		renderRetroMan(deltaTime);
+		renderRetroMan(renderer, deltaTime);
 		// TODO RENDER myself
 		return null;
 	}
 
-	private void renderRetroMan(float deltaTime) {
+	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {
 		// based on the RetroMan state, get the animation frame
 		TextureRegion frame = null;
 		switch (state) {
@@ -341,6 +347,11 @@ public class RetroMan {
 			frame = jumpingELeft.getKeyFrame(stateTime);
 			break;
 		}
+		
+		Batch batch = renderer.getBatch();
+		batch.begin();
+		batch.draw(frame, pos.x, pos.y, WIDTH, HEIGHT);
+		batch.end();
 	}
 	
 	/**

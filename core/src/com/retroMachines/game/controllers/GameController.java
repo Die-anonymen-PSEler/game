@@ -2,6 +2,7 @@ package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
 
+import com.retroMachines.data.AssetManager;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -61,7 +62,7 @@ public class GameController {
 	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
-		retroMan = new RetroMan();
+		
 	}
 
 	/**
@@ -76,8 +77,10 @@ public class GameController {
 	 *            ID of the level that is to be started.
 	 */
 	public void startLevel(int levelId) {
+		retroMan = new RetroMan();
 		boolean left = game.getSettingController().getLeftMode();
 		gameScreen = new GameScreen(game, this, left);
+		map = AssetManager.loadMap(levelId);
 		gameScreen.setMap(map);
 		game.setScreen(gameScreen);
 	}
