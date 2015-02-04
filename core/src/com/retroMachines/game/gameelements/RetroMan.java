@@ -95,7 +95,7 @@ public class RetroMan {
 	 * velocity to 0,0
 	 */
 	public RetroMan() {
-		this(15, 10);
+		this(15, 5);
 	}
 	
 	public RetroMan(float x, float y) {
@@ -140,7 +140,7 @@ public class RetroMan {
 			} else {
 				state = State.JUMPING;
 			}
-			velocity.add(0, 9);
+			velocity.add(0, 1);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class RetroMan {
 	 * 
 	 * @return true if the character can jump; false otherwise
 	 */
-	private boolean canJump() {
+	public boolean canJump() {
 		if (state == State.JUMPING || state == State.JUMPINGE) {
 			return false;
 		}
@@ -172,6 +172,14 @@ public class RetroMan {
 	/**
 	 * moving
 	 */
+	
+	/**
+	 * Sets the velocity.
+	 */
+	public void setVelocity(float x, float y) {
+		velocity.x = x;
+		velocity.y = y;
+	}
 
 	/**
 	 * Adds negative velocity to the character however this does not update his

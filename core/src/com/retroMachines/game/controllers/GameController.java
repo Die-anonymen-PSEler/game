@@ -127,7 +127,9 @@ public class GameController {
 	 * Delegates a jump call to RetroMan.
 	 */
 	public void jumpRetroMan() {
-		// TODO Auto-generated method stub
+		if (getRetroMan().canJump()) {
+			getRetroMan().jump();
+		}
 	}
 
 	/**
@@ -232,7 +234,7 @@ public class GameController {
 	 * Performs a collision detection to stop the character in case of walls or
 	 * any other solid object standing in the way.
 	 */
-	private void collisionDetection() {
+	public void collisionDetection(int layer) {
 		int startX, startY, endX, endY;
 		if (retroMan.getVelocity().x > 0) {
 			startX = endX = (int) (retroMan.getPos().x + retroMan.WIDTH + retroMan
@@ -247,7 +249,7 @@ public class GameController {
 			startY = endY = (int) (retroMan.getPos().y + retroMan.getVelocity().y);
 		}
 		TiledMapTileLayer collisionObjectLayer = (TiledMapTileLayer) map
-				.getLayers().get(WALL_LAYER);
+				.getLayers().get(layer);
 		MapObjects objects = collisionObjectLayer.getObjects();
 		Rectangle playerRectangle = new Rectangle((float) startX,
 				(float) startY, (float) endX, (float) endY);
@@ -257,7 +259,8 @@ public class GameController {
 
 			Rectangle rectangle = rectangleObject.getRectangle();
 			if (Intersector.overlaps(rectangle, playerRectangle)) {
-				// TODO: retroMan anhalten
+				System.out.println("collision detected");
+				getRetroMan().setVelocity(0f, 0f);
 			}
 		}
 	}
