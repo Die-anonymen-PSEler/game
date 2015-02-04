@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.retroMachines.util.Constants;
 
 /**
  * The RetroMan Class contains information regarding the character that may run
@@ -219,7 +220,13 @@ public class RetroMan {
 		}
 		pos.add(velocity);
 		velocity.x  = 0;
-		velocity.y = 0;
+		if (Math.abs(velocity.y) > MAX_VELOCITY_Y) {
+			if (velocity.y < 0) {
+				velocity.y = -MAX_VELOCITY_Y;
+			} else {
+				velocity.y  = MAX_VELOCITY_Y;
+			}
+		}
 	}
 
 	/**

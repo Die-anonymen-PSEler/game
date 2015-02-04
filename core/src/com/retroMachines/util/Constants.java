@@ -45,5 +45,5 @@ public abstract class Constants {
 	 */
 	public static final int MAX_LEVEL_ID = 6;
 	
-	public static final float WORLD_GRAVITY = -2.5f;
+	public static final float WORLD_GRAVITY = -0.5f;
 }
