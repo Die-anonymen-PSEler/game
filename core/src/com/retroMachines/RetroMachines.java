@@ -73,11 +73,9 @@ public class RetroMachines extends Game{
 		//Back and Home Button
         Gdx.input.setCatchBackKey(true);
         Gdx.input.setCatchMenuKey(true);
-        
+        AssetManager.initializePreLoading();
 		setScreen(new LoadMenuScreen(this));
-		AssetManager.initialize();
-		
-		
+		AssetManager.initializeWhileLoading();
 		RetroDatabase.getConnection();	// starts a connection to the database
 		globalVariables = GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);

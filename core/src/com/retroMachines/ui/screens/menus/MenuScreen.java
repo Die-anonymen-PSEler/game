@@ -41,8 +41,7 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 		table = new Table(AssetManager.getMenuSkin());
-		table.background(new TextureRegionDrawable(
-		        new TextureRegion(new Texture(Gdx.files.internal("Background.png")))));
+		table.background(new TextureRegionDrawable(new TextureRegion(AssetManager.getTexture("Background.png"))));
 		table.setBounds(0, 0, screenWidth, screenHeight);
 		stage = new Stage();
 		initialize();

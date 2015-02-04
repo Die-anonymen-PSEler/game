@@ -12,7 +12,7 @@ import com.retroMachines.data.AssetManager;
  * It shows the loading screen which appears after starting the application.
  * @author RetroFactory
  */
-public class LoadMenuScreen extends AbstractScreen implements AssetManager.OnProgressChanged{
+public class LoadMenuScreen extends MenuScreen implements AssetManager.OnProgressChanged{
 	
 	private RetroMachines game;
 	
@@ -22,7 +22,6 @@ public class LoadMenuScreen extends AbstractScreen implements AssetManager.OnPro
      */
     public LoadMenuScreen(RetroMachines game) {
 		super(game);
-		this.game = game;
 		AssetManager.addProgressListener(this);
 	}
     
@@ -42,6 +41,12 @@ public class LoadMenuScreen extends AbstractScreen implements AssetManager.OnPro
 
 	@Override
 	public void progressChanged(int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initialize() {
 		// TODO Auto-generated method stub
 		
 	}

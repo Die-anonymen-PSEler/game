@@ -1,5 +1,6 @@
 package com.retroMachines.data;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,13 +54,23 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	private static final LinkedList<TiledMap> maps = new LinkedList<TiledMap>();
 
 	private static final List<OnProgressChanged> listeners = new LinkedList<OnProgressChanged>();
+	
+	private static final HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
+	
+	/**
+	 * Added assets that need to be ready before the first game screen will be displayed
+	 * Only those assets are allowed here.
+	 */
+	public static void initializePreLoading() {
+		textureMap.put("Background.png", new Texture(Gdx.files.internal("Background.png")));
+		manager.finishLoading();
+	}
 
 	/**
 	 * Loads all relevant objects into the cache of the game for flawless
 	 * drawing.
 	 */
-	public static void initialize() {
-		manager.finishLoading();
+	public static void initializeWhileLoading() {
 		manager.load("music/musicfile.ogg", Music.class);
 		notifyListeners(30);
 		manager.finishLoading();
@@ -78,7 +89,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		TmxMapLoader loader = new TmxMapLoader();
 		for (int i = 1; i < Constants.MAX_LEVEL_ID; i++) {
 			maps.add(loader.load("assets/maps/Level" + i + ".tmx"));
-			notifyListeners((int) (i / (float)Constants.MAX_LEVEL_ID));
+			notifyListeners(80 + (int) (i * 20 / (float)Constants.MAX_LEVEL_ID));
 		}
 		manager.finishLoading();
 	}
@@ -113,12 +124,6 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----------------------
 	// --------Music----------
 	// -----------------------
-	/**
-     * 
-     */
-	public static void loadMusic() {
-		
-	}
 	
 	public static Music getMusic() {
 		return music;
@@ -155,5 +160,12 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		return gameElementTexture;
 	}
 	
-	
+	public static Texture getTexture(String path) {
+		if (textureMap.containsKey(path)) {
+			return textureMap.get(path);
+		}
+		else {
+			throw new IllegalArgumentException("That path has not been loaded? Might wanna change that " + path);
+		}
+	}
 }
