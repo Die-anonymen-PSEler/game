@@ -70,9 +70,9 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 				atlas);
 		manager.finishLoading();
 		notifyListeners(66);
-		TextureAtlas betterAtlas = new TextureAtlas("Gameelements/Gameelements.pack");
+		TextureAtlas gameElementsAtlas = new TextureAtlas("Gameelements/Gameelements.pack");
 		manager.finishLoading();
-		gameElementTexture = new Skin(betterAtlas);
+		gameElementTexture = new Skin(gameElementsAtlas);
 		manager.finishLoading();
 		notifyListeners(80);
 		TmxMapLoader loader = new TmxMapLoader();
