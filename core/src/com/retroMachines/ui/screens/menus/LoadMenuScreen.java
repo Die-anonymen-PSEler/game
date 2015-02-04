@@ -23,7 +23,7 @@ public class LoadMenuScreen extends AbstractScreen implements AssetManager.OnPro
     public LoadMenuScreen(RetroMachines game) {
 		super(game);
 		this.game = game;
-		AssetManager.addListener(this);
+		AssetManager.addProgressListener(this);
 	}
     
     /**
@@ -42,6 +42,7 @@ public class LoadMenuScreen extends AbstractScreen implements AssetManager.OnPro
 
 	@Override
 	public void progressChanged(int value) {
+		// TODO Auto-generated method stub
 		
 	}
 

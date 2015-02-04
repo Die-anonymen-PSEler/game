@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.TextureAtlasLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -55,9 +56,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		manager.load("music/musicfile.ogg", Music.class);
 		notifyListeners(30);
 		manager.finishLoading();
+		TextureAtlas atlas = new TextureAtlas("skins/LambdaGame.pack");
+		manager.finishLoading();
 		menuSkin = new Skin(
 				Gdx.files.internal("skins/DefaultLambdaGame.json"),
-				manager.get("skins/LambdaGame.pack", TextureAtlas.class));
+				atlas);
 		manager.finishLoading();
 		notifyListeners(66);
 		TmxMapLoader loader = new TmxMapLoader();
