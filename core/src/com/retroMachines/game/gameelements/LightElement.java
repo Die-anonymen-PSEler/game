@@ -1,5 +1,7 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+
 /**
  * This class is part of the model of RetroMachines.
  * A light element that represents the application within the lambda calculus.
@@ -17,7 +19,7 @@ public class LightElement extends GameElement {
 	}
 
 	@Override
-	public void render(float deltaTime) {
+	public void draw(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
 		
 	}
