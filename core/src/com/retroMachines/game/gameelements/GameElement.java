@@ -1,6 +1,8 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -8,17 +10,13 @@ import com.badlogic.gdx.graphics.Texture;
  * They have to implement a render method so they can be displayed to the user.
  * @author RetroFactory
  */
-public abstract class GameElement {
+public abstract class GameElement extends Actor {
 	
 	/**
 	 * A texture where the image of the GameElement can be stored.
 	 */
 	protected Texture texture;
 	
-	/**
-	 * Render method to display the GameElement to the screen.
-	 * @param deltaTime
-	 */
-	public abstract void render(float deltaTime);
+	public abstract void draw (Batch batch, float parentAlpha);
 	
 }

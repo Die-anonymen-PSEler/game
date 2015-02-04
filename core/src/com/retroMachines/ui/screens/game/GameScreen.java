@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -61,6 +62,8 @@ public class GameScreen extends AbstractScreen implements
 	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
+	
+	private SpriteBatch batch;
 
 
 	/**
@@ -73,8 +76,10 @@ public class GameScreen extends AbstractScreen implements
 			boolean leftiMode) {
 		super(game);
 		this.gameController = gameController;
-		renderer = new OrthogonalTiledMapRenderer(map, 1 / 16f);
+		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 30, 20);
+		camera.update();
 		initialize();
 	}
 
@@ -87,7 +92,7 @@ public class GameScreen extends AbstractScreen implements
 	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
 	public void show() {
-		music.play();
+		//music.play();
 	}
 
 	/**
@@ -97,6 +102,7 @@ public class GameScreen extends AbstractScreen implements
 	 */
 	public void setMap(TiledMap map) {
 		this.map = map;
+		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
 	}
 
 	@Override
@@ -104,13 +110,16 @@ public class GameScreen extends AbstractScreen implements
 		super.render(delta);
 
 		inputDetection();
-
+		
 		camera.position.x = gameController.getRetroMan().getPos().x;
+		camera.position.y = gameController.getRetroMan().getPos().y;
 		camera.update();
+		
 		renderer.setView(camera);
 		renderer.render();
-
-		gameController.getRetroMan().render(delta);
+		
+		gameController.getRetroMan().updateRetroMan(delta);
+		gameController.getRetroMan().render(renderer, delta);
 	}
 
 	/**
@@ -120,6 +129,13 @@ public class GameScreen extends AbstractScreen implements
 	private void inputDetection() {
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			gameController.jumpRetroMan();
+		}
+		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			gameController.goRightRetroMan();
+			System.out.println(camera.position.x + " " + camera.position.y);
+		}
+		else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+			gameController.goLeftRetroMan();
 		}
 	}
 

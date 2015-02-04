@@ -1,5 +1,7 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+
 /**
  * This class is part of the model of RetroMachines.
  * A machine element that represents the abstraction within the lambda calculus.
@@ -23,7 +25,7 @@ public class MachineElement extends GameElement {
 	}
 
 	@Override
-	public void render(float deltaTime) {
+	public void draw(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
 		
 	}

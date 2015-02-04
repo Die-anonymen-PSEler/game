@@ -1,5 +1,6 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.retroMachines.util.Constants;
 
 /**
@@ -23,9 +24,10 @@ public class MetalElement extends GameElement {
 	}
 
 	@Override
-	public void render(float deltaTime) {
+	public void draw(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
-		String color = Constants.COLOR_HEX[colorId];
+		
 	}
+	
 
 }
