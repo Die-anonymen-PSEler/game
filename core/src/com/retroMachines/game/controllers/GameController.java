@@ -127,7 +127,9 @@ public class GameController {
 	 * Delegates a jump call to RetroMan.
 	 */
 	public void jumpRetroMan() {
-		// TODO Auto-generated method stub
+		if (retroMan.canJump()) {
+			retroMan.jump();
+		}
 	}
 
 	/**
