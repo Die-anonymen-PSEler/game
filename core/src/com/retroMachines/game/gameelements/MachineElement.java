@@ -34,7 +34,11 @@ public class MachineElement extends GameElement {
 		
 	}
 	
-	@Override
+	/**
+	 * Set the texture with specific color
+	 * Possible Colors:
+	 * 		Black, Blue, Brown, Green, Grey, Orange, Pink, Purple, Red, White, Yellow
+	 */
 	public void setColor(String color) {
 		skin = AssetManager.getGameelementskin(); 
 		texture = skin.get(color + "Machine", TextureRegion.class).getTexture();	
