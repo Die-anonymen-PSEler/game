@@ -1,6 +1,8 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.Constants;
 
 /**
@@ -29,5 +31,10 @@ public class MetalElement extends GameElement {
 		
 	}
 	
+	@Override
+	public void setColor(String color) {
+		skin = AssetManager.getGameelementskin(); 
+		texture = skin.get(color + "Object", TextureRegion.class).getTexture();	
+	}
 
 }

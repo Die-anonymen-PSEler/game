@@ -1,6 +1,9 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.retroMachines.data.AssetManager;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -14,6 +17,7 @@ public class MachineElement extends GameElement {
 	 * The hex representation can be looked up within the constants class.
 	 */
 	private int colorId;
+	
 	
 	/**
 	 * Creates a new instance of MachineElement and assigns a texture to it
@@ -29,5 +33,10 @@ public class MachineElement extends GameElement {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public void setColor(String color) {
+		skin = AssetManager.getGameelementskin(); 
+		texture = skin.get(color + "Machine", TextureRegion.class).getTexture();	
+	}
 }
