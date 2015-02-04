@@ -78,7 +78,7 @@ public class LevelMenuScreen extends MenuScreen{
 		
 		//Level Buttons + Table
 		Table levelTable = new Table(skin);
-		int unlocked = statisticController.getLevelsCompleted();
+		int unlocked = statisticController.getLevelsCompleted() + 1;
 		for(int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
 			Integer iToString = new Integer(i + 1);
 			TextButton ilevel;			
