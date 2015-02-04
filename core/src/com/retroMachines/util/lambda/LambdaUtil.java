@@ -36,8 +36,8 @@ public class LambdaUtil {
 		
 		Gson gson = new GsonBuilder().create();
 		com.retroMachines.util.lambda.data.Root root = gson.fromJson(br, com.retroMachines.util.lambda.data.Root.class);
-		System.out.println(gson.toJson(root));
-		//Problem: data ist leer, siehe syso
+		//System.out.println(gson.toJson(root));
+		
 		try {
 			br.close();
 		} catch (IOException e) {
