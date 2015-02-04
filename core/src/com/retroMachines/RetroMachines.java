@@ -15,6 +15,7 @@ import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
+import com.retroMachines.util.lambda.LambdaUtil;
 
 
 /**
@@ -84,6 +85,10 @@ public class RetroMachines extends Game{
 		settingController.initialize();
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);
+		
+		//Test
+		LambdaUtil test = new LambdaUtil();
+		test.createTreeFromJson("maps/Prototype.json");
 		
 		if (profileExists) {
 			// a profile is available for loading

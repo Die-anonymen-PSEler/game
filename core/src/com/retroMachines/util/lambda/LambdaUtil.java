@@ -7,8 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class LambdaUtil {
 	
@@ -26,17 +31,41 @@ public class LambdaUtil {
 	 * creates LambdaTree based on JSON description of level
 	 */
 	public Tree createTreeFromJson(String fileName) {
+
 		BufferedReader br = null;
+		FileHandle jsonFile = Gdx.files.internal(fileName);
 		try {
-			br = new BufferedReader(new FileReader(fileName));
-		} catch (FileNotFoundException e) {
+			br = new BufferedReader(jsonFile.reader());
+		} catch (GdxRuntimeException e) {
 			System.out.println("File not found");
 			return null;
 		}
-		
 		Gson gson = new GsonBuilder().create();
-		com.retroMachines.util.lambda.data.Root root = gson.fromJson(br, com.retroMachines.util.lambda.data.Root.class);
+		JsonObject jsonObj = gson.fromJson(br, JsonObject.class);
+		// Get level data
+		jsonObj = jsonObj.getAsJsonObject("level");
+		
+		System.out.println(jsonObj.get("description").getAsString());
+		System.out.println(jsonObj.get("hasTutorialScreen").getAsBoolean());
+		System.out.println(jsonObj.get("levelid").getAsString());
+		// Get Data
+		jsonObj = jsonObj.getAsJsonObject("data");
+		
+		
+		System.out.println("Gameelements");
+		makeGameELementList(jsonObj.getAsJsonArray("gameelements"));
+		
 		//System.out.println(gson.toJson(root));
+		JsonArray levelTree = jsonObj.getAsJsonArray("tree");
+		
+		System.out.println("Tree");
+		makeVertex(levelTree);
+		
+		System.out.println("Target");
+		makeVertex(jsonObj.getAsJsonArray("target"));
+		
+		System.out.println("Hint");
+		makeVertex(jsonObj.getAsJsonArray("hint"));
 		
 		try {
 			br.close();
@@ -51,7 +80,7 @@ public class LambdaUtil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String fileName = ("/home/maik/git/game/core/assets/maps/Prototype.json");
+		String fileName = ("maps/Prototype.json");
 		new LambdaUtil().createTreeFromJson(fileName);
 	}
 	
@@ -82,5 +111,42 @@ public class LambdaUtil {
 		 */
 		public void nextLambdaStepPerformed();
 		
+	}
+	
+	/**
+	 * Builds a lambda Tree
+	 * @param tree
+	 */
+	private void makeVertex(JsonArray tree) {
+		// Prints tree in console
+		for(int i = 0; i < tree.size(); i++){
+            JsonObject vertex = tree.get(i).getAsJsonObject();
+           
+            // Attribute ausgeben
+            System.out.println(vertex.get("color").getAsString());
+            if (vertex.get("type") != null) {
+                System.out.println(vertex.get("type").getAsString());
+            }
+
+            // Arry ausgeben
+            JsonArray family = vertex.get("family").getAsJsonArray();
+            // Make his family
+            makeVertex(family);
+        }
+        System.out.println("------");
+	}
+	
+	private void makeGameELementList(JsonArray list) {
+		
+		for(int i = 0; i < list.size(); i++) {
+			JsonObject element = list.get(i).getAsJsonObject();
+			System.out.println(element.get("color").getAsInt());
+			System.out.println(element.get("type").getAsString());
+			System.out.println(element.get("posx").getAsString());
+			System.out.println(element.get("posy").getAsString());
+			System.out.println("------");
+			System.out.println("");
+			
+		}
 	}
 }
