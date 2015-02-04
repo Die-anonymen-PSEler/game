@@ -6,7 +6,9 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.TextureAtlasLoader;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -37,6 +39,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * The music which is played during the game is stored here.
 	 */
 	private static Music music;
+	
+	/**
+	 * The Gameelement textures
+	 */
+	private static Skin gameElementTexture;
 
 	/**
 	 * Contains all file references to the files that need to be loaded.
@@ -63,6 +70,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 				atlas);
 		manager.finishLoading();
 		notifyListeners(66);
+		TextureAtlas betterAtlas = new TextureAtlas("Gameelements/Gameelements.pack");
+		manager.finishLoading();
+		gameElementTexture = new Skin(betterAtlas);
+		manager.finishLoading();
+		notifyListeners(80);
 		TmxMapLoader loader = new TmxMapLoader();
 		for (int i = 1; i < Constants.MAX_LEVEL_ID; i++) {
 			maps.add(loader.load("assets/maps/Level" + i + ".tmx"));
@@ -134,4 +146,14 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public interface OnProgressChanged {
 		public void progressChanged(int value);
 	}
+	
+	// -------------------------------
+	// -----Gameelements skins--------
+	// -------------------------------
+	
+	public static Skin getGameelementskin() {
+		return gameElementTexture;
+	}
+	
+	
 }
