@@ -55,6 +55,10 @@ public class GameScreen extends AbstractScreen implements
 	 * the sound which is played while this screen is displayed
 	 */
 	private Music music;
+	
+	/*
+	 * map attributes
+	 */
 
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
@@ -62,8 +66,6 @@ public class GameScreen extends AbstractScreen implements
 	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
-	
-	private SpriteBatch batch;
 
 
 	/**
@@ -76,7 +78,6 @@ public class GameScreen extends AbstractScreen implements
 			boolean leftiMode) {
 		super(game);
 		this.gameController = gameController;
-		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 30, 20);
 		camera.update();
@@ -86,6 +87,11 @@ public class GameScreen extends AbstractScreen implements
 	public void initialize() {
 		game.getSettingController().add(this);
 		music = AssetManager.getMusic();
+	}
+	
+	private void updateCameraPosition(float x, float y) {
+		camera.position.x = gameController.getRetroMan().getPos().x;
+		camera.position.y = gameController.getRetroMan().getPos().y;
 	}
 
 	/**
@@ -111,8 +117,7 @@ public class GameScreen extends AbstractScreen implements
 
 		inputDetection();
 		
-		camera.position.x = gameController.getRetroMan().getPos().x;
-		camera.position.y = gameController.getRetroMan().getPos().y;
+		updateCameraPosition(gameController.getRetroMan().getPos().x, gameController.getRetroMan().getPos().y);
 		camera.update();
 		
 		renderer.setView(camera);
@@ -133,23 +138,11 @@ public class GameScreen extends AbstractScreen implements
 		}
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			gameController.goRightRetroMan();
-			System.out.println(camera.position.x + " " + camera.position.y);
 		}
 		else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
 			gameController.goLeftRetroMan();
 		}
 	}
-
-	/**
-	 * Abolishes the screen and cleans up behind it.
-	 */
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		super.dispose();
-
-	}
-
 
 	/**
 	 * sets the sound to the new volume that was newly adjusted in the settings

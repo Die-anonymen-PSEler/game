@@ -73,17 +73,11 @@ public class RetroMan {
 	private float stateTime;
 	
 	private Animation standRight;
-	private Animation standLeft;
 	private Animation standERight;
-	private Animation standELeft;
 	private Animation runningRight;
 	private Animation runningRightE;
-	private Animation runningLeft;
-	private Animation runningLeftE;
 	private Animation jumpingRight;
-	private Animation jumpingLeft;
 	private Animation jumpingERight;
-	private Animation jumpingELeft;
 	
 	/**
 	 * the current velocity
@@ -108,21 +102,13 @@ public class RetroMan {
 		texture = new Texture("map/Animation.png");
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		standRight = new Animation(0, regions[0]);
-		standLeft = new Animation(0, regions[7]);
 		standERight = new Animation(0, regions[2]);
-		standELeft = new Animation(0, regions[5]);
 		runningRight = new Animation(0.15f, regions[0], regions[1]);
 		runningRight.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 		runningRightE = new Animation(0.15f, regions[2], regions[3]);
 		runningRightE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-		runningLeft = new Animation(0.15f, regions[6], regions[7]);
-		runningLeft.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-		runningLeftE = new Animation(0.15f, regions[4], regions[5]);
-		runningLeftE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 		jumpingRight = new Animation(0, regions[8]);
-		jumpingLeft = new Animation(0, regions[10]);
 		jumpingERight = new Animation(0, regions[9]);
-		jumpingELeft = new Animation(0, regions[11]);
 	}
 
 	/**
@@ -188,10 +174,11 @@ public class RetroMan {
 	public void goLeft() {
 		velocity.add(-0.5f, 0);
 		faceLeft = true;
-		if (hasPickedUpElement()) {
-			state = State.RUNNINGE;
-		} else {
+		if (state == State.STANDING) {
 			state = State.RUNNING;
+		}
+		else if (state == State.STANDINGE) {
+			state = State.RUNNINGE;
 		}
 	}
 
@@ -202,11 +189,11 @@ public class RetroMan {
 	public void goRight() {
 		velocity.add(0.5f, 0);
 		faceLeft = false;
-		if (hasPickedUpElement()) {
-			state = State.RUNNINGE;
-		}
-		else {
+		if (state == State.STANDING) {
 			state = State.RUNNING;
+		}
+		else if (state == State.STANDINGE) {
+			state = State.RUNNINGE;
 		}
 	}
 

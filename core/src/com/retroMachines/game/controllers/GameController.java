@@ -127,8 +127,8 @@ public class GameController {
 	 * Delegates a jump call to RetroMan.
 	 */
 	public void jumpRetroMan() {
-		if (getRetroMan().canJump()) {
-			getRetroMan().jump();
+		if (retroMan.canJump()) {
+			retroMan.jump();
 		}
 	}
 

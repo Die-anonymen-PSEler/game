@@ -44,4 +44,6 @@ public abstract class Constants {
 	 * the id of the last level of the game
 	 */
 	public static final int MAX_LEVEL_ID = 6;
+	
+	public static final float WORLD_GRAVITY = -2.5f;
 }
