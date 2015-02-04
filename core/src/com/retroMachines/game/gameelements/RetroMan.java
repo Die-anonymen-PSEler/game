@@ -102,7 +102,7 @@ public class RetroMan {
 		pos = new Vector2(x, y);
 		velocity = new Vector2();
 		
-		state = State.STANDINGRIGHT;
+		state = State.STANDING;
 		
 		//The animation
 		texture = new Texture("map/Animation.png");
@@ -136,17 +136,9 @@ public class RetroMan {
 	public void jump() {
 		if (canJump()) {
 			if (hasPickedUpElement()) {
-				if (faceLeft) {
-					state = State.JUMPINGELEFT;
-				} else {
-					state = State.JUMPINGERIGHT;
-				}
+				state = State.JUMPINGE;
 			} else {
-				if (faceLeft) {
-					state = State.JUMPINGLEFT;
-				} else {
-					state = State.JUMPINGRIGHT;
-				}
+				state = State.JUMPING;
 			}
 			velocity.add(0, 9);
 		}
@@ -157,18 +149,10 @@ public class RetroMan {
 	 * order to release the jump prohibition.
 	 */
 	public void landed() {
-		if (faceLeft) {
 		if (hasPickedUpElement()) {
-			state = State.STANDINGELEFT;
+			state = State.STANDINGE;
 		} else {
-			state = State.STANDINGLEFT;
-		}
-		} else {
-			if (hasPickedUpElement()) {
-				state = State.STANDINGERIGHT;
-			} else {
-				state = State.STANDINGRIGHT;
-			}
+			state = State.STANDING;
 		}
 	}
 
@@ -179,8 +163,7 @@ public class RetroMan {
 	 * @return true if the character can jump; false otherwise
 	 */
 	private boolean canJump() {
-		if (state == State.JUMPINGLEFT || state == State.JUMPINGRIGHT || 
-				state == State.JUMPINGELEFT || state == State.JUMPINGERIGHT) {
+		if (state == State.JUMPING || state == State.JUMPINGE) {
 			return false;
 		}
 		return true;
@@ -198,9 +181,9 @@ public class RetroMan {
 		velocity.add(-0.5f, 0);
 		faceLeft = true;
 		if (hasPickedUpElement()) {
-			state = State.RUNNINGLEFTE;
+			state = State.RUNNINGE;
 		} else {
-			state = State.RUNNINGLEFT;
+			state = State.RUNNING;
 		}
 	}
 
@@ -212,10 +195,10 @@ public class RetroMan {
 		velocity.add(0.5f, 0);
 		faceLeft = false;
 		if (hasPickedUpElement()) {
-			state = State.RUNNINGRIGHTE;
+			state = State.RUNNINGE;
 		}
 		else {
-		state = State.RUNNINGRIGHT;
+			state = State.RUNNING;
 		}
 	}
 
@@ -295,7 +278,7 @@ public class RetroMan {
 	 */
 	public TextureRegion render(BatchTiledMapRenderer renderer, float deltaTime) {
 		if (hasPickedUpElement()) {
-			//TODO Ändern
+			//TODO Ã¤ndern
 			Batch batch = null;
 			float parentAlpha = 100;
 			element.draw(batch, parentAlpha);
@@ -310,47 +293,34 @@ public class RetroMan {
 		// based on the RetroMan state, get the animation frame
 		TextureRegion frame = null;
 		switch (state) {
-		case STANDINGRIGHT:
+		case STANDING:
 			frame = standRight.getKeyFrame(stateTime);
 			break;
-		case STANDINGERIGHT:
+		case STANDINGE:
 			frame = standERight.getKeyFrame(stateTime);
 			break;
-		case STANDINGLEFT:
-			frame = standLeft.getKeyFrame(stateTime);
-			break;
-		case STANDINGELEFT:
-			frame = standELeft.getKeyFrame(stateTime);
-			break;
-		case RUNNINGRIGHT:
+		case RUNNING:
 			frame = runningRight.getKeyFrame(stateTime);
 			break;
-		case RUNNINGRIGHTE:
+		case RUNNINGE:
 			frame = runningRightE.getKeyFrame(stateTime);
 			break;
-		case RUNNINGLEFT:
-			frame = runningLeft.getKeyFrame(stateTime);
-			break;
-		case RUNNINGLEFTE:
-			frame = runningLeftE.getKeyFrame(stateTime);
-			break;
-		case JUMPINGRIGHT:
+		case JUMPING:
 			frame = jumpingRight.getKeyFrame(stateTime);
 			break;
-		case JUMPINGERIGHT:
+		case JUMPINGE:
 			frame = jumpingERight.getKeyFrame(stateTime);
-			break;
-		case JUMPINGLEFT:
-			frame = jumpingLeft.getKeyFrame(stateTime);
-			break;
-		case JUMPINGELEFT:
-			frame = jumpingELeft.getKeyFrame(stateTime);
 			break;
 		}
 		
 		Batch batch = renderer.getBatch();
 		batch.begin();
-		batch.draw(frame, pos.x, pos.y, WIDTH, HEIGHT);
+		if (faceLeft) {
+			batch.draw(frame, pos.x + WIDTH, pos.y, -WIDTH, HEIGHT);
+		}
+		else {
+			batch.draw(frame, pos.x, pos.y, WIDTH, HEIGHT);
+		}
 		batch.end();
 	}
 	
@@ -369,74 +339,37 @@ public class RetroMan {
 		 * if the character is facing right and is standing on solid ground and not moving he is
 		 * STANDINGRIGHT
 		 */
-		STANDINGRIGHT,
-		
-		/**
-		 * if the character is facing left and is standing on solid ground and not moving he is
-		 * STANDINGLEFT
-		 */
-		STANDINGLEFT,
+		STANDING,
 
 		/**
 		 * if the character is facing right and is standing on solid ground and he is carrying an 
 		 * element and he is not moving he is STANDINGERIGHT
 		 */
-		STANDINGERIGHT,
-		
-		/**
-		 * if the character is facing left and is standing on solid ground and he is carrying an 
-		 * element and he is not moving he is STANDINGELEFT
-		 */
-		STANDINGELEFT,
+		STANDINGE,
 		
 		/**
 		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is on solid ground he is
 		 * RUNNINGRIGHT
 		 */
-		RUNNINGRIGHT,
+		RUNNING,
 
 		/**
 		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is carrying an element and
 		 * he is on solid ground he is RUNNINGRIGHTE
 		 */
-		RUNNINGRIGHTE,
-		
-		/**
-		 * if the characters x-velocity is not 0 and x-velocity is <0 and he is on solid ground he is
-		 * RUNNINGLEFT
-		 */
-		RUNNINGLEFT,
-		
-		/**
-		 * if the characters x-velocity is not 0 and x-velocity is <0. He is carrying an element and
-		 * he is on solid ground he is RUNNINGLEFTE
-		 */
-		RUNNINGLEFTE,
+		RUNNINGE,
 
 		/**
 		 * if the character is facing right and is not on solid ground then he is JUMPINGLEFT. His x-velocity
 		 * may be 0
 		 */
-		JUMPINGRIGHT,	
+		JUMPING,	
 		
 		/**
 		 * if the character is facing left and is not on solid ground and he is carrying an element, 
 		 * he is JUMPINGERIght. His x-velocity may be 0
 		 */
-		JUMPINGERIGHT,
-		
-		/**
-		 * if the character is facing left and is not on solid ground then he is JUMPINGLEFT. His x-velocity
-		 * may be 0
-		 */
-		JUMPINGLEFT,	
-		
-		/**
-		 * if the character is facing left and is not on solid ground and he is carrying an element, 
-		 * he is JUMPINGELEFT. His x-velocity may be 0
-		 */
-		JUMPINGELEFT		
-
+		JUMPINGE
 	}
 
 }
