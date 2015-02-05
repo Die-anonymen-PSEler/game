@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -59,6 +60,16 @@ public class GameScreen extends AbstractScreen implements
 	/*
 	 * map attributes
 	 */
+	
+	/**
+	 * like in css the order goes top-> right -> bottom -> left
+	 */
+	private final int[] mapBounds;
+	
+	/**
+	 * 
+	 */
+	private final float[] camBounds;
 
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
@@ -77,6 +88,8 @@ public class GameScreen extends AbstractScreen implements
 	public GameScreen(RetroMachines game, GameController gameController,
 			boolean leftiMode) {
 		super(game);
+		mapBounds = new int[4];
+		camBounds = new float[4];
 		this.gameController = gameController;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 30, 20);
@@ -92,6 +105,41 @@ public class GameScreen extends AbstractScreen implements
 	private void updateCameraPosition(float x, float y) {
 		camera.position.x = gameController.getRetroMan().getPos().x;
 		camera.position.y = gameController.getRetroMan().getPos().y;
+		
+		float cameraHalfWidth = camera.viewportWidth * .5f;
+		float cameraHalfHeight = camera.viewportHeight * .5f;
+		
+		camBounds[3] = camera.position.x - cameraHalfWidth;
+		camBounds[1] = camera.position.x + cameraHalfWidth;
+		camBounds[2] = camera.position.y - cameraHalfHeight;
+		camBounds[0] = camera.position.y + cameraHalfHeight;
+		
+		if(mapBounds[1] < camera.viewportWidth)
+		{
+		    camera.position.x = mapBounds[1] / 2;
+		}
+		else if(camBounds[3] <= 0)
+		{
+			camera.position.x = 0 + cameraHalfWidth;
+		}
+		else if(camBounds[1] >= mapBounds[1])
+		{
+			camera.position.x = mapBounds[1] - cameraHalfWidth;
+		}
+
+		// Vertical axis
+		if(mapBounds[0] < camera.viewportHeight)
+		{
+			camera.position.y = mapBounds[0] / 2;
+		}
+		else if(camBounds[2] <= 0)
+		{
+			camera.position.y = 0 + cameraHalfHeight;
+		}
+		else if(camBounds[0] >= mapBounds[0])
+		{
+			camera.position.y = mapBounds[0] - cameraHalfHeight;
+		}
 	}
 
 	/**
@@ -109,6 +157,9 @@ public class GameScreen extends AbstractScreen implements
 	public void setMap(TiledMap map) {
 		this.map = map;
 		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
+		MapProperties prop = map.getProperties();
+		mapBounds[1] = prop.get("width", Integer.class);
+		mapBounds[0] = prop.get("height", Integer.class);
 	}
 
 	@Override
