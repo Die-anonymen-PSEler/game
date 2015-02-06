@@ -41,7 +41,6 @@ public class LambdaUtil {
 		}
 		Gson gson = new GsonBuilder().create();
 		Root root = gson.fromJson(br, com.retroMachines.util.lambda.data.Root.class);
-		
 		try {
 			br.close();
 		} catch (IOException e) {
