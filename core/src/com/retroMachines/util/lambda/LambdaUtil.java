@@ -77,41 +77,4 @@ public class LambdaUtil {
 		public void nextLambdaStepPerformed();
 		
 	}
-	
-	/**
-	 * Builds a lambda Tree
-	 * @param tree
-	 */
-	private void makeVertex(JsonArray tree) {
-		// Prints tree in console
-		for(int i = 0; i < tree.size(); i++){
-            JsonObject vertex = tree.get(i).getAsJsonObject();
-           
-            // Attribute ausgeben
-            System.out.println(vertex.get("color").getAsString());
-            if (vertex.get("type") != null) {
-                System.out.println(vertex.get("type").getAsString());
-            }
-
-            // Arry ausgeben
-            JsonArray family = vertex.get("family").getAsJsonArray();
-            // Make his family
-            makeVertex(family);
-        }
-        System.out.println("------");
-	}
-	
-	private void makeGameELementList(JsonArray list) {
-		
-		for(int i = 0; i < list.size(); i++) {
-			JsonObject element = list.get(i).getAsJsonObject();
-			System.out.println(element.get("color").getAsInt());
-			System.out.println(element.get("type").getAsString());
-			System.out.println(element.get("posx").getAsString());
-			System.out.println(element.get("posy").getAsString());
-			System.out.println("------");
-			System.out.println("");
-			
-		}
-	}
 }
