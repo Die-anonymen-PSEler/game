@@ -236,7 +236,7 @@ public class GameController {
 	 * any other solid object standing in the way.
 	 * @param delta 
 	 */
-	public void collisionDetection(int layer, float deltaTime) {
+	public void update(float deltaTime) {
 		retroMan.getVelocity().add(0, Constants.WORLD_GRAVITY);
 
 		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {

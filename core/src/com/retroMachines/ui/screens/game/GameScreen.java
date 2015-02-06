@@ -178,8 +178,7 @@ public class GameScreen extends AbstractScreen implements
 		renderer.setView(camera);
 		renderer.render();
 		
-		gameController.collisionDetection(1, delta);
-		gameController.getRetroMan().updateRetroMan(delta);
+		gameController.update(delta);
 		gameController.getRetroMan().render(renderer, delta);
 	}
 

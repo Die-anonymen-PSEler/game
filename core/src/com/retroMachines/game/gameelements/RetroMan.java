@@ -32,12 +32,12 @@ public class RetroMan {
 	/**
 	 * the width of the character for collision purposes
 	 */
-	public static float WIDTH;
+	public final static float WIDTH = 1f;
 
 	/**
 	 * the height of the character for collision purposes
 	 */
-	public static float HEIGHT;
+	public final static float HEIGHT = 1f;
 
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -111,8 +111,8 @@ public class RetroMan {
 		jumpingRight = new Animation(0, regions[8]);
 		jumpingERight = new Animation(0, regions[9]);
 		
-		WIDTH = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionWidth();
-		HEIGHT = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionHeight();
+		//WIDTH = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionWidth();
+		//HEIGHT = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionHeight();
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class RetroMan {
 			} else {
 				state = State.JUMPING;
 			}
-			velocity.add(0, 9f);
+			velocity.add(0, 12f);
 		}
 	}
 
@@ -212,30 +212,6 @@ public class RetroMan {
 
 	public Vector2 getVelocity() {
 		return velocity;
-	}
-
-	/**
-	 * 
-	 */
-	public void updateRetroMan(float deltaTime) {
-		if (deltaTime == 0) {
-			return;
-		}
-/*
-		if (Math.abs(velocity.y) > MAX_VELOCITY_Y) {
-			if (velocity.y < 0) {
-				velocity.y = -MAX_VELOCITY_Y;
-			} else {
-				velocity.y  = MAX_VELOCITY_Y;
-			}
-		}// multiply by delta time so we know how far we go
-		// in this frame
-		
-		velocity.scl(deltaTime);
-		pos.add(velocity);
-		velocity.scl(1 / deltaTime);
-		velocity.x = velocity.x * Constants.DAMPING;*/
-		System.out.println(pos);
 	}
 
 	/**
