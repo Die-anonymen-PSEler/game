@@ -33,55 +33,55 @@
             "tree": [
                 {
                     "color": -1,
-                    "family": [
+                    "tree": [
                         {
                             "color": -1,
-                            "family": [ ]
+                            "tree": [ ]
                         },
                         {
                             "color": -1,
-                            "family": [ ]
+                            "tree": [ ]
                         }
                     ]
                 },
                 {
                     "color": -1,
-                    "family": [ ]
+                    "tree": [ ]
                 }
             ],
             "target": [
                 {
                     "color": 1,
                     "type": "Var",
-                    "family": [ ]
+                    "target": [ ]
                 },
                 {
                     "color": 1,
                     "type": "Var",
-                    "family": [ ]
+                    "target": [ ]
                 }
             ],
             "hint": [
                 {
                     "color": 1,
                     "type": "Abs",
-                    "family": [
+                    "hint": [
                         {
                             "color": 1,
                             "type": "Var",
-                            "family": [ ]
+                            "hint": [ ]
                         },
                         {
                             "color": 1,
                             "type": "Var",
-                            "family": [ ]
+                            "hint": [ ]
                         }
                     ]
                 },
                 {
                     "color": 2,
                     "type": "Var",
-                    "family": [ ]
+                    "hint": [ ]
                 }
             ]
         }

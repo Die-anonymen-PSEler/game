@@ -10,14 +10,20 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.retroMachines.util.lambda.data.Root;
 import com.retroMachines.util.lambda.data.Tree;
 
 public class LambdaUtil {
 
 	private List<OnNextLambdaStepListener> observers;
+	
+	private final static String DATA  = "data";
+	private final static String TREE = "tree";
 
-	private LevelTree tree;
+	private LevelTree levelTree;
 	private LevelTree target;
 	private LevelTree hint;
 
@@ -39,18 +45,21 @@ public class LambdaUtil {
 			return;
 		}
 		Gson gson = new GsonBuilder().create();
-		Root root = gson.fromJson(br,
-				com.retroMachines.util.lambda.data.Root.class);
-		System.out.println(gson.toJson(root));
+		JsonObject root = gson.fromJson(br, JsonObject.class);	
+		//get json elements(description, id...)
+		JsonObject level = root.getAsJsonObject("level");
+		JsonObject data = level.getAsJsonObject(DATA);
+		System.out.println(data.toString());
+		JsonArray tree = data.getAsJsonArray(TREE);
+		System.out.println(tree.toString());
 		try {
 			br.close();
 		} catch (IOException e) {
 			System.out.println("Could not close BufferedReader!");
 		}
-		List<Tree> treeList = root.getLevel().getData().getTree();
-		Vertex v = makeTree(treeList);
-		tree = new LevelTree(v);
-		System.out.println(gson.toJson(tree));
+		Vertex v = makeTree(tree);
+		levelTree = new LevelTree(v);
+		System.out.println(v.getnext().getnext());
 
 	}
 
@@ -83,23 +92,24 @@ public class LambdaUtil {
 
 	}
 
-	private Vertex makeTree(List<Tree> tree) {
+	private Vertex makeTree(JsonArray tree) {
 		if (tree == null) {
 			return null;
 		}
 		
 		Dummy dummy = null;
 		int count = 0;
-		for (Tree t : tree) {
+		for (JsonElement t : tree) {
 			dummy = new Dummy();
 			if ( count == tree.size()) {
 				dummy.setnext(null);
 			} else {
+				System.out.println(count);
 				dummy.setnext(new Dummy());
 			}
 			count++;
 			//setting family
-			dummy.setfamily(makeTree(t.getTree()));
+			dummy.setfamily(makeTree(t.getAsJsonObject().getAsJsonArray(TREE)));
 		}
 		return dummy;
 	}
