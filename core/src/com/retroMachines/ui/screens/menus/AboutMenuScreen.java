@@ -1,12 +1,10 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 
@@ -35,10 +33,10 @@ public class AboutMenuScreen extends MenuScreen {
 	/*public static final String ABOUT = "Credit: \nby RetroMachines aka "
 			+ "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner. \n"
 			+ "Information: \n"
-			+ "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
+			+ "Der Lambda-Kalkï¿½l ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";*/
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
-	public static final String INFO = "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
+	public static final String INFO = "Der Lambda-Kalkï¿½l ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
 	
 	/**

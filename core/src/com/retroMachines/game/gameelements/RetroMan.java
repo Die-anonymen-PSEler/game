@@ -1,12 +1,11 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.retroMachines.util.Constants;
 
 /**
  * The RetroMan Class contains information regarding the character that may run

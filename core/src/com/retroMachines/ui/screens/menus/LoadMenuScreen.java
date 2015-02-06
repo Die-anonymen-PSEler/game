@@ -1,9 +1,8 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.retroMachines.RetroMachines;
-import com.retroMachines.ui.screens.AbstractScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 
 

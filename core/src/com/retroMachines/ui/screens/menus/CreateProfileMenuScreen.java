@@ -18,10 +18,8 @@ import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.Profile;
-import com.retroMachines.data.models.Statistic;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
-import com.retroMachines.game.controllers.StatisticController;
 
 /**
  * The CreateProfileMenuScreen is part of the view of RetroMachines.

@@ -3,7 +3,6 @@ package com.retroMachines.game.gameelements;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.util.Constants;
 
 /**
  * This class is part of the model of RetroMachines.

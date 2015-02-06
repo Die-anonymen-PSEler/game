@@ -1,12 +1,10 @@
 package com.retroMachines.ui.screens.game;
 
-import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.EvaluationController;
-import com.retroMachines.game.controllers.GameController;
-import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.ui.screens.AbstractScreen;
+import com.retroMachines.util.lambda.LevelTree;
 
 /**
  * This class is part of the view of RetroMachines.
