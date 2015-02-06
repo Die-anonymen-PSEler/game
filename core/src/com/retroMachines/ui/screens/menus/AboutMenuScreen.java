@@ -3,6 +3,8 @@ package com.retroMachines.ui.screens.menus;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
@@ -30,7 +32,9 @@ public class AboutMenuScreen extends MenuScreen {
 	/**
 	 * The developers of RetroMachine.
 	 */
-	public static final String CREDIT = "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
+	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
+	public static final String INFO = "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
+			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
 	
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
@@ -47,6 +51,24 @@ public class AboutMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		skin = AssetManager.getMenuSkin();
+		
+		Table scrollTable = new Table(skin);
+		//scrollTable.add(INFO,CREDIT);
+		ScrollPane profileScroll = new ScrollPane(scrollTable, skin);
+		profileScroll.getStyle().hScrollKnob.setMinWidth((DEFAULTBUTTONSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
+		
+		// Make Title
+		Label title1 = new Label("Information",skin);
+		title1.setWrap(true);
+		title1.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title1.setAlignment(Align.center);
+		
+		// Make Text
+		Label infoText = new Label(INFO,skin);
+		infoText.setWrap(true);
+		infoText.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		infoText.setAlignment(Align.center);
+		
 		// Make Title
 		Label title = new Label("Credits",skin);
 		title.setWrap(true);
@@ -65,8 +87,11 @@ public class AboutMenuScreen extends MenuScreen {
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
 		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
-		table.add(title).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
-		table.add(aboutText).width(screenWidth * TWO_3rd).colspan(COLSPANx2).expandX().expandY().row();
+		table.add(title1).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
+		table.add(infoText).width(screenWidth * TWO_3rd).colspan(COLSPANx2).expandX().expandY().row();
+		//table.add(title).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
+		//table.add(aboutText).width(screenWidth * TWO_3rd).colspan(COLSPANx2).expandX().expandY().row();
+		table.add(profileScroll).expandY().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADINGx4).padBottom(screenHeight / DEFAULTPADINGx4).row();
 		
 	    stage.addActor(table);
 	    
