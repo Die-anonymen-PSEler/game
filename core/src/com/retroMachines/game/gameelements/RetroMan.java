@@ -32,12 +32,12 @@ public class RetroMan {
 	/**
 	 * the width of the character for collision purposes
 	 */
-	public static final float WIDTH = 1.25f;
+	public static float WIDTH;
 
 	/**
 	 * the height of the character for collision purposes
 	 */
-	public static final float HEIGHT = 1.25f;
+	public static float HEIGHT;
 
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -110,6 +110,9 @@ public class RetroMan {
 		runningRightE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 		jumpingRight = new Animation(0, regions[8]);
 		jumpingERight = new Animation(0, regions[9]);
+		
+		WIDTH = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionWidth();
+		HEIGHT = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionHeight();
 	}
 
 	/**
@@ -127,7 +130,7 @@ public class RetroMan {
 			} else {
 				state = State.JUMPING;
 			}
-			velocity.add(0, 3.5f);
+			velocity.add(0, 9f);
 		}
 	}
 
@@ -218,16 +221,21 @@ public class RetroMan {
 		if (deltaTime == 0) {
 			return;
 		}
-		pos.add(velocity);
-		velocity.x  = 0;
-		velocity.add(0, Constants.WORLD_GRAVITY);
+/*
 		if (Math.abs(velocity.y) > MAX_VELOCITY_Y) {
 			if (velocity.y < 0) {
 				velocity.y = -MAX_VELOCITY_Y;
 			} else {
 				velocity.y  = MAX_VELOCITY_Y;
 			}
-		}
+		}// multiply by delta time so we know how far we go
+		// in this frame
+		
+		velocity.scl(deltaTime);
+		pos.add(velocity);
+		velocity.scl(1 / deltaTime);
+		velocity.x = velocity.x * Constants.DAMPING;*/
+		System.out.println(pos);
 	}
 
 	/**

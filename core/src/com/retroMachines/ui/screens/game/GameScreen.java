@@ -3,6 +3,7 @@ package com.retroMachines.ui.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
@@ -164,6 +165,9 @@ public class GameScreen extends AbstractScreen implements
 
 	@Override
 	public void render(float delta) {
+		
+		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
 
 		inputDetection();
@@ -174,7 +178,7 @@ public class GameScreen extends AbstractScreen implements
 		renderer.setView(camera);
 		renderer.render();
 		
-		gameController.collisionDetection(1);
+		gameController.collisionDetection(1, delta);
 		gameController.getRetroMan().updateRetroMan(delta);
 		gameController.getRetroMan().render(renderer, delta);
 	}

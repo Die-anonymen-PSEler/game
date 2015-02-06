@@ -47,4 +47,6 @@ public abstract class Constants {
 	public static final float WORLD_GRAVITY = -0.5f;
 	
 	public static final float DAMPING = 0.87f;
+	
+	public static final int TILE_SIZE = 64;
 }

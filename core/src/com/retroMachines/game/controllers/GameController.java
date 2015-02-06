@@ -234,9 +234,20 @@ public class GameController {
 	/**
 	 * Performs a collision detection to stop the character in case of walls or
 	 * any other solid object standing in the way.
+	 * @param delta 
 	 */
-	public void collisionDetection(int layer) {
-		Array<Rectangle> tiles = new Array<Rectangle>();
+	public void collisionDetection(int layer, float deltaTime) {
+		retroMan.getVelocity().add(0, Constants.WORLD_GRAVITY);
+
+		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
+			retroMan.getVelocity().x = Math.signum(retroMan.getVelocity().x) * RetroMan.MAX_VELOCITY_X;
+		}
+		// multiply by delta time so we know how far we go
+				// in this frame
+				
+		retroMan.getVelocity().scl(deltaTime);
+		
+		//collision detection
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
 		int startX, startY, endX, endY;
@@ -248,14 +259,15 @@ public class GameController {
 		}
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		tiles = getTiles(startX, startY, endX, endY);
+		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY);
 		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
-				retroMan.setVelocity(0, retroMan.getVelocity().y);
+				retroMan.getVelocity().x = 0;
 				break;
 			}
 		}
+		
 		retroManRect.x = retroMan.getPos().x;
 
 		// detection upwards
@@ -268,22 +280,25 @@ public class GameController {
 		startX = (int) (retroMan.getPos().x);
 		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
 		tiles = getTiles(startX, startY, endX, endY);
-		retroManRect.y = retroManRect.y + retroMan.getVelocity().y;
+		retroManRect.y += retroMan.getVelocity().y;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
 				if (retroMan.getVelocity().y > 0) {
-					// position heruntersetzen
 					retroMan.getPos().y = tile.height - RetroMan.HEIGHT;
 				} else {
-					// position hochsetzen, canJump() true setzen
 					retroMan.getPos().y = tile.height + tile.y;
 					retroMan.landed();
 				}
-				retroMan.setVelocity(retroMan.getVelocity().x, 0f);
+				retroMan.getVelocity().y = 0;
 				break;
 			}
 		}
 		// retroManRect disposen
+		
+		retroMan.getPos().add(retroMan.getVelocity());
+		retroMan.getVelocity().scl(1 / deltaTime);
+		retroMan.getVelocity().x *= Constants.DAMPING;
+		
 	}
 
 	private Array<Rectangle> getTiles(int startX, int startY, int endX, int endY) {
