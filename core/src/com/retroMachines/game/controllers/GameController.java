@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
@@ -63,7 +64,6 @@ public class GameController {
 	 */
 	public GameController(RetroMachines game) {
 		this.game = game;
-		
 	}
 
 	/**
@@ -236,34 +236,69 @@ public class GameController {
 	 * any other solid object standing in the way.
 	 */
 	public void collisionDetection(int layer) {
+		Array<Rectangle> tiles = new Array<Rectangle>();
+		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
+				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
 		int startX, startY, endX, endY;
 		if (retroMan.getVelocity().x > 0) {
-			startX = endX = (int) (retroMan.getPos().x + retroMan.WIDTH + retroMan
+			startX = endX = (int) (retroMan.getPos().x + RetroMan.WIDTH + retroMan
 					.getVelocity().x);
 		} else {
 			startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
 		}
+		startY = (int) (retroMan.getPos().y);
+		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
+		tiles = getTiles(startX, startY, endX, endY);
+		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
+		for (Rectangle tile : tiles) {
+			if (retroManRect.overlaps(tile)) {
+				retroMan.setVelocity(0, retroMan.getVelocity().y);
+				break;
+			}
+		}
+		retroManRect.x = retroMan.getPos().x;
+
+		// detection upwards
 		if (retroMan.getVelocity().y > 0) {
-			startY = endY = (int) (retroMan.getPos().y + retroMan.HEIGHT + retroMan
+			startY = endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT + retroMan
 					.getVelocity().y);
 		} else {
 			startY = endY = (int) (retroMan.getPos().y + retroMan.getVelocity().y);
 		}
-		TiledMapTileLayer collisionObjectLayer = (TiledMapTileLayer) map
-				.getLayers().get(layer);
-		MapObjects objects = collisionObjectLayer.getObjects();
-		Rectangle playerRectangle = new Rectangle((float) startX,
-				(float) startY, (float) endX, (float) endY);
-
-		for (RectangleMapObject rectangleObject : objects
-				.getByType(RectangleMapObject.class)) {
-
-			Rectangle rectangle = rectangleObject.getRectangle();
-			if (Intersector.overlaps(rectangle, playerRectangle)) {
-				System.out.println("collision detected");
-				getRetroMan().setVelocity(0f, 0f);
+		startX = (int) (retroMan.getPos().x);
+		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
+		tiles = getTiles(startX, startY, endX, endY);
+		retroManRect.y = retroManRect.y + retroMan.getVelocity().y;
+		for (Rectangle tile : tiles) {
+			if (retroManRect.overlaps(tile)) {
+				if (retroMan.getVelocity().y > 0) {
+					// position heruntersetzen
+					retroMan.getPos().y = tile.height - RetroMan.HEIGHT;
+				} else {
+					// position hochsetzen, canJump() true setzen
+					retroMan.getPos().y = tile.height + tile.y;
+					retroMan.landed();
+				}
+				retroMan.setVelocity(retroMan.getVelocity().x, 0f);
+				break;
 			}
 		}
+		// retroManRect disposen
+	}
+
+	private Array<Rectangle> getTiles(int startX, int startY, int endX, int endY) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
+		Array<Rectangle> tiles = new Array<Rectangle>();
+		for (int y = startY; y <= endY; y++) {
+			for (int x = startX; x <= endX; x++) {
+				Cell cell = layer.getCell(x, y);
+				if (cell != null) {
+					Rectangle rect = new Rectangle(x, y, 1, 1);
+					tiles.add(rect);
+				}
+			}
+		}
+		return tiles;
 	}
 
 	// --------------------------

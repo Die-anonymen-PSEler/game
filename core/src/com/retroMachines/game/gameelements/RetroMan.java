@@ -127,7 +127,7 @@ public class RetroMan {
 			} else {
 				state = State.JUMPING;
 			}
-			velocity.add(0, 1);
+			velocity.add(0, 3.5f);
 		}
 	}
 
@@ -220,6 +220,7 @@ public class RetroMan {
 		}
 		pos.add(velocity);
 		velocity.x  = 0;
+		velocity.add(0, Constants.WORLD_GRAVITY);
 		if (Math.abs(velocity.y) > MAX_VELOCITY_Y) {
 			if (velocity.y < 0) {
 				velocity.y = -MAX_VELOCITY_Y;
