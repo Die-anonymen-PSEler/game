@@ -1,8 +1,6 @@
 package com.retroMachines.util.lambda;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.retroMachines.util.lambda.data.Root;
 
 public class LambdaUtil {
 	
@@ -41,31 +40,7 @@ public class LambdaUtil {
 			return null;
 		}
 		Gson gson = new GsonBuilder().create();
-		JsonObject jsonObj = gson.fromJson(br, JsonObject.class);
-		// Get level data
-		jsonObj = jsonObj.getAsJsonObject("level");
-		
-		System.out.println(jsonObj.get("description").getAsString());
-		System.out.println(jsonObj.get("hasTutorialScreen").getAsBoolean());
-		System.out.println(jsonObj.get("levelid").getAsString());
-		// Get Data
-		jsonObj = jsonObj.getAsJsonObject("data");
-		
-		
-		System.out.println("Gameelements");
-		makeGameELementList(jsonObj.getAsJsonArray("gameelements"));
-		
-		//System.out.println(gson.toJson(root));
-		JsonArray levelTree = jsonObj.getAsJsonArray("tree");
-		
-		System.out.println("Tree");
-		makeVertex(levelTree);
-		
-		System.out.println("Target");
-		makeVertex(jsonObj.getAsJsonArray("target"));
-		
-		System.out.println("Hint");
-		makeVertex(jsonObj.getAsJsonArray("hint"));
+		Root root = gson.fromJson(br, com.retroMachines.util.lambda.data.Root.class);
 		
 		try {
 			br.close();
