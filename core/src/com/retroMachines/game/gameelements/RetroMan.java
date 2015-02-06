@@ -37,7 +37,17 @@ public class RetroMan {
 	 * the height of the character for collision purposes
 	 */
 	public final static float HEIGHT = 1f;
-
+	
+	/**
+	 * the impulse that is added to the retroman upon jumping
+	 */
+	public final static float JUMPING_IMPULSE = 15f;
+	
+	/**
+	 * the impulse that is added to the retroman upon running
+	 */
+	public static final float RUNNING_IMPULSE = 1f;
+	
 	/**
 	 * true if the character is looking to the left; false otherwise
 	 */
@@ -129,7 +139,7 @@ public class RetroMan {
 			} else {
 				state = State.JUMPING;
 			}
-			velocity.add(0, 12f);
+			velocity.add(0, JUMPING_IMPULSE);
 		}
 	}
 
@@ -175,7 +185,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goLeft() {
-		velocity.add(-0.5f, 0);
+		velocity.add(-RUNNING_IMPULSE, 0);
 		faceLeft = true;
 		if (state == State.STANDING) {
 			state = State.RUNNING;
@@ -190,7 +200,7 @@ public class RetroMan {
 	 * position a call to the update method is needed for that
 	 */
 	public void goRight() {
-		velocity.add(0.5f, 0);
+		velocity.add(RUNNING_IMPULSE, 0);
 		faceLeft = false;
 		if (state == State.STANDING) {
 			state = State.RUNNING;

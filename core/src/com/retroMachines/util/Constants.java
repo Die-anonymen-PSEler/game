@@ -49,4 +49,8 @@ public abstract class Constants {
 	public static final float DAMPING = 0.87f;
 	
 	public static final int TILE_SIZE = 64;
+	
+	public static final int SOLID_LAYER_ID = 1;
+	
+	public static final int OBJECT_LAYER_ID = 4;
 }

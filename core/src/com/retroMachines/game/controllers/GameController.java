@@ -244,6 +244,15 @@ public class GameController {
 				
 		retroMan.getVelocity().scl(deltaTime);
 		
+		collisionDetection();
+		
+		retroMan.getPos().add(retroMan.getVelocity());
+		retroMan.getVelocity().scl(1 / deltaTime);
+		retroMan.getVelocity().x *= Constants.DAMPING;
+		
+	}
+	
+	private void collisionDetection() {
 		//collision detection
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
@@ -256,7 +265,8 @@ public class GameController {
 		}
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY);
+		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
+		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
 		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -276,7 +286,8 @@ public class GameController {
 		}
 		startX = (int) (retroMan.getPos().x);
 		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
-		tiles = getTiles(startX, startY, endX, endY);
+		tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
+		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
 		retroManRect.y += retroMan.getVelocity().y;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -290,16 +301,10 @@ public class GameController {
 				break;
 			}
 		}
-		// retroManRect disposen
-		
-		retroMan.getPos().add(retroMan.getVelocity());
-		retroMan.getVelocity().scl(1 / deltaTime);
-		retroMan.getVelocity().x *= Constants.DAMPING;
-		
 	}
 
-	private Array<Rectangle> getTiles(int startX, int startY, int endX, int endY) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(0);
+	private Array<Rectangle> getTiles(int startX, int startY, int endX, int endY, int layerId) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(layerId);
 		Array<Rectangle> tiles = new Array<Rectangle>();
 		for (int y = startY; y <= endY; y++) {
 			for (int x = startX; x <= endX; x++) {
