@@ -32,6 +32,11 @@ public class AboutMenuScreen extends MenuScreen {
 	/**
 	 * The developers of RetroMachine.
 	 */
+	/*public static final String ABOUT = "Credit: \nby RetroMachines aka "
+			+ "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner. \n"
+			+ "Information: \n"
+			+ "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
+			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";*/
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 	public static final String INFO = "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
@@ -53,7 +58,7 @@ public class AboutMenuScreen extends MenuScreen {
 		skin = AssetManager.getMenuSkin();
 		
 		Table scrollTable = new Table(skin);
-		//scrollTable.add(INFO,CREDIT);
+		scrollTable.add(ABOUT);
 		ScrollPane profileScroll = new ScrollPane(scrollTable, skin);
 		profileScroll.getStyle().hScrollKnob.setMinWidth((DEFAULTBUTTONSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		
