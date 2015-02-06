@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Laufebenen" tilewidth="64" tileheight="64">
   <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
@@ -18,32 +18,32 @@
  <tileset firstgid="69" name="Rohre" tilewidth="64" tileheight="64">
   <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <imagelayer name="Hintergrund">
-  <image source="Hintergrund.png"/>
- </imagelayer>
- <layer name="Laufebene" width="32" height="16">
+ <tileset firstgid="85" name="Hintergrund" tilewidth="64" tileheight="64">
+  <image source="../../../../archive/assets/graphics/map/Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
+ </tileset>
+ <layer name="Hintergrund" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJztkVsLgCAMhbXsHtX//7VN8MCQeckH7cHBRwjb2acp1esvNRMrod3Xcjfw2DJ6JFecazr7rjnuvGLeNf9HzPvrnWrUSAyJHrwfx3+/VEZo90NMhfPI0AUZ2G2Io9DBZlzE6cjN4Ls5sXnckyNlGKHPB317wEGaCe0CS6cpL1rqBPA=
+   eJyN1WXQlWUQBuBPEAEFlFRASlIaSQUpRbqkW0opCQElBCQNQpTuVkFCaVBKQlIFpVVCkRBEusHr/HvnjOfMmXmumZ3Ze3f239MgLi6uIY1oTBOa0ozmtKAe9WnwP9loveCeeoFseB3LfOiO12hJK1rThra8zhu0oz0d6Egn3qQzXehKN96iOz14h170pg99eZd+9GcAPXk7QjZaL7inZyAbXscyH7rjPQYyiMEMYSjDeJ8P+JCPGM4IRjKKjxnNJ3zKGMYygYlMYjJTmMo0pjODcYyPkI3WC+4ZF8iG17HMh+6YySxmM4e5zOMzPucL5rOAL1nIIhazhK/4mqUsYzmrWM0a1vIN37KO9WxgBSsjZKP1gntWBLLhdSzzoTs2sonv2MwWtrKN79nODnayi93s4Qd+5Cf2so+f+YWDHOIwRzjKr/zG7xxjPwciZKP1gnv2B7LhdSzzoTuOc4KT/MGfnOIvTnOGs5zjb85zgX+4yL9c4jJXuMoNbnKL29zhLve4zwOucT1CNlovuOdaIBtexzIfuiPuIY94xOdhEvAICUlEYh7lMZKQlGQ8zhMkJwUpScWTPEVa0pGep8lARjKRmjQRstF6wT2pA9nwOpb50B2ZycIzZCUb2clBTnLxLLnJQ17ykZ8CFKQQz1GYIhSnBM/zAiUpxYuUpgxFKRYhG60X3FM0kA2vY5kP3VGWcpTnJV6mAq9QkUpUpgpVqUZ1alCTWtTmVepQlwY0pBGNaUJTmtGcFtSjfoRstF5wT71ANryOZT50x2u0pBWtaUNbXucN2tGeDnSkE2/SmS50pRtv0Z0evEMvetOHvrxLP/ozgJ68HSEbrRfc0zOQDa9jmQ/d8R4DGcRghjCUYbzPB3zIRwxnBCMZxceM5hM+ZQxjmcBEJjGZKUxlGtOZwTjGR8hG6wX3jAtkw+tY5kN3zGQWs5nDXObxGZ/zBfNZwJcsZBGLWcJXfM1SlrGcVaxmDWv5hm9Zx3o2sIKVEbLResE9KwLZ8DqW+dAdG9nEd2xmC1vZxvdsZwc72cVu9vADP/ITe9nHz/zCQQ5xmCMc5Vd+43eOsZ8DEbLResE9+wPZ8DqW+dAdxznBSf7gT07xF6c5w1nO8TfnucA/XORfLnGZK1zlBje5xW3ucJd73OcB17geIRutF9xzLZANr2OZD90RF8//Tzzi8zAJeISEJCIxj/IYSUhKMh7nCZKTgpSk4kmeIi3pSM/TZCAjmUhNmgjZaL3gntSBbHgdy3zojsxk4Rmyko3s5CAnuXiW3OQhL/nITwEKUojnKEwRilOC53mBkpTiRUpThqIUi5CN1gvuKRrIhtexzIfuKEs5yvMSL1OBV6hIJSpThapUozo1qEktavMqdajLfxehE+k=
   </data>
  </layer>
- <layer name="Tür offen" width="32" height="16">
+ <layer name="Laufebene" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0BuIA7HEANovDcQyA2i/PBArDKD9o2AUjAIGBgCX9gCm
+   eJztVosKwzAItHtlW8vW///aVTIhiDHmVVgX4SiheHoXk9YBgPviAscP1OgiGPqPHzPU679tuAuY2Ppt5AnzUjm10XP/Hx3zJK9onePZr88/9yrXc6t+PuOlMxrjkfZtj/Og6V+UvNLZjvFofK1qSdFy/mP3YI877LzhlNmP1Iem/wp+9lJ19g7UvoLvr7Q35EBtmn6agZo6rYO0Y1/47S7pDTle4M+3pp17MHWERUOoPYTkAe0vPUMQh0U7YRbqWvFMvF+M/mp8PF/yiaD98w0M/DM+NGoL6A==
   </data>
  </layer>
- <layer name="Tür" width="32" height="16">
+ <layer name="Tür offen" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0BuIArHYANovCcRSA2i/LBDLDaD9o2AUjAIGBgBnrgCa
+   eJztzsEJACAQBDG7UFDQ/qv0uliRBOY/rQHAv3o10hNBs1rpiaBdnfQEADziAjZzAKY=
   </data>
  </layer>
- <layer name="Ablagen" width="32" height="16">
+ <layer name="Tür" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDFfgi0bTG7gBsQ8Quw6Q/SDgOYB2gwAo7L0YBi4ORsEowAUAu7QCnw==
+   eJztzsEJACAQBDGbUFDQ/sv0uliRBOY/rQHAv3o10hNBs1rpiaBdnfQEADziAtVcAJo=
   </data>
  </layer>
- <layer name="Objekte" width="32" height="16">
+ <layer name="Ablagen" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF6MBmoB1AIrAaaAfQEAxnv42C4QOUBtoBo2AUkAEApVQA0w==
+   eJzt0zEKACAMQ9FcTkHR+1+ndXVyC9L/IHTNkEoAAOB3+7rV9MzKNHcRo+EuYHa2P1X3BwDgRQBbmwKf
   </data>
  </layer>
 </map>
