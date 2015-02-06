@@ -49,15 +49,6 @@ public class LambdaUtil {
 		return null;
 	}
 	
-	/**
-	 * dient zu Testzwecken
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String fileName = ("maps/Prototype.json");
-		new LambdaUtil().createTreeFromJson(fileName);
-	}
-	
 	public void registerNewListener(OnNextLambdaStepListener listener) {
 		if (!observers.contains(listener)) {
 			observers.add(listener);

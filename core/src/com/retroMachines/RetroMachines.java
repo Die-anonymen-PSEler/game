@@ -86,10 +86,6 @@ public class RetroMachines extends Game{
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);
 		
-		//Test
-		LambdaUtil test = new LambdaUtil();
-		test.createTreeFromJson("maps/Prototype.json");
-		
 		if (profileExists) {
 			// a profile is available for loading
 			setScreen(new MainMenuScreen(this));
