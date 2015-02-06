@@ -87,7 +87,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		manager.finishLoading();
 		notifyListeners(80);
 		TmxMapLoader loader = new TmxMapLoader();
-		for (int i = 1; i < Constants.MAX_LEVEL_ID; i++) {
+		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
 			maps.add(loader.load("assets/maps/Level" + i + ".tmx"));
 			notifyListeners(80 + (int) (i * 20 / (float)Constants.MAX_LEVEL_ID));
 		}
