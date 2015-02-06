@@ -10,11 +10,11 @@ import com.retroMachines.util.lambda.*;
 
 public class LambdaTests {
 	
-	private Tree tree;
+	private LevelTree tree;
 	
 	@Before
 	public void setUp() throws Exception {
-		tree = new Tree(null);
+		tree = new LevelTree(null);
 	}
 
 	@After
@@ -38,6 +38,12 @@ public class LambdaTests {
 		tree.setStart(v);
 		tree.evaluate();
 		assertTrue("Evaluation of just one Variable should not change anything!", v.equals(tree.getStart()));
+	}
+	
+	@Test
+	public void createTreeFromJsonTest() {
+		LambdaUtil util = new LambdaUtil();
+		util.createTreeFromJson("maps/Prototype.json");
 	}
 
 }

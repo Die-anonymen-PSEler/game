@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Hint{
    	private Number color;
-   	private List<Family> family;
+   	private List<Hint> hint;
    	private String type;
 
  	public Number getColor(){
@@ -14,11 +14,11 @@ public class Hint{
 	public void setColor(Number color){
 		this.color = color;
 	}
- 	public List<Family> getFamily(){
-		return this.family;
+ 	public List<Hint> getHint() {
+		return this.hint;
 	}
-	public void setFamily(List<Family> family){
-		this.family = family;
+	public void setHint(List<Hint> hint){
+		this.hint = hint;
 	}
  	public String getType(){
 		return this.type;

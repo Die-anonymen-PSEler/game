@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Target{
    	private Number color;
-   	private List<Family> family;
+   	private List<Target> target;
    	private String type;
 
  	public Number getColor(){
@@ -14,11 +14,11 @@ public class Target{
 	public void setColor(Number color){
 		this.color = color;
 	}
- 	public List<Family> getFamily(){
-		return this.family;
+ 	public List<Target> getTarget(){
+		return this.target;
 	}
-	public void setFamily(List<Family> family){
-		this.family = family;
+	public void setTarget(List<Target> target){
+		this.target = target;
 	}
  	public String getType(){
 		return this.type;

@@ -6,7 +6,7 @@ package com.retroMachines.util.lambda;
  * @author RetroFactory
  * 
  */
-public class Tree {
+public class LevelTree {
 
 	/**
 	 * Root of the tree, top level of lambda term.
@@ -20,7 +20,7 @@ public class Tree {
 	 * @param start
 	 *            root of tree to create
 	 */
-	public Tree(Vertex start) {
+	public LevelTree(Vertex start) {
 		this.start = start;
 	}
 	

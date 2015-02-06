@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.controllers.GameController;
-import com.retroMachines.util.lambda.Tree;
+import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
@@ -28,7 +28,7 @@ public class EvaluationScreen extends AbstractScreen {
 	/**
 	 * The root of the lambda term structure for generation on the screen.
 	 */
-	private Tree tree;
+	private LevelTree tree;
 
 	/**
 	 * A stage to add the different actors to for the purpose of rendering.
@@ -59,7 +59,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 * @param t
 	 *            the lambda term in question
 	 */
-	public void setLambaTerm(Tree t) {
+	public void setLambaTerm(LevelTree t) {
 		this.tree = t;
 	}
 

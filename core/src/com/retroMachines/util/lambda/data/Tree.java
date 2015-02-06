@@ -5,7 +5,7 @@ import java.util.List;
 public class Tree {
 	
 	private Number color;
-	private List<Family> family;
+	private List<Tree> tree;
 	
 	public Number getColor() {
 		return this.color;
@@ -13,11 +13,11 @@ public class Tree {
 	public void setColor(Number color) {
 		this.color = color;
 	}
-	public List<Family> getFamiliy() {
-		return this.family;
+	public List<Tree> getTree() {
+		return this.tree;
 	}
-	public void setFamily(List<Family> family) {
-		this.family = family;
+	public void setTree(List<Tree> tree) {
+		this.tree = tree;
 	}
 
 }

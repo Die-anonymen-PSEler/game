@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
-import com.retroMachines.util.lambda.Tree;
+import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
 public class EvaluationController {
@@ -17,7 +17,7 @@ public class EvaluationController {
 	/**
 	 * The lambdaTree represents the Lambdaterm in our Game
 	 */
-	private Tree lambdaTree;
+	private LevelTree lambdaTree;
 	
 	/**
 	 * List of all gameElements in this level
@@ -30,7 +30,7 @@ public class EvaluationController {
 	private EvaluationScreen evaluationScreen;
 	
 	
-	public EvaluationController(Tree t, RetroMachines g) {
+	public EvaluationController(LevelTree t, RetroMachines g) {
 		lambdaTree = t;
 		game = g;
 	}
