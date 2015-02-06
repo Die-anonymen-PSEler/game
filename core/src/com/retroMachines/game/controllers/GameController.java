@@ -284,7 +284,7 @@ public class GameController {
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
 				if (retroMan.getVelocity().y > 0) {
-					retroMan.getPos().y = tile.height - RetroMan.HEIGHT;
+					retroMan.getPos().y = tile.y - RetroMan.HEIGHT;
 				} else {
 					retroMan.getPos().y = tile.height + tile.y;
 					retroMan.landed();
