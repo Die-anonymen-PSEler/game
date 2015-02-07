@@ -30,11 +30,11 @@ public class AboutMenuScreen extends MenuScreen {
 	/**
 	 * The developers of RetroMachine.
 	 */
-	/*public static final String ABOUT = "Credit: \nby RetroMachines aka "
+	public static final String ABOUT = "Credit: \nby RetroMachines aka "
 			+ "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner. \n"
 			+ "Information: \n"
 			+ "Der Lambda-Kalk�l ist ein Element der Informatik. Es ist eine formale "
-			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";*/
+			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 	public static final String INFO = "Der Lambda-Kalk�l ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
