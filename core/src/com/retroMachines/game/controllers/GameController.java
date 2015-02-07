@@ -360,4 +360,24 @@ public class GameController {
 	private void checkEvaluationResult() {
 
 	}
+
+	public void doorTestMethod() {
+		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
+				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
+		int startX, startY, endX, endY;
+		if (retroMan.getVelocity().x > 0) {
+			startX = endX = (int) (retroMan.getPos().x + RetroMan.WIDTH + retroMan
+					.getVelocity().x);
+		} else {
+			startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
+		}
+		startY = (int) (retroMan.getPos().y);
+		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
+		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
+		for (Rectangle tile : tiles) {
+			if (retroManRect.overlaps(tile)) {
+				map.getLayers().get(Constants.DOOR_CLOSED_LAYER).setVisible(false);
+			}
+		}
+	}
 }

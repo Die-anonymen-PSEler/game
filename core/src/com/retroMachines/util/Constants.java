@@ -53,4 +53,8 @@ public abstract class Constants {
 	public static final int SOLID_LAYER_ID = 1;
 	
 	public static final int OBJECT_LAYER_ID = 4;
+	
+	public static final int DOOR_CLOSED_LAYER = 3;
+	
+	public static final int DOOR_OPEN_LAYER = 2;
 }

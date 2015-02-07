@@ -1,6 +1,7 @@
 package com.retroMachines.ui.screens.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -27,7 +28,7 @@ import com.retroMachines.ui.screens.AbstractScreen;
  * 
  */
 public class GameScreen extends AbstractScreen implements
-		SettingsChangeListener {
+		SettingsChangeListener, InputProcessor {
 
 	public static final int OBJECT_LAYER = 5;
 	
@@ -100,6 +101,7 @@ public class GameScreen extends AbstractScreen implements
 	public void initialize() {
 		game.getSettingController().add(this);
 		music = AssetManager.getMusic();
+		inputMultiplexer.addProcessor(this);
 	}
 	
 	private void updateCameraPosition(float x, float y) {
@@ -146,6 +148,7 @@ public class GameScreen extends AbstractScreen implements
 	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
 	public void show() {
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		//music.play();
 	}
 
@@ -180,6 +183,7 @@ public class GameScreen extends AbstractScreen implements
 		gameController.update(delta);
 		gameController.getRetroMan().render(renderer, delta);
 	}
+	
 
 	/**
 	 * Performs the input detection and delegates calls to the controller so it
@@ -354,5 +358,63 @@ public class GameScreen extends AbstractScreen implements
 			//TODO: show level menu
 			pause();
 		}
+	}
+
+
+	
+	/*
+	 * input processing (non-Javadoc)
+	 * @see com.badlogic.gdx.InputProcessor#keyDown(int)
+	 */
+
+
+	@Override
+	public boolean keyDown(int keycode) {
+		if (keycode == Keys.A) {
+			gameController.doorTestMethod();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
