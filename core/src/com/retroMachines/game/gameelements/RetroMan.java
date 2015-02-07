@@ -176,8 +176,12 @@ public class RetroMan {
 	 * Sets the velocity.
 	 */
 	public void setVelocity(float x, float y) {
-		velocity.x = x;
-		velocity.y = y;
+		if (x > 1E-10) {
+			velocity.x = x;
+		}
+		if (y > 1E-10) {
+			velocity.y = y;
+		}
 	}
 
 	/**
@@ -287,6 +291,14 @@ public class RetroMan {
 
 	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {
 		// based on the RetroMan state, get the animation frame
+		if (Math.abs(getVelocity().x) < 1E-5 && Math.abs(getVelocity().y) < 1E-5) {
+			if (hasPickedUpElement()) {
+				state = State.STANDINGE;
+			}
+			else {
+				state = State.STANDING;
+			}
+		}
 		TextureRegion frame = null;
 		switch (state) {
 		case STANDING:

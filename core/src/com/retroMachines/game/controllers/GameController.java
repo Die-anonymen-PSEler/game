@@ -237,7 +237,7 @@ public class GameController {
 		retroMan.getVelocity().add(0, Constants.WORLD_GRAVITY);
 
 		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
-			retroMan.getVelocity().x = Math.signum(retroMan.getVelocity().x) * RetroMan.MAX_VELOCITY_X;
+			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
 		}
 		// multiply by delta time so we know how far we go
 				// in this frame
@@ -245,6 +245,7 @@ public class GameController {
 		retroMan.getVelocity().scl(deltaTime);
 		
 		collisionDetection();
+		
 		
 		retroMan.getPos().add(retroMan.getVelocity());
 		retroMan.getVelocity().scl(1 / deltaTime);
