@@ -3,17 +3,18 @@ package com.retroMachines.util.lambda;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.retroMachines.util.lambda.data.Hint;
 
 public class LambdaUtil {
 
@@ -23,10 +24,12 @@ public class LambdaUtil {
 	private final static String TREE = "tree";
 	private final static String HINT = "hint";
 	private final static String LEVEL = "level";
+	private final static String GAMEELEMENTS = "gameelements";
 
 	private LevelTree levelTree;
 	private LevelTree target;
 	private LevelTree hintTree;
+	private LinkedList<Vertex> gameelements;
 
 	public LambdaUtil() {
 		observers = new ArrayList<OnNextLambdaStepListener>();
@@ -50,6 +53,7 @@ public class LambdaUtil {
 		// get json elements(description, id...)
 		JsonObject level = root.getAsJsonObject(LEVEL);
 		JsonObject data = level.getAsJsonObject(DATA);
+		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
 		JsonArray hint = data.getAsJsonArray(HINT);
 		System.out.println(data.toString());
 		JsonArray tree = data.getAsJsonArray(TREE);
@@ -59,8 +63,10 @@ public class LambdaUtil {
 		} catch (IOException e) {
 			System.out.println("Could not close BufferedReader!");
 		}
+		gameelements = makeGameelementList(elements);
 		levelTree = new LevelTree(makeStartVertexTree(tree));
 		hintTree = new LevelTree(makeStartVertexHint(hint));
+		
 		//System.out.println(v.getnext().getnext());
 
 	}
@@ -92,6 +98,18 @@ public class LambdaUtil {
 		 */
 		public void nextLambdaStepPerformed();
 
+	}
+	
+	private LinkedList<Vertex> makeGameelementList(JsonArray elements) {
+		LinkedList<Vertex> elementList = new LinkedList<Vertex>();
+		for (JsonElement e : elements) {
+			JsonObject elementObject = e.getAsJsonObject();
+			Vertex element = getSpecializedVertex(elementObject);
+			Vector2 newPos = new Vector2(elementObject.get("posx").getAsFloat(), elementObject.get("posy").getAsFloat());
+			element.setPosition(newPos);
+			elementList.add(element);
+		}
+		return elementList;
 	}
 
 	private Vertex makeStartVertexTree(JsonArray tree) {
@@ -170,5 +188,10 @@ public class LambdaUtil {
 			return null;
 		}
 	}
-
+	
+	
+	public LinkedList<Vertex> getGameElements() {
+		return gameelements;
+	}
+	
 }

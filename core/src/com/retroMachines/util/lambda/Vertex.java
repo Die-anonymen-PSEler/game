@@ -2,6 +2,8 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * This class is part of the model of RetroMachines. 
  * Vertices of the Graph of Gameelements extends this class
@@ -25,6 +27,10 @@ public abstract class Vertex {
 	 * Unique identifier of Variable.
 	 */
 	private int color;
+	
+	private Vector2 pos;
+	
+	private boolean isInDepot;
 	
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
@@ -381,6 +387,14 @@ public abstract class Vertex {
 		} else {
 			return family;
 		}
+	}
+	
+	public void setPosition(Vector2 p) {
+		pos = p;
+	}
+	
+	public Vector2 getPosition() {
+		return pos;
 	}
 }
 
