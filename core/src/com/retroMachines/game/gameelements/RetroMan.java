@@ -26,7 +26,7 @@ public class RetroMan {
 	/**
 	 * The maximum velocity the character is allowed to have in y direction
 	 */
-	public static final float MAX_VELOCITY_Y = 10f;
+	public static final float MAX_VELOCITY_Y = 12f;
 
 	/**
 	 * the width of the character for collision purposes
@@ -41,7 +41,7 @@ public class RetroMan {
 	/**
 	 * the impulse that is added to the retroman upon jumping
 	 */
-	public final static float JUMPING_IMPULSE = 15f;
+	public final static float JUMPING_IMPULSE = 25f;
 	
 	/**
 	 * the impulse that is added to the retroman upon running
