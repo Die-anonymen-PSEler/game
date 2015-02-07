@@ -13,17 +13,20 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.retroMachines.util.lambda.data.Hint;
 
 public class LambdaUtil {
 
 	private List<OnNextLambdaStepListener> observers;
-	
-	private final static String DATA  = "data";
+
+	private final static String DATA = "data";
 	private final static String TREE = "tree";
+	private final static String HINT = "hint";
+	private final static String LEVEL = "level";
 
 	private LevelTree levelTree;
 	private LevelTree target;
-	private LevelTree hint;
+	private LevelTree hintTree;
 
 	public LambdaUtil() {
 		observers = new ArrayList<OnNextLambdaStepListener>();
@@ -43,10 +46,11 @@ public class LambdaUtil {
 			return;
 		}
 		Gson gson = new GsonBuilder().create();
-		JsonObject root = gson.fromJson(br, JsonObject.class);	
-		//get json elements(description, id...)
-		JsonObject level = root.getAsJsonObject("level");
+		JsonObject root = gson.fromJson(br, JsonObject.class);
+		// get json elements(description, id...)
+		JsonObject level = root.getAsJsonObject(LEVEL);
 		JsonObject data = level.getAsJsonObject(DATA);
+		JsonArray hint = data.getAsJsonArray(HINT);
 		System.out.println(data.toString());
 		JsonArray tree = data.getAsJsonArray(TREE);
 		System.out.println(tree.toString());
@@ -55,9 +59,9 @@ public class LambdaUtil {
 		} catch (IOException e) {
 			System.out.println("Could not close BufferedReader!");
 		}
-		Vertex v = makeTree(tree);
-		levelTree = new LevelTree(v);
-		System.out.println(v.getnext().getnext());
+		levelTree = new LevelTree(makeStartVertexTree(tree));
+		hintTree = new LevelTree(makeStartVertexHint(hint));
+		//System.out.println(v.getnext().getnext());
 
 	}
 
@@ -90,26 +94,81 @@ public class LambdaUtil {
 
 	}
 
-	private Vertex makeTree(JsonArray tree) {
+	private Vertex makeStartVertexTree(JsonArray tree) {
 		if (tree == null) {
 			return null;
 		}
-		
+
 		Dummy dummy = null;
 		int count = 0;
 		for (JsonElement t : tree) {
 			dummy = new Dummy();
-			if ( count == tree.size()) {
+			if (count == tree.size()) {
 				dummy.setnext(null);
 			} else {
-				System.out.println(count);
+				//System.out.println(count);
 				dummy.setnext(new Dummy());
 			}
 			count++;
-			//setting family
-			dummy.setfamily(makeTree(t.getAsJsonObject().getAsJsonArray(TREE)));
+			// setting family
+			dummy.setfamily(makeStartVertexTree(t.getAsJsonObject()
+					.getAsJsonArray(TREE)));
 		}
 		return dummy;
+	}
+	
+	private Vertex makeStartVertexHint(JsonArray hint) {
+		if (hint == null) {
+			return null;
+		}
+		Vertex start = null;
+		int count = 0;
+		// TODO: fertig implementieren
+		for (JsonElement t : hint) {
+			//creating vertex
+			start = getSpecializedVertex(t.getAsJsonObject());
+			//setting v.next
+			if (count == hint.size()) {
+				start.setnext(null);
+			} else {
+				JsonObject nextOb = hint.get(count +1).getAsJsonObject();
+				start.setnext(getSpecializedVertex(nextOb));
+			}
+			count++;
+			//setting family
+			start.setfamily(makeStartVertexHint(t.getAsJsonObject().getAsJsonArray(HINT)));
+		}
+		return start;
+	}
+	
+	private Vertex makeStartVertexTarget(JsonArray target) {
+		//TODO: implement
+		return null;
+	}
+
+	/**
+	 * returns new instance of vertex of type {Var,Abs,App}. If parameter does
+	 * not match one of these types, null will be returned.
+	 * 
+	 * @param type
+	 *            type of vertex
+	 * @param color
+	 *            color to set
+	 * @return new instance of specialized vertex
+	 */
+	private Vertex getSpecializedVertex(JsonObject j) {
+		String type = j.get("type").getAsString();
+		int color = j.get("color").getAsInt();
+		switch (type) {
+		case "Var":
+			return new Variable(color);
+		case "Abs":
+			return new Abstraction(color);
+		case "App":
+			return new Application(color);
+		default:
+			return null;
+		}
 	}
 
 }
