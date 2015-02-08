@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="64" tileheight="64" nextobjectid="1">
  <tileset firstgid="1" name="Tür" tilewidth="64" tileheight="64">
   <image source="Tür.png" trans="0000ff" width="256" height="256"/>
  </tileset>
@@ -25,7 +25,7 @@
  </layer>
  <layer name="Laufebene" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJztlOsKgCAMRvdqXS0V6v2fJqOkkLxMTSP94PwIYdvREQEActLD/0Ph8lUpwX931PmzjHOlism/9Pev/mEZBdONRvl+YgnsiU3K958j14uRr+6/ujsu+OwOxh8zU+o99o3JfxC0+UZ7NR0c/6MV9P5fuwM5cwx2bw5m9/sdxOobOnNvgFnOVVzcJRRZGzsLt5xj+ttqYd0rlVLYAECIgew=
+   eJztklsKgCAQRWdrPe0h1P5Xk1JSSGqTk0p64XyIoHP0MgBgBy38PxOcvjo5+EtHk/8cca5Qsfnn/v/F3y+9YLhQaes7Fs87sQn5/yPxeRRJsf+yN0+6QtEdrL/e6VR6/DY2/05Qxxvt0zSwd2wFs39qb6BmpkB6c7C7X9+A6l7fmVsLs2Nf54m7YkKejZ2FO/Yx97vOwroXCrmwATAAgeU=
   </data>
  </layer>
  <layer name="Tür offen" width="64" height="16">

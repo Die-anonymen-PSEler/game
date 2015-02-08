@@ -4,7 +4,7 @@
   <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
  <tileset firstgid="17" name="Tür" tilewidth="64" tileheight="64">
-  <image source="Tür.png" trans="0000ff" width="256" height="256"/>
+  <image source="gate.png" trans="0000ff" width="256" height="256"/>
  </tileset>
  <tileset firstgid="33" name="Maschinen" tilewidth="64" tileheight="64">
   <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
@@ -26,12 +26,12 @@
    eJztkVsLgCAMhbXsHtX//7VN8MCQeckH7cHBRwjb2acp1esvNRMrod3Xcjfw2DJ6JFecazr7rjnuvGLeNf9HzPvrnWrUSAyJHrwfx3+/VEZo90NMhfPI0AUZ2G2Io9DBZlzE6cjN4Ls5sXnckyNlGKHPB317wEGaCe0CS6cpL1rqBPA=
   </data>
  </layer>
- <layer name="Tür offen" width="32" height="16">
+ <layer name="gate open" width="32" height="16">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AU0BuIA7HEANovDcQyA2i/PBArDKD9o2AUjAIGBgCX9gCm
   </data>
  </layer>
- <layer name="Tür" width="32" height="16">
+ <layer name="gate" width="32" height="16">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AU0BuIArHYANovCcRSA2i/LBDLDaD9o2AUjAIGBgBnrgCa
   </data>
