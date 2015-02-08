@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="24" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Laufebenen" tilewidth="64" tileheight="64">
   <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
@@ -18,32 +18,32 @@
  <tileset firstgid="69" name="Rohre" tilewidth="64" tileheight="64">
   <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <imagelayer name="Hintergrund">
-  <image source="Hintergrund.png"/>
- </imagelayer>
- <layer name="Laufebene" width="32" height="16">
+ <tileset firstgid="85" name="Hintergrund" tilewidth="64" tileheight="64">
+  <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
+ </tileset>
+ <layer name="Hintergrund" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztkVsLgCAMhbXsHtX//7VN8MCQeckH7cHBRwjb2acp1esvNRMrod3Xcjfw2DJ6JFecazr7rjnuvGLeNf9HzPvrnWrUSAyJHrwfx3+/VEZo90NMhfPI0AUZ2G2Io9DBZlzE6cjN4Ls5sXnckyNlGKHPB317wEGaCe0CS6cpL1rqBPA=
+   eJzN1QmwllMYB/BPSlqoKCJCKkqWkL2NFolCm2QnFLIWsty0oL3oIqGythOlKPuuFW2U7LJGpSzZft9Md+b01vveN3Ux02/mNM//Ofc59zvnfjmZTKYbt9CdHvSkF7eS8x/VX+YVXg1qOYG8nuj/N/Yz/u35b6c3fegb0z+TWcxmDnN5h3d5j0/5jM8j5+8W+T1sqfNfy3VcT9fNPP8oRjOGsTH93/E9y/mBH1nBSlat2z/N5xydu6A///BeFvT7iJ4/Ta6gzx/ey//D+ZP6o+9wS86X3/vdEu8rWwvv26aeP/oO/+n5N5ZJ8343Z/+8s23s7+Cm3P2C+vu9Jb8/Nudtb269DafRltNpl9nw3rSidUw2qXYGZ3LWulx4l/P60vafzTmcy3mczwW050Iu4mI60JFLuJTL6MTlXMGVXMXVXJPZ8F3ewI3cxM3rfn+d6RKTTaqF+2Rz4V3O60vbn9/neFtmw3vbj/4MYCCDGMwd3MkQ7uYehnIvw7iP+3mA4eRyV0w2qRbukxtko+s0/dk5RjCSB3mIh3mER3kss+G9Hcd4JvA4TzCRJ3mKSUxhKs/wLNOYznM8zwtM5umYbFIt3GdykI2u0/Rn53iRlzLrv6PXeJ03eJO3eJsZmfy/o+axkEW8zwcsZgkfspSPmM+CmGxSLdxnfpCNrtP0Z+f4mE8y67+jL/iSZXzF13zDt5n8v6N+4md+4Vd+Yy2/8wd/8herWROTTaqF+6wOstF1mv7sHJmt/KMQW1OYImxDUbalGMUpQUm2Y3tKUZoy7MCOlGVnyrMLu1KB3didiuxBOXaKySbVwn3KBdnoOk1/do492YtK7E1lqlCVfdiXalRnP2qwPwdwIAdRk4M5hEM5nCM4kqM4mmOoTR3qUovDYrJJtXCfWkE2uk7Tn52jHvU5luNoQEMa0ZjjacIJNOVETqIZzTmZUziVFrSkDafRltNpxxmcyVmcTStax2STauE+rYJsdJ2mPzvHOZzLeZzPBbTnQi7iYjrQkUu4lMvoxOVcwZVcxdVcw7Vcx/V05QZu5CZuJofOdInJJtXCfToH2eg6TX92jm7cQnd60JNe3Mpt3E5v+tCXfvRnAAMZxGDu4E6GcDf3MJR7GcZ93M8DDCeXu2KySbVwn9wgG12n6c/OMYKRPMhDPMwjPMpjjGI0YxjLOMYzgcd5gok8yVNMYgpTeYZnmcZ0nuN5XmAyT8dkk2rhPpODbHSdpj87x4u8xMu8wqu8xuu8wZu8xdvMYCazmM0c5vIO7/Ie81jIIt7nAxazhA9ZykfMZ0FMNqkW7jM/yEbXafqzc3zMJ3zKZ3zOF3zJMr7ia77hW77je5bzAz+ygpWs4id+5hd+5TfW8jt/8Cd/sZo1MdmkWrjP6iAbXafpz86RKeT7n0JsTWGKsA1F2ZZiFKcEJdmO7SlFacqwAztSlp0pzy7sSgV2Y3cqsgfl2Ckmm1QL9ykXZKPrNP3ZOfZkLyqxN5WpQlX2YV+qUZ39qMH+HMCBHERNDuYQDuVwjuBIjuJojqE2dahLLQ6LySbVwn1qBdnoOk1/do561OdYjqMBDWlEY46nCSfQlBM5iWY052RO4VRa0JK/AZ4bLpQ=
   </data>
  </layer>
- <layer name="gate open" width="32" height="16">
+ <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0BuIA7HEANovDcQyA2i/PBArDKD9o2AUjAIGBgCX9gCm
+   eJztmIkKwzAIhu2u7Ajb3v9pV+mEEIy5M9Yo/JRSNH5qm7YGAMxXJ9i/IaMJSPn3bxL/44d5jTLt/9z8Fubmn73/yq/8M/PjHl/Lf1l1ZbR456/EOK5fzKfWevb/1tGPqxWd59Ts3+ffr1VuzVP5/RkvndFQHK5vI+4Hid8KfqWzHYojxWu1Fmct5z/0HOzxDDuuOmTmw+Uh8Z9hm73YOqMN2d+w5VeaG8ZANomfZqBmndZG7JgX7t0luWGMJ8jfPlwNlo5KYXDZXXE1oP7S0RXFSGF3/4X466bqHrluE+srxfP9uTqRpHc+lWpmfQCklg2H
   </data>
  </layer>
- <layer name="gate" width="32" height="16">
+ <layer name="Tür offen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0BuIArHYANovCcRSA2i/LBDLDaD9o2AUjAIGBgBnrgCa
+   eJztzsEJACAQBDG7UFDQ/qv0uliRBOY/rQEAAMA/ejXSE0GzWumJoF2d9AQAPOICPnMApg==
   </data>
  </layer>
- <layer name="Ablagen" width="32" height="16">
+ <layer name="Tür" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDFfgi0bTG7gBsQ8Quw6Q/SDgOYB2gwAo7L0YBi4ORsEowAUAu7QCnw==
+   eJztzsEJACAQBDGbUFDQ/sv0uliRBOY/rQEAAMA/ejXSE0GzWumJoF2d9AQAPOIC3VwAmg==
   </data>
  </layer>
- <layer name="Objekte" width="32" height="16">
+ <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF6MBmoB1AIrAaaAfQEAxnv42C4QOUBtoBo2AUkAEApVQA0w==
+   eJzt07EJwDAQA8BfLgGbZP91bLeu0ongOxDfqtBXAQAAAH/zbvc098wzc6WLBLV0gbC1/V7n/gDAFwNjmwKf
   </data>
  </layer>
 </map>

@@ -62,26 +62,3 @@ build/
 
 ## OS Specific
 .DS_Store
-
-
-*.aux
-*.fdb_latexmk
-*.log
-*.log
-*.pdf
-*.synctex.gz
-*.toc
-*.out
-*.dvi
-*.fls
-*.glg
-*.gls
-*.glsdefs
-*.xdy
-*.glo
-*.acn
-*.acr
-*.alg
-*.idx
-*.ilg
-*.ind

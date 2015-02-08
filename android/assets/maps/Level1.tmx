@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="16" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="64" tileheight="64" nextobjectid="1">
  <tileset firstgid="1" name="Tür" tilewidth="64" tileheight="64">
   <image source="gate.png" trans="0000ff" width="256" height="256"/>
  </tileset>
@@ -15,32 +15,32 @@
  <tileset firstgid="65" name="Laufebenen" tilewidth="64" tileheight="64">
   <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <imagelayer name="Hintergrund">
-  <image source="Hintergrund.png"/>
- </imagelayer>
- <layer name="Laufebene" width="32" height="16">
+ <tileset firstgid="81" name="Hintergrund" tilewidth="64" tileheight="64">
+  <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
+ </tileset>
+ <layer name="Hintergrund" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUoAM3IPaAYkco7T9AbvGkodkeaJiQH5HDhVg9gxE4M0DilRZmEoP9gNiHBPXEmukyxLD7KB5QDADlkzR4
+   eJyd1XfU1XMcwPHnKakkDaFUpKlCW0VpaGprl4a0RDRQyWoIaQ9S0dbeey9F0URGC22hQTSQ13NO9/id6+benj9e5znnft+/z+/7u/f8vk+duLi4R6lLPerTgIY0ojFNqHOlC/3NHx8Xdw/3cl/8v32dGOc15bFAf4k/+Yu//6dvRnNa0JLHacUTtKYNbWlHe56kA0/xNB15hmfpRGe60JXneJ4X6EZ3evBihP1V88zVqUHNK99B92uY15OXAn1m12chK3fEX71/mVd4ldfoRW/60JfX6ccbvMlb9OdtBjCQQQxmCEMZxnBGMJJ3eJdRvMfoCPt7MP6/38Goa5gX3GtCnzCvFKV5KP6//RjG8j4fMI7xTGAik5jMFD5kKtOYzgxmMovZzGEu85jPAhayiMUsYSnLWM6KCPu7Wh+cF3pHwt+VFWF7jXT/8GtW+mwVq1nDWtaxng1s5CM2sZmP+YQtbOVTPmMb29nBTnaxm8/5gi/Zw1d8zTd8G+ii9cH1/PH/Cj5Lwry97Isw72rXhPr9HOAg3/E9P3CIwxzhKMc4zgl+5CQ/8TO/cIrTnOEsv/Ib5/idPzjPBS4Gumh9cL3alXck/FkS5oWfJ6F5oWvC363w/jJxPo8nCUm5jmRcT3JSkJIbSMWNpOYm0pCWdKTnZjJwC7dyGxnJxO2BLlofaT38WRLmhZ8n0e4f3t9JNu4iOznISS5yk4e7yUu+CL9BAQpSiMIUoSjFuJ/ilKAkDwS6aH1oPXi+RZoXfp5Eu394X4aylKM8D1OBilSiMlWoyiMRfoNa1KYOj1KXetSnAQ1pRGOaBLpofWg9eL5FmteUx67h/qG+Gc1pQUsepxVP0Jo2tKUd7XmSDjzF03TkGZ6lE53pQlee43leoBvd6cGLgS5aH+u8nryUiP5lXuFVXqMXvelDX16nH2/wJm/Rn7cZwEAGMZghDGUYwxnBSN7hXUbxHqMDXbQ+1nljGJuI/n0+YBzjmcBEJjGZKXzIVKYxnRnMZBazmcNc5jGfBSxkEYtZwlKWsZwVgS5aH+u8laxKRL+aNaxlHevZwEY+YhOb+ZhP2MJWPuUztrGdHexkF7v5nC/4kj18xdd8w7eBLlof67y97EtEv58DHOQ7vucHDnGYIxzlGMc5wY+c5Cd+5hdOcZoznOVXfuMcv/MH57nAxUAXrY913iX+TET/F39zmbgk/v+ThKRcRzKuJzkpSMkNpOJGUnMTaUhLOtJzMxm4hVu5jYxk4vZAF62PdV5msiSiz8od3Ek27iI7OchJLnKTh7vJSz7ycw/3ch8FKEghClOEohTjfopTgpI8EOii9bHOe5BSiehL8xBlKEs5yvMwFahIJSpThao8QjWqU4Oa1KI2/wBoCfUl
   </data>
  </layer>
- <layer name="Gate open" width="32" height="16">
+ <layer name="Laufebene" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0BuwAzHHANrPDcQ8A2g/PxALDKD9o2AUjAIGBgAVpwBG
+   eJztklsKgCAQRWdrPe0h1P5Xk1JSSGqTk0p64XyIoHP0MgBgBy38PxOcvjo5+EtHk/8cca5Qsfnn/v/F3y+9YLhQaes7Fs87sQn5/yPxeRRJsf+yN0+6QtEdrL/e6VR6/DY2/05Qxxvt0zSwd2wFs39qb6BmpkB6c7C7X9+A6l7fmVsLs2Nf54m7YkKejZ2FO/Yx97vOwroXCrmwATAAgeU=
   </data>
  </layer>
- <layer name="Gate" width="32" height="16">
+ <layer name="Tür offen" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0BuwAjHbANrPCcRcA2g/LxDzDaD9o2AUjAIGBgDlUAA6
+   eJztzsEJACAQBDF/Cgraf7VeFyuSwPynNQD4V69GeiJoVis9EbSrk54AgEdcLgYARg==
   </data>
  </layer>
- <layer name="Ablagen" width="32" height="16">
+ <layer name="Tür" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKRASQH2gGjYBQMIgAAVJAAGg==
+   eJztzsEJACAQBDE/Cgraf7leFyuSwPynNQD4V69GeiJoVis9EbSrk54AgEdczO8AOg==
   </data>
  </layer>
- <layer name="Objekte" width="32" height="16">
+ <layer name="Ablagen" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DwAsOBdsAoGAWjYBQMUwAAD28AMg==
+   eJztzgEJAAAMA6DVeP+ijzEGmsAEAIBF1w4AMOUBq3gAGg==
   </data>
  </layer>
 </map>
