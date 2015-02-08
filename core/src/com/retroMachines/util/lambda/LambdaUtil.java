@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.retroMachines.util.Constants;
 
 public class LambdaUtil {
 
@@ -24,10 +25,11 @@ public class LambdaUtil {
 	private final static String TREE = "tree";
 	private final static String HINT = "hint";
 	private final static String LEVEL = "level";
+	private final static String TARGET = "TARGET";
 	private final static String GAMEELEMENTS = "gameelements";
 
 	private LevelTree levelTree;
-	private LevelTree target;
+	private LevelTree targetTree;
 	private LevelTree hintTree;
 	private LinkedList<Vertex> gameelements;
 
@@ -45,27 +47,31 @@ public class LambdaUtil {
 		try {
 			br = new BufferedReader(jsonFile.reader());
 		} catch (GdxRuntimeException e) {
-			System.out.println("File not found");
+			Gdx.app.log(Constants.LOG_TAG, "File not found", e);
 			return;
 		}
 		Gson gson = new GsonBuilder().create();
 		JsonObject root = gson.fromJson(br, JsonObject.class);
 		// get json elements(description, id...)
+		//
 		JsonObject level = root.getAsJsonObject(LEVEL);
 		JsonObject data = level.getAsJsonObject(DATA);
 		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
 		JsonArray hint = data.getAsJsonArray(HINT);
-		System.out.println(data.toString());
+		JsonArray target = data.getAsJsonArray(TARGET);
 		JsonArray tree = data.getAsJsonArray(TREE);
-		System.out.println(tree.toString());
+		//
+		//System.out.println(data.toString());	
+		//System.out.println(tree.toString());
 		try {
 			br.close();
 		} catch (IOException e) {
-			System.out.println("Could not close BufferedReader!");
+			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
 		}
 		gameelements = makeGameelementList(elements);
 		levelTree = new LevelTree(makeStartVertexTree(tree));
-		hintTree = new LevelTree(makeStartVertexHint(hint));
+		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
+		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
 		
 		//System.out.println(v.getnext().getnext());
 
@@ -112,57 +118,64 @@ public class LambdaUtil {
 		return elementList;
 	}
 
+	/**
+	 * creates lambda-tree representation of given json array for level tree.
+	 * Tree contains only dummy vertices. So only structure of tree is given.
+	 * @param tree tree in json representation
+	 * @return root vertex of tree
+	 */
 	private Vertex makeStartVertexTree(JsonArray tree) {
 		if (tree == null) {
 			return null;
 		}
 
-		Dummy dummy = null;
-		int count = 0;
+		Vertex start = null;
+		int count = 0; //index of current element
 		for (JsonElement t : tree) {
-			dummy = new Dummy();
+			start = new Dummy();
 			if (count == tree.size()) {
-				dummy.setnext(null);
+				start.setnext(null); //lastVertex.next is null
 			} else {
 				//System.out.println(count);
-				dummy.setnext(new Dummy());
+				start.setnext(new Dummy());
 			}
 			count++;
 			// setting family
-			dummy.setfamily(makeStartVertexTree(t.getAsJsonObject()
+			start.setfamily(makeStartVertexTree(t.getAsJsonObject()
 					.getAsJsonArray(TREE)));
-		}
-		return dummy;
-	}
-	
-	private Vertex makeStartVertexHint(JsonArray hint) {
-		if (hint == null) {
-			return null;
-		}
-		Vertex start = null;
-		int count = 0;
-		// TODO: fertig implementieren
-		for (JsonElement t : hint) {
-			//creating vertex
-			start = getSpecializedVertex(t.getAsJsonObject());
-			//setting v.next
-			if (count == hint.size()) {
-				start.setnext(null);
-			} else {
-				JsonObject nextOb = hint.get(count +1).getAsJsonObject();
-				start.setnext(getSpecializedVertex(nextOb));
-			}
-			count++;
-			//setting family
-			start.setfamily(makeStartVertexHint(t.getAsJsonObject().getAsJsonArray(HINT)));
 		}
 		return start;
 	}
 	
-	private Vertex makeStartVertexTarget(JsonArray target) {
-		//TODO: implement
-		return null;
+	/**
+	 * creates lambda-tree representation of given json array for target- or hint tree.
+	 * @param array tree in json representation
+	 * @param type type of tree: must be HINT or TARGET
+	 * @return root vertex of tree
+	 */
+	private Vertex makeStartVertexHintOrTarget(JsonArray array, String type) {
+		if (array == null) {
+			return null;
+		}
+		Vertex start = null;
+		int count = 0; //index of current element in array
+		for (JsonElement t : array) {
+			//creating vertex
+			start = getSpecializedVertex(t.getAsJsonObject());
+			//setting v.next
+			if (count == array.size()) {
+				start.setnext(null); //lastVertex.next is null
+			} else {
+				JsonObject nextOb = array.get(count + 1).getAsJsonObject();
+				start.setnext(getSpecializedVertex(nextOb));
+			}
+			count++;
+			//setting family
+			start.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject().getAsJsonArray(type), type));
+		}
+		return start;
 	}
+	
 
 	/**
 	 * returns new instance of vertex of type {Var,Abs,App}. If parameter does
@@ -189,9 +202,36 @@ public class LambdaUtil {
 		}
 	}
 	
-	
+	/**
+	 * getter for gameElements
+	 * @return gameElements
+	 */
 	public LinkedList<Vertex> getGameElements() {
 		return gameelements;
+	}
+	
+	/**
+	 * getter for levelTree
+	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked
+	 */
+	public LevelTree getLevelTree() {
+		return levelTree;
+	}
+	
+	/**
+	 * getter for targetTree
+	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked
+	 */
+	public LevelTree getTargetTree() {
+		return targetTree;
+	}
+	
+	/**
+	 * getter for hintTree
+	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked
+	 */
+	public LevelTree getHintTree() {
+		return hintTree;
 	}
 	
 }

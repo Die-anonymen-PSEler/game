@@ -21,6 +21,11 @@ public abstract class Constants {
 			"#663300", // brown
 			"#66FFFF" // light blue
 	};
+	
+	/**
+	 * tag for error or log messages.
+	 */
+	public static final String LOG_TAG = "RetroFactory";
 
 	/**
 	 * String array containing path to all possible characters.
