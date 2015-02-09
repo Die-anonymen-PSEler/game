@@ -25,7 +25,7 @@
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl9tuwjAMhvNqHEaBVYJrxuk5YDAuNt5we5NtcMdvKZUsq00T6gIisfSpldLG+ZzIhcwYk1n6YAXW9voL/sA/OIEzWLJnJG9gDhbiOfnOAWzAFryDHdiDj4CxT/AFjnZsVpJ/Zp+n6zf4sY5ZBWPz/OHy799xXbeK5B+3f27i9o99/5N/8o/Zn37jaPn3QFd1de2H1v6T+xS8GJ0aDMDQ0mH3E4W5ebj8c885Cnea69WE1aDwJMcqt5HnXNdE0/3n7pzQcxDqKM/HtecixH/A7ovc0lvWoI0zK6PJ+Wi6/6MaePA9a7suQ+OXq87/3v1c1ky7dnX+Wv380YL6FvUNlz8R2s9duXy4VR7q2a7/flrnQH4bXf2yyOPrUOZUNW9Zbh93WQPNNXFyx9jYc46Qd0LcE4lYuACCJLdq
+   eJztlw0KgzAMhXO1/Xa6wnb/06wBCyG0aaOpDtsHDwQx6ZeEqA4A3OI7nF/I6DKeDzzXXpL4e+//4D+/PPTN33v/B//g75kfv3Gs+G/BV9PTtZdV/5H9G/wAmxo8g1+LL+T6YxCbSuL3lTEiO8Z6g64GkRMZc2xTZaw12tp/yk6tnQMtI5+PtXOh4ac5ozk3r0GLmeXaMh9b+z8VTMXr17IuvE+5XCX+o/d5auYsa1fit9rn/ybcW7g3JH60dp9LuWq8Vx7c2dK/n9Uc8HejtC9jnlqGFFMubip3DTuvgeWZqL1wb66MoXlGwz483It/i3ucwA==
   </data>
  </layer>
  <layer name="Tür offen" width="64" height="24">
