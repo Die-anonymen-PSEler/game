@@ -224,25 +224,30 @@ public class GameScreen extends AbstractScreen implements
 		
 		buttonLeft = new Button(skin, "left");
 		buttonLeft.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonLeft.setColor(1, 1, 1, 0.66f);
 		
 		buttonRight = new Button(skin, "right");
 		buttonRight.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonRight.setColor(1, 1, 1, 0.66f);
 		
 		buttonA = new Button(skin, "a");
 		buttonA.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonA.setColor(1, 1, 1, 0.66f);
 		
 		Button buttonB = new Button(skin, "b");
 		buttonB.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonB.addListener(new InteractButtonClickListener());
+		buttonB.setColor(1, 1, 1, 0.66f);
 		
 		Button buttonHint = new Button(skin, "answer");
 		buttonHint.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonHint.addListener(new GetHintClickListener());
+		buttonHint.setColor(1, 1, 1, 0.66f);
 		
 		Button buttonQuest = new Button(skin, "quest");
 		buttonQuest.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuest.addListener(new GetTaskClickListener());
-		
+		buttonQuest.setColor(1, 1, 1, 0.66f);
 		
 		//Make Table
 		table.add().expand().row();
