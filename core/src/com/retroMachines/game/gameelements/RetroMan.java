@@ -49,6 +49,11 @@ public class RetroMan {
 	public static final float RUNNING_IMPULSE = 1f;
 	
 	/**
+	 * 
+	 */
+	public static final float MIN_VELOCITY_X = 1E-5f;
+	
+	/**
 	 * true if the character is looking to the left; false otherwise
 	 */
 	private boolean faceLeft = false;
@@ -291,33 +296,25 @@ public class RetroMan {
 
 	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {
 		// based on the RetroMan state, get the animation frame
-		if (Math.abs(getVelocity().x) < 1E-5 && Math.abs(getVelocity().y) < 1E-5) {
-			if (hasPickedUpElement()) {
-				state = State.STANDINGE;
-			}
-			else {
-				state = State.STANDING;
-			}
-		}
 		TextureRegion frame = null;
 		switch (state) {
 		case STANDING:
-			frame = standRight.getKeyFrame(stateTime);
+			frame = standRight.getKeyFrame(deltaTime);
 			break;
 		case STANDINGE:
-			frame = standERight.getKeyFrame(stateTime);
+			frame = standERight.getKeyFrame(deltaTime);
 			break;
 		case RUNNING:
-			frame = runningRight.getKeyFrame(stateTime);
+			frame = runningRight.getKeyFrame(deltaTime);
 			break;
 		case RUNNINGE:
-			frame = runningRightE.getKeyFrame(stateTime);
+			frame = runningRightE.getKeyFrame(deltaTime);
 			break;
 		case JUMPING:
-			frame = jumpingRight.getKeyFrame(stateTime);
+			frame = jumpingRight.getKeyFrame(deltaTime);
 			break;
 		case JUMPINGE:
-			frame = jumpingERight.getKeyFrame(stateTime);
+			frame = jumpingERight.getKeyFrame(deltaTime);
 			break;
 		}
 		
