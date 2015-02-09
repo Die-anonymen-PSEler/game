@@ -45,14 +45,26 @@ public class StatisticController implements OnProfileChangedListener {
 	
 	/**
 	 * Increases the StepCounter of the current statistic.
-	 * @param amount Adds the amount to the StepCounter.
+	 * @param amount Adds the amount to the StepCounter. a value smaller than 0 will result in 1 step added
 	 */
 	public void incStepCounter(int amount) {
 		int value = amount;
-		if (amount == -1) {
+		if (amount < 0) {
 			value = 1;
 		}
 		statistic.setStepCounter(statistic.getStepCounter() + value);
+	}
+	
+	/**
+	 * Increases the playtime by a given amount
+	 * @param diff the amount to add to the play time; a value smaller than 0 will result in 1 minute added 
+	 */
+	public void incPlayTime(long diff) {
+		long value = diff;
+		if (value < 0) {
+			value = 1;
+		}
+		statistic.setPlaytime((int) (statistic.getPlaytime() + value));
 	}
 
 	/**

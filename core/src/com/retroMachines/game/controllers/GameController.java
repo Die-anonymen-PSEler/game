@@ -1,6 +1,7 @@
 package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -52,6 +53,16 @@ public class GameController {
 	 * gameScreen is active.
 	 */
 	private TiledMap map;
+	
+	/**
+	 * controls Evaluation
+	 */
+	private EvaluationController evaControl;
+	
+	/**
+	 * level begin time
+	 */
+	private Date levelBegin;
 
 	/**
 	 * Makes a new instance of the GameController.
@@ -63,10 +74,7 @@ public class GameController {
 		this.game = game;
 	}
 
-	/**
-	 * controls Evaluation
-	 */
-	private EvaluationController evaControl;
+	
 
 	/**
 	 * Sets and initializes a given level and starts it.
@@ -80,6 +88,7 @@ public class GameController {
 		gameScreen = new GameScreen(game, this, left);
 		map = AssetManager.loadMap(levelId);
 		gameScreen.setMap(map);
+		levelBegin = new Date();
 		game.setScreen(gameScreen);
 	}
 
@@ -87,7 +96,7 @@ public class GameController {
 	 * Cut a level short.
 	 */
 	public void abortLevel() {
-
+		
 	}
 
 	/**
@@ -97,7 +106,10 @@ public class GameController {
 	public void levelFinished() {
 		saveProgress();
 		dispose();
-
+		Date now = new Date();
+		long diff = now.getTime() - levelBegin.getTime();
+		long diffMinutes = diff / (60 * 1000) % 60;
+		game.getStatisticController().incPlayTime(diffMinutes);
 		game.setScreen(new LevelMenuScreen(game));
 	}
 
@@ -105,7 +117,6 @@ public class GameController {
 	 * Disposes all objects that are in use by this controller.
 	 */
 	private void dispose() {
-		// TODO Auto-generated method stub
 		gameScreen.dispose();
 
 	}
@@ -245,15 +256,16 @@ public class GameController {
 			retroMan.standing();
 		}
 		// multiply by delta time so we know how far we go
-				// in this frame
-				
+		// in this frame
+		float previousPosition = retroMan.getPos().x;
 		retroMan.getVelocity().scl(deltaTime);
 		
 		collisionDetection();
-		
-		
+				
 		retroMan.getPos().add(retroMan.getVelocity());
 		retroMan.getVelocity().scl(1 / deltaTime);
+		// update the step counter
+		game.getStatisticController().incStepCounter((int)(retroMan.getPos().x - previousPosition));
 		retroMan.getVelocity().x *= Constants.DAMPING;
 		
 	}
