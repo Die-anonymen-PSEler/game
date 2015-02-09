@@ -32,6 +32,7 @@ public class LambdaUtil {
 	private LevelTree targetTree;
 	private LevelTree hintTree;
 	private LinkedList<Vertex> gameelements;
+	
 
 	public LambdaUtil() {
 		observers = new ArrayList<OnNextLambdaStepListener>();
@@ -88,11 +89,12 @@ public class LambdaUtil {
 	}
 
 	public void performEvaluation() {
-		while (true) {
-			// TODO weird lambda evaluation stuff
+			if (levelTree != null) {
+				levelTree.evaluate();
+			}
 			for (OnNextLambdaStepListener listener : observers) {
 				listener.nextLambdaStepPerformed();
-			}
+			
 		}
 	}
 
