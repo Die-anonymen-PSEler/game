@@ -51,7 +51,7 @@ public class RetroMan {
 	/**
 	 * 
 	 */
-	public static final float MIN_VELOCITY_X = 1E-5f;
+	public static final float MIN_VELOCITY_X = 1E-1f;
 	
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -153,10 +153,12 @@ public class RetroMan {
 	 * order to release the jump prohibition.
 	 */
 	public void landed() {
-		if (hasPickedUpElement()) {
-			state = State.STANDINGE;
-		} else {
-			state = State.STANDING;
+		if (state == State.JUMPING || state == State.JUMPINGE) {
+			if (hasPickedUpElement()) {
+				state = State.STANDINGE;
+			} else {
+				state = State.STANDING;
+			}
 		}
 	}
 
@@ -216,6 +218,15 @@ public class RetroMan {
 		}
 		else if (state == State.STANDINGE) {
 			state = State.RUNNINGE;
+		}
+	}
+	
+	public void standing() {
+		if (hasPickedUpElement()) {
+			state = State.STANDINGE;
+		}
+		else {
+			state = State.STANDING;
 		}
 	}
 
