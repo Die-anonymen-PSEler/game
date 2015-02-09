@@ -110,8 +110,10 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// Make Image
 		Image charImage = new Image();
-		charImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
-				new Texture(Gdx.files.internal("Serious2.png")))));
+		Texture texture = new Texture("map/Animation.png");
+		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+		
+		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
 		charImage.setScaling(Scaling.fit);
 
 		// Build Tables
