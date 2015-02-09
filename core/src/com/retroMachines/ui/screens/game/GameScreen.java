@@ -89,8 +89,17 @@ public class GameScreen extends AbstractScreen implements
 	 */
 	private boolean popupScreenIsShown;
 	
-	
 	private boolean leftMode;
+	
+	/*
+	 * Buttons
+	 */
+	
+	private Button buttonLeft;
+	
+	private Button buttonRight;
+	
+	private Button buttonA;
 
 	/**
 	 * 
@@ -214,15 +223,13 @@ public class GameScreen extends AbstractScreen implements
 		
 		Table innerButtonTable = new Table(skin);
 		
-		Button buttonLeft = new Button(skin, "left");
+		buttonLeft = new Button(skin, "left");
 		buttonLeft.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonLeft.addListener(new LeftButtonClickListener());
 		
-		Button buttonRight = new Button(skin, "right");
+		buttonRight = new Button(skin, "right");
 		buttonRight.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonRight.addListener(new RightButtonClickListener());
 		
-		Button buttonA = new Button(skin, "a");
+		buttonA = new Button(skin, "a");
 		buttonA.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonA.addListener(new JumpButtonClickListener());
 		
@@ -268,13 +275,13 @@ public class GameScreen extends AbstractScreen implements
 	 * can perform the logic.
 	 */
 	private void inputDetection() {
-		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+		if (Gdx.input.isKeyPressed(Keys.SPACE) || buttonA.isPressed()) {
 			gameController.jumpRetroMan();
 		}
-		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+		if (Gdx.input.isKeyPressed(Keys.RIGHT) || buttonRight.isPressed()) {
 			gameController.goRightRetroMan();
 		}
-		else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+		else if (Gdx.input.isKeyPressed(Keys.LEFT) || buttonLeft.isPressed()) {
 			gameController.goLeftRetroMan();
 		}
 	}
@@ -321,6 +328,12 @@ public class GameScreen extends AbstractScreen implements
 			if (!popupScreenIsShown) {
 				gameController.goLeftRetroMan();
 			}
+		}
+		
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y,
+				int pointer, int button) {
+			return true;
 		}
 	}
 
