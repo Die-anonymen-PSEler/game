@@ -15,6 +15,7 @@ import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
+import com.retroMachines.util.Constants;
 
 
 /**
@@ -58,8 +59,20 @@ public class RetroMachines extends Game{
 	 */
 	private StatisticController statisticController;
 	
+	/**
+	 * 
+	 */
+	private int systemVolume;
+	
+	/**
+	 * 
+	 */
+	private int maxSystemVolume;
+	
 	public RetroMachines() {
 		super();
+		systemVolume = -1;
+		maxSystemVolume = -1;
 		screenStack = new Stack<Screen>();
 	}
 
@@ -82,6 +95,9 @@ public class RetroMachines extends Game{
 		boolean profileExists = profileController.loadLastProfile();
 		settingController = new SettingController(this);
 		settingController.initialize();
+		if (systemVolume != -1 && maxSystemVolume != -1) {
+			settingController.setVolume(systemVolume / (float)maxSystemVolume);
+		}
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);
 		
@@ -163,5 +179,10 @@ public class RetroMachines extends Game{
 			screenStack.pop(); // remove current screen.
 			setScreen(screenStack.pop()); // set the screen before.
 		}
+	}
+
+	public void setSystemVolume(int volume, int maxVolume) {
+		systemVolume = volume;
+		maxSystemVolume = maxVolume;
 	}
 }
