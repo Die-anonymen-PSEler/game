@@ -109,6 +109,7 @@ public class GameController {
 		Date now = new Date();
 		long diff = now.getTime() - levelBegin.getTime();
 		long diffMinutes = diff / (60 * 1000) % 60;
+		game.getStatisticController().incPlayTime(diffMinutes);
 		game.setScreen(new LevelMenuScreen(game));
 	}
 
