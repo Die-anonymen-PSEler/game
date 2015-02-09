@@ -169,7 +169,7 @@ public class RetroMan {
 	 * @return true if the character can jump; false otherwise
 	 */
 	public boolean canJump() {
-		if (state == State.JUMPING || state == State.JUMPINGE) {
+		if (state == State.JUMPING || state == State.JUMPINGE || Math.abs(velocity.y) > 0) {
 			return false;
 		}
 		return true;
