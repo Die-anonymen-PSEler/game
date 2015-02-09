@@ -213,6 +213,8 @@ public class GameScreen extends AbstractScreen implements
 		
 		Table innerButtonTable = new Table(skin);
 		
+		
+		// Make Buttons
 		Button buttonLeft = new Button(skin, "left");
 		buttonLeft.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonLeft.addListener(new LeftButtonClickListener());
@@ -237,11 +239,14 @@ public class GameScreen extends AbstractScreen implements
 		buttonQuest.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuest.addListener(new GetTaskClickListener());
 		
-		table.add().expand().row();
 		
+		//Make Table
+		table.add().expand().row();
 		
 		innerButtonTable.add(buttonHint).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
 		innerButtonTable.add(buttonQuest).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+		
+		// Add to Table check LeftMode is activated
 		if (leftMode) {
 			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADINGx2).padBottom(screenWidth / DEFAULTPADINGx2);
 			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
