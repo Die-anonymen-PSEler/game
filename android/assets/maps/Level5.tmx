@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="24" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="Tür" tilewidth="64" tileheight="64">
-  <image source="gate.png" trans="0000ff" width="256" height="256"/>
- </tileset>
- <tileset firstgid="17" name="Rohre" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Rohre" tilewidth="64" tileheight="64">
   <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="33" name="Maschinen" tilewidth="64" tileheight="64">
+ <tileset firstgid="17" name="Maschinen" tilewidth="64" tileheight="64">
   <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="49" name="Metallobjekte" tilewidth="64" tileheight="64">
+ <tileset firstgid="33" name="Metallobjekte" tilewidth="64" tileheight="64">
   <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="65" name="Laufebenen" tilewidth="64" tileheight="64">
+ <tileset firstgid="49" name="Laufebenen" tilewidth="64" tileheight="64">
   <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="81" name="Ampeln" tilewidth="64" tileheight="64">
+ <tileset firstgid="65" name="Ampeln" tilewidth="64" tileheight="64">
   <image source="Ampeln.png" trans="0000ff" width="128" height="128"/>
  </tileset>
- <tileset firstgid="85" name="Hintergrund" tilewidth="64" tileheight="64">
+ <tileset firstgid="69" name="Hintergrund" tilewidth="64" tileheight="64">
   <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
+ </tileset>
+ <tileset firstgid="581" name="gate" tilewidth="64" tileheight="64">
+  <image source="gate.png" trans="0000ff" width="256" height="256"/>
  </tileset>
  <layer name="Hintergrund" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlIkKwjAMhvtquuk8BvpA8z7e2Qv8xQ5CaLrKWjc0hQ+kJm2+rG1hjCksOdiCHdiDAziCEziDCqzAGmxIrDTvWuMCruAG7uDBclz5PL5pv8oTkxNfzuu/Xx/qr/7qr/7qr/7qr/5t/MdgYhmQ35RFlKrjjVB/6hbiM01Ub+zR1fnn/eTnJfSc0HUWwrxvvb7c/67OS1v/0D7HGCn2Svn9XW9Gqv5I71PT/n25/777m/JM+fxHYCjkZeb9ZnGk+L6Nuv6lkf2lHmQ2L2eUNr6rXkjfxMXS1utzpz3gudzdBc/7BlItc8dciDt9C2pmgf4hlJHjQmv8xF1R/oUnOcy/8w==
+   eJztlIkOwiAMhnkl3XQeS/SB5n28s9c7+BtZ0jSUYQZu0ZJ8icEW+nVAYYwpLDnYgh3YgwM4ghM4gwqswBpsSKw071rjAq7gBu7gwXJc+Ty+ab/KE5MTX87rv18f6q/+6q/+6q/+6q/+bfzHYGIZkN+URZSq441Qf+oW4jNNVG/s0dX55/3k5yX0nNB1FsK8b72+3P+uzktb/9A+xxgp9kr5/V1vRqr+SO9T0/59uf+++5vyTPn8R2Ao5GXm/WZxpPi+jbr+pZH9pR5kNi9nlDa+q15I38TF0tbrc6c94Lnc3QXP+wZSLXPHXIg7fQtqZoH+IZSR40Jr/MRdUf6FJ8xYmBM=
   </data>
  </layer>
- <layer name="Tür offen" width="64" height="24">
+ <layer name="open Gate" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAQBDF/Cgraf7VeFyuSwPynNQAAAPhHr0Z6ImhWKz0RtKuTngCAR1w2BgBG
+   eJztz0EJACAQAMHDegoK2j+L97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtetUB6g==
   </data>
  </layer>
- <layer name="Tür" width="64" height="24">
+ <layer name="Gate" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAQBDE/Cgraf7leFyuSwPynNQAAAPhHr0Z6ImhWKz0RtKuTngCAR1zU7wA6
+   eJztz0EJACAQAMHDdgoK2j+M97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtGc0B3g==
   </data>
  </layer>
  <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0jEKACAMQ1GvoKCo9z+oFRyk6ORk+x+E0MFBSAgAAAAAftRUe5NVe+Pt/3rvt7YqSaokbneR9NXx8s6S09a97H+aGy8q1ncPAHg3AEOAAlw=
+   eJzt0sEKABAQhGEU4f0f2CoHbZyc7P5fTdMeHNSEAAAAAOBHTbU3WbU33v6v935rq5KkSuJ2F0lfHS/vLDlt3cv+p7nxomJ99wCAdwPbnwCs
   </data>
  </layer>
 </map>
