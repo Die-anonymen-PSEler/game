@@ -1,30 +1,40 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.File;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.retroMachines.util.lambda.*;
+import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 
 public class LambdaTests {
 	
-	private LevelTree tree;
+	private LambdaUtil lambdaUtil;
+	private static final String pathToJson = "maps/Prototype.json";
+	FileHandle file;
 	
 	@Before
-	public void setUp() throws Exception {
-		tree = new LevelTree(null);
+	public void setUpBeforeClass() throws Exception {
+		lambdaUtil = new LambdaUtil();
+		file = Gdx.files.internal(pathToJson); //TODO: will cause NullPointerException, need to fix
+		lambdaUtil.createTreeFromJson(pathToJson);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		tree = null;
+		lambdaUtil = null;
+		file = null;
 	}
 
 	@Test
 	public void testEvaluateNull() {
-		tree.setStart(null);
+		LevelTree tree = new LevelTree(null);
 		try {
 			tree.evaluate();
 		} catch (NullPointerException e) {
@@ -34,16 +44,18 @@ public class LambdaTests {
 
 	@Test
 	public void testEvaluateVariable() {
-		Variable v = new Variable(0);
-		tree.setStart(v);
+		int someInt = 0;
+		LevelTree tree = new LevelTree(new Variable(someInt));
 		tree.evaluate();
-		assertTrue("Evaluation of just one Variable should not change anything!", v.equals(tree.getStart()));
+		assertTrue("Evaluation of just one Variable should not change anything!", tree.getStart().getColor() == someInt);
 	}
 	
 	@Test
 	public void createTreeFromJsonTest() {
 		LambdaUtil util = new LambdaUtil();
-		util.createTreeFromJson("maps/Prototype.json");
+		//causes NullPointerException in createTreeFromJson
+		util.createTreeFromJson("maps/Protoype.json");
 	}
+
 
 }
