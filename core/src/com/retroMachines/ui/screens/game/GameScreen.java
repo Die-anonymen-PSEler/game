@@ -208,7 +208,6 @@ public class GameScreen extends AbstractScreen implements
 		
 		Table table = new Table(skin);
 		table.setBounds(0, 0, screenWidth, screenHeight);
-		table.debug();
 		
 		Table buttonTable = new Table(skin);
 		
