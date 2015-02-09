@@ -24,18 +24,11 @@ public class AboutMenuScreen extends MenuScreen {
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
-	private final static float TWO_3rd = (2f / 3f);
 	private final static float CENTERTITLE = (1f / 4f);
-	private final static int COLSPANx2 = 2;
 	
 	/**
-	 * The developers of RetroMachine.
+	 * The developers of RetroMachine. The information about the lambda.
 	 */
-	public static final String ABOUT = "Credit: \nby RetroMachines aka "
-			+ "Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner. \n"
-			+ "Information: \n"
-			+ "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
-			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 	public static final String INFO = "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
@@ -74,10 +67,10 @@ public class AboutMenuScreen extends MenuScreen {
 		aboutText.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		aboutText.setAlignment(Align.center);
 		
-		// Make Scrollpane
+		// Make ScrollPane
 		Table scrollTable = new Table(skin);
-		scrollTable.add(infoText).width(screenWidth).padBottom(screenHeight / DEFAULTPADING).row();
-		scrollTable.add(aboutText).width(screenWidth).row();
+		scrollTable.add(aboutText).width(screenWidth).padBottom(screenHeight / DEFAULTPADING).row();
+		scrollTable.add(infoText).width(screenWidth).row();
 		ScrollPane aboutScroll = new ScrollPane(scrollTable, skin);
 		aboutScroll.getStyle().hScrollKnob.setMinWidth((DEFAULTBUTTONSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		
@@ -89,9 +82,6 @@ public class AboutMenuScreen extends MenuScreen {
 		
 		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
 		table.add(title1).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
-		//table.add(infoText).width(screenWidth * TWO_3rd).colspan(COLSPANx2).expandX().expandY().row();
-		//table.add(title).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
-		//table.add(aboutText).width(screenWidth * TWO_3rd).colspan(COLSPANx2).expandX().expandY().row();
 		table.add(aboutScroll).expandY().colspan(2).padTop(screenHeight / DEFAULTPADINGx4).padBottom(screenHeight / DEFAULTPADINGx4).row();
 		
 	    stage.addActor(table);
