@@ -230,7 +230,6 @@ public class GameScreen extends AbstractScreen implements
 		
 		buttonA = new Button(skin, "a");
 		buttonA.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonA.addListener(new JumpButtonClickListener());
 		
 		Button buttonB = new Button(skin, "b");
 		buttonB.pad(screenHeight / DEFAULTBUTTONSIZE);
@@ -304,54 +303,6 @@ public class GameScreen extends AbstractScreen implements
 	// -----------------------------------
 	// --------Retro-Man-Controlls--------
 	// -----------------------------------
-
-	/**
-	 * Listener when the user clicks on Button Right
-	 * 
-	 * @author RetroFactory
-	 */
-	private class RightButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			if (!popupScreenIsShown) {
-				gameController.goRightRetroMan();
-			}
-		}
-	}
-
-	/**
-	 * Listener when the user clicks on Button Left
-	 * 
-	 * @author RetroFactory
-	 */
-	private class LeftButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			if (!popupScreenIsShown) {
-				gameController.goLeftRetroMan();
-			}
-		}
-		
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
-			return true;
-		}
-	}
-
-	/**
-	 * Listener when the user clicks on Button Jump
-	 * 
-	 * @author RetroFactory
-	 */
-	private class JumpButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			if (!popupScreenIsShown) {
-				gameController.jumpRetroMan();
-			}
-		}
-	}
 
 	/**
 	 * Listener when the user clicks on Button Interact
