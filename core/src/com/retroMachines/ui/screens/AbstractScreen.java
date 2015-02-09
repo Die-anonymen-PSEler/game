@@ -37,6 +37,9 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	protected InputMultiplexer inputMultiplexer;
     
+	protected float screenWidth;
+	protected float screenHeight;
+	
     /**
      * The screen class.
      * @param game the main game class
@@ -44,6 +47,8 @@ public abstract class AbstractScreen implements Screen {
     public AbstractScreen(RetroMachines game) {
     	this.game = game;
     	inputMultiplexer = new InputMultiplexer();
+		screenWidth = Gdx.graphics.getWidth();
+		screenHeight = Gdx.graphics.getHeight();
 	}
 
     

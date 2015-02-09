@@ -1,5 +1,7 @@
 package com.retroMachines.ui.screens.game;
 
+import javax.swing.tree.ExpandVetoException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -10,6 +12,9 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -30,7 +35,14 @@ import com.retroMachines.ui.screens.AbstractScreen;
 public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
 
+	
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DEFAULTPADING = 25f;
+	private final static float DEFAULTPADINGx2 = 50f;
+	private final static float DEFAULTPADINGx4 = 100f;
 	public static final int OBJECT_LAYER = 5;
+	
+	
 	
 	/**
 	 * the map that is currently active and may be shown to the user in case the
@@ -78,7 +90,9 @@ public class GameScreen extends AbstractScreen implements
 	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
-
+	
+	
+	private boolean leftMode;
 
 	/**
 	 * 
@@ -95,6 +109,8 @@ public class GameScreen extends AbstractScreen implements
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 30, 20);
 		camera.update();
+		leftMode = leftiMode;
+		stage = new Stage();
 		initialize();
 	}
 
@@ -102,6 +118,8 @@ public class GameScreen extends AbstractScreen implements
 		game.getSettingController().add(this);
 		music = AssetManager.getMusic();
 		inputMultiplexer.addProcessor(this);
+		
+		drawButtons();
 	}
 	
 	private void updateCameraPosition(float x, float y) {
@@ -182,8 +200,70 @@ public class GameScreen extends AbstractScreen implements
 		
 		gameController.update(delta);
 		gameController.getRetroMan().render(renderer, delta);
+		
+		stage.act();
+        stage.draw();
 	}
 	
+	private void drawButtons() {
+		skin = AssetManager.getMenuSkin();
+		
+		Table table = new Table(skin);
+		table.setBounds(0, 0, screenWidth, screenHeight);
+		table.debug();
+		
+		Table buttonTable = new Table(skin);
+		
+		Table innerButtonTable = new Table(skin);
+		
+		Button buttonLeft = new Button(skin, "left");
+		buttonLeft.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonLeft.addListener(new LeftButtonClickListener());
+		
+		Button buttonRight = new Button(skin, "right");
+		buttonRight.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonRight.addListener(new RightButtonClickListener());
+		
+		Button buttonA = new Button(skin, "a");
+		buttonA.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonA.addListener(new JumpButtonClickListener());
+		
+		Button buttonB = new Button(skin, "b");
+		buttonB.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonB.addListener(new InteractButtonClickListener());
+		
+		Button buttonHint = new Button(skin, "answer");
+		buttonHint.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonHint.addListener(new GetHintClickListener());
+		
+		Button buttonQuest = new Button(skin, "quest");
+		buttonQuest.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonQuest.addListener(new GetTaskClickListener());
+		
+		table.add().expand().row();
+		
+		
+		innerButtonTable.add(buttonHint).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
+		innerButtonTable.add(buttonQuest).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+		if (leftMode) {
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADINGx2).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(innerButtonTable);
+			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADINGx2).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+		} else {
+			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADINGx2).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(innerButtonTable);
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADINGx2).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+		}
+		
+		table.add(buttonTable);
+		stage.addActor(table);
+		
+		inputMultiplexer.addProcessor(stage);
+	}
 
 	/**
 	 * Performs the input detection and delegates calls to the controller so it
