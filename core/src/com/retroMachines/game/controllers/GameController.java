@@ -239,6 +239,11 @@ public class GameController {
 		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
 			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
 		}
+		
+		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X) {
+			retroMan.getVelocity().x = 0;
+			retroMan.standing();
+		}
 		// multiply by delta time so we know how far we go
 				// in this frame
 				

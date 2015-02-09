@@ -25,7 +25,7 @@
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl1EKhDAMRHM13Wp3raD3P81adgtSNDUa22IyMB9SSOc186MFAPu3gefLM9odK//zhfGPBXPlku5f+SXzO5DNL33/A8jmx/bvCubKJen9V/77+PvF75Wb6HvL08U7qcq5/w/zPA7V2H/fmyNd4egOlT/udC09PiuMv1vclot2q17w69gM+/y1vUHIzGHP7f/vMfb1G3DdezWzQewS57GPsAcPxNnULGPinHJ/ahaVXa2W4i/O0JOE
+   eJzt11kOgjAQBuC5moqiQKKv7stFXM7icjV3r+DfSJOmgUKlArGd5ItKk2l/Oi/6ROTHPJjBHBawhJXwyQxhBGM4wwWucIM7POAJr4Q+3Bo2sJX6TWAaPxOf7+EARzhJPeU9eN9dyndPyCtja/9eLn96/qjCc5VV7v5dfpvzh2R3ftvvPyC786vuP6zwXGWV7fPv8v8ufwe6gob0O0m/4J66Veb99wz3M1F1nH82N3lmxcTs6OaXZ7ouc/xtqfK3oVnd0X5aLfrM2IDS89ftHfAzm8Bys//3quziOzC1b9EzewphxrosT3Yu0Oyte5YoY11n/6xeutkdxxZvIk2vKQ==
   </data>
  </layer>
  <layer name="Tür offen" width="64" height="24">

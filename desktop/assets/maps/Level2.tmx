@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="16" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="24" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Tür" tilewidth="64" tileheight="64">
-  <image source="Tür.png" trans="0000ff" width="256" height="256"/>
+  <image source="gate.png" trans="0000ff" width="256" height="256"/>
  </tileset>
  <tileset firstgid="17" name="Rohre" tilewidth="64" tileheight="64">
   <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
@@ -18,29 +18,29 @@
  <tileset firstgid="81" name="Hintergrund" tilewidth="64" tileheight="64">
   <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
  </tileset>
- <layer name="Hintergrund" width="64" height="16">
+ <layer name="Hintergrund" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="Laufebene" width="64" height="16">
+ <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlQkOAjEIRbma4zKLTfT+p7GoTQhpO0BpNNqf/EQ7EfqAQYCXZuIT/K6QjbIm/Qv/Bn78x+jJ9Xb95dV/ZL9Hn8GnBpfo5e0D+XxziE0l4Q87MRI7xrqCrgaJExlLbKswlkWt/afs1No50DLy+bDOhYWf5ubcvAY9ZparZT44f+qZtP/rjqlo3XrXZQFZLs6P36fC2SfEa+ZdO84fMmeW9/nbhXsL90aONXem3eu5XBK31FiTB3d2qdelM8sc8P/G2r5M8aUMOaZS3FpuDb/2jrU7UYfKs00Yw/qbeXh4+OkHom6M3A==
+   eJztl9tuwjAMhvNqHEaBVYJrxuk5YDAuNt5we5NtcMdvKZUsq00T6gIisfSpldLG+ZzIhcwYk1n6YAXW9voL/sA/OIEzWLJnJG9gDhbiOfnOAWzAFryDHdiDj4CxT/AFjnZsVpJ/Zp+n6zf4sY5ZBWPz/OHy799xXbeK5B+3f27i9o99/5N/8o/Zn37jaPn3QFd1de2H1v6T+xS8GJ0aDMDQ0mH3E4W5ebj8c885Cnea69WE1aDwJMcqt5HnXNdE0/3n7pzQcxDqKM/HtecixH/A7ovc0lvWoI0zK6PJ+Wi6/6MaePA9a7suQ+OXq87/3v1c1ky7dnX+Wv380YL6FvUNlz8R2s9duXy4VR7q2a7/flrnQH4bXf2yyOPrUOZUNW9Zbh93WQPNNXFyx9jYc46Qd0LcE4lYuACCJLdq
   </data>
  </layer>
- <layer name="Tür offen" width="64" height="16">
+ <layer name="Tür offen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAQBDF/Cgraf7VeFyuSwPynNQD4V69GeiJoVis9EbSrk54AgEdcLgYARg==
+   eJztzsEJACAQBDF/Cgraf7VeFyuSwPynNQAAAPhHr0Z6ImhWKz0RtKuTngCAR1w2BgBG
   </data>
  </layer>
- <layer name="Tür" width="64" height="16">
+ <layer name="Tür" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAQBDE/Cgraf7leFyuSwPynNQD4V69GeiJoVis9EbSrk54AgEdczO8AOg==
+   eJztzsEJACAQBDE/Cgraf7leFyuSwPynNQAAAPhHr0Z6ImhWKz0RtKuTngCAR1zU7wA6
   </data>
  </layer>
- <layer name="Ablagen" width="64" height="16">
+ <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt08EJACAAAkCXKGj/RaMJekp0N4GCJgDwttUOUDbaAcp+73/2P+MHANxt90kAjA==
+   eJzt08EJACAAAkCXKGj/RaMJekp0N4GCJgAAAPCW1Q5QNtoByn7vf/Y/4wcA3G3/SQCM
   </data>
  </layer>
 </map>
