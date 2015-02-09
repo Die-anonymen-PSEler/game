@@ -15,7 +15,6 @@ import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
-import com.retroMachines.util.Constants;
 
 
 /**

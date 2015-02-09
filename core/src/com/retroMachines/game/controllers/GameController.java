@@ -63,7 +63,12 @@ public class GameController {
 	 * level begin time
 	 */
 	private Date levelBegin;
-
+	
+	/**
+	 * 
+	 */
+	private float tempStepCounter;
+	
 	/**
 	 * Makes a new instance of the GameController.
 	 * 
@@ -106,10 +111,6 @@ public class GameController {
 	public void levelFinished() {
 		saveProgress();
 		dispose();
-		Date now = new Date();
-		long diff = now.getTime() - levelBegin.getTime();
-		long diffMinutes = diff / (60 * 1000) % 60;
-		game.getStatisticController().incPlayTime(diffMinutes);
 		game.setScreen(new LevelMenuScreen(game));
 	}
 
@@ -125,7 +126,11 @@ public class GameController {
 	 * Saves the progress of the game to the persistent storage.
 	 */
 	private void saveProgress() {
-
+		Date now = new Date();
+		long diff = now.getTime() - levelBegin.getTime();
+		long diffMinutes = diff / (60 * 1000) % 60;
+		game.getStatisticController().incPlayTime(diffMinutes);
+		game.getStatisticController().incStepCounter((int) tempStepCounter);
 	}
 
 	// --------------------------
@@ -265,7 +270,7 @@ public class GameController {
 		retroMan.getPos().add(retroMan.getVelocity());
 		retroMan.getVelocity().scl(1 / deltaTime);
 		// update the step counter
-		game.getStatisticController().incStepCounter((int)(retroMan.getPos().x - previousPosition));
+		tempStepCounter += (retroMan.getPos().x - previousPosition);
 		retroMan.getVelocity().x *= Constants.DAMPING;
 		
 	}
