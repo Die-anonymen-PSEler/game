@@ -2,9 +2,15 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.LightElement;
 
+/**
+ * 
+ * @author RetroFactory
+ *
+ */
 public class Abstraction extends Vertex {
 	
 	// --------------------------

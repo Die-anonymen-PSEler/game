@@ -18,9 +18,9 @@ import com.retroMachines.data.AssetManager;
 public class AboutMenuScreen extends MenuScreen {
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
@@ -69,7 +69,7 @@ public class AboutMenuScreen extends MenuScreen {
 		
 		// Make ScrollPane
 		Table scrollTable = new Table(skin);
-		scrollTable.add(aboutText).width(screenWidth).padBottom(screenHeight / DEFAULTPADING).row();
+		scrollTable.add(aboutText).width(screenWidth).padBottom(screenHeight / DEFAULTPADDING).row();
 		scrollTable.add(infoText).width(screenWidth).row();
 		ScrollPane aboutScroll = new ScrollPane(scrollTable, skin);
 		aboutScroll.getStyle().hScrollKnob.setMinWidth((DEFAULTBUTTONSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
@@ -80,9 +80,9 @@ public class AboutMenuScreen extends MenuScreen {
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
 		table.add(title1).width(screenWidth * HALF).right().padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE) ).expandX().row();
-		table.add(aboutScroll).expandY().colspan(2).padTop(screenHeight / DEFAULTPADINGx4).padBottom(screenHeight / DEFAULTPADINGx4).row();
+		table.add(aboutScroll).expandY().colspan(2).padTop(screenHeight / DEFAULTPADDINGx4).padBottom(screenHeight / DEFAULTPADDINGx4).row();
 		
 	    stage.addActor(table);
 	    

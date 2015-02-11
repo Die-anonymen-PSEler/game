@@ -35,7 +35,7 @@ public class ProfileTest {
 	 * get method check
 	 */
 	@Test
-	public void test() {
+	public void testCreateProfile() {
 		setting = new Setting(false, false, 0);
 		statistic = new Statistic(0, 5, 5);
 		testMe = new Profile("Testprofil", setting, statistic);
@@ -78,7 +78,7 @@ public class ProfileTest {
 	}
 	
 	@Test
-	public void testGetallProfilesWithCreate() {
+	public void testGetAllProfilesWithCreate() {
 		String[] profiles = Profile.getAllProfiles();
 		assertTrue("zu viele profile. sollte nur eines geben", profiles.length == 1);
 		assertTrue("falsches profil an erster stelle", profiles[0].equals(TEST_USER_IN_DB));

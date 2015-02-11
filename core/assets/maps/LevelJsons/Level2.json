@@ -1,0 +1,93 @@
+{
+	"level": 
+	{
+		"description": "Level das (lambda x.x) darstellt",
+		"hasTutorialScreen": true,
+		"levelid": 2,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 1,
+					"type": "Abs",
+					"posx": 5,
+					"posy": 5
+				},
+
+				{
+					"color": 1,
+					"type": "Var",
+					"posX": 6,
+					"posY": 6
+				},
+
+				{
+					"color": 2,
+					"type": "Var",
+					"posX": 7,
+					"posY": 7
+				}
+			],
+
+			"tree": 
+			[
+				{
+					"color": 1,
+					"tree": 
+					[
+						{
+							"color": 1,
+							"tree": 
+							[
+								
+							]
+						}
+					]
+				}
+			],
+
+			"target": 
+			[
+				{
+					"color": 1,
+					"type": "Abs",
+					"target": 
+					[
+						{
+						"color": 1,
+						"type": "Var",
+						"target": []
+						}
+					]
+				},
+				{
+					"color": 2,
+					"type": "Var",
+					"target": []
+				}
+			],
+			
+			"hint": 
+			[
+				{
+					"color": 1,
+					"type": "Abs",
+					"hint": 
+					[
+						{
+						"color": 1,
+						"type": "Var",
+						"hint": []
+						}
+					]
+				},
+				{
+					"color": 2,
+					"type": "Var",
+					"hint": []
+				}
+			]
+		}
+	}
+}

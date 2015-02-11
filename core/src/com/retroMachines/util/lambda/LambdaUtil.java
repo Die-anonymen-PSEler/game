@@ -18,6 +18,11 @@ import com.google.gson.JsonObject;
 import com.retroMachines.util.Constants;
 import com.retroMachines.game.gameelements.*;
 
+/**
+ * 
+ * @author RetroFactory
+ *
+ */
 public class LambdaUtil {
 
 	private List<OnNextLambdaStepListener> observers;
@@ -36,6 +41,9 @@ public class LambdaUtil {
 	private LinkedList<GameElement> gameElementList;
 	
 
+	/**
+	 * Constructor to create a base for the lambda calculus.
+	 */
 	public LambdaUtil() {
 		observers = new ArrayList<OnNextLambdaStepListener>();
 	}
@@ -124,16 +132,6 @@ public class LambdaUtil {
 		
 	}
 
-	public interface OnNextLambdaStepListener {
-
-		/**
-		 * this method will be called whenever one step of the lambda evaluation
-		 * has been completed.
-		 */
-		public void nextLambdaStepPerformed();
-
-	}
-	
 	private LinkedList<Vertex> makeVertexList(JsonArray elements) {
 		LinkedList<Vertex> elementList = new LinkedList<Vertex>();
 		for (JsonElement e : elements) {
@@ -205,7 +203,7 @@ public class LambdaUtil {
 			if (count == array.size()) {
 				start.setnext(null); //lastVertex.next is null
 			} else {
-				JsonObject nextOb = array.get(count + 1).getAsJsonObject();
+				JsonObject nextOb = array.get(count).getAsJsonObject();
 				start.setnext(getSpecializedVertex(nextOb));
 			}
 			count++;
@@ -272,6 +270,16 @@ public class LambdaUtil {
 	 */
 	public LevelTree getHintTree() {
 		return hintTree;
+	}
+
+	public interface OnNextLambdaStepListener {
+
+		/**
+		 * this method will be called whenever one step of the lambda evaluation
+		 * has been completed.
+		 */
+		public void nextLambdaStepPerformed();
+
 	}
 	
 }

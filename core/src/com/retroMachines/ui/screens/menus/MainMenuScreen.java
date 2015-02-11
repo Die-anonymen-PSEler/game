@@ -32,9 +32,9 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	public static final String TITLE = "RETROMACHINES";
 	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float DEFAULTBUTTONSIZEx2 = 5f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE3 =  3f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
@@ -97,16 +97,16 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		
 		//Sidebar
 		Table sidebar = new Table(skin);
-		sidebar.add(buttonSetting).padTop(screenHeight / DEFAULTPADING).row();
-		sidebar.add(buttonAbout).padTop(screenHeight / DEFAULTPADING).row();
-		sidebar.add(buttonProfileMenu).padTop(screenHeight / DEFAULTPADING).row();
-		sidebar.add(buttonStatistics).padTop(screenHeight / DEFAULTPADING).padBottom(screenHeight / DEFAULTPADING).row();
+		sidebar.add(buttonSetting).padTop(screenHeight / DEFAULTPADDING).row();
+		sidebar.add(buttonAbout).padTop(screenHeight / DEFAULTPADDING).row();
+		sidebar.add(buttonProfileMenu).padTop(screenHeight / DEFAULTPADDING).row();
+		sidebar.add(buttonStatistics).padTop(screenHeight / DEFAULTPADDING).padBottom(screenHeight / DEFAULTPADDING).row();
 		
 		//Left Part of Menu
 		Table mainPart = new Table(skin);
-		mainPart.add(buttonExit).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left().row();
-		mainPart.add(title).padTop(screenHeight / DEFAULTPADINGx2).expandX().right().row();
-		mainPart.add(buttonPlay).padTop(screenHeight / DEFAULTPADINGx4).padLeft((HALF * screenWidth) - (ONE_5th * screenHeight) - (buttonPlay.getWidth() * HALF)).left().row();
+		mainPart.add(buttonExit).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left().row();
+		mainPart.add(title).padTop(screenHeight / DEFAULTPADDINGx2).expandX().right().row();
+		mainPart.add(buttonPlay).padTop(screenHeight / DEFAULTPADDINGx4).padLeft((HALF * screenWidth) - (ONE_5th * screenHeight) - (buttonPlay.getWidth() * HALF)).left().row();
 		
 		
 		// Add Title and Buttons to View
@@ -136,11 +136,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
     	}
     	return false;
     }
-    
-    private void disposeMusic() {
-    	//music.dispose();
-    }
-	
+   
 	/**
 	 * Sets the sound to the new volume that was newly adjusted in the settings.
 	 */
@@ -153,6 +149,16 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		//changes the volume in the settings so that its saved while quitting the game
 		game.getSettingController().setVolume(newVolume);
 	}
+	
+
+    private void disposeMusic() {
+    	//music.dispose();
+    }
+    
+    /*
+     * Button Listeners
+     */
+	
 	
 	private class PlayButtonClickListener extends ClickListener {
 		@Override

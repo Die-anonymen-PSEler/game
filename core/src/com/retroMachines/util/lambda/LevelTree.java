@@ -36,6 +36,20 @@ public class LevelTree {
 		start = start.updateStart();
 	}
 
+	/*
+	 * Setter
+	 */
+	/**
+	 * setter for starting point
+	 * @param start new start vertex
+	 */
+	public void setStart(Vertex start) {
+		this.start = start;
+	}
+
+	/*
+	 * Getter
+	 */
 	/**
 	 * Getter for the starting point.
 	 * 
@@ -43,14 +57,6 @@ public class LevelTree {
 	 */
 	public Vertex getStart() {
 		return start;
-	}
-	
-	/**
-	 * setter for starting point
-	 * @param start new start vertex
-	 */
-	public void setStart(Vertex start) {
-		this.start = start;
 	}
 
 }

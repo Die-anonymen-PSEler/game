@@ -216,13 +216,6 @@ public class Setting extends Model {
 	 */
 
 	/**
-	 * @return the current volume
-	 */
-	public float getVolume() {
-		return volume;
-	}
-
-	/**
 	 * Assigns a new volume to this object.
 	 * @param volume the new volume that is assigned. it's range may go from 0 to 1.0
 	 */
@@ -234,30 +227,6 @@ public class Setting extends Model {
 		writeToSQL();
 	}
 
-	/**
-	 * Get method to check whether sound is enabled or not.
-	 * @return true if sound is enabled; false otherwise.
-	 */
-	public boolean isSoundOnOff() {
-		return soundOnOff;
-	}
-
-	/**
-	 * Enables or disables the sound in this setting.
-	 * @param soundOnOff true to enable sound; false to disable sound.
-	 */
-	public void setSoundOnOff(boolean soundOnOff) {
-		this.soundOnOff = soundOnOff;
-		writeToSQL();
-	}
-
-	/**
-	 * Get method to check whether left or right control is enabled in this settings objects.
-	 * @return true if the left control; false equals right control.
-	 */
-	public boolean isLeftControl() {
-		return leftControl;
-	}
 
 	/**
 	 * Set left control to this setting.
@@ -267,4 +236,37 @@ public class Setting extends Model {
 		this.leftControl = leftControl;
 		writeToSQL();
 	}
+	
+	/**
+	 * Enables or disables the sound in this setting.
+	 * @param soundOnOff true to enable sound; false to disable sound.
+	 */
+	public void setSoundOnOff(boolean soundOnOff) {
+		this.soundOnOff = soundOnOff;
+		writeToSQL();
+	}
+	
+	/**
+	 * @return the current volume
+	 */
+	public float getVolume() {
+		return volume;
+	}
+	
+	/**
+	 * Get method to check whether left or right control is enabled in this settings objects.
+	 * @return true if the left control; false equals right control.
+	 */
+	public boolean isLeftControl() {
+		return leftControl;
+	}
+	
+	/**
+	 * Get method to check whether sound is enabled or not.
+	 * @return true if sound is enabled; false otherwise.
+	 */
+	public boolean isSoundOnOff() {
+		return soundOnOff;
+	}
+	
 }

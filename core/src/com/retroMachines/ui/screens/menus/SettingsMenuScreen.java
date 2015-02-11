@@ -23,16 +23,16 @@ import com.retroMachines.game.controllers.SettingController;
 public class SettingsMenuScreen  extends MenuScreen {
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float PADING30 = 30f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float PADDING30 = 30f;
 	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
-	private final static float HALFTITEWIDTH = (1f / 3.6f);
+	private final static float HALFTITLEWIDTH = (1f / 3.6f);
 	private final static float TITLEWIDTH = (1f / 1.8f);
-	private final static float ONE_9th = (1f / 9f);
+	private final static float ONE_NINTH = (1f / 9f);
 	private final static int COLSPANx2 = 2;
 	private final static int SLIDERMIN = 0;
 	private final static int SLIDERMAX = 100;
@@ -94,23 +94,23 @@ public class SettingsMenuScreen  extends MenuScreen {
 		volumeSlider.getStyle().knob.setMinHeight(screenHeight * SLIDERKNOBSIZE);
 		// TODO get Volume of Phone
 		volumeSlider.setValue(SLIDERMAX / 2);
-		volumeSlider.addListener(new SliderListner());
+		volumeSlider.addListener(new SliderListener());
 		
 		
 		//Make Table
 		
 		//Make Sound Table
 		Table soundTable = new Table(skin);
-		soundTable.add(buttonSoundOff).padLeft(screenWidth / PADING30).width(screenWidth * ONE_9th);
-		soundTable.add(buttonQuieter).padLeft(screenWidth / PADING30).width(screenWidth * ONE_9th);
-		soundTable.add(volumeSlider).padLeft(screenWidth / PADING30).width(screenWidth * HALF);
-		soundTable.add(buttonLouder).padLeft(screenWidth / PADING30).padRight(screenWidth / PADING30).width(screenWidth * ONE_9th);		
+		soundTable.add(buttonSoundOff).padLeft(screenWidth / PADDING30).width(screenWidth * ONE_NINTH);
+		soundTable.add(buttonQuieter).padLeft(screenWidth / PADDING30).width(screenWidth * ONE_NINTH);
+		soundTable.add(volumeSlider).padLeft(screenWidth / PADDING30).width(screenWidth * HALF);
+		soundTable.add(buttonLouder).padLeft(screenWidth / PADDING30).padRight(screenWidth / PADDING30).width(screenWidth * ONE_NINTH);		
 		
 		
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
-		table.add(title).width(screenWidth * TITLEWIDTH).right().padRight((screenWidth * HALF) - (screenWidth * HALFTITEWIDTH) ).expandX().row();
-		table.add(soundTable).padTop(screenHeight / DEFAULTPADING).expandY().expandX().colspan(COLSPANx2).row();
-		table.add(buttonProfileSettings).right().padRight(screenWidth * ONE_9th).padBottom(screenWidth / DEFAULTPADINGx2).colspan(COLSPANx2);
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
+		table.add(title).width(screenWidth * TITLEWIDTH).right().padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH) ).expandX().row();
+		table.add(soundTable).padTop(screenHeight / DEFAULTPADDING).expandY().expandX().colspan(COLSPANx2).row();
+		table.add(buttonProfileSettings).right().padRight(screenWidth * ONE_NINTH).padBottom(screenWidth / DEFAULTPADINGx2).colspan(COLSPANx2);
 		
 	    stage.addActor(table);
 	    
@@ -118,7 +118,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		
 	}
 	
-	private class SliderListner extends ChangeListener {
+	private class SliderListener extends ChangeListener {
 
 		@Override
 		public void changed(ChangeEvent event, Actor actor) {

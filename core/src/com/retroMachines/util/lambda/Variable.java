@@ -5,6 +5,11 @@ import java.util.LinkedList;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MetalElement;
 
+/**
+ * 
+ * @author RetroFactory
+ *
+ */
 public class Variable extends Vertex {
 	
 	// --------------------------

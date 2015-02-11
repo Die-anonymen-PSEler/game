@@ -195,6 +195,43 @@ public class Profile extends Model {
 		}
 	}
 	
+	
+	
+	/*
+	 * Getter and Setter
+	 */
+
+	public void setStatistic(Statistic statistic) {
+		this.statistic = statistic;
+		writeToSQL();
+	}
+
+	/**
+	 * Assigns a new profile name to the profile.
+	 * @param profileName the new name for the profile.
+	 */
+	public void setProfileName(String profileName) {
+		this.profileName = profileName;
+		writeToSQL();
+	}
+	
+	/**
+	 * Assigns a new settings object to the profile.
+	 * @param setting the setting to assign
+	 */
+	public void setSetting(Setting setting) {
+		this.setting = setting;
+		writeToSQL();
+	}
+	
+	/**
+	 * Get method for the statistics of the profile
+	 * @return the statistic attribute associated with this profile
+	 */
+	public Statistic getStatistic() {
+		return this.statistic;
+	}
+
 	public static String[] getAllProfiles() {
 		if (connection == null) {
 			connection = RetroDatabase.getConnection();
@@ -241,17 +278,6 @@ public class Profile extends Model {
 		return map;
 	}
 	
-	
-	
-	/*
-	 * Getter and Setter
-	 */
-
-	public void setStatistic(Statistic statistic) {
-		this.statistic = statistic;
-		writeToSQL();
-	}
-
 	/**
 	 * Get method to retrieve the name of the profile.
 	 * @return the name of the profile
@@ -259,16 +285,7 @@ public class Profile extends Model {
 	public String getProfileName() {
 		return profileName;
 	}
-
-	/**
-	 * Assigns a new profile name to the profile.
-	 * @param profileName the new name for the profile.
-	 */
-	public void setProfileName(String profileName) {
-		this.profileName = profileName;
-		writeToSQL();
-	}
-
+	
 	/**
 	 * Get method to retrieve the profile's id.
 	 * @return the id of the profile
@@ -283,23 +300,6 @@ public class Profile extends Model {
 	 */
 	public Setting getSetting() {
 		return setting;
-	}
-
-	/**
-	 * Assigns a new settings object to the profile.
-	 * @param setting the setting to assign
-	 */
-	public void setSetting(Setting setting) {
-		this.setting = setting;
-		writeToSQL();
-	}
-	
-	/**
-	 * Get method for the statistics of the profile
-	 * @return the statistic attribute associated with this profile
-	 */
-	public Statistic getStatistic() {
-		return this.statistic;
 	}
 
 }

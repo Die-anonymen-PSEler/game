@@ -158,18 +158,6 @@ public class GlobalVariables extends Model {
 	 */
 
 	/**
-	 * Returns the only instance of this class. If none has been 
-	 * created yet one will be created first.
-	 * @return the singleton.
-	 */
-	public static GlobalVariables getSingleton() {
-		if (instance == null) {
-			instantiate();
-		}
-		return instance;
-	}
-
-	/**
 	 * Stores a keyValue pair within this class.
 	 * If the key already exists it will override the previous value. 
 	 * @param key the key under which the value should be stored.
@@ -191,5 +179,17 @@ public class GlobalVariables extends Model {
 	 */
 	public String get(String key) {
 		return map.get(key);
+	}
+	
+	/**
+	 * Returns the only instance of this class. If none has been 
+	 * created yet one will be created first.
+	 * @return the singleton.
+	 */
+	public static GlobalVariables getSingleton() {
+		if (instance == null) {
+			instantiate();
+		}
+		return instance;
 	}
 }

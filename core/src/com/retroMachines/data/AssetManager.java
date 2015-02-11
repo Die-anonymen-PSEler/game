@@ -151,7 +151,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 	
 	// -------------------------------
-	// -----Gameelements skins--------
+	// -----GameElements skins--------
 	// -------------------------------
 	
 	public static Skin getGameelementskin() {

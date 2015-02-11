@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="24" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Laufebenen" tilewidth="64" tileheight="64">
+  <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="17" name="Maschinen" tilewidth="64" tileheight="64">
+  <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="33" name="Ampeln" tilewidth="64" tileheight="64">
+  <image source="Ampeln.png" trans="0000ff" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="37" name="Metallobjekte" tilewidth="64" tileheight="64">
+  <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="53" name="Rohre" tilewidth="64" tileheight="64">
+  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="69" name="Hintergrund" tilewidth="64" tileheight="64">
+  <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
+ </tileset>
+ <tileset firstgid="581" name="gate" tilewidth="64" tileheight="64">
+  <image source="gate.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <layer name="Hintergrund" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzN1gmUlWMYB/ArRpHsskaLEVGEUoRIVIhIpLJXljSkIrsYSkhR9ooaS5ZCyJJ9FFFRlFLWQbst+/a758yc8/pmvm8+psE58zvnnfP8n+e+39z3vXfyMpnMOZxLH86jL/3oT95/VH+Mx5nEE8W1vEBJT/T3sl7j397/BQzgQi6K6X+OKTzPC7zIS7zMK7zDbOYEvSWvlVeGij5/T07nDM6s4PPfym3czh0x/R+wkEV8yEd8zCd8Wjw/zfsc3Xdlv//huazs+xF9/jS5yn7+8Fz+H54/qT96D1fn/sq7v6vjfmVr4Xn7u88fvYf/9PnLyqS5vxWZX/JsZX0O/p2zX1mf36vz+6Mid7ui9UNoQ1vacWim9LlpzcEx2aTaYRxO++JceJZL+tL2H8GRdOAojqYjx9CJYzmOzhxPF7rSjRM4kZM4mVM4ldMype/lWfTibHoX//260yMmm1QL52Rz4Vku6UvbX977eH6m9Lm9mEu4lMu4nCsYyJVcxTUMYjDXMoTruJ4bGEo+V8dkk2rhnPwgG12n6c/u40aGMZybuJkRjOSWTOlzeyd3MYrRjOFu7mEs47iP+3mA8TzIQzzMI0yggHtjskm1cE5BkI2u0/Rn9zGRRzOl/zd+kqeYzNM8w7OZ8r+jXmUq03idN5jOm7zFDGZSyGsx2aRaOKcwyEbXafqz+5jF25m/3qN3eY+5zON95rMgU/531Gd8wZcsZglLWcZyVrCSIj6PySbVwjlFQTa6TtOf3cdXfM03fMt3rOJ7fuBHfuJnfuFXfuN3/iCzhh+qsCZrUZVqrMO6VGc9arA+G5DD2jHZpFo4JyfIRtdp+rP72JCN2JhN2JTNqMnmbMGWbMXWbEMttmU7alOHutRje+qzIzvRgJ3ZhYY0Yldy2SEmm1QL5+QG2eg6TX92H7vRmN3Zgz1pQlP2ohnN2Zt9aMG+7Mf+tOQADqQVB3EIbWhLOw7lMA6nPUfQmoNjskm1cE7rIBtdp+nP7uNIOnAUR9ORY+jEsRxHZ46nC13pxgmcyEmczCmcymn05HTO4EzOohdn05s8utMjJptUC+d0D7LRdZr+7D7O4Vz6cB596Ud/zucCBnAhF3Exl3Apl3E5VzCQK7mKaxjEYK5lCNdxPTcwlHyujskm1cI5+UE2uk7Tn93HjQxjODdxMyMYyS3cym3czh3cyV2MYjRjuJt7GMs47uN+HmA8D/IQD/MIEyjg3phsUi2cUxBko+s0/dl9TORRHuNxJvEET/IUk3maZ3iW55jC87zAi7zEy7zCq0xlGq/zBtN5k7eYwUwKeS0mm1QL5xQG2eg6TX92H7N4m3eYzRze5T3mMo/3mc8CPmAhi/iQj/iYT/iUz/iCL1nMEpayjOWsYCVFfB6TTaqFc4qCbHSdpj+7j6/4mm/4lu9Yxff8wI/8xM/8wq/8xu/8QaaK73+qsCZrUZVqrMO6VGc9arA+G5DD2jHZpFo4JyfIRtdp+rP72JCN2JhN2JTNqMnmbMGWbMXWbEMttmU7alOHutRje+qzIzvRgJ3ZhYY0Yldy2SEmm1QL5+QG2eg6TX92H7vRmN3Zgz1pQlP2ohnN2Zt9aMG+7Mf+tOQADqQVB/En1FDuqQ==
+  </data>
+ </layer>
+ <layer name="Laufebene" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztmAkOwiAQRalW69KoB3Nf7+lyPz+pJITAQKHUKEzyYiqZz/xhbNWKMVZ9KMEabMAW7MAeHMARnAzrLu/ZdM/gAq7gBu7gAZ7gJeWG6paSXxW+9u+R/Zv9z79YV1+Rzz9t/zVL23/q55/9Z/8p++fP+FD/YzDRUCjXS0cdOc+WExoxz38aMU/XK3Hdpme/Pv9qr9r23NW/OuO+M2rS0Z1bH58Hyn9N5PnOtkmH0utqL110Of+m+2CMe9gQDFrWo6uD8j9izezZ9uk7uPcVa+rzrY1rcG+UfzEDIft0HcI7r4s/u31q4xoLRv/20fWgiIiLB9m7jK4H4nzFq4zQcPEu/xei7uvKzLJeO/aX0lPzdX0SUN/5MpmUeQM6RyCI
+  </data>
+ </layer>
+ <layer name="Open gate" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztz0EJACAQAMHDegoK2j+L97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtetUB6g==
+  </data>
+ </layer>
+ <layer name="Gate" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztz0EJACAQAMHDdgoK2j+M97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtGc0B3g==
+  </data>
+ </layer>
+ <layer name="Ablagen" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt07EJwDAQA8BfKgGbZP+1bLeu0ongOxDfqtBXAQAAAH/zbvc098wzc6WLBLV0gbC1/V7n/gDAFwOrXwIP
+  </data>
+ </layer>
+</map>

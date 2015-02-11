@@ -35,9 +35,9 @@ public class GameScreen extends AbstractScreen implements
 
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	public static final int OBJECT_LAYER = 5;
 	
 	
@@ -129,46 +129,6 @@ public class GameScreen extends AbstractScreen implements
 		drawButtons();
 	}
 	
-	private void updateCameraPosition(float x, float y) {
-		camera.position.x = gameController.getRetroMan().getPos().x;
-		camera.position.y = gameController.getRetroMan().getPos().y;
-		
-		float cameraHalfWidth = camera.viewportWidth * .5f;
-		float cameraHalfHeight = camera.viewportHeight * .5f;
-		
-		camBounds[3] = camera.position.x - cameraHalfWidth;
-		camBounds[1] = camera.position.x + cameraHalfWidth;
-		camBounds[2] = camera.position.y - cameraHalfHeight;
-		camBounds[0] = camera.position.y + cameraHalfHeight;
-		
-		if(mapBounds[1] < camera.viewportWidth)
-		{
-		    camera.position.x = mapBounds[1] / 2;
-		}
-		else if(camBounds[3] <= 0)
-		{
-			camera.position.x = 0 + cameraHalfWidth;
-		}
-		else if(camBounds[1] >= mapBounds[1])
-		{
-			camera.position.x = mapBounds[1] - cameraHalfWidth;
-		}
-
-		// Vertical axis
-		if(mapBounds[0] < camera.viewportHeight)
-		{
-			camera.position.y = mapBounds[0] / 2;
-		}
-		else if(camBounds[2] <= 0)
-		{
-			camera.position.y = 0 + cameraHalfHeight;
-		}
-		else if(camBounds[0] >= mapBounds[0])
-		{
-			camera.position.y = mapBounds[0] - cameraHalfHeight;
-		}
-	}
-
 	/**
 	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
@@ -212,6 +172,49 @@ public class GameScreen extends AbstractScreen implements
         stage.draw();
 	}
 	
+
+	
+	private void updateCameraPosition(float x, float y) {
+		camera.position.x = gameController.getRetroMan().getPos().x;
+		camera.position.y = gameController.getRetroMan().getPos().y;
+		
+		float cameraHalfWidth = camera.viewportWidth * .5f;
+		float cameraHalfHeight = camera.viewportHeight * .5f;
+		
+		camBounds[3] = camera.position.x - cameraHalfWidth;
+		camBounds[1] = camera.position.x + cameraHalfWidth;
+		camBounds[2] = camera.position.y - cameraHalfHeight;
+		camBounds[0] = camera.position.y + cameraHalfHeight;
+		
+		if(mapBounds[1] < camera.viewportWidth)
+		{
+		    camera.position.x = mapBounds[1] / 2;
+		}
+		else if(camBounds[3] <= 0)
+		{
+			camera.position.x = 0 + cameraHalfWidth;
+		}
+		else if(camBounds[1] >= mapBounds[1])
+		{
+			camera.position.x = mapBounds[1] - cameraHalfWidth;
+		}
+
+		// Vertical axis
+		if(mapBounds[0] < camera.viewportHeight)
+		{
+			camera.position.y = mapBounds[0] / 2;
+		}
+		else if(camBounds[2] <= 0)
+		{
+			camera.position.y = 0 + cameraHalfHeight;
+		}
+		else if(camBounds[0] >= mapBounds[0])
+		{
+			camera.position.y = mapBounds[0] - cameraHalfHeight;
+		}
+	}
+
+	
 	private void drawButtons() {
 		skin = AssetManager.getMenuSkin();
 		
@@ -252,22 +255,22 @@ public class GameScreen extends AbstractScreen implements
 		//Make Table
 		table.add().expand().row();
 		
-		innerButtonTable.add(buttonHint).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
-		innerButtonTable.add(buttonQuest).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+		innerButtonTable.add(buttonHint).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
+		innerButtonTable.add(buttonQuest).padRight(screenWidth / DEFAULTPADDING).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
 		
 		// Add to Table check LeftMode is activated
 		if (leftMode) {
-			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADINGx2).padBottom(screenWidth / DEFAULTPADINGx2);
-			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDINGx2).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDING).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
 			buttonTable.add(innerButtonTable);
-			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
-			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADINGx2).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADDINGx2).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
 		} else {
-			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADINGx2).padBottom(screenWidth / DEFAULTPADINGx2);
-			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADING).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDINGx2).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADDING).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
 			buttonTable.add(innerButtonTable);
-			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADINGx4).padLeft(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADINGx2);
-			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADINGx2).padLeft(screenWidth / DEFAULTPADINGx4).padBottom(screenWidth / DEFAULTPADINGx2);
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx2).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
 		}
 		
 		table.add(buttonTable);
@@ -292,6 +295,10 @@ public class GameScreen extends AbstractScreen implements
 		}
 	}
 
+	/*
+	 * Getter and Setter
+	 */
+	
 	/**
 	 * sets the sound to the new volume that was newly adjusted in the settings
 	 */
@@ -304,25 +311,6 @@ public class GameScreen extends AbstractScreen implements
 		// the game
 		game.getSettingController().setVolume(newVolume);
 	}
-
-	// -----------------------------------
-	// --------Retro-Man-Controlls--------
-	// -----------------------------------
-
-	/**
-	 * Listener when the user clicks on Button Interact
-	 * 
-	 * @author RetroFactory
-	 */
-	private class InteractButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			if (!popupScreenIsShown) {
-				gameController.interactRetroMan();
-			}
-		}
-	}
-
 
 	
 	
@@ -353,64 +341,7 @@ public class GameScreen extends AbstractScreen implements
 		
 	}
 	
-	
-	
-	
-	// ------------------------------
-	// ----Other Button Listener-----
-	// ------------------------------
 
-	/**
-	 * Button which start Evalution Gamecontroller checks if possible or not
-	 * 
-	 * @author Retro Factory
-	 */
-	private class TryEvaluationButtonClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
-		}
-	}
-
-	/**
-	 * Button which gives a little hint to make the level
-	 * 
-	 * @author Retro Factory
-	 */
-	private class GetHintClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			showHint();
-		}
-	}
-
-	/**
-	 * Button which shows the Task of the Level
-	 * 
-	 * @author Retro Factory
-	 */
-	private class GetTaskClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			showTask();
-		}
-	}
-
-	/**
-	 * Button which shows the Level Menu and interrupts the Game
-	 * 
-	 * @author Retro Factory
-	 */
-	private class MenuClickListener extends ClickListener {
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			//TODO: show level menu
-			pause();
-		}
-	}
-
-
-	
 	/*
 	 * input processing (non-Javadoc)
 	 * @see com.badlogic.gdx.InputProcessor#keyDown(int)
@@ -466,4 +397,81 @@ public class GameScreen extends AbstractScreen implements
 		// TODO Auto-generated method stub
 		return false;
 	}
-}
+
+	
+	
+
+	// -----------------------------------
+	// --------Retro-Man-Controlls--------
+	// -----------------------------------
+
+	/**
+	 * Listener when the user clicks on Button Interact
+	 * 
+	 * @author RetroFactory
+	 */
+	private class InteractButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			if (!popupScreenIsShown) {
+				gameController.interactRetroMan();
+			}
+		}
+	}
+
+	
+	// ------------------------------
+	// ----Other Button Listener-----
+	// ------------------------------
+
+	/**
+	 * Button which start Evalution Gamecontroller checks if possible or not
+	 * 
+	 * @author Retro Factory
+	 */
+	private class TryEvaluationButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Auto-generated method stub
+		}
+	}
+
+	/**
+	 * Button which gives a little hint to make the level
+	 * 
+	 * @author Retro Factory
+	 */
+	private class GetHintClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			showHint();
+		}
+	}
+
+	/**
+	 * Button which shows the Task of the Level
+	 * 
+	 * @author Retro Factory
+	 */
+	private class GetTaskClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			showTask();
+		}
+	}
+
+	/**
+	 * Button which shows the Level Menu and interrupts the Game
+	 * 
+	 * @author Retro Factory
+	 */
+	private class MenuClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			//TODO: show level menu
+			pause();
+		}
+	}
+
+
+	}
