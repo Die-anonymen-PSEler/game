@@ -19,7 +19,7 @@ public class SettingTest {
 	 * check if values are assigned correctly
 	 */
 	@Test
-	public void test() {
+	public void testCreateSetting() {
 		Setting setting = new Setting(TEST_LEFT, TEST_SOUNDONOFF, TEST_VOLUME);
 		assertTrue("volume is wrong", TEST_VOLUME == setting.getVolume());
 		assertTrue("soundonoff is wrong", TEST_SOUNDONOFF == setting.isSoundOnOff());

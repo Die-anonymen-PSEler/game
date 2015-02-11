@@ -30,7 +30,7 @@ public class ProfileControllerTest {
 	 * check if loading the profile works
 	 */
 	@Test
-	public void test() {
+	public void testLoadLastProfile() {
 		assertTrue("profile was not loaded successfully", profileController.loadLastProfile());
 	}
 	

@@ -22,7 +22,7 @@ public class StatisticTest {
 	}
 	
 	@Test
-	public void testCreate() {
+	public void testCreateStatistic() {
 		Statistic statistic = new Statistic(TEST_PLAYTIME, TEST_LEVELCOMPLETED, TEST_STEPCOUNTER);
 		assertTrue("wrong playtime", TEST_PLAYTIME == statistic.getPlaytime());
 		assertTrue("wrong levels completed", TEST_LEVELCOMPLETED == statistic.getLevelsComplete());
@@ -35,7 +35,7 @@ public class StatisticTest {
 	 * fetch from db test
 	 */
 	@Test
-	public void testFETCH() {
+	public void testDBFetch() {
 		Statistic statistic = new Statistic(TEST_ID);
 		assertTrue("wrong playtime", TEST_PLAYTIME == statistic.getPlaytime());
 		assertTrue("wrong levels completed", TEST_LEVELCOMPLETED == statistic.getLevelsComplete());
@@ -46,7 +46,7 @@ public class StatisticTest {
 	 * write back check
 	 */
 	@Test
-	public void testWrite() {
+	public void testWriteBack() {
 		Statistic statistic = new Statistic(TEST_ID);
 		statistic.setLevelsComplete(9000);
 		Statistic statistic2 = new Statistic(TEST_ID);
