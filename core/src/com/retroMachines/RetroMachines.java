@@ -180,6 +180,11 @@ public class RetroMachines extends Game{
 		}
 	}
 
+	/**
+	 * sets the volume to the system volume
+	 * @param volume the actual volume the user has set
+	 * @param maxVolume the maximal volume 
+	 */
 	public void setSystemVolume(int volume, int maxVolume) {
 		systemVolume = volume;
 		maxSystemVolume = maxVolume;
