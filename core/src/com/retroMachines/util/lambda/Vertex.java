@@ -103,27 +103,22 @@ public abstract class Vertex {
 			familyColorList.addFirst(addId);
 		} else {
 			familyColorList.add(index - 1, addId);
-		}
-		
+		}		
 	}
 	
-	//---------------------------------------------------
-	//-------- Beta Reduction and Alpha Conversion ------
-	//---------------------------------------------------
 	
 	/**
-	 * Fulfills one step of beta-reduction.
-	 * 
-	 * @return True if this abstraction has changed, false when an error appeared.
+	 * updates start vertex. This vertex if family is null.
+	 * @return
 	 */
-	abstract public boolean betaReduction();
-	
-	/**
-	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
-	 * 
-	 * @return True if at least one ID has changed, false if no ID has changed.
-	 */
-	abstract public boolean alphaConversion();
+	public Vertex updateStart() {
+		if (family == null) {
+			return this;
+		} else {
+			return family;
+		}
+	}
+
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//------------------Help Methods---------------------
@@ -183,19 +178,6 @@ public abstract class Vertex {
 		}
 		return true;
 	}
-	
-	/**
-	 * Creates a clone of this Vertex without Next and his hole Family
-	 * @param next vertex to clone
-	 * @return deep copy of next
-	 */
-	abstract public Vertex cloneMe(Vertex next);
-	
-	/**
-	 * Creates a clone of this Vertex and his hole Family
-	 * @return clone of Vertex with hole family and next coned
-	 */
-	abstract public Vertex cloneFamily();
 	
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex
@@ -294,18 +276,44 @@ public abstract class Vertex {
 		this.setFamilyColorlist(newColorList);
 	}
 	
-	// --------------------------
-	// ------Getter/Setter-------
-	// --------------------------
 	
 	/**
-	 * Getter for next Vertex in lambda-tree.
-	 * 
-	 * @return The next Vertex in the lambda-tree.
+	 * Creates a clone of this Vertex without Next and his hole Family
+	 * @param next vertex to clone
+	 * @return deep copy of next
 	 */
-	public Vertex getnext() {
-		return next;
-	}
+	abstract public Vertex cloneMe(Vertex next);
+	
+	/**
+	 * Creates a clone of this Vertex and his hole Family
+	 * @return clone of Vertex with hole family and next coned
+	 */
+	abstract public Vertex cloneFamily();
+	
+	//---------------------------------------------------
+	//-------- Beta Reduction and Alpha Conversion ------
+	//---------------------------------------------------
+	
+	/**
+	 * Fulfills one step of beta-reduction.
+	 * 
+	 * @return True if this abstraction has changed, false when an error appeared.
+	 */
+	abstract public boolean betaReduction();
+	
+	/**
+	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
+	 * 
+	 * @return True if at least one ID has changed, false if no ID has changed.
+	 */
+	abstract public boolean alphaConversion();
+	
+	
+	
+	// --------------------------
+	// ------Setter-------
+	// --------------------------
+
 	
 	/**
 	 * Setter for next Vertex in the lambda-tree.
@@ -315,15 +323,6 @@ public abstract class Vertex {
 	 */
 	public void setnext(Vertex next) {
 		this.next = next;
-	}
-	
-	/**
-	 * Getter for the family tree of this vertex.
-	 * 
-	 * @return The family tree of this vertex.
-	 */
-	public Vertex getfamily() {
-		return family;
 	}
 	
 	/**
@@ -338,15 +337,6 @@ public abstract class Vertex {
 		this.family = family;
 		return true;
 	}
-	
-	/**
-	 * Getter for the Color.
-	 * 
-	 * @return The Color of the vertex.
-	 */
-	public int getColor() {
-		return color;
-	}
 
 	/**
 	 * Setter for the Color.
@@ -359,6 +349,24 @@ public abstract class Vertex {
 	}
 	
 	/**
+	 * Setter for the famiylColorList
+	 * 
+	 * @param familyColorList
+	 * 				FamilyColorList that is to set
+	 */
+	public void setFamilyColorlist(LinkedList<Integer> familyColorList) {
+		this.familyColorList = familyColorList;
+	}
+
+	
+	public void setPosition(Vector2 p) {
+		pos = p;
+	}
+	
+	/*
+	 * Getter
+	 */
+	/**
 	 * Getter for the familyColorList
 	 * 
 	 * @return The familyColorList of this Vertex
@@ -368,29 +376,30 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Setter for the famiylColorList
+	 * Getter for the Color.
 	 * 
-	 * @param familyColorList
-	 * 				FamilyColorList that is to set
+	 * @return The Color of the vertex.
 	 */
-	protected void setFamilyColorlist(LinkedList<Integer> familyColorList) {
-		this.familyColorList = familyColorList;
+	public int getColor() {
+		return color;
 	}
 	
 	/**
-	 * updates start vertex. This vertex if family is null.
-	 * @return
+	 * Getter for the family tree of this vertex.
+	 * 
+	 * @return The family tree of this vertex.
 	 */
-	public Vertex updateStart() {
-		if (family == null) {
-			return this;
-		} else {
-			return family;
-		}
+	public Vertex getfamily() {
+		return family;
 	}
 	
-	public void setPosition(Vector2 p) {
-		pos = p;
+	/**
+	 * Getter for next Vertex in lambda-tree.
+	 * 
+	 * @return The next Vertex in the lambda-tree.
+	 */
+	public Vertex getnext() {
+		return next;
 	}
 	
 	public Vector2 getPosition() {
