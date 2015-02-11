@@ -26,9 +26,9 @@ public class LevelMenuScreen extends MenuScreen{
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float LEVELBUTTONSIZE = 6f;
-	private final static float PADING30 = 30f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float PADDING30 = 30f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_1 =  2.1f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
@@ -92,9 +92,9 @@ public class LevelMenuScreen extends MenuScreen{
 			ilevel.getStyle().font.setScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 			
 			if (i % 5 == 4 && i > 0) {
-				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE).height(screenHeight / LEVELBUTTONSIZE).pad(screenHeight / DEFAULTPADINGx4).row();
+				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE).height(screenHeight / LEVELBUTTONSIZE).pad(screenHeight / DEFAULTPADDINGx4).row();
 			} else {
-				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE).height(screenHeight / LEVELBUTTONSIZE).pad(screenHeight / DEFAULTPADINGx4);
+				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE).height(screenHeight / LEVELBUTTONSIZE).pad(screenHeight / DEFAULTPADDINGx4);
 			}
 		}
 		
@@ -105,7 +105,7 @@ public class LevelMenuScreen extends MenuScreen{
 		
 		
 		//Make Table
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
 		table.add(title).width(screenWidth * (2 * ONE_8th)).right().padRight((screenWidth * HALF) - (screenWidth * ONE_8th) ).expandX().row();
 		table.add(levelTable).colspan(COLSPANx2).expandY();
 		
@@ -176,8 +176,8 @@ public class LevelMenuScreen extends MenuScreen{
 		}
 		
 		private void initialize() {
-			padTop(screenWidth / PADING30 ); // set padding on top of the dialog title
-			padBottom(screenWidth / PADING30); // set padding on bottom of the dialog title
+			padTop(screenWidth / PADDING30 ); // set padding on top of the dialog title
+			padBottom(screenWidth / PADDING30); // set padding on bottom of the dialog title
 	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
 	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
 	        setModal(true);

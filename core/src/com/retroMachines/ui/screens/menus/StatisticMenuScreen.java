@@ -11,16 +11,16 @@ import com.retroMachines.game.controllers.StatisticController;
 public class StatisticMenuScreen  extends MenuScreen {
 
 	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float HALF = (1f / 2f);
-	private final static float HALFTITEWIDTH = (1f / 4f);
+	private final static float HALFTITLEWIDTH = (1f / 4f);
 	private final static float TITLEWIDTH = (1f / 2f);
-	private final static float ONE_3rd = (1f / 3f);
-	private final static float TWO_3rd = (2f / 3f);
+	private final static float ONE_THIRD = (1f / 3f);
+	private final static float TWO_THIRD = (2f / 3f);
 	private final static int COLSPANx2 = 2;
 	
 	private Label steps;
@@ -86,25 +86,25 @@ public class StatisticMenuScreen  extends MenuScreen {
 		// Statistik Table
 		Table statisticTable = new Table(skin);
 		Table rightStatistik = new Table(skin);
-		rightStatistik.add(steps).padTop(screenWidth / DEFAULTPADING).row();
-		rightStatistik.add(playTime).padTop(screenWidth / DEFAULTPADING).row();
-		rightStatistik.add(completedLevel).padTop(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADING).row();
+		rightStatistik.add(steps).padTop(screenWidth / DEFAULTPADDING).row();
+		rightStatistik.add(playTime).padTop(screenWidth / DEFAULTPADDING).row();
+		rightStatistik.add(completedLevel).padTop(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDING).row();
 		
 		Table leftStatistik = new Table(skin);
-		leftStatistik.add(stepsLeft).padTop(screenWidth / DEFAULTPADING).row();
-		leftStatistik.add(timeLeft).padTop(screenWidth / DEFAULTPADING).row();
-		leftStatistik.add(completedLevelLeft).width(screenWidth * TWO_3rd).padTop(screenWidth / DEFAULTPADING).padBottom(screenWidth / DEFAULTPADING).row();
+		leftStatistik.add(stepsLeft).padTop(screenWidth / DEFAULTPADDING).row();
+		leftStatistik.add(timeLeft).padTop(screenWidth / DEFAULTPADDING).row();
+		leftStatistik.add(completedLevelLeft).width(screenWidth * TWO_THIRD).padTop(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDING).row();
 		
-		statisticTable.add(leftStatistik).left().width(screenWidth * TWO_3rd);
-		statisticTable.add(rightStatistik).right().width(screenWidth * ONE_3rd);
+		statisticTable.add(leftStatistik).left().width(screenWidth * TWO_THIRD);
+		statisticTable.add(rightStatistik).right().width(screenWidth * ONE_THIRD);
 		
 		Button buttonReturn = new Button(skin, "back");
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth / DEFAULTPADINGx4).left();
-		table.add(title).width(screenWidth * TITLEWIDTH).right().padRight((screenWidth * HALF) - (screenWidth * HALFTITEWIDTH) ).expandX().row();
-		table.add(statisticTable).colspan(COLSPANx2).padBottom(screenWidth / DEFAULTPADINGx4).row();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(title).width(screenWidth * TITLEWIDTH).right().padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH) ).expandX().row();
+		table.add(statisticTable).colspan(COLSPANx2).padBottom(screenWidth / DEFAULTPADDINGx4).row();
 		table.add().expandY().colspan(COLSPANx2);
 		
 	    stage.addActor(table);

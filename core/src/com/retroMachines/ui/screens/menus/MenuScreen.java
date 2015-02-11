@@ -57,13 +57,6 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 		super.dispose();
 	}
 	
-	/**
-	 * Call this method to set up the menu screen. 
-	 * Only fills the Table with Buttons or other UI elements that are needed. The table will be added to 
-	 * the stage by the MenuScreen class.
-	 */
-	protected abstract void initialize();
-	
     /**
      * Renders the Stage to the Screen.
      */
@@ -125,6 +118,13 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
     	// TODO Auto-generated method stub
     	return false;
     }
+    
+    /**
+	 * Call this method to set up the menu screen. 
+	 * Only fills the Table with Buttons or other UI elements that are needed. The table will be added to 
+	 * the stage by the MenuScreen class.
+	 */
+	protected abstract void initialize();
     
 	/**
 	 * Button to return to the MainMenuScreen.

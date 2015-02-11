@@ -24,6 +24,12 @@ public class LoadMenuScreen extends MenuScreen implements AssetManager.OnProgres
 		AssetManager.addProgressListener(this);
 	}
     
+    @Override
+	protected void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+    
     /**
      * Displays this screen.
      */
@@ -40,12 +46,6 @@ public class LoadMenuScreen extends MenuScreen implements AssetManager.OnProgres
 
 	@Override
 	public void progressChanged(int value) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void initialize() {
 		// TODO Auto-generated method stub
 		
 	}

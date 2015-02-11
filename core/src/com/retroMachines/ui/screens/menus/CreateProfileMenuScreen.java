@@ -35,14 +35,14 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 */
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE3 =  3f;
 	private final static float FONTSIZE2 =  2f;
 	private final static float DIVIDEHEIGHTDEFAULT = 1080f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float TEXTFIELDHEIGHTMULTIPLIKATOR = 50f;
+	private final static float TEXTFIELDHEIGHTMULTIPLICATOR = 50f;
 	private final static float TEXTFIELDTABLEWIDTH = 2f;
 	private final static float TEXTFIELDTABLEHEIGHT = 120f;
 	private final static float TEXTFIELDFONTSIZE = 0.3f;
@@ -118,7 +118,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		
 		// Make Textfield
 		nameTextField = new TextField("", skin);
-		nameTextField.setHeight(TEXTFIELDHEIGHTMULTIPLIKATOR * screenHeight / DIVIDEHEIGHTDEFAULT);
+		nameTextField.setHeight(TEXTFIELDHEIGHTMULTIPLICATOR * screenHeight / DIVIDEHEIGHTDEFAULT);
 		nameTextField.setMaxLength(PROFILENAMELENGTH);
 		TextFieldStyle nameTextStyle = nameTextField.getStyle();
 		// ADD 20 pixel to left and right border of Textfield
@@ -142,31 +142,31 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		
 		//ButtonTables
 		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADING);
-		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADING);
+		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADDING);
+		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADDING);
 		
 		Table leftiTable = new Table(skin);
-		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADING);
-		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADING);
+		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADDING);
+		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADDING);
 		
 		//ImageTable
 		Table imageTable = new Table(skin);
-		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADINGx4);
-		imageTable.add(charImage).padTop(screenHeight/ DEFAULTPADINGx2).height(screenHeight * IMAGEHEIGHT).width(screenWidth * IMAGEWIDTH);
+		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADDINGx4);
+		imageTable.add(charImage).padTop(screenHeight/ DEFAULTPADDINGx2).height(screenHeight * IMAGEHEIGHT).width(screenWidth * IMAGEWIDTH);
 		
 		
 		//RightTable
 		Table rightTable = new Table(skin);
-		rightTable.add(profileName).padTop(screenHeight/ DEFAULTPADING).row();
-		rightTable.add(nameTextField).height(TEXTFIELDTABLEHEIGHT * ((screenWidth) / DIVIDEWIDTHDEFAULT)).width(screenWidth / TEXTFIELDTABLEWIDTH).padTop(screenHeight/ DEFAULTPADINGx2).row();
-		rightTable.add(steeringTitle).padTop(screenHeight/ DEFAULTPADING).row();
-		rightTable.add(leftiTable).expandX().padTop(screenHeight/ DEFAULTPADINGx2).row();
+		rightTable.add(profileName).padTop(screenHeight/ DEFAULTPADDING).row();
+		rightTable.add(nameTextField).height(TEXTFIELDTABLEHEIGHT * ((screenWidth) / DIVIDEWIDTHDEFAULT)).width(screenWidth / TEXTFIELDTABLEWIDTH).padTop(screenHeight/ DEFAULTPADDINGx2).row();
+		rightTable.add(steeringTitle).padTop(screenHeight/ DEFAULTPADDING).row();
+		rightTable.add(leftiTable).expandX().padTop(screenHeight/ DEFAULTPADDINGx2).row();
 		
 		//MainTable
-		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight/ DEFAULTPADING).row();
+		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight/ DEFAULTPADDING).row();
 		table.add(imageTable).width(screenWidth * IMAGETABLEWIDTH);
 		table.add(rightTable).width(screenWidth * RIGHTTABLEWIDTH).row();
-		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight/ DEFAULTPADING).row();
+		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight/ DEFAULTPADDING).row();
 		
 	    stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);

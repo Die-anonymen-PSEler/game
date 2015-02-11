@@ -27,16 +27,16 @@ import com.retroMachines.game.controllers.SettingController;
 public class ProfileSettingsMenuScreen extends MenuScreen {
 	
 	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADING = 25f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADINGx4 = 100f;
+	private final static float DEFAULTPADDING = 25f;
+	private final static float DEFAULTPADDINGx2 = 50f;
+	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float FONTSIZE2 =  2f;
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float TWO_8th = (2f / 8f);
-	private final static float THREE_5th = (3f / 5f);
-	private final static float FOUR_9th = (4f / 9f);
-	private final static float FIVE_9th = (5f / 9f);
+	private final static float TWO_EIGHT = (2f / 8f);
+	private final static float THREE_FIFTH = (3f / 5f);
+	private final static float FOUR_NINTH = (4f / 9f);
+	private final static float FIVE_NINTH = (5f / 9f);
 	private final static int COLSPANx2 = 2;
 	
 	private SettingController settingController;
@@ -120,30 +120,30 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// ButtonTables
 		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADING);
-		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADING);
+		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADDING);
+		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADDING);
 
 		Table leftiTable = new Table(skin);
-		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADING);
-		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADING);
+		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADDING);
+		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADDING);
 
 		// ImageTable
 		Table imageTable = new Table(skin);
-		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADINGx4);
-		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADINGx2)
-				.height((screenHeight) * THREE_5th).width((screenWidth) * TWO_8th);
+		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADDINGx4);
+		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADDINGx2)
+				.height((screenHeight) * THREE_FIFTH).width((screenWidth) * TWO_EIGHT);
 
 		// RightTable
 		Table rightTable = new Table(skin);
-		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADING).row();
-		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADING).row();
-		rightTable.add(leftiTable).expandX().padTop(screenHeight / DEFAULTPADINGx2).row();
+		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADDING).row();
+		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDING).row();
+		rightTable.add(leftiTable).expandX().padTop(screenHeight / DEFAULTPADDINGx2).row();
 
 		// MainTable
-		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADING).row();
-		table.add(imageTable).width(screenWidth * FOUR_9th);
-		table.add(rightTable).width(screenWidth * FIVE_9th).row();
-		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADING).row();
+		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDING).row();
+		table.add(imageTable).width(screenWidth * FOUR_NINTH);
+		table.add(rightTable).width(screenWidth * FIVE_NINTH).row();
+		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDING).row();
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
