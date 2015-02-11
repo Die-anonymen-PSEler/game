@@ -20,7 +20,7 @@ public class LambdaTests {
 	FileHandle file;
 	
 	@Before
-	public void setUpBeforeClass() throws Exception {
+	public void setUp() throws Exception {
 		lambdaUtil = new LambdaUtil();
 		file = Gdx.files.internal(pathToJson);
 		lambdaUtil.createTreeFromJson(pathToJson);

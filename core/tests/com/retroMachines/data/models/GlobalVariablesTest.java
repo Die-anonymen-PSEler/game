@@ -24,13 +24,13 @@ public class GlobalVariablesTest {
 	}
 
 	@Test
-	public void test() {
+	public void testCorrectValue() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
 		assertTrue("wert stimmt nicht mit default wert in dieser klasse überein", gv.get(KEY_LASTUSEDPROFILE).equals(VALUE_LASTUSEDPROFILE));
 	}
 	
 	@Test
-	public void assignValue() {
+	public void testAssignValue() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
 		gv.put(KEY_LASTUSEDPROFILE, "abc123");
 		assertTrue("falsche daten zurück geschrieben", gv.get(KEY_LASTUSEDPROFILE).equals("abc123"));
