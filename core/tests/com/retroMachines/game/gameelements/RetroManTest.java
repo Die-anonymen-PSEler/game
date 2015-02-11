@@ -30,5 +30,31 @@ public class RetroManTest {
 		retroMan.jump();
 		assertFalse("retroman is allowed to jump", retroMan.canJump());
 	}
+	
+	@Test
+	public void testFacing() {
+		retroMan.goLeft();
+		assertTrue("retroman is looking to the right", retroMan.getFaceLeft());
+		retroMan.goRight();
+		assertFalse("retroman is looking to the left", retroMan.getFaceLeft());
+	}
+	
+	@Test
+	public void testLeftMovement() {
+		retroMan.goLeft();
+		assertTrue("retromans velocity is wrong", retroMan.getVelocity().x == -RetroMan.RUNNING_IMPULSE);
+	}
+	
+	@Test
+	public void testRightMovement() {
+		retroMan.goRight();
+		assertTrue("retromans velocity is wrong", retroMan.getVelocity().x == RetroMan.RUNNING_IMPULSE);
+	}
+	
+	@Test
+	public void testJumpLockOnFalling() {
+		retroMan.getVelocity().y = -9f;
+		assertFalse("retroman is allowed to jump", retroMan.canJump());
+	}
 
 }
