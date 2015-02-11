@@ -1,6 +1,7 @@
 package com.retroMachines.util;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.lambda.data.Tree;
 
 public class LevelBuilder {
@@ -37,6 +38,6 @@ public class LevelBuilder {
 	 * @param id
 	 */
 	public void prepare(int id) {
-		
+		map = AssetManager.loadMap(id);
 	}
 }
