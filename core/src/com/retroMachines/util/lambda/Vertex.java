@@ -3,6 +3,7 @@ package com.retroMachines.util.lambda;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
+import com.retroMachines.game.gameelements.GameElement;
 
 /**
  * This class is part of the model of RetroMachines. 
@@ -31,6 +32,8 @@ public abstract class Vertex {
 	private Vector2 pos;
 	
 	private boolean isInDepot;
+	
+	protected GameElement gameElement;
 	
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
@@ -196,6 +199,12 @@ public abstract class Vertex {
 	 * @return clone of Vertex with hole family and next coned
 	 */
 	abstract public Vertex cloneFamily();
+	
+	/**
+	 * returns GameElement according to this vertex
+	 * @return
+	 */
+	abstract public GameElement getGameElementFromVertex();
 	
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex
@@ -373,7 +382,7 @@ public abstract class Vertex {
 	 * @param familyColorList
 	 * 				FamilyColorList that is to set
 	 */
-	protected void setFamilyColorlist(LinkedList<Integer> familyColorList) {
+	public void setFamilyColorlist(LinkedList<Integer> familyColorList) {
 		this.familyColorList = familyColorList;
 	}
 	

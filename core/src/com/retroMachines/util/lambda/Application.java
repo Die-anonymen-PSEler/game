@@ -2,6 +2,9 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.game.gameelements.MachineElement;
+
 public class Application extends Vertex {
 
 	// --------------------------
@@ -125,5 +128,15 @@ public class Application extends Vertex {
 	public Vertex cloneFamily(){
 		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
 		return clone;
+	}
+
+	@Override
+	public GameElement getGameElementFromVertex() {
+		if (gameElement == null) {
+			return new MachineElement(getColor());
+		} else {
+			return gameElement;
+		}
+		
 	}
 }

@@ -16,6 +16,7 @@ import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.LevelTree;
 
 /**
@@ -202,7 +203,7 @@ public class GameController {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
 		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
 		cell.getTile();
-		return null;
+		return evaControl.getLambdaUtil().getGameElement((int) posObj.x, (int) posObj.y);
 	}
 
 	/**
@@ -350,7 +351,7 @@ public class GameController {
 	 */
 	public void evaluationClicked() {
 		if (checkPlacementofElements()) {
-			evaControl = new EvaluationController(buildlambdaTree(), game);
+			evaControl = new EvaluationController((createLambdaUtil()), game);
 			checkEvaluationResult();
 		}
 	}
@@ -370,8 +371,10 @@ public class GameController {
 	 * 
 	 * @return returns the Tree Object
 	 */
-	private LevelTree buildlambdaTree() {
-		return null;
+	private LambdaUtil createLambdaUtil() {
+		LambdaUtil util = new LambdaUtil();
+		//TODO: setting util
+		return util;
 
 	}
 
@@ -380,7 +383,7 @@ public class GameController {
 	 * one to finish the level.
 	 */
 	private void checkEvaluationResult() {
-
+		//TODO: implement
 	}
 
 	public void doorTestMethod() {

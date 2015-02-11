@@ -36,5 +36,5 @@ public class LightElement extends GameElement {
 		skin = AssetManager.getGameelementskin(); 
 		texture = skin.get(color + "Light", TextureRegion.class).getTexture();	
 	}
-
+	
 }

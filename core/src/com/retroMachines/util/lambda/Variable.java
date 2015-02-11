@@ -2,6 +2,9 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.game.gameelements.MetalElement;
+
 public class Variable extends Vertex {
 	
 	// --------------------------
@@ -118,6 +121,16 @@ public class Variable extends Vertex {
 	@Override
 	public Vertex cloneMe(Vertex next) {
 		return new Variable(next.getColor());
+	}
+
+	@Override
+	public GameElement getGameElementFromVertex() {
+		//only one instance of gameElement allowed
+		if (gameElement == null) {
+		return new MetalElement(getColor());
+		} else {
+			return gameElement;
+		}
 	}
 
 }

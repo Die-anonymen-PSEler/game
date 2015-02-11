@@ -16,6 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.retroMachines.util.Constants;
+import com.retroMachines.game.gameelements.*;
 
 public class LambdaUtil {
 
@@ -31,7 +32,8 @@ public class LambdaUtil {
 	private LevelTree levelTree;
 	private LevelTree targetTree;
 	private LevelTree hintTree;
-	private LinkedList<Vertex> gameelements;
+	private LinkedList<Vertex> vertexList;
+	private LinkedList<GameElement> gameElementList;
 	
 
 	public LambdaUtil() {
@@ -69,7 +71,8 @@ public class LambdaUtil {
 		} catch (IOException e) {
 			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
 		}
-		gameelements = makeGameelementList(elements);
+		vertexList = makeVertexList(elements);
+		gameElementList = makeGameElementList();
 		levelTree = new LevelTree(makeStartVertexTree(tree));
 		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
 		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
@@ -97,6 +100,29 @@ public class LambdaUtil {
 			
 		}
 	}
+	
+	/**
+	 * returns gameElement according to vertex with specified position. Null if there is no such vertex
+	 * @param posX x coordinate
+	 * @param posY y coordinate
+	 * @return gameElement according to vertex
+	 */
+	public GameElement getGameElement(int posX, int posY) {
+		//getting vertex
+		Vertex vertex = null;
+		for (Vertex v : vertexList) {
+			if (v.getPosition().x == posX && v.getPosition().y == posY) {
+				vertex = v;
+				break;
+			}
+		}
+		if (vertex != null) {
+			return vertex.getGameElementFromVertex();
+		} else {
+			return null;
+		}
+		
+	}
 
 	public interface OnNextLambdaStepListener {
 
@@ -108,7 +134,7 @@ public class LambdaUtil {
 
 	}
 	
-	private LinkedList<Vertex> makeGameelementList(JsonArray elements) {
+	private LinkedList<Vertex> makeVertexList(JsonArray elements) {
 		LinkedList<Vertex> elementList = new LinkedList<Vertex>();
 		for (JsonElement e : elements) {
 			JsonObject elementObject = e.getAsJsonObject();
@@ -118,6 +144,17 @@ public class LambdaUtil {
 			elementList.add(element);
 		}
 		return elementList;
+	}
+	
+	private LinkedList<GameElement> makeGameElementList() {
+		if (vertexList == null) {
+			return null;
+		}
+		LinkedList<GameElement> list = new LinkedList<GameElement>();
+		for (Vertex v : vertexList) {
+			list.add(v.getGameElementFromVertex());
+		}
+		return list;
 	}
 
 	/**
@@ -204,12 +241,13 @@ public class LambdaUtil {
 		}
 	}
 	
+	
 	/**
 	 * getter for gameElements
 	 * @return gameElements
 	 */
 	public LinkedList<Vertex> getGameElements() {
-		return gameelements;
+		return vertexList;
 	}
 	
 	/**

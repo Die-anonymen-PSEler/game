@@ -2,6 +2,9 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.game.gameelements.LightElement;
+
 public class Abstraction extends Vertex {
 	
 	// --------------------------
@@ -104,6 +107,17 @@ public class Abstraction extends Vertex {
 	 */
 	public Vertex cloneFamily(){
 		return new Abstraction(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
+	}
+	
+	/**
+	 * returns gameElemet according to this vertex
+	 */
+	public GameElement getGameElementFromVertex() {
+		if (gameElement == null) {
+			return new LightElement();
+		} else {
+			return gameElement;
+		}
 	}
 	
 }
