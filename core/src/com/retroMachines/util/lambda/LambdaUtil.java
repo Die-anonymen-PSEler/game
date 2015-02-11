@@ -168,7 +168,7 @@ public class LambdaUtil {
 			if (count == array.size()) {
 				start.setnext(null); //lastVertex.next is null
 			} else {
-				JsonObject nextOb = array.get(count + 1).getAsJsonObject();
+				JsonObject nextOb = array.get(count).getAsJsonObject();
 				start.setnext(getSpecializedVertex(nextOb));
 			}
 			count++;

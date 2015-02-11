@@ -16,13 +16,13 @@ import com.badlogic.gdx.files.FileHandle;
 public class LambdaTests {
 	
 	private LambdaUtil lambdaUtil;
-	private static final String pathToJson = "maps/Prototype.json";
+	private static final String pathToJson = "assets/maps/Prototype.json";
 	FileHandle file;
 	
 	@Before
 	public void setUpBeforeClass() throws Exception {
 		lambdaUtil = new LambdaUtil();
-		file = Gdx.files.internal(pathToJson); //TODO: will cause NullPointerException, need to fix
+		file = Gdx.files.internal(pathToJson);
 		lambdaUtil.createTreeFromJson(pathToJson);
 	}
 
@@ -54,7 +54,7 @@ public class LambdaTests {
 	public void createTreeFromJsonTest() {
 		LambdaUtil util = new LambdaUtil();
 		//causes NullPointerException in createTreeFromJson
-		util.createTreeFromJson("maps/Protoype.json");
+		util.createTreeFromJson(pathToJson);
 	}
 
 
