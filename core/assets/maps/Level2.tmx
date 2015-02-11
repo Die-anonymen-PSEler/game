@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="24" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Rohre" tilewidth="64" tileheight="64">
+  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="17" name="Maschinen" tilewidth="64" tileheight="64">
+  <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="33" name="Metallobjekte" tilewidth="64" tileheight="64">
+  <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="49" name="Laufebenen" tilewidth="64" tileheight="64">
+  <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="Hintergrund" tilewidth="64" tileheight="64">
+  <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
+ </tileset>
+ <tileset firstgid="577" name="gate" tilewidth="64" tileheight="64">
+  <image source="gate.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <layer name="Hintergrund" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzF1gmwVXMYAPD7ytKKaNNCkjWlolXaUHmRQsgWLZa0S1lLe7You1K0KERRZKfQnpR9Ke0pFIqy+zVz78x5xz33nmfMmHm/OfPu//u+/37PbZVIJM7gTFpzFm2Sz41sYjNfsyUUE9YqolY4pxdduYZudKcHPfPR1pfr6Jdsy03Tf24yfs/zXeazgIUsSv4fNebUOMP9twnEBMeQ+ixqLVP1UjXSjScVl24uqbbU/O/jfh4IxOeGdA1It5ebsvQVtQep9uAYgusTtZbBz9KNJzzHOGcjar6d6EwXrgjEpDsjqc/COVFjSM0pU3twrunOUaY5ZtqTcFtw3pnG0zWi7r+9h5naw+uYaR7p7lCc85/qM9MYe2SpFdzD8N0Ji1Mj3RpFfSeku8dR6x73XEad79w0NYJrHb47KcG9ybY+2dbp33zH/xdtUec+uA9R9ye4N+nWJ52osf1f8++ZJacpzTiFUzmN5rSgJacn128Ud3NPMj5bXtMs/abqxu0/av/acjbncC7tOI/zuYD2XMhFXMwlXEoHLuNyOib+eT+u5CquTs4j2GfHGHlx68aNi1rH3vTh2kTe+9qf67mBG7mJm7mFAQzkVgYxmCEMZRjDGcFIbuP2UJ+DY+TFrRs37g7u5K5E3rM4mjHcm8h7Xx/kIR7mEcYyjkcZzwQe43EmMonJTOEJpjKNJ3kq1OfEGHlx6wbPVaa4p5nOMzzLDGbyHM8zi9m8wIvM4SVe5hVe5TVe5w3e5C3mMo+3eSeR/nfp4lCf85J5cfrIVjd4rjLFLWEpy3iP5bzPClbyAR/yER/zCZ/yGZ/zBV+yitV8xRrWso71bEik/126NdTnumRenD6y1Q2eq0xx3/At37GN7XzPD/zIDnbyEz+zi938wq/8xu/8wZ/8RSLHHwUoyF7szT7sSyEKUyQn7z4ViJEXt27wXGWKK0oxirMf+3MAJTiQgyhJKUpThrIcTDnKU4GKHMKhVOIwKnM4VTiCIzmKozmGY3Py7lPlGHlx6wbPVaa4qhxHNapzPDWoSS1O4ERqU4e61KM+DTiJhpxMIxrThKY04xRO5TSa04KWnE5uTt53Z7MYeXHrxo1rxRmcSWvOog1tOZtzOJd2nMf5XEB7LuSiPXPgEi6lA5dxOR3pRGe6cAVXchVX0zUn77uzY4y8uHXjxl1DN7rTg570ojd9uJa+XEc/+nM9N3AjN+2ZA7cwgIHcyiAGM4ShDGM4IxjJbdweiAs/o/LyWzdb3B3cyV2M4m7uYTRjuJf7uJ8HeJCHeJhHGMs4HmU8E3iMx5nIJCYzhSeYyjSe5KlAXPgZlZffutninmY6z/AsM5jJczzPLGbzAi8yh5d4mVd4ldd4nTd4k7eYyzze5h3eZT4LWMgiFgfiws+ovPzWzRa3hKUs4z2W8z4rWMkHfMhHfMwnfMpnfM4XfMkqVvMVa1jLOtazgY1sYjNfs4WtgbjwMyovv3WzxX3Dt3zHNrbzPT/wIzvYyU/8zC528wu/8hu/8wd/8lfOnhe59zQFKMhe7M0+7EshClMkEBd+RuXlt262uKIUozj7sT8HUIIDOYiSlKI0ZSjLwZSjPBWoyCEcSiUOozKHU4UjOJKjOJpjODYQF35G5eW3bra4qhxHNapzPDWoSS1O4ERqU4e61KM+DTiJhpxMIxrThL8BvZK9+g==
+  </data>
+ </layer>
+ <layer name="Laufebene" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztl48KhDAIxn2l+7urC673f6oSGohspuXqaPvggyDS/VSsAgCExU+4vpAxZNyfeK6jJPHX3v/Gf30NUDd/7f1v/I2/Zn78xvHif8y+u56uvLz6j+zj7Bf41OA9+7P4Rq5/DrGpJP5BGSOyY6wv2GoQOZExx9YpY23R3v5TdmrrHFgZ+XxsnQsLP80Zzbl5DUrMLNee+djb/27FVLx+JevC+5TLtcZ/9j5PzZxn7db4vfb5vwn3Fu4NiR9t3edSLo2PyjOC/O/nNQf83Sjty5hHy5BiysVN5daw8xp4nol6EO71yhiWZyzszc21eAJAUXkA
+  </data>
+ </layer>
+ <layer name="Open gate" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztz0EJACAQAMHDcgoK2j+N97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtuLYB0g==
+  </data>
+ </layer>
+ <layer name="Gate" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztz0EJACAQAMHDbgoK2j+O97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtV64Bxg==
+  </data>
+ </layer>
+ <layer name="Ablagen" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt08EJACAAAkA/Be2/cDRBT4nuJlDQBAAAAN6y2gHKRjtA2e/9z/5n/ACAuw1MawAs
+  </data>
+ </layer>
+</map>

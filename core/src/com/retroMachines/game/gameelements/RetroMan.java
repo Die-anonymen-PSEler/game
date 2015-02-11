@@ -114,7 +114,7 @@ public class RetroMan {
 		state = State.STANDING;
 		
 		//The animation
-		texture = new Texture("map/Animation.png");
+		texture = new Texture("assets/map/Animation.png");
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		standRight = new Animation(0, regions[0]);
 		standERight = new Animation(0, regions[2]);

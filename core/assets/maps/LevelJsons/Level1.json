@@ -1,0 +1,55 @@
+{
+	"level": 
+	{
+		"description": "Level das (x) darstellt",
+		"hasTutorialScreen": true,
+		"levelid": 1,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 2,
+					"type": "Var",
+					"posx": 5,
+					"posy": 5
+				}
+			],
+
+			"tree": 
+			[
+				{
+					"color": 2,
+					"tree": 
+					[
+						
+					]
+				}
+			],
+
+			"target": 
+			[
+				{
+					"color": 2,
+					"type": "Var",
+					"target": 
+					[
+						
+					]
+				}
+			],
+
+			"hint": 
+			[
+				{
+					"color": 2,
+					"type": "Var",
+					"hint": 
+					[
+						
+					]
+				}
+			]
+		}
+	}
+}
