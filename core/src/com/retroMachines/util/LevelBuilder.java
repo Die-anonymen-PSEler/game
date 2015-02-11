@@ -9,31 +9,29 @@ public class LevelBuilder {
 	
 	private TiledMap map;
 	
-	private LambdaUtil util;
+	private LambdaUtil lambdaUtil;
 	
 	/**
 	 * Creates a new instance of the levelbuilder
 	 */
 	public LevelBuilder() {
-		util = new LambdaUtil();
-		//TODO: insert paramater for json path
-		util.createTreeFromJson("some path");
+		lambdaUtil = new LambdaUtil();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * getter for the map
+	 * @return map
 	 */
 	public TiledMap getTiledMap() {
 		return map;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * getter for the lambdaUtil
+	 * @return lambdaUtil object, contains everything belonging to lambda
 	 */
-	public LambdaUtil getLambda() {
-		return util;
+	public LambdaUtil getLambdaUtil() {
+		return lambdaUtil;
 	}
 	
 	/**
@@ -42,5 +40,7 @@ public class LevelBuilder {
 	 */
 	public void prepare(int id) {
 		map = AssetManager.loadMap(id);
+		//TODO: get path form id
+		lambdaUtil.createTreeFromJson("get path from id");
 	}
 }
