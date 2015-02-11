@@ -2,6 +2,11 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author RetroFactory
+ *
+ */
 public class Abstraction extends Vertex {
 	
 	// --------------------------
