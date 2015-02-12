@@ -7,6 +7,8 @@ import com.retroMachines.util.lambda.data.Tree;
 
 public class LevelBuilder {
 	
+	
+	private static final String pathJSON = "maps/LevelJsons/Level";
 	private TiledMap map;
 	
 	private LambdaUtil lambdaUtil;
@@ -40,7 +42,8 @@ public class LevelBuilder {
 	 */
 	public void prepare(int id) {
 		map = AssetManager.loadMap(id);
-		//TODO: get path form id
-		lambdaUtil.createTreeFromJson("get path from id");
+		int pathId = id + 1;
+		String pathToLevelJson = pathJSON + pathId;
+		lambdaUtil.createTreeFromJson(pathToLevelJson);
 	}
 }

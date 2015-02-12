@@ -15,8 +15,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
-import com.retroMachines.game.gameelements.*;
 
 /**
  * 
