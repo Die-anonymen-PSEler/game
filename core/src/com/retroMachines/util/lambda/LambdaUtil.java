@@ -241,13 +241,20 @@ public class LambdaUtil {
 	
 	
 	/**
-	 * getter for gameElements
-	 * @return gameElements
+	 * getter for vertexList
+	 * @return vertexList
 	 */
-	public LinkedList<Vertex> getGameElements() {
+	public LinkedList<Vertex> getVertexList() {
 		return vertexList;
 	}
 	
+	/**
+	 * getter for gameElementList
+	 * @return gameElementList
+	 */
+	public LinkedList<GameElement> getGameElementList() {
+		return gameElementList;
+	}
 	/**
 	 * getter for levelTree
 	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked

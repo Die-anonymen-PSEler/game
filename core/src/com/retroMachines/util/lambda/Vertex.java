@@ -49,7 +49,7 @@ public abstract class Vertex {
 	 * Default Public Constructor for Dummy Element
 	 */
 	public Vertex() {
-		
+		isInDepot = false;
 	}
 	
 	/**
@@ -372,6 +372,10 @@ public abstract class Vertex {
 		pos = p;
 	}
 	
+	public void setIsInDepotTrue() {
+		isInDepot = true;
+	}
+	
 	/*
 	 * Getter
 	 */
@@ -382,6 +386,10 @@ public abstract class Vertex {
 	 */
 	public LinkedList<Integer> getFamilyColorList(){
 		return familyColorList;
+	}
+	
+	public boolean isInDepot() {
+		return isInDepot;
 	}
 	
 	/**

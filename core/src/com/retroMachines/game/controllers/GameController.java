@@ -2,6 +2,7 @@ package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -17,7 +18,7 @@ import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.lambda.LambdaUtil;
-import com.retroMachines.util.lambda.LevelTree;
+import com.retroMachines.util.lambda.Vertex;
 
 /**
  * The GameController is part of the controller of RetroMachines. This class
@@ -213,9 +214,15 @@ public class GameController {
 	 * @return Null, if not all depots are filled, else a list of GameElements
 	 *         which are placed in the depots.
 	 */
-	public ArrayList<GameElement> checkDepotPositions() {
-		ArrayList<GameElement> depotElements = new ArrayList<GameElement>();
-		return depotElements;
+	public LinkedList<GameElement> checkDepotPositions() {
+		LambdaUtil util = evaControl.getLambdaUtil();
+		LinkedList<Vertex> vertexList = util.getVertexList();
+		for (Vertex v : vertexList) {
+			if (!v.isInDepot()) {
+				return null;
+			}
+		}
+		return util.getGameElementList();
 	}
 
 	/**
@@ -362,8 +369,8 @@ public class GameController {
 	 * @return True if all the depots contain an element.
 	 */
 	private boolean checkPlacementofElements() {
-		ArrayList<GameElement> depotElements = checkDepotPositions();
-		return false;
+		LinkedList<GameElement> depotElements = checkDepotPositions();
+		return (depotElements != null);
 	}
 
 	/**
