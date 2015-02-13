@@ -60,7 +60,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * Only those assets are allowed here.
 	 */
 	public static void initializePreLoading() {
-		textureMap.put("Background.png", new Texture(Gdx.files.internal("assets/Background.png")));
+		textureMap.put("Background.png", new Texture(Gdx.files.internal("Background.png")));
 		manager.finishLoading();
 	}
 
@@ -71,11 +71,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static void initializeWhileLoading() {
 		manager.load("music/musicfile.ogg", Music.class);
 		notifyListeners(30);
-		TextureAtlas atlas = new TextureAtlas("assets/skins/LambdaGame.pack");
-		TextureAtlas gameElementsAtlas = new TextureAtlas("assets/Gameelements/Gameelements.pack");
+		TextureAtlas atlas = new TextureAtlas("skins/LambdaGame.pack");
+		TextureAtlas gameElementsAtlas = new TextureAtlas("Gameelements/Gameelements.pack");
 		manager.finishLoading();
 		menuSkin = new Skin(
-				Gdx.files.internal("assets/skins/DefaultLambdaGame.json"),
+				Gdx.files.internal("skins/DefaultLambdaGame.json"),
 				atlas);
 		notifyListeners(66);
 		gameElementTexture = new Skin(gameElementsAtlas);

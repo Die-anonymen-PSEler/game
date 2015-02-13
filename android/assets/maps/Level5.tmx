@@ -46,4 +46,9 @@
    eJzt0sEKABAQhGEU4f0f2CoHbZyc7P5fTdMeHNSEAAAAAOBHTbU3WbU33v6v935rq5KkSuJ2F0lfHS/vLDlt3cv+p7nxomJ99wCAdwPbnwCs
   </data>
  </layer>
+ <layer name="Objektebene" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAPBmGAAAAQ==
+  </data>
+ </layer>
 </map>

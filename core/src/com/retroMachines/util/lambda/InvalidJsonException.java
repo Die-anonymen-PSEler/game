@@ -4,8 +4,12 @@ package com.retroMachines.util.lambda;
  * @author RetroFactory
  *
  */
-@SuppressWarnings("serial")
 public class InvalidJsonException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public InvalidJsonException() {
 		super();
 	}
