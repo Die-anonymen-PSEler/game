@@ -68,21 +68,39 @@ public abstract class Constants {
 	 * the id of the last level of the game
 	 */
 	public static final int MAX_LEVEL_ID = 6;
-
-	public static final float WORLD_GRAVITY = -0.5f;
 	
-	public static final float DAMPING = 0.87f;
+	/**
+	 * the gravity that is dragging the character towards the grounds
+	 */
+	public static final float WORLD_GRAVITY = -0.5f;	
 	
+	/**
+	 * the size of pixels each tile has.
+	 */
 	public static final int TILE_SIZE = 64;
 	
+	/**
+	 * the layer id on which retroman may walk
+	 */
 	public static final int SOLID_LAYER_ID = 1;
 	
-	public static final int OBJECT_LAYER_ID = 5;
-	
-	public static final int DOOR_CLOSED_LAYER = 3;
-	
+	/**
+	 * the layer id which has a opened door
+	 */
 	public static final int DOOR_OPEN_LAYER = 2;
 	
+	/**
+	 * the layer id which has a closed door
+	 */
+	public static final int DOOR_CLOSED_LAYER = 3;
+	
+	/**
+	 * the layer id where the depots for the gameelements are.
+	 */
 	public static final int DEPOT_LAYER = 4;
 	
+	/**
+	 * the layer id where the lambda objects will be placed
+	 */
+	public static final int OBJECT_LAYER_ID = 5;	
 }

@@ -49,9 +49,14 @@ public class RetroMan {
 	public static final float RUNNING_IMPULSE = 1f;
 	
 	/**
-	 * 
+	 * the minimum velocity that is considered moving;
 	 */
 	public static final float MIN_VELOCITY_X = 1E-1f;
+	
+	/**
+	 * the amount by which the x velocity is reduced so the character will get slower
+	 */
+	public static final float DAMPING = 0.87f;
 	
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -75,17 +80,9 @@ public class RetroMan {
 	private GameElement element;
 
 	/**
-	 * Contain index of gamenElement in {@value vertexList} which is currently
-	 * hold by RetroMan. -1, if nothing is hold.
-	 */
-	private int indexOfElementHold;
-
-	/**
 	 * the texture of the character
 	 */
 	private Texture texture;
-	
-	private float stateTime;
 	
 	private Animation standRight;
 	private Animation standERight;
@@ -124,9 +121,6 @@ public class RetroMan {
 		runningRightE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 		jumpingRight = new Animation(0, regions[8]);
 		jumpingERight = new Animation(0, regions[9]);
-		
-		//WIDTH = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionWidth();
-		//HEIGHT = (1/(float)Constants.TILE_SIZE) * regions[0].getRegionHeight();
 	}
 
 	/**

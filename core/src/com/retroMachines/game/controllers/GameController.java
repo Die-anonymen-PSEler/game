@@ -278,7 +278,7 @@ public class GameController {
 		retroMan.getVelocity().scl(1 / deltaTime);
 		// update the step counter
 		tempStepCounter += (retroMan.getPos().x - previousPosition);
-		retroMan.getVelocity().x *= Constants.DAMPING;
+		retroMan.getVelocity().x *= RetroMan.DAMPING;
 		
 	}
 	
@@ -391,7 +391,10 @@ public class GameController {
 	private void checkEvaluationResult() {
 		//TODO: implement
 	}
-
+	
+	/**
+	 * checks if retroman is in the correct position and opens the door in case he is.
+	 */
 	public void doorTestMethod() {
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
