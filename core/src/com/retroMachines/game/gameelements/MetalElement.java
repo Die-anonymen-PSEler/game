@@ -43,8 +43,7 @@ public class MetalElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		// TODO Auto-generated method stub
-		return null;
+		return AssetManager.getObjects();
 	}
 
 }

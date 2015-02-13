@@ -46,7 +46,6 @@ public class MachineElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		// TODO Auto-generated method stub
-		return null;
+		return AssetManager.getMachines();
 	}
 }

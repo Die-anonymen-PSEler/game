@@ -28,6 +28,10 @@ public abstract class GameElement extends Actor {
 	
 	public abstract void setColor(String color);
 	
+	/**
+	 * getter for TileSet belonging to GameElement
+	 * @return TiledMapTileSet belonging to GameElement
+	 */
 	public abstract TiledMapTileSet getTileSet();
 	
 }

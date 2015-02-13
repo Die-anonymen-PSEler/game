@@ -1,5 +1,6 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
@@ -40,8 +41,7 @@ public class LightElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		// TODO Auto-generated method stub
-		return null;
+	    return AssetManager.getLights();
 	}
 	
 }
