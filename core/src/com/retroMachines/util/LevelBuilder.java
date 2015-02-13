@@ -2,6 +2,7 @@ package com.retroMachines.util;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -15,9 +16,6 @@ public class LevelBuilder {
 	
 	
 	private static final String PATHTOJSON = "maps/LevelJsons/Level";
-	private static final String TILESETNAME_MACHINE = "Maschinen";
-	private static final String TILESETNAME_METALOBJECTS = "Metallobjekte";
-	private static final String TILESETNAME_LIGHT = "Ampeln";
 	private TiledMap map;
 	
 	private LambdaUtil lambdaUtil;
@@ -53,23 +51,22 @@ public class LevelBuilder {
 		map = AssetManager.loadMap(id);
 		String pathToLevelJson = PATHTOJSON + id;
 		lambdaUtil.createTreeFromJson(pathToLevelJson);
+		addGameelements();
 	}
 	
 	private void addGameelements() {
-		TiledMapTileSets levelSets = map.getTileSets();
-		TiledMapTileSet objects = levelSets.getTileSet(TILESETNAME_METALOBJECTS);
-		TiledMapTileSet machines = levelSets.getTileSet(TILESETNAME_MACHINE);
-		TiledMapTileSet lights = levelSets.getTileSet(TILESETNAME_LIGHT);
 		LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
 		for (int i = 0; i < levelelements.size(); i++) {
 			Vertex v = levelelements.get(i);
 			int color = v.getColor();
 			if (color <= Constants.MAX_ID) {
-				TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
 				Cell cell = new Cell();
+				cell.setTile(v.getGameElementFromVertex().getTileSet().getTile(color));
 				layer.setCell((int) v.getPosition().x, (int) v.getPosition().y, cell);
-			}
-			
+			} else {
+				Gdx.app.log(Constants.LOG_TAG, "Out of ColorRange in TiledSets");
+			}	
 		}
 	}
 }
