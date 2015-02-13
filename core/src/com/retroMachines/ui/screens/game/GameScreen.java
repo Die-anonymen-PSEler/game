@@ -353,6 +353,9 @@ public class GameScreen extends AbstractScreen implements
 		if (keycode == Keys.A) {
 			gameController.doorTestMethod();
 		}
+		else if (keycode == Keys.B) {
+			gameController.interactRetroMan();
+		}
 		return false;
 	}
 

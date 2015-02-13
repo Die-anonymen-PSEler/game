@@ -31,11 +31,6 @@ import com.retroMachines.util.lambda.Vertex;
 public class GameController {
 
 	/**
-	 * the layer where the walls are retroMan can't go trough
-	 */
-	public static final int WALL_LAYER = 5;
-
-	/**
 	 * A reference to the main class for the different calls.
 	 */
 	private final RetroMachines game;
@@ -154,16 +149,18 @@ public class GameController {
 	 * Delegates an interact call to RetroMan.
 	 */
 	public void interactRetroMan() {
-		GameElement element = standsBesideGameElement();
+		if (!retroMan.canJump()) {
+			// picking up elements may online work while not falling
+			return;
+		}
+ 		Cell element = standsBesideGameElement();
 		if (retroMan.hasPickedUpElement()) {
-			if (element != null) {
-				return;
-			} else {
+			if (element == null) {
 				retroMan.layDownElement();
 			}
 		} else {
 			if (element != null) {
-				retroMan.pickupElement(element);
+				//retroMan.pickupElement(element);
 			}
 		}
 	}
@@ -228,30 +225,21 @@ public class GameController {
 	}
 
 	/**
-	 * Sets GameElement at a specific Position in the TiledMap.
-	 * 
-	 * @param posObj
-	 *            Position where the Object should be placed.
-	 * @param element
-	 *            Element which should be placed.
-	 * @return True if the element was placed successfully; otherwise false.
-	 */
-	public boolean setGameElement(Vector2 posObj, GameElement element) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
-		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
-		cell.getTile();
-		// TODO: Element in TiledMapTile umwandeln und setzen
-		// cell.setTile(element);
-		return false;
-	}
-
-	/**
 	 * Checks if RetroMan stands beside a GameElement that he can pick up.
 	 * 
 	 * @return if he stands next to a GameElement the element; null otherwise.
 	 */
-	private GameElement standsBesideGameElement() {
-		return null;
+	private Cell standsBesideGameElement() {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		Vector2 retroPosition = retroMan.getPos();
+		int offset;
+		if (retroMan.getFaceLeft()) {
+			offset = Constants.LEFT_RETROMAN_OFFSET;
+		}
+		else {
+			offset = Constants.RIGHT_RETROMAN_OFFSET;
+		}
+		return layer.getCell((int) retroPosition.x + offset, (int)retroPosition.y);
 	}
 
 	/**
@@ -300,6 +288,7 @@ public class GameController {
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
 		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
 		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
+		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
 		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -321,6 +310,7 @@ public class GameController {
 		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
 		tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
 		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
+		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
 		retroManRect.y += retroMan.getVelocity().y;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
