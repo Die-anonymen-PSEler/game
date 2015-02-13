@@ -264,7 +264,7 @@ public class GameController {
 			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
 		}
 		
-		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X) {
+		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X && retroMan.canJump()) {
 			retroMan.getVelocity().x = 0;
 			retroMan.standing();
 		}
