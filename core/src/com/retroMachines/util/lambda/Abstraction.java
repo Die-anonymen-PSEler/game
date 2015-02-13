@@ -117,7 +117,7 @@ public class Abstraction extends Vertex {
 	/**
 	 * returns gameElemet according to this vertex
 	 */
-	public GameElement getGameElementFromVertex() {
+	public GameElement getGameElement() {
 		if (gameElement == null) {
 			return new LightElement();
 		} else {

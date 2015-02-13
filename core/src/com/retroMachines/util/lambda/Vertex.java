@@ -186,7 +186,7 @@ public abstract class Vertex {
 	 * returns GameElement according to this vertex
 	 * @return
 	 */
-	abstract public GameElement getGameElementFromVertex();
+	abstract public GameElement getGameElement();
 	
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex

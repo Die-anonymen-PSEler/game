@@ -129,10 +129,11 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public GameElement getGameElementFromVertex() {
+	public GameElement getGameElement() {
 		//only one instance of gameElement allowed
 		if (gameElement == null) {
-		return new MetalElement(getColor());
+			gameElement = new MetalElement(getColor());
+			return gameElement;
 		} else {
 			return gameElement;
 		}

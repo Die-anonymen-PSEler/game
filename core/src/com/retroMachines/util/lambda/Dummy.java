@@ -34,7 +34,7 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public GameElement getGameElementFromVertex() {
+	public GameElement getGameElement() {
 		//no gameElement, just a dummy object
 		return null;
 	}

@@ -125,7 +125,7 @@ public class LambdaUtil {
 			}
 		}
 		if (vertex != null) {
-			return vertex.getGameElementFromVertex();
+			return vertex.getGameElement();
 		} else {
 			return null;
 		}
@@ -150,7 +150,7 @@ public class LambdaUtil {
 		}
 		LinkedList<GameElement> list = new LinkedList<GameElement>();
 		for (Vertex v : vertexList) {
-			list.add(v.getGameElementFromVertex());
+			list.add(v.getGameElement());
 		}
 		return list;
 	}

@@ -136,7 +136,7 @@ public class Application extends Vertex {
 	}
 
 	@Override
-	public GameElement getGameElementFromVertex() {
+	public GameElement getGameElement() {
 		if (gameElement == null) {
 			return new MachineElement(getColor());
 		} else {
