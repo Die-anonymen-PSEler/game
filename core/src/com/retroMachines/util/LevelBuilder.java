@@ -3,6 +3,8 @@ package com.retroMachines.util;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.retroMachines.data.AssetManager;
@@ -60,6 +62,14 @@ public class LevelBuilder {
 		TiledMapTileSet lights = levelSets.getTileSet(TILESETNAME_LIGHT);
 		LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
 		for (int i = 0; i < levelelements.size(); i++) {
+			Vertex v = levelelements.get(i);
+			int color = v.getColor();
+			if (color <= Constants.MAX_ID) {
+				TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+				Cell cell = new Cell();
+				layer.setCell((int) v.getPosition().x, (int) v.getPosition().y, cell);
+			}
+			
 		}
 	}
 }
