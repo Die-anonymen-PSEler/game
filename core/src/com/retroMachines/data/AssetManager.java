@@ -9,6 +9,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.retroMachines.util.Constants;
@@ -43,6 +44,13 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * The Gameelement textures
 	 */
 	private static Skin gameElementTexture;
+	
+	/**
+	 * TiledMapTileSets
+	 */
+	private TiledMapTileSet objects;
+	private TiledMapTileSet machines;
+	private TiledMapTileSet lights;
 
 	/**
 	 * Contains all file references to the files that need to be loaded.
