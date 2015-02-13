@@ -6,8 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.Vertex;
@@ -49,15 +47,17 @@ public class LevelBuilder {
 	 */
 	public void prepare(int id) {
 		map = AssetManager.loadMap(id);
-		String pathToLevelJson = PATHTOJSON + id;
+		int levelId = id + 1;
+		String pathToLevelJson = PATHTOJSON + levelId + ".json";
 		lambdaUtil.createTreeFromJson(pathToLevelJson);
 		addGameelements();
 	}
 	
 	private void addGameelements() {
 		LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		for (int i = 0; i < levelelements.size(); i++) {
+			System.out.println("Test");
 			Vertex v = levelelements.get(i);
 			int color = v.getColor();
 			if (color <= Constants.MAX_ID) {
@@ -68,5 +68,7 @@ public class LevelBuilder {
 				Gdx.app.log(Constants.LOG_TAG, "Out of ColorRange in TiledSets");
 			}	
 		}
+		map.getLayers().remove(Constants.OBJECT_LAYER_ID);
+		map.getLayers().add(layer);
 	}
 }

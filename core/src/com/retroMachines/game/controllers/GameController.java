@@ -16,6 +16,7 @@ import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.LevelBuilder;
 import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -92,7 +93,9 @@ public class GameController {
 		retroMan = new RetroMan();
 		boolean left = game.getSettingController().getLeftMode();
 		gameScreen = new GameScreen(game, this, left);
-		map = AssetManager.loadMap(levelId);
+		LevelBuilder builder = new LevelBuilder();
+		builder.prepare(levelId);
+		map = builder.getTiledMap();
 		gameScreen.setMap(map);
 		levelBegin = new Date();
 		game.setScreen(gameScreen);
@@ -296,7 +299,7 @@ public class GameController {
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
 		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
-		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
+		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
 		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -317,7 +320,7 @@ public class GameController {
 		startX = (int) (retroMan.getPos().x);
 		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
 		tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
-		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
+		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
 		retroManRect.y += retroMan.getVelocity().y;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
