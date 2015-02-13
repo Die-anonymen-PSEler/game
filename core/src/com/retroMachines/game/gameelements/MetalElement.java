@@ -1,7 +1,7 @@
 package com.retroMachines.game.gameelements;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.retroMachines.data.AssetManager;
 
 /**
@@ -23,12 +23,6 @@ public class MetalElement extends GameElement {
 	public MetalElement(int colorId) {
 		this.colorId = colorId;
 	}
-
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	/**
 	 * Set the texture with specific color
@@ -38,6 +32,12 @@ public class MetalElement extends GameElement {
 	public void setColor(String color) {
 		skin = AssetManager.getGameelementskin(); 
 		texture = skin.get(color + "Object", TextureRegion.class).getTexture();	
+	}
+
+	@Override
+	public void render(BatchTiledMapRenderer renderer, float parentAlpha) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

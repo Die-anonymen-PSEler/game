@@ -1,7 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -23,7 +23,7 @@ public abstract class GameElement extends Actor {
      */
 	protected Skin skin;
 	
-	public abstract void draw (Batch batch, float parentAlpha);
+	public abstract void render(BatchTiledMapRenderer renderer, float parentAlpha);
 	
 	public abstract void setColor(String color);
 	

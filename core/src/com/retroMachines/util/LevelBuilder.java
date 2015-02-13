@@ -6,10 +6,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.Vertex;
-import com.retroMachines.util.lambda.data.Tree;
 
 public class LevelBuilder {
 	

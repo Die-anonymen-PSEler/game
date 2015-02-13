@@ -292,17 +292,11 @@ public class RetroMan {
 	 * 
 	 * @param deltaTime
 	 */
-	public TextureRegion render(BatchTiledMapRenderer renderer, float deltaTime) {
-		if (hasPickedUpElement()) {
-			//TODO ändern
-			Batch batch = null;
-			float parentAlpha = 100;
-			element.draw(batch, parentAlpha);
-		}
-		// render the RetroMan
+	public void render(BatchTiledMapRenderer renderer, float deltaTime) {
 		renderRetroMan(renderer, deltaTime);
-		// TODO RENDER myself
-		return null;
+		if (hasPickedUpElement()) {
+			element.render(renderer, deltaTime);
+		}
 	}
 
 	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {

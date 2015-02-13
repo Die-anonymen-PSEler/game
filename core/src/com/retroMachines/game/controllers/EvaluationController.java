@@ -2,7 +2,6 @@ package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.util.lambda.LambdaUtil;
