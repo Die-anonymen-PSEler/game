@@ -26,6 +26,21 @@ public abstract class Constants {
 	 * tag for error or log messages.
 	 */
 	public static final String LOG_TAG = "RetroFactory";
+	
+	/**
+	 * TileSet name in TiledMap 
+	 */
+	public static final String TILESETNAME_MACHINE = "Maschinen";
+	
+	/**
+	 * TileSet name in TiledMap 
+	 */
+	public static final String TILESETNAME_METALOBJECTS = "Metallobjekte";
+	
+	/**
+	 * TileSet name in TiledMap 
+	 */
+	public static final String TILESETNAME_LIGHT = "Ampeln";
 
 	/**
 	 * String array containing path to all possible characters.

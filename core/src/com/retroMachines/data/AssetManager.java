@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.retroMachines.util.Constants;
@@ -48,9 +49,9 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * TiledMapTileSets
 	 */
-	private TiledMapTileSet objects;
-	private TiledMapTileSet machines;
-	private TiledMapTileSet lights;
+	private static TiledMapTileSet objects;
+	private static TiledMapTileSet machines;
+	private static TiledMapTileSet lights;
 
 	/**
 	 * Contains all file references to the files that need to be loaded.
@@ -93,6 +94,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 			maps.add(loader.load("assets/maps/Level" + i + ".tmx"));
 			notifyListeners(80 + (int) (i * 20 / (float)Constants.MAX_LEVEL_ID));
 		}
+		setTiledMapTileSets(maps.getFirst());
 		manager.finishLoading();
 	}
 
@@ -170,4 +172,16 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 			throw new IllegalArgumentException("That path has not been loaded? Might wanna change that " + path);
 		}
 	}
+	
+	/**
+	 * Adds TileSets of Machine Metalobjects and Lights of currentMap
+	 * @param currentMap
+	 */
+	private static void setTiledMapTileSets(TiledMap currentMap) {
+		TiledMapTileSets levelSets = currentMap.getTileSets();
+		objects = levelSets.getTileSet(Constants.TILESETNAME_METALOBJECTS);
+		machines = levelSets.getTileSet(Constants.TILESETNAME_MACHINE);
+		lights = levelSets.getTileSet(Constants.TILESETNAME_LIGHT);
+	}
+	
 }
