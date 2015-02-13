@@ -184,4 +184,28 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		lights = levelSets.getTileSet(Constants.TILESETNAME_LIGHT);
 	}
 	
+	/**
+	 * getter for TiledMapTileSet of Objects in TiledMap
+	 * @return TiledMapTileSet
+	 */
+	public static TiledMapTileSet getObjects() {
+		return objects;
+	}
+	
+	/**
+	 * getter for TiledMapTileSet of Machines in TiledMap
+	 * @return TiledMapTileSet
+	 */
+	public static TiledMapTileSet getMachines() {
+		return machines;
+	}
+	
+	/**
+	 * getter for TiledMapTileSet of Lights in TiledMap
+	 * @return TiledMapTileSet
+	 */
+	public static TiledMapTileSet getLights() {
+		return lights;
+	}
+	
 }
