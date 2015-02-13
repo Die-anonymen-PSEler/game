@@ -49,8 +49,7 @@ public class LevelBuilder {
 	 */
 	public void prepare(int id) {
 		map = AssetManager.loadMap(id);
-		int pathId = id + 1;
-		String pathToLevelJson = PATHTOJSON + pathId;
+		String pathToLevelJson = PATHTOJSON + id;
 		lambdaUtil.createTreeFromJson(pathToLevelJson);
 	}
 	
@@ -61,7 +60,6 @@ public class LevelBuilder {
 		TiledMapTileSet lights = levelSets.getTileSet(TILESETNAME_LIGHT);
 		LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
 		for (int i = 0; i < levelelements.size(); i++) {
-			//TODO Get type of element and color .... draw on map
 		}
 	}
 }
