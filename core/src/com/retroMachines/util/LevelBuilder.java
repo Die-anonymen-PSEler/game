@@ -64,7 +64,7 @@ public class LevelBuilder {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		for (int i = 0; i < levelelements.size(); i++) {
 			Vertex v = levelelements.get(i);
-			int offset = (int) v.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+			int offset = (Integer) v.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 			int color = v.getColor();
 			if (color <= Constants.MAX_ID) {
 				Cell cell = new Cell();

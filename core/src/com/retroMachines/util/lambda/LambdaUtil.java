@@ -3,6 +3,7 @@ package com.retroMachines.util.lambda;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class LambdaUtil {
 	private final static String LEVEL = "level";
 	private final static String TARGET = "TARGET";
 	private final static String GAMEELEMENTS = "gameelements";
+	
 
 	private LevelTree levelTree;
 	private LevelTree targetTree;
@@ -227,14 +229,15 @@ public class LambdaUtil {
 	private Vertex getSpecializedVertex(JsonObject j) {
 		String type = j.get("type").getAsString();
 		int color = j.get("color").getAsInt();
-		switch (type) {
-		case "Var":
-			return new Variable(color);
-		case "Abs":
+		//getting and returning right type
+		if (type.equals("Abs")) {
 			return new Abstraction(color);
-		case "App":
+		} else if (type.equals("App")) {
 			return new Application(color);
-		default:
+		} else if (type.equals("Var")){
+			return new Variable(color);
+		} else {
+			Gdx.app.error(Constants.LOG_TAG, "invalid vertex type: " + type);
 			return null;
 		}
 	}
