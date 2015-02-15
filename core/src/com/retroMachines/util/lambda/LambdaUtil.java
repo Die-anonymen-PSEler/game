@@ -101,12 +101,12 @@ public class LambdaUtil {
 	}
 
 	public void performEvaluation() {
-			if (levelTree != null) {
-				levelTree.evaluate();
-			}
-			for (OnNextLambdaStepListener listener : observers) {
-				listener.nextLambdaStepPerformed();
-			
+		if (levelTree != null) {
+			levelTree.evaluate();
+		}
+		for (OnNextLambdaStepListener listener : observers) {
+			listener.nextLambdaStepPerformed();
+		
 		}
 	}
 	
@@ -125,12 +125,7 @@ public class LambdaUtil {
 				break;
 			}
 		}
-		if (vertex != null) {
-			return vertex.getGameElement();
-		} else {
-			return null;
-		}
-		
+		return (vertex != null) ? vertex.getGameElement() : null;		
 	}
 
 	private LinkedList<Vertex> makeVertexList(JsonArray elements) {

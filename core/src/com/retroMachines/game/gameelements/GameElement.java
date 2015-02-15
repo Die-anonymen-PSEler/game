@@ -25,10 +25,6 @@ public abstract class GameElement extends Actor {
      */
 	protected Skin skin;
 	
-	public abstract void render(BatchTiledMapRenderer renderer, float parentAlpha);
-	
-	public abstract void setColor(String color);
-	
 	/**
 	 * getter for TileSet belonging to GameElement
 	 * @return TiledMapTileSet belonging to GameElement
@@ -37,6 +33,10 @@ public abstract class GameElement extends Actor {
 	
 	public TextureRegion getTextureRegion() {
 		return textureRegion;
+	}
+	
+	public void setTextureRegion(TextureRegion region) {
+		this.textureRegion = region;
 	}
 	
 }

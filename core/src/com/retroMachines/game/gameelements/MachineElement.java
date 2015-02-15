@@ -28,22 +28,6 @@ public class MachineElement extends GameElement {
 		// TODO load texture
 	}
 
-	/**
-	 * Set the texture with specific color
-	 * Possible Colors:
-	 * 		Black, Blue, Brown, Green, Grey, Orange, Pink, Purple, Red, White, Yellow
-	 */
-	public void setColor(String color) {
-		skin = AssetManager.getGameelementskin(); 
-		textureRegion = skin.get(color + "Machine", TextureRegion.class);	
-	}
-
-	@Override
-	public void render(BatchTiledMapRenderer renderer, float parentAlpha) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public TiledMapTileSet getTileSet() {
 		return AssetManager.getMachines();

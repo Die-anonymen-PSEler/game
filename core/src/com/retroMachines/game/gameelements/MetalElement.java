@@ -24,22 +24,6 @@ public class MetalElement extends GameElement {
 	public MetalElement(int colorId) {
 		this.colorId = colorId;
 	}
-	
-	/**
-	 * Set the texture with specific color
-	 * Possible Colors:
-	 * 		Black, Blue, Brown, Green, Grey, Orange, Pink, Purple, Red, White, Yellow
-	 */
-	public void setColor(String color) {
-		skin = AssetManager.getGameelementskin(); 
-		textureRegion = skin.get(color + "Object", TextureRegion.class);
-	}
-
-	@Override
-	public void render(BatchTiledMapRenderer renderer, float parentAlpha) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public TiledMapTileSet getTileSet() {

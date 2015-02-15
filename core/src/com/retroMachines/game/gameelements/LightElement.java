@@ -23,23 +23,6 @@ public class LightElement extends GameElement {
 	}
 
 	@Override
-	/**
-	 * Set the texture with specific color
-	 * Possible Colors:
-	 * 		Red, Green
-	 */
-	public void setColor(String color) {
-		skin = AssetManager.getGameelementskin(); 
-		textureRegion = skin.get(color + "Light", TextureRegion.class);	
-	}
-
-	@Override
-	public void render(BatchTiledMapRenderer renderer, float parentAlpha) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public TiledMapTileSet getTileSet() {
 	    return AssetManager.getLights();
 	}

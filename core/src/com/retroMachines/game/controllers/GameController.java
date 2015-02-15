@@ -3,7 +3,6 @@ package com.retroMachines.game.controllers;
 import java.util.Date;
 import java.util.LinkedList;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -159,15 +158,14 @@ public class GameController {
 			// picking up elements may online work while not falling
 			return;
 		}
- 		GameElement element = standsBesideGameElement();
-		if (retroMan.hasPickedUpElement()) {
-			if (element == null) {
-				retroMan.layDownElement();
-			}
-		} else {
-			if (element != null) {
-				retroMan.pickupElement(element);
-			}
+ 		Vector2 elementPosition = standsBesideGameElement();
+ 		GameElement element = getGameElement(elementPosition);
+		if (retroMan.hasPickedUpElement() && element == null) {
+			retroMan.layDownElement();
+		} else if (element != null) {
+			retroMan.pickupElement(element);
+			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
+			layer.setCell((int)elementPosition.x, (int)elementPosition.y, null);
 		}
 	}
 
@@ -235,7 +233,7 @@ public class GameController {
 	 * 
 	 * @return if he stands next to a GameElement the element; null otherwise.
 	 */
-	private GameElement standsBesideGameElement() {
+	private Vector2 standsBesideGameElement() {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Vector2 retroPosition = retroMan.getPos();
 		int offset;
@@ -246,7 +244,7 @@ public class GameController {
 			offset = Constants.RIGHT_RETROMAN_OFFSET;
 		}
 		Vector2 elementPos = new Vector2(((int) retroPosition.x) + offset, (int)retroPosition.y);
-		return getGameElement(elementPos);
+		return elementPos;
 	}
 
 	/**

@@ -52,7 +52,7 @@ public abstract class Constants {
 	/**
 	 * maximum value of id
 	 */
-	public static final int MAX_ID = 10;
+	public static final int MAX_COLOR_ID = 10;
 
 	/**
 	 * This is the amount of the volume that can be changed by the user.

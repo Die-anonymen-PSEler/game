@@ -61,9 +61,10 @@ public class LevelBuilder {
 			Vertex v = levelelements.get(i);
 			int offset = (Integer) v.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 			int color = v.getColor();
-			if (color <= Constants.MAX_ID) {
+			if (color <= Constants.MAX_COLOR_ID) {
 				Cell cell = new Cell();
 				cell.setTile(v.getGameElement().getTileSet().getTile(color + offset));
+				v.getGameElement().setTextureRegion(cell.getTile().getTextureRegion());
 				Vector2 position = v.getPosition();
 				layer.setCell((int) position.x, (int) position.y, cell);
 			} else {
