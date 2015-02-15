@@ -96,6 +96,8 @@ public class RetroMan {
 	 */
 	private final Vector2 velocity;
 
+	private TextureRegion gameelement;
+
 	/**
 	 * Constructs a new Object of the RetroMan and sets his coordinates and
 	 * velocity to 0,0
@@ -288,8 +290,11 @@ public class RetroMan {
 	 */
 	public void render(BatchTiledMapRenderer renderer, float deltaTime) {
 		renderRetroMan(renderer, deltaTime);
-		if (hasPickedUpElement()) {
-			element.render(renderer, deltaTime);
+		if (gameelement != null) {
+			Batch batch = renderer.getBatch();
+			batch.begin();
+			batch.draw(gameelement, pos.x, pos.y + HEIGHT, WIDTH, HEIGHT);
+			batch.end();
 		}
 	}
 
@@ -374,6 +379,10 @@ public class RetroMan {
 		 * he is JUMPINGERIght. His x-velocity may be 0
 		 */
 		JUMPINGE
+	}
+
+	public void testTexture(TextureRegion texture2) {
+		this.gameelement = texture2;
 	}
 
 }
