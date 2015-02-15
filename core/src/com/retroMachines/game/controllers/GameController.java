@@ -3,6 +3,7 @@ package com.retroMachines.game.controllers;
 import java.util.Date;
 import java.util.LinkedList;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -10,7 +11,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.GameScreen;
@@ -161,6 +161,8 @@ public class GameController {
 		} else {
 			if (element != null) {
 				//retroMan.pickupElement(element);
+				TextureRegion atlas = element.getTile().getTextureRegion();
+				retroMan.testTexture(atlas);
 			}
 		}
 	}
@@ -230,7 +232,7 @@ public class GameController {
 	 * @return if he stands next to a GameElement the element; null otherwise.
 	 */
 	private Cell standsBesideGameElement() {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Vector2 retroPosition = retroMan.getPos();
 		int offset;
 		if (retroMan.getFaceLeft()) {
@@ -239,7 +241,8 @@ public class GameController {
 		else {
 			offset = Constants.RIGHT_RETROMAN_OFFSET;
 		}
-		return layer.getCell((int) retroPosition.x + offset, (int)retroPosition.y);
+		System.out.println(((int) retroPosition.x) + offset);
+		return layer.getCell( ((int) retroPosition.x) + offset, (int)retroPosition.y);
 	}
 
 	/**

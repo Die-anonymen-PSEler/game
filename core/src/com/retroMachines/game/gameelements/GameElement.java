@@ -1,8 +1,8 @@
 package com.retroMachines.game.gameelements;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -15,16 +15,29 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public abstract class GameElement extends Actor {
 	
 	/**
-	 * A texture where the image of the GameElement can be stored.
+	 * A textureregion where the image of the GameElement can be stored.
 	 */
-	protected Texture texture;
+	protected TextureRegion textureRegion;
+	
+	/**
+	 * position in the map before pickup
+	 */
+	protected Vector2 pos;
+	
+	/**
+	 * position during evaluation
+	 */
+	protected Vector2 evalPos;
 	
 	/**
      * The skin of all Screens
      */
 	protected Skin skin;
 	
-	public abstract void render(BatchTiledMapRenderer renderer, float parentAlpha);
+	public GameElement() {
+		pos = new Vector2();
+		evalPos = new Vector2();
+	}
 	
 	public abstract void setColor(String color);
 	
