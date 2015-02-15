@@ -1,7 +1,9 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.retroMachines.data.AssetManager;
 
 /**
@@ -16,7 +18,8 @@ public class LightElement extends GameElement {
 	 * for rendering purposes.
 	 */
 	public LightElement() {
-		super();
+		// TODO Auto-generated constructor stub
+		// TODO update texture
 	}
 
 	@Override
@@ -28,6 +31,12 @@ public class LightElement extends GameElement {
 	public void setColor(String color) {
 		skin = AssetManager.getGameelementskin(); 
 		textureRegion = skin.get(color + "Light", TextureRegion.class);	
+	}
+
+	@Override
+	public void render(BatchTiledMapRenderer renderer, float parentAlpha) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

@@ -67,6 +67,11 @@ public class GameController {
 	private float tempStepCounter;
 	
 	/**
+	 * 
+	 */
+	private LambdaUtil lambdaUtil;
+	
+	/**
 	 * Makes a new instance of the GameController.
 	 * 
 	 * @param game
@@ -91,6 +96,7 @@ public class GameController {
 		LevelBuilder builder = new LevelBuilder();
 		builder.prepare(levelId);
 		map = builder.getTiledMap();
+		lambdaUtil = builder.getLambdaUtil();
 		gameScreen.setMap(map);
 		levelBegin = new Date();
 		game.setScreen(gameScreen);
@@ -153,16 +159,14 @@ public class GameController {
 			// picking up elements may online work while not falling
 			return;
 		}
- 		Cell element = standsBesideGameElement();
+ 		GameElement element = standsBesideGameElement();
 		if (retroMan.hasPickedUpElement()) {
 			if (element == null) {
 				retroMan.layDownElement();
 			}
 		} else {
 			if (element != null) {
-				//retroMan.pickupElement(element);
-				TextureRegion atlas = element.getTile().getTextureRegion();
-				retroMan.testTexture(atlas);
+				retroMan.pickupElement(element);
 			}
 		}
 	}
@@ -205,7 +209,7 @@ public class GameController {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
 		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
 		cell.getTile();
-		return evaControl.getLambdaUtil().getGameElement((int) posObj.x, (int) posObj.y);
+		return lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
 	}
 
 	/**
@@ -231,7 +235,7 @@ public class GameController {
 	 * 
 	 * @return if he stands next to a GameElement the element; null otherwise.
 	 */
-	private Cell standsBesideGameElement() {
+	private GameElement standsBesideGameElement() {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Vector2 retroPosition = retroMan.getPos();
 		int offset;
@@ -241,8 +245,8 @@ public class GameController {
 		else {
 			offset = Constants.RIGHT_RETROMAN_OFFSET;
 		}
-		System.out.println(((int) retroPosition.x) + offset);
-		return layer.getCell( ((int) retroPosition.x) + offset, (int)retroPosition.y);
+		Vector2 elementPos = new Vector2(((int) retroPosition.x) + offset, (int)retroPosition.y);
+		return getGameElement(elementPos);
 	}
 
 	/**

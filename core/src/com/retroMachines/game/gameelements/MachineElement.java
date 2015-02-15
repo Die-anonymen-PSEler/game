@@ -2,6 +2,7 @@ package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.retroMachines.data.AssetManager;
 
 /**
@@ -23,8 +24,8 @@ public class MachineElement extends GameElement {
 	 * for rendering purposes.
 	 */
 	public MachineElement(int colorId) {
-		super();
 		this.colorId = colorId;
+		// TODO load texture
 	}
 
 	/**
@@ -35,6 +36,12 @@ public class MachineElement extends GameElement {
 	public void setColor(String color) {
 		skin = AssetManager.getGameelementskin(); 
 		textureRegion = skin.get(color + "Machine", TextureRegion.class);	
+	}
+
+	@Override
+	public void render(BatchTiledMapRenderer renderer, float parentAlpha) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
