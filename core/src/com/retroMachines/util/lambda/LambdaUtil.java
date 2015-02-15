@@ -242,6 +242,23 @@ public class LambdaUtil {
 		}
 	}
 	
+	/**
+	 * returns vertex belonging to given gameElement.
+	 * @param g GameElement to get vertex of
+	 * @return vertex belonging to GameElement
+	 */
+	public Vertex getVertex(GameElement g) {
+		if (g == null) {
+			return null;
+		}
+		for (Vertex v : vertexList) {
+			if (v.getGameElement().equals(g)) {
+				return v;
+			}
+		}
+		return null;
+	}
+	
 	
 	/**
 	 * getter for vertexList
