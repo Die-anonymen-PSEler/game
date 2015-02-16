@@ -40,7 +40,9 @@
         "right": { "up": "Right", "down": "RightPressed", "pressedOffsetY": -4 },
         "left": { "up": "Left", "down": "LeftPressed", "pressedOffsetY": -4 },
         "quest": { "up": "Quest", "down": "QuestPressed", "pressedOffsetY": -4 },
-        "answer": { "up": "Answer", "down": "AnswerPressed", "pressedOffsetY": -4 }
+        "answer": { "up": "Answer", "down": "AnswerPressed", "pressedOffsetY": -4 },
+        "menu": { "up": "Menu", "down": "MenuPressed", "pressedOffsetY": -4 },
+        "evaluation": { "up": "Evaluate", "down": "EvaluatePressed", "pressedOffsetY": -4 }
 
 
     },

@@ -39,6 +39,7 @@ public class GameScreen extends AbstractScreen implements
 	private final static float DEFAULTPADDINGx2 = 50f;
 	private final static float DEFAULTPADDINGx4 = 100f;
 	public static final int OBJECT_LAYER = 5;
+	private final static int COLSPANx2 = 2;
 	
 	
 	
@@ -252,7 +253,20 @@ public class GameScreen extends AbstractScreen implements
 		buttonQuest.addListener(new GetTaskClickListener());
 		buttonQuest.setColor(1, 1, 1, 0.66f);
 		
+		Button buttonMenu = new Button(skin, "menu");
+		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonMenu.addListener(new GetTaskClickListener());
+		buttonMenu.setColor(1, 1, 1, 0.66f);
+		
+		Button buttonEvaluation = new Button(skin, "evaluation");
+		buttonEvaluation.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonEvaluation.addListener(new GetTaskClickListener());
+		buttonEvaluation.setColor(1, 1, 1, 0.66f);
+		
 		//Make Table
+		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
+		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDINGx2).padRight(screenWidth/ DEFAULTPADDINGx4).right().row();
+		
 		table.add().expand().row();
 		
 		innerButtonTable.add(buttonHint).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
@@ -273,7 +287,7 @@ public class GameScreen extends AbstractScreen implements
 			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx2).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
 		}
 		
-		table.add(buttonTable);
+		table.add(buttonTable).colspan(COLSPANx2);
 		stage.addActor(table);
 		
 		inputMultiplexer.addProcessor(stage);

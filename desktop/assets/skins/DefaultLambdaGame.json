@@ -34,12 +34,15 @@
         "nextChar": { "up": "NextChar", "down": "NextCharPressed", "pressedOffsetY": -4 },
         "addProfile": { "up": "AddProfile", "down": "AddProfilePressed", "pressedOffsetY": -4 },
         "deleteProfile": { "up": "DeleteProfile", "down": "DeleteProfilePressed", "pressedOffsetY": -4 },
+        "changeProfile": { "up": "ChangeProfile", "down": "ChangeProfilePressed", "pressedOffsetY": -4 },
         "a": { "up": "A", "down": "APressed", "pressedOffsetY": -4 },
         "b": { "up": "B", "down": "BPressed", "pressedOffsetY": -4 },
         "right": { "up": "Right", "down": "RightPressed", "pressedOffsetY": -4 },
         "left": { "up": "Left", "down": "LeftPressed", "pressedOffsetY": -4 },
         "quest": { "up": "Quest", "down": "QuestPressed", "pressedOffsetY": -4 },
-        "answer": { "up": "Answer", "down": "AnswerPressed", "pressedOffsetY": -4 }
+        "answer": { "up": "Answer", "down": "AnswerPressed", "pressedOffsetY": -4 },
+        "menu": { "up": "Menu", "down": "MenuPressed", "pressedOffsetY": -4 },
+        "evaluation": { "up": "Evaluate", "down": "EvaluatePressed", "pressedOffsetY": -4 }
 
 
     },
