@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.retroMachines.util.Constants;
 
 /**
  * The RetroMan Class contains information regarding the character that may run
@@ -235,6 +236,22 @@ public class RetroMan {
 
 	public Vector2 getVelocity() {
 		return velocity;
+	}
+	
+	/**
+	 * returns the position that would be next to him.
+	 * text into account his facing direction
+	 */
+	public Vector2 nextPosition() {
+		int offset;
+		if (getFaceLeft()) {
+			offset = Constants.LEFT_RETROMAN_OFFSET;
+		}
+		else {
+			offset = Constants.RIGHT_RETROMAN_OFFSET;
+		}
+		Vector2 elementPos = new Vector2(((int) pos.x) + offset, (int)pos.y);
+		return elementPos;
 	}
 
 	/**

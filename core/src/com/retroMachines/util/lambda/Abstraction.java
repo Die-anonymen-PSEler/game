@@ -22,8 +22,8 @@ public class Abstraction extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Abstraction(int color) {
-		super(color);
+	public Abstraction(int id, int color) {
+		super(id, color);
 	}
 	
 	/**
@@ -119,10 +119,9 @@ public class Abstraction extends Vertex {
 	 */
 	public GameElement getGameElement() {
 		if (gameElement == null) {
-			return new LightElement();
-		} else {
-			return gameElement;
+			gameElement = new LightElement();
 		}
+		return gameElement;
 	}
 	
 }

@@ -25,9 +25,14 @@ public abstract class Vertex {
 	private Vertex family;
 	
 	/**
-	 * Unique identifier of Variable.
+	 * unique id of the color of Variable.
 	 */
 	private int color;
+	
+	/**
+	 * unique identifier of this very vertex
+	 */
+	private int id;
 	
 	private Vector2 pos;
 	
@@ -58,7 +63,7 @@ public abstract class Vertex {
 	 * @param color
 	 *            color to set.
 	 */
-	public Vertex(int color) {
+	public Vertex(int id, int color) {
 		this.color = color;
 		this.familyColorList = new LinkedList<Integer>();
 		this.familyColorList.add(color);
@@ -426,6 +431,10 @@ public abstract class Vertex {
 	
 	public Vector2 getPosition() {
 		return pos;
+	}
+
+	public int getId() {
+		return id;
 	}
 }
 

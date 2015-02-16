@@ -41,6 +41,11 @@ public class LambdaUtil {
 	private LinkedList<Vertex> vertexList;
 	private LinkedList<GameElement> gameElementList;
 	
+	/**
+	 * the next available id will be stored within this variable;
+	 */
+	private int runningId;
+	
 
 	/**
 	 * Constructor to create a base for the lambda calculus.
@@ -224,16 +229,19 @@ public class LambdaUtil {
 		String type = j.get("type").getAsString();
 		int color = j.get("color").getAsInt();
 		//getting and returning right type
+		Vertex result;
 		if (type.equals("Abs")) {
-			return new Abstraction(color);
+			result = new Abstraction(runningId, color);
 		} else if (type.equals("App")) {
-			return new Application(color);
+			result = new Application(runningId, color);
 		} else if (type.equals("Var")){
-			return new Variable(color);
+			result = new Variable(runningId, color);
 		} else {
 			Gdx.app.error(Constants.LOG_TAG, "invalid vertex type: " + type);
 			return null;
 		}
+		runningId++;
+		return result;
 	}
 	
 	/**

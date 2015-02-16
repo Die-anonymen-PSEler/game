@@ -1,6 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -24,6 +25,11 @@ public abstract class GameElement extends Actor {
 	protected Skin skin;
 	
 	/**
+	 * the id of the tileset that represents this element
+	 */
+	protected int tileId;
+	
+	/**
 	 * getter for TileSet belonging to GameElement
 	 * @return TiledMapTileSet belonging to GameElement
 	 */
@@ -35,6 +41,15 @@ public abstract class GameElement extends Actor {
 	
 	public void setTextureRegion(TextureRegion region) {
 		this.textureRegion = region;
+	}
+
+	public void setTileId(int i) {
+		this.tileId = i;
+		textureRegion = getTileSet().getTile(i).getTextureRegion();
+	}
+
+	public int getTileId() {
+		return tileId;
 	}
 	
 }

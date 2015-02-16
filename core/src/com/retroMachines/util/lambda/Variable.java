@@ -22,8 +22,8 @@ public class Variable extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Variable(int color) {
-		super(color);
+	public Variable(int id, int color) {
+		super(id, color);
 	}
 	
 	/**
@@ -125,18 +125,16 @@ public class Variable extends Vertex {
 
 	@Override
 	public Vertex cloneMe(Vertex next) {
-		return new Variable(next.getColor());
+		return new Variable(next.getId(), next.getColor());
 	}
 
 	@Override
 	public GameElement getGameElement() {
 		//only one instance of gameElement allowed
 		if (gameElement == null) {
-			gameElement = new MetalElement(getColor());
-			return gameElement;
-		} else {
-			return gameElement;
+			gameElement = new MetalElement(getColor());	
 		}
+		return gameElement;
 	}
 
 }

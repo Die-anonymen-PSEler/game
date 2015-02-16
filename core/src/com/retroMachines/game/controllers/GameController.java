@@ -10,12 +10,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.game.RetroLevel;
+import com.retroMachines.game.RetroLevel.LevelBuilder;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
-import com.retroMachines.util.LevelBuilder;
 import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -45,10 +46,9 @@ public class GameController {
 	private RetroMan retroMan;
 
 	/**
-	 * The map that is currently active and may be shown to the user if the
-	 * gameScreen is active.
+	 * 
 	 */
-	private TiledMap map;
+	private RetroLevel level;
 	
 	/**
 	 * controls Evaluation
@@ -64,11 +64,6 @@ public class GameController {
 	 * 
 	 */
 	private float tempStepCounter;
-	
-	/**
-	 * 
-	 */
-	private LambdaUtil lambdaUtil;
 	
 	/**
 	 * Makes a new instance of the GameController.
@@ -92,11 +87,10 @@ public class GameController {
 		retroMan = new RetroMan();
 		boolean left = game.getSettingController().getLeftMode();
 		gameScreen = new GameScreen(game, this, left);
-		LevelBuilder builder = new LevelBuilder();
+		RetroLevel.LevelBuilder builder = new RetroLevel.LevelBuilder();
 		builder.prepare(levelId);
-		map = builder.getTiledMap();
-		lambdaUtil = builder.getLambdaUtil();
-		gameScreen.setMap(map);
+		level = builder.getLevel();
+		gameScreen.setMap(level.getMap());
 		levelBegin = new Date();
 		game.setScreen(gameScreen);
 	}
@@ -158,14 +152,14 @@ public class GameController {
 			// picking up elements does not work while falling
 			return;
 		}
- 		Vector2 elementPosition = standsBesideGameElement();
- 		GameElement element = getGameElement(elementPosition);
+ 		Vector2 elementPosition = retroMan.nextPosition();
+ 		GameElement element = level.getGameElement(elementPosition);
 		if (retroMan.hasPickedUpElement() && element == null) {
 			GameElement previous = retroMan.layDownElement();
+			level.placeGameElement(previous, elementPosition);
 		} else if (element != null) {
 			retroMan.pickupElement(element);
-			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
-			layer.setCell((int)elementPosition.x, (int)elementPosition.y, null);
+			level.removeGameElement(elementPosition);
 		}
 	}
 
@@ -197,19 +191,6 @@ public class GameController {
 	// --------------------------
 
 	/**
-	 * Returns GameElement at a given position in TiledMap and deletes it.
-	 * 
-	 * @param posObj
-	 *            Position in TiledMap of the GameElement.
-	 * @return The GameElement at this position ( null when empty).
-	 */
-	public GameElement getGameElement(Vector2 posObj) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
-		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
-		return (cell == null) ? null : lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
-	}
-
-	/**
 	 * Returns a List of GameElements which are in the depots. If one depot
 	 * doesn't contain an Element, it returns null.
 	 * 
@@ -225,24 +206,6 @@ public class GameController {
 			}
 		}
 		return util.getGameElementList();
-	}
-
-	/**
-	 * Checks if RetroMan stands beside a GameElement that he can pick up.
-	 * 
-	 * @return if he stands next to a GameElement the element; null otherwise.
-	 */
-	private Vector2 standsBesideGameElement() {
-		Vector2 retroPosition = retroMan.getPos();
-		int offset;
-		if (retroMan.getFaceLeft()) {
-			offset = Constants.LEFT_RETROMAN_OFFSET;
-		}
-		else {
-			offset = Constants.RIGHT_RETROMAN_OFFSET;
-		}
-		Vector2 elementPos = new Vector2(((int) retroPosition.x) + offset, (int)retroPosition.y);
-		return elementPos;
 	}
 
 	/**
@@ -289,9 +252,9 @@ public class GameController {
 		}
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
-		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
-		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
+		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
+		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
+		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
 		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -311,9 +274,9 @@ public class GameController {
 		}
 		startX = (int) (retroMan.getPos().x);
 		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
-		tiles = getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
-		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
-		tiles.addAll(getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
+		tiles = level.getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
+		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
+		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
 		retroManRect.y += retroMan.getVelocity().y;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -327,21 +290,6 @@ public class GameController {
 				break;
 			}
 		}
-	}
-
-	private Array<Rectangle> getTiles(int startX, int startY, int endX, int endY, int layerId) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(layerId);
-		Array<Rectangle> tiles = new Array<Rectangle>();
-		for (int y = startY; y <= endY; y++) {
-			for (int x = startX; x <= endX; x++) {
-				Cell cell = layer.getCell(x, y);
-				if (cell != null) {
-					Rectangle rect = new Rectangle(x, y, 1, 1);
-					tiles.add(rect);
-				}
-			}
-		}
-		return tiles;
 	}
 
 	// --------------------------
@@ -391,6 +339,7 @@ public class GameController {
 	/**
 	 * checks if retroman is in the correct position and opens the door in case he is.
 	 */
+	/*
 	public void doorTestMethod() {
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
@@ -410,4 +359,5 @@ public class GameController {
 			}
 		}
 	}
+	*/
 }

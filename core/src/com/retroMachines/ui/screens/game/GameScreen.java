@@ -42,15 +42,9 @@ public class GameScreen extends AbstractScreen implements
 	private final static float DEFAULTPADDINGx4 = 100f;
 	private static final float ONE_4th = (1f / 4f);
 	public static final int OBJECT_LAYER = 5;
-<<<<<<< HEAD
 	private final static int COLSPANx2 = 2;
-	
-	
-	
-=======
 	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 
->>>>>>> origin/master
 	/**
 	 * the map that is currently active and may be shown to the user in case the
 	 * gameScreen is shown.
@@ -254,7 +248,6 @@ public class GameScreen extends AbstractScreen implements
 		buttonQuest.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuest.addListener(new GetTaskClickListener());
 		buttonQuest.setColor(1, 1, 1, 0.66f);
-<<<<<<< HEAD
 		
 		Button buttonMenu = new Button(skin, "menu");
 		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
@@ -269,11 +262,6 @@ public class GameScreen extends AbstractScreen implements
 		//Make Table
 		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
 		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDINGx2).padRight(screenWidth/ DEFAULTPADDINGx4).right().row();
-		
-=======
-
-		// Make Table
->>>>>>> origin/master
 		table.add().expand().row();
 
 		innerButtonTable.add(buttonHint)
@@ -389,7 +377,7 @@ public class GameScreen extends AbstractScreen implements
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.A) {
-			gameController.doorTestMethod();
+			//gameController.doorTestMethod();
 		} else if (keycode == Keys.B) {
 			gameController.interactRetroMan();
 		}

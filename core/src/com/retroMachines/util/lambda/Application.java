@@ -22,8 +22,8 @@ public class Application extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Application(int color) {
-		super(color);
+	public Application(int id, int color) {
+		super(id, color);
 	}
 	
 	/**
@@ -138,10 +138,8 @@ public class Application extends Vertex {
 	@Override
 	public GameElement getGameElement() {
 		if (gameElement == null) {
-			return new MachineElement(getColor());
-		} else {
-			return gameElement;
+			gameElement = new MachineElement(getColor());
 		}
-		
+		return gameElement;
 	}
 }
