@@ -12,7 +12,11 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -21,10 +25,9 @@ import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
 
 /**
- * This class is part of the view of RetroMachines. 
- * It displays the actual game to the user. It's controller is 
- * the gameController which handles all the logic. If something needs 
- * to be rendered for the game it should be placed
+ * This class is part of the view of RetroMachines. It displays the actual game
+ * to the user. It's controller is the gameController which handles all the
+ * logic. If something needs to be rendered for the game it should be placed
  * within the render method of this class.
  * 
  * @author RetroFactory
@@ -33,16 +36,21 @@ import com.retroMachines.ui.screens.AbstractScreen;
 public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
 
-	
 	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float DEFAULTPADDING = 25f;
 	private final static float DEFAULTPADDINGx2 = 50f;
 	private final static float DEFAULTPADDINGx4 = 100f;
+	private static final float ONE_4th = (1f / 4f);
 	public static final int OBJECT_LAYER = 5;
+<<<<<<< HEAD
 	private final static int COLSPANx2 = 2;
 	
 	
 	
+=======
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+
+>>>>>>> origin/master
 	/**
 	 * the map that is currently active and may be shown to the user in case the
 	 * gameScreen is shown.
@@ -68,16 +76,21 @@ public class GameScreen extends AbstractScreen implements
 	 * the sound which is played while this screen is displayed
 	 */
 	private Music music;
-	
+
+	/**
+	 * the dialog which is shown when hintButton is pressed
+	 */
+	private HintDialog hintDialog;
+
 	/*
 	 * map attributes
 	 */
-	
+
 	/**
 	 * like in css the order goes top-> right -> bottom -> left
 	 */
 	private final int[] mapBounds;
-	
+
 	/**
 	 * 
 	 */
@@ -89,17 +102,17 @@ public class GameScreen extends AbstractScreen implements
 	 * other ButtonClicks like steering of RetroMan are now possible
 	 */
 	private boolean popupScreenIsShown;
-	
+
 	private boolean leftMode;
-	
+
 	/*
 	 * Buttons
 	 */
-	
+
 	private Button buttonLeft;
-	
+
 	private Button buttonRight;
-	
+
 	private Button buttonA;
 
 	/**
@@ -126,22 +139,23 @@ public class GameScreen extends AbstractScreen implements
 		game.getSettingController().add(this);
 		music = AssetManager.getMusic();
 		inputMultiplexer.addProcessor(this);
-		
+
 		drawButtons();
 	}
-	
+
 	/**
 	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
 	public void show() {
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		//music.play();
+		// music.play();
 	}
 
 	/**
 	 * Assigns a new TiledMap to the screen.
 	 * 
-	 * @param map the tiled map for this screen.
+	 * @param map
+	 *            the tiled map for this screen.
 	 */
 	public void setMap(TiledMap map) {
 		this.map = map;
@@ -153,105 +167,94 @@ public class GameScreen extends AbstractScreen implements
 
 	@Override
 	public void render(float delta) {
-		
+
 		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
 
 		inputDetection();
-		
-		updateCameraPosition(gameController.getRetroMan().getPos().x, gameController.getRetroMan().getPos().y);
+
+		updateCameraPosition(gameController.getRetroMan().getPos().x,
+				gameController.getRetroMan().getPos().y);
 		camera.update();
-		
+
 		renderer.setView(camera);
 		renderer.render();
-		
+
 		gameController.update(delta);
 		gameController.getRetroMan().render(renderer, delta);
-		
-		stage.act();
-        stage.draw();
-	}
-	
 
-	
+		stage.act();
+		stage.draw();
+	}
+
 	private void updateCameraPosition(float x, float y) {
 		camera.position.x = gameController.getRetroMan().getPos().x;
 		camera.position.y = gameController.getRetroMan().getPos().y;
-		
+
 		float cameraHalfWidth = camera.viewportWidth * .5f;
 		float cameraHalfHeight = camera.viewportHeight * .5f;
-		
+
 		camBounds[3] = camera.position.x - cameraHalfWidth;
 		camBounds[1] = camera.position.x + cameraHalfWidth;
 		camBounds[2] = camera.position.y - cameraHalfHeight;
 		camBounds[0] = camera.position.y + cameraHalfHeight;
-		
-		if(mapBounds[1] < camera.viewportWidth)
-		{
-		    camera.position.x = mapBounds[1] / 2;
-		}
-		else if(camBounds[3] <= 0)
-		{
+
+		if (mapBounds[1] < camera.viewportWidth) {
+			camera.position.x = mapBounds[1] / 2;
+		} else if (camBounds[3] <= 0) {
 			camera.position.x = 0 + cameraHalfWidth;
-		}
-		else if(camBounds[1] >= mapBounds[1])
-		{
+		} else if (camBounds[1] >= mapBounds[1]) {
 			camera.position.x = mapBounds[1] - cameraHalfWidth;
 		}
 
 		// Vertical axis
-		if(mapBounds[0] < camera.viewportHeight)
-		{
+		if (mapBounds[0] < camera.viewportHeight) {
 			camera.position.y = mapBounds[0] / 2;
-		}
-		else if(camBounds[2] <= 0)
-		{
+		} else if (camBounds[2] <= 0) {
 			camera.position.y = 0 + cameraHalfHeight;
-		}
-		else if(camBounds[0] >= mapBounds[0])
-		{
+		} else if (camBounds[0] >= mapBounds[0]) {
 			camera.position.y = mapBounds[0] - cameraHalfHeight;
 		}
 	}
 
-	
 	private void drawButtons() {
 		skin = AssetManager.getMenuSkin();
-		
+
 		Table table = new Table(skin);
 		table.setBounds(0, 0, screenWidth, screenHeight);
-		
+
 		Table buttonTable = new Table(skin);
-		
+
 		Table innerButtonTable = new Table(skin);
-		
+
 		buttonLeft = new Button(skin, "left");
 		buttonLeft.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonLeft.setColor(1, 1, 1, 0.66f);
-		
+
 		buttonRight = new Button(skin, "right");
 		buttonRight.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonRight.setColor(1, 1, 1, 0.66f);
-		
+
 		buttonA = new Button(skin, "a");
 		buttonA.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonA.setColor(1, 1, 1, 0.66f);
-		
+
 		Button buttonB = new Button(skin, "b");
 		buttonB.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonB.addListener(new InteractButtonClickListener());
 		buttonB.setColor(1, 1, 1, 0.66f);
-		
+
 		Button buttonHint = new Button(skin, "answer");
 		buttonHint.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonHint.addListener(new GetHintClickListener());
 		buttonHint.setColor(1, 1, 1, 0.66f);
-		
+
 		Button buttonQuest = new Button(skin, "quest");
 		buttonQuest.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuest.addListener(new GetTaskClickListener());
 		buttonQuest.setColor(1, 1, 1, 0.66f);
+<<<<<<< HEAD
 		
 		Button buttonMenu = new Button(skin, "menu");
 		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
@@ -267,29 +270,58 @@ public class GameScreen extends AbstractScreen implements
 		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
 		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDINGx2).padRight(screenWidth/ DEFAULTPADDINGx4).right().row();
 		
+=======
+
+		// Make Table
+>>>>>>> origin/master
 		table.add().expand().row();
-		
-		innerButtonTable.add(buttonHint).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
-		innerButtonTable.add(buttonQuest).padRight(screenWidth / DEFAULTPADDING).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
-		
+
+		innerButtonTable.add(buttonHint)
+				.padRight(screenWidth / DEFAULTPADDINGx4)
+				.padLeft(screenWidth / DEFAULTPADDING)
+				.padBottom(screenWidth / DEFAULTPADDINGx2);
+		innerButtonTable.add(buttonQuest)
+				.padRight(screenWidth / DEFAULTPADDING)
+				.padLeft(screenWidth / DEFAULTPADDINGx4)
+				.padBottom(screenWidth / DEFAULTPADDINGx2);
+
 		// Add to Table check LeftMode is activated
 		if (leftMode) {
-			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDINGx2).padBottom(screenWidth / DEFAULTPADDINGx2);
-			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDING).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx4)
+					.padLeft(screenWidth / DEFAULTPADDINGx2)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDING)
+					.padLeft(screenWidth / DEFAULTPADDINGx4)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
 			buttonTable.add(innerButtonTable);
-			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
-			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADDINGx2).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonLeft)
+					.padRight(screenWidth / DEFAULTPADDINGx4)
+					.padLeft(screenWidth / DEFAULTPADDING)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonRight)
+					.padRight(screenWidth / DEFAULTPADDINGx2)
+					.padLeft(screenWidth / DEFAULTPADDINGx4)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
 		} else {
-			buttonTable.add(buttonLeft).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDINGx2).padBottom(screenWidth / DEFAULTPADDINGx2);
-			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADDING).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonLeft)
+					.padRight(screenWidth / DEFAULTPADDINGx4)
+					.padLeft(screenWidth / DEFAULTPADDINGx2)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADDING)
+					.padLeft(screenWidth / DEFAULTPADDINGx4)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
 			buttonTable.add(innerButtonTable);
-			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDINGx4).padLeft(screenWidth / DEFAULTPADDING).padBottom(screenWidth / DEFAULTPADDINGx2);
-			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx2).padLeft(screenWidth / DEFAULTPADDINGx4).padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDINGx4)
+					.padLeft(screenWidth / DEFAULTPADDING)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx2)
+					.padLeft(screenWidth / DEFAULTPADDINGx4)
+					.padBottom(screenWidth / DEFAULTPADDINGx2);
 		}
 		
 		table.add(buttonTable).colspan(COLSPANx2);
 		stage.addActor(table);
-		
+
 		inputMultiplexer.addProcessor(stage);
 	}
 
@@ -303,8 +335,7 @@ public class GameScreen extends AbstractScreen implements
 		}
 		if (Gdx.input.isKeyPressed(Keys.RIGHT) || buttonRight.isPressed()) {
 			gameController.goRightRetroMan();
-		}
-		else if (Gdx.input.isKeyPressed(Keys.LEFT) || buttonLeft.isPressed()) {
+		} else if (Gdx.input.isKeyPressed(Keys.LEFT) || buttonLeft.isPressed()) {
 			gameController.goLeftRetroMan();
 		}
 	}
@@ -312,7 +343,7 @@ public class GameScreen extends AbstractScreen implements
 	/*
 	 * Getter and Setter
 	 */
-	
+
 	/**
 	 * sets the sound to the new volume that was newly adjusted in the settings
 	 */
@@ -326,9 +357,6 @@ public class GameScreen extends AbstractScreen implements
 		game.getSettingController().setVolume(newVolume);
 	}
 
-	
-	
-	
 	// ------------------------------------
 	// --Show different views in the game--
 	// ------------------------------------
@@ -339,9 +367,9 @@ public class GameScreen extends AbstractScreen implements
 	private void showTask() {
 
 	}
-	
+
 	private void hideTask() {
-		
+
 	}
 
 	/**
@@ -350,24 +378,19 @@ public class GameScreen extends AbstractScreen implements
 	private void showHint() {
 
 	}
-	
-	private void hideHint() {
-		
-	}
-	
+
 
 	/*
 	 * input processing (non-Javadoc)
+	 * 
 	 * @see com.badlogic.gdx.InputProcessor#keyDown(int)
 	 */
-
 
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.A) {
 			gameController.doorTestMethod();
-		}
-		else if (keycode == Keys.B) {
+		} else if (keycode == Keys.B) {
 			gameController.interactRetroMan();
 		}
 		return false;
@@ -415,9 +438,6 @@ public class GameScreen extends AbstractScreen implements
 		return false;
 	}
 
-	
-	
-
 	// -----------------------------------
 	// --------Retro-Man-Controlls--------
 	// -----------------------------------
@@ -436,7 +456,6 @@ public class GameScreen extends AbstractScreen implements
 		}
 	}
 
-	
 	// ------------------------------
 	// ----Other Button Listener-----
 	// ------------------------------
@@ -461,6 +480,8 @@ public class GameScreen extends AbstractScreen implements
 	private class GetHintClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
+			//instanciate HintDialog
+			hintDialog = new HintDialog("", skin, "default");
 			showHint();
 		}
 	}
@@ -485,10 +506,22 @@ public class GameScreen extends AbstractScreen implements
 	private class MenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			//TODO: show level menu
+			// TODO: show level menu
 			pause();
 		}
 	}
 
+	private class HintDialog extends Dialog {
+
+		public HintDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			this.initialize();
+		}
+
+		private void initialize() {
+			// TODO: implement
+		}
 
 	}
+
+}
