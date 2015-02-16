@@ -121,7 +121,7 @@ public class RetroMan {
 		runningRightE = new Animation(0.15f, regions[2], regions[3]);
 		runningRightE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 		jumpingRight = new Animation(0, regions[8]);
-		jumpingERight = new Animation(0, regions[9]);
+		jumpingERight = new Animation(0, regions[10]);
 	}
 
 	/**
@@ -264,6 +264,14 @@ public class RetroMan {
 	 */
 	public void pickupElement(GameElement element) {
 		this.element = element;
+		switch (state) {
+		case STANDING:
+			state = State.STANDINGE;
+			break;
+		case RUNNING:
+			state = State.RUNNINGE;
+			break;
+		}
 	}
 
 	/**
@@ -279,6 +287,14 @@ public class RetroMan {
 	public GameElement layDownElement() {
 		GameElement g = element;
 		element = null;
+		switch (state) {
+		case STANDINGE:
+			state = State.STANDING;
+			break;
+		case RUNNINGE:
+			state = State.RUNNING;
+			break;
+		}
 		return g;
 	}
 
