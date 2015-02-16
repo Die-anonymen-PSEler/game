@@ -317,6 +317,11 @@ public abstract class Vertex {
 	 */
 	abstract public boolean alphaConversion();
 	
+	public boolean equals(Vertex v) {
+		//TODO: implement
+		return false;
+	}
+	
 	
 	
 	// --------------------------

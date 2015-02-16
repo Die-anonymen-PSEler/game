@@ -35,6 +35,10 @@ public class LevelTree {
 		start.betaReduction();
 		start = start.updateStart();
 	}
+	
+	public void compareTree(LevelTree tree) {
+		//TODO: implement
+	}
 
 	/*
 	 * Setter

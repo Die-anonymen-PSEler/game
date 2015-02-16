@@ -3,16 +3,19 @@ package com.retroMachines.util.lambda;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.File;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.retroMachines.GdxTestRunner;
+import com.retroMachines.util.lambda.LambdaUtil;
+import com.retroMachines.util.lambda.LevelTree;
+import com.retroMachines.util.lambda.Variable;
 
+@RunWith(GdxTestRunner.class)
 public class LambdaTests {
 	
 	private LambdaUtil lambdaUtil;
@@ -53,7 +56,6 @@ public class LambdaTests {
 	@Test
 	public void createTreeFromJsonTest() {
 		LambdaUtil util = new LambdaUtil();
-		//causes NullPointerException in createTreeFromJson
 		util.createTreeFromJson(pathToJson);
 	}
 

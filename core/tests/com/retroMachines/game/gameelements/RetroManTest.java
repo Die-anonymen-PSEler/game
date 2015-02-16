@@ -1,14 +1,15 @@
 package com.retroMachines.game.gameelements;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.badlogic.gdx.Gdx;
 import com.retroMachines.GdxTestRunner;
+import com.retroMachines.game.gameelements.RetroMan;
 
 @RunWith(GdxTestRunner.class)
 public class RetroManTest {
