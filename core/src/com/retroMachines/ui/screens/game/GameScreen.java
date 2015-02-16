@@ -12,7 +12,11 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -38,7 +42,9 @@ public class GameScreen extends AbstractScreen implements
 	private final static float DEFAULTPADDING = 25f;
 	private final static float DEFAULTPADDINGx2 = 50f;
 	private final static float DEFAULTPADDINGx4 = 100f;
+	private static final float ONE_4th = (1f / 4f);
 	public static final int OBJECT_LAYER = 5;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	
 	
 	
@@ -476,5 +482,19 @@ public class GameScreen extends AbstractScreen implements
 		}
 	}
 
+	private class HintDialog extends Dialog {
+
+		
+
+		public HintDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			this.initialize();
+		}
+		
+		private void initialize() {
+			//TODO: implement
+		}
+		
+	}
 
 	}
