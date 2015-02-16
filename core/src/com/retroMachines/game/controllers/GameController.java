@@ -155,13 +155,13 @@ public class GameController {
 	 */
 	public void interactRetroMan() {
 		if (!retroMan.canJump()) {
-			// picking up elements may online work while not falling
+			// picking up elements does not work while falling
 			return;
 		}
  		Vector2 elementPosition = standsBesideGameElement();
  		GameElement element = getGameElement(elementPosition);
 		if (retroMan.hasPickedUpElement() && element == null) {
-			retroMan.layDownElement();
+			GameElement previous = retroMan.layDownElement();
 		} else if (element != null) {
 			retroMan.pickupElement(element);
 			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
@@ -206,8 +206,7 @@ public class GameController {
 	public GameElement getGameElement(Vector2 posObj) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
 		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
-		cell.getTile();
-		return lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
+		return (cell == null) ? null : lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
 	}
 
 	/**
@@ -234,7 +233,6 @@ public class GameController {
 	 * @return if he stands next to a GameElement the element; null otherwise.
 	 */
 	private Vector2 standsBesideGameElement() {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Vector2 retroPosition = retroMan.getPos();
 		int offset;
 		if (retroMan.getFaceLeft()) {
