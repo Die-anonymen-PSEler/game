@@ -154,7 +154,7 @@ public class GameController {
 		}
  		Vector2 elementPosition = retroMan.nextPosition();
  		GameElement element = level.getGameElement(elementPosition);
-		if (retroMan.hasPickedUpElement() && element == null) {
+		if (retroMan.hasPickedUpElement() && element == null && level.isValidGameElementPosition(elementPosition)) {
 			GameElement previous = retroMan.layDownElement();
 			level.placeGameElement(previous, elementPosition);
 		} else if (element != null) {

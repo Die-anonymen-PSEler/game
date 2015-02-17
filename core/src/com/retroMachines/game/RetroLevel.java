@@ -37,6 +37,18 @@ public class RetroLevel {
 		return lambdaUtil;
 	}
 	
+	public boolean isValidGameElementPosition(Vector2 pos) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
+		if (layer.getCell((int)pos.x, (int) pos.y) != null) {
+			return false;
+		}
+		layer = (TiledMapTileLayer) map.getLayers().get(Constants.SOLID_LAYER_ID);
+		if (layer.getCell((int)pos.x , (int)pos.y) != null || layer.getCell( (int)pos.x, ((int)pos.y - 1)) == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public void placeGameElement(GameElement element, Vector2 newPos) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Vertex vertex = lambdaUtil.getVertex(element);
