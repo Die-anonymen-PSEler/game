@@ -148,17 +148,7 @@ public class ProfileController {
 		updateLastUsedProfile();
 		notifyProfileListeners();
 	}
-	
-	private void updateLastUsedProfile() {
-		GlobalVariables.getSingleton().put(GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
-	}
 
-	
-	private void notifyProfileListeners() {
-		for(OnProfileChangedListener listener : profileChangeListeners) {
-			listener.profileChanged();
-		}
-	}
 	
 	/**
 	 * Adds a class to the list of profileChangeListeners that are notified when the active profile changes.
@@ -184,6 +174,17 @@ public class ProfileController {
 		}
 		profile = new Profile(id);
 		return true;
+	}
+	
+	private void updateLastUsedProfile() {
+		GlobalVariables.getSingleton().put(GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
+	}
+
+	
+	private void notifyProfileListeners() {
+		for(OnProfileChangedListener listener : profileChangeListeners) {
+			listener.profileChanged();
+		}
 	}
 
 }

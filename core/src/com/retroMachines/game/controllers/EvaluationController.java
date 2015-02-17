@@ -53,6 +53,14 @@ public class EvaluationController {
 	}
 	
 	
+	/**
+	 * getter for util
+	 * @return
+	 */
+	public LambdaUtil getLambdaUtil() {
+		return util;
+	}
+	
 	
 	/**
 	 * Updates the evaluation screen to animate the evaluation.
@@ -62,11 +70,4 @@ public class EvaluationController {
 	}
 	
 	
-	/**
-	 * getter for util
-	 * @return
-	 */
-	public LambdaUtil getLambdaUtil() {
-		return util;
-	}
 }
