@@ -1,7 +1,7 @@
 {
 	"level": 
 	{
-		"description": "Level das (lambda x.x) darstellt",
+		"description": "Level das (lambda x.x)(y) darstellt",
 		"hasTutorialScreen": true,
 		"levelid": 2,
 		"data": 
