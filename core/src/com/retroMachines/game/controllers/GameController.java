@@ -191,24 +191,6 @@ public class GameController {
 	// --------------------------
 
 	/**
-	 * Returns a List of GameElements which are in the depots. If one depot
-	 * doesn't contain an Element, it returns null.
-	 * 
-	 * @return Null, if not all depots are filled, else a list of GameElements
-	 *         which are placed in the depots.
-	 */
-	public LinkedList<GameElement> checkDepotPositions() {
-		LambdaUtil util = evaControl.getLambdaUtil();
-		LinkedList<Vertex> vertexList = util.getVertexList();
-		for (Vertex v : vertexList) {
-			if (!v.isInDepot()) {
-				return null;
-			}
-		}
-		return util.getGameElementList();
-	}
-
-	/**
 	 * Performs a collision detection to stop the character in case of walls or
 	 * any other solid object standing in the way.
 	 * @param delta 
@@ -300,20 +282,10 @@ public class GameController {
 	 * Starts the evaluation process.
 	 */
 	public void evaluationClicked() {
-		if (checkPlacementofElements()) {
-			evaControl = new EvaluationController((createLambdaUtil()), game);
-			checkEvaluationResult();
+		if (level.allDepotsFilled()) {
+			evaControl = new EvaluationController(level, game);
+			evaControl.startEvaluation();
 		}
-	}
-
-	/**
-	 * Checks if all the depots contain an element.
-	 * 
-	 * @return True if all the depots contain an element.
-	 */
-	private boolean checkPlacementofElements() {
-		LinkedList<GameElement> depotElements = checkDepotPositions();
-		return (depotElements != null);
 	}
 
 	/**

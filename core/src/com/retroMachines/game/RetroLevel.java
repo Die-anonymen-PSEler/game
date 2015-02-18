@@ -1,8 +1,10 @@
 package com.retroMachines.game;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -83,7 +85,8 @@ public class RetroLevel {
 	public void placeGameElement(GameElement element, Vector2 newPos) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Vertex vertex = lambdaUtil.getVertex(element);
-		vertex.setPosition(new Vector2(newPos.x, newPos.y));
+		vertex.setPosition(newPos.cpy());
+		
 		Cell cell = new Cell();
 		cell.setTile(element.getTileSet().getTile(element.getTileId()));
 		layer.setCell((int) newPos.x, (int) newPos.y, cell);
@@ -133,6 +136,17 @@ public class RetroLevel {
 			}
 		}
 		return tiles;
+	}
+	
+	public boolean allDepotsFilled() {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		for (Vertex v : lambdaUtil.getVertexList()) {
+			Vector2 pos = v.getPosition();
+			if (layer.getCell((int)pos.x, (int)pos.y) == null) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**

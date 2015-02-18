@@ -256,7 +256,7 @@ public class GameScreen extends AbstractScreen implements
 		
 		Button buttonEvaluation = new Button(skin, "evaluation");
 		buttonEvaluation.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonEvaluation.addListener(new GetTaskClickListener());
+		buttonEvaluation.addListener(new TryEvaluationButtonClickListener());
 		buttonEvaluation.setColor(1, 1, 1, 0.66f);
 		
 		//Make Table
@@ -456,7 +456,7 @@ public class GameScreen extends AbstractScreen implements
 	private class TryEvaluationButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
+			gameController.evaluationClicked();
 		}
 	}
 

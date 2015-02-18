@@ -3,6 +3,7 @@ package com.retroMachines.game.controllers;
 import java.util.ArrayList;
 
 import com.retroMachines.RetroMachines;
+import com.retroMachines.game.RetroLevel;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.LevelTree;
@@ -33,11 +34,12 @@ public class EvaluationController {
 	/**
 	 * contains all trees and methods according to lambda model
 	 */
-	private LambdaUtil util;
+	private RetroLevel level;
 	
-	public EvaluationController(LambdaUtil util, RetroMachines g) {
-		this.util = util;
+	public EvaluationController(RetroLevel level, RetroMachines g) {
+		this.level = level;
 		game = g;
+		evaluationScreen = new EvaluationScreen(g, this);
 	}
 	
 	
@@ -49,24 +51,23 @@ public class EvaluationController {
 	public void enterEvaluation() {
 		evaluationScreen = new EvaluationScreen(game, this);
 		game.setScreen(evaluationScreen);
-		util.getLevelTree().evaluate();
+		level.getLambdaUtil().getLevelTree().evaluate();
 	}
-	
-	
-	/**
-	 * getter for util
-	 * @return
-	 */
-	public LambdaUtil getLambdaUtil() {
-		return util;
-	}
-	
 	
 	/**
 	 * Updates the evaluation screen to animate the evaluation.
 	 */
 	private void updateEvaluationScreen(){
 		//TODO: implement
+	}
+
+	/**
+	 * 
+	 */
+	public void startEvaluation() {
+		evaluationScreen.setLambaTerm(level.getLambdaUtil().getLevelTree());
+		game.setScreen(evaluationScreen);
+		
 	}
 	
 	
