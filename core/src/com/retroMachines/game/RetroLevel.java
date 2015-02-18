@@ -102,7 +102,7 @@ public class RetroLevel {
 	}
 	
 	/**
-	 * Returns GameElement at a given position in TiledMap and deletes it.
+	 * Returns GameElement at a given position in TiledMap
 	 * 
 	 * @param posObj
 	 *            Position in TiledMap of the GameElement.

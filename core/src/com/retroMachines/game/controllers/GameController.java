@@ -287,26 +287,6 @@ public class GameController {
 			evaControl.startEvaluation();
 		}
 	}
-
-	/**
-	 * Builds the lambdaTree for the evaluation with data of the map.
-	 * 
-	 * @return returns the Tree Object
-	 */
-	private LambdaUtil createLambdaUtil() {
-		LambdaUtil util = new LambdaUtil();
-		//TODO: setting util
-		return util;
-
-	}
-
-	/**
-	 * Is called after the evaluation and checks if the result is the correct
-	 * one to finish the level.
-	 */
-	private void checkEvaluationResult() {
-		//TODO: implement
-	}
 	
 	/**
 	 * checks if retroman is in the correct position and opens the door in case he is.
