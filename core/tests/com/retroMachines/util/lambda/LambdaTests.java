@@ -48,7 +48,7 @@ public class LambdaTests {
 	@Test
 	public void testEvaluateVariable() {
 		int someInt = 0;
-		LevelTree tree = new LevelTree(new Variable(someInt));
+		LevelTree tree = new LevelTree(new Variable(1, someInt));
 		tree.evaluate();
 		assertTrue("Evaluation of just one Variable should not change anything!", tree.getStart().getColor() == someInt);
 	}
