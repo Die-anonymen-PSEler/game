@@ -51,7 +51,7 @@ public class EvaluationController {
 	public void enterEvaluation() {
 		evaluationScreen = new EvaluationScreen(game, this);
 		game.setScreen(evaluationScreen);
-		level.getLambdaUtil().getLevelTree().evaluate();
+		lambdaTree = level.getLambdaUtil().getLevelTree();
 	}
 	
 	/**
