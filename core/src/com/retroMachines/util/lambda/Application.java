@@ -2,8 +2,10 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.Gdx;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MachineElement;
+import com.retroMachines.util.Constants;
 
 /**
  * 
@@ -56,16 +58,22 @@ public class Application extends Vertex {
 		boolean returnValue = false;
 		int sA = getFamilyColorList().size();
 		int sN = nextFam.size();
-		int newColor = this.getFamilyColorList().getLast() + 1;
+		int newColor;
 		// Searched for double used colors
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
 				if (getFamilyColorList().get(i) == nextFam.get(j)) {
 					//Replace color in next family
+					newColor = this.searchUnusedColorID();
+					if (newColor == - 1) {
+						Gdx.app.log(Constants.LOG_TAG, "out of ColorID Range");
+						// what should happen when there are more than 11 different Colors used ?
+						return true;
+					}
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
-						System.out.println("AlphaConversionError: " + this.getColor());
-						//TODO: kein System.out, Exception oder Logcat
+						System.out.println();
+						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: " + this.getColor());
 					}
 					returnValue = true;
 					newColor++;
@@ -141,5 +149,39 @@ public class Application extends Vertex {
 			gameElement = new MachineElement(getColor());
 		}
 		return gameElement;
+	}
+	
+	private int searchUnusedColorID() {
+		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
+		LinkedList<Integer> actFam = this.getFamilyColorList();
+		int sA = actFam.size();
+		int sN = nextFam.size();
+		int newColor = -1;
+		boolean idIsFree = true;
+		// search unused color ID
+		for(int i = 0; i <= Constants.MAX_COLOR_ID; i++) {
+			// Search if id "i" is unused in firstList
+			for(int j = 0; j < sA; j++) {
+				if(actFam.get(j) == i) {
+					idIsFree = false;
+					break;
+				}
+			}
+			// if id "i" is unused in first list search in next List
+			if(idIsFree) {
+				for(int j = 0; j < sN; j++) {
+					if(nextFam.get(j) == i) {
+						idIsFree = false;
+						break;
+					}
+				}
+				// if id "i" is unused in both Lists set as return value
+				if(idIsFree) {
+					newColor = i;
+					break;
+				}
+			}
+		}
+		return newColor;
 	}
 }
