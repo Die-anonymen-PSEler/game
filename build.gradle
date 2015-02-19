@@ -47,6 +47,7 @@ project(":android") {
 
     dependencies {
         compile project(":core")
+        compile 'org.sqldroid:sqldroid:1.0.3'
         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
@@ -66,18 +67,10 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
 
-        compile 'junit:junit:4.8+'
-        compile "org.mockito:mockito-core:1.9.5"
 		compile 'com.google.code.gson:gson:2.2.+'
-
-        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
-
-        testCompile "org.mockito:mockito-core:1.9.5"
-        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+		
         testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         testCompile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        testCompile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     }
 }
 
