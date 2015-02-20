@@ -1,0 +1,153 @@
+{
+	"level": 
+	{
+		"description": "Level das (lambda x.(lambda y.(yy)(x)))(z) darstellt",
+		"hasTutorialScreen": true,
+		"levelid": 4,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 6,
+					"type": "Abs",
+					"posx": 31,
+					"posy": 11
+				},
+
+				{
+					"color": 6,
+					"type": "Var",
+					"posx": 15,
+					"posy": 13
+				},
+
+				{
+					"color": 4,
+					"type": "Abs",
+					"posx": 7,
+					"posy": 7
+				},
+				
+				{
+					"color": 4,
+					"type": "Var",
+					"posx": 23,
+					"posy": 7
+				},
+				
+				{
+					"color": 4,
+					"type": "Var",
+					"posx": 39,
+					"posy": 9
+				},
+				
+				{
+				
+					"color": 11,
+					"type": "Var",
+					"posx": 37,
+					"posy": 4
+				}
+			],
+
+			"tree": 
+			[
+				{
+					"color": 6,
+					"tree": 
+					[
+						{
+							"color": 4,
+							"tree": 
+							[
+								
+							]
+						}
+					]
+				}
+			],
+
+			"target": 
+			[
+				{
+					"color": 6,
+					"type": "Abs",
+					"target": 
+					[
+						{
+						"color": 6,
+						"type": "Var",
+						"target": []
+						},
+						
+						{
+						"color": 4,
+						"type": "Abs",
+						"target" :
+							[
+								{
+								"color": 4,
+								"type": "Var",
+								"target": []
+								},
+								
+								{
+								"color": 4,
+								"type": "Var",
+								"target": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"color": 11,
+					"type": "Var",
+					"target": []
+				}
+			],
+			
+			"hint": 
+			[
+				{
+					"color": 6,
+					"type": "Abs",
+					"target": 
+					[
+						{
+						"color": 6,
+						"type": "Var",
+						"target": []
+						},
+						
+						{
+						"color": 4,
+						"type": "Abs",
+						"target" :
+							[
+								{
+								"color": 4,
+								"type": "Var",
+								"target": []
+								},
+								
+								{
+								"color": 4,
+								"type": "Var",
+								"target": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"color": 11,
+					"type": "Var",
+					"target": []
+				}
+			]
+		}
+	}
+}
