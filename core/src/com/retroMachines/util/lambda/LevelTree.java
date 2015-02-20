@@ -37,7 +37,7 @@ public class LevelTree {
 	}
 	
 	public boolean compareTree(LevelTree tree) {
-		
+		return false;
 	}
 
 	/*
