@@ -100,14 +100,19 @@ public abstract class Constants {
 	public static final int DOOR_CLOSED_LAYER = 3;
 	
 	/**
+	 * the layer id where the Pipes of the depots are.
+	 */
+	public static final int PIPE_LAYER = 4;
+	
+	/**
 	 * the layer id where the depots for the gameelements are.
 	 */
-	public static final int DEPOT_LAYER = 4;
+	public static final int DEPOT_LAYER = 5;
 	
 	/**
 	 * the layer id where the lambda objects will be placed
 	 */
-	public static final int OBJECT_LAYER_ID = 5;
+	public static final int OBJECT_LAYER_ID = 6;
 
 	public static final int LEFT_RETROMAN_OFFSET = -1;
 	
