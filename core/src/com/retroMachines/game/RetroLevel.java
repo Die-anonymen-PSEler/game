@@ -31,6 +31,8 @@ public class RetroLevel {
 	
 	private LambdaUtil lambdaUtil;
 	
+	private LevelTree evaluationTree;
+	
 	private TiledMap map;
 	
 	/**
@@ -90,9 +92,12 @@ public class RetroLevel {
 	 * Removes an Object from the map. This does only remove the visual appearance!
 	 * @param elementPosition the vector where element shall be removed
 	 */
-	public void removeGameElement(Vector2 elementPosition) {
+	public void removeGameElement(GameElement element, Vector2 elementPosition) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		layer.setCell((int) elementPosition.x, (int) elementPosition.y, null);
+		//Set vertex Pos to -1 -1 so its not longer placed on old place
+		Vertex vertex = lambdaUtil.getVertex(element);
+		vertex.setPosition(new Vector2(-1, -1));
 	}
 	
 	/**
@@ -103,7 +108,7 @@ public class RetroLevel {
 	 * @return The GameElement at this position ( null when empty).
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(5);
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
 		return (cell == null) ? null : lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
 	}
@@ -118,46 +123,51 @@ public class RetroLevel {
 		depotCell.setTile(depotSet.getTile(DEPOTID + offsetDepot));
 		
 		int numOfVInDepot = 0;
-		Vertex start = new Dummy();
-		start.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
 		
+		LinkedList<Vertex> vertexInDepot = new LinkedList<Vertex>();
+		Vertex s = new Dummy();
 		for (Vertex v : lambdaUtil.getVertexList()) {
 			Vector2 pos = v.getPosition();
-			if (depotLayer.getCell((int)pos.x, (int)pos.y) != null && depotLayer.getCell((int)pos.x, (int)pos.y).getTile().getId() == depotCell.getTile().getId() ) {
+			
+			//Check if position of v is same as an Depot
+			if (depotLayer.getCell((int)pos.x, (int)pos.y) != null 
+					&& depotLayer.getCell((int)pos.x, (int)pos.y).getTile().getId() == depotCell.getTile().getId() ) {
+				
+				// increase counter
 				numOfVInDepot++;
-				//Search Start Vertex of tree
-				// if in depot
-				if (depotLayer.getCell((int)pos.x, (int)pos.y) != null) {
-					// if pos y is smaller
-					if (start.getPosition().y > v.getPosition().y){
-						start = v;
-					// if y pos is equals
-					}else if (start.getPosition().y == v.getPosition().y) {
-						// if pos x is smaller or equals 
-						if (start.getPosition().x >= v.getPosition().x) {	
-							// then vertex is closer to start or is start Vertex,
-							//if there is no other in depot with smaller Position (x,y)
-							start = v;
-						}
-					}
-				}
+				
+				// Make List of all Vertex in Depot
+				vertexInDepot.add(v);			
 			}
 		}
-
+		System.out.println(vertexInDepot.size());
 		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {
 			//not all elements are placed
 			return false;
 		}
-		if (start.getGameElement() != null) {
-			makeEvaluationTree(start);
-		} else {
-			// Error this is still the dummy 
-			Gdx.app.log(Constants.LOG_TAG, "Gameelement is null in Retrolevel class");
+		makeEvaluationTree(vertexInDepot);
+		
+		return false;
+		//return true;
+	}
+	
+	private boolean makeEvaluationTree(LinkedList<Vertex> inDepot) {
+//		Vertex s = new Dummy();
+//		s.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
+		LinkedList<Vertex> sortedVertex = new LinkedList<Vertex>();
+		for (Vertex v : inDepot) {
+			if(sortedVertex.isEmpty()){
+				sortedVertex.add(v);
+			} else {
+				int p = sortedVertex.size() / 2;
+			}
 		}
+		evaluationTree = lambdaUtil.getLevelTree();
 		
-		
+//		
 		return true;
 	}
+	
 	
 
 	/**
@@ -279,33 +289,6 @@ public class RetroLevel {
 				}	
 			}
 		}
-		
-		private void addPosToTree() {
-			LevelTree dummyTree = lambdaUtil.getLevelTree();
-			TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
-			TiledMapTileSet depotSet = map.getTileSets().getTileSet(Constants.TILESETNAME_DEPOT);
-			int offset = (Integer) depotSet.getProperties().get("firstgid") - 1;
-			Cell depotCell = new Cell();
-			depotCell.setTile(depotSet.getTile(DEPOTID + offset));
-			int mapWidth = map.getProperties().get("width", Integer.class);
-			int mapHeight = map.getProperties().get("height", Integer.class);
-			// Search for depots in Map
-			for(int i = 0; i < mapHeight; i++ ) {
-				for(int j = 0; j < mapWidth; j++) {
-					if(depotLayer.getCell(j, i) == depotCell) {
-						
-					}
-				}
-			}
-		}
-		
-		private void findVertexInTree() {
-			
-		}
-	}
-
-	private void makeEvaluationTree(Vertex s) {
-		
 	}
 
 }

@@ -159,7 +159,7 @@ public class GameController {
 			level.placeGameElement(previous, elementPosition);
 		} else if (!retroMan.hasPickedUpElement() && element != null) {
 			retroMan.pickupElement(element);
-			level.removeGameElement(elementPosition);
+			level.removeGameElement(element, elementPosition);
 		}
 	}
 
