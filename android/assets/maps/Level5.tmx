@@ -41,9 +41,14 @@
    eJztz0EJACAQAMHDdgoK2j+M97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtGc0B3g==
   </data>
  </layer>
+ <layer name="Pipes" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEKgDAMBdBWsIj3P7AZHKS0dK55Dz4hQ4bALwUAAGA/Zzezyf5/NkfkitTP3iL3O+vk7k9GXc/W/9YFAFYe8iIAWw==
+  </data>
+ </layer>
  <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0sEKABAQhGEU4f0f2CoHbZyc7P5fTdMeHNSEAAAAAOBHTbU3WbU33v6v935rq5KkSuJ2F0lfHS/vLDlt3cv+p7nxomJ99wCAdwPbnwCs
+   eJzt0rENADAIwDBW/n+YHRUxF9lLHkgEAADwo2yFy/rvU+Gq1+O+B2BTAX0AUg==
   </data>
  </layer>
  <layer name="Objektebene" width="64" height="24">

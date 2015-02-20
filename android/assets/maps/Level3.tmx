@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="24" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="Laufebenen" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Rohre" tilewidth="64" tileheight="64">
+  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="17" name="Laufebenen" tilewidth="64" tileheight="64">
   <image source="Laufebenen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="17" name="Maschinen" tilewidth="64" tileheight="64">
+ <tileset firstgid="33" name="Maschinen" tilewidth="64" tileheight="64">
   <image source="Maschinen.png" trans="0000ff" width="256" height="256"/>
  </tileset>
- <tileset firstgid="33" name="Ampeln" tilewidth="64" tileheight="64">
+ <tileset firstgid="49" name="Ampeln" tilewidth="64" tileheight="64">
   <image source="Ampeln.png" trans="0000ff" width="128" height="128"/>
  </tileset>
- <tileset firstgid="37" name="Metallobjekte" tilewidth="64" tileheight="64">
+ <tileset firstgid="53" name="Metallobjekte" tilewidth="64" tileheight="64">
   <image source="Metallobjekte.png" trans="0000ff" width="256" height="256"/>
- </tileset>
- <tileset firstgid="53" name="Rohre" tilewidth="64" tileheight="64">
-  <image source="Rohre.png" trans="0000ff" width="256" height="256"/>
  </tileset>
  <tileset firstgid="69" name="Hintergrund" tilewidth="64" tileheight="64">
   <image source="Hintergrund.png" trans="0000ff" width="2048" height="1024"/>
@@ -28,7 +28,7 @@
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmAkOwiAQRalW69KoB3Nf7+lyPz+pJITAQKHUKEzyYiqZz/xhbNWKMVZ9KMEabMAW7MAeHMARnAzrLu/ZdM/gAq7gBu7gAZ7gJeWG6paSXxW+9u+R/Zv9z79YV1+Rzz9t/zVL23/q55/9Z/8p++fP+FD/YzDRUCjXS0cdOc+WExoxz38aMU/XK3Hdpme/Pv9qr9r23NW/OuO+M2rS0Z1bH58Hyn9N5PnOtkmH0utqL110Of+m+2CMe9gQDFrWo6uD8j9izezZ9uk7uPcVa+rzrY1rcG+UfzEDIft0HcI7r4s/u31q4xoLRv/20fWgiIiLB9m7jK4H4nzFq4zQcPEu/xei7uvKzLJeO/aX0lPzdX0SUN/5MpmUeQM6RyCI
+   eJztmAkOwiAQRblCtVqXRj2Q+3pPl/v5SSUhBAYKpUZhkhdTyXzmD2OrVoyx6kMJ1mADtmAH9uAAjuBkWHd5z6Z7BhdwBTdwBw/wBC8pN1S3lPyq8LV/j+zf7H/+xbr6inz+afuvWdr+Uz//7D/7T9k/f8aH+h+DiYZCuV466sh5tpzQiHn+04h5ul6J6zY9+/X5V3vVtueu/tUZ951Rk47u3Pr4PFD+ayLPd7ZNOpReV3vposv5N90HY9zDhmDQsh5dHZT/EWtmz7ZP38G9r1hTn29tXIN7o/yLGQjZp+sQ3nld/NntUxvXWDD6t4+uB0VEXDzI3mV0PRDnK15lhIaLd/m/EHVfV2aW9dqxv5Semq/rk4D6zpfJpMwbPNtC6A==
   </data>
  </layer>
  <layer name="Open gate" width="64" height="24">
@@ -41,9 +41,14 @@
    eJztz0EJACAQAMHDdgoK2j+M97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtGc0B3g==
   </data>
  </layer>
+ <layer name="Pipes" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJACAQBDEVFPuv2OtiT0hg/jMGAAAAwF9WdauZHgna6YEGTnoAoLkHpLQAFw==
+  </data>
+ </layer>
  <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt07EJwDAQA8BfKgGbZP+1bLeu0ongOxDfqtBXAQAAAH/zbvc098wzc6WLBLV0gbC1/V7n/gDAFwOrXwIP
+   eJzt06ERAAAIxLC37L8wHoPmSEwnaAIAAABcU6PwjQcAdg0H9wAl
   </data>
  </layer>
  <layer name="Objektebene" width="64" height="24">
