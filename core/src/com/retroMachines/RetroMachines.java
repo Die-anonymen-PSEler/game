@@ -88,14 +88,13 @@ public class RetroMachines extends Game{
         AssetManager.initializePreLoading();
 		setScreen(new LoadMenuScreen(this));
 		AssetManager.initializeWhileLoading();
-		RetroDatabase.getConnection();	// starts a connection to the database
 		globalVariables = GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
 		boolean profileExists = profileController.loadLastProfile();
 		settingController = new SettingController(this);
 		settingController.initialize();
 		if (systemVolume != -1 && maxSystemVolume != -1) {
-			settingController.setVolume(systemVolume / (float)maxSystemVolume);
+			//settingController.setVolume(systemVolume / (float)maxSystemVolume);
 		}
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);

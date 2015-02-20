@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
+import com.retroMachines.game.controllers.ProfileController;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -28,36 +30,8 @@ public class GlobalVariables extends Model {
 	 * the key for the lastusedprofile id
 	 */
 	public static final String KEY_LAST_USED_PROFILE = "lastUsedProfile";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that updates
-	 * a row within the TABLE_NAME
-	 * please specify values in the follwing order
-	 * key, value, id (where clause)
-	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `globalVariables` SET `key` = ?, `value` = ? WHERE key LIKE ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that deletes
-	 * a row within the TABLE_NAME
-	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `globalVariables` WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that inserts
-	 * a row within the TABLE_NAME
-	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `globalVariables` VALUES (null, ?, ?);";
 	
-	/**
-	 * a pattern to select data from the database
-	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`key` LIKE ?;";
-
-	/**
-	 * HashMap to store keyValue-pairs for faster access
-	 */
-	private HashMap<String, String> map;
+	public static final String KEY_SLOTS = "Slot_%d";
 
 	/**
 	 * Private Instance of itself to implement the singleton pattern.
@@ -70,8 +44,7 @@ public class GlobalVariables extends Model {
 	 */
 	private GlobalVariables() {
 		super();
-		map = new HashMap<String, String>();
-		fetchFromSQL();
+		pref = Gdx.app.getPreferences(TABLE_NAME);
 	}
 
 	/**
@@ -87,26 +60,7 @@ public class GlobalVariables extends Model {
 	 * @return true if a record exists
 	 */
 	@Override
-	public boolean hasRecordInSQL() {
-		for (String key : map.keySet()) {
-			ResultSet rs;
-			try {
-				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-				ps.setString(1, key);
-				rs = ps.executeQuery();
-				if (RetroDatabase.countResultSet(rs) == 0) {
-					// key does not exist. write it back
-					ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
-					ps.setString(1, key);
-					ps.setString(2, map.get(key).toString());
-					ps.executeUpdate();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-						
-		}
+	public boolean hasRecord() {
 		return true;
 	}
 
@@ -114,36 +68,14 @@ public class GlobalVariables extends Model {
 	 * Stores all keyValue pairs in the database for persistent storage.
 	 */
 	@Override
-	public void writeToSQL() {
-		hasRecordInSQL();
-		for (String key : map.keySet()) {
-			try {
-				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
-				ps.setString(1, key);
-				ps.setString(2, map.get(key).toString());
-				ps.setString(3, key);
-				ps.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	public void write() {
+		pref.flush();
+		return;
 	}
 	
 	@Override
-	public void fetchFromSQL() {
-		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-			ps.setString(1, "%");
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				map.put(rs.getString(KEY_KEY), rs.getString(KEY_VALUE));
-			}
-			rs.close();
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void fetch() {
+		return;
 	}
 	
 	@Override
@@ -164,12 +96,22 @@ public class GlobalVariables extends Model {
 	 * @param value the value that wil be stored.
 	 */
 	public void put(String key, String value) {
-		map.put(key, value);
-		writeToSQL();
+		pref.putString(key, value);
+		write();
 	}
 	
 	public void put(String key, int value) {
 		put(key, String.valueOf(value));
+	}
+	
+	public int nextFreeId() {
+		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
+			int result = pref.getInteger(String.format(KEY_SLOTS, i), 0);
+			if(result == 0) {
+				return i;
+			}
+		}
+		return rowId;
 	}
 
 	/**
@@ -178,7 +120,7 @@ public class GlobalVariables extends Model {
 	 * @return the value that was found. null if the key does not exist.
 	 */
 	public String get(String key) {
-		return map.get(key);
+		return pref.getString(key, "-1");
 	}
 	
 	/**

@@ -51,7 +51,18 @@ public class ProfileController {
 	public ProfileController(RetroMachines game) {
 		this.game = game;
 		profileChangeListeners = new LinkedList<OnProfileChangedListener>();
-		profileNames = Profile.getProfileNameIdMap();
+		profileNames = getProfileNameIdMap();
+	}
+
+	public HashMap<String, Integer> getProfileNameIdMap() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		for (int i = 1; i <= MAX_PROFILE_NUMBER; i++) {
+			Profile profile = new Profile(i);
+			if (profile.hasRecord()) {
+				map.put(profile.getProfileName(), i);
+			}
+		}
+		return map;
 	}
 
 	/**
@@ -64,7 +75,6 @@ public class ProfileController {
 		deleteMe.getSetting().destroy();
 		deleteMe.getStatistic().destroy();
 		deleteMe.destroy();
-		profileNames = Profile.getProfileNameIdMap();
 		if (profileNames.size() == 0) {
 			GlobalVariables gv = GlobalVariables.getSingleton();
 			gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, "-1");
@@ -103,10 +113,11 @@ public class ProfileController {
 		if (!canUserBeCreated(name)) {
 			return;
 		}
-		Statistic statistic = new Statistic();
-		Setting setting = new Setting();
-		profile = new Profile(name, setting, statistic);
-		profileNames = Profile.getProfileNameIdMap();
+		int freeId = GlobalVariables.getSingleton().nextFreeId();
+		Statistic statistic = new Statistic(freeId);
+		Setting setting = new Setting(freeId);
+		profile = new Profile(freeId, name, setting, statistic);
+		profileNames = getProfileNameIdMap();
 		updateLastUsedProfile();
 		notifyProfileListeners();
 	}
@@ -172,7 +183,11 @@ public class ProfileController {
 		if (id == -1) {
 			return false;
 		}
+		Statistic statistic = new Statistic(id);
+		Setting setting = new Setting(id);
 		profile = new Profile(id);
+		profile.setStatistic(statistic);
+		profile.setSetting(setting);
 		return true;
 	}
 	
@@ -185,6 +200,16 @@ public class ProfileController {
 		for(OnProfileChangedListener listener : profileChangeListeners) {
 			listener.profileChanged();
 		}
+	}
+
+	public String[] getAllProfiles() {
+		String[] result = new String[profileNames.size()];
+		int i = 0;
+		for (String name : profileNames.keySet()) {
+			result[i] = name;
+			i++;
+		}
+		return result;
 	}
 
 }

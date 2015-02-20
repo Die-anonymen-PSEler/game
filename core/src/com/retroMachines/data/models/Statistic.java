@@ -37,34 +37,6 @@ public class Statistic extends Model {
 	private static final String KEY_STEPCOUNTER = "stepCounter";
 
 	/**
-	 * a pattern (that should be formatted with printf or similar) that updates
-	 * a row within the TABLE_NAME
-	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `"
-			+ TABLE_NAME
-			+ "` SET `playtime` = ?, `levelCompleted` =?, `stepCounter` = ? WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that deletes
-	 * a row within the TABLE_NAME
-	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `"
-			+ TABLE_NAME + "` WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that inserts
-	 * a row within the TABLE_NAME
-	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `"
-			+ TABLE_NAME + "` VALUES (null, ?, ?, ?);";
-
-	/**
-	 * select query to fetch data from the sqlite database
-	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `"
-			+ TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = ?;";
-
-	/**
 	 * the play time the player has spent on the game in minutes
 	 */
 	private int playtime = 0;
@@ -87,12 +59,13 @@ public class Statistic extends Model {
 	 * @param levelsComplete
 	 * @param stepCounter
 	 */
-	public Statistic(int playtime, int levelsComplete, int stepCounter) {
+	public Statistic(int rowId, int playtime, int levelsComplete, int stepCounter) {
 		super();
 		this.setPlaytime(playtime);
 		this.setLevelsComplete(levelsComplete);
 		this.setStepCounter(stepCounter);
-		writeToSQL();
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
+		write();
 	}
 
 	/**
@@ -106,15 +79,8 @@ public class Statistic extends Model {
 	public Statistic(int rowId) {
 		super();
 		this.rowId = rowId;
-		fetchFromSQL();
-	}
-
-	/**
-	 * Creates a new statistic object and assigns it the default values and
-	 * writes the object to the persistent background storage
-	 */
-	public Statistic() {
-		this(DEFAULT_PLAYTIME, DEFAULT_LEVELCOMPLETED, DEFAULT_STEPCOUNTER);
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
+		fetch();
 	}
 
 	/*
@@ -122,98 +88,29 @@ public class Statistic extends Model {
 	 */
 
 	@Override
-	public void writeToSQL() {
-		if (hasRecordInSQL()) {
-			try {
-				PreparedStatement ps = connection
-						.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
-				ps.setInt(1, playtime);
-				ps.setInt(2, levelsComplete);
-				ps.setInt(3, stepCounter);
-				ps.setInt(4, rowId);
-				ps.executeUpdate();
-				ps.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
-			}
-		} else {
-			try {
-				PreparedStatement ps = connection
-						.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
-				ps.setInt(1, playtime);
-				ps.setInt(2, levelsComplete);
-				ps.setInt(3, stepCounter);
-				ps.executeUpdate();
-				Statement st = getStatement();
-				ResultSet generatedKeys = st
-						.executeQuery(SELECT_LASTINSERTEDID);
-				if (generatedKeys.next()) {
-					this.rowId = generatedKeys.getInt(1);
-				}
-				generatedKeys.close();
-				st.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException",
-						"INSERT / SELECT query failed | write2sql");
-			}
-		}
+	public void write() {
+		pref.putInteger(KEY_LEVELCOMPLETED, levelsComplete);
+		pref.putInteger(KEY_PLAYTIME, playtime);
+		pref.putInteger(KEY_STEPCOUNTER, stepCounter);
 	}
 
 	@Override
-	public boolean hasRecordInSQL() {
-		if (rowId != -1) {
-			ResultSet rs;
-			try {
-				PreparedStatement ps = connection
-						.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				rs = ps.executeQuery();
-				int size = RetroDatabase.countResultSet(rs);
-				ps.close();
-				rs.close();
-				return size == 1;
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException",
-						"SELECT query failed | hasRecord method");
-			}
-		}
+	public boolean hasRecord() {
 		return false;
 	}
 
 	@Override
-	public void fetchFromSQL() {
-		if (hasRecordInSQL()) {
-			ResultSet rs;
-			try {
-				PreparedStatement ps = connection
-						.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				rs = ps.executeQuery();
-				playtime = rs.getInt(KEY_PLAYTIME);
-				levelsComplete = rs.getInt(KEY_LEVELCOMPLETED);
-				stepCounter = rs.getInt(KEY_STEPCOUNTER);
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException",
-						"SELECT query failed | fetch method");
-			}
-		}
+	public void fetch() {
+		levelsComplete = pref.getInteger(KEY_LEVELCOMPLETED, DEFAULT_LEVELCOMPLETED);
+		playtime = pref.getInteger(KEY_PLAYTIME, DEFAULT_PLAYTIME);
+		stepCounter = pref.getInteger(KEY_STEPCOUNTER, DEFAULT_STEPCOUNTER);
 	}
 
 	@Override
 	public void destroy() {
-		if (hasRecordInSQL()) {
-			try {
-				PreparedStatement ps = connection
-						.prepareStatement(DELETE_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				ps.executeUpdate();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException",
-						"DELETE query failed | destroy method");
-			}
-		}
+		pref.putInteger(KEY_LEVELCOMPLETED, DEFAULT_LEVELCOMPLETED);
+		pref.putInteger(KEY_PLAYTIME, DEFAULT_PLAYTIME);
+		pref.putInteger(KEY_STEPCOUNTER, DEFAULT_STEPCOUNTER);
 	}
 
 	/*
@@ -229,7 +126,7 @@ public class Statistic extends Model {
 	 */
 	public void setLevelsComplete(int levelsComplete) {
 		this.levelsComplete = levelsComplete;
-		writeToSQL();
+		write();
 	}
 
 	/**
@@ -240,7 +137,7 @@ public class Statistic extends Model {
 	 */
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
-		writeToSQL();
+		write();
 	}
 
 	/**
@@ -251,7 +148,7 @@ public class Statistic extends Model {
 	 */
 	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
-		writeToSQL();
+		write();
 	}
 	
 	/**
