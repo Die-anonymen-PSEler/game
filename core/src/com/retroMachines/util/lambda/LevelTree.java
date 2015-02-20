@@ -36,8 +36,19 @@ public class LevelTree {
 		start = start.updateStart();
 	}
 	
-	public boolean compareTree(LevelTree tree) {
-		
+	/**
+	 * compares this tree with given one
+	 * @param tree tree object to be compared with this
+	 * @return true if and only if this.start.equals(tree.start) returns true
+	 */
+	public boolean equals(LevelTree tree) {
+		if (tree == null) {
+			return false;
+		}
+		if (this.start == null) {
+			return tree.start == null;
+		}
+		return this.start.equals(tree.start);
 	}
 
 	/*

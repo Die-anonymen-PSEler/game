@@ -39,4 +39,9 @@ public class Dummy extends Vertex {
 		return null;
 	}
 
+	@Override
+	public String getType() {
+		return "Dummy";
+	}
+
 }

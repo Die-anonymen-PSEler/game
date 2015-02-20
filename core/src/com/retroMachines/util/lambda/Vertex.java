@@ -357,13 +357,11 @@ public abstract class Vertex {
 			return false;
 		}
 		if (this.getType().equals(v.getType()) && this.getColor() == v.getColor()) {
-			if (this.family != null && v.family != null) {
-				return family.equals(v.family);
-			} else if (this.family == null && v.family == null) {
-				return true;
+			if (this.family != null) {
+				return this.equals(v.family);
 			} else {
-				return false;
-			}			
+				return v.family == null;
+			}
 		} else {
 			return false;
 		}
