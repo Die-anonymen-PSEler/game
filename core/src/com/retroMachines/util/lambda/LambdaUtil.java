@@ -36,6 +36,7 @@ public class LambdaUtil {
 	
 
 	private LevelTree levelTree;
+	private int numOfDepots;
 	private LevelTree targetTree;
 	private LevelTree hintTree;
 	private LinkedList<Vertex> vertexList;
@@ -87,6 +88,7 @@ public class LambdaUtil {
 		}
 		vertexList = makeVertexList(elements);
 		gameElementList = makeGameElementList();
+		numOfDepots = 0;
 		levelTree = new LevelTree(makeStartVertexTree(tree));
 		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
 		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
@@ -163,24 +165,29 @@ public class LambdaUtil {
 	 * @return root vertex of tree
 	 */
 	private Vertex makeStartVertexTree(JsonArray tree) {
-		if (tree == null) {
+		if (tree.size() == 0) {
 			return null;
 		}
-
+		
 		Vertex start = null;
-		int count = 0; //index of current element
+		int count = 1; //index of current element
+		
 		for (JsonElement t : tree) {
-			start = new Dummy();
+			Vertex actVertex = new Dummy();
+			numOfDepots++;
 			if (count == tree.size()) {
-				start.setnext(null); //lastVertex.next is null
+				actVertex.setnext(null); //lastVertex.next is null
 			} else {
-				//System.out.println(count);
-				start.setnext(new Dummy());
+				actVertex.setnext(new Dummy());
 			}
+			
+			actVertex.setfamily(makeStartVertexTree(t.getAsJsonObject()
+						.getAsJsonArray(TREE)));
+			if(count == 1) {
+				start = actVertex;
+			}
+			actVertex = actVertex.getnext();
 			count++;
-			// setting family
-			start.setfamily(makeStartVertexTree(t.getAsJsonObject()
-					.getAsJsonArray(TREE)));
 		}
 		return start;
 	}
@@ -195,21 +202,30 @@ public class LambdaUtil {
 		if (array == null) {
 			return null;
 		}
+		if (array.size() == 0) {
+			return null;
+		}
 		Vertex start = null;
-		int count = 0; //index of current element in array
+		int count = 1; //index of current element in array
+		
 		for (JsonElement t : array) {
 			//creating vertex
-			start = getSpecializedVertex(t.getAsJsonObject());
+			Vertex actVertex = getSpecializedVertex(t.getAsJsonObject());
 			//setting v.next
 			if (count == array.size()) {
-				start.setnext(null); //lastVertex.next is null
+				actVertex.setnext(null); //lastVertex.next is null
 			} else {
 				JsonObject nextOb = array.get(count).getAsJsonObject();
-				start.setnext(getSpecializedVertex(nextOb));
+				actVertex.setnext(getSpecializedVertex(nextOb));
 			}
-			count++;
 			//setting family
-			start.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject().getAsJsonArray(type), type));
+			actVertex.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject().getAsJsonArray(type), type));
+			
+			if(count == 1) {
+				start = actVertex;
+			}
+			actVertex = actVertex.getnext();
+			count++;
 		}
 		return start;
 	}
@@ -309,6 +325,10 @@ public class LambdaUtil {
 		 */
 		public void nextLambdaStepPerformed();
 
+	}
+	
+	public int getNumOfDepots() {
+		return numOfDepots;
 	}
 	
 }
