@@ -75,7 +75,7 @@ public class Setting extends Model {
 		super();
 		this.rowId = rowId;
 		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
-		fetch();	
+		fetch();
 	}	
 	
 	/*

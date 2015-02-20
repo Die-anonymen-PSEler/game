@@ -29,7 +29,6 @@ public class StatisticController implements OnProfileChangedListener {
 	public StatisticController(RetroMachines game) {
 		this.game = game;
 		initialize();
-		
 	}
 	
 	/**

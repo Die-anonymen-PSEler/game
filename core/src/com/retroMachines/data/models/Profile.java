@@ -83,7 +83,7 @@ public class Profile extends Model {
 		pref.putString(KEY_PROFILE_NAME, "");
 		pref.putInteger(KEY_SETTING, -1);
 		pref.putInteger(KEY_STATISTIC, -1);
-		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, rowId), 0);
+		pref.flush();
 	}
 	
 	

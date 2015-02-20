@@ -55,10 +55,10 @@ public class Statistic extends Model {
 	 */
 	public Statistic(int rowId, int playtime, int levelsComplete, int stepCounter) {
 		super();
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
 		this.setPlaytime(playtime);
 		this.setLevelsComplete(levelsComplete);
 		this.setStepCounter(stepCounter);
-		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
 		write();
 	}
 
