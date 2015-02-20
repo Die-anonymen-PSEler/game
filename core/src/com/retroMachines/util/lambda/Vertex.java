@@ -1,5 +1,6 @@
 package com.retroMachines.util.lambda;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
@@ -40,6 +41,8 @@ public abstract class Vertex {
 	
 	protected GameElement gameElement;
 	
+	private static HashMap<Integer, Integer> colorMap = new HashMap<Integer, Integer>();
+	
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
 	 * color's are sorted after their size small to big 
@@ -64,9 +67,11 @@ public abstract class Vertex {
 	 *            color to set.
 	 */
 	public Vertex(int id, int color) {
+		this.id = id;
 		this.color = color;
 		this.familyColorList = new LinkedList<Integer>();
 		this.familyColorList.add(color);
+		updateMap(color, color); //vertex is not mapped yet
 	}	
 	
 	// --------------------------
@@ -90,6 +95,24 @@ public abstract class Vertex {
 			}
 		}
 		return updated;
+	}
+	
+	/**
+	 * method to set new color for an vertex (e.g after alphaConversion)
+	 * @param vertexColor vertex, which color has changed
+	 * @param mappedColor new color of vertex
+	 */
+	protected static void updateMap(int vertexColor, int mappedColor) {
+		colorMap.put(vertexColor, mappedColor);
+	}
+	
+	/**
+	 * returns mapped color of vertex
+	 * @param vertexColor original Color of vertex
+	 * @return mapped color of vertex
+	 */
+	protected static int getMappedColor(int vertexColor) {
+		return colorMap.get(vertexColor);
 	}
 	
 	/**
@@ -304,6 +327,8 @@ public abstract class Vertex {
 	 */
 	abstract public Vertex cloneFamily();
 	
+	abstract public String getType();
+	
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
@@ -322,10 +347,28 @@ public abstract class Vertex {
 	 */
 	abstract public boolean alphaConversion();
 	
+	/**
+	 * compares this vertex with given one
+	 * @param v vertex to be compared with this
+	 * @return returns true if and only if this vertex and parameter have same color and same type 
+	 */
 	public boolean equals(Vertex v) {
-		//TODO: implement
-		return false;
+		if (v == null) {
+			return false;
+		}
+		if (this.getType().equals(v.getType()) && this.getColor() == v.getColor()) {
+			if (this.family != null && v.family != null) {
+				return family.equals(v.family);
+			} else if (this.family == null && v.family == null) {
+				return true;
+			} else {
+				return false;
+			}			
+		} else {
+			return false;
+		}
 	}
+	
 	
 	
 	
@@ -405,10 +448,10 @@ public abstract class Vertex {
 	/**
 	 * Getter for the Color.
 	 * 
-	 * @return The Color of the vertex.
+	 * @return The current Color of the vertex.
 	 */
 	public int getColor() {
-		return color;
+		return getMappedColor(color);
 	}
 	
 	/**

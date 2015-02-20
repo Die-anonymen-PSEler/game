@@ -36,8 +36,8 @@ public class LevelTree {
 		start = start.updateStart();
 	}
 	
-	public void compareTree(LevelTree tree) {
-		//TODO: implement
+	public boolean compareTree(LevelTree tree) {
+		
 	}
 
 	/*

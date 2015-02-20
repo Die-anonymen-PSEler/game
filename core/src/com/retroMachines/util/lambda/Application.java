@@ -70,6 +70,7 @@ public class Application extends Vertex {
 						// what should happen when there are more than 11 different Colors used ?
 						return true;
 					}
+					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
 						System.out.println();
@@ -149,6 +150,10 @@ public class Application extends Vertex {
 			gameElement = new MachineElement(getColor());
 		}
 		return gameElement;
+	}
+	
+	public String getType() {
+		return "Application";
 	}
 	
 	private int searchUnusedColorID() {

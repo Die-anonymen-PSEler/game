@@ -124,4 +124,8 @@ public class Abstraction extends Vertex {
 		return gameElement;
 	}
 	
+	public String getType() {
+		return "Abstraction";
+	}
+	
 }

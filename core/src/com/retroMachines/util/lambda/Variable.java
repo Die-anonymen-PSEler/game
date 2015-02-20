@@ -136,5 +136,9 @@ public class Variable extends Vertex {
 		}
 		return gameElement;
 	}
+	
+	public String getType() {
+		return "Variable";
+	}
 
 }
