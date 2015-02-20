@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.LightElement;
+import com.retroMachines.game.gameelements.MachineElement;
 
 /**
  * 
@@ -119,7 +120,7 @@ public class Abstraction extends Vertex {
 	 */
 	public GameElement getGameElement() {
 		if (gameElement == null) {
-			gameElement = new LightElement();
+			gameElement = new MachineElement(getColor());
 		}
 		return gameElement;
 	}

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.retroMachines.game.gameelements.GameElement;
-import com.retroMachines.game.gameelements.MachineElement;
+import com.retroMachines.game.gameelements.LightElement;
 import com.retroMachines.util.Constants;
 
 /**
@@ -147,7 +147,7 @@ public class Application extends Vertex {
 	@Override
 	public GameElement getGameElement() {
 		if (gameElement == null) {
-			gameElement = new MachineElement(getColor());
+			gameElement = new LightElement();
 		}
 		return gameElement;
 	}
