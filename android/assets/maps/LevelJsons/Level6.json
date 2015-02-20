@@ -1,0 +1,197 @@
+{
+	"level": 
+	{
+		"description": "Level das (lambda x.(lambdaf.(ff))(lambda y.y)(x))(z) darstellt",
+		"hasTutorialScreen": true,
+		"levelid": 6,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 10,
+					"type": "Abs",
+					"posx": 11,
+					"posy": 6
+				},
+
+				{
+					"color": 10,
+					"type": "Var",
+					"posx": 28,
+					"posy": 7
+				},
+				
+				{
+					"color": 10,
+					"type" : "Var",
+					"posx": 46,
+					"posy": 11
+				},
+
+				{
+					"color": 2,
+					"type": "Abs",
+					"posx": 36,
+					"posy": 7
+				},
+				
+				{
+					"color": 2,
+					"type": "Var",
+					"posx": 34,
+					"posy": 11
+				},
+				
+				{
+					"color": 7,
+					"type": "Abs",
+					"posx": 41,
+					"posy": 4
+				},
+				
+				{
+					"color": 7,
+					"type": "Var",
+					"posx": 23,
+					"posy": 7
+				},
+				
+				{
+				
+					"color": 1,
+					"type": "Var",
+					"posx": 30,
+					"posy": 10
+				}
+			],
+
+			"tree": 
+			[		
+				{
+					"color": 7,
+					"tree": 
+					[
+						{
+							"color": 10,
+							"tree": []
+						},
+							
+						{
+							"color": 2,
+							"tree":[]
+						}								
+					]
+				}
+			],
+
+			"target": 
+			[
+				{
+					"color": 7,
+					"type": "Abs",
+					"target" :
+					[
+						{
+							"color": 10,
+							"type": "Abs",
+							"target": 
+							[
+								{
+									"color": 10,
+									"type": "Var",
+									"target": []
+								},
+								
+								{
+									"color": 10,
+									"type": "Var",
+									"target": []
+								}
+							]
+						},
+						
+						{
+							"color": 2,
+							"type": "Abs",
+							"target": 
+							[
+								{
+									"color": 2,
+									"type": "Var",
+									"target": []
+								}
+							]
+						},
+								
+						{
+							"color": 7,
+							"type": "Var",
+							"target": []
+						}
+					]
+				},
+				
+				{
+					"color": 1,
+					"type": "Var",
+					"target": []
+				}
+			],
+			
+			"hint":  
+			[
+				{
+					"color": 7,
+					"type": "Abs",
+					"target" :
+					[
+						{
+							"color": 10,
+							"type": "Abs",
+							"target": 
+							[
+								{
+									"color": 10,
+									"type": "Var",
+									"target": []
+								},
+								
+								{
+									"color": 10,
+									"type": "Var",
+									"target": []
+								}
+							]
+						},
+						
+						{
+							"color": 2,
+							"type": "Abs",
+							"target": 
+							[
+								{
+									"color": 2,
+									"type": "Var",
+									"target": []
+								}
+							]
+						},
+								
+						{
+							"color": 7,
+							"type": "Var",
+							"target": []
+						}
+					]
+				},
+				
+				{
+					"color": 1,
+					"type": "Var",
+					"target": []
+				}
+			]
+		}
+	}
+}
