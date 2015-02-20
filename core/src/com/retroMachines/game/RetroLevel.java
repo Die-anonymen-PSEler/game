@@ -140,32 +140,56 @@ public class RetroLevel {
 				vertexInDepot.add(v);			
 			}
 		}
-		System.out.println(vertexInDepot.size());
 		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {
 			//not all elements are placed
 			return false;
 		}
 		makeEvaluationTree(vertexInDepot);
-		
 		return false;
-		//return true;
 	}
 	
 	private boolean makeEvaluationTree(LinkedList<Vertex> inDepot) {
-//		Vertex s = new Dummy();
-//		s.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
+		
 		LinkedList<Vertex> sortedVertex = new LinkedList<Vertex>();
 		for (Vertex v : inDepot) {
 			if(sortedVertex.isEmpty()){
 				sortedVertex.add(v);
 			} else {
-				int p = sortedVertex.size() / 2;
+				int place = -1;
+				for (int i = 0; i < sortedVertex.size(); i++) {
+					if( (int) sortedVertex.get(i).getPosition().y > (int) v.getPosition().y) {
+						place = i;
+					} else if((int) sortedVertex.get(i).getPosition().y == (int) v.getPosition().y) {
+						if( (int) sortedVertex.get(i).getPosition().x > (int) v.getPosition().x) {
+							place = i;
+						}
+					}
+				}
+				// Add v at position place or at the end
+				if(place >= 0) {
+					sortedVertex.add(place, v);
+				} else {
+					sortedVertex.addLast(v);
+				}
 			}
 		}
 		evaluationTree = lambdaUtil.getLevelTree();
 		
-//		
 		return true;
+	}
+	
+	private LevelTree replaceInTree(LevelTree dummyTree, LinkedList<Vertex> sortedVertex) {
+		Vertex pointer = dummyTree.getStart();
+		while (pointer != null) {
+			Vertex v = sortedVertex.pollFirst();
+			if (pointer.getnext() == null) {
+				v.setnext(null);
+			} else {
+				v.setnext(sortedVertex.peekFirst());
+			}
+			pointer = pointer.getnext();
+		}
+		return null;
 	}
 	
 	
