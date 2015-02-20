@@ -6,7 +6,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.data.RetroDatabase;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.ProfileController;
@@ -119,7 +118,6 @@ public class RetroMachines extends Game{
 	@Override
 	public void resume() {
 		super.resume();
-		RetroDatabase.reopenDatabase();
 	}
 	
 

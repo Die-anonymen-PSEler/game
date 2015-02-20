@@ -1,12 +1,6 @@
 package com.retroMachines.data.models;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-
 import com.badlogic.gdx.Gdx;
-import com.retroMachines.data.RetroDatabase;
 import com.retroMachines.game.controllers.ProfileController;
 
 /**

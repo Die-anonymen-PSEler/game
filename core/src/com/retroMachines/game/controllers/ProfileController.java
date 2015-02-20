@@ -57,10 +57,13 @@ public class ProfileController {
 
 	public HashMap<String, Integer> getProfileNameIdMap() {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		GlobalVariables gv = GlobalVariables.getSingleton();
 		for (int i = 1; i <= MAX_PROFILE_NUMBER; i++) {
-			Profile profile = new Profile(i);
-			if (profile.hasRecord()) {
-				map.put(profile.getProfileName(), i);
+			if (gv.get(String.format(GlobalVariables.KEY_SLOTS, i)).equals("1")) {
+				Profile tempProfile = new Profile(i);
+				map.put(tempProfile.getProfileName(), i);
+			}
+			else {
 			}
 		}
 		return map;
@@ -117,6 +120,7 @@ public class ProfileController {
 		Statistic statistic = new Statistic(freeId);
 		Setting setting = new Setting(freeId);
 		profile = new Profile(freeId, name, setting, statistic);
+		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, freeId), 1);
 		profileNames = getProfileNameIdMap();
 		updateLastUsedProfile();
 		notifyProfileListeners();
@@ -154,8 +158,11 @@ public class ProfileController {
 	 *            The name of the profile that is the next active profile.
 	 */
 	public void changeActiveProfile(String profileName) {
-		int id = profileNames.get(profileName);
+		int id = 0;
+		id = profileNames.get(profileName);
 		profile = new Profile(id);
+		profile.setSetting(new Setting(id));
+		profile.setStatistic(new Statistic(id));
 		updateLastUsedProfile();
 		notifyProfileListeners();
 	}

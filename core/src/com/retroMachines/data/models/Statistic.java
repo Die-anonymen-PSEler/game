@@ -1,12 +1,6 @@
 package com.retroMachines.data.models;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.badlogic.gdx.Gdx;
-import com.retroMachines.data.RetroDatabase;
 
 /**
  * This class is part of the model of RetroMachines. It has knowledge about all
@@ -92,6 +86,7 @@ public class Statistic extends Model {
 		pref.putInteger(KEY_LEVELCOMPLETED, levelsComplete);
 		pref.putInteger(KEY_PLAYTIME, playtime);
 		pref.putInteger(KEY_STEPCOUNTER, stepCounter);
+		pref.flush();
 	}
 
 	@Override

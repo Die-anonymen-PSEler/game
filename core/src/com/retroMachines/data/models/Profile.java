@@ -1,14 +1,6 @@
 package com.retroMachines.data.models;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-
 import com.badlogic.gdx.Gdx;
-import com.retroMachines.data.RetroDatabase;
-import com.retroMachines.game.controllers.ProfileController;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -73,7 +65,7 @@ public class Profile extends Model {
 		pref.putString(KEY_PROFILE_NAME, profileName);
 		pref.putInteger(KEY_SETTING, (setting != null) ? setting.rowId : -1);
 		pref.putInteger(KEY_STATISTIC, (statistic != null) ? statistic.rowId : -1);
-		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, rowId), 1);
+		pref.flush();
 	}
 
 	@Override

@@ -1,12 +1,6 @@
 package com.retroMachines.data.models;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.badlogic.gdx.Gdx;
-import com.retroMachines.data.RetroDatabase;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -93,6 +87,7 @@ public class Setting extends Model {
 		pref.putFloat(KEY_VOLUME, volume);
 		pref.putBoolean(KEY_LEFTCONTROL, leftControl);
 		pref.putBoolean(KEY_SOUNDONOFF, soundOnOff);
+		pref.flush();
 	}
 
 	@Override

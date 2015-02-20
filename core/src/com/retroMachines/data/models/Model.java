@@ -1,11 +1,6 @@
 package com.retroMachines.data.models;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.badlogic.gdx.Preferences;
-import com.retroMachines.data.RetroDatabase;
 
 /**
  * This class is part of the model of RetroMachines.
