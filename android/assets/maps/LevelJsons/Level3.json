@@ -32,33 +32,29 @@
             ],
             "tree": [
                 {
-                    "color": 2,
                     "tree": [
                         {
-                            "color": 2,
-                            "tree": [ ]
+                            "tree": []
                         },
                         {
-                            "color": 2,
-                            "tree": [ ]
+                            "tree": []
                         }
                     ]
                 },
                 {
-                    "color": 0,
-                    "tree": [ ]
+                    "tree": []
                 }
             ],
             "target": [
                 {
                     "color": 3,
                     "type": "Var",
-                    "target": [ ]
+                    "target": []
                 },
                 {
                     "color": 3,
                     "type": "Var",
-                    "target": [ ]
+                    "target": []
                 }
             ],
             "hint": [
@@ -69,19 +65,19 @@
                         {
                             "color": 2,
                             "type": "Var",
-                            "hint": [ ]
+                            "hint": []
                         },
                         {
                             "color": 2,
                             "type": "Var",
-                            "hint": [ ]
+                            "hint": []
                         }
                     ]
                 },
                 {
                     "color": 0,
                     "type": "Var",
-                    "hint": [ ]
+                    "hint": []
                 }
             ]
         }

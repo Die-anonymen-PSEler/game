@@ -175,6 +175,7 @@ public class LambdaUtil {
 		for (JsonElement t : tree) {
 			Vertex actVertex = new Dummy();
 			numOfDepots++;
+			System.out.println(numOfDepots);
 			if (count == tree.size()) {
 				actVertex.setnext(null); //lastVertex.next is null
 			} else {
