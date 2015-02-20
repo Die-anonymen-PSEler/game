@@ -12,7 +12,7 @@
                     "posy": 13
                 },
                 {
-                    "color": 3,
+                    "color": 1,
                     "type": "Var",
                     "posx": 30,
                     "posy": 10
@@ -45,7 +45,7 @@
                     ]
                 },
                 {
-                    "color": 3,
+                    "color": 0,
                     "tree": [ ]
                 }
             ],
@@ -79,7 +79,7 @@
                     ]
                 },
                 {
-                    "color": 3,
+                    "color": 0,
                     "type": "Var",
                     "hint": [ ]
                 }

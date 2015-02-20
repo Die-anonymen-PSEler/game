@@ -12,43 +12,43 @@
 					"color": 6,
 					"type": "Abs",
 					"posx": 31,
-					"posy": 11
+					"posy": 12
 				},
 
 				{
 					"color": 6,
 					"type": "Var",
 					"posx": 15,
-					"posy": 13
+					"posy": 14
 				},
 
 				{
 					"color": 4,
 					"type": "Abs",
 					"posx": 7,
-					"posy": 7
+					"posy": 8
 				},
 				
 				{
 					"color": 4,
 					"type": "Var",
 					"posx": 23,
-					"posy": 7
+					"posy": 8
 				},
 				
 				{
 					"color": 4,
 					"type": "Var",
 					"posx": 39,
-					"posy": 9
+					"posy": 10
 				},
 				
 				{
 				
-					"color": 11,
+					"color": 1,
 					"type": "Var",
 					"posx": 37,
-					"posy": 4
+					"posy": 5
 				}
 			],
 
