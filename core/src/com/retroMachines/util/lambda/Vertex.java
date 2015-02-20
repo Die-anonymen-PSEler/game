@@ -423,8 +423,8 @@ public abstract class Vertex {
 		pos = p;
 	}
 	
-	public void setIsInDepotTrue() {
-		isInDepot = true;
+	public void setIsInDepot(boolean i) {
+		isInDepot = i;
 	}
 	
 	/*
