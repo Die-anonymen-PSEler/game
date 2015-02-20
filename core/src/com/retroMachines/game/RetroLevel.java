@@ -1,20 +1,22 @@
 package com.retroMachines.game;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.Dummy;
 import com.retroMachines.util.lambda.LambdaUtil;
+import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
 /**
@@ -29,6 +31,13 @@ public class RetroLevel {
 	private LambdaUtil lambdaUtil;
 	
 	private TiledMap map;
+	
+	/**
+	 * Dummy tree until all depots are filled and 
+	 * allDepotsFilled() = true 
+	 * 	then its tree with objects placed in the depots
+	 */
+	private LevelTree depotTree;
 	
 	/**
 	 * private constructor so levelbuilder class has to be used
@@ -100,12 +109,39 @@ public class RetroLevel {
 	
 	public boolean allDepotsFilled() {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		Vertex start = new Dummy();
+		start.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
 		for (Vertex v : lambdaUtil.getVertexList()) {
 			Vector2 pos = v.getPosition();
 			if (layer.getCell((int)pos.x, (int)pos.y) == null) {
 				return false;
 			}
+			//Search Start Vertex of tree
+			// if in depot
+			if (layer.getCell((int)pos.x, (int)pos.y) != null) {
+				// if pos y is smaller
+				if (start.getPosition().y > v.getPosition().y){
+					start = v;
+				// if y pos is equals
+				}else if (start.getPosition().y == v.getPosition().y) {
+					// if pos x is smaller or equals 
+					if (start.getPosition().x >= v.getPosition().x) {	
+						// then vertex is closer to start or is start Vertex,
+						//if there is no other in depot with smaller Position (x,y)
+						start = v;
+					}
+				}
+			}
 		}
+		
+		if (start.getGameElement() != null) {
+			makeEvaluationTree(start);
+		} else {
+			// Error this is still the dummy 
+			Gdx.app.log(Constants.LOG_TAG, "Gameelement is null in Retrolevel class");
+		}
+		
+		
 		return true;
 	}
 	
@@ -166,6 +202,7 @@ public class RetroLevel {
 		 */
 		public static final String JSON_PATTERN = "maps/LevelJsons/Level%s.json";
 		
+		public static final int DEPOTID = 8;
 		/**
 		 * the tiledmap that belongs with the level
 		 */
@@ -228,8 +265,33 @@ public class RetroLevel {
 				}	
 			}
 		}
+		
+		private void addPosToTree() {
+			LevelTree dummyTree = lambdaUtil.getLevelTree();
+			TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+			TiledMapTileSet depotSet = map.getTileSets().getTileSet(Constants.TILESETNAME_DEPOT);
+			int offset = (Integer) depotSet.getProperties().get("firstgid") - 1;
+			Cell depotCell = new Cell();
+			depotCell.setTile(depotSet.getTile(DEPOTID + offset));
+			int mapWidth = map.getProperties().get("width", Integer.class);
+			int mapHeight = map.getProperties().get("height", Integer.class);
+			// Search for depots in Map
+			for(int i = 0; i < mapHeight; i++ ) {
+				for(int j = 0; j < mapWidth; j++) {
+					if(depotLayer.getCell(j, i) == depotCell) {
+						
+					}
+				}
+			}
+		}
+		
+		private void findVertexInTree() {
+			
+		}
 	}
 
-	
+	private void makeEvaluationTree(Vertex s) {
+		
+	}
 
 }

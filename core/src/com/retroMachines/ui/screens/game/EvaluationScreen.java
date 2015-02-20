@@ -1,10 +1,12 @@
 package com.retroMachines.ui.screens.game;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.util.lambda.LevelTree;
+import com.retroMachines.util.lambda.Vertex;
 
 /**
  * This class is part of the view of RetroMachines.
@@ -75,6 +77,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 * @return true animation finished successfully, false otherwise.
 	 */
 	public boolean updateScreen() {
+		
 		return false;
 	}
 
@@ -103,5 +106,18 @@ public class EvaluationScreen extends AbstractScreen {
 	private void nextStep() {
 
 	}
-
+	
+	private void printTree() {
+		tree.getStart();
+		Table treeTable = new Table(skin);
+		
+	}
+	
+	private Table addFamily(Table t, Vertex v) {
+		Table famTable = new Table(skin);
+		if (v.getfamily() == null) {
+			
+		}
+		return t;
+	}
 }
