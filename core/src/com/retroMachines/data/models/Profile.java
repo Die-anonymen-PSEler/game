@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.retroMachines.data.RetroDatabase;
+import com.retroMachines.game.controllers.ProfileController;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -31,33 +32,6 @@ public class Profile extends Model {
 	private static final String KEY_SETTING = "settingId";
 
 	/**
-	 * a pattern (that should be formatted with printf or similar) that updates
-	 * a row within the TABLE_NAME
-	 * the order is name -> statisticId -> settingId -> rowId
-	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `name` = ?, `statisticId` = ?, `settingId` = ? WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that deletes
-	 * a row within the TABLE_NAME
-	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that inserts
-	 * a row within the TABLE_NAME
-	 * name -> statisticId -> settingId
-	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "`(name, statisticId, settingId) VALUES (?, ?, ?);";
-	
-	/**
-	 * a pattern (that should be formatted with printf or similar) that selects a row
-	 * within the table
-	 * 0 -> id, 1 -> name, 2 -> statisticId, 3 -> settingId
-	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM " + TABLE_NAME + " WHERE profiles.id LIKE ?;";
-
-	/**
 	 * the name of the profile
 	 */
 	private String profileName;
@@ -71,27 +45,6 @@ public class Profile extends Model {
 	 * the statistics belonging to the profile
 	 */
 	private Statistic statistic;
-
-	/**
-	 * Creates a new profile and 
-	 * 
-	 * @param name
-	 *            Name of the profile
-	 * @param profileId
-	 *            Id of the profile
-	 * @param setting
-	 *            settings of the profile
-	 * @param statistic
-	 *            statistics of the profile
-	 */
-	public Profile(String name, Setting setting,
-			Statistic statistic) {
-		super();
-		this.profileName = name;
-		this.setting = setting;
-		this.statistic = statistic;
-		writeToSQL();
-	}
 	
 	/**
 	 * Creates a new profile and attempts to fetch the further data form the 
@@ -101,98 +54,44 @@ public class Profile extends Model {
 	public Profile(int rowId) {
 		super();
 		this.rowId = rowId;
-		fetchFromSQL();
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
+		fetch();
+	}
+
+	public Profile(int i, String name, Setting setting, Statistic statistic) {
+		super();
+		rowId = i;
+		this.profileName = name;
+		this.setting = setting;
+		this.statistic = statistic;
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
+		write();
 	}
 
 	@Override
-	public void writeToSQL() {
-		if (hasRecordInSQL()) {
-			try {
-				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
-				ps.setString(1, profileName);
-				ps.setInt(2, statistic.rowId);
-				ps.setInt(3, setting.rowId);
-				ps.setInt(4, rowId);
-				ps.executeUpdate();
-				ps.close();				
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
-			}
-		}
-		else {
-			try {
-				PreparedStatement ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
-				
-				ps.setString(1, profileName);
-				ps.setInt(2, statistic.rowId);
-				ps.setInt(3, setting.rowId);
-				ps.executeUpdate();
-				ps.close();
-				Statement st = getStatement();
-				ResultSet generatedKeys = st.executeQuery("SELECT last_insert_rowid()");
-				if (generatedKeys.next()) {
-					this.rowId = generatedKeys.getInt(1);
-				}
-				generatedKeys.close();
-				st.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
-			}
-		}
+	public void write() {
+		pref.putString(KEY_PROFILE_NAME, profileName);
+		pref.putInteger(KEY_SETTING, (setting != null) ? setting.rowId : -1);
+		pref.putInteger(KEY_STATISTIC, (statistic != null) ? statistic.rowId : -1);
+		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, rowId), 1);
 	}
 
 	@Override
-	public boolean hasRecordInSQL() {
-		if (rowId != -1) {
-			ResultSet rs;
-			try {
-				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				rs = ps.executeQuery();
-				int size = RetroDatabase.countResultSet(rs);
-				ps.close();
-				rs.close();
-				return size == 1;
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "UPDATE query failed | hasrecordinsql");
-			}
-		}
-		return false;
+	public boolean hasRecord() {
+		return (!pref.getString(KEY_PROFILE_NAME, KEY_PROFILE_NAME).equals(KEY_PROFILE_NAME));
 	}
 	
 	@Override
-	public void fetchFromSQL() {
-		if (hasRecordInSQL()) {
-			ResultSet rs;
-			try {
-				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				rs = ps.executeQuery();
-				int settingId = rs.getInt(KEY_SETTING);
-				int statisticId = rs.getInt(KEY_STATISTIC);
-				profileName = rs.getString(KEY_PROFILE_NAME);
-				rs.close();
-				ps.close();
-				setting = new Setting(settingId);
-				statistic = new Statistic(statisticId);
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "SELECT query failed | fetchfromsql");
-			}
-		}
+	public void fetch() {
+		profileName = pref.getString(KEY_PROFILE_NAME, KEY_PROFILE_NAME);
 	}
 	
 	@Override
 	public void destroy() {
-		if (hasRecordInSQL()) {
-			try {
-				PreparedStatement ps = connection.prepareStatement(DELETE_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				ps.executeUpdate();
-				ps.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "DELETE query failed | destroy");
-			}
-		}
+		pref.putString(KEY_PROFILE_NAME, "");
+		pref.putInteger(KEY_SETTING, -1);
+		pref.putInteger(KEY_STATISTIC, -1);
+		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, rowId), 0);
 	}
 	
 	
@@ -203,7 +102,7 @@ public class Profile extends Model {
 
 	public void setStatistic(Statistic statistic) {
 		this.statistic = statistic;
-		writeToSQL();
+		write();
 	}
 
 	/**
@@ -212,7 +111,7 @@ public class Profile extends Model {
 	 */
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
-		writeToSQL();
+		write();
 	}
 	
 	/**
@@ -221,7 +120,7 @@ public class Profile extends Model {
 	 */
 	public void setSetting(Setting setting) {
 		this.setting = setting;
-		writeToSQL();
+		write();
 	}
 	
 	/**
@@ -230,52 +129,6 @@ public class Profile extends Model {
 	 */
 	public Statistic getStatistic() {
 		return this.statistic;
-	}
-
-	public static String[] getAllProfiles() {
-		if (connection == null) {
-			connection = RetroDatabase.getConnection();
-		}
-		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-			ps.setString(1, "%");
-			ResultSet rs = ps.executeQuery();
-			int size = RetroDatabase.countResultSet(rs);
-			rs.close();
-			rs = ps.executeQuery();
-			String[] result = new String[size];
-			int counter = 0;
-			while(rs.next()) {
-				result[counter] = rs.getString(KEY_PROFILE_NAME);
-				counter++;
-			}
-			rs.close();
-			ps.close();
-			return result;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public static HashMap<String, Integer> getProfileNameIdMap() {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		if (connection == null) {
-			connection = RetroDatabase.getConnection();
-		}
-		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-			ps.setString(1, "%");
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				map.put(rs.getString(KEY_PROFILE_NAME), rs.getInt(KEY_ID));
-			}
-			rs.close();
-			ps.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return map;
 	}
 	
 	/**

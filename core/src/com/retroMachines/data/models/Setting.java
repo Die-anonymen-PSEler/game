@@ -36,31 +36,6 @@ public class Setting extends Model {
 	private static final String KEY_LEFTCONTROL = "leftControl";
 
 	/**
-	 * a pattern (that should be formatted with printf or similar) that updates
-	 * a row within the TABLE_NAME
-	 */
-	public static final String UPDATE_TABLE_QUERY_PATTERN = "UPDATE `" + TABLE_NAME + "` SET `volume` = ?, `soundOnOff` = ?, `leftControl` = ? WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that deletes
-	 * a row within the TABLE_NAME
-	 */
-	public static final String DELETE_TABLE_QUERY_PATTERN = "DELETE FROM `" + TABLE_NAME + "` WHERE id = ?;";
-
-	/**
-	 * a pattern (that should be formatted with printf or similar) that inserts
-	 * a row within the TABLE_NAME
-	 */
-	public static final String INSERT_TABLE_QUERY_PATTERN = "INSERT INTO `" + TABLE_NAME + "` VALUES (null, ?, ?, ?);";
-	
-	/**
-	 * a pattern (that should be formatted with printf or similar) that selects a row
-	 * within the table
-	 * 0 -> id, 1 -> volume, 2 -> soundOnOff, 3 -> leftControl
-	 */
-	public static final String SELECT_TABLE_QUERY_PATTERN = "SELECT * FROM `" + TABLE_NAME + "` WHERE `" + TABLE_NAME + "`.`id` = ?;";
-
-	/**
 	 * the volume of the game range 0.0f to 1.0f
 	 */
 	private float volume;
@@ -88,12 +63,13 @@ public class Setting extends Model {
 	 * @param volume
 	 *            actual volume setting
 	 */
-	public Setting(boolean leftControl, boolean soundOnOff, float volume) {
+	public Setting(int rowId, boolean leftControl, boolean soundOnOff, float volume) {
 		super();
 		this.volume = volume;
 		this.soundOnOff = soundOnOff;
 		this.leftControl = leftControl;
-		writeToSQL();
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
+		write();
 	}
 	
 	/**
@@ -104,112 +80,39 @@ public class Setting extends Model {
 	public Setting(int rowId) {
 		super();
 		this.rowId = rowId;
-		fetchFromSQL();	
-	}
-	
-	/**
-	 * Contructor which creates a new settings instance and assigns the default values
-	 */
-	public Setting() {
-		this(DEFAULT_LEFTCONTROL, DEFAULT_SOUNDONOFF, DEFAULT_VOLUME);		
-	}
-	
+		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
+		fetch();	
+	}	
 	
 	/*
 	 * inherited methods
 	 */
 	
 	@Override
-	public void writeToSQL() {
-		if (hasRecordInSQL()) {
-			// records exists -> update
-			try {
-				PreparedStatement ps = connection.prepareStatement(UPDATE_TABLE_QUERY_PATTERN);
-				ps.setFloat(1, volume);
-				ps.setInt(2, soundOnOff ? 1 : 0);
-				ps.setInt(3, leftControl ? 1 : 0);
-				ps.setInt(4, rowId);
-				ps.executeUpdate();
-				ps.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "UPDATE query failed | write2sql");
-			}
-		}
-		else {
-			// create record
-			try {
-				PreparedStatement ps = connection.prepareStatement(INSERT_TABLE_QUERY_PATTERN);
-				ps.setFloat(1,  volume);
-				ps.setInt(2, soundOnOff ? 1 : 0);
-				ps.setInt(3, leftControl ? 1 : 0);
-				ps.executeUpdate();
-				ps.close();
-				Statement st = getStatement();
-				ResultSet generatedKeys = st.executeQuery("SELECT last_insert_rowid()");
-				if (generatedKeys.next()) {
-					this.rowId = generatedKeys.getInt(1);
-				}
-				generatedKeys.close();
-				st.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "INSERT / SELECT query failed | write2sql");
-			}
-		}
+	public void write() {
+		pref.putFloat(KEY_VOLUME, volume);
+		pref.putBoolean(KEY_LEFTCONTROL, leftControl);
+		pref.putBoolean(KEY_SOUNDONOFF, soundOnOff);
 	}
 
 	@Override
-	public boolean hasRecordInSQL() {
-		ResultSet rs;
-		try {
-			PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-			ps.setInt(1, rowId);
-			rs = ps.executeQuery();
-			int size = RetroDatabase.countResultSet(rs);
-			rs.close();
-			ps.close();
-			return size == 1;
-		} catch (SQLException e) {
-			Gdx.app.error("SQLException", "SELECT query failed | hasRecord");
-		}
+	public boolean hasRecord() {
 		return false;
 	}
 	
 	@Override
-	public void fetchFromSQL() {
-		if (hasRecordInSQL()) {
-			try {
-				PreparedStatement ps = connection.prepareStatement(SELECT_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				ResultSet rs = ps.executeQuery();
-				soundOnOff = rs.getInt(KEY_SOUNDONOFF) == 1;
-				volume = rs.getFloat(KEY_VOLUME);
-				leftControl = rs.getInt(KEY_LEFTCONTROL) == 1;
-				ps.close();
-				rs.close();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "SELECT query failed | fetch from sql");
-			}
-		}
-		else {
-			Gdx.app.error("DBFailure", "Versuchter Zugriff auf ein nicht existierendes Profil");
-		}
+	public void fetch() {
+		volume = pref.getFloat(KEY_VOLUME, DEFAULT_VOLUME);
+		leftControl = pref.getBoolean(KEY_LEFTCONTROL, DEFAULT_LEFTCONTROL);
+		soundOnOff = pref.getBoolean(KEY_SOUNDONOFF, DEFAULT_SOUNDONOFF);
 	}
 	
 	@Override
 	public void destroy() {
-		if (hasRecordInSQL()) {
-			try {
-				PreparedStatement ps = connection.prepareStatement(DELETE_TABLE_QUERY_PATTERN);
-				ps.setInt(1, rowId);
-				ps.executeUpdate();
-			} catch (SQLException e) {
-				Gdx.app.error("SQLException", "DELETE query failed | destroy");
-			}
-		}
+		pref.putFloat(KEY_VOLUME, -1);
+		pref.putBoolean(KEY_LEFTCONTROL, DEFAULT_LEFTCONTROL);
+		pref.putBoolean(KEY_SOUNDONOFF, DEFAULT_SOUNDONOFF);
 	}
-	
-	
-	
 
 	/*
 	 * Getter and Setter
@@ -224,7 +127,7 @@ public class Setting extends Model {
 			throw new IllegalArgumentException("new volume is out of range");
 		}
 		this.volume = volume;
-		writeToSQL();
+		write();
 	}
 
 
@@ -234,7 +137,7 @@ public class Setting extends Model {
 	 */
 	public void setLeftControl(boolean leftControl) {
 		this.leftControl = leftControl;
-		writeToSQL();
+		write();
 	}
 	
 	/**
@@ -243,7 +146,7 @@ public class Setting extends Model {
 	 */
 	public void setSoundOnOff(boolean soundOnOff) {
 		this.soundOnOff = soundOnOff;
-		writeToSQL();
+		write();
 	}
 	
 	/**

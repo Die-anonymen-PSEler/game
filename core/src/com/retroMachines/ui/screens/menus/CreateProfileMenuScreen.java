@@ -133,7 +133,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		//Make Image
 		Image charImage = new Image();
 		charImage.setDrawable(new TextureRegionDrawable(
-		        new TextureRegion(new Texture(Gdx.files.internal("Serious2.png")))));
+		        new TextureRegion(new Texture("Background.png"))));
 		charImage.setScaling(Scaling.fit);
 		
 		// Build Tables
@@ -214,7 +214,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			if (Profile.getAllProfiles().length > 0) {
+			if (profileController.getAllProfiles().length > 0) {
 				game.previousScreen();
 			}
 			else {

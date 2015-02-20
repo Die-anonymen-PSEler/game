@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.badlogic.gdx.Preferences;
 import com.retroMachines.data.RetroDatabase;
 
 /**
@@ -28,7 +29,7 @@ public abstract class Model {
 	/**
 	 * The database connection that will execute queries to the SQLite file.
 	 */
-	protected static Connection connection;
+	protected static Preferences pref;
 	
 	/**
 	 * The id of the row where the record is stored within the database.
@@ -41,42 +42,24 @@ public abstract class Model {
 	 */
 	public Model() {
 		rowId = -1;
-		connection = RetroDatabase.getConnection();
-	}
-	
-	/**
-	 * This method creates a statement that can be used to execute a sql statement.
-	 * The timeout for this statement is 30 seconds.
-	 * @return the statement created for the current connection.
-	 */
-	protected Statement getStatement() {
-		Statement statement;
-		try {
-			statement = connection.createStatement();
-			statement.setQueryTimeout(QUERY_TIMEOUT);  // set timeout to 30 sec.
-			return statement;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	/**
 	 * Checks if the database has a previous copy for the model.
 	 * @return true if the background storage has a record for the model; false otherwise.
 	 */
-	public abstract boolean hasRecordInSQL();
+	public abstract boolean hasRecord();
 	
 	/**
 	 * This method saves the model and all it's attributes to the persistent background storage.
 	 */
-	public abstract void writeToSQL();
+	public abstract void write();
 	
 	/**
 	 * This method attempts to retrieve a copy of the model from the persistent 
 	 * background storage and saves it to this object.
 	 */
-	public abstract void fetchFromSQL();
+	public abstract void fetch();
 	
 	/**
 	 * Destroys the object and removes it from the persistent background storage

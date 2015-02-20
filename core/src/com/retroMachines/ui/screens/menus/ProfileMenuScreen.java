@@ -87,7 +87,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 
 		// Make Profile List
 		profileList = new List<String>(skin);
-		profileList.setItems(Profile.getAllProfiles());
+		profileList.setItems(profileController.getAllProfiles());
 		profileList.setSelected(profileController.getProfileName());
 
 		profileList.getStyle().font.setScale((FONTSIZE2_5 * screenWidth)
@@ -146,7 +146,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	@Override
 	public void profileChanged() {
 		profileList.clearItems();
-		profileList.setItems(Profile.getAllProfiles());
+		profileList.setItems(profileController.getAllProfiles());
 
 	}
 

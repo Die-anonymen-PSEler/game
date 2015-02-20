@@ -43,22 +43,6 @@ public class RetroLevel {
 	}
 
 	/**
-	 * Get method for the map
-	 * @return the map associated with this level
-	 */
-	public TiledMap getMap() {
-		return map;
-	}
-	
-	/**
-	 * returns the lambda util associated with this level
-	 * @return
-	 */
-	public LambdaUtil getLambdaUtil() {
-		return lambdaUtil;
-	}
-	
-	/**
 	 * Checks if a given position is suiteable for a gameelement (whether it makes sense)
 	 * @param pos the vector in question
 	 * @return true if valid; false otherwise.
@@ -114,6 +98,18 @@ public class RetroLevel {
 		return (cell == null) ? null : lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
 	}
 	
+	public boolean allDepotsFilled() {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		for (Vertex v : lambdaUtil.getVertexList()) {
+			Vector2 pos = v.getPosition();
+			if (layer.getCell((int)pos.x, (int)pos.y) == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+
 	/**
 	 * Returns an array of rectangles based on the tiles that are within a given area.
 	 * @param startX the beginning x coordinate
@@ -138,16 +134,25 @@ public class RetroLevel {
 		return tiles;
 	}
 	
-	public boolean allDepotsFilled() {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
-		for (Vertex v : lambdaUtil.getVertexList()) {
-			Vector2 pos = v.getPosition();
-			if (layer.getCell((int)pos.x, (int)pos.y) == null) {
-				return false;
-			}
-		}
-		return true;
+
+	/**
+	 * Get method for the map
+	 * @return the map associated with this level
+	 */
+	public TiledMap getMap() {
+		return map;
 	}
+	
+	/**
+	 * returns the lambda util associated with this level
+	 * @return
+	 */
+	public LambdaUtil getLambdaUtil() {
+		return lambdaUtil;
+	}
+	
+
+	
 	
 	/**
 	 * LevelBuilder class to generate a retrolevel.
