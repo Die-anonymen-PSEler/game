@@ -3,6 +3,7 @@ package com.retroMachines.game.controllers;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.GlobalVariables;
@@ -71,10 +72,9 @@ public class ProfileController {
 	public void deleteProfile(String name) {
 		int id = profileNames.get(name);
 		boolean activeProfileKilled = (id == profile.getProfileId());
-		Profile deleteMe = new Profile(id);
-		deleteMe.getSetting().destroy();
-		deleteMe.getStatistic().destroy();
-		deleteMe.destroy();
+		new Profile(id).destroy();
+		new Statistic(id).destroy();
+		new Setting(id).destroy();
 		if (profileNames.size() == 0) {
 			GlobalVariables gv = GlobalVariables.getSingleton();
 			gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, "-1");

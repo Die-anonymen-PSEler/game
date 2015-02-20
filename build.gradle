@@ -67,7 +67,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
 
-		compile 'com.google.code.gson:gson:2.2.+'
+		compile 'com.google.code.gson:gson:2.3.+'
 		
         testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
         testCompile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
