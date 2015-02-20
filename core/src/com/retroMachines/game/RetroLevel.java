@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
@@ -25,6 +24,8 @@ import com.retroMachines.util.lambda.Vertex;
  *
  */
 public class RetroLevel {
+	
+	public static final int DEPOTID = 8;
 	
 	private int levelId;
 	
@@ -108,32 +109,45 @@ public class RetroLevel {
 	}
 	
 	public boolean allDepotsFilled() {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		
+		//Get Depot Tile as Cell objekt
+		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
+		TiledMapTileSet depotSet = map.getTileSets().getTileSet(Constants.TILESETNAME_DEPOT);
+		int offsetDepot = (Integer) depotSet.getProperties().get("firstgid");
+		Cell depotCell = new Cell();
+		depotCell.setTile(depotSet.getTile(DEPOTID + offsetDepot));
+		
+		int numOfVInDepot = 0;
 		Vertex start = new Dummy();
 		start.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
+		
 		for (Vertex v : lambdaUtil.getVertexList()) {
 			Vector2 pos = v.getPosition();
-			if (layer.getCell((int)pos.x, (int)pos.y) == null) {
-				return false;
-			}
-			//Search Start Vertex of tree
-			// if in depot
-			if (layer.getCell((int)pos.x, (int)pos.y) != null) {
-				// if pos y is smaller
-				if (start.getPosition().y > v.getPosition().y){
-					start = v;
-				// if y pos is equals
-				}else if (start.getPosition().y == v.getPosition().y) {
-					// if pos x is smaller or equals 
-					if (start.getPosition().x >= v.getPosition().x) {	
-						// then vertex is closer to start or is start Vertex,
-						//if there is no other in depot with smaller Position (x,y)
+			if (depotLayer.getCell((int)pos.x, (int)pos.y) != null && depotLayer.getCell((int)pos.x, (int)pos.y).getTile().getId() == depotCell.getTile().getId() ) {
+				numOfVInDepot++;
+				//Search Start Vertex of tree
+				// if in depot
+				if (depotLayer.getCell((int)pos.x, (int)pos.y) != null) {
+					// if pos y is smaller
+					if (start.getPosition().y > v.getPosition().y){
 						start = v;
+					// if y pos is equals
+					}else if (start.getPosition().y == v.getPosition().y) {
+						// if pos x is smaller or equals 
+						if (start.getPosition().x >= v.getPosition().x) {	
+							// then vertex is closer to start or is start Vertex,
+							//if there is no other in depot with smaller Position (x,y)
+							start = v;
+						}
 					}
 				}
 			}
 		}
-		
+
+		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {
+			//not all elements are placed
+			return false;
+		}
 		if (start.getGameElement() != null) {
 			makeEvaluationTree(start);
 		} else {
@@ -202,7 +216,6 @@ public class RetroLevel {
 		 */
 		public static final String JSON_PATTERN = "maps/LevelJsons/Level%s.json";
 		
-		public static final int DEPOTID = 8;
 		/**
 		 * the tiledmap that belongs with the level
 		 */
@@ -250,6 +263,7 @@ public class RetroLevel {
 		 */
 		private void addGameelements() {
 			LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
+			
 			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
 			for (Vertex v : levelelements) {
 				int offset = (Integer) v.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
