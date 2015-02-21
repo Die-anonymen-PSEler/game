@@ -35,7 +35,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * The stage containing all the actors that belong within the screen.
 	 */
-    protected Stage stage = new Stage();
+    protected Stage stage;
     
     /**
      * The gameObject so access to Controllers is granted.
@@ -61,6 +61,7 @@ public abstract class AbstractScreen implements Screen {
      * @param game the main game class
      */
     public AbstractScreen(RetroMachines game) {
+    	stage = new Stage();
     	this.game = game;
     	inputMultiplexer = new InputMultiplexer();
 		screenWidth = Gdx.graphics.getWidth();

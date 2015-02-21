@@ -1,10 +1,13 @@
 package com.retroMachines.ui.screens.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.ui.screens.AbstractScreen;
+import com.retroMachines.util.Constants;
 import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -31,11 +34,6 @@ public class EvaluationScreen extends AbstractScreen {
 	private LevelTree tree;
 
 	/**
-	 * A stage to add the different actors to for the purpose of rendering.
-	 */
-	private Stage stage;
-
-	/**
 	 * If true the render method will kick of the animation and render it to the
 	 * screen; if false the render method will stop the animation.
 	 */
@@ -49,7 +47,6 @@ public class EvaluationScreen extends AbstractScreen {
 	public EvaluationScreen(RetroMachines game, EvaluationController evaluationController) {
 		super(game);
 		this.evaController = evaluationController;
-		stage = new Stage();
 		animationInProgress = false;
 	}
 
@@ -61,6 +58,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 */
 	public void setLambaTerm(LevelTree t) {
 		this.tree = t;
+		printTree(tree.getStart(), new Vector2(20,20));
 	}
 
 	/**
@@ -107,10 +105,21 @@ public class EvaluationScreen extends AbstractScreen {
 
 	}
 	
-	private void printTree() {
-		tree.getStart();
-		Table treeTable = new Table(skin);
-		
+	private void printTree(Vertex actVertex, Vector2 position) {
+		while(actVertex != null) {
+			float centerVertex = ((Constants.GAMEELEMENT_WIDTH * actVertex.getWidth()) - 1) / 2;
+			actVertex.getGameElement().setPosition(new Vector2(position.x + centerVertex, position.y));
+			stage.addActor(actVertex.getGameElement());
+			
+			// print Family
+			if(actVertex.getfamily() != null) {
+				Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
+				printTree(actVertex.getfamily(), famPos);
+			}
+			
+			position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
+			actVertex = actVertex.getnext();
+		}
 	}
 	
 	private Table addFamily(Table t, Vertex v) {

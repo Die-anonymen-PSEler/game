@@ -191,18 +191,13 @@ public abstract class Vertex {
 		if (this.familyColorList.get(index) == oldColor) {
 			
 			// Replace Color in family Color List
-			this.familyColorList.remove(index);
-			if (familyColorList.getLast() >= newColor) {
-				/* Falsche Sortierung/ newColor
-				 * New color ist immer gr��tes Element in gesamter Liste
-				 */
-				return false;
-			}
-			this.familyColorList.addLast(newColor);
+			this.familyColorList.set(index, newColor);
 			
 			// Replace own Color if needed
 			if (this.color == oldColor){
 				this.color = newColor;
+				int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+				this.getGameElement().setTileId(newColor + offset);
 			}
 			
 			// Rename Family

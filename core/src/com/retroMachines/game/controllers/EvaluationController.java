@@ -42,19 +42,6 @@ public class EvaluationController {
 		evaluationScreen = new EvaluationScreen(g, this);
 	}
 	
-	
-	
-	/**
-	 * Removes the GameScreen and puts up the EvaluationScreen. It
-	 * also triggers the evaluation.
-	 */
-	public void enterEvaluation() {
-		evaluationScreen = new EvaluationScreen(game, this);
-		game.setScreen(evaluationScreen);
-		lambdaTree = level.getLambdaUtil().getLevelTree();
-		evaluationScreen.setLambaTerm(lambdaTree);
-	}
-	
 	/**
 	 * Updates the evaluation screen to animate the evaluation.
 	 */
@@ -66,8 +53,11 @@ public class EvaluationController {
 	 * 
 	 */
 	public void startEvaluation() {
-		evaluationScreen.setLambaTerm(level.getEvaluationTree());
+		lambdaTree = level.getLambdaUtil().getLevelTree();
+		evaluationScreen.setLambaTerm(lambdaTree);
 		game.setScreen(evaluationScreen);
+		lambdaTree.getStart().alphaConversion();
+		lambdaTree.getStart().betaReduction();
 		
 	}
 	
