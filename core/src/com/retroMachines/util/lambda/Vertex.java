@@ -41,6 +41,16 @@ public abstract class Vertex {
 	
 	protected GameElement gameElement;
 	
+	/**
+	 * the width of this vertex as number of Vertex in his family
+	 */
+	private int width;
+	
+	/**
+	 * Width of all Vertex next to this
+	 */
+	private int nextWidth;
+	
 	private static HashMap<Integer, Integer> colorMap = new HashMap<Integer, Integer>();
 	
 	/**
@@ -76,7 +86,10 @@ public abstract class Vertex {
 		this.id = id;
 		this.color = color;
 		this.familyColorList = new LinkedList<Integer>();
+		this.nextColorList = new LinkedList<Integer>();
 		this.familyColorList.add(color);
+		this.width = 1;
+		this.nextWidth = 0;
 		updateMap(color, color); //vertex is not mapped yet
 	}	
 	
@@ -497,6 +510,22 @@ public abstract class Vertex {
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setWidth(int w) {
+		width = w;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public void setNextWidth(int w) {
+		nextWidth = w;
+	}
+	
+	public int getNextWidth() {
+		return nextWidth;
 	}
 }
 

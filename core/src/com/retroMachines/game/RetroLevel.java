@@ -127,7 +127,6 @@ public class RetroLevel {
 		int numOfVInDepot = 0;
 		
 		vertexInDepot = new LinkedList<Vertex>();
-		Vertex s = new Dummy();
 		for (Vertex v : lambdaUtil.getVertexList()) {
 			Vector2 pos = v.getPosition();
 			
@@ -177,6 +176,9 @@ public class RetroLevel {
 			result = vertexInDepot.remove(index);
 			result.setfamily(fam);
 			
+			// set Width
+			result.setWidth(fam.getWidth() + fam.getNextWidth());
+			
 			//Updtae ColorList
 			LinkedList<Integer> newColorList = fam.getFamilyColorList();
 			if(!newColorList.contains(new Integer(result.getColor()))) {
@@ -197,6 +199,11 @@ public class RetroLevel {
 		if(dummy.getnext() != null) {
 			Vertex next = buildTree(y, dummy.getnext());
 			
+			result.setnext(next);
+			
+			// set nextWidth
+			result.setNextWidth(next.getWidth() + result.getNextWidth());
+			
 			LinkedList<Integer> nextColorList = next.getNextColorList();
 			for(Integer c : next.getFamilyColorList()) {
 				if(!nextColorList.contains(c)) {
@@ -204,6 +211,7 @@ public class RetroLevel {
 				}
 			}
 			result.setNextColorlist(nextColorList);
+			
 		} else {
 			result.setnext(null);
 			result.setNextColorlist(new LinkedList<Integer>());
@@ -275,6 +283,13 @@ public class RetroLevel {
 		return lambdaUtil;
 	}
 	
+	/**
+	 * Getter for the evaluation tree of this level
+	 * @return evaluation Tree
+	 */
+	public LevelTree getEvaluationTree() {
+		return evaluationTree;
+	}
 
 	
 	

@@ -66,7 +66,7 @@ public class EvaluationController {
 	 * 
 	 */
 	public void startEvaluation() {
-		evaluationScreen.setLambaTerm(level.getLambdaUtil().getLevelTree());
+		evaluationScreen.setLambaTerm(level.getEvaluationTree());
 		game.setScreen(evaluationScreen);
 		
 	}
