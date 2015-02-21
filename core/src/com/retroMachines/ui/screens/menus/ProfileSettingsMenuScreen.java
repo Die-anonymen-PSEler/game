@@ -25,18 +25,11 @@ import com.retroMachines.game.controllers.SettingController;
  */
 public class ProfileSettingsMenuScreen extends MenuScreen {
 	
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
 	private final static float FONTSIZE2 =  2f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float TWO_EIGHT = (2f / 8f);
 	private final static float THREE_FIFTH = (3f / 5f);
 	private final static float FOUR_NINTH = (4f / 9f);
 	private final static float FIVE_NINTH = (5f / 9f);
-	private final static int COLSPANx2 = 2;
 	
 	private SettingController settingController;
 
@@ -130,7 +123,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		Table imageTable = new Table(skin);
 		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADDINGx4);
 		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADDINGx2)
-				.height((screenHeight) * THREE_FIFTH).width((screenWidth) * TWO_EIGHT);
+				.height((screenHeight) * THREE_FIFTH).width((screenWidth) * ONE_FOURTH);
 
 		// RightTable
 		Table rightTable = new Table(skin);

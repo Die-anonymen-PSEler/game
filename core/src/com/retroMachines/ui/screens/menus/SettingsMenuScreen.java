@@ -22,18 +22,10 @@ import com.retroMachines.game.controllers.SettingController;
  */
 public class SettingsMenuScreen  extends MenuScreen {
 	
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADDING = 25f;
 	private final static float PADDING30 = 30f;
-	private final static float DEFAULTPADINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float HALF = (1f / 2f);
 	private final static float HALFTITLEWIDTH = (1f / 3.6f);
 	private final static float TITLEWIDTH = (1f / 1.8f);
-	private final static float ONE_NINTH = (1f / 9f);
-	private final static int COLSPANx2 = 2;
 	private final static int SLIDERMIN = 0;
 	private final static int SLIDERMAX = 100;
 	private final static int SLIDERSTEPSIZE = 1;
@@ -107,10 +99,10 @@ public class SettingsMenuScreen  extends MenuScreen {
 		soundTable.add(buttonLouder).padLeft(screenWidth / PADDING30).padRight(screenWidth / PADDING30).width(screenWidth * ONE_NINTH);		
 		
 		
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
 		table.add(title).width(screenWidth * TITLEWIDTH).right().padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH) ).expandX().row();
 		table.add(soundTable).padTop(screenHeight / DEFAULTPADDING).expandY().expandX().colspan(COLSPANx2).row();
-		table.add(buttonProfileSettings).right().padRight(screenWidth * ONE_NINTH).padBottom(screenWidth / DEFAULTPADINGx2).colspan(COLSPANx2);
+		table.add(buttonProfileSettings).right().padRight(screenWidth * ONE_NINTH).padBottom(screenWidth / DEFAULTPADDINGx2).colspan(COLSPANx2);
 		
 	    stage.addActor(table);
 	    

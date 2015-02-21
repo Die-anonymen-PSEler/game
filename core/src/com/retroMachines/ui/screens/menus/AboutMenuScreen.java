@@ -17,20 +17,14 @@ import com.retroMachines.data.AssetManager;
  */
 public class AboutMenuScreen extends MenuScreen {
 	
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float HALF = (1f / 2f);
 	private final static float CENTERTITLE = (1f / 4f);
 	
 	/**
 	 * The developers of RetroMachine. The information about the lambda.
 	 */
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
-	public static final String INFO = "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
+	public static final String INFO = "Der Lambda-Kalkï¿½l ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
 	
 	/**

@@ -16,6 +16,22 @@ import com.retroMachines.RetroMachines;
  */
 public abstract class AbstractScreen implements Screen {
 	
+	protected final static float DEFAULTBUTTONSIZE = 10f;
+	protected final static float DEFAULTPADDING = 25f;
+	protected final static float DEFAULTPADDINGx2 = DEFAULTPADDING * 2;
+	protected final static float DEFAULTPADDINGx4 = DEFAULTPADDING * 4;
+	protected final static float DEFAULTBUTTONSIZEx2 = DEFAULTBUTTONSIZE * 2;
+	protected final static float DEFAULTKNOBSIZE = 15f;
+	protected final static float DIVIDEWIDTHDEFAULT = 1920f;
+	protected final static float DIVIDEHEIGHTDEFAULT = 1080f;
+	protected final static float HALF = (1 / 2f);
+	protected final static float FOUR_FIFTH = (4 / 5f);
+	protected final static float ONE_FOURTH = (1 / 4f);
+	protected final static float ONE_FIFTH = (1 / 5f);
+	protected final static float TWO_THIRD = (2 / 3f);
+	protected final static float ONE_NINTH = (1 / 9f);
+	protected final static int COLSPANx2 = 2;
+	
 	/**
 	 * The stage containing all the actors that belong within the screen.
 	 */

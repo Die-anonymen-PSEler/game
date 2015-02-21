@@ -13,10 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -35,21 +33,9 @@ import com.retroMachines.ui.screens.AbstractScreen;
  */
 public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
-
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
-	private static final float ONE_4th = (1f / 4f);
-	public static final int OBJECT_LAYER = 5;
-	private final static int COLSPANx2 = 2;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-
-	/**
-	 * the map that is currently active and may be shown to the user in case the
-	 * gameScreen is shown.
-	 */
-	private TiledMap map;
+	
+	
+	private static final float ZOOM_ADDITION = 0.25f;
 
 	/**
 	 * a render for displaying the map and everything else to the screen.
@@ -123,6 +109,7 @@ public class GameScreen extends AbstractScreen implements
 		this.gameController = gameController;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 30, 20);
+		camera.zoom -= ZOOM_ADDITION;
 		camera.update();
 		leftMode = leftiMode;
 		stage = new Stage();
@@ -152,7 +139,6 @@ public class GameScreen extends AbstractScreen implements
 	 *            the tiled map for this screen.
 	 */
 	public void setMap(TiledMap map) {
-		this.map = map;
 		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
 		MapProperties prop = map.getProperties();
 		mapBounds[1] = prop.get("width", Integer.class);

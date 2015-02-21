@@ -10,18 +10,12 @@ import com.retroMachines.game.controllers.StatisticController;
 
 public class StatisticMenuScreen  extends MenuScreen {
 
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_5 =  2.5f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float HALF = (1f / 2f);
 	private final static float HALFTITLEWIDTH = (1f / 4f);
 	private final static float TITLEWIDTH = (1f / 2f);
 	private final static float ONE_THIRD = (1f / 3f);
 	private final static float TWO_THIRD = (2f / 3f);
-	private final static int COLSPANx2 = 2;
+	
 	
 	private Label steps;
 	private Label playTime;

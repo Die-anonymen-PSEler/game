@@ -28,21 +28,9 @@ import com.retroMachines.game.controllers.ProfileController;
 public class ProfileMenuScreen extends MenuScreen implements
 		OnProfileChangedListener {
 
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTKNOBSIZE = 15f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE3 = 3f;
 	private final static float FONTSIZE2_5 = 2.5f;
 	private final static float FONTSIZE2_1 = 2.1f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float HALF = (1f / 2f);
-	private final static float ONE_FOURTH = (1f / 4f);
-	private final static float ONE_FIFTH = (1f / 5f);
-	private final static float TWO_THIRD = (2f / 3f);
-	private final static float ONE_NINTH = (1f / 9f);
-	private final static int COLSPANx2 = 2;
 
 	/**
 	 * 

@@ -32,17 +32,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 * The Title of this Screen.
 	 */
 	public static final String TITLE = "RETROMACHINES";
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTBUTTONSIZEx2 = 5f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE3 =  3f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float HALF = (1f / 2f);
-	private final static float ONE_4th = (1f / 4f);
-	private final static float ONE_5th = (1f / 5f);
-	private final static float FOUR_5th = (4f / 5f);
 	private final static float DIALOGTEXTWIDTH = (10f / 17f);
 	private final static float DIALOGWIDTH = (2f / 3f);
 	private final static float DIALOGHEIGHT = (5f / 9f);
@@ -75,7 +65,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		// Make Buttons
 		Button buttonPlay = new Button(skin, "play");
 		buttonPlay.addListener(new PlayButtonClickListener());
-		buttonPlay.pad(screenHeight / (DEFAULTBUTTONSIZEx2));
+		buttonPlay.pad(screenHeight / (DEFAULTBUTTONSIZE * HALF));
 		
 		Button buttonSetting = new Button(skin, "settings");
 		buttonSetting.addListener(new SettingButtonClickListener());
@@ -108,12 +98,12 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		Table mainPart = new Table(skin);
 		mainPart.add(buttonExit).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left().row();
 		mainPart.add(title).padTop(screenHeight / DEFAULTPADDINGx2).expandX().right().row();
-		mainPart.add(buttonPlay).padTop(screenHeight / DEFAULTPADDINGx4).padLeft((HALF * screenWidth) - (ONE_5th * screenHeight) - (buttonPlay.getWidth() * HALF)).left().row();
+		mainPart.add(buttonPlay).padTop(screenHeight / DEFAULTPADDINGx4).padLeft((HALF * screenWidth) - (ONE_FIFTH * screenHeight) - (buttonPlay.getWidth() * HALF)).left().row();
 		
 		
 		// Add Title and Buttons to View
-		table.add(mainPart).expandY().width(screenWidth * FOUR_5th).top();
-		table.add(sidebar).width(screenWidth * ONE_5th).row();
+		table.add(mainPart).expandY().width(screenWidth * FOUR_FIFTH).top();
+		table.add(sidebar).width(screenWidth * ONE_FIFTH).row();
 	    
 	    stage.addActor(table);
 	    inputMultiplexer.addProcessor(stage);
@@ -232,8 +222,8 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 		private void initialize() {
 			padTop(screenWidth / 30f); // set padding on top of the dialog title
 			padBottom(screenWidth / 30f); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
-	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
+	        getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set buttons height
+	        getButtonTable().defaults().width(screenWidth * ONE_FOURTH); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);

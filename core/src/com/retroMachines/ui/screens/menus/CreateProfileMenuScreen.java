@@ -34,14 +34,8 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	 * The ProfileController which is needed for this screen.
 	 */
 	
-	private final static float DEFAULTBUTTONSIZE = 10f;
-	private final static float DEFAULTPADDING = 25f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE3 =  3f;
 	private final static float FONTSIZE2 =  2f;
-	private final static float DIVIDEHEIGHTDEFAULT = 1080f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
 	private final static float TEXTFIELDHEIGHTMULTIPLICATOR = 50f;
 	private final static float TEXTFIELDTABLEWIDTH = 2f;
 	private final static float TEXTFIELDTABLEHEIGHT = 120f;
@@ -53,7 +47,10 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private final static float RIGHTTABLEWIDTH = (5f / 9f);
 	private final static int PROFILENAMELENGTH = 12;
 	private final static int TEXTFIELDBORDEROFFSET = 20;
-	private final static int COLSPANx2 = 2;
+	
+	/**
+	 * controllers associated with this screen
+	 */
 	private final ProfileController profileController;
 	private final SettingController settingController;
 

@@ -24,19 +24,11 @@ import com.retroMachines.util.Constants;
  */
 public class LevelMenuScreen extends MenuScreen{
 	
-	private final static float DEFAULTBUTTONSIZE = 10f;
 	private final static float LEVELBUTTONSIZE = 6f;
 	private final static float PADDING30 = 30f;
-	private final static float DEFAULTPADDINGx2 = 50f;
-	private final static float DEFAULTPADDINGx4 = 100f;
 	private final static float FONTSIZE2_1 =  2.1f;
 	private final static float FONTSIZE2_5 =  2.5f;
-	private final static float DIVIDEWIDTHDEFAULT = 1920f;
-	private final static float HALF = (1f / 2f);
 	private final static float ONE_8th = (1f / 8f);
-	private final static float ONE_4th = (1f / 4f);
-	private final static int COLSPANx2 = 2;
-	private final static int NUMLEVEL = 15;
 	private final static float DIALOGTEXTWIDTH = (5f / 8f);
 	private final static float DIALOGWIDTH = (2f / 3f);
 	private final static float DIALOGHEIGHT = (5f / 9f);
@@ -178,8 +170,8 @@ public class LevelMenuScreen extends MenuScreen{
 		private void initialize() {
 			padTop(screenWidth / PADDING30 ); // set padding on top of the dialog title
 			padBottom(screenWidth / PADDING30); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight * ONE_4th); // set buttons height
-	        getButtonTable().defaults().width(screenWidth * ONE_4th); // set buttons height
+	        getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set buttons height
+	        getButtonTable().defaults().width(screenWidth * ONE_FOURTH); // set buttons height
 	        setModal(true);
 	        setMovable(false);
 	        setResizable(false);
