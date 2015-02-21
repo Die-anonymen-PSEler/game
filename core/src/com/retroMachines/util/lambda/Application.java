@@ -49,39 +49,12 @@ public class Application extends Vertex {
 	//------------------------------
 	
 	/**
-	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
-	 * 
-	 * @return True if at least one ID has changed, false if no ID has changed.
+	 * this method does nothing because there is no alpha conversion for applications
 	 */
+	@Override
 	public boolean alphaConversion() {
-		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
-		boolean returnValue = false;
-		int sA = getFamilyColorList().size();
-		int sN = nextFam.size();
-		int newColor;
-		// Searched for double used colors
-		for (int i = 0; i < sA; i++) {
-			for (int j = 0; j < sN; j++) {
-				if (getFamilyColorList().get(i) == nextFam.get(j)) {
-					//Replace color in next family
-					newColor = this.searchUnusedColorID();
-					if (newColor == - 1) {
-						Gdx.app.log(Constants.LOG_TAG, "out of ColorID Range");
-						// what should happen when there are more than 11 different Colors used ?
-						return true;
-					}
-					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
-					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
-						// Error
-						System.out.println();
-						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: " + this.getColor());
-					}
-					returnValue = true;
-					newColor++;
-				}
-			}
-		}
-		return returnValue;
+		// no alpha conversion
+		return true;
 	}
 	
 	/**
@@ -154,39 +127,5 @@ public class Application extends Vertex {
 	
 	public String getType() {
 		return "Application";
-	}
-	
-	private int searchUnusedColorID() {
-		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
-		LinkedList<Integer> actFam = this.getFamilyColorList();
-		int sA = actFam.size();
-		int sN = nextFam.size();
-		int newColor = -1;
-		boolean idIsFree = true;
-		// search unused color ID
-		for(int i = 0; i <= Constants.MAX_COLOR_ID; i++) {
-			// Search if id "i" is unused in firstList
-			for(int j = 0; j < sA; j++) {
-				if(actFam.get(j) == i) {
-					idIsFree = false;
-					break;
-				}
-			}
-			// if id "i" is unused in first list search in next List
-			if(idIsFree) {
-				for(int j = 0; j < sN; j++) {
-					if(nextFam.get(j) == i) {
-						idIsFree = false;
-						break;
-					}
-				}
-				// if id "i" is unused in both Lists set as return value
-				if(idIsFree) {
-					newColor = i;
-					break;
-				}
-			}
-		}
-		return newColor;
 	}
 }
