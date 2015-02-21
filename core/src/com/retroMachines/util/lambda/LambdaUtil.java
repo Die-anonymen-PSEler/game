@@ -249,7 +249,7 @@ public class LambdaUtil {
 		if (type.equals("Abs")) {
 			result = new Abstraction(runningId, color);
 		} else if (type.equals("App")) {
-			result = new Application(runningId, color);
+			result = new Application(runningId);
 		} else if (type.equals("Var")){
 			result = new Variable(runningId, color);
 		} else {

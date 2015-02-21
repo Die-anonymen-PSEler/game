@@ -52,7 +52,7 @@ public class Variable extends Vertex {
 	@Override
 	public boolean alphaConversion() {
 		// no alpha conversion
-		return true;
+		return false;
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class Variable extends Vertex {
 	 */
 	@Override
 	public boolean betaReduction() {
-		if (this.getfamily() == null) {
+		if (this.getfamily() != null) {
 			// variable has no Family
 			return false;
 		}

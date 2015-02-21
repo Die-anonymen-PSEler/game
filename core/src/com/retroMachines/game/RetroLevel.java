@@ -181,9 +181,15 @@ public class RetroLevel {
 			
 			//Updtae ColorList
 			LinkedList<Integer> newColorList = fam.getFamilyColorList();
-			if(!newColorList.contains(new Integer(result.getColor()))) {
-				newColorList.add(result.getColor());
+			
+			// Color of application is always the same
+			if(!result.getType().equals("Application")) {
+				// Add own color if its not in colorlist
+				if(!newColorList.contains(new Integer(result.getColor()))) {
+					newColorList.add(result.getColor());
+				}
 			}
+
 			result.setFamilyColorlist(newColorList);
 		} else {
 			int index = findVertexPosY(y);
@@ -191,7 +197,11 @@ public class RetroLevel {
 			result.setfamily(null);
 			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
-			newColorList.add(result.getColor());
+			
+			// Color of application is always the same
+			if(!result.getType().equals("Application")) {
+				newColorList.add(result.getColor());
+			}
 			result.setFamilyColorlist(newColorList);
 		}
 		

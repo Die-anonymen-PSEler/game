@@ -24,8 +24,8 @@ public class Application extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Application(int id, int color) {
-		super(id, color);
+	public Application(int id) {
+		super(id, 1);
 	}
 	
 	/**
@@ -54,40 +54,52 @@ public class Application extends Vertex {
 	@Override
 	public boolean alphaConversion() {
 		// no alpha conversion
-		return true;
+		return false;
 	}
 	
 	/**
 	 * Fulfills one step of beta-reduction for a Abstraction
 	 * 
-	 * @return True if this abstraction has changed, false when an error appeared.
+	 * @return True if this application has changed, false when an error appeared.
 	 */
 	@Override
 	public boolean betaReduction() {
 		// Check if family is there
 		if (this.getfamily() != null) {
-			LinkedList<Integer> replaced = this.getfamily().replaceInFamily(this);
-			
-			// Check if there was no error in replaceInFamily
-			if (replaced != null) {
-				this.mergeMyColorList(replaced);
+			Vertex actWorker = new Dummy();
+			actWorker.setnext(this.getfamily());
+			while(actWorker.getnext() != null) {
+				actWorker.getnext().alphaConversion();
 				
-				// Update pointer if needed
-				if(this.getnext().getnext() != null) {
-					Vertex pointer = this.getfamily();
-					while (pointer.getnext() != null) {
-						pointer = pointer.getnext();
-					}
-					pointer.setnext(this.getnext().getnext());
+				if(!actWorker.getnext().betaReduction()) {
+					Gdx.app.log(Constants.LOG_TAG, "Application Beta-Reduction error");
 				}
-			} else {
-				//error in family
-				return false;
+				actWorker.setnext(actWorker.getnext().getnext());
+				
 			}
+			
+			// Update pointer if needed
+			if(this.getnext().getnext() != null) {
+				Vertex pointer = new Dummy();
+				pointer.setnext(this.getfamily().getnext());
+				if(pointer.getnext() != null) {
+					while (pointer.getnext().getnext() != null) {
+						pointer.setnext(pointer.getnext().getnext());
+					}
+				}
+				
+				pointer.getnext().setnext(this.getnext().getnext());
+			}
+			
+			//Evaluation will choose next Vertex for next eavluation step
+			this.setnext(this.getfamily());
 		} else {
-			// Error every machine has a family
+			// Error every Light has a family
 			return false;
 		}
+		// Set Light green
+		int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		this.getGameElement().setTileId(2 + offset);
 		return true;
 	}
 

@@ -102,12 +102,19 @@ public class Abstraction extends Vertex {
 				
 				// Update pointer if needed
 				if(this.getnext().getnext() != null) {
-					Vertex pointer = this.getfamily();
-					while (pointer.getnext() != null) {
-						pointer = pointer.getnext();
+					Vertex pointer = new Dummy();
+					pointer.setnext(this.getfamily().getnext());
+					if(pointer.getnext() != null) {
+						while (pointer.getnext().getnext() != null) {
+							pointer.setnext(pointer.getnext().getnext());
+						}
 					}
-					pointer.setnext(this.getnext().getnext());
+					
+					pointer.getnext().setnext(this.getnext().getnext());
 				}
+				
+				//Evaluation will choose next Vertex for next eavluation step
+				this.setnext(this.getfamily());
 			} else {
 				//error in family
 				return false;
