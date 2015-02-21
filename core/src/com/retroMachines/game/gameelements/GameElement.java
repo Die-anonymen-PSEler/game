@@ -3,8 +3,10 @@ package com.retroMachines.game.gameelements;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.retroMachines.util.Constants;
 
 /**
  * This class is part of the model of RetroMachines.
@@ -29,6 +31,13 @@ public abstract class GameElement extends Actor {
 	 */
 	protected int tileId;
 	
+	protected Vector2 position;
+	
+	public GameElement() {
+		position = new Vector2(0,0);
+		setBounds(position.x, position.y, Constants.GAMEELEMENT_WIDTH, Constants.GAMEELEMENT_WIDTH);
+	}
+	
 	/**
 	 * getter for TileSet belonging to GameElement
 	 * @return TiledMapTileSet belonging to GameElement
@@ -50,6 +59,22 @@ public abstract class GameElement extends Actor {
 
 	public int getTileId() {
 		return tileId;
+	}
+	
+	/**
+	 * Set Position (evaluation Screen)
+	 * @param pos
+	 */
+	public void setPosition(Vector2 pos) {
+		position = pos;
+	}
+	
+	/**
+	 * get Position (evaluation Screen)
+	 * @return position of Gameelement
+	 */
+	public Vector2 getPosition() {
+		return position;
 	}
 	
 }

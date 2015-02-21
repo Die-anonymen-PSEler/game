@@ -119,4 +119,6 @@ public abstract class Constants {
 	public static final int RIGHT_RETROMAN_OFFSET = 2;
 	
 	public static final int DEPOTLAYER_Y_DIF = 3;
+	
+	public static final int GAMEELEMENT_WIDTH = 64;
 }
