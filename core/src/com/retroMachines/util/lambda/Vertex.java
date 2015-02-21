@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.util.Constants;
 
 /**
  * This class is part of the model of RetroMachines. 
@@ -245,6 +247,24 @@ public abstract class Vertex {
 				
 				// Check Family Vertexes before you check to replace the first in Family
 				listOfNewColors = this.getfamily().replaceInFamily(start);
+				int famWidth = this.getfamily().getWidth() + this.getfamily().getNextWidth();
+				
+				// update Position
+				if(this.getWidth() != famWidth) {
+					int dif = famWidth - this.getWidth();
+					// Move next Families from Start
+					if (start.getnext().getnext() != null) {
+						start.getnext().getnext().updateGameelementPosition(dif);
+					}
+					// move yourself and next vertex
+					if(this.getnext() != null) {
+						this.getnext().updateGameelementPosition(dif);
+					}
+					Vector2 actPosition = this.getGameElement().getPosition();
+					int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
+					this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+					this.setWidth(this.getWidth() + dif);
+				}
 				
 				// Stop replacing of vertexes! betaReduction will know what to do
 				if (listOfNewColors == null) {
@@ -258,9 +278,32 @@ public abstract class Vertex {
 					this.mergeMyColorList(listOfNewColors);
 				}
 				
-				//Replace Family Vertex if Color is ok
-				if (this.getfamily().getColor() == start.getColor()) {
+				//Replace Family Vertex if Color and Type are ok
+				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == start.getColor()) {
 					Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+					int oldWidth = this.getfamily().getWidth();
+					int newWidth = replaced.getWidth();
+					
+					// update Position
+					if (oldWidth != newWidth) {
+						int dif = newWidth - oldWidth;
+						// Move next Families from Start
+						if (start.getnext().getnext() != null) {
+							start.getnext().getnext().updateGameelementPosition(dif);
+						}
+						// Move next Vertex from Family
+						if(this.getfamily().getnext() != null) {
+							this.getfamily().getnext().updateGameelementPosition(dif);
+						}
+						// move yourself and next vertex
+						if(this.getnext() != null) {
+							this.getnext().updateGameelementPosition(dif);
+						}
+						Vector2 actPosition = this.getGameElement().getPosition();
+						int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
+						this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+						this.setWidth(this.getWidth() + dif);
+					}
 					this.setfamily(replaced);
 				}
 			} else {
@@ -274,6 +317,18 @@ public abstract class Vertex {
 			
 			// Check all Vertexes next to you, before you check to replace the Next Vertex
 			listOfNewColors = this.getnext().replaceInFamily(start);
+			int nextWidth = this.getnext().getWidth() + this.getnext().getNextWidth();
+			
+			// update Position
+			if(this.getNextWidth() != nextWidth) {
+				int dif = nextWidth - this.getWidth();
+				// Move next Families from Start
+				if (start.getnext().getnext() != null) {
+					start.getnext().getnext().updateGameelementPosition(dif);
+				}
+				this.setNextWidth(this.getNextWidth() + dif);
+				
+			}
 			
 			// Stop replacing of vertexes! betaReduction will know what to do
 			if (listOfNewColors == null) {
@@ -281,8 +336,23 @@ public abstract class Vertex {
 			}
 			
 			//Replace Next Vertex if Color and Type are Ok
-			if (this.getnext().getColor() == start.getColor()) {
+			if (this.getnext().getType().equals("Variable") && this.getnext().getColor() == start.getColor()) {
 				Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+				int oldWidth = this.getnext().getWidth();
+				int newWidth = replaced.getWidth();
+				
+				// update Position
+				if (oldWidth != newWidth) {
+					int dif = newWidth - oldWidth;
+					
+					//Move next Families from Start
+					if (start.getnext().getnext() != null) {
+						start.getnext().getnext().updateGameelementPosition(dif);
+					}
+					if(this.getnext().getnext() != null) {
+						this.getnext().getnext().updateGameelementPosition(dif);
+					}
+				}
 				this.setnext(replaced);
 			}
 		}
@@ -342,6 +412,21 @@ public abstract class Vertex {
 	abstract public Vertex cloneFamily();
 	
 	abstract public String getType();
+	
+	private void updateGameelementPosition(int dif) {
+		if(this.getnext() != null) {
+			this.getnext().updateGameelementPosition(dif);
+		}
+		
+		// Move
+		Vector2 actPosition = this.getGameElement().getPosition();
+		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
+		this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+		
+		if (this.getfamily() != null) {
+			this.getfamily().updateGameelementPosition(dif);
+		}
+	}
 	
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------

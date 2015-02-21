@@ -121,4 +121,6 @@ public abstract class Constants {
 	public static final int DEPOTLAYER_Y_DIF = 3;
 	
 	public static final int GAMEELEMENT_WIDTH = 64;
+	
+	public static final float ACTION_MOVINGTIME = 2f;
 }

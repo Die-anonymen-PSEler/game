@@ -37,10 +37,10 @@ public class Application extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Application(Vertex next, Vertex family, int color, LinkedList<Integer> familyColorlist) {
+	private Application(Vertex next, Vertex family, LinkedList<Integer> familyColorlist) {
 		this.setnext(next);
 		this.setfamily(family);
-		this.setColor(color);
+		this.setColor(1);
 		this.setFamilyColorlist(familyColorlist);
 	}
 	
@@ -116,7 +116,7 @@ public class Application extends Vertex {
 	 * @return
 	 */
 	public Vertex cloneMe(Vertex next){
-		Vertex clone = new Application(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
+		Vertex clone = new Application(next, this.getfamily().cloneFamily(), this.getFamilyColorList());
 		return clone;
 	}
 	
@@ -125,7 +125,7 @@ public class Application extends Vertex {
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
+		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getFamilyColorList());
 		return clone;
 	}
 

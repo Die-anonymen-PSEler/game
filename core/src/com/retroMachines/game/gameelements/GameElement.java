@@ -31,11 +31,11 @@ public abstract class GameElement extends Actor {
 	 */
 	protected int tileId;
 	
-	protected Vector2 position;
 	
 	public GameElement() {
-		position = new Vector2(0,0);
-		setBounds(position.x, position.y, Constants.GAMEELEMENT_WIDTH, Constants.GAMEELEMENT_WIDTH);
+		setX(0f);
+		setY(0f);
+		setBounds(getX(), getY(), Constants.GAMEELEMENT_WIDTH, Constants.GAMEELEMENT_WIDTH);
 	}
 	
 	/**
@@ -66,7 +66,8 @@ public abstract class GameElement extends Actor {
 	 * @param pos
 	 */
 	public void setPosition(Vector2 pos) {
-		position = pos;
+		setX(pos.x);
+		setY(pos.y);
 	}
 	
 	/**
@@ -74,12 +75,12 @@ public abstract class GameElement extends Actor {
 	 * @return position of Gameelement
 	 */
 	public Vector2 getPosition() {
-		return position;
+		return new Vector2(getX(), getY());
 	}
 	
 	@Override
     public void draw(Batch batch, float alpha){
-        batch.draw(textureRegion, position.x, position.y);
+        batch.draw(textureRegion, getX(), getY());
     }
 	
 }

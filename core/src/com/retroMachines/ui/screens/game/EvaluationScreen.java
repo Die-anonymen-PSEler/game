@@ -3,6 +3,7 @@ package com.retroMachines.ui.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.EvaluationController;
@@ -107,8 +108,10 @@ public class EvaluationScreen extends AbstractScreen {
 	
 	private void printTree(Vertex actVertex, Vector2 position) {
 		while(actVertex != null) {
-			float centerVertex = ((Constants.GAMEELEMENT_WIDTH * actVertex.getWidth()) - 1) / 2;
-			actVertex.getGameElement().setPosition(new Vector2(position.x + centerVertex, position.y));
+			int centerVertex = ((Constants.GAMEELEMENT_WIDTH * actVertex.getWidth()) - 1) / 2;
+			Vector2 pos = new Vector2(position.x + centerVertex, position.y);
+			actVertex.getGameElement().setPosition(pos);
+
 			stage.addActor(actVertex.getGameElement());
 			
 			// print Family
