@@ -42,6 +42,8 @@ public class RetroLevel {
 	 */
 	private LevelTree depotTree;
 	
+	private LinkedList<Vertex> vertexInDepot;
+	
 	/**
 	 * private constructor so levelbuilder class has to be used
 	 * @param id
@@ -124,7 +126,7 @@ public class RetroLevel {
 		
 		int numOfVInDepot = 0;
 		
-		LinkedList<Vertex> vertexInDepot = new LinkedList<Vertex>();
+		vertexInDepot = new LinkedList<Vertex>();
 		Vertex s = new Dummy();
 		for (Vertex v : lambdaUtil.getVertexList()) {
 			Vector2 pos = v.getPosition();
@@ -144,11 +146,11 @@ public class RetroLevel {
 			//not all elements are placed
 			return false;
 		}
-		makeEvaluationTree(vertexInDepot);
+		makeEvaluationTree();
 		return false;
 	}
 	
-	private boolean makeEvaluationTree(LinkedList<Vertex> inDepot) {
+	private boolean makeEvaluationTree() {
 		
 		LinkedList<Vertex> sortedVertex = new LinkedList<Vertex>();
 		for (Vertex v : inDepot) {
@@ -178,20 +180,59 @@ public class RetroLevel {
 		return true;
 	}
 	
-	private LevelTree replaceInTree(LevelTree dummyTree, LinkedList<Vertex> sortedVertex) {
-		Vertex pointer = dummyTree.getStart();
-		while (pointer != null) {
-			Vertex v = sortedVertex.pollFirst();
-			if (pointer.getnext() == null) {
-				v.setnext(null);
-			} else {
-				v.setnext(sortedVertex.peekFirst());
+	private Vertex buildTree(int y, Vertex dummy) {
+		Vertex result;
+		// Build family and your self
+		if (dummy.getfamily() != null) {
+			Vertex fam = buildTree(y + Constants.DEPOTLAYER_Y_DIF, dummy.getfamily());
+			int index = findVertexPosY(y);
+			result = vertexInDepot.remove(index);
+			result.setfamily(fam);
+			
+			//Updtae ColorList
+			LinkedList<Integer> newColorList = fam.getFamilyColorList();
+			if(newColorList.contains(new Integer(result.getColor()))) {
+				newColorList.add(result.getColor());
 			}
-			pointer = pointer.getnext();
+			result.setFamilyColorlist(newColorList);
+		} else {
+			int index = findVertexPosY(y);
+			result = vertexInDepot.remove(index);
+			result.setfamily(null);
+			LinkedList<Integer> newColorList = new LinkedList<Integer>();
+			newColorList.add(result.getColor());
+			result.setFamilyColorlist(newColorList);
 		}
-		return null;
+		
+		// Build vertex next to you if not null
+		if(dummy.getnext() != null) {
+			
+		} else {
+			result.setnext(null);
+		}
 	}
 	
+	/**
+	 * Returns index of Vertex with smallest x pos and given y pos
+	 * @param yPos yPosition of searched Vertex
+	 * @return index of searched Vertex in "vertexinDepot" List
+	 */
+	private int findVertexPosY(int yPos) {
+		 Vertex result = new Dummy();
+		 result.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
+		 int indexResult = -1;
+		 int i = 0;
+		 for (Vertex v: vertexInDepot) {
+			 if((int) v.getPosition().y == yPos) {
+				 if(v.getPosition().x <  result.getPosition().x) {
+					 result = v;
+					 indexResult = i;
+				 }
+			 }
+			 i++;
+		 }
+		 return indexResult;
+	 }
 	
 
 	/**

@@ -417,7 +417,6 @@ public abstract class Vertex {
 	public void setFamilyColorlist(LinkedList<Integer> familyColorList) {
 		this.familyColorList = familyColorList;
 	}
-
 	
 	public void setPosition(Vector2 p) {
 		pos = p;

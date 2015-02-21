@@ -117,4 +117,6 @@ public abstract class Constants {
 	public static final int LEFT_RETROMAN_OFFSET = -1;
 	
 	public static final int RIGHT_RETROMAN_OFFSET = 2;
+	
+	public static final int DEPOTLAYER_Y_DIF = 3;
 }
