@@ -215,9 +215,12 @@ public class ProfileMenuScreen extends MenuScreen implements
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.getProfileController().changeActiveProfile(
-					profileList.getSelected());
-			game.setScreen(new MainMenuScreen(game));
+			if (profileList.getSelected() != null) {
+				game.getProfileController().changeActiveProfile(
+						profileList.getSelected());
+				game.setScreen(new MainMenuScreen(game));
+			}
+			
 		}
 	}
 

@@ -14,7 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.data.models.SettingsChangeListener;
+import com.retroMachines.game.controllers.ProfileController;
 
 /**
  * The MainMenuScreen is part of the view of RetroMachines.
@@ -133,6 +135,12 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         		exitDialog = new ExitDialog("", skin, "default");
 				exitDialog.show(stage);
         	}
+    	}
+    	if (keycode == Keys.P) {
+    		GlobalVariables gv = GlobalVariables.getSingleton();
+    		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
+    			System.out.println(gv.get(String.format(GlobalVariables.KEY_SLOTS, i)));
+    		}
     	}
     	return false;
     }

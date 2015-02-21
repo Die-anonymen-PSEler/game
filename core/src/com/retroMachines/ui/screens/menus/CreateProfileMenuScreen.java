@@ -192,7 +192,6 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 			game.setScreen(new ProfileMenuScreen(game));
 		}
 		else {
-			System.out.println("nutzer darf nicht erstellt werden :(");
 		}
 	}
 	

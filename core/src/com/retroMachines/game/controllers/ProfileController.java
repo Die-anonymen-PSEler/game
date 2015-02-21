@@ -79,6 +79,7 @@ public class ProfileController {
 		new Profile(id).destroy();
 		new Statistic(id).destroy();
 		new Setting(id).destroy();
+		profileNames = getProfileNameIdMap();
 		if (profileNames.size() == 0) {
 			GlobalVariables gv = GlobalVariables.getSingleton();
 			gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, "-1");

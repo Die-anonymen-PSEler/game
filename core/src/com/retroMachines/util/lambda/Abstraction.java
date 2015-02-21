@@ -75,7 +75,6 @@ public class Abstraction extends Vertex {
 					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
-						System.out.println();
 						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: " + this.getColor());
 					}
 					returnValue = true;
