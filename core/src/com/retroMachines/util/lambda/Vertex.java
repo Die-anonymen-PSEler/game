@@ -49,6 +49,12 @@ public abstract class Vertex {
 	 */
 	private LinkedList<Integer> familyColorList;
 	
+	/**
+	 * List of all color's of vertices corresponding to this abstraction.
+	 * color's are sorted after their size small to big 
+	 */
+	private LinkedList<Integer> nextColorList;
+	
 	// --------------------------
 	// --------Constructor-------
 	// --------------------------
@@ -409,13 +415,23 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Setter for the famiylColorList
+	 * Setter for the familyColorList
 	 * 
 	 * @param familyColorList
 	 * 				FamilyColorList that is to set
 	 */
 	public void setFamilyColorlist(LinkedList<Integer> familyColorList) {
 		this.familyColorList = familyColorList;
+	}
+	
+	/**
+	 * Setter for the nextColorList
+	 * 
+	 * @param nextColorList
+	 * 				NextColorList that is to set
+	 */
+	public void setNextColorlist(LinkedList<Integer> nextColorList) {
+		this.nextColorList = nextColorList;
 	}
 	
 	public void setPosition(Vector2 p) {
@@ -426,9 +442,6 @@ public abstract class Vertex {
 		isInDepot = i;
 	}
 	
-	/*
-	 * Getter
-	 */
 	/**
 	 * Getter for the familyColorList
 	 * 
@@ -436,6 +449,15 @@ public abstract class Vertex {
 	 */
 	public LinkedList<Integer> getFamilyColorList(){
 		return familyColorList;
+	}
+	
+	/**
+	 * Getter for the nextColorList
+	 * 
+	 * @return The nextColorList of this Vertex
+	 */
+	public LinkedList<Integer> getNextColorList(){
+		return nextColorList;
 	}
 	
 	public boolean isInDepot() {
