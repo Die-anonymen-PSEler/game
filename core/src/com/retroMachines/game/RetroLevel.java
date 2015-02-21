@@ -147,36 +147,24 @@ public class RetroLevel {
 			return false;
 		}
 		makeEvaluationTree();
-		return false;
+		return true;
 	}
 	
 	private boolean makeEvaluationTree() {
 		
-		LinkedList<Vertex> sortedVertex = new LinkedList<Vertex>();
-		for (Vertex v : inDepot) {
-			if(sortedVertex.isEmpty()){
-				sortedVertex.add(v);
-			} else {
-				int place = -1;
-				for (int i = 0; i < sortedVertex.size(); i++) {
-					if( (int) sortedVertex.get(i).getPosition().y > (int) v.getPosition().y) {
-						place = i;
-					} else if((int) sortedVertex.get(i).getPosition().y == (int) v.getPosition().y) {
-						if( (int) sortedVertex.get(i).getPosition().x > (int) v.getPosition().x) {
-							place = i;
-						}
-					}
-				}
-				// Add v at position place or at the end
-				if(place >= 0) {
-					sortedVertex.add(place, v);
-				} else {
-					sortedVertex.addLast(v);
-				}
+		// Search start Vertex 
+		int y = Integer.MAX_VALUE;
+		for (Vertex v : vertexInDepot) {
+			if((int)v.getPosition().y < y) {
+				y = (int)v.getPosition().y;
 			}
 		}
-		evaluationTree = lambdaUtil.getLevelTree();
-		
+		if(y == Integer.MAX_VALUE) {
+			// Error
+			Gdx.app.log(Constants.LOG_TAG, "No Start Vertex found");
+		}
+		Vertex start = buildTree(y, lambdaUtil.getLevelTree().getStart());
+		evaluationTree = new LevelTree(start);
 		return true;
 	}
 	
@@ -191,7 +179,7 @@ public class RetroLevel {
 			
 			//Updtae ColorList
 			LinkedList<Integer> newColorList = fam.getFamilyColorList();
-			if(newColorList.contains(new Integer(result.getColor()))) {
+			if(!newColorList.contains(new Integer(result.getColor()))) {
 				newColorList.add(result.getColor());
 			}
 			result.setFamilyColorlist(newColorList);
@@ -199,6 +187,7 @@ public class RetroLevel {
 			int index = findVertexPosY(y);
 			result = vertexInDepot.remove(index);
 			result.setfamily(null);
+			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
 			newColorList.add(result.getColor());
 			result.setFamilyColorlist(newColorList);
@@ -206,10 +195,20 @@ public class RetroLevel {
 		
 		// Build vertex next to you if not null
 		if(dummy.getnext() != null) {
+			Vertex next = buildTree(y, dummy.getnext());
 			
+			LinkedList<Integer> nextColorList = next.getNextColorList();
+			for(Integer c : next.getFamilyColorList()) {
+				if(!nextColorList.contains(c)) {
+					nextColorList.add(c);
+				}
+			}
+			result.setNextColorlist(nextColorList);
 		} else {
 			result.setnext(null);
+			result.setNextColorlist(new LinkedList<Integer>());
 		}
+		return result;
 	}
 	
 	/**
