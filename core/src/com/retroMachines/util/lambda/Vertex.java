@@ -262,6 +262,13 @@ public abstract class Vertex {
 					}
 					
 					// Insert clone in Family
+					this.getfamily().getGameElement().addAction(
+							Actions.sequence(
+									Actions.parallel(
+											Actions.moveTo(this.getPosition().x, this.getPosition().y, Constants.ACTION_TIME),
+											Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
+									Actions.run(new DestroyElement(this.getfamily()))
+							));
 					if(this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
@@ -290,6 +297,13 @@ public abstract class Vertex {
 				}
 				
 				// insert clone as Next
+				this.getfamily().getGameElement().addAction(
+						Actions.sequence(
+								Actions.parallel(
+										Actions.moveTo(this.getPosition().x, this.getPosition().y, Constants.ACTION_TIME),
+										Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
+								Actions.run(new DestroyElement(this.getnext()))
+						));
 				if(this.getnext().getnext() != null) {
 					replaced.setnext(this.getnext().getnext());
 				}
@@ -616,9 +630,9 @@ public abstract class Vertex {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		this.getGameElement().addAction(Actions.sequence(
-				Actions.moveTo(pos.x, pos.y, Constants.ACTION_MOVINGTIME),
-				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_MOVINGTIME),
-				Actions.run(new DestroyElement(e))
+				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
+				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
+				Actions.run(new DestroyElement(this,e))
 				));
 		
 	}
@@ -631,9 +645,9 @@ public abstract class Vertex {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		this.getGameElement().addAction(Actions.sequence(
-				Actions.moveTo(pos.x, pos.y, Constants.ACTION_MOVINGTIME),
-				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_MOVINGTIME),
-				Actions.run(new DestroyElement())
+				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
+				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
+				Actions.run(new DestroyElement(this))
 				));
 	}
 	
@@ -802,19 +816,22 @@ public abstract class Vertex {
 	protected class DestroyElement implements Runnable {
 		
 		private EvaluationController e;
+		private Vertex v;
 		
-		public DestroyElement() {
+		public DestroyElement(Vertex v) {
+			this.v = v;
 		}
 		
-		public DestroyElement(EvaluationController e) {
+		public DestroyElement(Vertex v,EvaluationController e) {
+			this.v = v;
 			this.e = e;
 		}
 		
 		@Override
 		public void run() {
-			getGameElement().remove();
+			v.getGameElement().remove();
 			if (e != null) {
-				e.step3DeleteColors();
+				e.step3BetaReduction();
 			}
 		}
 		

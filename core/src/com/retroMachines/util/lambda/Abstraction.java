@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MachineElement;
 import com.retroMachines.util.Constants;
@@ -111,6 +112,18 @@ public class Abstraction extends Vertex {
 					LinkedList<Vertex> cloneList = replace.getVertexList();
 					for(Vertex v : cloneList) {
 						returnList.add(v);
+					}
+					
+					// Insert clone in Family
+					this.getfamily().getGameElement().addAction(
+							Actions.sequence(
+									Actions.parallel(
+											Actions.moveTo(this.getPosition().x, this.getPosition().y, Constants.ACTION_TIME),
+											Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
+									Actions.run(new DestroyElement(this.getfamily()))
+							));
+					if(this.getfamily().getnext() != null) {
+						replace.setnext(this.getfamily().getnext());
 					}
 					this.setfamily(replace);
 				}

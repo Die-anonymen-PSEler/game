@@ -1,6 +1,7 @@
 package com.retroMachines.game.controllers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -29,7 +30,7 @@ public class EvaluationController {
 	/**
 	 * List of all gameElements in this level
 	 */
-	private ArrayList<Vertex> vertexList;
+	private LinkedList<Vertex> vertexList;
 	
 	/**
 	 * The EvaluationScreen when the user triggers this part of the game.
@@ -42,6 +43,8 @@ public class EvaluationController {
 	private RetroLevel level;
 	
 	private Vertex evalutionPointer;
+	
+	private int actStep;
 	
 	public EvaluationController(RetroLevel level, RetroMachines g) {
 		this.level = level;
@@ -60,43 +63,40 @@ public class EvaluationController {
 	 * 
 	 */
 	public void startEvaluation() {
+		actStep = 0;
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
 		evalutionPointer = new Dummy();
 		evalutionPointer.setnext(lambdaTree.getStart());
 		step1AlphaConversion();
-
 	}
 	
-	public void step1AlphaConversion() {
+	private void step1AlphaConversion() {
+		actStep++;
 		evalutionPointer.getnext().alphaConversion();
 		step2ReadInAndDelete();
 	}
 	
-	public void step2ReadInAndDelete() {
+	private void step2ReadInAndDelete() {
 		Vertex readIn = evalutionPointer.getnext().getReadIn();
 		readIn.readInAnimation(evalutionPointer.getnext().getGameElement().getPosition(), this);
+		// Next Step by Animation
+	}
+	
+	public void step3BetaReduction() {
+		vertexList = evalutionPointer.getnext().betaReduction();
+		step4UpdatePositions();
+	}
+	
+	private void step4UpdatePositions() {
 		
 	}
 	
-	public void step3DeleteColors() {
+	private void step5InsertReadIn() {	
 	}
 	
-	public void step4BetaReduction() {
+	private void step6DeleteWorker() {	
 	}
-	
-	public void step5UpdatePositions() {
-		
-	}
-	
-	public void step6InsertReadIn() {
-		
-	}
-	
-	public void step7DeleteWorker() {
-		
-	}
-	
 	
 }
