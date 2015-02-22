@@ -138,7 +138,7 @@ public class RetroLevel {
 				numOfVInDepot++;
 				
 				// Make List of all Vertex in Depot
-				vertexInDepot.add(v);			
+				vertexInDepot.add(v);
 			}
 		}
 		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {

@@ -11,22 +11,22 @@
 				{
 					"color": 1,
 					"type": "Abs",
-					"posx": 11,
-					"posy": 10
+					"posx": 51,
+					"posy": 6
 				},
 
 				{
 					"color": 1,
 					"type": "Var",
-					"posx": 12,
-					"posy": 11
+					"posx": 51,
+					"posy": 9
 				},
 
 				{
 					"color": 2,
 					"type": "Var",
-					"posx": 13,
-					"posy": 12
+					"posx": 53,
+					"posy": 6
 				}
 			],
 

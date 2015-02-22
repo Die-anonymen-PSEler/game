@@ -65,6 +65,7 @@ public class Abstraction extends Vertex {
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
 				if (getFamilyColorList().get(i) == nextFam.get(j)) {
+					
 					//Replace color in next family
 					newColor = this.searchUnusedColorID();
 					if (newColor == - 1) {

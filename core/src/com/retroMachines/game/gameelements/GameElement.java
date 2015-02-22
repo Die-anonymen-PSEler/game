@@ -1,5 +1,6 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
@@ -80,7 +81,9 @@ public abstract class GameElement extends Actor {
 	
 	@Override
     public void draw(Batch batch, float alpha){
-        batch.draw(textureRegion, getX(), getY());
+        batch.draw(textureRegion, getX(), getY(), this.getOriginX(), this.getOriginY(),
+        		this.getWidth(), this.getHeight(), this.getScaleX(), this.getScaleY(),
+        		this.getRotation());
     }
 	
 }

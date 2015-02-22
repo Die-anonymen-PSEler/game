@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.controllers.EvaluationController;
@@ -111,9 +112,7 @@ public class EvaluationScreen extends AbstractScreen {
 			int centerVertex = ((Constants.GAMEELEMENT_WIDTH * actVertex.getWidth()) - 1) / 2;
 			Vector2 pos = new Vector2(position.x + centerVertex, position.y);
 			actVertex.getGameElement().setPosition(pos);
-
 			stage.addActor(actVertex.getGameElement());
-			
 			// print Family
 			if(actVertex.getfamily() != null) {
 				Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
@@ -125,11 +124,4 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 	
-	private Table addFamily(Table t, Vertex v) {
-		Table famTable = new Table(skin);
-		if (v.getfamily() == null) {
-			
-		}
-		return t;
-	}
 }

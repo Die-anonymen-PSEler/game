@@ -200,6 +200,7 @@ public abstract class Vertex {
 				this.color = newColor;
 				int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 				this.getGameElement().setTileId(newColor + offset);
+				//this.getGameElement().addAction(Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME));
 			}
 			
 			// Rename Family
@@ -262,7 +263,8 @@ public abstract class Vertex {
 					}
 					Vector2 actPosition = this.getGameElement().getPosition();
 					int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
-					this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+					//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+					this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
 					this.setWidth(this.getWidth() + dif);
 				}
 				
@@ -301,7 +303,8 @@ public abstract class Vertex {
 						}
 						Vector2 actPosition = this.getGameElement().getPosition();
 						int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
-						this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+						//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+						this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
 						this.setWidth(this.getWidth() + dif);
 					}
 					this.setfamily(replaced);
@@ -421,8 +424,8 @@ public abstract class Vertex {
 		// Move
 		Vector2 actPosition = this.getGameElement().getPosition();
 		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
-		this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
-		
+		//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+		this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
 		if (this.getfamily() != null) {
 			this.getfamily().updateGameelementPosition(dif);
 		}

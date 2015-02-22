@@ -122,5 +122,9 @@ public abstract class Constants {
 	
 	public static final int GAMEELEMENT_WIDTH = 64;
 	
+	public static final float GAMEELEMENT_SCALING = 0.25f;
+	
 	public static final float ACTION_MOVINGTIME = 2f;
+	
+	public static final float ACTION_TIME = 1f;
 }
