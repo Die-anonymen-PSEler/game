@@ -163,8 +163,6 @@ public class GameScreen extends AbstractScreen implements
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
 
-		stage.act();
-		stage.draw();
 		inputDetection();
 
 		updateCameraPosition(gameController.getRetroMan().getPos().x,
@@ -179,9 +177,6 @@ public class GameScreen extends AbstractScreen implements
 
 		stage.act();
 		stage.draw();
-		if (popupScreenIsShown) {
-			showHint();
-		}
 	}
 
 	private void updateCameraPosition(float x, float y) {
@@ -472,7 +467,7 @@ public class GameScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			popupScreenIsShown = true;
-			// showHint();
+			showHint();
 		}
 	}
 
