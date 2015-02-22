@@ -367,79 +367,7 @@ public abstract class Vertex {
 	
 	abstract public String getType();
 	
-	/**
-	 * update coordinate of gameelement with given difference(Num of Gameelemnts)
-	 * @param difX dif on x axis
-	 * @param difY dif on y axis
-	 */
-	protected void updateGameelementPosition(int difX, int difY) {
-		if(this.getnext() != null) {
-			this.getnext().updateGameelementPosition(difX, difY);
-		}
-		
-		
-		// Move
-		Vector2 actPosition = this.getGameElement().getPosition();
-		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
-		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
-		//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
-		this.getGameElement().setPosition(new Vector2(newX , newY));
-		
-		if (this.getfamily() != null) {
-			this.getfamily().updateGameelementPosition(difX, difY);
-		}
-	}
 	
-	/**
-	 * Set Gameelement and family to given 
-	 * @param newPos as Number of GameelementWidths
-	 */
-	public void setGameelementPosition(Vector2 newPos, EvaluationController e) {
-		
-		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
-		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
-		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
-		
-		Vector2 startPos = new Vector2(x + centerVertex, y);
-		
-		if(this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
-		}
-		
-		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
-		}
-		
-		// Move	
-		this.getGameElement().addAction(Actions.sequence(Actions.moveTo(startPos.x, startPos.y, Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
-	}
-	
-	/**
-	 * Set Gameelement and family to given 
-	 * @param newPos as Number of GameelementWidths
-	 */
-	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos) {
-		
-		if(this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
-		}
-		
-		// Clone Pre Set
-		if(this.getGameElement().getPosition().equals(new Vector2(0,0))) {
-			this.getGameElement().setPosition(startPos);
-		}
-		
-		// Move
-		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
-		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
-		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
-		
-		this.getGameElement().addAction(Actions.moveTo(x + centerVertex, y, Constants.ACTION_TIME));
-		
-		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
-		}
-	}
 	
 	/**
 	 * Removes Gameelement of this vertex and all family vertex from stage 
@@ -683,6 +611,99 @@ public abstract class Vertex {
 	}
 	
 	/**
+	 * update coordinate of gameelement with given difference(Num of Gameelemnts)
+	 * @param difX dif on x axis
+	 * @param difY dif on y axis
+	 */
+	public void updateGameelementPosition(int difX, int difY, EvaluationController e) {
+		if(this.getnext() != null) {
+			this.getnext().updateOtherGameelementPosition(difX, difY);
+		}
+		
+		if (this.getfamily() != null) {
+			this.getfamily().updateOtherGameelementPosition(difX, difY);
+		}
+		
+		// Move
+		Vector2 actPosition = this.getGameElement().getPosition();
+		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
+		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.moveTo(newX , newY, Constants.ACTION_TIME),
+				Actions.run(new RestartElement(e))
+				));
+
+	}
+	
+	private void updateOtherGameelementPosition(int difX, int difY) {
+		if(this.getnext() != null) {
+			this.getnext().updateOtherGameelementPosition(difX, difY);
+		}
+		
+		
+		// Move
+		Vector2 actPosition = this.getGameElement().getPosition();
+		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
+		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
+		this.getGameElement().addAction(Actions.moveTo(newX , newY, Constants.ACTION_TIME));
+		
+		if (this.getfamily() != null) {
+			this.getfamily().updateOtherGameelementPosition(difX, difY);
+		}
+	}
+	
+	/**
+	 * Set Gameelement and family to given 
+	 * @param newPos as Number of GameelementWidths
+	 */
+	public void setGameelementPosition(Vector2 newPos, EvaluationController e) {
+		
+		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
+		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
+		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
+		
+		Vector2 startPos = new Vector2(x + centerVertex, y);
+		
+		if(this.getnext() != null) {
+			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
+		}
+		
+		if (this.getfamily() != null) {
+			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
+		}
+		
+		// Move	
+		this.getGameElement().addAction(Actions.sequence(Actions.moveTo(startPos.x, startPos.y, Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+	}
+	
+	/**
+	 * Set Gameelement and family to given 
+	 * @param newPos as Number of GameelementWidths
+	 */
+	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos) {
+		
+		if(this.getnext() != null) {
+			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
+		}
+		
+		// Clone Pre Set
+		if(this.getGameElement().getPosition().equals(new Vector2(0,0))) {
+			this.getGameElement().setPosition(startPos);
+		}
+		
+		// Move
+		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
+		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
+		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
+		
+		this.getGameElement().addAction(Actions.moveTo(x + centerVertex, y, Constants.ACTION_TIME));
+		
+		if (this.getfamily() != null) {
+			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
+		}
+	}
+	
+	/**
 	 * compares this vertex with given one
 	 * @param v vertex to be compared with this
 	 * @return returns true if and only if this vertex and parameter have same color and same type 
@@ -702,7 +723,16 @@ public abstract class Vertex {
 		}
 	}
 	
-	
+	/**
+	 * Moves vertex 200 left and deletes it
+	 */
+	public void MoveOutOfSpace(EvaluationController e) {
+		Vector2 pos = this.getGameElement().getPosition();
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.delay(Constants.ACTION_TIME),
+				Actions.moveTo(pos.x - Constants.EVALUATIONSCREEN_PADDING * 2, pos.y, Constants.ACTION_TIME),
+				Actions.run(new Step6Element(this, e))));
+	}
 	
 	
 	// --------------------------
@@ -908,6 +938,43 @@ public abstract class Vertex {
 		public void run() {
 			if (e != null) {
 				e.step5InsertReadIn();
+			}
+		}
+		
+	}
+	
+	protected class Step6Element implements Runnable {
+		
+		private EvaluationController e;
+		private Vertex v;
+		
+		public Step6Element(Vertex v, EvaluationController e) {
+			this.e = e;
+			this.v = v;
+		}
+		
+		@Override
+		public void run() {
+			v.getGameElement().remove();
+			if (e != null) {
+				e.step6DeleteWorker();
+			}
+		}
+		
+	}
+	
+	protected class RestartElement implements Runnable {
+		
+		private EvaluationController e;
+		
+		public RestartElement(EvaluationController e) {
+			this.e = e;
+		}
+		
+		@Override
+		public void run() {
+			if (e != null) {
+				e.nextStep();
 			}
 		}
 		

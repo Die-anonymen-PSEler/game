@@ -3,6 +3,8 @@ package com.retroMachines.game.controllers;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
@@ -93,9 +95,15 @@ public class EvaluationController {
 		for(Vertex v : vertexList) {
 			evaluationScreen.setOnStage(v);
 		}
+		evalutionPointer.getnext().MoveOutOfSpace(this);
 	}
 	
-	private void step6DeleteWorker() {	
+	public void step6DeleteWorker() {	
+		evalutionPointer.getnext().getfamily().updateGameelementPosition(0, -1, this);
+	}
+	
+	public void nextStep() {
+		//TODO Prepare next evalution step
 	}
 	
 }
