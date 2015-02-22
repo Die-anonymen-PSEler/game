@@ -656,11 +656,11 @@ public abstract class Vertex {
 	 * Set Gameelement and family to given 
 	 * @param newPos as Number of GameelementWidths
 	 */
-	public void setGameelementPosition(Vector2 newPos, EvaluationController e) {
+	public void setGameelementPosition(Vector2 start,Vector2 newPos, EvaluationController e) {
 		
 		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
-		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
-		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
+		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + (int)start.x; 
+		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + (int)start.y;
 		
 		Vector2 startPos = new Vector2(x + centerVertex, y);
 		

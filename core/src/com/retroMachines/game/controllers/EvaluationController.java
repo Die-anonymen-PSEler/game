@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
+import com.retroMachines.util.Constants;
 import com.retroMachines.util.lambda.Dummy;
 import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
@@ -43,6 +44,8 @@ public class EvaluationController {
 	
 	private int actStep;
 	
+	private int offsetX;
+	
 	public EvaluationController(RetroLevel level, RetroMachines g) {
 		this.level = level;
 		game = g;
@@ -66,6 +69,7 @@ public class EvaluationController {
 		evaluationScreen.setLambaTerm(lambdaTree);
 		evalutionPointer = new Dummy();
 		evalutionPointer.setnext(lambdaTree.getStart());
+		offsetX = 0;
 		step1AlphaConversion();
 	}
 	
@@ -87,7 +91,10 @@ public class EvaluationController {
 	}
 	
 	public void step4UpdatePositions() {
-		evalutionPointer.getnext().setGameelementPosition(new Vector2(0,0), this);
+		Vector2 start = new Vector2();
+		start.x = Constants.EVALUATIONSCREEN_PADDING + offsetX; 
+		start.y = Constants.EVALUATIONSCREEN_PADDING;
+		evalutionPointer.getnext().setGameelementPosition(start ,new Vector2(0,0), this);
 		// Next Step by Animation
 	}
 	
@@ -98,12 +105,29 @@ public class EvaluationController {
 		evalutionPointer.getnext().MoveOutOfSpace(this);
 	}
 	
-	public void step6DeleteWorker() {	
+	public void step6DeleteWorker() {
+		// Update pointer if needed
+		if(evalutionPointer.getnext().getnext() != null) {
+			Vertex pointer = new Dummy();
+			pointer.setnext(evalutionPointer.getnext().getfamily().getnext());
+			if(pointer.getnext() != null) {
+				while (pointer.getnext().getnext() != null) {
+					pointer.setnext(pointer.getnext().getnext());
+				}
+			}
+			
+			pointer.getnext().setnext(evalutionPointer.getnext().getnext());
+		}
+		
 		evalutionPointer.getnext().getfamily().updateGameelementPosition(0, -1, this);
 	}
 	
 	public void nextStep() {
-		//TODO Prepare next evalution step
+		// TODO Search next Vertex to evaluate and Save Result
+		
 	}
 	
+	private void checkEvaluation() {
+		//TODO Check evaluation result
+	}
 }
