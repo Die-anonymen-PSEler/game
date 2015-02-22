@@ -282,7 +282,10 @@ public abstract class Vertex {
 				
 				//Replace Family Vertex if Color and Type are ok
 				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == start.getColor()) {
-					Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+					Vertex replaced = start.getnext().cloneMe();
+					if(this.getfamily().getnext() != null) {
+						replaced.setnext(this.getfamily().getnext());
+					}
 					int oldWidth = this.getfamily().getWidth();
 					int newWidth = replaced.getWidth();
 					
@@ -340,7 +343,10 @@ public abstract class Vertex {
 			
 			//Replace Next Vertex if Color and Type are Ok
 			if (this.getnext().getType().equals("Variable") && this.getnext().getColor() == start.getColor()) {
-				Vertex replaced = start.getnext().cloneMe(this.getnext());
+				Vertex replaced = start.getnext().cloneMe();
+				if(this.getnext().getnext() != null) {
+					replaced.setnext(this.getnext().getnext());
+				}
 				int oldWidth = this.getnext().getWidth();
 				int newWidth = replaced.getWidth();
 				
@@ -403,10 +409,9 @@ public abstract class Vertex {
 	
 	/**
 	 * Creates a clone of this Vertex without Next and his hole Family
-	 * @param next vertex to clone
 	 * @return deep copy of next
 	 */
-	abstract public Vertex cloneMe(Vertex next);
+	abstract public Vertex cloneMe();
 	
 	/**
 	 * Creates a clone of this Vertex and his hole Family

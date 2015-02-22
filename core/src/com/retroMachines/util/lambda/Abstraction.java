@@ -108,7 +108,10 @@ public class Abstraction extends Vertex {
 				// Replace own family Vertex
 				//Replace Family Vertex if Color and Type are ok
 				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == this.getColor()) {
-					Vertex replace = this.getnext().cloneMe(this.getfamily().getnext());
+					Vertex replace = this.getnext().cloneMe();
+					if(this.getfamily().getnext() != null) {
+						replace.setnext(this.getfamily().getnext());
+					}
 					int oldWidth = this.getfamily().getWidth();
 					int newWidth = replace.getWidth();
 					
@@ -180,7 +183,7 @@ public class Abstraction extends Vertex {
 	 * @param next
 	 * @return
 	 */
-	public Vertex cloneMe(Vertex next){
+	public Vertex cloneMe(){
 		// check if next or family is null
 		Vertex family;
 		if(this.getfamily() != null) {
@@ -189,11 +192,7 @@ public class Abstraction extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		if(next != null) {
-			clone = new Abstraction(next, family,this.getId(), this.getColor(), this.getFamilyColorList());
-		} else  {
-			clone = new Abstraction(null, family,this.getId(), this.getColor(), this.getFamilyColorList());
-		}
+		clone = new Abstraction(null, family,this.getId(), this.getColor(), this.getFamilyColorList());
 		return clone;
 	}
 	

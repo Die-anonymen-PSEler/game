@@ -115,7 +115,7 @@ public class Application extends Vertex {
 	 * @param next
 	 * @return
 	 */
-	public Vertex cloneMe(Vertex next){
+	public Vertex cloneMe(){
 		// check if next or family is null
 		Vertex family;
 		if(this.getfamily() != null) {
@@ -124,11 +124,7 @@ public class Application extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		if(next != null) {
-			clone = new Application(next, family,this.getId(), this.getFamilyColorList());
-		} else  {
-			clone = new Application(null, family,this.getId(), this.getFamilyColorList());
-		}
+		clone = new Application(null, family,this.getId(), this.getFamilyColorList());
 		return clone;
 	}
 	

@@ -77,7 +77,7 @@ public class Variable extends Vertex {
 	//---------------------------------------------------
 	
 	@Override
-	public Vertex cloneMe(Vertex next) {
+	public Vertex cloneMe() {
 		// check if next or family is null
 		Vertex family;
 		if(this.getfamily() != null) {
@@ -86,11 +86,7 @@ public class Variable extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		if(next != null) {
-			clone = new Variable( next, family, this.getId(), this.getColor(), this.getFamilyColorList());
-		} else {
-			clone = new Variable( null, family, this.getId(), this.getColor(), this.getFamilyColorList());
-		}
+		clone = new Variable( null, family, this.getId(), this.getColor(), this.getFamilyColorList());
 		return clone;
 	}
 	
@@ -146,7 +142,10 @@ public class Variable extends Vertex {
 			
 			//Replace Next Vertex if Color and Type are Ok
 			if (this.getnext().getColor() == start.getColor()) {
-				Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+				Vertex replaced = start.getnext().cloneMe();
+				if(this.getfamily().getnext() != null) {
+					replaced.setnext(this.getfamily().getnext());
+				}
 				this.setnext(replaced);
 			}
 		}

@@ -22,7 +22,7 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public Vertex cloneMe(Vertex next) {
+	public Vertex cloneMe() {
 		//dummy object, does nothing
 		return null;
 	}
