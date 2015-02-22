@@ -252,20 +252,20 @@ public abstract class Vertex {
 				
 				// update Position
 				if(this.getWidth() != famWidth) {
-					int dif = famWidth - this.getWidth();
+					int difX = famWidth - this.getWidth();
 					// Move next Families from Start
 					if (start.getnext().getnext() != null) {
-						start.getnext().getnext().updateGameelementPosition(dif);
+						start.getnext().getnext().updateGameelementPosition(difX, 0);
 					}
 					// move yourself and next vertex
 					if(this.getnext() != null) {
-						this.getnext().updateGameelementPosition(dif);
+						this.getnext().updateGameelementPosition(difX, 0);
 					}
 					Vector2 actPosition = this.getGameElement().getPosition();
-					int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
+					int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
 					//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
 					this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
-					this.setWidth(this.getWidth() + dif);
+					this.setWidth(this.getWidth() + difX);
 				}
 				
 				// Stop replacing of vertexes! betaReduction will know what to do
@@ -288,24 +288,24 @@ public abstract class Vertex {
 					
 					// update Position
 					if (oldWidth != newWidth) {
-						int dif = newWidth - oldWidth;
+						int difX = newWidth - oldWidth;
 						// Move next Families from Start
 						if (start.getnext().getnext() != null) {
-							start.getnext().getnext().updateGameelementPosition(dif);
+							start.getnext().getnext().updateGameelementPosition(difX, 0);
 						}
 						// Move next Vertex from Family
 						if(this.getfamily().getnext() != null) {
-							this.getfamily().getnext().updateGameelementPosition(dif);
+							this.getfamily().getnext().updateGameelementPosition(difX, 0);
 						}
 						// move yourself and next vertex
 						if(this.getnext() != null) {
-							this.getnext().updateGameelementPosition(dif);
+							this.getnext().updateGameelementPosition(difX, 0);
 						}
 						Vector2 actPosition = this.getGameElement().getPosition();
-						int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
+						int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
 						//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
 						this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
-						this.setWidth(this.getWidth() + dif);
+						this.setWidth(this.getWidth() + difX);
 					}
 					this.setfamily(replaced);
 				}
@@ -327,7 +327,7 @@ public abstract class Vertex {
 				int dif = nextWidth - this.getWidth();
 				// Move next Families from Start
 				if (start.getnext().getnext() != null) {
-					start.getnext().getnext().updateGameelementPosition(dif);
+					start.getnext().getnext().updateGameelementPosition(dif, 0);
 				}
 				this.setNextWidth(this.getNextWidth() + dif);
 				
@@ -350,10 +350,10 @@ public abstract class Vertex {
 					
 					//Move next Families from Start
 					if (start.getnext().getnext() != null) {
-						start.getnext().getnext().updateGameelementPosition(dif);
+						start.getnext().getnext().updateGameelementPosition(dif, 0);
 					}
 					if(this.getnext().getnext() != null) {
-						this.getnext().getnext().updateGameelementPosition(dif);
+						this.getnext().getnext().updateGameelementPosition(dif, 0);
 					}
 				}
 				this.setnext(replaced);
@@ -416,19 +416,70 @@ public abstract class Vertex {
 	
 	abstract public String getType();
 	
-	protected void updateGameelementPosition(int dif) {
+	/**
+	 * update coordinate of gameelement with given difference(Num of Gameelemnts)
+	 * @param difX dif on x axis
+	 * @param difY dif on y axis
+	 */
+	protected void updateGameelementPosition(int difX, int difY) {
 		if(this.getnext() != null) {
-			this.getnext().updateGameelementPosition(dif);
+			this.getnext().updateGameelementPosition(difX, difY);
 		}
+		
+		System.out.println(this.getType());
+		System.out.println(this.getColor());
+		System.out.println(this.getGameElement().getPosition());
+		
 		
 		// Move
 		Vector2 actPosition = this.getGameElement().getPosition();
-		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * dif);
+		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
+		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
 		//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
-		this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
+		this.getGameElement().setPosition(new Vector2(newX , newY));
+		
 		if (this.getfamily() != null) {
-			this.getfamily().updateGameelementPosition(dif);
+			this.getfamily().updateGameelementPosition(difX, difY);
 		}
+	}
+	
+	protected boolean removeGameelemens() {
+		boolean check = true;
+		// remove Family
+		if(this.getfamily() != null) {
+			if(!this.getfamily().removeAllGameelements()) {
+				check = false;
+			}
+		}
+					
+		// remove yourself
+		if (this.getGameElement().remove()) {
+			check = false;
+		}
+		return check;
+	}
+	
+	private boolean removeAllGameelements() {
+		boolean check = true;
+			// Remove all next
+			if(this.getnext() != null) {
+				if (!this.getnext().removeAllGameelements()) {
+					check = false;
+				}
+			}
+			
+			// remove Family
+			if(this.getfamily() != null) {
+				if(!this.getfamily().removeAllGameelements()) {
+					check = false;
+				}
+			}
+			
+			// remove yourself
+			if (this.getGameElement().remove()) {
+				check = false;
+			}
+			return check;
 	}
 	
 	//---------------------------------------------------

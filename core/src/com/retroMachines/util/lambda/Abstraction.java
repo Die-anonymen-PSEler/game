@@ -93,60 +93,78 @@ public class Abstraction extends Vertex {
 	 */
 	@Override
 	public boolean betaReduction() {
-		// Check if family is there
-		if (this.getfamily() != null) {
-			LinkedList<Integer> replaced = this.getfamily().replaceInFamily(this);
-			
-			// Replace own family Vertex
-			//Replace Family Vertex if Color and Type are ok
-			if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == this.getColor()) {
-				Vertex replace = this.getnext().cloneMe(this.getfamily().getnext());
-				int oldWidth = this.getfamily().getWidth();
-				int newWidth = replace.getWidth();
+		
+		// Check if next is there
+		if(this.getnext() != null) {
+			// Check if family is there
+			if (this.getfamily() != null) {
 				
-				// update Position
-				if (oldWidth != newWidth) {
-					int dif = newWidth - oldWidth;
-					// Move next Families from Start
-					if (this.getnext().getnext() != null) {
-						this.getnext().getnext().updateGameelementPosition(dif);
-					}
-					// Move next Vertex from Family
-					if(this.getfamily().getnext() != null) {
-						this.getfamily().getnext().updateGameelementPosition(dif);
-					}
-				}
-				this.setfamily(replace);
-			}
-			
-			
-			// Check if there was no error in replaceInFamily
-			if (replaced != null) {
-				this.mergeMyColorList(replaced);
+				//Delete Next Vertex and family
+				this.getnext().removeGameelemens();
 				
-				// Update pointer if needed
-				if(this.getnext().getnext() != null) {
-					Vertex pointer = new Dummy();
-					pointer.setnext(this.getfamily().getnext());
-					if(pointer.getnext() != null) {
-						while (pointer.getnext().getnext() != null) {
-							pointer.setnext(pointer.getnext().getnext());
+				//Start Beta Reduction
+				LinkedList<Integer> replaced = this.getfamily().replaceInFamily(this);
+				
+				// Replace own family Vertex
+				//Replace Family Vertex if Color and Type are ok
+				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == this.getColor()) {
+					Vertex replace = this.getnext().cloneMe(this.getfamily().getnext());
+					int oldWidth = this.getfamily().getWidth();
+					int newWidth = replace.getWidth();
+					
+					// update Position
+					if (oldWidth != newWidth) {
+						int dif = newWidth - oldWidth;
+						// Move next Families from Start
+						if (this.getnext().getnext() != null) {
+							this.getnext().getnext().updateGameelementPosition(dif, 0);
+						}
+						// Move next Vertex from Family
+						if(this.getfamily().getnext() != null) {
+							this.getfamily().getnext().updateGameelementPosition(dif, 0);
 						}
 					}
-					
-					pointer.getnext().setnext(this.getnext().getnext());
+					this.setfamily(replace);
 				}
 				
-				//Evaluation will choose next Vertex for next eavluation step
-				this.setnext(this.getfamily());
+				
+				// Check if there was no error in replaceInFamily
+				if (replaced != null) {
+					this.mergeMyColorList(replaced);
+					
+					// Update pointer if needed
+					if(this.getnext().getnext() != null) {
+						Vertex pointer = new Dummy();
+						pointer.setnext(this.getfamily().getnext());
+						if(pointer.getnext() != null) {
+							while (pointer.getnext().getnext() != null) {
+								pointer.setnext(pointer.getnext().getnext());
+							}
+						}
+						
+						pointer.getnext().setnext(this.getnext().getnext());
+					}
+					
+					// remove Actors
+					this.getGameElement().remove();
+					// Family takes place of this element
+					this.getfamily().updateGameelementPosition(0, -1);
+					
+					//Evaluation will choose next Vertex for next eavluation step
+					this.setnext(this.getfamily());
+				} else {
+					//error in family
+					return false;
+				}
 			} else {
-				//error in family
+				// Error every machine has a family
 				return false;
 			}
 		} else {
-			// Error every machine has a family
+			// Error every machine has next
 			return false;
 		}
+		
 		return true;
 	}
 
