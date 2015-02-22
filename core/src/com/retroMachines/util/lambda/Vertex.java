@@ -213,14 +213,15 @@ public abstract class Vertex {
 				}
 				
 				// Rename the Others if they are no imaginary Friends  
-				Vertex renamePointer = this.family;
-				while(renamePointer.next != null) {
-					if (!renamePointer.next.renameFamily(oldColor, newColor)) {
+				Vertex renamePointer = new Dummy();
+				renamePointer.setnext(this.getfamily());
+				while(renamePointer.getnext() != null) {
+					if (!renamePointer.getnext().renameFamily(oldColor, newColor)) {
 						//Error
 						return false;
 					}
 					// Set 
-					renamePointer = renamePointer.next;
+					renamePointer.setnext(renamePointer.getnext().getnext());
 				}
 			}
 		}
