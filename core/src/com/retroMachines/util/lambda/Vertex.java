@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
 
@@ -606,6 +607,37 @@ public abstract class Vertex {
 	abstract public Vertex getReadIn();
 	
 	/**
+	 * Read In Animation for Vertex and his family
+	 * @param pos Position of Worker
+	 * @param e EvaluationController where next step should be called
+	 */
+	public void readInAnimation(Vector2 pos, EvaluationController e) {
+		if(this.getfamily() != null) {
+			this.getfamily().readInFamilyAnimation(pos);
+		}
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.moveTo(pos.x, pos.y, Constants.ACTION_MOVINGTIME),
+				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_MOVINGTIME),
+				Actions.run(new DestroyElement(e))
+				));
+		
+	}
+	
+	protected void readInFamilyAnimation(Vector2 pos) {
+		if(this.getnext() != null) {
+			this.getnext().readInFamilyAnimation(pos);
+		}
+		if(this.getfamily() != null) {
+			this.getfamily().readInFamilyAnimation(pos);
+		}
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.moveTo(pos.x, pos.y, Constants.ACTION_MOVINGTIME),
+				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_MOVINGTIME),
+				Actions.run(new DestroyElement())
+				));
+	}
+	
+	/**
 	 * compares this vertex with given one
 	 * @param v vertex to be compared with this
 	 * @return returns true if and only if this vertex and parameter have same color and same type 
@@ -765,6 +797,27 @@ public abstract class Vertex {
 	
 	public int getNextWidth() {
 		return nextWidth;
+	}
+	
+	protected class DestroyElement implements Runnable {
+		
+		private EvaluationController e;
+		
+		public DestroyElement() {
+		}
+		
+		public DestroyElement(EvaluationController e) {
+			this.e = e;
+		}
+		
+		@Override
+		public void run() {
+			getGameElement().remove();
+			if (e != null) {
+				e.step3DeleteColors();
+			}
+		}
+		
 	}
 }
 

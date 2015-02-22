@@ -3,6 +3,8 @@ package com.retroMachines.game.controllers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
@@ -63,30 +65,36 @@ public class EvaluationController {
 		evaluationScreen.setLambaTerm(lambdaTree);
 		evalutionPointer = new Dummy();
 		evalutionPointer.setnext(lambdaTree.getStart());
+		step1AlphaConversion();
 
 	}
 	
-	private void step1AlphaConversion() {
+	public void step1AlphaConversion() {
 		evalutionPointer.getnext().alphaConversion();
+		step2ReadInAndDelete();
 	}
 	
-	private void step2ReadInAndDelete() {
+	public void step2ReadInAndDelete() {
+		Vertex readIn = evalutionPointer.getnext().getReadIn();
+		readIn.readInAnimation(evalutionPointer.getnext().getGameElement().getPosition(), this);
 		
 	}
 	
-	private void step3BetaReduction() {
+	public void step3DeleteColors() {
+	}
+	
+	public void step4BetaReduction() {
+	}
+	
+	public void step5UpdatePositions() {
 		
 	}
 	
-	private void step4UpdatePositions() {
+	public void step6InsertReadIn() {
 		
 	}
 	
-	private void step5InsertReadIn() {
-		
-	}
-	
-	private void step6DeleteWoker() {
+	public void step7DeleteWorker() {
 		
 	}
 	
