@@ -75,10 +75,10 @@ public class ProfileController {
 	public void deleteProfile(String name) {
 		int id = profileNames.get(name);
 		boolean activeProfileKilled = (id == profile.getProfileId());
-		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, id), 0);
 		new Profile(id).destroy();
 		new Statistic(id).destroy();
 		new Setting(id).destroy();
+		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, id), 0);
 		profileNames = getProfileNameIdMap();
 		if (profileNames.size() == 0) {
 			GlobalVariables gv = GlobalVariables.getSingleton();

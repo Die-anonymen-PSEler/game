@@ -1,12 +1,11 @@
 package com.retroMachines.ui.screens.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.util.Constants;
@@ -40,6 +39,12 @@ public class EvaluationScreen extends AbstractScreen {
 	 * screen; if false the render method will stop the animation.
 	 */
 	private boolean animationInProgress;
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private Stage buttonStage;
 
 	/**
 	 * Creates a new instance of EvaluationScreen.
@@ -48,8 +53,29 @@ public class EvaluationScreen extends AbstractScreen {
 	 */
 	public EvaluationScreen(RetroMachines game, EvaluationController evaluationController) {
 		super(game);
+		buttonStage = new Stage();
 		this.evaController = evaluationController;
 		animationInProgress = false;
+		initialize();
+	}
+
+	private void initialize() {
+		skin = AssetManager.getMenuSkin();
+
+		Table table = new Table(skin);
+		table.setBounds(0, 0, screenWidth, screenHeight);
+
+		Button buttonMenu = new Button(skin, "menu");
+		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonMenu.setColor(1, 1, 1, 0.66f);
+		
+		//Make Table
+		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
+		table.add().expand().row();
+		buttonStage.addActor(table);
+		
+
+		inputMultiplexer.addProcessor(buttonStage);
 	}
 
 	/**
@@ -95,8 +121,11 @@ public class EvaluationScreen extends AbstractScreen {
 		// TODO Auto-generated method stub
 		super.render(delta);
 
-		stage.act();
-		stage.draw();
+		//stage.act();
+		//stage.draw();
+		
+		buttonStage.act();
+		buttonStage.draw();
 	}
 
 	/**
