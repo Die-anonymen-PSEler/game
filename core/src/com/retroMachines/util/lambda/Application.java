@@ -37,10 +37,10 @@ public class Application extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Application(Vertex next, Vertex family, LinkedList<Integer> familyColorlist) {
+	private Application(Vertex next, Vertex family,int id, LinkedList<Integer> familyColorlist) {
+		super(id, 1);
 		this.setnext(next);
 		this.setfamily(family);
-		this.setColor(1);
 		this.setFamilyColorlist(familyColorlist);
 	}
 	
@@ -116,7 +116,19 @@ public class Application extends Vertex {
 	 * @return
 	 */
 	public Vertex cloneMe(Vertex next){
-		Vertex clone = new Application(next, this.getfamily().cloneFamily(), this.getFamilyColorList());
+		// check if next or family is null
+		Vertex family;
+		if(this.getfamily() != null) {
+			family = this.getfamily().cloneFamily();
+		} else  {
+			family = null;
+		}
+		Vertex clone;
+		if(next != null) {
+			clone = new Application(next, family,this.getId(), this.getFamilyColorList());
+		} else  {
+			clone = new Application(null, family,this.getId(), this.getFamilyColorList());
+		}
 		return clone;
 	}
 	
@@ -125,7 +137,19 @@ public class Application extends Vertex {
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		Vertex clone = new Application(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getFamilyColorList());
+		Vertex next;
+		Vertex family;
+		if(this.getnext() != null) {
+			next = this.getnext().cloneFamily();
+		} else  {
+			next = null;
+		}
+		if(this.getfamily() != null) {
+			family = this.getfamily().cloneFamily();
+		} else  {
+			family = null;
+		}
+		Vertex clone = new Application(next, family,this.getId(), this.getFamilyColorList());
 		return clone;
 	}
 

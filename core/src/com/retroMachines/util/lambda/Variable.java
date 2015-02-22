@@ -35,10 +35,10 @@ public class Variable extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Variable(Vertex next, Vertex family, int color, LinkedList<Integer> familyColorlist) {
+	private Variable(Vertex next, Vertex family,int id, int color, LinkedList<Integer> familyColorlist) {
+		super(id,color);
 		this.setnext(next);
 		this.setfamily(family);
-		this.setColor(color);
 		this.setFamilyColorlist(familyColorlist);
 	}
 	
@@ -76,12 +76,43 @@ public class Variable extends Vertex {
 	//------------------Help Methods---------------------
 	//---------------------------------------------------
 	
+	@Override
+	public Vertex cloneMe(Vertex next) {
+		// check if next or family is null
+		Vertex family;
+		if(this.getfamily() != null) {
+			family = this.getfamily().cloneFamily();
+		} else  {
+			family = null;
+		}
+		Vertex clone;
+		if(next != null) {
+			clone = new Variable( next, family, this.getId(), this.getColor(), this.getFamilyColorList());
+		} else {
+			clone = new Variable( null, family, this.getId(), this.getColor(), this.getFamilyColorList());
+		}
+		return clone;
+	}
+	
 	/**
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		Vertex clone = new Variable(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
+		// check if next or family is null
+		Vertex next;
+		Vertex family;
+		if(this.getnext() != null) {
+			next = this.getnext().cloneFamily();
+		} else  {
+			next = null;
+		}
+		if(this.getfamily() != null) {
+			family = this.getfamily().cloneFamily();
+		} else  {
+			family = null;
+		}
+		Vertex clone = new Variable( next, family, this.getId(), this.getColor(), this.getFamilyColorList());
 		return clone;
 	}
 	
@@ -123,10 +154,7 @@ public class Variable extends Vertex {
 		return listOfNewColors;
 	}
 
-	@Override
-	public Vertex cloneMe(Vertex next) {
-		return new Variable(next.getId(), next.getColor());
-	}
+
 
 	@Override
 	public GameElement getGameElement() {

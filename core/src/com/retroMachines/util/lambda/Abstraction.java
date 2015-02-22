@@ -3,8 +3,8 @@ package com.retroMachines.util.lambda;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.game.gameelements.GameElement;
-import com.retroMachines.game.gameelements.LightElement;
 import com.retroMachines.game.gameelements.MachineElement;
 import com.retroMachines.util.Constants;
 
@@ -38,10 +38,10 @@ public class Abstraction extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Abstraction(Vertex next, Vertex family, int color, LinkedList<Integer> familyColorlist) {
+	private Abstraction(Vertex next, Vertex family,int id, int color, LinkedList<Integer> familyColorlist) {
+		super(id, color);
 		this.setnext(next);
 		this.setfamily(family);
-		this.setColor(color);
 		this.setFamilyColorlist(familyColorlist);
 	}
 	
@@ -97,6 +97,29 @@ public class Abstraction extends Vertex {
 		if (this.getfamily() != null) {
 			LinkedList<Integer> replaced = this.getfamily().replaceInFamily(this);
 			
+			// Replace own family Vertex
+			//Replace Family Vertex if Color and Type are ok
+			if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == this.getColor()) {
+				Vertex replace = this.getnext().cloneMe(this.getfamily().getnext());
+				int oldWidth = this.getfamily().getWidth();
+				int newWidth = replace.getWidth();
+				
+				// update Position
+				if (oldWidth != newWidth) {
+					int dif = newWidth - oldWidth;
+					// Move next Families from Start
+					if (this.getnext().getnext() != null) {
+						this.getnext().getnext().updateGameelementPosition(dif);
+					}
+					// Move next Vertex from Family
+					if(this.getfamily().getnext() != null) {
+						this.getfamily().getnext().updateGameelementPosition(dif);
+					}
+				}
+				this.setfamily(replace);
+			}
+			
+			
 			// Check if there was no error in replaceInFamily
 			if (replaced != null) {
 				this.mergeMyColorList(replaced);
@@ -140,7 +163,20 @@ public class Abstraction extends Vertex {
 	 * @return
 	 */
 	public Vertex cloneMe(Vertex next){
-		return new Abstraction(next, this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
+		// check if next or family is null
+		Vertex family;
+		if(this.getfamily() != null) {
+			family = this.getfamily().cloneFamily();
+		} else  {
+			family = null;
+		}
+		Vertex clone;
+		if(next != null) {
+			clone = new Abstraction(next, family,this.getId(), this.getColor(), this.getFamilyColorList());
+		} else  {
+			clone = new Abstraction(null, family,this.getId(), this.getColor(), this.getFamilyColorList());
+		}
+		return clone;
 	}
 	
 	/**
@@ -148,7 +184,21 @@ public class Abstraction extends Vertex {
 	 * @return First Vertex in Tree structure
 	 */
 	public Vertex cloneFamily(){
-		return new Abstraction(this.getnext().cloneFamily(), this.getfamily().cloneFamily(), this.getColor(), this.getFamilyColorList());
+		// check if next or family is null
+		Vertex next;
+		Vertex family;
+		if(this.getnext() != null) {
+			next = this.getnext().cloneFamily();
+		} else  {
+			next = null;
+		}
+		if(this.getfamily() != null) {
+			family = this.getfamily().cloneFamily();
+		} else  {
+			family = null;
+		}
+		Vertex clone = new Abstraction(next, family,this.getId(), this.getColor(), this.getFamilyColorList());
+		return clone;
 	}
 	
 	/**

@@ -340,7 +340,7 @@ public abstract class Vertex {
 			
 			//Replace Next Vertex if Color and Type are Ok
 			if (this.getnext().getType().equals("Variable") && this.getnext().getColor() == start.getColor()) {
-				Vertex replaced = start.getnext().cloneMe(this.getfamily().getnext());
+				Vertex replaced = start.getnext().cloneMe(this.getnext());
 				int oldWidth = this.getnext().getWidth();
 				int newWidth = replaced.getWidth();
 				
@@ -416,7 +416,7 @@ public abstract class Vertex {
 	
 	abstract public String getType();
 	
-	private void updateGameelementPosition(int dif) {
+	protected void updateGameelementPosition(int dif) {
 		if(this.getnext() != null) {
 			this.getnext().updateGameelementPosition(dif);
 		}

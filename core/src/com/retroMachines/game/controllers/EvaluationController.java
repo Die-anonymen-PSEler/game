@@ -73,7 +73,6 @@ public class EvaluationController {
 			actWorker.setnext(actWorker.getnext().getnext());
 			
 		}
-		System.out.println(lambdaTree.getStart().getType() + " + " + lambdaTree.getStart().getColor());
 	}
 	
 	
