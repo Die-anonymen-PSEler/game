@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -33,8 +34,7 @@ import com.retroMachines.ui.screens.AbstractScreen;
  */
 public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
-	
-	
+
 	private static final float ZOOM_ADDITION = 0.25f;
 
 	/**
@@ -122,6 +122,17 @@ public class GameScreen extends AbstractScreen implements
 		inputMultiplexer.addProcessor(this);
 
 		drawButtons();
+		// instanciate HintDialog
+		hintDialog = new HintDialog("", skin, "default");
+		Button buttonOk = new Button(skin, "ok");
+		hintDialog.button(buttonOk);
+		hintDialog.text("Are you sure you want to quit?");
+		hintDialog.button("Yes", true);
+		hintDialog.key(Keys.ENTER, true);
+		hintDialog.setSize(400, 300);
+
+		// hintDialog.setPosition(0, 0);
+
 	}
 
 	/**
@@ -152,6 +163,8 @@ public class GameScreen extends AbstractScreen implements
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render(delta);
 
+		stage.act();
+		stage.draw();
 		inputDetection();
 
 		updateCameraPosition(gameController.getRetroMan().getPos().x,
@@ -166,6 +179,9 @@ public class GameScreen extends AbstractScreen implements
 
 		stage.act();
 		stage.draw();
+		if (popupScreenIsShown) {
+			showHint();
+		}
 	}
 
 	private void updateCameraPosition(float x, float y) {
@@ -234,20 +250,22 @@ public class GameScreen extends AbstractScreen implements
 		buttonQuest.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuest.addListener(new GetTaskClickListener());
 		buttonQuest.setColor(1, 1, 1, 0.66f);
-		
+
 		Button buttonMenu = new Button(skin, "menu");
 		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonMenu.addListener(new GetTaskClickListener());
 		buttonMenu.setColor(1, 1, 1, 0.66f);
-		
+
 		Button buttonEvaluation = new Button(skin, "evaluation");
 		buttonEvaluation.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonEvaluation.addListener(new TryEvaluationButtonClickListener());
 		buttonEvaluation.setColor(1, 1, 1, 0.66f);
-		
-		//Make Table
-		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
-		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDINGx2).padRight(screenWidth/ DEFAULTPADDINGx4).right().row();
+
+		// Make Table
+		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2)
+				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDINGx2)
+				.padRight(screenWidth / DEFAULTPADDINGx4).right().row();
 		table.add().expand().row();
 
 		innerButtonTable.add(buttonHint)
@@ -292,7 +310,7 @@ public class GameScreen extends AbstractScreen implements
 					.padLeft(screenWidth / DEFAULTPADDINGx4)
 					.padBottom(screenWidth / DEFAULTPADDINGx2);
 		}
-		
+
 		table.add(buttonTable).colspan(COLSPANx2);
 		stage.addActor(table);
 
@@ -350,9 +368,8 @@ public class GameScreen extends AbstractScreen implements
 	 * Shows the HintScreen on top of the game.
 	 */
 	private void showHint() {
-
+		hintDialog.show(stage);
 	}
-
 
 	/*
 	 * input processing (non-Javadoc)
@@ -363,7 +380,7 @@ public class GameScreen extends AbstractScreen implements
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.A) {
-			//gameController.doorTestMethod();
+			// gameController.doorTestMethod();
 		} else if (keycode == Keys.B) {
 			gameController.interactRetroMan();
 		}
@@ -454,9 +471,8 @@ public class GameScreen extends AbstractScreen implements
 	private class GetHintClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			//instanciate HintDialog
-			hintDialog = new HintDialog("", skin, "default");
-			showHint();
+			popupScreenIsShown = true;
+			// showHint();
 		}
 	}
 
@@ -489,13 +505,18 @@ public class GameScreen extends AbstractScreen implements
 
 		public HintDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
-			this.initialize();
+			setStage(new Stage());
 		}
 
 		private void initialize() {
 			// TODO: implement
 		}
 
-	}
+		@Override
+		protected void result(Object object) {
+			this.hide();
+			popupScreenIsShown = false;
+		}
 
+	}
 }
