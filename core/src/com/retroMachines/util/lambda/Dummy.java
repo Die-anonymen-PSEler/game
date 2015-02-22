@@ -2,6 +2,7 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 
 /**
@@ -12,7 +13,7 @@ import com.retroMachines.game.gameelements.GameElement;
 public class Dummy extends Vertex {
 
 	@Override
-	public LinkedList<Vertex> betaReduction() {
+	public LinkedList<Vertex> betaReduction(EvaluationController e) {
 		//dummy object, does nothing
 		return new LinkedList<Vertex>();
 	}

@@ -2,6 +2,7 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MetalElement;
 
@@ -61,7 +62,7 @@ public class Variable extends Vertex {
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
 	@Override
-	public LinkedList<Vertex> betaReduction() {
+	public LinkedList<Vertex> betaReduction(EvaluationController e) {
 		//Variable doesnt do betaReduction
 		return new LinkedList<Vertex>();
 	}
@@ -84,6 +85,8 @@ public class Variable extends Vertex {
 		}
 		Vertex clone;
 		clone = new Variable( null, family, this.getId(), this.getColor(), this.getFamilyColorList());
+		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
 	}
 	
@@ -106,6 +109,8 @@ public class Variable extends Vertex {
 			family = null;
 		}
 		Vertex clone = new Variable( next, family, this.getId(), this.getColor(), this.getFamilyColorList());
+		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
 	}
 

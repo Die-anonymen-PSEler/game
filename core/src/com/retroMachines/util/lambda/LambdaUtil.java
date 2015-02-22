@@ -107,15 +107,15 @@ public class LambdaUtil {
 		observers.remove(listener);
 	}
 
-	public void performEvaluation() {
-		if (levelTree != null) {
-			levelTree.evaluate();
-		}
-		for (OnNextLambdaStepListener listener : observers) {
-			listener.nextLambdaStepPerformed();
-		
-		}
-	}
+//	public void performEvaluation() {
+//		if (levelTree != null) {
+//			levelTree.evaluate();
+//		}
+//		for (OnNextLambdaStepListener listener : observers) {
+//			listener.nextLambdaStepPerformed();
+//		
+//		}
+//	}
 	
 	/**
 	 * returns gameElement according to vertex with specified position. Null if there is no such vertex

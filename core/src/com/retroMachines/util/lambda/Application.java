@@ -3,6 +3,7 @@ package com.retroMachines.util.lambda;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
+import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.LightElement;
 import com.retroMachines.util.Constants;
@@ -63,9 +64,8 @@ public class Application extends Vertex {
 	 * @return True if this application has changed, false when an error appeared.
 	 */
 	@Override
-	public LinkedList<Vertex> betaReduction() {		
-		
-		
+	public LinkedList<Vertex> betaReduction(EvaluationController e) {		
+				
 		// Set Light green
 		int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		this.getGameElement().setTileId(2 + offset);
@@ -96,6 +96,8 @@ public class Application extends Vertex {
 		}
 		Vertex clone;
 		clone = new Application(null, family,this.getId(), this.getFamilyColorList());
+		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
 	}
 	
@@ -117,6 +119,8 @@ public class Application extends Vertex {
 			family = null;
 		}
 		Vertex clone = new Application(next, family,this.getId(), this.getFamilyColorList());
+		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
 	}
 

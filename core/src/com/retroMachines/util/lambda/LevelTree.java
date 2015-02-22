@@ -24,17 +24,17 @@ public class LevelTree {
 		this.start = start;
 	}
 	
-	/**
-	 * One step of evaluation
-	 */
-	public void evaluate() {
-		if (start == null) {
-			return; //empty tree, nothing to evaluate
-		}
-		start.alphaConversion();
-		start.betaReduction();
-		start = start.updateStart();
-	}
+//	/**
+//	 * One step of evaluation
+//	 */
+//	public void evaluate() {
+//		if (start == null) {
+//			return; //empty tree, nothing to evaluate
+//		}
+//		start.alphaConversion();
+//		start.betaReduction();
+//		start = start.updateStart();
+//	}
 	
 	/**
 	 * compares this tree with given one

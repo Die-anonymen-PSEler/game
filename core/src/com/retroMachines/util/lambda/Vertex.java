@@ -392,21 +392,52 @@ public abstract class Vertex {
 	
 	/**
 	 * Set Gameelement and family to given 
-	 * @param newPos
+	 * @param newPos as Number of GameelementWidths
 	 */
-	protected void setGameelementPosition(Vector2 newPos) {
+	public void setGameelementPosition(Vector2 newPos, EvaluationController e) {
+		
+		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
+		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
+		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
+		
+		Vector2 startPos = new Vector2(x + centerVertex, y);
 		
 		if(this.getnext() != null) {
-			this.getnext().setGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y));
+			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
+		}
+		
+		if (this.getfamily() != null) {
+			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
+		}
+		
+		// Move	
+		this.getGameElement().addAction(Actions.sequence(Actions.moveTo(startPos.x, startPos.y, Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+	}
+	
+	/**
+	 * Set Gameelement and family to given 
+	 * @param newPos as Number of GameelementWidths
+	 */
+	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos) {
+		
+		if(this.getnext() != null) {
+			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
+		}
+		
+		// Clone Pre Set
+		if(this.getGameElement().getPosition().equals(new Vector2(0,0))) {
+			this.getGameElement().setPosition(startPos);
 		}
 		
 		// Move
-		//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
-		int centerVertex = ((Constants.GAMEELEMENT_WIDTH * this.getWidth()) - 1) / 2;
-		this.getGameElement().setPosition(new Vector2(newPos.x + centerVertex, newPos.y));
+		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
+		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
+		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
+		
+		this.getGameElement().addAction(Actions.moveTo(x + centerVertex, y, Constants.ACTION_TIME));
 		
 		if (this.getfamily() != null) {
-			this.getfamily(). setGameelementPosition(new Vector2(newPos.x, newPos.y + 1));
+			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
 		}
 	}
 	
@@ -579,7 +610,7 @@ public abstract class Vertex {
 			this.getfamily().updateFamilyWidth();
 			this.setWidth(this.getfamily().getWidth() + this.getfamily().getNextWidth());
 		} else {
-			this.setWidth(0);
+			this.setWidth(1);
 		}
 		
 		// Update next width
@@ -601,7 +632,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
-	abstract public LinkedList<Vertex> betaReduction();
+	abstract public LinkedList<Vertex> betaReduction(EvaluationController e);
 	
 	/**
 	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
@@ -632,7 +663,7 @@ public abstract class Vertex {
 		this.getGameElement().addAction(Actions.sequence(
 				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
 				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
-				Actions.run(new DestroyElement(this,e))
+				Actions.run(new Step3Element(this, e))
 				));
 		
 	}
@@ -815,16 +846,27 @@ public abstract class Vertex {
 	
 	protected class DestroyElement implements Runnable {
 		
-		private EvaluationController e;
 		private Vertex v;
 		
 		public DestroyElement(Vertex v) {
 			this.v = v;
 		}
 		
-		public DestroyElement(Vertex v,EvaluationController e) {
-			this.v = v;
+		@Override
+		public void run() {
+			v.getGameElement().remove();
+		}
+		
+	}
+	
+	protected class Step3Element implements Runnable {
+		
+		private EvaluationController e;
+		private Vertex v;
+		
+		public Step3Element(Vertex v, EvaluationController e) {
 			this.e = e;
+			this.v = v;
 		}
 		
 		@Override
@@ -832,6 +874,40 @@ public abstract class Vertex {
 			v.getGameElement().remove();
 			if (e != null) {
 				e.step3BetaReduction();
+			}
+		}
+		
+	}
+	
+	protected class Step4Element implements Runnable {
+		
+		private EvaluationController e;
+		
+		public Step4Element(EvaluationController e) {
+			this.e = e;
+		}
+		
+		@Override
+		public void run() {
+			if (e != null) {
+				e.step4UpdatePositions();
+			}
+		}
+		
+	}
+	
+	protected class Step5Element implements Runnable {
+		
+		private EvaluationController e;
+		
+		public Step5Element(EvaluationController e) {
+			this.e = e;
+		}
+		
+		@Override
+		public void run() {
+			if (e != null) {
+				e.step5InsertReadIn();
 			}
 		}
 		

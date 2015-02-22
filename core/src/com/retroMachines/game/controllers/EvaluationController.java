@@ -1,17 +1,12 @@
 package com.retroMachines.game.controllers;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
-import com.retroMachines.util.Constants;
 import com.retroMachines.util.lambda.Dummy;
-import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -85,15 +80,19 @@ public class EvaluationController {
 	}
 	
 	public void step3BetaReduction() {
-		vertexList = evalutionPointer.getnext().betaReduction();
-		step4UpdatePositions();
+		vertexList = evalutionPointer.getnext().betaReduction(this);
+		// Next Step by Animation
 	}
 	
-	private void step4UpdatePositions() {
-		
+	public void step4UpdatePositions() {
+		evalutionPointer.getnext().setGameelementPosition(new Vector2(0,0), this);
+		// Next Step by Animation
 	}
 	
-	private void step5InsertReadIn() {	
+	public void step5InsertReadIn() {	
+		for(Vertex v : vertexList) {
+			evaluationScreen.setOnStage(v);
+		}
 	}
 	
 	private void step6DeleteWorker() {	

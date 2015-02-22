@@ -86,7 +86,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 */
 	public void setLambaTerm(LevelTree t) {
 		this.tree = t;
-		printTree(tree.getStart(), new Vector2(20,20));
+		printTree(tree.getStart(), new Vector2(Constants.EVALUATIONSCREEN_PADDING, Constants.EVALUATIONSCREEN_PADDING));
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class EvaluationScreen extends AbstractScreen {
 	
 	private void printTree(Vertex actVertex, Vector2 position) {
 		while(actVertex != null) {
-			int centerVertex = ((Constants.GAMEELEMENT_WIDTH * actVertex.getWidth()) - 1) / 2;
+			int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex.getWidth() - 1)) / 2;
 			Vector2 pos = new Vector2(position.x + centerVertex, position.y);
 			actVertex.getGameElement().setPosition(pos);
 			stage.addActor(actVertex.getGameElement());
@@ -153,4 +153,7 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 	
+	public void setOnStage(Vertex v) {
+		stage.addActor(v.getGameElement());
+	}
 }
