@@ -112,11 +112,14 @@ public class Abstraction extends Vertex {
 					for(Vertex v : cloneList) {
 						returnList.add(v);
 					}
-					
 					this.setfamily(replace);
 				}
 				
+				//Update colorList
 				this.updateColorList(this.getnext().getFamilyColorList(), this.getColor());
+				
+				// Update withs
+				this.updateWidth();
 				
 				// Update pointer if needed
 				if(this.getnext().getnext() != null) {

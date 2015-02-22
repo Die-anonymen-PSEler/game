@@ -548,6 +548,35 @@ public abstract class Vertex {
 		}
 	}
 	
+	protected void updateWidth() {
+		//Update width
+		if(this.getfamily() != null) {
+			this.getfamily().updateFamilyWidth();
+			this.setWidth(this.getfamily().getWidth() + this.getfamily().getNextWidth());
+		} else {
+			this.setWidth(0);
+		}
+	}
+	
+	private void updateFamilyWidth() {
+		//Update width
+		if(this.getfamily() != null) {
+			this.getfamily().updateFamilyWidth();
+			this.setWidth(this.getfamily().getWidth() + this.getfamily().getNextWidth());
+		} else {
+			this.setWidth(0);
+		}
+		
+		// Update next width
+		if(this.getnext() != null) {
+			this.getnext().updateFamilyWidth();
+			this.setNextWidth(this.getnext().getWidth() + this.getnext().getNextWidth());
+		} else {
+			this.setNextWidth(0);
+		}
+		
+		//Update self
+	}
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
