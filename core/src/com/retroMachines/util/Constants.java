@@ -46,7 +46,13 @@ public abstract class Constants {
 	 * TileSet name in TiledMap 
 	 */
 	public static final String TILESETNAME_DEPOT = "Rohre";
-
+	
+	public static final String VARIABLE_TYPE = "Variable";
+	
+	public static final String APPLICATION_TYPE = "Application";
+	
+	public static final String ABSTRACTION_TYPE = "Abstraction";
+	
 	/**
 	 * String array containing path to all possible characters.
 	 */

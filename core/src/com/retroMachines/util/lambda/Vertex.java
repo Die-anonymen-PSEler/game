@@ -238,83 +238,34 @@ public abstract class Vertex {
 	 * @param start vertex which is parent of this Vertex and starts the beta Reduction
 	 * @return
 	 */
-	protected LinkedList<Integer> replaceInFamily(Vertex start) {
+	protected LinkedList<Vertex> replaceInFamily(Vertex start) {
 		
-		LinkedList<Integer> listOfNewColors = new LinkedList<Integer>();
+		LinkedList<Vertex> listOfNewVertex = new LinkedList<Vertex>();
 		
 		// if family contains color, search and replace it
 		if (this.getFamilyColorList().contains(start.getColor())) {
 			if (this.getfamily() != null) {
 				
 				// Check Family Vertexes before you check to replace the first in Family
-				listOfNewColors = this.getfamily().replaceInFamily(start);
-				int famWidth = this.getfamily().getWidth() + this.getfamily().getNextWidth();
+				listOfNewVertex = this.getfamily().replaceInFamily(start);
 				
-				// update Position
-				if(this.getWidth() != famWidth) {
-					int difX = famWidth - this.getWidth();
-					// Move next Families from Start
-					if (start.getnext().getnext() != null) {
-						start.getnext().getnext().updateGameelementPosition(difX, 0);
-					}
-					// move yourself and next vertex
-					if(this.getnext() != null) {
-						this.getnext().updateGameelementPosition(difX, 0);
-					}
-					Vector2 actPosition = this.getGameElement().getPosition();
-					int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
-					//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
-					this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
-					this.setWidth(this.getWidth() + difX);
-				}
-				
-				// Stop replacing of vertexes! betaReduction will know what to do
-				if (listOfNewColors == null) {
-					return null;
-				}
-				
-				//When there is a change in Family merge it with your list
-				if (!listOfNewColors.isEmpty()) {
-					//Remove the searched color from your list if it is replaced in your family
-					this.getFamilyColorList().remove(start.getColor());
-					this.mergeMyColorList(listOfNewColors);
-				}
 				
 				//Replace Family Vertex if Color and Type are ok
 				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == start.getColor()) {
 					Vertex replaced = start.getnext().cloneMe();
+					
+					//Update listOfNewVertex
+					LinkedList<Vertex> cloneList = replaced.getVertexList();
+					for(Vertex v : cloneList) {
+						listOfNewVertex.add(v);
+					}
+					
+					// Insert clone in Family
 					if(this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
-					int oldWidth = this.getfamily().getWidth();
-					int newWidth = replaced.getWidth();
-					
-					// update Position
-					if (oldWidth != newWidth) {
-						int difX = newWidth - oldWidth;
-						// Move next Families from Start
-						if (start.getnext().getnext() != null) {
-							start.getnext().getnext().updateGameelementPosition(difX, 0);
-						}
-						// Move next Vertex from Family
-						if(this.getfamily().getnext() != null) {
-							this.getfamily().getnext().updateGameelementPosition(difX, 0);
-						}
-						// move yourself and next vertex
-						if(this.getnext() != null) {
-							this.getnext().updateGameelementPosition(difX, 0);
-						}
-						Vector2 actPosition = this.getGameElement().getPosition();
-						int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
-						//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
-						this.getGameElement().setPosition(new Vector2(newX , actPosition.y));
-						this.setWidth(this.getWidth() + difX);
-					}
 					this.setfamily(replaced);
 				}
-			} else {
-				// Error each Abstraction has family
-				return null;
 			}
 		}
 		
@@ -322,51 +273,31 @@ public abstract class Vertex {
 		if (this.getnext() != null) {
 			
 			// Check all Vertexes next to you, before you check to replace the Next Vertex
-			listOfNewColors = this.getnext().replaceInFamily(start);
-			int nextWidth = this.getnext().getWidth() + this.getnext().getNextWidth();
-			
-			// update Position
-			if(this.getNextWidth() != nextWidth) {
-				int dif = nextWidth - this.getWidth();
-				// Move next Families from Start
-				if (start.getnext().getnext() != null) {
-					start.getnext().getnext().updateGameelementPosition(dif, 0);
-				}
-				this.setNextWidth(this.getNextWidth() + dif);
-				
-			}
-			
-			// Stop replacing of vertexes! betaReduction will know what to do
-			if (listOfNewColors == null) {
-				return null;
+			LinkedList<Vertex> listOfNextVertex = this.getnext().replaceInFamily(start);
+			for(Vertex v : listOfNextVertex) {
+				listOfNewVertex.add(v);
 			}
 			
 			//Replace Next Vertex if Color and Type are Ok
 			if (this.getnext().getType().equals("Variable") && this.getnext().getColor() == start.getColor()) {
 				Vertex replaced = start.getnext().cloneMe();
+				
+				//Update listOfNewVertex
+				LinkedList<Vertex> cloneList = replaced.getVertexList();
+				for(Vertex v : cloneList) {
+					listOfNewVertex.add(v);
+				}
+				
+				// insert clone as Next
 				if(this.getnext().getnext() != null) {
 					replaced.setnext(this.getnext().getnext());
 				}
-				int oldWidth = this.getnext().getWidth();
-				int newWidth = replaced.getWidth();
 				
-				// update Position
-				if (oldWidth != newWidth) {
-					int dif = newWidth - oldWidth;
-					
-					//Move next Families from Start
-					if (start.getnext().getnext() != null) {
-						start.getnext().getnext().updateGameelementPosition(dif, 0);
-					}
-					if(this.getnext().getnext() != null) {
-						this.getnext().getnext().updateGameelementPosition(dif, 0);
-					}
-				}
 				this.setnext(replaced);
 			}
 		}
 		// At the End return the ColorList, if something is replaced;
-		return listOfNewColors;
+		return listOfNewVertex;
 	}
 	
 	/**
@@ -431,10 +362,6 @@ public abstract class Vertex {
 			this.getnext().updateGameelementPosition(difX, difY);
 		}
 		
-		System.out.println(this.getType());
-		System.out.println(this.getColor());
-		System.out.println(this.getGameElement().getPosition());
-		
 		
 		// Move
 		Vector2 actPosition = this.getGameElement().getPosition();
@@ -448,7 +375,31 @@ public abstract class Vertex {
 		}
 	}
 	
-	protected boolean removeGameelemens() {
+	/**
+	 * Set Gameelement and family to given 
+	 * @param newPos
+	 */
+	protected void setGameelementPosition(Vector2 newPos) {
+		
+		if(this.getnext() != null) {
+			this.getnext().setGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y));
+		}
+		
+		// Move
+		//this.getGameElement().addAction(Actions.moveTo(newX , actPosition.y, Constants.ACTION_MOVINGTIME));
+		int centerVertex = ((Constants.GAMEELEMENT_WIDTH * this.getWidth()) - 1) / 2;
+		this.getGameElement().setPosition(new Vector2(newPos.x + centerVertex, newPos.y));
+		
+		if (this.getfamily() != null) {
+			this.getfamily(). setGameelementPosition(new Vector2(newPos.x, newPos.y + 1));
+		}
+	}
+	
+	/**
+	 * Removes Gameelement of this vertex and all family vertex from stage 
+	 * @return true = success
+	 */
+	public boolean removeGameelements() {
 		boolean check = true;
 		// remove Family
 		if(this.getfamily() != null) {
@@ -487,6 +438,116 @@ public abstract class Vertex {
 			return check;
 	}
 	
+	/**
+	 * Removes all Gameelemnts with type Variable and color of this vertex in family of this vertex
+	 * @return true = success
+	 */
+	public boolean removeVariableGameelements() {
+		return this.getfamily().removeVariableFamily(this.getColor());
+	}
+	
+	private boolean removeVariableFamily(int color) {
+		
+		boolean result = true;
+		if(this.getnext() != null) {
+			if(!this.getnext().removeVariableFamily(color)) {
+				result = false;
+			}
+		}
+		if(this.getfamily() != null) {
+			if(!this.getfamily().removeVariableFamily(color)) {
+				result = false;
+			}
+		}
+		if(this.getType().equals(Constants.VARIABLE_TYPE) && this.getColor() == color) {
+			if(!this.getGameElement().remove()) {
+				result = false;
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	/**
+	 * returns List of Vertex and his hole Family Vertex
+	 * @return List of Vertex
+	 */
+	protected LinkedList<Vertex> getVertexList() {
+		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
+		
+		// Add family
+		if(this.getfamily() != null) {
+			returnList = this.getfamily().getFamilyVertexList();
+		}
+		returnList.add(this);
+		return returnList;
+	}
+	
+	private LinkedList<Vertex> getFamilyVertexList() {
+		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
+		if(this.getnext() != null) {
+			returnList = this.getnext().getFamilyVertexList();
+		}
+		
+		// Add family
+		if(this.getfamily() != null) {
+			if(returnList.isEmpty()) {
+				returnList = this.getfamily().getFamilyVertexList();
+			} else {
+				LinkedList<Vertex> familyList = this.getfamily().getFamilyVertexList();
+				for(Vertex v : familyList) {
+					returnList.add(v);
+				}
+			}
+
+		}
+		returnList.add(this);
+		return returnList;
+	}
+	
+	/**
+	 * Updates ColorList of this Vertex and family
+	 */
+	protected void updateColorList(LinkedList<Integer> cloneList, int color) {
+
+		// Update Color List in vertex
+		if(this.getFamilyColorList().contains(new Integer(color))) {
+			this.getFamilyColorList().remove(new Integer(color));
+			for(Integer i : cloneList) {
+				this.getFamilyColorList().add(i);
+			}
+			if(this.getfamily() != null) {
+				this.getfamily().updateFamilyColorList(cloneList, color);
+			}
+		}
+	}
+	
+	private void updateFamilyColorList(LinkedList<Integer> cloneList, int color) {
+		
+		// Update Color List in vertex
+		if(this.getFamilyColorList().contains(new Integer(color))) {
+			this.getFamilyColorList().remove(new Integer(color));
+			for(Integer i : cloneList) {
+				this.getFamilyColorList().add(i);
+			}
+			if(this.getfamily() != null) {
+				this.getfamily().updateFamilyColorList(cloneList, color);
+			}
+		}
+		
+		// Update Color List in next
+		if(this.getNextColorList().contains(new Integer(color))) {
+			if(this.getnext() != null) {
+				this.getnext().updateFamilyColorList(cloneList, color);
+			}
+			this.setNextColorlist(this.getnext().getNextColorList());
+			if(!this.getNextColorList().contains(new Integer(this.getnext().getColor()))) {
+				this.getNextColorList().add(this.getnext().getColor());
+			}
+		}
+	}
+	
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
@@ -496,7 +557,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
-	abstract public boolean betaReduction();
+	abstract public LinkedList<Vertex> betaReduction();
 	
 	/**
 	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.

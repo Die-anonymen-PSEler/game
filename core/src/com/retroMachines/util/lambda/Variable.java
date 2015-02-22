@@ -61,12 +61,9 @@ public class Variable extends Vertex {
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
 	@Override
-	public boolean betaReduction() {
-		if (this.getfamily() != null) {
-			// variable has no Family
-			return false;
-		}
-		return true;
+	public LinkedList<Vertex> betaReduction() {
+		//Variable doesnt do betaReduction
+		return new LinkedList<Vertex>();
 	}
 
 	
@@ -110,47 +107,6 @@ public class Variable extends Vertex {
 		}
 		Vertex clone = new Variable( next, family, this.getId(), this.getColor(), this.getFamilyColorList());
 		return clone;
-	}
-	
-	/**
-	 * replaces all Elements of a specific color in family of start Vertex
-	 * @param start vertex which is parent of this Vertex and starts the beta Reduction
-	 * @return
-	 */
-	public LinkedList<Integer> replaceInFamily(Vertex start) {
-
-		LinkedList<Integer> listOfNewColors = new LinkedList<Integer>();
-		
-		// if family contains color, search and replace it
-		if (this.getColor() == start.getColor()) {
-			if (this.getfamily() != null) {
-				// Variable has no Family
-				return null;
-			}
-		}
-		
-		// if next Vertex contains color, search and replace it 
-		if (this.getnext() != null) {
-			
-			// Check all Vertexes next to you, before you check to replace the Next Vertex
-			listOfNewColors = this.getnext().replaceInFamily(start);
-			
-			// Stop replacing of vertexes! betaReduction will know what to do
-			if (listOfNewColors == null) {
-				return null;
-			}
-			
-			//Replace Next Vertex if Color and Type are Ok
-			if (this.getnext().getColor() == start.getColor()) {
-				Vertex replaced = start.getnext().cloneMe();
-				if(this.getfamily().getnext() != null) {
-					replaced.setnext(this.getfamily().getnext());
-				}
-				this.setnext(replaced);
-			}
-		}
-		// At the End return the ColorList, if something is replaced;
-		return listOfNewColors;
 	}
 
 

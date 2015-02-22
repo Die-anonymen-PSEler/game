@@ -92,83 +92,56 @@ public class Abstraction extends Vertex {
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
 	@Override
-	public boolean betaReduction() {
+	public LinkedList<Vertex> betaReduction() {
 		
 		// Check if next is there
 		if(this.getnext() != null) {
 			// Check if family is there
 			if (this.getfamily() != null) {
-				
-				//Delete Next Vertex and family
-				this.getnext().removeGameelemens();
-				
+
 				//Start Beta Reduction
-				LinkedList<Integer> replaced = this.getfamily().replaceInFamily(this);
+				LinkedList<Vertex> returnList = this.getfamily().replaceInFamily(this);
 				
 				// Replace own family Vertex
 				//Replace Family Vertex if Color and Type are ok
 				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == this.getColor()) {
 					Vertex replace = this.getnext().cloneMe();
-					if(this.getfamily().getnext() != null) {
-						replace.setnext(this.getfamily().getnext());
-					}
-					int oldWidth = this.getfamily().getWidth();
-					int newWidth = replace.getWidth();
 					
-					// update Position
-					if (oldWidth != newWidth) {
-						int dif = newWidth - oldWidth;
-						// Move next Families from Start
-						if (this.getnext().getnext() != null) {
-							this.getnext().getnext().updateGameelementPosition(dif, 0);
-						}
-						// Move next Vertex from Family
-						if(this.getfamily().getnext() != null) {
-							this.getfamily().getnext().updateGameelementPosition(dif, 0);
-						}
+					//Update listOfNewVertex
+					LinkedList<Vertex> cloneList = replace.getVertexList();
+					for(Vertex v : cloneList) {
+						returnList.add(v);
 					}
+					
 					this.setfamily(replace);
 				}
 				
+				this.updateColorList(this.getnext().getFamilyColorList(), this.getColor());
 				
-				// Check if there was no error in replaceInFamily
-				if (replaced != null) {
-					this.mergeMyColorList(replaced);
-					
-					// Update pointer if needed
-					if(this.getnext().getnext() != null) {
-						Vertex pointer = new Dummy();
-						pointer.setnext(this.getfamily().getnext());
-						if(pointer.getnext() != null) {
-							while (pointer.getnext().getnext() != null) {
-								pointer.setnext(pointer.getnext().getnext());
-							}
+				// Update pointer if needed
+				if(this.getnext().getnext() != null) {
+					Vertex pointer = new Dummy();
+					pointer.setnext(this.getfamily().getnext());
+					if(pointer.getnext() != null) {
+						while (pointer.getnext().getnext() != null) {
+							pointer.setnext(pointer.getnext().getnext());
 						}
-						
-						pointer.getnext().setnext(this.getnext().getnext());
 					}
 					
-					// remove Actors
-					this.getGameElement().remove();
-					// Family takes place of this element
-					this.getfamily().updateGameelementPosition(0, -1);
-					
-					//Evaluation will choose next Vertex for next eavluation step
-					this.setnext(this.getfamily());
-				} else {
-					//error in family
-					return false;
+					pointer.getnext().setnext(this.getnext().getnext());
 				}
+				
+				return returnList;
+				
 			} else {
 				// Error every machine has a family
-				return false;
+				return null;
 			}
 		} else {
 			// Error every machine has next
-			return false;
+			return null;
 		}
 		
-		return true;
 	}
 
 	

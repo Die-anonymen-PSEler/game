@@ -63,44 +63,15 @@ public class Application extends Vertex {
 	 * @return True if this application has changed, false when an error appeared.
 	 */
 	@Override
-	public boolean betaReduction() {
-		// Check if family is there
-		if (this.getfamily() != null) {
-			Vertex actWorker = new Dummy();
-			actWorker.setnext(this.getfamily());
-			while(actWorker.getnext() != null) {
-				actWorker.getnext().alphaConversion();
-				
-				if(!actWorker.getnext().betaReduction()) {
-					Gdx.app.log(Constants.LOG_TAG, "Application Beta-Reduction error");
-				}
-				actWorker.setnext(actWorker.getnext().getnext());
-				
-			}
-			
-			// Update pointer if needed
-			if(this.getnext().getnext() != null) {
-				Vertex pointer = new Dummy();
-				pointer.setnext(this.getfamily().getnext());
-				if(pointer.getnext() != null) {
-					while (pointer.getnext().getnext() != null) {
-						pointer.setnext(pointer.getnext().getnext());
-					}
-				}
-				
-				pointer.getnext().setnext(this.getnext().getnext());
-			}
-			
-			//Evaluation will choose next Vertex for next eavluation step
-			this.setnext(this.getfamily());
-		} else {
-			// Error every Light has a family
-			return false;
-		}
+	public LinkedList<Vertex> betaReduction() {		
+		
+		
 		// Set Light green
 		int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		this.getGameElement().setTileId(2 + offset);
-		return true;
+		
+		// no changes
+		return new LinkedList<Vertex>();
 	}
 
 	
