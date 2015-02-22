@@ -200,7 +200,6 @@ public abstract class Vertex {
 				this.color = newColor;
 				int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 				this.getGameElement().setTileId(newColor + offset);
-				//this.getGameElement().addAction(Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME));
 			}
 			
 			// Rename Family
@@ -595,6 +594,16 @@ public abstract class Vertex {
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	abstract public boolean alphaConversion();
+	
+	//----------------------------------------
+	//-------- Animation Helper Methods ------
+	//----------------------------------------
+	
+	/**
+	 * return vertex witch will be replaced in beta Reduction
+	 * @return return null if no vertex should be read in
+	 */
+	abstract public Vertex getReadIn();
 	
 	/**
 	 * compares this vertex with given one

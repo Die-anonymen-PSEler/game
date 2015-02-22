@@ -124,4 +124,8 @@ public class Variable extends Vertex {
 		return "Variable";
 	}
 
+	public Vertex getReadIn() {
+		return null;
+	}
+
 }

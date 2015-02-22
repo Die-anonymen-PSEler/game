@@ -47,4 +47,9 @@ public class Dummy extends Vertex {
 
 	}
 
+	@Override
+	public Vertex getReadIn() {
+		return null;
+	}
+
 }

@@ -39,6 +39,8 @@ public class EvaluationController {
 	 */
 	private RetroLevel level;
 	
+	private Vertex evalutionPointer;
+	
 	public EvaluationController(RetroLevel level, RetroMachines g) {
 		this.level = level;
 		game = g;
@@ -59,7 +61,33 @@ public class EvaluationController {
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
+		evalutionPointer = new Dummy();
+		evalutionPointer.setnext(lambdaTree.getStart());
 
+	}
+	
+	private void step1AlphaConversion() {
+		evalutionPointer.getnext().alphaConversion();
+	}
+	
+	private void step2ReadInAndDelete() {
+		
+	}
+	
+	private void step3BetaReduction() {
+		
+	}
+	
+	private void step4UpdatePositions() {
+		
+	}
+	
+	private void step5InsertReadIn() {
+		
+	}
+	
+	private void step6DeleteWoker() {
+		
 	}
 	
 	

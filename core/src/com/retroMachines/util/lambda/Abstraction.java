@@ -241,4 +241,8 @@ public class Abstraction extends Vertex {
 		}
 		return newColor;
 	}
+
+	public Vertex getReadIn() {
+		return this.getnext();
+	}
 }

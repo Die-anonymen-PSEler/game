@@ -131,4 +131,9 @@ public class Application extends Vertex {
 	public String getType() {
 		return "Application";
 	}
+
+	@Override
+	public Vertex getReadIn() {
+		return null;
+	}
 }
