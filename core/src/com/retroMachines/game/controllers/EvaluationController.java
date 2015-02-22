@@ -59,20 +59,7 @@ public class EvaluationController {
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
-		
-		Vertex actWorker = new Dummy();
-		actWorker.setnext(lambdaTree.getStart());
-		while(actWorker.getnext() != null) {
-			if(actWorker.getnext().getType().equals("Variable")) {
-				lambdaTree.setStart(actWorker.getnext());
-			}
-			actWorker.getnext().alphaConversion();
-			if(!actWorker.getnext().betaReduction()) {
-				Gdx.app.log(Constants.LOG_TAG, "Application Beta-Reduction error");
-			}
-			actWorker.setnext(actWorker.getnext().getnext());
-			
-		}
+
 	}
 	
 	
