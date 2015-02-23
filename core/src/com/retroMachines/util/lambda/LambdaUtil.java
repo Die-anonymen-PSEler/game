@@ -31,7 +31,7 @@ public class LambdaUtil {
 	private final static String TREE = "tree";
 	private final static String HINT = "hint";
 	private final static String LEVEL = "level";
-	private final static String TARGET = "TARGET";
+	private final static String TARGET = "target";
 	private final static String GAMEELEMENTS = "gameelements";
 	
 

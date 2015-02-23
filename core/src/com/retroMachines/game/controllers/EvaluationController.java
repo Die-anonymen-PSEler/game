@@ -57,17 +57,12 @@ public class EvaluationController {
 	
 	private int offsetX;
 	
+	private boolean result;
+	
 	public EvaluationController(RetroLevel level, RetroMachines g) {
 		this.level = level;
 		game = g;
 		evaluationScreen = new EvaluationScreen(g, this);
-	}
-	
-	/**
-	 * Updates the evaluation screen to animate the evaluation.
-	 */
-	private void updateEvaluationScreen(){
-		//TODO: implement
 	}
 
 	/**
@@ -154,6 +149,6 @@ public class EvaluationController {
 	 *  evaluation result is saved in resultTree
 	 */
 	private void checkEvaluation() {
-		System.out.println(resultTree.equals(level.getLambdaUtil().getTargetTree()));
+		result = resultTree.equals(level.getLambdaUtil().getTargetTree());
 	}
 }
