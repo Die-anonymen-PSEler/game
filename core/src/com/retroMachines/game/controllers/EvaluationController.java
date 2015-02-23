@@ -149,7 +149,11 @@ public class EvaluationController {
 		}
 	}
 	
+	/**
+	 * This method is called after the last evaluation step ,
+	 *  evaluation result is saved in resultTree
+	 */
 	private void checkEvaluation() {
-		System.out.println("END");
+		System.out.println(resultTree.equals(level.getLambdaUtil().getTargetTree()));
 	}
 }
