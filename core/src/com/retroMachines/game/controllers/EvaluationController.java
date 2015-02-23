@@ -26,6 +26,11 @@ public class EvaluationController {
 	private LevelTree lambdaTree;
 	
 	/**
+	 * The resultTree represents the result of the Evaluation 
+	 */
+	private LevelTree resultTree;
+	
+	/**
 	 * List of all gameElements in this level
 	 */
 	private LinkedList<Vertex> vertexList;
@@ -40,9 +45,15 @@ public class EvaluationController {
 	 */
 	private RetroLevel level;
 	
+	/**
+	 * evaluationPointer . next is always the actual worker in evaluation
+	 */
 	private Vertex evalutionPointer;
 	
-	private int actStep;
+	/**
+	 * resultPointer.next is always last element added to resultTree
+	 */
+	private Vertex resultPointer;
 	
 	private int offsetX;
 	
@@ -63,26 +74,30 @@ public class EvaluationController {
 	 * 
 	 */
 	public void startEvaluation() {
-		actStep = 0;
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
 		evalutionPointer = new Dummy();
+		resultPointer = new Dummy();
 		evalutionPointer.setnext(lambdaTree.getStart());
 		offsetX = 0;
 		step1AlphaConversion();
 	}
 	
 	private void step1AlphaConversion() {
-		actStep++;
 		evalutionPointer.getnext().alphaConversion();
 		step2ReadInAndDelete();
 	}
 	
 	private void step2ReadInAndDelete() {
 		Vertex readIn = evalutionPointer.getnext().getReadIn();
-		readIn.readInAnimation(evalutionPointer.getnext().getGameElement().getPosition(), this);
-		// Next Step by Animation
+		if(readIn != null) {
+			readIn.readInAnimation(evalutionPointer.getnext().getGameElement().getPosition(), this);
+			// Next Step by Animation
+		} else {
+			step3BetaReduction();
+		}
+
 	}
 	
 	public void step3BetaReduction() {
@@ -94,40 +109,47 @@ public class EvaluationController {
 		Vector2 start = new Vector2();
 		start.x = Constants.EVALUATIONSCREEN_PADDING + offsetX; 
 		start.y = Constants.EVALUATIONSCREEN_PADDING;
-		evalutionPointer.getnext().setGameelementPosition(start ,new Vector2(0,0), this);
+		evalutionPointer.getnext().reorganizePositions(start ,new Vector2(0,0), this);
 		// Next Step by Animation
 	}
 	
 	public void step5InsertReadIn() {	
+		// only Abstraction returns a list with elements else it is empty
 		for(Vertex v : vertexList) {
 			evaluationScreen.setOnStage(v);
 		}
-		evalutionPointer.getnext().MoveOutOfSpace(this);
+		// At the end worker disappears when its an Abstraction or Application
+		evalutionPointer.getnext().DeleteAfterBetaReduction(this);
 	}
 	
-	public void step6DeleteWorker() {
-		// Update pointer if needed
-		if(evalutionPointer.getnext().getnext() != null) {
-			Vertex pointer = new Dummy();
-			pointer.setnext(evalutionPointer.getnext().getfamily().getnext());
-			if(pointer.getnext() != null) {
-				while (pointer.getnext().getnext() != null) {
-					pointer.setnext(pointer.getnext().getnext());
-				}
-			}
-			
-			pointer.getnext().setnext(evalutionPointer.getnext().getnext());
-		}
-		
-		evalutionPointer.getnext().getfamily().updateGameelementPosition(0, -1, this);
+	public void step6UpdateFamilyPositions() {
+		evalutionPointer.getnext().UpdatePositionsAfterBetaReduction(this);
 	}
 	
 	public void nextStep() {
-		// TODO Search next Vertex to evaluate and Save Result
+		Vertex result = evalutionPointer.getnext().getEvaluationResult();
+		if(result != null) {
+			// make resulTree if needed
+			if(resultTree != null) {
+				resultPointer.getnext().setnext(result);
+				resultPointer.setnext(resultPointer.getnext().getnext());
+			} else {
+				resultTree = new LevelTree(result);
+				resultPointer.setnext(resultTree.getStart());
+			}
+		}
 		
+		evalutionPointer.setnext(evalutionPointer.getnext().updatePointerAfterBetaReduction());
+		if(evalutionPointer.getnext() == null) {
+			//End of Evaluation
+			resultPointer.getnext().setnext(null);
+			checkEvaluation();
+		} else {
+			step1AlphaConversion();
+		}
 	}
 	
 	private void checkEvaluation() {
-		//TODO Check evaluation result
+		System.out.println("END");
 	}
 }

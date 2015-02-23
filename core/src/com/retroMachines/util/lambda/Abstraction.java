@@ -9,6 +9,7 @@ import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MachineElement;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.Vertex.Step6Element;
 
 /**
  * 
@@ -255,5 +256,53 @@ public class Abstraction extends Vertex {
 
 	public Vertex getReadIn() {
 		return this.getnext();
+	}
+
+	@Override
+	public void reorganizePositions(Vector2 start, Vector2 newPos,
+			EvaluationController e) {
+		//Abstraction needs reorganizesation of Element positions
+		this.setGameelementPosition(start, newPos, e);
+	}
+
+	@Override
+	public void DeleteAfterBetaReduction(EvaluationController e) {
+		// Remove element and Start next Step of BetaReduction
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.delay(Constants.ACTION_TIME),
+				Actions.scaleTo(Constants.GAMEELEMENT_SCALING,Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
+				Actions.run(new Step6Element(this, e))));
+		
+	}
+
+	@Override
+	public Vertex updatePointerAfterBetaReduction() {
+		// Update pointer if needed
+		if(this.getnext() != null) {
+			// Search last Vertex in firs Family layer
+			Vertex pointer = new Dummy();
+			pointer.setnext(this.getfamily());
+			if(pointer.getnext() != null) {
+				while (pointer.getnext().getnext() != null) {
+					pointer.setnext(pointer.getnext().getnext());
+				}
+			}
+			// Set next Vertex of this as Next of Last in First Famiyl layer;
+			pointer.getnext().setnext(this.getnext());
+		}
+		// retrn new Worker
+		return this.getfamily();
+	}
+
+	@Override
+	public Vertex getEvaluationResult() {
+		//Returns null because the Abstraction is no Part of Evaluation Result
+		return null;
+	}
+
+	@Override
+	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+		// update Gameelement Postions  after Gameelement of this was deleted 
+		this.getfamily().updateGameelementPosition(0, -1, e);
 	}
 }

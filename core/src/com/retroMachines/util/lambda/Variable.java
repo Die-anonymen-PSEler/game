@@ -2,9 +2,16 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MetalElement;
+import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.Vertex.RestartElement;
+import com.retroMachines.util.lambda.Vertex.Step4Element;
+import com.retroMachines.util.lambda.Vertex.Step5Element;
+import com.retroMachines.util.lambda.Vertex.Step6Element;
 
 /**
  * 
@@ -64,6 +71,7 @@ public class Variable extends Vertex {
 	@Override
 	public LinkedList<Vertex> betaReduction(EvaluationController e) {
 		//Variable doesnt do betaReduction
+		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step4Element(e))));
 		return new LinkedList<Vertex>();
 	}
 
@@ -131,6 +139,41 @@ public class Variable extends Vertex {
 
 	public Vertex getReadIn() {
 		return null;
+	}
+
+	@Override
+	public void reorganizePositions(Vector2 start, Vector2 newPos,
+			EvaluationController e) {
+		//Start next Step no reorganization is needed
+		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+		
+	}
+
+	@Override
+	public void DeleteAfterBetaReduction(EvaluationController e) {
+		//start next evaluationStep
+					this.getGameElement().addAction(Actions.sequence(
+							Actions.run(new Step6Element(null, e))));
+		
+	}
+
+	@Override
+	public Vertex updatePointerAfterBetaReduction() {
+		return this.getnext();
+	}
+
+	@Override
+	public Vertex getEvaluationResult() {
+		return this;
+	}
+
+	@Override
+	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+		// Do nothing , you Have No Family ! :D
+		// Start next evaluation Step
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.run(new RestartElement(e))
+				));
 	}
 
 }

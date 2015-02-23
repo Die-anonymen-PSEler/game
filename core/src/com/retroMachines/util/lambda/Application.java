@@ -3,10 +3,14 @@ package com.retroMachines.util.lambda;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.LightElement;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.Vertex.Step5Element;
+import com.retroMachines.util.lambda.Vertex.Step6Element;
 
 /**
  * 
@@ -69,6 +73,7 @@ public class Application extends Vertex {
 		// Set Light green
 		int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		this.getGameElement().setTileId(2 + offset);
+		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step4Element(e))));
 		
 		// no changes
 		return new LinkedList<Vertex>();
@@ -139,5 +144,55 @@ public class Application extends Vertex {
 	@Override
 	public Vertex getReadIn() {
 		return null;
+	}
+
+	@Override
+	public void reorganizePositions(Vector2 start, Vector2 newPos,
+			EvaluationController e) {
+		//Start next Step no reorganization is needed
+		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+		
+	}
+
+	@Override
+	public void DeleteAfterBetaReduction(EvaluationController e) {
+		// Remove element and Start next Step of BetaReduction
+		this.getGameElement().addAction(Actions.sequence(
+				Actions.delay(Constants.ACTION_TIME),
+				Actions.scaleTo(Constants.GAMEELEMENT_SCALING,Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
+				Actions.run(new Step6Element(this, e))));
+		
+	}
+
+	@Override
+	public Vertex updatePointerAfterBetaReduction() {
+		// Update pointer if needed
+		if(this.getnext() != null) {
+			// Search last Vertex in firs Family layer
+			Vertex pointer = new Dummy();
+			pointer.setnext(this.getfamily());
+			if(pointer.getnext() != null) {
+				while (pointer.getnext().getnext() != null) {
+					pointer.setnext(pointer.getnext().getnext());
+				}
+			}
+			// Set next Vertex of this as Next of Last in First Famiyl layer;
+			pointer.getnext().setnext(this.getnext());
+		}
+		// retrn new Worker
+		return this.getfamily();
+	}
+
+	@Override
+	public Vertex getEvaluationResult() {
+		//Returns null because tthe Application is no Part of Evaluation Result
+		return null;
+	}
+
+	@Override
+	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+		// update Gameelement Postions  after Gameelement of this was deleted 
+		this.getfamily().updateGameelementPosition(0, -1, e);
+		
 	}
 }

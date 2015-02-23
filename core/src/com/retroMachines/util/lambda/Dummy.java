@@ -2,6 +2,7 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 
@@ -51,6 +52,36 @@ public class Dummy extends Vertex {
 	@Override
 	public Vertex getReadIn() {
 		return null;
+	}
+
+	@Override
+	public void reorganizePositions(Vector2 start, Vector2 newPos,
+			EvaluationController e) {
+		// DO nothing  because i'm a dummy
+		
+	}
+
+	@Override
+	public void DeleteAfterBetaReduction(EvaluationController e) {
+		// Do nothing You are a Dummy
+		
+	}
+
+	@Override
+	public Vertex updatePointerAfterBetaReduction() {
+		// Do nothing You are a Dummy
+		return null;
+	}
+
+	@Override
+	public Vertex getEvaluationResult() {
+		// Do nothing You are a Dummy
+		return null;
+	}
+
+	@Override
+	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+		// Do nothing You are a Dummy
 	}
 
 }

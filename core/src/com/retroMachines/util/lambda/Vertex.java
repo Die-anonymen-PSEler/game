@@ -551,6 +551,23 @@ public abstract class Vertex {
 		
 		//Update self
 	}
+	
+	/**
+	 * Updates Pointer after Beta Redction and returns new Worker
+	 * @return new Worker
+	 */
+	abstract public Vertex updatePointerAfterBetaReduction();
+	
+	/**
+	 * Returns Verex with should be added to the ResultTree
+	 * @return Returns null if ther is no Vertex wich should be added
+	 */
+	abstract public Vertex getEvaluationResult();
+	
+	/**
+	 * Update Position of Family if Worker was deleted in BetaReduction
+	 */
+	abstract public void UpdatePositionsAfterBetaReduction(EvaluationController e);
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
@@ -628,6 +645,7 @@ public abstract class Vertex {
 		Vector2 actPosition = this.getGameElement().getPosition();
 		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
 		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
+		// Start next evaluationStep
 		this.getGameElement().addAction(Actions.sequence(
 				Actions.moveTo(newX , newY, Constants.ACTION_TIME),
 				Actions.run(new RestartElement(e))
@@ -653,10 +671,18 @@ public abstract class Vertex {
 	}
 	
 	/**
+	 * Reorganizese Position of Vertex if needed
+	 * @param start  Offset of positon perhaps Padding to border ...
+	 * @param newPos new Position of this Vertex in num Of GameelementWidths
+	 * @param e instance of evaluationController for next steps
+	 */
+	abstract public void reorganizePositions(Vector2 start,Vector2 newPos, EvaluationController e);
+	
+	/**
 	 * Set Gameelement and family to given 
 	 * @param newPos as Number of GameelementWidths
 	 */
-	public void setGameelementPosition(Vector2 start,Vector2 newPos, EvaluationController e) {
+	protected void setGameelementPosition(Vector2 start,Vector2 newPos, EvaluationController e) {
 		
 		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
 		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + (int)start.x; 
@@ -724,15 +750,10 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Moves vertex 200 left and deletes it
+	 * Removes Gameelement from screen if this type of Vertex needs it
+	 * @param e Instance of Evaluation Controller for next Steps
 	 */
-	public void MoveOutOfSpace(EvaluationController e) {
-		Vector2 pos = this.getGameElement().getPosition();
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.delay(Constants.ACTION_TIME),
-				Actions.moveTo(pos.x - Constants.EVALUATIONSCREEN_PADDING * 2, pos.y, Constants.ACTION_TIME),
-				Actions.run(new Step6Element(this, e))));
-	}
+	abstract public void DeleteAfterBetaReduction(EvaluationController e);
 	
 	
 	// --------------------------
@@ -955,9 +976,11 @@ public abstract class Vertex {
 		
 		@Override
 		public void run() {
-			v.getGameElement().remove();
+			if(v != null) {
+				v.getGameElement().remove();
+			}
 			if (e != null) {
-				e.step6DeleteWorker();
+				e.step6UpdateFamilyPositions();
 			}
 		}
 		
