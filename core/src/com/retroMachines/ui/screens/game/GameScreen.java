@@ -152,7 +152,7 @@ public class GameScreen extends AbstractScreen implements
 		pauseDialog.button("OK", true);
 		Button buttonReturn = new Button(skin, "ok");
 		
-		pauseDialog.text("Zurück zum Spiel?");
+		pauseDialog.text("Zurï¿½ck zum Spiel?");
 		pauseDialog.button(buttonReturn);
 		pauseDialog.button("OK", null);
 		
@@ -473,6 +473,7 @@ public class GameScreen extends AbstractScreen implements
 		public void clicked(InputEvent event, float x, float y) {
 			if (!popupScreenIsShown) {
 				gameController.interactRetroMan();
+				gameController.walkThroughDoor();
 			}
 		}
 	}

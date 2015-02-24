@@ -116,6 +116,8 @@ public class GameController {
 	public void levelFinished() {
 		saveProgress();
 		dispose();
+		AssetManager.reloadMap(level.getId() - 1);
+		game.setScreen(new LevelMenuScreen(game));
 	}
 
 	/**
@@ -123,7 +125,6 @@ public class GameController {
 	 */
 	private void dispose() {
 		gameScreen.dispose();
-
 	}
 
 	/**
@@ -329,8 +330,10 @@ public class GameController {
 	/**
 	 * checks if retroman is in the correct position and opens the door in case he is.
 	 */
-	/*
-	public void doorTestMethod() {
+	public void walkThroughDoor() {
+		if (!levelfinished) {
+			return;
+		}
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
 		int startX, startY, endX, endY;
@@ -342,12 +345,11 @@ public class GameController {
 		}
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		Array<Rectangle> tiles = getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
+		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
-				map.getLayers().get(Constants.DOOR_CLOSED_LAYER).setVisible(false);
+				levelFinished();
 			}
 		}
 	}
-	*/
 }

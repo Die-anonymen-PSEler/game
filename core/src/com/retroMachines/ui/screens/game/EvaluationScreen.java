@@ -255,7 +255,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	private class NextEvaluationStep extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			System.out.println(nextStep);
 			if (nextStep) {
 				nextStep = false;
 				evaController.step1AlphaConversion();
@@ -271,7 +270,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	private class EvaluationStart extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			System.out.println(nextStep);
 			if (autoStep) {
 				autoStep = false;
 				nextStep = false;
