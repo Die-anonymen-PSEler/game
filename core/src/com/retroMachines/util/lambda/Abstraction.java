@@ -77,6 +77,7 @@ public class Abstraction extends Vertex {
 						return true;
 					}
 					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
+					System.out.println(newColor);
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
 						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: " + this.getColor());
@@ -228,7 +229,7 @@ public class Abstraction extends Vertex {
 		int newColor = -1;
 		boolean idIsFree = true;
 		// search unused color ID
-		for(int i = 0; i <= Constants.MAX_COLOR_ID; i++) {
+		for(int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
 			// Search if id "i" is unused in firstList
 			for(int j = 0; j < sA; j++) {
 				if(actFam.get(j) == i) {
@@ -249,6 +250,9 @@ public class Abstraction extends Vertex {
 					newColor = i;
 					break;
 				}
+			}
+			if(!idIsFree && i + 1 == Constants.MAX_COLOR_ID) {
+				idIsFree = true;
 			}
 		}
 		return newColor;

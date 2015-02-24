@@ -606,6 +606,7 @@ public abstract class Vertex {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		this.getGameElement().addAction(Actions.sequence(
+				Actions.delay(Constants.ACTION_TIME),
 				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
 				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
 				Actions.run(new Step3Element(this, e))
@@ -621,6 +622,7 @@ public abstract class Vertex {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		this.getGameElement().addAction(Actions.sequence(
+				Actions.delay(Constants.ACTION_TIME),
 				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
 				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
 				Actions.run(new DestroyElement(this))

@@ -248,15 +248,20 @@ public class LambdaUtil {
 		Vertex result;
 		if (type.equals("Abs")) {
 			result = new Abstraction(runningId, color);
+			runningId++;
 		} else if (type.equals("App")) {
 			result = new Application(runningId);
+			runningId++;
 		} else if (type.equals("Var")){
 			result = new Variable(runningId, color);
+			runningId++;
+		} else if (type.equals("Dum")){
+			result = new Dummy();
 		} else {
 			Gdx.app.error(Constants.LOG_TAG, "invalid vertex type: " + type);
 			return null;
 		}
-		runningId++;
+
 		return result;
 	}
 	
