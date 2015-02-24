@@ -14,8 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
@@ -23,6 +25,7 @@ import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
+import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
 /**
  * This class is part of the view of RetroMachines. It displays the actual game
@@ -37,6 +40,11 @@ public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
 
 	private static final float ZOOM_ADDITION = 0.25f;
+	private final static float DIALOGWIDTH = (2f / 3f);
+	private final static float DIALOGHEIGHT = (5f / 9f);
+	private final static float PADDING30 = 30f;
+	private final static float FONTSIZE2_1 = 2.1f;
+	private final static float DIALOGTEXTWIDTH = (5f / 8f);
 
 	/**
 	 * a render for displaying the map and everything else to the screen.
@@ -555,6 +563,54 @@ public class GameScreen extends AbstractScreen implements
 				game.setScreen(new LevelMenuScreen(game));
 
 			}
+		}
+	}
+	
+	private class LockedDialog extends Dialog {
+
+		public LockedDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			initialize();
+		}
+
+		private void initialize() {
+			padTop(screenWidth / PADDING30); // set padding on top of the dialog
+												// title
+			padBottom(screenWidth / PADDING30); // set padding on bottom of the
+												// dialog title
+			getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set
+																			// buttons
+																			// height
+			getButtonTable().defaults().width(screenWidth * ONE_FOURTH); // set
+																			// buttons
+																			// height
+			setModal(true);
+			setMovable(false);
+			setResizable(false);
+			Label dialogText = new Label("Nicht Freigeschaltet", skin);
+			dialogText.setWrap(true);
+			dialogText.setAlignment(Align.center);
+			dialogText.setFontScale((FONTSIZE2_1 * screenWidth)
+					/ DIVIDEWIDTHDEFAULT);
+			getContentTable().add(dialogText).width(
+					screenWidth * DIALOGTEXTWIDTH);
+			button(new Button(skin, "ok"), true);
+		}
+
+		protected void result(Object object) {
+			this.remove();
+		}
+
+		@Override
+		public float getPrefWidth() {
+			// force dialog width
+			return screenWidth * DIALOGWIDTH;
+		}
+
+		@Override
+		public float getPrefHeight() {
+			// force dialog height
+			return screenHeight * DIALOGHEIGHT;
 		}
 	}
 
