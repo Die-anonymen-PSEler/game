@@ -1,0 +1,106 @@
+{
+	"level": 
+	{
+		"description": "Level das (lambda f.f)(v)(f) darstellt",
+		"hasTutorialScreen": false,
+		"levelid": 7,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 7,
+					"type": "Abs",
+					"posx": 11,
+					"posy": 6
+				},
+
+				{
+					"color": 7,
+					"type": "Var",
+					"posx": 28,
+					"posy": 7
+				},
+				
+				{
+					"color": 7,
+					"type" : "Var",
+					"posx": 46,
+					"posy": 11
+				},
+				
+				{
+				
+					"color": 8,
+					"type": "Var",
+					"posx": 30,
+					"posy": 10
+				}
+			],
+
+			"tree": 
+			[		
+				{
+					"tree":
+					[
+						{
+							"tree": []
+						}
+					]
+				},
+				
+				{
+					"tree":[]
+				},
+				
+				{
+					"tree":[]
+				}
+			],
+
+			"target": 
+			[				
+				{
+					"color": 8,
+					"type": "Var",
+					"target": []
+				},
+				
+				{
+					"color": 7,
+					"type": "Var",
+					"target": []
+				}
+			],
+			
+			"hint":  
+			[
+				{
+					"color": -1,
+					"type": "Dum",
+					"target":
+						[
+							{
+								"color": -1,
+								"type": "Dum",
+								"target": []
+							}
+						]
+				},
+				
+				{
+					"color": 8,
+					"type": "Var",
+					"target": []
+				},
+				
+				{
+					"color": 7,
+					"type":"Var",
+					"target": []
+				}
+
+			]
+		}
+	}
+}

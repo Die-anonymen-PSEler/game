@@ -45,7 +45,7 @@
 				
 				{
 				
-					"color": 1,
+					"color": 11,
 					"type": "Var",
 					"posx": 37,
 					"posy": 5
@@ -81,41 +81,17 @@
 			"target": 
 			[
 				{
-					"color": 6,
-					"type": "Abs",
-					"target": 
-					[
-						{
-						"color": 6,
-						"type": "Var",
-						"target": []
-						},
-						
-						{
-						"color": 4,
-						"type": "Abs",
-						"target" :
-							[
-								{
-								"color": 4,
-								"type": "Var",
-								"target": []
-								},
-								
-								{
-								"color": 4,
-								"type": "Var",
-								"target": []
-								}
-							]
-						}
-					]
+					"color": 4,
+					"type": "Var",
+					"target": []
 				},
+						
 				{
-					"color": 11,
+					"color": 4,
 					"type": "Var",
 					"target": []
 				}
+
 			],
 			
 			"hint": 

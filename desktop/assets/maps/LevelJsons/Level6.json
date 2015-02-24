@@ -101,52 +101,7 @@
 			],
 
 			"target": 
-			[
-				{
-					"color": 7,
-					"type": "Abs",
-					"target" :
-					[
-						{
-							"color": 10,
-							"type": "Abs",
-							"target": 
-							[
-								{
-									"color": 10,
-									"type": "Var",
-									"target": []
-								},
-								
-								{
-									"color": 10,
-									"type": "Var",
-									"target": []
-								}
-							]
-						},
-						
-						{
-							"color": 2,
-							"type": "Abs",
-							"target": 
-							[
-								{
-									"color": 2,
-									"type": "Var",
-									"target": []
-								}
-							]
-						},
-								
-						{
-							"color": 7,
-							"type": "Var",
-							"target": []
-						}
-					]
-				},
-				
+			[				
 				{
 					"color": 1,
 					"type": "Var",

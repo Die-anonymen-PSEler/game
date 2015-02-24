@@ -47,12 +47,12 @@
             ],
             "target": [
                 {
-                    "color": 3,
+                    "color": 1,
                     "type": "Var",
                     "target": []
                 },
                 {
-                    "color": 3,
+                    "color": 1,
                     "type": "Var",
                     "target": []
                 }
@@ -75,7 +75,7 @@
                     ]
                 },
                 {
-                    "color": 0,
+                    "color": 1,
                     "type": "Var",
                     "hint": []
                 }

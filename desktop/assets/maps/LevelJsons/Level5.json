@@ -45,7 +45,7 @@
 					"posy": 5
 				},		
 				{
-					"color": 3,
+					"color": 4,
 					"type": "Var",
 					"posx": 23,
 					"posy": 9
@@ -109,61 +109,15 @@
 			"target": 
 			[
 				{
-					"color": 5,
-					"type": "Abs",
-					"target" :
-					[
-						{
-							"color": 5,
-							"type": "Var",
-							"target": []
-						},
-								
-						{
-							"color": 5,
-							"type": "Var",
-							"target": []
-						}
-					]
+					"color": 1,
+					"type": "Var",
+					"target": []
 				},
-				
+								
 				{
 					"color": 1,
-					"type": "App",
-					"target":
-					[
-						{
-							"color": 9,
-							"type": "Abs",
-							"target": 
-							[
-								{
-								"color": 9,
-								"type": "Var",
-								"target": []
-								}
-							]
-						},
-				
-						{
-							"color": 4,
-							"type": "Abs",
-							"target": 
-							[
-								{
-									"color": 4,
-									"type": "Var",
-									"target": []
-								}
-							]
-						},
-				
-						{
-							"color": 1,
-							"type": "Var",
-							"target": []
-						}
-					]
+					"type": "Var",
+					"target": []
 				}
 			],
 			
