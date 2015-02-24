@@ -289,7 +289,7 @@ public class GameController {
 			evaControl = new EvaluationController(level, game);
 			evaControl.startEvaluation();
 		} else {
-			gameScreen;
+			gameScreen.showValidateError(level.getErrorMessage());
 		}
 	}
 	

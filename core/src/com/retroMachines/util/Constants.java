@@ -61,6 +61,8 @@ public abstract class Constants {
 	
 	public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
 	
+	public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein";
+	
 	/**
 	 * String array containing path to all possible characters.
 	 */

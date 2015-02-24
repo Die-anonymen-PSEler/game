@@ -145,6 +145,7 @@ public class RetroLevel {
 		}
 		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {
 			//not all elements are placed
+			errorMessage = Constants.NOT_ALL_PLACED;
 			return false;
 		}
 		if(!makeEvaluationTree()) {
@@ -183,7 +184,7 @@ public class RetroLevel {
 			result = vertexInDepot.remove(index);
 			
 			//Check if construct is valid
-			if(checkValidVertexFamily(result, fam)) {
+			if(!checkValidVertexFamily(result, fam)) {
 				return null;
 			}
 			
@@ -230,7 +231,7 @@ public class RetroLevel {
 			result.setnext(next);
 			
 			// set nextWidth
-			result.setNextWidth(next.getWidth() + result.getNextWidth());
+			result.setNextWidth(next.getWidth() + next.getNextWidth());
 			
 			LinkedList<Integer> nextColorList = next.getNextColorList();
 			for(Integer c : next.getFamilyColorList()) {
@@ -433,6 +434,10 @@ public class RetroLevel {
 
 	public int getId() {
 		return levelId;
+	}
+	
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 }

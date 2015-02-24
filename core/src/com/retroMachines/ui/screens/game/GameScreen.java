@@ -6,7 +6,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -25,7 +24,6 @@ import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
-import com.retroMachines.ui.screens.menus.MainMenuScreen;
 
 /**
  * This class is part of the view of RetroMachines. It displays the actual game
@@ -40,11 +38,11 @@ public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
 
 	private static final float ZOOM_ADDITION = 0.25f;
-	private final static float DIALOGWIDTH = (2f / 3f);
-	private final static float DIALOGHEIGHT = (5f / 9f);
+	private final static float DIALOGWIDTH = (4f / 5f);
+	private final static float DIALOGHEIGHT = (7f / 9f);
 	private final static float PADDING30 = 30f;
 	private final static float FONTSIZE2_1 = 2.1f;
-	private final static float DIALOGTEXTWIDTH = (5f / 8f);
+	private final static float DIALOGTEXTWIDTH = (7f / 10f);
 
 	/**
 	 * a render for displaying the map and everything else to the screen.
@@ -454,6 +452,11 @@ public class GameScreen extends AbstractScreen implements
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public void showValidateError(String s) {
+		ErrorDialog error = new ErrorDialog("", skin, "default", s);
+		error.show(stage);
+	}
 
 	// -----------------------------------
 	// --------Retro-Man-Controlls--------
@@ -566,10 +569,13 @@ public class GameScreen extends AbstractScreen implements
 		}
 	}
 	
-	private class LockedDialog extends Dialog {
+	private class ErrorDialog extends Dialog {
 
-		public LockedDialog(String title, Skin skin, String windowStyleName) {
+		private String errorMessage;	
+		
+		public ErrorDialog(String title, Skin skin, String windowStyleName, String errorMessage) {
 			super(title, skin, windowStyleName);
+			this.errorMessage = errorMessage;
 			initialize();
 		}
 
@@ -587,7 +593,7 @@ public class GameScreen extends AbstractScreen implements
 			setModal(true);
 			setMovable(false);
 			setResizable(false);
-			Label dialogText = new Label("Nicht Freigeschaltet", skin);
+			Label dialogText = new Label(errorMessage, skin);
 			dialogText.setWrap(true);
 			dialogText.setAlignment(Align.center);
 			dialogText.setFontScale((FONTSIZE2_1 * screenWidth)
