@@ -1,9 +1,13 @@
 package com.retroMachines.ui.screens.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.EvaluationController;
@@ -21,7 +25,7 @@ import com.retroMachines.util.lambda.Vertex;
  * @author RetroFactory
  * 
  */
-public class EvaluationScreen extends AbstractScreen {
+public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 
 	/**
 	 * Reference to the GameController for it to handle events that are
@@ -40,6 +44,10 @@ public class EvaluationScreen extends AbstractScreen {
 	 */
 	private boolean animationInProgress;
 	
+	private boolean nextStep;
+	
+	private boolean autoStep;
+	
 	/**
 	 * 
 	 * @return
@@ -56,6 +64,7 @@ public class EvaluationScreen extends AbstractScreen {
 		buttonStage = new Stage();
 		this.evaController = evaluationController;
 		animationInProgress = false;
+		inputMultiplexer.addProcessor(this);
 		initialize();
 	}
 
@@ -64,16 +73,26 @@ public class EvaluationScreen extends AbstractScreen {
 
 		Table table = new Table(skin);
 		table.setBounds(0, 0, screenWidth, screenHeight);
+		
+		Table buttonTable = new Table(skin);
+		
+		Button buttonNextEvaluationStep = new Button(skin, "nextStep");
+		buttonNextEvaluationStep.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonNextEvaluationStep.addListener(new NextEvaluationStep());
+		
+		Button buttonEvaluationStart = new Button(skin, "right");
+		buttonEvaluationStart.pad(screenHeight / DEFAULTBUTTONSIZE);
+		buttonEvaluationStart.addListener(new EvaluationStart());
 
-		Button buttonMenu = new Button(skin, "menu");
-		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonMenu.setColor(1, 1, 1, 0.66f);
-		
-		//Make Table
-		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2).padLeft(screenWidth/ DEFAULTPADDINGx4).left();
+		// Make Table
 		table.add().expand().row();
-		buttonStage.addActor(table);
 		
+		buttonTable.add(buttonNextEvaluationStep).padRight(screenWidth / DEFAULTPADDING);
+		buttonTable.add(buttonEvaluationStart).padLeft(screenWidth / DEFAULTPADDING);
+		
+		table.add(buttonTable).padBottom(screenHeight / DEFAULTPADDING);
+		
+		buttonStage.addActor(table);
 
 		inputMultiplexer.addProcessor(buttonStage);
 	}
@@ -120,20 +139,43 @@ public class EvaluationScreen extends AbstractScreen {
 	public void render(float delta) {
 		// TODO Auto-generated method stub
 		super.render(delta);
-
-		//stage.act();
-		//stage.draw();
 		
-		buttonStage.act();
+		buttonStage.act(Gdx.graphics.getDeltaTime());
 		buttonStage.draw();
 	}
-
+	
 	/**
-	 * Performs the next reduction on the lambda term and triggers the
+	 * Is called when this screen should be displayed. Starts to play the sound.
+	 */
+	public void show() {
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		// music.play();
+	}
+	
+	/**
+	 * set boolean next Step true
 	 * animation.
 	 */
-	private void nextStep() {
-
+	public void setNextStep() {
+		if(autoStep) {
+			nextStep = true;
+		}
+	}
+	
+	/**
+	 * set boolean auto Step true
+	 * animation.
+	 */
+	public void setAutoStep() {
+		autoStep = true;
+	}
+	
+	/**
+	 * set boolean auto Step true
+	 * animation.
+	 */
+	public boolean getAutoStep() {
+		return autoStep;
 	}
 	
 	private void printTree(Vertex actVertex, Vector2 position) {
@@ -155,5 +197,86 @@ public class EvaluationScreen extends AbstractScreen {
 	
 	public void setOnStage(Vertex v) {
 		stage.addActor(v.getGameElement());
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/**
+	 * Button which shows next Evaluationstep
+	 * 
+	 * @author Retro Factory
+	 */
+	private class NextEvaluationStep extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			System.out.println(nextStep);
+			if (nextStep) {
+				nextStep = false;
+				evaController.step1AlphaConversion();
+			}
+		}
+	}
+	
+	/**
+	 * Button which shows allt Evaluationsteps
+	 * 
+	 * @author Retro Factory
+	 */
+	private class EvaluationStart extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			System.out.println(nextStep);
+			if (autoStep) {
+				autoStep = false;
+				nextStep = false;
+				evaController.step1AlphaConversion();
+			}
+		}
 	}
 }

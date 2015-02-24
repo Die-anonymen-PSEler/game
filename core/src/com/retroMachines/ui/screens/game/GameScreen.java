@@ -186,7 +186,8 @@ public class GameScreen extends AbstractScreen implements
 
 		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		super.render(delta);
+		//Double stage.act() and draw();
+		//super.render(delta);
 
 		inputDetection();
 
@@ -199,8 +200,8 @@ public class GameScreen extends AbstractScreen implements
 
 		gameController.update(delta);
 		gameController.getRetroMan().render(renderer, delta);
-
-		stage.act();
+		
+		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
 	}
 

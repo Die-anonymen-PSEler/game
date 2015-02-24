@@ -77,10 +77,12 @@ public class EvaluationController {
 		resultPointer = new Dummy();
 		evalutionPointer.setnext(lambdaTree.getStart());
 		offsetX = 0;
-		step1AlphaConversion();
+		evaluationScreen.setAutoStep();
+		evaluationScreen.setNextStep();
+
 	}
 	
-	private void step1AlphaConversion() {
+	public void step1AlphaConversion() {
 		evalutionPointer.getnext().alphaConversion();
 		step2ReadInAndDelete();
 	}
@@ -126,15 +128,19 @@ public class EvaluationController {
 		//creating copy of current tree
 		LevelTree oldTree = new LevelTree(evalutionPointer.cloneMe());
 		Vertex result = evalutionPointer.getnext().getEvaluationResult();
-		//check whether there is an infinite evaluation (same tree after evaluation as before)
-		LevelTree newTree = new LevelTree(result.getnext());
-		if (oldTree.equals(newTree)) {
-			//we can stop evaluation at this point
-			resultTree = oldTree;
-			checkEvaluation();
-			return;
-		}
+
+
 		if(result != null) {
+			//check whether there is an infinite evaluation (same tree after evaluation as before)
+			if(result.getnext() != null) {
+				LevelTree newTree = new LevelTree(result.getnext());
+				if (oldTree.equals(newTree)) {
+					//we can stop evaluation at this point
+					resultTree = oldTree;
+					checkEvaluation();
+					return;
+				}
+			}
 			// make resulTree if needed
 			if(resultTree != null) {
 				resultPointer.getnext().setnext(result);
@@ -151,7 +157,12 @@ public class EvaluationController {
 			resultPointer.getnext().setnext(null);
 			checkEvaluation();
 		} else {
-			step1AlphaConversion();
+			//Wenn alle steps starten geklickt starte nächsten schritt sonst wart auf eingabe
+			if(evaluationScreen.getAutoStep()) {
+				evaluationScreen.setNextStep();
+			} else {
+				step1AlphaConversion();
+			}
 		}
 	}
 	

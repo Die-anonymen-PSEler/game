@@ -42,6 +42,7 @@
         "quest": { "up": "Quest", "down": "QuestPressed", "pressedOffsetY": -4 },
         "answer": { "up": "Answer", "down": "AnswerPressed", "pressedOffsetY": -4 },
         "menu": { "up": "Menu", "down": "MenuPressed", "pressedOffsetY": -4 },
+		"nextStep": { "up": "NextStep", "down": "NextStepPressed", "pressedOffsetY": -4 },
         "evaluation": { "up": "Evaluate", "down": "EvaluatePressed", "pressedOffsetY": -4 }
 
 
