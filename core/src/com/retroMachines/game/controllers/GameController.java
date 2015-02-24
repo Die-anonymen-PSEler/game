@@ -117,6 +117,7 @@ public class GameController {
 		saveProgress();
 		dispose();
 		AssetManager.reloadMap(level.getId() - 1);
+		game.getStatisticController().incLevelCompleted(level.getId());
 		game.setScreen(new LevelMenuScreen(game));
 	}
 

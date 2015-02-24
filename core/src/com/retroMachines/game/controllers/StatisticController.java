@@ -2,6 +2,7 @@ package com.retroMachines.game.controllers;
 
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Statistic;
+import com.retroMachines.util.Constants;
 
 /**
  * The StatisticController is part of the controller of RetroMachines.
@@ -64,6 +65,15 @@ public class StatisticController implements OnProfileChangedListener {
 			value = 1;
 		}
 		statistic.setPlaytime((int) (statistic.getPlaytime() + value));
+	}
+	
+	/**
+	 * @param minimumLevel the level to which you wanna increase the level atleast
+	 */
+	public void incLevelCompleted(int minimumLevel) {
+		if (Constants.MAX_LEVEL_ID > statistic.getLevelsComplete() && getLevelsCompleted() < minimumLevel) {
+			statistic.setLevelsComplete(getLevelsCompleted() + 1);
+		}
 	}
 
 	/**
