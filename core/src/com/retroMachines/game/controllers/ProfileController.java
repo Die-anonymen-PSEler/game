@@ -100,7 +100,7 @@ public class ProfileController {
 	 * another profile already.
 	 */
 	public boolean canUserBeCreated(String username) {
-		if (profileNames.size() == MAX_PROFILE_NUMBER) {
+		if (profileNames.size() == MAX_PROFILE_NUMBER || username == null || username.equals("")) {
 			return false;
 		}
 		for (String name : profileNames.keySet()) {
