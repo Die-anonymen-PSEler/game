@@ -121,12 +121,12 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 *            , the ID of the map to be loaded.
 	 * @return The map, it is loaded as a TiledMap.
 	 */
-	public static TiledMap loadMap(int levelId) {
+	public static TiledMap getMap(int levelId) {
 		return maps.get(levelId);
 	}
 	
 	public static void reloadMap(int levelId) {
-		maps.set(levelId, new TmxMapLoader().load("maps/Level" + levelId + ".tmx"));
+		maps.set(levelId, new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
 	}
 
 	// -----------------------

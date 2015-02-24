@@ -142,7 +142,7 @@ public class GameScreen extends AbstractScreen implements
 		Button buttonToLevelMenu = new Button(skin, "ok");
 		pauseDialog.button(buttonToLevelMenu);
 		pauseDialog.text("Pause.");
-		pauseDialog.text("Ins Level-Menü?");
+		pauseDialog.text("Ins Level-MenÃ¼?");
 		pauseDialog.button("OK", true);
 		Button buttonReturn = new Button(skin, "ok");
 		
