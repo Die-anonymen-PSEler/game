@@ -41,7 +41,7 @@ public class StatisticMenuScreen  extends MenuScreen {
 		skin = AssetManager.getMenuSkin();
 		
 		// Make Title
-		Label title = new Label("Statitik",skin);
+		Label title = new Label("Statistik",skin);
 		title.setWrap(true);
 		title.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
