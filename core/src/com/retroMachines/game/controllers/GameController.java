@@ -66,6 +66,8 @@ public class GameController {
 	 */
 	private float tempStepCounter;
 	
+	private boolean levelfinished;
+	
 	/**
 	 * Makes a new instance of the GameController.
 	 * 
@@ -85,6 +87,7 @@ public class GameController {
 	 *            ID of the level that is to be started.
 	 */
 	public void startLevel(int levelId) {
+		levelfinished = false;
 		retroMan = new RetroMan();
 		tempStepCounter = 0;
 		boolean left = game.getSettingController().getLeftMode();
@@ -155,14 +158,38 @@ public class GameController {
 			// picking up elements does not work while falling
 			return;
 		}
- 		Vector2 elementPosition = retroMan.nextPosition();
- 		GameElement element = level.getGameElement(elementPosition);
-		if (retroMan.hasPickedUpElement() && element == null && level.isValidGameElementPosition(elementPosition)) {
-			GameElement previous = retroMan.layDownElement();
-			level.placeGameElement(previous, elementPosition);
-		} else if (!retroMan.hasPickedUpElement() && element != null) {
-			retroMan.pickupElement(element);
-			level.removeGameElement(element, elementPosition);
+		
+		// end of level
+		if(levelfinished) {
+			Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
+					retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
+			int startX, startY, endX, endY;
+			if (retroMan.getVelocity().x > 0) {
+				startX = endX = (int) (retroMan.getPos().x + RetroMan.WIDTH + retroMan
+						.getVelocity().x);
+			} else {
+				startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
+			}
+			startY = (int) (retroMan.getPos().y);
+			endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
+			Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
+			for (Rectangle tile : tiles) {
+				if (retroManRect.overlaps(tile)) {
+					//TODO LEVEL FINISHED  not rly working :D
+					levelFinished();
+				}
+			}
+		} else {
+			// when evel finished no reposition possible
+	 		Vector2 elementPosition = retroMan.nextPosition();
+	 		GameElement element = level.getGameElement(elementPosition);
+			if (retroMan.hasPickedUpElement() && element == null && level.isValidGameElementPosition(elementPosition)) {
+				GameElement previous = retroMan.layDownElement();
+				level.placeGameElement(previous, elementPosition);
+			} else if (!retroMan.hasPickedUpElement() && element != null) {
+				retroMan.pickupElement(element);
+				level.removeGameElement(element, elementPosition);
+			}
 		}
 	}
 
@@ -286,11 +313,17 @@ public class GameController {
 	 */
 	public void evaluationClicked() {
 		if (level.allDepotsFilled()) {
-			evaControl = new EvaluationController(level, game);
+			evaControl = new EvaluationController(level, game, this);
 			evaControl.startEvaluation();
 		} else {
 			gameScreen.showValidateError(level.getErrorMessage());
 		}
+	}
+	
+	public void evaluationComplete() {
+		game.setScreen(gameScreen);
+		level.getMap().getLayers().get(Constants.DOOR_CLOSED_LAYER).setVisible(false);
+		levelfinished = true;
 	}
 	
 	/**

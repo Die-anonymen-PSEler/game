@@ -17,6 +17,11 @@ import com.retroMachines.util.lambda.Vertex;
 public class EvaluationController {
 	
 	/**
+	 * reference to the gameController for information regarding the user input
+	 */
+	private final GameController gameController;
+	
+	/**
 	 * A reference to the main class for the different calls.
 	 */
 	private final RetroMachines game;
@@ -60,8 +65,9 @@ public class EvaluationController {
 	
 	private boolean result;
 	
-	public EvaluationController(RetroLevel level, RetroMachines g) {
+	public EvaluationController(RetroLevel level, RetroMachines g, GameController gameControl) {
 		this.level = level;
+		this.gameController = gameControl;
 		game = g;
 		evaluationScreen = new EvaluationScreen(g, this);
 	}
@@ -172,5 +178,8 @@ public class EvaluationController {
 	 */
 	private void checkEvaluation() {
 		result = resultTree.equals(level.getLambdaUtil().getTargetTree());
+		if(result) {
+			gameController.evaluationComplete();
+		}
 	}
 }
