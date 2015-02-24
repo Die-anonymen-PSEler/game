@@ -32,12 +32,12 @@ public class RetroMan {
 	/**
 	 * the width of the character for collision purposes
 	 */
-	public final static float WIDTH = 1f;
+	public final static float WIDTH = 0.95f;
 
 	/**
 	 * the height of the character for collision purposes
 	 */
-	public final static float HEIGHT = 1f;
+	public final static float HEIGHT = 0.95f;
 	
 	/**
 	 * the impulse that is added to the retroman upon jumping
@@ -58,6 +58,11 @@ public class RetroMan {
 	 * the amount by which the x velocity is reduced so the character will get slower
 	 */
 	public static final float DAMPING = 0.87f;
+	
+	/**
+	 * the distance to placing a gameelement
+	 */
+	public static final int ELEMENT_OFFSET = 1;
 	
 	/**
 	 * true if the character is looking to the left; false otherwise
@@ -245,10 +250,10 @@ public class RetroMan {
 	public Vector2 nextPosition() {
 		int offset;
 		if (getFaceLeft()) {
-			offset = Constants.LEFT_RETROMAN_OFFSET;
+			offset = -ELEMENT_OFFSET;
 		}
 		else {
-			offset = Constants.RIGHT_RETROMAN_OFFSET;
+			offset = hasPickedUpElement() ? ELEMENT_OFFSET +1 : ELEMENT_OFFSET;
 		}
 		Vector2 elementPos = new Vector2(((int) pos.x) + offset, (int)pos.y);
 		return elementPos;

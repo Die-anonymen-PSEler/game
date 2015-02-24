@@ -119,10 +119,6 @@ public abstract class Constants {
 	 * the layer id where the lambda objects will be placed
 	 */
 	public static final int OBJECT_LAYER_ID = 6;
-
-	public static final int LEFT_RETROMAN_OFFSET = -1;
-	
-	public static final int RIGHT_RETROMAN_OFFSET = 2;
 	
 	public static final int DEPOTLAYER_Y_DIF = 3;
 	
