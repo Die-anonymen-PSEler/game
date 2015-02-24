@@ -380,4 +380,10 @@ public class RetroLevel {
 		}
 	}
 
+
+
+	public int getId() {
+		return levelId;
+	}
+
 }

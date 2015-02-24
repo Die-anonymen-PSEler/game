@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.RetroMachines;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.game.RetroLevel.LevelBuilder;
 import com.retroMachines.game.gameelements.GameElement;
@@ -99,7 +100,7 @@ public class GameController {
 	 * Cut a level short.
 	 */
 	public void abortLevel() {
-		
+		AssetManager.reloadMap(level.getId());
 	}
 
 	/**

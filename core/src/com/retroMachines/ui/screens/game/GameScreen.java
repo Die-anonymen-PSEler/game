@@ -22,6 +22,7 @@ import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.ui.screens.AbstractScreen;
+import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 
 /**
  * This class is part of the view of RetroMachines. It displays the actual game
@@ -61,7 +62,12 @@ public class GameScreen extends AbstractScreen implements
 	 * the dialog which is shown when hintButton is pressed
 	 */
 	private HintDialog hintDialog;
-
+	
+	/**
+	 * the dialog which is shown when pauseButton is pressed
+	 */
+	private PauseDialog pauseDialog;
+	
 	/*
 	 * map attributes
 	 */
@@ -126,12 +132,18 @@ public class GameScreen extends AbstractScreen implements
 		hintDialog = new HintDialog("", skin, "default");
 		Button buttonOk = new Button(skin, "ok");
 		hintDialog.button(buttonOk);
-		hintDialog.text("Are you sure you want to quit?");
-		hintDialog.button("Yes", true);
+		hintDialog.text("Hint");
+		hintDialog.button("OK", true);
 		hintDialog.key(Keys.ENTER, true);
-		hintDialog.setSize(400, 300);
-
-		// hintDialog.setPosition(0, 0);
+		//TODO: das Hinweisbild setzen + anzeigen
+		
+		// instanciate PauseDialog
+		pauseDialog = new PauseDialog("", skin, "default");
+		Button buttonToLevelMenu = new Button(skin, "ok");
+		pauseDialog.button(buttonToLevelMenu);
+		pauseDialog.text("Pause. Zurück ins Level-Menü?");
+		pauseDialog.button("OK", true);
+		pauseDialog.key(Keys.ENTER, true);
 
 	}
 
@@ -248,7 +260,7 @@ public class GameScreen extends AbstractScreen implements
 
 		Button buttonMenu = new Button(skin, "menu");
 		buttonMenu.pad(screenHeight / DEFAULTBUTTONSIZE);
-		buttonMenu.addListener(new GetTaskClickListener());
+		buttonMenu.addListener(new MenuClickListener());
 		buttonMenu.setColor(1, 1, 1, 0.66f);
 
 		Button buttonEvaluation = new Button(skin, "evaluation");
@@ -364,6 +376,10 @@ public class GameScreen extends AbstractScreen implements
 	 */
 	private void showHint() {
 		hintDialog.show(stage);
+	}
+	
+	private void showPauseDialog() {
+		pauseDialog.show(stage);
 	}
 
 	/*
@@ -492,7 +508,9 @@ public class GameScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO: show level menu
-			pause();
+			//pause();
+			popupScreenIsShown = true;
+			showPauseDialog();
 		}
 	}
 
@@ -514,4 +532,20 @@ public class GameScreen extends AbstractScreen implements
 		}
 
 	}
+	
+	private class PauseDialog extends Dialog {
+		public PauseDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			setStage(new Stage());
+		}
+		
+		@Override
+		protected void result(Object object) {
+			this.hide();
+			popupScreenIsShown = false; 
+			gameController.abortLevel();
+			game.setScreen(new LevelMenuScreen(game));
+		}
+	}
+	
 }

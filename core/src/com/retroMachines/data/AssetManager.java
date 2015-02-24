@@ -124,6 +124,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static TiledMap loadMap(int levelId) {
 		return maps.get(levelId);
 	}
+	
+	public static void reloadMap(int levelId) {
+		maps.set(levelId, new TmxMapLoader().load("maps/Level" + levelId + ".tmx"));
+	}
 
 	// -----------------------
 	// --------Music----------
