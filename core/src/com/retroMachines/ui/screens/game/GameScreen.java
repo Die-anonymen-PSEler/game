@@ -142,7 +142,7 @@ public class GameScreen extends AbstractScreen implements
 		Button buttonToLevelMenu = new Button(skin, "ok");
 		pauseDialog.button(buttonToLevelMenu);
 		pauseDialog.text("Pause.");
-		pauseDialog.text("Ins Level-Men�?");
+		pauseDialog.text("Ins Level-Menü?");
 		pauseDialog.button("OK", true);
 		pauseDialog.key(Keys.ENTER, true);
 
@@ -545,11 +545,6 @@ public class GameScreen extends AbstractScreen implements
 			this.hide();
 			popupScreenIsShown = false; 
 			gameController.abortLevel();
-<<<<<<< HEAD
-=======
-			game.setScreen(new LevelMenuScreen(game));
-			
->>>>>>> origin/master
 		}
 	}
 	
