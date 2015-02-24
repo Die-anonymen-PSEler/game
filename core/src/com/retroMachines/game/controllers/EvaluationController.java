@@ -10,6 +10,7 @@ import com.retroMachines.game.RetroLevel;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.lambda.Dummy;
+import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -122,7 +123,17 @@ public class EvaluationController {
 	}
 	
 	public void nextStep() {
+		//creating copy of current tree
+		LevelTree oldTree = new LevelTree(evalutionPointer.cloneMe());
 		Vertex result = evalutionPointer.getnext().getEvaluationResult();
+		//check whether there is an infinite evaluation (same tree after evaluation as before)
+		LevelTree newTree = new LevelTree(result.getnext());
+		if (oldTree.equals(newTree)) {
+			//we can stop evaluation at this point
+			resultTree = oldTree;
+			checkEvaluation();
+			return;
+		}
 		if(result != null) {
 			// make resulTree if needed
 			if(resultTree != null) {
