@@ -334,7 +334,9 @@ public class RetroLevel {
 		 * Creates a new instance of the levelbuilder
 		 */
 		public LevelBuilder() {
+			lambdaUtil = null;
 			lambdaUtil = new LambdaUtil();
+			map = null;
 		}
 		
 		/**
@@ -350,7 +352,7 @@ public class RetroLevel {
 		 * @param id the id of the level. range [1 - Constants.MAX_LEVEL]
 		 */
 		public void prepare(int id) {
-			map = AssetManager.loadMap(id);
+			map = AssetManager.getMap(id);
 			int levelId = id + 1;
 			lambdaUtil.createTreeFromJson(String.format(JSON_PATTERN, levelId));
 			addGameelements();

@@ -86,6 +86,7 @@ public class GameController {
 	 */
 	public void startLevel(int levelId) {
 		retroMan = new RetroMan();
+		tempStepCounter = 0;
 		boolean left = game.getSettingController().getLeftMode();
 		gameScreen = new GameScreen(game, this, left);
 		RetroLevel.LevelBuilder builder = new RetroLevel.LevelBuilder();
@@ -100,7 +101,9 @@ public class GameController {
 	 * Cut a level short.
 	 */
 	public void abortLevel() {
-		AssetManager.reloadMap(level.getId());
+		AssetManager.reloadMap(level.getId() - 1);
+		saveProgress();
+		game.setScreen(new LevelMenuScreen(game));
 	}
 
 	/**
@@ -110,7 +113,6 @@ public class GameController {
 	public void levelFinished() {
 		saveProgress();
 		dispose();
-		game.setScreen(new LevelMenuScreen(game));
 	}
 
 	/**
