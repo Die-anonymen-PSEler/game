@@ -1,7 +1,7 @@
 {
 	"level": 
 	{
-		"description": "Level das (lambda x.x) darstellt",
+		"description": "Level das (lambda x.x)(y) darstellt",
 		"hasTutorialScreen": true,
 		"levelid": 2,
 		"data": 
@@ -11,56 +11,43 @@
 				{
 					"color": 1,
 					"type": "Abs",
-					"posx": 5,
-					"posy": 5
+					"posx": 51,
+					"posy": 6
 				},
 
 				{
 					"color": 1,
 					"type": "Var",
-					"posX": 6,
-					"posY": 6
+					"posx": 51,
+					"posy": 9
 				},
 
 				{
 					"color": 2,
 					"type": "Var",
-					"posX": 7,
-					"posY": 7
+					"posx": 53,
+					"posy": 6
 				}
 			],
 
 			"tree": 
 			[
 				{
-					"color": 1,
 					"tree": 
 					[
 						{
-							"color": 1,
-							"tree": 
-							[
-								
-							]
+							"tree": []
 						}
 					]
+				},
+				{
+					"tree": []
 				}
+
 			],
 
 			"target": 
 			[
-				{
-					"color": 1,
-					"type": "Abs",
-					"target": 
-					[
-						{
-						"color": 1,
-						"type": "Var",
-						"target": []
-						}
-					]
-				},
 				{
 					"color": 2,
 					"type": "Var",

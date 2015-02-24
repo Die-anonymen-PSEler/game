@@ -19,11 +19,7 @@
 			"tree": 
 			[
 				{
-					"color": 2,
-					"tree": 
-					[
-						
-					]
+					"tree": []
 				}
 			],
 
@@ -32,10 +28,7 @@
 				{
 					"color": 2,
 					"type": "Var",
-					"target": 
-					[
-						
-					]
+					"target": []
 				}
 			],
 
@@ -44,10 +37,7 @@
 				{
 					"color": 2,
 					"type": "Var",
-					"hint": 
-					[
-						
-					]
+					"hint": []
 				}
 			]
 		}

@@ -12,64 +12,56 @@
 					"color": 5,
 					"type": "Abs",
 					"posx": 11,
-					"posy": 6
+					"posy": 7
 				},
-
 				{
 					"color": 5,
 					"type": "Var",
 					"posx": 28,
-					"posy": 7
-				},
-				
+					"posy": 8
+				},			
 				{
 					"color": 5,
 					"type" : "Var",
 					"posx": 46,
-					"posy": 11
+					"posy": 12
 				},
-
 				{
 					"color": 9,
 					"type": "Abs",
 					"posx": 36,
-					"posy": 7
-				},
-				
+					"posy": 8
+				},	
 				{
 					"color": 9,
 					"type": "Var",
 					"posx": 34,
-					"posy": 11
-				},
-				
+					"posy": 12
+				},			
 				{
 					"color": 4,
 					"type": "Abs",
 					"posx": 41,
-					"posy": 4
-				},
-				
+					"posy": 5
+				},		
 				{
 					"color": 3,
 					"type": "Var",
 					"posx": 23,
-					"posy": 7
-				},
-				
+					"posy": 9
+				},	
 				{
 					"color": 1,
 					"type": "App",
 					"posx": 8,
-					"posy": 12
+					"posy": 13
 				},
-				
 				{
 				
 					"color": 1,
 					"type": "Var",
 					"posx": 21,
-					"posy": 13
+					"posy": 14
 				}
 			],
 
@@ -77,21 +69,37 @@
 			[
 				
 				{
-					"color": 5,
-					"tree": []
-				},
-				
-				{
-					"color": 1,
 					"tree": 
 					[
 						{
-							"color": 9,
-							"tree": []
-						},
-							
+							"tree":[]
+						},	
 						{
-							"color": 4,
+							"tree":[]
+						}
+					]
+				},
+				
+				{
+					"tree": 
+					[
+						{
+							"tree": 
+							[
+								{
+									"tree":[]
+								}
+							]
+						},	
+						{
+							"tree":
+							[
+								{
+									"tree":[]
+								}
+							]
+						},
+						{
 							"tree":[]
 						}								
 					]
