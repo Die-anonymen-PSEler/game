@@ -62,12 +62,12 @@ public class GameScreen extends AbstractScreen implements
 	 * the dialog which is shown when hintButton is pressed
 	 */
 	private HintDialog hintDialog;
-	
+
 	/**
 	 * the dialog which is shown when pauseButton is pressed
 	 */
 	private PauseDialog pauseDialog;
-	
+
 	/*
 	 * map attributes
 	 */
@@ -135,8 +135,8 @@ public class GameScreen extends AbstractScreen implements
 		hintDialog.text("Hint");
 		hintDialog.button("OK", true);
 		hintDialog.key(Keys.ENTER, true);
-		//TODO: das Hinweisbild setzen + anzeigen
-		
+		// TODO: das Hinweisbild setzen + anzeigen
+
 		// instanciate PauseDialog
 		pauseDialog = new PauseDialog("", skin, "default");
 		Button buttonToLevelMenu = new Button(skin, "ok");
@@ -144,6 +144,12 @@ public class GameScreen extends AbstractScreen implements
 		pauseDialog.text("Pause.");
 		pauseDialog.text("Ins Level-Menü?");
 		pauseDialog.button("OK", true);
+		Button buttonReturn = new Button(skin, "ok");
+		
+		pauseDialog.text("Zurück zum Spiel?");
+		pauseDialog.button(buttonReturn);
+		pauseDialog.button("OK", null);
+		
 		pauseDialog.key(Keys.ENTER, true);
 
 	}
@@ -378,7 +384,7 @@ public class GameScreen extends AbstractScreen implements
 	private void showHint() {
 		hintDialog.show(stage);
 	}
-	
+
 	private void showPauseDialog() {
 		pauseDialog.show(stage);
 	}
@@ -509,7 +515,7 @@ public class GameScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO: show level menu
-			//pause();
+			// pause();
 			popupScreenIsShown = true;
 			showPauseDialog();
 		}
@@ -533,21 +539,23 @@ public class GameScreen extends AbstractScreen implements
 		}
 
 	}
-	
+
 	private class PauseDialog extends Dialog {
 		public PauseDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
 			setStage(new Stage());
 		}
-		
+
 		@Override
 		protected void result(Object object) {
 			this.hide();
-			popupScreenIsShown = false; 
-			gameController.abortLevel();
-			game.setScreen(new LevelMenuScreen(game));
-			
+			popupScreenIsShown = false;
+			if (object != null) {
+				gameController.abortLevel();
+				game.setScreen(new LevelMenuScreen(game));
+
+			}
 		}
 	}
-	
+
 }
