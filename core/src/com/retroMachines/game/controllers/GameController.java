@@ -288,6 +288,8 @@ public class GameController {
 		if (level.allDepotsFilled()) {
 			evaControl = new EvaluationController(level, game);
 			evaControl.startEvaluation();
+		} else {
+			gameScreen;
 		}
 	}
 	

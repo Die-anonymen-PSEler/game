@@ -27,6 +27,8 @@ public class RetroLevel {
 	
 	public static final int DEPOTID = 8;
 	
+	private String errorMessage;
+	
 	private int levelId;
 	
 	private LambdaUtil lambdaUtil;
@@ -145,12 +147,14 @@ public class RetroLevel {
 			//not all elements are placed
 			return false;
 		}
-		makeEvaluationTree();
+		if(!makeEvaluationTree()) {
+			return false;
+		}
 		return true;
 	}
 	
 	private boolean makeEvaluationTree() {
-		
+		errorMessage = "";
 		// Search start Vertex 
 		int y = Integer.MAX_VALUE;
 		for (Vertex v : vertexInDepot) {
@@ -163,6 +167,9 @@ public class RetroLevel {
 			Gdx.app.log(Constants.LOG_TAG, "No Start Vertex found");
 		}
 		Vertex start = buildTree(y, lambdaUtil.getLevelTree().getStart());
+		if(start == null) {
+			return false;
+		}
 		evaluationTree = new LevelTree(start);
 		return true;
 	}
@@ -174,6 +181,12 @@ public class RetroLevel {
 			Vertex fam = buildTree(y + Constants.DEPOTLAYER_Y_DIF, dummy.getfamily());
 			int index = findVertexPosY(y);
 			result = vertexInDepot.remove(index);
+			
+			//Check if construct is valid
+			if(checkValidVertexFamily(result, fam)) {
+				return null;
+			}
+			
 			result.setfamily(fam);
 			
 			// set Width
@@ -209,6 +222,11 @@ public class RetroLevel {
 		if(dummy.getnext() != null) {
 			Vertex next = buildTree(y, dummy.getnext());
 			
+			
+			// Check if construct is valid
+			if(!checkValidVertexNext(result, next)) {
+				return null;
+			}
 			result.setnext(next);
 			
 			// set nextWidth
@@ -223,10 +241,39 @@ public class RetroLevel {
 			result.setNextColorlist(nextColorList);
 			
 		} else {
+			// Check if construct is valid
+			if(!checkValidVertexNext(result, null)) {
+				return null;
+			}
+			
 			result.setnext(null);
 			result.setNextColorlist(new LinkedList<Integer>());
 		}
 		return result;
+	}
+	
+	private boolean checkValidVertexFamily(Vertex v, Vertex fam) {
+		if(v.getType().equals(Constants.VARIABLE_TYPE) && fam != null) {
+			errorMessage = Constants.VARIABLE_FAMILY_INVALID;
+			return false;
+		} else if (v.getType().equals(Constants.ABSTRACTION_TYPE) && fam == null) {
+			errorMessage = Constants.ABSTRACTION_FAMILY_INVALID;
+			return false;
+		} else if (v.getType().equals(Constants.APPLICATION_TYPE) && fam == null) {
+			errorMessage = Constants.APPLICATION_FAMILY_INVALID;
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	private boolean checkValidVertexNext(Vertex v, Vertex next) {
+		if (v.getType().equals(Constants.ABSTRACTION_TYPE) && next == null) {
+			errorMessage = Constants.ABSTRACTION_NEXT_INVALID;
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	/**

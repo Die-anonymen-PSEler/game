@@ -251,7 +251,7 @@ public class Abstraction extends Vertex {
 					break;
 				}
 			}
-			if(!idIsFree && i + 1 == Constants.MAX_COLOR_ID) {
+			if(!idIsFree && i < Constants.MAX_COLOR_ID) {
 				idIsFree = true;
 			}
 		}

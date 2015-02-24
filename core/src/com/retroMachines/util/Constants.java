@@ -53,6 +53,14 @@ public abstract class Constants {
 	
 	public static final String ABSTRACTION_TYPE = "Abstraction";
 	
+	public static final String ABSTRACTION_FAMILY_INVALID = "Jede Maschine braucht ein Verarbeitungsbereich!";
+	
+	public static final String ABSTRACTION_NEXT_INVALID = "Jede Maschine braucht eine Eingabe!";
+	
+	public static final String APPLICATION_FAMILY_INVALID = "Jede Ampel braucht eine Verarbeitungsbereich!";
+	
+	public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
+	
 	/**
 	 * String array containing path to all possible characters.
 	 */
