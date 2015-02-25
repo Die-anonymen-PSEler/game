@@ -28,6 +28,7 @@ public abstract class AbstractScreen implements Screen {
 	protected final static float FOUR_FIFTH = (4 / 5f);
 	protected final static float ONE_FOURTH = (1 / 4f);
 	protected final static float ONE_FIFTH = (1 / 5f);
+	protected final static float ONE_THIRD = (1 / 3f);
 	protected final static float TWO_THIRD = (2 / 3f);
 	protected final static float ONE_NINTH = (1 / 9f);
 	protected final static int COLSPANx2 = 2;

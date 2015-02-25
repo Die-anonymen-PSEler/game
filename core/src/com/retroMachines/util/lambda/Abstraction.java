@@ -117,10 +117,14 @@ public class Abstraction extends Vertex {
 					}
 					
 					// Insert clone in Family
+					
+					Vector2 position = new Vector2(this.getGameElement().getPosition().x, this.getGameElement().getPosition().y);
+					position.x += Constants.ABSTRACTION_OUTPUT;
+					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 					this.getfamily().getGameElement().addAction(
 							Actions.sequence(
 									Actions.parallel(
-											Actions.moveTo(this.getGameElement().getPosition().x, this.getGameElement().getPosition().y, Constants.ACTION_TIME),
+											Actions.moveTo(position.x, position.y, Constants.ACTION_TIME),
 											Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
 									Actions.run(new DestroyElement(this.getfamily()))
 							));

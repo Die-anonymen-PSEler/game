@@ -163,6 +163,7 @@ public class GameController {
 		
 		// end of level
 		if(levelfinished) {
+			System.out.println("JA");
 			Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 					retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
 			int startX, startY, endX, endY;
@@ -175,9 +176,13 @@ public class GameController {
 			startY = (int) (retroMan.getPos().y);
 			endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
 			Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
+			System.out.println(tiles);
+			System.out.println(startX);
+			System.out.println(startY);
+			System.out.println(endY);
 			for (Rectangle tile : tiles) {
 				if (retroManRect.overlaps(tile)) {
-					//TODO LEVEL FINISHED  not rly working :D
+					System.out.println("Ende");
 					levelFinished();
 				}
 			}
@@ -326,6 +331,10 @@ public class GameController {
 		game.setScreen(gameScreen);
 		level.getMap().getLayers().get(Constants.DOOR_CLOSED_LAYER).setVisible(false);
 		levelfinished = true;
+	}
+	
+	public void evaluationInComplete() {
+		game.setScreen(gameScreen);
 	}
 	
 	/**

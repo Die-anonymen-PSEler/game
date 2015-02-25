@@ -41,7 +41,7 @@ public class GameScreen extends AbstractScreen implements
 	private final static float DIALOGWIDTH = (4f / 5f);
 	private final static float DIALOGHEIGHT = (7f / 9f);
 	private final static float PADDING30 = 30f;
-	private final static float FONTSIZE2_1 = 2.1f;
+	private final static float DIALOG_FONTSIZE = 1.5f;
 	private final static float DIALOGTEXTWIDTH = (7f / 10f);
 
 	/**
@@ -145,18 +145,18 @@ public class GameScreen extends AbstractScreen implements
 
 		// instanciate PauseDialog
 		pauseDialog = new PauseDialog("", skin, "default");
-		Button buttonToLevelMenu = new Button(skin, "ok");
-		pauseDialog.button(buttonToLevelMenu);
-		pauseDialog.text("Pause.");
-		pauseDialog.text("Ins Level-MenÃ¼?");
-		pauseDialog.button("OK", true);
-		Button buttonReturn = new Button(skin, "ok");
-		
-		pauseDialog.text("Zurï¿½ck zum Spiel?");
-		pauseDialog.button(buttonReturn);
-		pauseDialog.button("OK", null);
-		
-		pauseDialog.key(Keys.ENTER, true);
+//		Button buttonToLevelMenu = new Button(skin, "ok");
+//		pauseDialog.button(buttonToLevelMenu);
+//		pauseDialog.text("Pause.");
+//		pauseDialog.text("Ins Level-MenÃ¼?");
+//		pauseDialog.button("OK", true);
+//		Button buttonReturn = new Button(skin, "ok");
+//		
+//		pauseDialog.text("Zurï¿½ck zum Spiel?");
+//		pauseDialog.button(buttonReturn);
+//		pauseDialog.button("OK", null);
+//		
+//		pauseDialog.key(Keys.ENTER, true);
 
 	}
 
@@ -533,6 +533,32 @@ public class GameScreen extends AbstractScreen implements
 			showPauseDialog();
 		}
 	}
+	
+	/**
+	 * Button which shows the Level Menu and interrupts the Game
+	 * 
+	 * @author Retro Factory
+	 */
+	private class LevelMenuClicklistner extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			gameController.abortLevel();
+			game.setScreen(new LevelMenuScreen(game));
+		}
+	}
+	
+	/**
+	 * Button which shows the Level Menu and interrupts the Game
+	 * 
+	 * @author Retro Factory
+	 */
+	private class BackToGameClickListner extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			pauseDialog.hide();
+			popupScreenIsShown = false;
+		}
+	}
 
 	private class HintDialog extends Dialog {
 
@@ -556,18 +582,60 @@ public class GameScreen extends AbstractScreen implements
 	private class PauseDialog extends Dialog {
 		public PauseDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
-			setStage(new Stage());
+			initialize();
+		}
+		
+		private void initialize() {
+			
+			padTop(screenWidth / PADDING30); // set padding on top of the dialog
+			padBottom(screenWidth / PADDING30); // set padding on bottom of the
+			
+			
+			setModal(true);
+			setMovable(false);
+			setResizable(false);
+			
+			Table dialogTable = new Table(skin);
+			
+			Label header = new Label("Menü", skin);
+			header.setWrap(true);
+			header.setAlignment(Align.center);
+			
+			Label levelMenu = new Label("ins Level Menü", skin);
+			levelMenu.setWrap(true);
+			levelMenu.setAlignment(Align.center);
+			levelMenu.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
+			
+			Label back = new Label("Zurück zum Spiel", skin);
+			back.setWrap(true);
+			back.setAlignment(Align.center);
+			back.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
+			
+			Button buttonHome = new Button(skin, "home");
+			buttonHome.pad(screenHeight / DEFAULTBUTTONSIZE);
+			buttonHome.addListener(new LevelMenuClicklistner());
+			
+			Button buttonBack = new Button(skin, "play");
+			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
+			buttonBack.addListener(new BackToGameClickListner());
+			
+			
+			// Table settin and add
+			dialogTable.add(header).colspan(COLSPANx2).expandX().top().padTop(screenHeight / DEFAULTPADDING)
+										.padBottom(screenHeight / DEFAULTPADDING).row();
+			dialogTable.add(buttonHome).padLeft(screenWidth / DEFAULTPADDING);
+			dialogTable.add(levelMenu).width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
+										.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
+			dialogTable.add(buttonBack).padLeft(screenWidth / DEFAULTPADDING);
+			dialogTable.add(back).width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
+										.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
+			
+			this.add(dialogTable).width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+			
 		}
 
 		@Override
 		protected void result(Object object) {
-			this.hide();
-			popupScreenIsShown = false;
-			if (object != null) {
-				gameController.abortLevel();
-				game.setScreen(new LevelMenuScreen(game));
-
-			}
 		}
 	}
 	
@@ -598,10 +666,8 @@ public class GameScreen extends AbstractScreen implements
 			Label dialogText = new Label(errorMessage, skin);
 			dialogText.setWrap(true);
 			dialogText.setAlignment(Align.center);
-			dialogText.setFontScale((FONTSIZE2_1 * screenWidth)
-					/ DIVIDEWIDTHDEFAULT);
-			getContentTable().add(dialogText).width(
-					screenWidth * DIALOGTEXTWIDTH);
+			dialogText.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
+			getContentTable().add(dialogText).width(screenWidth * DIALOGTEXTWIDTH);
 			button(new Button(skin, "ok"), true);
 		}
 

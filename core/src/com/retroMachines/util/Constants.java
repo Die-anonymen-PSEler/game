@@ -73,7 +73,7 @@ public abstract class Constants {
 	/**
 	 * maximum value of id
 	 */
-	public static final int MAX_COLOR_ID = 10;
+	public static final int MAX_COLOR_ID = 11;
 
 	/**
 	 * This is the amount of the volume that can be changed by the user.
@@ -132,7 +132,15 @@ public abstract class Constants {
 	
 	public static final int DEPOTLAYER_Y_DIF = 3;
 	
-	public static final int GAMEELEMENT_WIDTH = 64;
+	public static final int GAMEELEMENT_WIDTH = 100;
+	
+	public static final int GAMEELEMENT_ANIMATION_WIDTH = 90;
+	
+	public static final int GAMELEMENT_PADDING = 25;
+	
+	public static final int ABSTRACTION_INPUT = 35;
+	
+	public static final int ABSTRACTION_OUTPUT = 25;
 	
 	public static final int EVALUATIONSCREEN_PADDING = 200;
 	

@@ -245,8 +245,8 @@ public abstract class Vertex {
 		
 		// if family contains color, search and replace it
 		if (this.getFamilyColorList().contains(start.getColor())) {
+
 			if (this.getfamily() != null) {
-				
 				// Check Family Vertexes before you check to replace the first in Family
 				listOfNewVertex = this.getfamily().replaceInFamily(start);
 				
@@ -262,10 +262,14 @@ public abstract class Vertex {
 					}
 					
 					// Insert clone in Family
+					Vector2 position = new Vector2(start.getGameElement().getPosition().x, start.getGameElement().getPosition().y);
+					position.x += Constants.ABSTRACTION_OUTPUT;
+					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+					
 					this.getfamily().getGameElement().addAction(
 							Actions.sequence(
 									Actions.parallel(
-											Actions.moveTo(this.getPosition().x, this.getPosition().y, Constants.ACTION_TIME),
+											Actions.moveTo(position.x, position.y, Constants.ACTION_TIME),
 											Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
 									Actions.run(new DestroyElement(this.getfamily()))
 							));
@@ -297,10 +301,14 @@ public abstract class Vertex {
 				}
 				
 				// insert clone as Next
-				this.getfamily().getGameElement().addAction(
+				Vector2 position = new Vector2(start.getGameElement().getPosition().x, start.getGameElement().getPosition().y);
+				position.x += Constants.ABSTRACTION_OUTPUT;
+				position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+				
+				this.getnext().getGameElement().addAction(
 						Actions.sequence(
 								Actions.parallel(
-										Actions.moveTo(this.getPosition().x, this.getPosition().y, Constants.ACTION_TIME),
+										Actions.moveTo(position.x,  position.y, Constants.ACTION_TIME),
 										Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
 								Actions.run(new DestroyElement(this.getnext()))
 						));
@@ -484,7 +492,6 @@ public abstract class Vertex {
 	 * Updates ColorList of this Vertex and family
 	 */
 	protected void updateColorList(LinkedList<Integer> cloneList, int color) {
-
 		// Update Color List in vertex
 		if(this.getFamilyColorList().contains(new Integer(color))) {
 			this.getFamilyColorList().remove(new Integer(color));
@@ -498,7 +505,6 @@ public abstract class Vertex {
 	}
 	
 	private void updateFamilyColorList(LinkedList<Integer> cloneList, int color) {
-		
 		// Update Color List in vertex
 		if(this.getFamilyColorList().contains(new Integer(color))) {
 			this.getFamilyColorList().remove(new Integer(color));
@@ -602,13 +608,20 @@ public abstract class Vertex {
 	 * @param e EvaluationController where next step should be called
 	 */
 	public void readInAnimation(Vector2 pos, EvaluationController e) {
+		
+		//Update Position Input
+		pos.x += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+		pos.y += Constants.ABSTRACTION_INPUT;
+		
 		if(this.getfamily() != null) {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		this.getGameElement().addAction(Actions.sequence(
 				Actions.delay(Constants.ACTION_TIME),
-				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
-				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
+				Actions.parallel(
+						Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
+						Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)
+				),
 				Actions.run(new Step3Element(this, e))
 				));
 		
@@ -623,8 +636,10 @@ public abstract class Vertex {
 		}
 		this.getGameElement().addAction(Actions.sequence(
 				Actions.delay(Constants.ACTION_TIME),
-				Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
-				Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
+				Actions.parallel(
+						Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
+						Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)
+				),
 				Actions.run(new DestroyElement(this))
 				));
 	}

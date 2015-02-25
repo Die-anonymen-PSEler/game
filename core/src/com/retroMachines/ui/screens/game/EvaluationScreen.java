@@ -186,11 +186,14 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 			stage.addActor(actVertex.getGameElement());
 			// print Family
 			if(actVertex.getfamily() != null) {
+				position.y += Constants.GAMELEMENT_PADDING;
 				Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
 				printTree(actVertex.getfamily(), famPos);
+				position.y -= Constants.GAMELEMENT_PADDING;
 			}
 			
 			position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
+			position.x += Constants.GAMELEMENT_PADDING;
 			actVertex = actVertex.getnext();
 		}
 	}

@@ -71,7 +71,7 @@ public class Variable extends Vertex {
 	@Override
 	public LinkedList<Vertex> betaReduction(EvaluationController e) {
 		//Variable doesnt do betaReduction
-		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step4Element(e))));
+		this.getGameElement().addAction(Actions.run(new Step4Element(e)));
 		return new LinkedList<Vertex>();
 	}
 

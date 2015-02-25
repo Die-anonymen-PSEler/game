@@ -180,6 +180,8 @@ public class EvaluationController {
 		result = resultTree.equals(level.getLambdaUtil().getTargetTree());
 		if(result) {
 			gameController.evaluationComplete();
+		} else {
+			gameController.evaluationInComplete();
 		}
 	}
 }
