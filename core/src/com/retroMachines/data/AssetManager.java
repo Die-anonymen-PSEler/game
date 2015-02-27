@@ -52,6 +52,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	private static TiledMapTileSet objects;
 	private static TiledMapTileSet machines;
 	private static TiledMapTileSet lights;
+	private static TiledMapTileSet depots;
 
 	/**
 	 * Contains all file references to the files that need to be loaded.
@@ -186,6 +187,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		objects = levelSets.getTileSet(Constants.TILESETNAME_METALOBJECTS);
 		machines = levelSets.getTileSet(Constants.TILESETNAME_MACHINE);
 		lights = levelSets.getTileSet(Constants.TILESETNAME_LIGHT);
+		depots = levelSets.getTileSet(Constants.TILESETNAME_DEPOT);
 	}
 	
 	/**
@@ -212,4 +214,12 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		return lights;
 	}
 	
+	
+	/**
+	 * getter for TiledMapTileSet of Depots in TiledMap
+	 * @return TiledMapTileSet
+	 */
+	public static TiledMapTileSet getDepots() {
+		return depots;
+	}
 }

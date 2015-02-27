@@ -13,6 +13,7 @@ import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.Vertex;
 
 /**
  * The GameController is part of the controller of RetroMachines. This class
@@ -84,10 +85,11 @@ public class GameController {
 		retroMan = new RetroMan();
 		tempStepCounter = 0;
 		boolean left = game.getSettingController().getLeftMode();
-		gameScreen = new GameScreen(game, this, left);
+
 		RetroLevel.LevelBuilder builder = new RetroLevel.LevelBuilder();
 		builder.prepare(levelId);
 		level = builder.getLevel();
+		gameScreen = new GameScreen(game, this, left);
 		gameScreen.setMap(level.getMap());
 		levelBegin = new Date();
 		game.setScreen(gameScreen);
@@ -354,5 +356,13 @@ public class GameController {
 				levelFinished();
 			}
 		}
+	}
+	
+	public Vertex getLevelHint() {
+		return level.getLambdaUtil().getHintTree().getStart();
+	}
+	
+	public Vertex getLevelTarget() {
+		return level.getLambdaUtil().getTargetTree().getStart();
 	}
 }

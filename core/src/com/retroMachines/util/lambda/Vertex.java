@@ -492,7 +492,7 @@ public abstract class Vertex {
 		}
 	}
 	
-	protected void updateWidth() {
+	public void updateWidth() {
 		//Update width
 		if(this.getfamily() != null) {
 			this.getfamily().updateFamilyWidth();

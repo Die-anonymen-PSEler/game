@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -22,8 +23,12 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.GameController;
+import com.retroMachines.game.gameelements.DepotElement;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
+import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.Dummy;
+import com.retroMachines.util.lambda.Vertex;
 
 /**
  * This class is part of the view of RetroMachines. It displays the actual game
@@ -134,29 +139,12 @@ public class GameScreen extends AbstractScreen implements
 		inputMultiplexer.addProcessor(this);
 
 		drawButtons();
-		// instanciate HintDialog
+		
+		
+		// instanciate Dialogs
 		hintDialog = new HintDialog("", skin, "default");
-		Button buttonOk = new Button(skin, "ok");
-		hintDialog.button(buttonOk);
-		hintDialog.text("Hint");
-		hintDialog.button("OK", true);
-		hintDialog.key(Keys.ENTER, true);
-		// TODO: das Hinweisbild setzen + anzeigen
-
-		// instanciate PauseDialog
+		
 		pauseDialog = new PauseDialog("", skin, "default");
-//		Button buttonToLevelMenu = new Button(skin, "ok");
-//		pauseDialog.button(buttonToLevelMenu);
-//		pauseDialog.text("Pause.");
-//		pauseDialog.text("Ins Level-Menü?");
-//		pauseDialog.button("OK", true);
-//		Button buttonReturn = new Button(skin, "ok");
-//		
-//		pauseDialog.text("Zur�ck zum Spiel?");
-//		pauseDialog.button(buttonReturn);
-//		pauseDialog.button("OK", null);
-//		
-//		pauseDialog.key(Keys.ENTER, true);
 
 	}
 
@@ -384,11 +372,14 @@ public class GameScreen extends AbstractScreen implements
 	private void hideTask() {
 
 	}
+	
 
+	
 	/**
 	 * Shows the HintScreen on top of the game.
 	 */
 	private void showHint() {
+
 		hintDialog.show(stage);
 	}
 
@@ -565,10 +556,53 @@ public class GameScreen extends AbstractScreen implements
 		public HintDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
 			setStage(new Stage());
+			Table size = new Table();
+			size.add().width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+			this.add(size);
+			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
+			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
+			gameController.getLevelHint().updateWidth();
+			printTree(gameController.getLevelHint(), new Vector2(50,50));
+			
 		}
 
 		private void initialize() {
 			// TODO: implement
+		}
+		
+		private void printTree(Vertex actVertex, Vector2 position) {
+			while(actVertex != null) {
+				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex.getWidth() - 1)) / 2;
+				Vector2 pos = new Vector2(position.x + centerVertex, position.y);
+				
+				// Add depot
+				
+				int offset = (Integer) AssetManager.getDepots().getProperties().get("firstgid");
+				int color = Constants.DEPOT_ID;
+				DepotElement d = new DepotElement();
+				d.setTileId(color + offset);
+				d.setPosition(pos);
+				this.addActor(d);
+				
+				// Add element
+				offset = (Integer) actVertex.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+				color = actVertex.getColor();
+				actVertex.getGameElement().setTileId(color + offset);
+				
+				actVertex.getGameElement().setPosition(pos);
+				this.addActor(actVertex.getGameElement());
+				// print Family
+				if(actVertex.getfamily() != null) {
+					position.y += Constants.GAMELEMENT_PADDING;
+					Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
+					printTree(actVertex.getfamily(), famPos);
+					position.y -= Constants.GAMELEMENT_PADDING;
+				}
+				
+				position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
+				position.x += Constants.GAMELEMENT_PADDING;
+				actVertex = actVertex.getnext();
+			}
 		}
 
 		@Override

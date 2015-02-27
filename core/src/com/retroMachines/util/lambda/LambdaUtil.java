@@ -164,8 +164,6 @@ public class LambdaUtil {
 	 */
 	private Vertex makeStartVertexTree(JsonArray tree) {
 		
-		System.out.println(tree);
-		
 		if (tree.size() == 0) {
 			return null;
 		}

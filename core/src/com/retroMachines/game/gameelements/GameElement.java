@@ -81,6 +81,7 @@ public abstract class GameElement extends Actor {
 	
 	@Override
     public void draw(Batch batch, float alpha){
+		
         batch.draw(textureRegion, getX(), getY(), this.getOriginX(), this.getOriginY(),
         		this.getWidth(), this.getHeight(), this.getScaleX(), this.getScaleY(),
         		this.getRotation());

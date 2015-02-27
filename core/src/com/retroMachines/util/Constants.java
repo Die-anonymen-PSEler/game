@@ -144,6 +144,8 @@ public abstract class Constants {
 	
 	public static final int EVALUATIONSCREEN_PADDING = 200;
 	
+	public static final int DEPOT_ID = 8;
+	
 	public static final float GAMEELEMENT_SCALING = 0.25f;
 	
 	public static final float ACTION_MOVINGTIME = 2f;
