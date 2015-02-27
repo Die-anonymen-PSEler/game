@@ -78,9 +78,7 @@ public class LambdaUtil {
 		JsonArray hint = data.getAsJsonArray(HINT);
 		JsonArray target = data.getAsJsonArray(TARGET);
 		JsonArray tree = data.getAsJsonArray(TREE);
-		//
-		//System.out.println(data.toString());	
-		//System.out.println(tree.toString());
+		
 		try {
 			br.close();
 		} catch (IOException e) {
@@ -93,8 +91,8 @@ public class LambdaUtil {
 		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
 		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
 		
-		//System.out.println(v.getnext().getnext());
-
+		//System.out.println(levelTree.getStart().getnext().getfamily());
+		
 	}
 
 	public void registerNewListener(OnNextLambdaStepListener listener) {
@@ -165,15 +163,18 @@ public class LambdaUtil {
 	 * @return root vertex of tree
 	 */
 	private Vertex makeStartVertexTree(JsonArray tree) {
+		
+		System.out.println(tree);
+		
 		if (tree.size() == 0) {
 			return null;
 		}
 		
-		Vertex start = null;
+		Vertex start = new Dummy();
 		int count = 1; //index of current element
-		
+		Vertex actVertex = new Dummy();
 		for (JsonElement t : tree) {
-			Vertex actVertex = new Dummy();
+
 			numOfDepots++;
 			if (count == tree.size()) {
 				actVertex.setnext(null); //lastVertex.next is null
@@ -184,12 +185,15 @@ public class LambdaUtil {
 			actVertex.setfamily(makeStartVertexTree(t.getAsJsonObject()
 						.getAsJsonArray(TREE)));
 			if(count == 1) {
-				start = actVertex;
+				//pointer on start
+				start.setnext(actVertex);
 			}
 			actVertex = actVertex.getnext();
+			
 			count++;
 		}
-		return start;
+		
+		return start.getnext();
 	}
 	
 	/**
