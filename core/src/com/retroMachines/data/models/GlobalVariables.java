@@ -100,7 +100,13 @@ public class GlobalVariables extends Model {
 	
 	public int nextFreeId() {
 		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
-			int result = pref.getInteger(String.format(KEY_SLOTS, i), 0);
+			String value = pref.getString(String.format(KEY_SLOTS, i), "0");
+			int result;
+			try {
+				result = Integer.parseInt(value);
+			} catch (NumberFormatException e) {
+				result = -1;
+			}
 			if(result == 0) {
 				return i;
 			}

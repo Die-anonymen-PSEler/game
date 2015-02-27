@@ -1,25 +1,18 @@
 package com.retroMachines.game.controllers;
 
 import java.util.Date;
-import java.util.LinkedList;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.RetroLevel;
-import com.retroMachines.game.RetroLevel.LevelBuilder;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.LambdaUtil;
-import com.retroMachines.util.lambda.Vertex;
 
 /**
  * The GameController is part of the controller of RetroMachines. This class
