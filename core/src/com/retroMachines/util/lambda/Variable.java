@@ -92,7 +92,7 @@ public class Variable extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Variable( null, family, this.getId(), this.getColor(), this.getFamilyColorList());
+		clone = new Variable( null, family, this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -116,7 +116,7 @@ public class Variable extends Vertex {
 		} else  {
 			family = null;
 		}
-		Vertex clone = new Variable( next, family, this.getId(), this.getColor(), this.getFamilyColorList());
+		Vertex clone = new Variable( next, family, this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;

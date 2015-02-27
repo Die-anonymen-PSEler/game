@@ -184,6 +184,7 @@ public abstract class Vertex {
 	 * @return true if renamed family successful, false otherwise
 	 */
 	protected boolean renameFamily(int oldColor, int newColor) {
+		System.out.println("rename" + oldColor + " " + newColor);
 		int index = 0;
 		// Get Index of oldColor 
 		while(this.familyColorList.get(index) < oldColor) {
@@ -321,43 +322,6 @@ public abstract class Vertex {
 		}
 		// At the End return the ColorList, if something is replaced;
 		return listOfNewVertex;
-	}
-	
-	/**
-	 * Merges the given List with the color List of this Vertex
-	 * @param listToAdd List wich should be merged with this color List
-	 */
-	protected void mergeMyColorList(LinkedList<Integer> listToAdd) {
-		int lengthBoth = this.getFamilyColorList().size();
-		lengthBoth =+ listToAdd.size();
-		LinkedList<Integer> newColorList = new LinkedList<Integer>();
-		for (int i = 0; i < lengthBoth; i++) {
-			
-			// if one list is empty add the rest of the other one to the end
-			if(this.getFamilyColorList().isEmpty()) {
-				int l = listToAdd.size();
-				for (int j = 0; j < l; j++) {
-					newColorList.addLast(listToAdd.pollFirst());
-				}
-				break;
-			}
-			if(listToAdd.isEmpty()) {
-				int l = this.getFamilyColorList().size();
-				for (int j = 0; j < l; j++) {
-					newColorList.addLast(this.getFamilyColorList().pollFirst());
-				}
-				break;
-			}
-			
-			// if there are still elements in one List search the smallest one and add it to the new List
-			if (this.getFamilyColorList().getFirst() < listToAdd.getFirst()) {
-				newColorList.addLast(this.getFamilyColorList().pollFirst());
-			} else {
-				newColorList.addLast(listToAdd.pollFirst());
-			}
-			
-		}
-		this.setFamilyColorlist(newColorList);
 	}
 	
 	
@@ -521,7 +485,7 @@ public abstract class Vertex {
 			if(this.getnext() != null) {
 				this.getnext().updateFamilyColorList(cloneList, color);
 			}
-			this.setNextColorlist(this.getnext().getNextColorList());
+			this.setNextColorlist(this.getnext().getCopyOfNextColorList());
 			if(!this.getNextColorList().contains(new Integer(this.getnext().getColor()))) {
 				this.getNextColorList().add(this.getnext().getColor());
 			}
@@ -849,12 +813,38 @@ public abstract class Vertex {
 	}
 	
 	/**
+	 * Getter for the familyColorList
+	 * 
+	 * @return The familyColorList of this Vertex
+	 */
+	public LinkedList<Integer> getCopyOfFamilyColorList(){
+		LinkedList<Integer> copyList = new LinkedList<Integer>();
+		for(Integer i : familyColorList) {
+			copyList.add(i);
+		}
+		return copyList;
+	}
+	
+	/**
 	 * Getter for the nextColorList
 	 * 
 	 * @return The nextColorList of this Vertex
 	 */
 	public LinkedList<Integer> getNextColorList(){
 		return nextColorList;
+	}
+	
+	/**
+	 * Getter for the nextColorList
+	 * 
+	 * @return The nextColorList of this Vertex
+	 */
+	public LinkedList<Integer> getCopyOfNextColorList(){
+		LinkedList<Integer> copyList = new LinkedList<Integer>();
+		for(Integer i : nextColorList) {
+			copyList.add(i);
+		}
+		return copyList;
 	}
 	
 	public boolean isInDepot() {

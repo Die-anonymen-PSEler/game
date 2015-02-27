@@ -135,7 +135,7 @@ public class Abstraction extends Vertex {
 				}
 				
 				//Update colorList
-				this.updateColorList(this.getnext().getFamilyColorList(), this.getColor());
+				this.updateColorList(this.getnext().getCopyOfFamilyColorList(), this.getColor());
 				
 				// Update withs
 				this.updateWidth();
@@ -180,7 +180,7 @@ public class Abstraction extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Abstraction(null, family,this.getId(), this.getColor(), this.getFamilyColorList());
+		clone = new Abstraction(null, family,this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -204,7 +204,7 @@ public class Abstraction extends Vertex {
 		} else  {
 			family = null;
 		}
-		Vertex clone = new Abstraction(next, family,this.getId(), this.getColor(), this.getFamilyColorList());
+		Vertex clone = new Abstraction(next, family,this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -286,7 +286,7 @@ public class Abstraction extends Vertex {
 	public Vertex updatePointerAfterBetaReduction() {
 		// Update pointer if needed
 		if(this.getnext() != null) {
-			// Search last Vertex in firs Family layer
+			// Search last Vertex in first Family layer
 			Vertex pointer = new Dummy();
 			pointer.setnext(this.getfamily());
 			if(pointer.getnext() != null) {

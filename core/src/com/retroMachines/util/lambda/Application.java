@@ -100,7 +100,7 @@ public class Application extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Application(null, family,this.getId(), this.getFamilyColorList());
+		clone = new Application(null, family,this.getId(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -123,7 +123,7 @@ public class Application extends Vertex {
 		} else  {
 			family = null;
 		}
-		Vertex clone = new Application(next, family,this.getId(), this.getFamilyColorList());
+		Vertex clone = new Application(next, family,this.getId(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;

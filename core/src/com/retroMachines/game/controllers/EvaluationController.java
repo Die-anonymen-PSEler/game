@@ -158,12 +158,14 @@ public class EvaluationController {
 		}
 		
 		evalutionPointer.setnext(evalutionPointer.getnext().updatePointerAfterBetaReduction());
+
 		if(evalutionPointer.getnext() == null) {
 			//End of Evaluation
 			resultPointer.getnext().setnext(null);
 			checkEvaluation();
 		} else {
 			//Wenn alle steps starten geklickt starte nächsten schritt sonst wart auf eingabe
+			offsetX = (int) evalutionPointer.getnext().getGameElement().getPosition().x;
 			if(evaluationScreen.getAutoStep()) {
 				evaluationScreen.setNextStep();
 			} else {
