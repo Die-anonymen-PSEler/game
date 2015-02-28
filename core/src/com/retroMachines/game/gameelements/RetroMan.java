@@ -253,7 +253,7 @@ public class RetroMan {
 			offset = -ELEMENT_OFFSET;
 		}
 		else {
-			offset = hasPickedUpElement() ? ELEMENT_OFFSET +1 : ELEMENT_OFFSET;
+			offset = hasPickedUpElement() ? ELEMENT_OFFSET : ELEMENT_OFFSET;
 		}
 		Vector2 elementPos = new Vector2(((int) pos.x) + offset, (int)pos.y);
 		return elementPos;
