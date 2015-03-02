@@ -13,9 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.data.models.Profile;
 import com.retroMachines.game.controllers.OnProfileChangedListener;
 import com.retroMachines.game.controllers.ProfileController;
+import com.retroMachines.ui.RetroDialog;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The ProfileMenuScreen is part of the view of RetroMachines. It shows all
@@ -184,7 +185,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 			if (deleteDialog != null) {
 				deleteDialog.show(stage);
 			} else {
-				deleteDialog = new DeleteDialog("", skin, "default");
+				deleteDialog = new DeleteDialog("", "Profil wirklich löschen?");
 				deleteDialog.show(stage);
 			}
 		}
@@ -211,38 +212,14 @@ public class ProfileMenuScreen extends MenuScreen implements
 			
 		}
 	}
+	
+	private class DeleteDialog extends RetroDialog {
 
-	private class DeleteDialog extends Dialog {
-
-		public DeleteDialog(String title, Skin skin, String windowStyleName) {
-			super(title, skin, windowStyleName);
-			initialize();
+		public DeleteDialog(String title, String msg) {
+			super(title, msg);
+			button(new Button(skin, ButtonStrings.ABORT), false);
 		}
-
-		private void initialize() {
-			padTop(screenWidth / DEFAULTPADDING); // set padding on top of the
-													// dialog title
-			padBottom(screenWidth / DEFAULTPADDING); // set padding on bottom of
-														// the dialog title
-			getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set
-																			// buttons
-																			// height
-			getButtonTable().defaults().width(screenWidth * ONE_FOURTH); // set
-																			// buttons
-																			// height
-			setModal(true);
-			setMovable(false);
-			setResizable(false);
-			Label dialogText = new Label("Profil wirklich löschen?", skin);
-			dialogText.setWrap(true);
-			dialogText.setAlignment(Align.center);
-			dialogText.setFontScale((FONTSIZE2_1 * screenWidth)
-					/ DIVIDEWIDTHDEFAULT);
-			getContentTable().add(dialogText).width(screenWidth * TWO_THIRD);
-			button(new Button(skin, "ok"), true);
-			button(new Button(skin, "abort"), false);
-		}
-
+		
 		protected void result(Object object) {
 			if ((Boolean) object) {
 				profileController.deleteProfile(profileList.getSelected());
@@ -250,18 +227,6 @@ public class ProfileMenuScreen extends MenuScreen implements
 				this.remove();
 			}
 		}
-
-		@Override
-		public float getPrefWidth() {
-			// force dialog width
-			return screenWidth / 1.5f;
-		}
-
-		@Override
-		public float getPrefHeight() {
-			// force dialog height
-			return screenHeight / 1.8f;
-		}
+		
 	}
-
 }

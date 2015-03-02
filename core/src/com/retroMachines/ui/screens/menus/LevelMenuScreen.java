@@ -2,9 +2,7 @@ package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -13,6 +11,7 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.StatisticController;
+import com.retroMachines.ui.RetroDialog;
 import com.retroMachines.util.Constants;
 
 /**
@@ -33,7 +32,7 @@ public class LevelMenuScreen extends MenuScreen {
 	private final static float DIALOGWIDTH = (2f / 3f);
 	private final static float DIALOGHEIGHT = (5f / 9f);
 
-	private LockedDialog lockedDialog;
+	private RetroDialog lockedDialog;
 
 	private StatisticController statisticController;
 
@@ -136,7 +135,7 @@ public class LevelMenuScreen extends MenuScreen {
 			if (lockedDialog != null) {
 				lockedDialog.show(stage);
 			} else {
-				lockedDialog = new LockedDialog("", skin, "default");
+				lockedDialog = new RetroDialog("", "Nicht Freigeschaltet");
 				lockedDialog.show(stage);
 			}
 		}
@@ -167,55 +166,7 @@ public class LevelMenuScreen extends MenuScreen {
 		}
 
 	}
-
-	private class LockedDialog extends Dialog {
-
-		public LockedDialog(String title, Skin skin, String windowStyleName) {
-			super(title, skin, windowStyleName);
-			initialize();
-		}
-
-		private void initialize() {
-			padTop(screenWidth / PADDING30); // set padding on top of the dialog
-												// title
-			padBottom(screenWidth / PADDING30); // set padding on bottom of the
-												// dialog title
-			getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set
-																			// buttons
-																			// height
-			getButtonTable().defaults().width(screenWidth * ONE_FOURTH); // set
-																			// buttons
-																			// height
-			setModal(true);
-			setMovable(false);
-			setResizable(false);
-			Label dialogText = new Label("Nicht Freigeschaltet", skin);
-			dialogText.setWrap(true);
-			dialogText.setAlignment(Align.center);
-			dialogText.setFontScale((FONTSIZE2_1 * screenWidth)
-					/ DIVIDEWIDTHDEFAULT);
-			getContentTable().add(dialogText).width(
-					screenWidth * DIALOGTEXTWIDTH);
-			button(new Button(skin, "ok"), true);
-		}
-
-		protected void result(Object object) {
-			this.remove();
-		}
-
-		@Override
-		public float getPrefWidth() {
-			// force dialog width
-			return screenWidth * DIALOGWIDTH;
-		}
-
-		@Override
-		public float getPrefHeight() {
-			// force dialog height
-			return screenHeight * DIALOGHEIGHT;
-		}
-	}
-
+	
 	protected class ReturnButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
