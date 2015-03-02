@@ -181,11 +181,15 @@ public class RetroLevel {
 		// Build family and your self
 		if (dummy.getfamily() != null) {
 			Vertex fam = buildTree(y + Constants.DEPOTLAYER_Y_DIF, dummy.getfamily());
+			if(fam == null) {
+				return null;
+			}
 			int index = findVertexPosY(y);
 			result = vertexInDepot.remove(index);
 			
 			//Check if construct is valid
 			if(!checkValidVertexFamily(result, fam)) {
+				System.out.println("null");
 				return null;
 			}
 			
@@ -223,8 +227,9 @@ public class RetroLevel {
 		// Build vertex next to you if not null
 		if(dummy.getnext() != null) {
 			Vertex next = buildTree(y, dummy.getnext());
-			
-			
+			if(next == null) {
+				return null;
+			}
 			// Check if construct is valid
 			if(!checkValidVertexNext(result, next)) {
 				return null;

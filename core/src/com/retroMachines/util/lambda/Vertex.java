@@ -267,7 +267,7 @@ public abstract class Vertex {
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 					
 					//Animation
-					EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(pos, this.getfamily().getGameElement(), false);
+					EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
 					
 					if(this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
