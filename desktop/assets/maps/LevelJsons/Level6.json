@@ -11,29 +11,29 @@
 				{
 					"color": 10,
 					"type": "Abs",
-					"posx": 11,
-					"posy": 6
+					"posx": 31,
+					"posy": 8
 				},
 
 				{
 					"color": 10,
 					"type": "Var",
-					"posx": 28,
-					"posy": 7
+					"posx": 37,
+					"posy": 8
 				},
 				
 				{
 					"color": 10,
 					"type" : "Var",
-					"posx": 46,
+					"posx": 32,
 					"posy": 11
 				},
 
 				{
 					"color": 2,
 					"type": "Abs",
-					"posx": 36,
-					"posy": 7
+					"posx": 37,
+					"posy": 8
 				},
 				
 				{
@@ -46,23 +46,23 @@
 				{
 					"color": 7,
 					"type": "Abs",
-					"posx": 41,
-					"posy": 4
+					"posx": 40,
+					"posy": 5
 				},
 				
 				{
 					"color": 7,
 					"type": "Var",
-					"posx": 23,
-					"posy": 7
+					"posx": 30,
+					"posy": 11
 				},
 				
 				{
 				
 					"color": 1,
 					"type": "Var",
-					"posx": 30,
-					"posy": 10
+					"posx": 34,
+					"posy": 8
 				}
 			],
 
