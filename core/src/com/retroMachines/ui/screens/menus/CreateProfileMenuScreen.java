@@ -1,6 +1,5 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,9 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.data.models.Profile;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.util.Constants;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The CreateProfileMenuScreen is part of the view of RetroMachines.
@@ -91,24 +91,24 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		steeringTitle.setAlignment(Align.center);
 		
 		// Make Buttons
-		Button buttonOk = new Button(skin, "ok");
+		Button buttonOk = new Button(skin, ButtonStrings.OK);
 		buttonOk.addListener(new CreateProfileButtonClickListener());
 		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
-		Button buttonAbort = new Button(skin, "abort");
+		Button buttonAbort = new Button(skin, ButtonStrings.ABORT);
 		buttonAbort.addListener(new AbortCreateProfileButtonClickListener());
 		buttonAbort.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
-		buttonLeftMode = new Button(skin, "controlLeft");
+		buttonLeftMode = new Button(skin, ButtonStrings.CONTROL_LEFT);
 		buttonLeftMode.addListener(new LeftControlButtonClickListener());
 		buttonLeftMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
-		buttonRightMode = new Button(skin, "controlRight");
+		buttonRightMode = new Button(skin, ButtonStrings.CONTROL_LEFT);
 		buttonRightMode.addListener(new RightControlButtonClickListener());
 		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonRightMode.setChecked(true);
 		
-		Button buttonNextChar = new Button(skin, "nextChar");
+		Button buttonNextChar = new Button(skin, ButtonStrings.NEXT_CHAR);
 		buttonNextChar.addListener(new NextCharButtonClickListener());
 		buttonNextChar.pad(screenHeight / DEFAULTBUTTONSIZE);
 		
@@ -130,7 +130,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		//Make Image
 		Image charImage = new Image();
 		charImage.setDrawable(new TextureRegionDrawable(
-		        new TextureRegion(new Texture("Background.png"))));
+		        new TextureRegion(new Texture(Constants.BACKGROUND_PATH))));
 		charImage.setScaling(Scaling.fit);
 		
 		// Build Tables
@@ -228,7 +228,6 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		public void clicked(InputEvent event, float x, float y) {
 			buttonRightMode.setChecked(false);
 			buttonLeftMode.setChecked(true);
-			//TODO Save Lefti Change
 		}
 	}
 	
@@ -241,7 +240,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 		public void clicked(InputEvent event, float x, float y) {
 			buttonLeftMode.setChecked(false);
 			buttonRightMode.setChecked(true);
-			//TODO Save Lefti Change
+			
 		}
 	}
 	
@@ -252,7 +251,7 @@ public class CreateProfileMenuScreen  extends MenuScreen{
 	private class NextCharButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			//TODO Change Char Pic and save it
+			
 		}
 	}
 }

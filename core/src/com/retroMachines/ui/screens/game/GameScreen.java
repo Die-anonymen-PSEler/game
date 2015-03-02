@@ -27,7 +27,7 @@ import com.retroMachines.game.gameelements.DepotElement;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.Dummy;
+import com.retroMachines.util.Constants.ButtonStrings;
 import com.retroMachines.util.lambda.Vertex;
 
 /**
@@ -729,7 +729,7 @@ public class GameScreen extends AbstractScreen implements
 			header.setWrap(true);
 			header.setAlignment(Align.center);
 			
-			Label levelMenu = new Label("ins Level Menü", skin);
+			Label levelMenu = new Label("Ins Level-Menü", skin);
 			levelMenu.setWrap(true);
 			levelMenu.setAlignment(Align.center);
 			levelMenu.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
@@ -739,11 +739,11 @@ public class GameScreen extends AbstractScreen implements
 			back.setAlignment(Align.center);
 			back.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 			
-			Button buttonHome = new Button(skin, "home");
+			Button buttonHome = new Button(skin, ButtonStrings.HOME);
 			buttonHome.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonHome.addListener(new LevelMenuClickListener());
 			
-			Button buttonBack = new Button(skin, "play");
+			Button buttonBack = new Button(skin, ButtonStrings.HOME);
 			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonBack.addListener(new BackToGameClickListener());
 			
@@ -796,7 +796,7 @@ public class GameScreen extends AbstractScreen implements
 			dialogText.setAlignment(Align.center);
 			dialogText.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 			getContentTable().add(dialogText).width(screenWidth * DIALOGTEXTWIDTH);
-			button(new Button(skin, "ok"), true);
+			button(new Button(skin, ButtonStrings.OK), true);
 		}
 
 		protected void result(Object object) {

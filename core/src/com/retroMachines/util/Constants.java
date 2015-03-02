@@ -7,7 +7,13 @@ package com.retroMachines.util;
  * @author RetroFactory
  * 
  */
-public abstract class Constants {
+public class Constants {
+	
+	private Constants() {
+		// du instanziierst das nicht!
+	}
+	
+	public static final String BACKGROUND_PATH = "Background.png";
 
 	/**
 	 * String array containing all possible colors for the gameElements. 7
@@ -28,46 +34,10 @@ public abstract class Constants {
 	public static final String LOG_TAG = "RetroFactory";
 	
 	/**
-	 * TileSet name in TiledMap 
-	 */
-	public static final String TILESETNAME_MACHINE = "Maschinen";
-	
-	/**
-	 * TileSet name in TiledMap 
-	 */
-	public static final String TILESETNAME_METALOBJECTS = "Metallobjekte";
-	
-	/**
-	 * TileSet name in TiledMap 
-	 */
-	public static final String TILESETNAME_LIGHT = "Ampeln";
-	
-	/**
-	 * TileSet name in TiledMap 
-	 */
-	public static final String TILESETNAME_DEPOT = "Rohre";
-	
-	public static final String VARIABLE_TYPE = "Variable";
-	
-	public static final String APPLICATION_TYPE = "Application";
-	
-	public static final String ABSTRACTION_TYPE = "Abstraction";
-	
-	public static final String ABSTRACTION_FAMILY_INVALID = "Jede Maschine braucht ein Verarbeitungsbereich!";
-	
-	public static final String ABSTRACTION_NEXT_INVALID = "Jede Maschine braucht eine Eingabe!";
-	
-	public static final String APPLICATION_FAMILY_INVALID = "Jede Ampel braucht eine Verarbeitungsbereich!";
-	
-	public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
-	
-	public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein";
-	
-	/**
 	 * String array containing path to all possible characters.
 	 */
 	public static final String[] pathCharacter = {
-	// TO-DO
+		// TO-DO
 	};
 	
 	/**
@@ -151,4 +121,61 @@ public abstract class Constants {
 	public static final float ACTION_MOVINGTIME = 2f;
 	
 	public static final float ACTION_TIME = 1f;
+	
+	public static class ButtonStrings {
+		
+		public static final String HOME = "home";
+		
+		public static final String PLAY = "play";
+		
+		public static final String OK = "ok";
+
+		public static final String BACK = "back";
+		
+		public static final String ABORT = "abort";
+		
+		public static final String CONTROL_LEFT = "controlLeft";
+		
+		public static final String CONTROL_RIGHT = "controlRight";
+		
+		public static final String NEXT_CHAR = "nextChar";
+	}
+	
+	public static class RetroStrings {
+		/**
+		 * TileSet name in TiledMap 
+		 */
+		public static final String TILESETNAME_MACHINE = "Maschinen";
+		
+		/**
+		 * TileSet name in TiledMap 
+		 */
+		public static final String TILESETNAME_METALOBJECTS = "Metallobjekte";
+		
+		/**
+		 * TileSet name in TiledMap 
+		 */
+		public static final String TILESETNAME_LIGHT = "Ampeln";
+		
+		/**
+		 * TileSet name in TiledMap 
+		 */
+		public static final String TILESETNAME_DEPOT = "Rohre";
+		
+		public static final String VARIABLE_TYPE = "Variable";
+		
+		public static final String APPLICATION_TYPE = "Application";
+		
+		public static final String ABSTRACTION_TYPE = "Abstraction";
+		
+		public static final String ABSTRACTION_FAMILY_INVALID = "Jede Maschine braucht ein Verarbeitungsbereich!";
+		
+		public static final String ABSTRACTION_NEXT_INVALID = "Jede Maschine braucht eine Eingabe!";
+		
+		public static final String APPLICATION_FAMILY_INVALID = "Jede Ampel braucht eine Verarbeitungsbereich!";
+		
+		public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
+		
+		public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein";
+	}
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The AboutMenuScreen is part of the view of RetroMachines.
@@ -24,7 +25,7 @@ public class AboutMenuScreen extends MenuScreen {
 	 * The developers of RetroMachine. The information about the lambda.
 	 */
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
-	public static final String INFO = "Der Lambda-Kalk�l ist ein Element der Informatik. Es ist eine formale "
+	public static final String INFO = "Der Lambda-Kalkül ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
 	
 	/**
@@ -70,7 +71,7 @@ public class AboutMenuScreen extends MenuScreen {
 		
 		
 		// Make Buttons
-		Button buttonReturn = new Button(skin, "back");
+		Button buttonReturn = new Button(skin, ButtonStrings.BACK);
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 		

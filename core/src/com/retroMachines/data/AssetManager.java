@@ -14,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.Constants.RetroStrings;
 
 /**
  * The AssetManager is part of the controller of the RetroMachines. It manages
@@ -184,10 +185,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	private static void setTiledMapTileSets(TiledMap currentMap) {
 		TiledMapTileSets levelSets = currentMap.getTileSets();
-		objects = levelSets.getTileSet(Constants.TILESETNAME_METALOBJECTS);
-		machines = levelSets.getTileSet(Constants.TILESETNAME_MACHINE);
-		lights = levelSets.getTileSet(Constants.TILESETNAME_LIGHT);
-		depots = levelSets.getTileSet(Constants.TILESETNAME_DEPOT);
+		objects = levelSets.getTileSet(RetroStrings.TILESETNAME_METALOBJECTS);
+		machines = levelSets.getTileSet(RetroStrings.TILESETNAME_MACHINE);
+		lights = levelSets.getTileSet(RetroStrings.TILESETNAME_LIGHT);
+		depots = levelSets.getTileSet(RetroStrings.TILESETNAME_DEPOT);
 	}
 	
 	/**

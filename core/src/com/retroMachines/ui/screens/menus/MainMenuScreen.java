@@ -17,6 +17,8 @@ import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.ProfileController;
+import com.retroMachines.ui.RetroDialog;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The MainMenuScreen is part of the view of RetroMachines.
@@ -122,7 +124,7 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
     		if (exitDialog != null) {
         		exitDialog.show(stage);
         	} else {
-        		exitDialog = new ExitDialog("", skin, "default");
+        		exitDialog = new ExitDialog("" ,"Wirklich Verlassen ?");
 				exitDialog.show(stage);
         	}
     	}
@@ -205,37 +207,21 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 			if(exitDialog != null) {
 				exitDialog.show(stage);
 			} else {
-				exitDialog = new ExitDialog("", skin, "default");
+				exitDialog = new ExitDialog("", "Wirklich verlassen?");
 				exitDialog.show(stage);
 			}
 
 		}
 	}
 	
-	private class ExitDialog extends Dialog {
-		
-		public ExitDialog(String title, Skin skin, String windowStyleName) {
-			super(title, skin, windowStyleName);
-			initialize();
+	private class ExitDialog extends RetroDialog {
+
+		public ExitDialog(String title, String msg) {
+			super(title, msg);
+			button(new Button(skin, ButtonStrings.ABORT), false);
 		}
 		
-		private void initialize() {
-			padTop(screenWidth / 30f); // set padding on top of the dialog title
-			padBottom(screenWidth / 30f); // set padding on bottom of the dialog title
-	        getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set buttons height
-	        getButtonTable().defaults().width(screenWidth * ONE_FOURTH); // set buttons height
-	        setModal(true);
-	        setMovable(false);
-	        setResizable(false);
-	        Label dialogText = new Label("Wirklich Verlassen ?",skin);
-	        dialogText.setWrap(true);
-	        dialogText.setAlignment(Align.center);
-	        dialogText.setFontScale((2.1f * screenWidth) / DIVIDEWIDTHDEFAULT);
-			getContentTable().add(dialogText).width(screenWidth * DIALOGTEXTWIDTH);
-			button(new Button(skin, "ok"), true);
-			button(new Button(skin, "abort"), false);
-		}
-		
+		@Override
 		protected void result(Object object) {
 			if ((Boolean) object) {
 				Gdx.app.exit();
@@ -244,16 +230,5 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 			}
 		}
 		
-		   @Override
-		   public float getPrefWidth() {
-		      // force dialog width
-		      return screenWidth * DIALOGWIDTH;
-		   }
-
-		   @Override
-		   public float getPrefHeight() {
-		      // force dialog height
-		      return screenHeight * DIALOGHEIGHT;
-		   }
 	}
 }

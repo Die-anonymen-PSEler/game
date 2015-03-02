@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.Constants.RetroStrings;
 
 /**
  * This class is part of the model of RetroMachines. 
@@ -405,7 +406,7 @@ public abstract class Vertex {
 				result = false;
 			}
 		}
-		if(this.getType().equals(Constants.VARIABLE_TYPE) && this.getColor() == color) {
+		if(this.getType().equals(RetroStrings.VARIABLE_TYPE) && this.getColor() == color) {
 			if(!this.getGameElement().remove()) {
 				result = false;
 			}

@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.Constants.RetroStrings;
 import com.retroMachines.util.lambda.Dummy;
 import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.LevelTree;
@@ -121,7 +122,7 @@ public class RetroLevel {
 		
 		//Get Depot Tile as Cell objekt
 		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
-		TiledMapTileSet depotSet = map.getTileSets().getTileSet(Constants.TILESETNAME_DEPOT);
+		TiledMapTileSet depotSet = map.getTileSets().getTileSet(RetroStrings.TILESETNAME_DEPOT);
 		int offsetDepot = (Integer) depotSet.getProperties().get("firstgid");
 		Cell depotCell = new Cell();
 		depotCell.setTile(depotSet.getTile(DEPOTID + offsetDepot));
@@ -145,7 +146,7 @@ public class RetroLevel {
 		}
 		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {
 			//not all elements are placed
-			errorMessage = Constants.NOT_ALL_PLACED;
+			errorMessage = RetroStrings.NOT_ALL_PLACED;
 			return false;
 		}
 		if(!makeEvaluationTree()) {
@@ -257,14 +258,14 @@ public class RetroLevel {
 	}
 	
 	private boolean checkValidVertexFamily(Vertex v, Vertex fam) {
-		if(v.getType().equals(Constants.VARIABLE_TYPE) && fam != null) {
-			errorMessage = Constants.VARIABLE_FAMILY_INVALID;
+		if(v.getType().equals(RetroStrings.VARIABLE_TYPE) && fam != null) {
+			errorMessage = RetroStrings.VARIABLE_FAMILY_INVALID;
 			return false;
-		} else if (v.getType().equals(Constants.ABSTRACTION_TYPE) && fam == null) {
-			errorMessage = Constants.ABSTRACTION_FAMILY_INVALID;
+		} else if (v.getType().equals(RetroStrings.ABSTRACTION_TYPE) && fam == null) {
+			errorMessage = RetroStrings.ABSTRACTION_FAMILY_INVALID;
 			return false;
-		} else if (v.getType().equals(Constants.APPLICATION_TYPE) && fam == null) {
-			errorMessage = Constants.APPLICATION_FAMILY_INVALID;
+		} else if (v.getType().equals(RetroStrings.APPLICATION_TYPE) && fam == null) {
+			errorMessage = RetroStrings.APPLICATION_FAMILY_INVALID;
 			return false;
 		} else {
 			return true;
@@ -272,8 +273,8 @@ public class RetroLevel {
 	}
 	
 	private boolean checkValidVertexNext(Vertex v, Vertex next) {
-		if (v.getType().equals(Constants.ABSTRACTION_TYPE) && next == null) {
-			errorMessage = Constants.ABSTRACTION_NEXT_INVALID;
+		if (v.getType().equals(RetroStrings.ABSTRACTION_TYPE) && next == null) {
+			errorMessage = RetroStrings.ABSTRACTION_NEXT_INVALID;
 			return false;
 		} else {
 			return true;

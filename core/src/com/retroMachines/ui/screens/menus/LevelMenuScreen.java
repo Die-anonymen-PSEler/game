@@ -1,11 +1,9 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -35,7 +33,6 @@ public class LevelMenuScreen extends MenuScreen {
 	private final static float DIALOGWIDTH = (2f / 3f);
 	private final static float DIALOGHEIGHT = (5f / 9f);
 
-	private List<String> levelList;
 	private LockedDialog lockedDialog;
 
 	private StatisticController statisticController;
