@@ -103,9 +103,10 @@ public class Statistic extends Model {
 
 	@Override
 	public void destroy() {
-		pref.putInteger(KEY_LEVELCOMPLETED, DEFAULT_LEVELCOMPLETED);
-		pref.putInteger(KEY_PLAYTIME, DEFAULT_PLAYTIME);
-		pref.putInteger(KEY_STEPCOUNTER, DEFAULT_STEPCOUNTER);
+		this.levelsComplete = DEFAULT_LEVELCOMPLETED;
+		this.playtime = DEFAULT_PLAYTIME;
+		this.stepCounter = DEFAULT_STEPCOUNTER;
+		write();
 	}
 
 	/*
