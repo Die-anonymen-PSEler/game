@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.Constants.RetroStrings;
@@ -268,13 +266,9 @@ public abstract class Vertex {
 					position.x += Constants.ABSTRACTION_OUTPUT;
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 					
-					this.getfamily().getGameElement().addAction(
-							Actions.sequence(
-									Actions.parallel(
-											Actions.moveTo(position.x, position.y, Constants.ACTION_TIME),
-											Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
-									Actions.run(new DestroyElement(this.getfamily()))
-							));
+					//Animation
+					EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(pos, this.getfamily().getGameElement(), false);
+					
 					if(this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
@@ -307,13 +301,9 @@ public abstract class Vertex {
 				position.x += Constants.ABSTRACTION_OUTPUT;
 				position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 				
-				this.getnext().getGameElement().addAction(
-						Actions.sequence(
-								Actions.parallel(
-										Actions.moveTo(position.x,  position.y, Constants.ACTION_TIME),
-										Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
-								Actions.run(new DestroyElement(this.getnext()))
-						));
+				//Animation
+				EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(pos, this.getnext().getGameElement(), false);
+				
 				if(this.getnext().getnext() != null) {
 					replaced.setnext(this.getnext().getnext());
 				}
@@ -538,7 +528,7 @@ public abstract class Vertex {
 	/**
 	 * Update Position of Family if Worker was deleted in BetaReduction
 	 */
-	abstract public void UpdatePositionsAfterBetaReduction(EvaluationController e);
+	abstract public void UpdatePositionsAfterBetaReduction();
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
@@ -548,7 +538,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
-	abstract public LinkedList<Vertex> betaReduction(EvaluationController e);
+	abstract public LinkedList<Vertex> betaReduction();
 	
 	/**
 	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
@@ -572,7 +562,7 @@ public abstract class Vertex {
 	 * @param pos Position of Worker
 	 * @param e EvaluationController where next step should be called
 	 */
-	public void readInAnimation(Vector2 pos, EvaluationController e) {
+	public void readInAnimation(Vector2 pos) {
 		
 		//Update Position Input
 		pos.x += Constants.GAMEELEMENT_ANIMATION_WIDTH;
@@ -581,14 +571,8 @@ public abstract class Vertex {
 		if(this.getfamily() != null) {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.delay(Constants.ACTION_TIME),
-				Actions.parallel(
-						Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
-						Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)
-				),
-				Actions.run(new Step3Element(this, e))
-				));
+		//Animation
+		EvaluationOptimizer.MoveAndScaleAnimation(pos, this.getGameElement(), true);
 		
 	}
 	
@@ -599,14 +583,8 @@ public abstract class Vertex {
 		if(this.getfamily() != null) {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.delay(Constants.ACTION_TIME),
-				Actions.parallel(
-						Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
-						Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)
-				),
-				Actions.run(new DestroyElement(this))
-				));
+		
+		EvaluationOptimizer.MoveAndScaleAnimation(pos, this.getGameElement(), false);
 	}
 	
 	/**
@@ -614,7 +592,7 @@ public abstract class Vertex {
 	 * @param difX dif on x axis
 	 * @param difY dif on y axis
 	 */
-	public void updateGameelementPosition(int difX, int difY, EvaluationController e) {
+	public void updateGameelementPosition(int difX, int difY) {
 		if(this.getnext() != null) {
 			this.getnext().updateOtherGameelementPosition(difX, difY);
 		}
@@ -628,11 +606,8 @@ public abstract class Vertex {
 		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
 		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
 		// Start next evaluationStep
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.moveTo(newX , newY, Constants.ACTION_TIME),
-				Actions.run(new RestartElement(e))
-				));
-
+		
+		EvaluationOptimizer.MoveAnimation(new Vector2(newX, newY), this.getGameElement(), true);
 	}
 	
 	private void updateOtherGameelementPosition(int difX, int difY) {
@@ -645,7 +620,8 @@ public abstract class Vertex {
 		Vector2 actPosition = this.getGameElement().getPosition();
 		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
 		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
-		this.getGameElement().addAction(Actions.moveTo(newX , newY, Constants.ACTION_TIME));
+		
+		EvaluationOptimizer.MoveAnimation(new Vector2(newX, newY), this.getGameElement(), false);
 		
 		if (this.getfamily() != null) {
 			this.getfamily().updateOtherGameelementPosition(difX, difY);
@@ -658,13 +634,13 @@ public abstract class Vertex {
 	 * @param newPos new Position of this Vertex in num Of GameelementWidths
 	 * @param e instance of evaluationController for next steps
 	 */
-	abstract public void reorganizePositions(Vector2 start,Vector2 newPos, EvaluationController e);
+	abstract public void reorganizePositions(Vector2 start,Vector2 newPos);
 	
 	/**
 	 * Set Gameelement and family to given 
 	 * @param newPos as Number of GameelementWidths
 	 */
-	protected void setGameelementPosition(Vector2 start,Vector2 newPos, EvaluationController e) {
+	protected void setGameelementPosition(Vector2 start,Vector2 newPos) {
 		
 		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
 		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + (int)start.x; 
@@ -681,7 +657,7 @@ public abstract class Vertex {
 		}
 		
 		// Move	
-		this.getGameElement().addAction(Actions.sequence(Actions.moveTo(startPos.x, startPos.y, Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+		EvaluationOptimizer.MoveAnimation(startPos, this.getGameElement(), true);
 	}
 	
 	/**
@@ -704,7 +680,8 @@ public abstract class Vertex {
 		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
 		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
 		
-		this.getGameElement().addAction(Actions.moveTo(x + centerVertex, y, Constants.ACTION_TIME));
+		// Move	
+		EvaluationOptimizer.MoveAnimation(new Vector2(x + centerVertex, y), this.getGameElement(), false);
 		
 		if (this.getfamily() != null) {
 			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
@@ -735,7 +712,7 @@ public abstract class Vertex {
 	 * Removes Gameelement from screen if this type of Vertex needs it
 	 * @param e Instance of Evaluation Controller for next Steps
 	 */
-	abstract public void DeleteAfterBetaReduction(EvaluationController e);
+	abstract public void DeleteAfterBetaReduction();
 	
 	
 	// --------------------------
@@ -901,114 +878,6 @@ public abstract class Vertex {
 	
 	public int getNextWidth() {
 		return nextWidth;
-	}
-	
-	protected class DestroyElement implements Runnable {
-		
-		private Vertex v;
-		
-		public DestroyElement(Vertex v) {
-			this.v = v;
-		}
-		
-		@Override
-		public void run() {
-			v.getGameElement().remove();
-		}
-		
-	}
-	
-	protected class Step3Element implements Runnable {
-		
-		private EvaluationController e;
-		private Vertex v;
-		
-		public Step3Element(Vertex v, EvaluationController e) {
-			this.e = e;
-			this.v = v;
-		}
-		
-		@Override
-		public void run() {
-			v.getGameElement().remove();
-			if (e != null) {
-				e.step3BetaReduction();
-			}
-		}
-		
-	}
-	
-	protected class Step4Element implements Runnable {
-		
-		private EvaluationController e;
-		
-		public Step4Element(EvaluationController e) {
-			this.e = e;
-		}
-		
-		@Override
-		public void run() {
-			if (e != null) {
-				e.step4UpdatePositions();
-			}
-		}
-		
-	}
-	
-	protected class Step5Element implements Runnable {
-		
-		private EvaluationController e;
-		
-		public Step5Element(EvaluationController e) {
-			this.e = e;
-		}
-		
-		@Override
-		public void run() {
-			if (e != null) {
-				e.step5InsertReadIn();
-			}
-		}
-		
-	}
-	
-	protected class Step6Element implements Runnable {
-		
-		private EvaluationController e;
-		private Vertex v;
-		
-		public Step6Element(Vertex v, EvaluationController e) {
-			this.e = e;
-			this.v = v;
-		}
-		
-		@Override
-		public void run() {
-			if(v != null) {
-				v.getGameElement().remove();
-			}
-			if (e != null) {
-				e.step6UpdateFamilyPositions();
-			}
-		}
-		
-	}
-	
-	protected class RestartElement implements Runnable {
-		
-		private EvaluationController e;
-		
-		public RestartElement(EvaluationController e) {
-			this.e = e;
-		}
-		
-		@Override
-		public void run() {
-			if (e != null) {
-				e.nextStep();
-			}
-		}
-		
 	}
 }
 

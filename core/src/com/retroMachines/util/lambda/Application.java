@@ -2,15 +2,9 @@ package com.retroMachines.util.lambda;
 
 import java.util.LinkedList;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.LightElement;
-import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.Vertex.Step5Element;
-import com.retroMachines.util.lambda.Vertex.Step6Element;
 
 /**
  * 
@@ -68,12 +62,13 @@ public class Application extends Vertex {
 	 * @return True if this application has changed, false when an error appeared.
 	 */
 	@Override
-	public LinkedList<Vertex> betaReduction(EvaluationController e) {		
+	public LinkedList<Vertex> betaReduction() {		
 				
 		// Set Light green
 		int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		this.getGameElement().setTileId(2 + offset);
-		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step4Element(e))));
+		
+		EvaluationOptimizer.DelayAndRunNextStepAnim(this.getGameElement());
 		
 		// no changes
 		return new LinkedList<Vertex>();
@@ -147,20 +142,16 @@ public class Application extends Vertex {
 	}
 
 	@Override
-	public void reorganizePositions(Vector2 start, Vector2 newPos,
-			EvaluationController e) {
+	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		//Start next Step no reorganization is needed
-		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+		EvaluationOptimizer.DelayAndRunNextStepAnim(this.getGameElement());
 		
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction(EvaluationController e) {
+	public void DeleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.delay(Constants.ACTION_TIME),
-				Actions.scaleTo(Constants.GAMEELEMENT_SCALING,Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
-				Actions.run(new Step6Element(this, e))));
+		EvaluationOptimizer.ScaleAnimation(this.getGameElement(), true);
 		
 	}
 
@@ -168,7 +159,7 @@ public class Application extends Vertex {
 	public Vertex updatePointerAfterBetaReduction() {
 		// Update pointer if needed
 		if(this.getnext() != null) {
-			// Search last Vertex in firs Family layer
+			// Search last Vertex in first Family layer
 			Vertex pointer = new Dummy();
 			pointer.setnext(this.getfamily());
 			if(pointer.getnext() != null) {
@@ -190,9 +181,9 @@ public class Application extends Vertex {
 	}
 
 	@Override
-	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+	public void UpdatePositionsAfterBetaReduction() {
 		// update Gameelement Postions  after Gameelement of this was deleted 
-		this.getfamily().updateGameelementPosition(0, -1, e);
+		this.getfamily().updateGameelementPosition(0, -1);
 		
 	}
 }

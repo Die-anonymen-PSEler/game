@@ -3,15 +3,8 @@ package com.retroMachines.util.lambda;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MetalElement;
-import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.Vertex.RestartElement;
-import com.retroMachines.util.lambda.Vertex.Step4Element;
-import com.retroMachines.util.lambda.Vertex.Step5Element;
-import com.retroMachines.util.lambda.Vertex.Step6Element;
 
 /**
  * 
@@ -69,9 +62,9 @@ public class Variable extends Vertex {
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
 	@Override
-	public LinkedList<Vertex> betaReduction(EvaluationController e) {
+	public LinkedList<Vertex> betaReduction() {
 		//Variable doesnt do betaReduction
-		this.getGameElement().addAction(Actions.run(new Step4Element(e)));
+		EvaluationOptimizer.RunNextStep();
 		return new LinkedList<Vertex>();
 	}
 
@@ -142,18 +135,16 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public void reorganizePositions(Vector2 start, Vector2 newPos,
-			EvaluationController e) {
+	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		//Start next Step no reorganization is needed
-		this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step5Element(e))));
+		EvaluationOptimizer.DelayAndRunNextStepAnim(this.getGameElement());
 		
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction(EvaluationController e) {
+	public void DeleteAfterBetaReduction() {
 		//start next evaluationStep
-					this.getGameElement().addAction(Actions.sequence(
-							Actions.run(new Step6Element(null, e))));
+		EvaluationOptimizer.RunNextStep();
 		
 	}
 
@@ -168,12 +159,10 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+	public void UpdatePositionsAfterBetaReduction() {
 		// Do nothing , you Have No Family ! :D
 		// Start next evaluation Step
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.run(new RestartElement(e))
-				));
+		EvaluationOptimizer.RunNextStep();
 	}
 
 }

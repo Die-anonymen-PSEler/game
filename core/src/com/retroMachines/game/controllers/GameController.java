@@ -323,7 +323,9 @@ public class GameController {
 	}
 	
 	public void evaluationInComplete() {
+		levelfinished = false;
 		game.setScreen(gameScreen);
+
 	}
 	
 	/**

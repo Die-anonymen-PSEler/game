@@ -4,12 +4,9 @@ import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MachineElement;
 import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.Vertex.Step6Element;
 
 /**
  * 
@@ -95,7 +92,7 @@ public class Abstraction extends Vertex {
 	 * @return True if this abstraction has changed, false when an error appeared.
 	 */
 	@Override
-	public LinkedList<Vertex> betaReduction(EvaluationController e) {
+	public LinkedList<Vertex> betaReduction() {
 		
 		// Check if next is there
 		if(this.getnext() != null) {
@@ -121,13 +118,9 @@ public class Abstraction extends Vertex {
 					Vector2 position = new Vector2(this.getGameElement().getPosition().x, this.getGameElement().getPosition().y);
 					position.x += Constants.ABSTRACTION_OUTPUT;
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
-					this.getfamily().getGameElement().addAction(
-							Actions.sequence(
-									Actions.parallel(
-											Actions.moveTo(position.x, position.y, Constants.ACTION_TIME),
-											Actions.scaleTo(Constants.GAMEELEMENT_SCALING, Constants.GAMEELEMENT_SCALING,  Constants.ACTION_TIME)),
-									Actions.run(new DestroyElement(this.getfamily()))
-							));
+
+					EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
+					
 					if(this.getfamily().getnext() != null) {
 						replace.setnext(this.getfamily().getnext());
 					}
@@ -137,7 +130,7 @@ public class Abstraction extends Vertex {
 				//Update colorList
 				this.updateColorList(this.getnext().getCopyOfFamilyColorList(), this.getColor());
 				
-				// Update withs
+				// Update width
 				this.updateWidth();
 				
 				if(this.getnext().getnext() != null) {
@@ -145,7 +138,8 @@ public class Abstraction extends Vertex {
 				} else {
 					this.setnext(null);
 				}
-				this.getGameElement().addAction(Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new Step4Element(e))));
+				
+				EvaluationOptimizer.DelayAndRunNextStepAnim(this.getGameElement());
 				return returnList;
 				
 			} else {
@@ -266,19 +260,15 @@ public class Abstraction extends Vertex {
 	}
 
 	@Override
-	public void reorganizePositions(Vector2 start, Vector2 newPos,
-			EvaluationController e) {
+	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		//Abstraction needs reorganizesation of Element positions
-		this.setGameelementPosition(start, newPos, e);
+		this.setGameelementPosition(start, newPos);
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction(EvaluationController e) {
+	public void DeleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		this.getGameElement().addAction(Actions.sequence(
-				Actions.delay(Constants.ACTION_TIME),
-				Actions.scaleTo(Constants.GAMEELEMENT_SCALING,Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME),
-				Actions.run(new Step6Element(this, e))));
+		EvaluationOptimizer.ScaleAnimation(this.getGameElement(), true);
 		
 	}
 
@@ -294,7 +284,7 @@ public class Abstraction extends Vertex {
 					pointer.setnext(pointer.getnext().getnext());
 				}
 			}
-			// Set next Vertex of this as Next of Last in First Famiyl layer;
+			// Set next Vertex of this as Next of Last in First Family layer;
 			pointer.getnext().setnext(this.getnext());
 		}
 		// retrn new Worker
@@ -308,8 +298,8 @@ public class Abstraction extends Vertex {
 	}
 
 	@Override
-	public void UpdatePositionsAfterBetaReduction(EvaluationController e) {
+	public void UpdatePositionsAfterBetaReduction() {
 		// update Gameelement Postions  after Gameelement of this was deleted 
-		this.getfamily().updateGameelementPosition(0, -1, e);
+		this.getfamily().updateGameelementPosition(0, -1);
 	}
 }

@@ -3,6 +3,9 @@ package com.retroMachines.ui.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -11,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.EvaluationController;
+import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.lambda.LevelTree;
@@ -43,10 +47,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	 * screen; if false the render method will stop the animation.
 	 */
 	private boolean animationInProgress;
-	
-	private boolean nextStep;
-	
-	private boolean autoStep;
 	
 	/**
 	 * 
@@ -152,32 +152,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 		// music.play();
 	}
 	
-	/**
-	 * set boolean next Step true
-	 * animation.
-	 */
-	public void setNextStep() {
-		if(autoStep) {
-			nextStep = true;
-		}
-	}
-	
-	/**
-	 * set boolean auto Step true
-	 * animation.
-	 */
-	public void setAutoStep() {
-		autoStep = true;
-	}
-	
-	/**
-	 * set boolean auto Step true
-	 * animation.
-	 */
-	public boolean getAutoStep() {
-		return autoStep;
-	}
-	
 	private void printTree(Vertex actVertex, Vector2 position) {
 		while(actVertex != null) {
 			int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex.getWidth() - 1)) / 2;
@@ -198,8 +172,8 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 		}
 	}
 	
-	public void setOnStage(Vertex v) {
-		stage.addActor(v.getGameElement());
+	public void setOnStage(GameElement g) {
+		stage.addActor(g);
 	}
 
 	@Override
@@ -258,10 +232,7 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	private class NextEvaluationStep extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			if (nextStep) {
-				nextStep = false;
-				evaController.step1AlphaConversion();
-			}
+			evaController.StepEvaluationClicked();
 		}
 	}
 	
@@ -273,11 +244,12 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	private class EvaluationStart extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			if (autoStep) {
-				autoStep = false;
-				nextStep = false;
-				evaController.step1AlphaConversion();
-			}
+			evaController.AutoEvaluationClicked();
 		}
+	}
+	
+	public void runAnimation(GameElement g, Action a) {
+		
+		g.addAction(a);
 	}
 }
