@@ -586,9 +586,7 @@ public class GameScreen extends AbstractScreen implements
 			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
 			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
 			
-			
-			gameController.getLevelTarget().updateWidth();
-			printTree(gameController.getLevelTarget(), new Vector2(100,200));
+			printTree(gameController.getLevelTarget(), new Vector2(50,200));
 			this.add(size).expand();
 			
 		}
