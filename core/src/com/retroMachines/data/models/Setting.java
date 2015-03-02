@@ -104,9 +104,10 @@ public class Setting extends Model {
 	
 	@Override
 	public void destroy() {
-		pref.putFloat(KEY_VOLUME, -1);
-		pref.putBoolean(KEY_LEFTCONTROL, DEFAULT_LEFTCONTROL);
-		pref.putBoolean(KEY_SOUNDONOFF, DEFAULT_SOUNDONOFF);
+		volume = DEFAULT_VOLUME;
+		leftControl = DEFAULT_LEFTCONTROL;
+		soundOnOff = DEFAULT_SOUNDONOFF;
+		write();
 	}
 
 	/*
