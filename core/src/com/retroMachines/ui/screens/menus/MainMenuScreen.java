@@ -33,9 +33,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	 */
 	public static final String TITLE = "RETROMACHINES";
 	private final static float FONTSIZE3 =  3f;
-	private final static float DIALOGTEXTWIDTH = (10f / 17f);
-	private final static float DIALOGWIDTH = (2f / 3f);
-	private final static float DIALOGHEIGHT = (5f / 9f);
 	
 	
 	private ExitDialog exitDialog;
@@ -125,13 +122,9 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
         		exitDialog = new ExitDialog("" ,"Wirklich Verlassen ?");
 				exitDialog.show(stage);
         	}
+    		return true;
     	}
-    	if (keycode == Keys.P) {
-    		GlobalVariables gv = GlobalVariables.getSingleton();
-    		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
-    			System.out.println(gv.get(String.format(GlobalVariables.KEY_SLOTS, i)));
-    		}
-    	}
+    	super.keyDown(keycode);
     	return false;
     }
    

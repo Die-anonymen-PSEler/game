@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.ui.screens.AbstractScreen;
+import com.retroMachines.util.Constants;
 
 /**
  * The MenuScreen is part of the view of RetroMachines.
@@ -22,7 +23,7 @@ import com.retroMachines.ui.screens.AbstractScreen;
  * @author RetroFactory
  *
  */
-public abstract class MenuScreen extends AbstractScreen implements InputProcessor {
+public abstract class MenuScreen extends AbstractScreen {
 	
 	/**
 	 * The main table on the left side of a menu screen.
@@ -37,12 +38,11 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
 	public MenuScreen(RetroMachines game) {
 		super(game);
 		table = new Table(AssetManager.getMenuSkin());
-		table.background(new TextureRegionDrawable(new TextureRegion(AssetManager.getTexture("Background.png"))));
+		table.background(new TextureRegionDrawable(new TextureRegion(AssetManager.getTexture(Constants.BACKGROUND_PATH))));
 		table.setBounds(0, 0, screenWidth, screenHeight);
 		stage = new Stage();
 		initialize();
 		inputMultiplexer.addProcessor(this);
-				
 	}
 	
 	@Override
@@ -73,7 +73,9 @@ public abstract class MenuScreen extends AbstractScreen implements InputProcesso
     public boolean keyDown(int keycode) {
     	if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
     		game.previousScreen();
+    		return true;
     	}
+    	super.keyDown(keycode);
     	return false;
     }
     

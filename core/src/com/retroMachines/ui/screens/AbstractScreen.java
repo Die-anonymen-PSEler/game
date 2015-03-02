@@ -1,7 +1,9 @@
 package com.retroMachines.ui.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -14,7 +16,7 @@ import com.retroMachines.RetroMachines;
  * @author RetroFactory
  *
  */
-public abstract class AbstractScreen implements Screen {
+public abstract class AbstractScreen implements Screen, InputProcessor {
 	
 	protected final static float DEFAULTBUTTONSIZE = 10f;
 	protected final static float DEFAULTPADDING = 25f;
@@ -106,6 +108,15 @@ public abstract class AbstractScreen implements Screen {
     @Override
     public void dispose() {
         
+    }
+    
+    @Override
+    public boolean keyDown(int keycode) {
+    	System.out.println("hi");
+    	if (keycode == Keys.VOLUME_DOWN) {
+    		System.out.println("weniger volume");
+    	}
+    	return false;
     }
 
 }
