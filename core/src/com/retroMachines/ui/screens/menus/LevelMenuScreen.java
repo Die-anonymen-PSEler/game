@@ -13,6 +13,7 @@ import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.RetroDialog;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The LevelMenuScreen is part of the view of RetroMachines. It displays the
@@ -74,7 +75,7 @@ public class LevelMenuScreen extends MenuScreen {
 			Integer iToString = new Integer(i + 1);
 			TextButton ilevel;
 			if (i >= unlocked) {
-				ilevel = new TextButton(iToString.toString(), skin, "locked");
+				ilevel = new TextButton(iToString.toString(), skin, ButtonStrings.LOCKED);
 				ilevel.addListener(new LevelLockedButtonClickListener(i));
 			} else {
 				ilevel = new TextButton(iToString.toString(), skin);
@@ -95,7 +96,7 @@ public class LevelMenuScreen extends MenuScreen {
 		}
 
 		// Back Button
-		Button buttonReturn = new Button(skin, "back");
+		Button buttonReturn = new Button(skin, ButtonStrings.BACK);
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 

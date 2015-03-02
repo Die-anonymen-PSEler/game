@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The SettingMenusScreen is part of the view of RetroMachines.
@@ -46,8 +47,9 @@ public class SettingsMenuScreen  extends MenuScreen {
 	 */
 	public SettingsMenuScreen(RetroMachines game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 		settingController = game.getSettingController();
+		buttonSoundOff.setChecked(!settingController.soundEnabled());
+		volumeSlider.setValue(settingController.getVolume() * SLIDERMAX);
 	}
 
 	/**
@@ -64,20 +66,18 @@ public class SettingsMenuScreen  extends MenuScreen {
 		title.setAlignment(Align.center);
 		
 		// Make Buttons
-		Button buttonReturn = new Button(skin, "back");
+		Button buttonReturn = new Button(skin, ButtonStrings.BACK);
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
-		Button buttonLouder = new Button(skin, "soundUp");
+		Button buttonLouder = new Button(skin, ButtonStrings.SOUND_UP);
 		buttonLouder.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonLouder.addListener(new LouderButtonClickListener());
-		Button buttonQuieter = new Button(skin, "soundDown");
+		Button buttonQuieter = new Button(skin, ButtonStrings.SOUND_DOWN);
 		buttonQuieter.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonQuieter.addListener(new QuieterButtonClickListener());
-		buttonSoundOff = new Button(skin, "soundOff");
+		buttonSoundOff = new Button(skin, ButtonStrings.SOUND_OFF);
 		buttonSoundOff.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSoundOff.addListener(new SoundOnOffButtonClickListener());
-		
-		buttonSoundOff.setChecked(!settingController.soundEnabled());
 		
 		Button buttonProfileSettings = new Button(skin, "profileSettings");
 		buttonProfileSettings.pad(screenHeight / DEFAULTBUTTONSIZE);
@@ -87,8 +87,6 @@ public class SettingsMenuScreen  extends MenuScreen {
 		volumeSlider = new Slider(SLIDERMIN, SLIDERMAX, SLIDERSTEPSIZE, false, skin);
 		volumeSlider.getStyle().background.setMinHeight(screenHeight * SLIDERBACKGROUNDSIZE);
 		volumeSlider.getStyle().knob.setMinHeight(screenHeight * SLIDERKNOBSIZE);
-		// TODO get Volume of Phone
-		volumeSlider.setValue(settingController.getVolume() * SLIDERMAX);
 		volumeSlider.addListener(new SliderListener());
 		
 		

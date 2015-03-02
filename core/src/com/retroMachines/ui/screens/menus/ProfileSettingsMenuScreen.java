@@ -71,19 +71,19 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		steeringTitle.setAlignment(Align.center);
 
 		// Make Buttons
-		Button buttonOk = new Button(skin, "ok");
+		Button buttonOk = new Button(skin, ButtonStrings.OK);
 		buttonOk.addListener(new AcceptButtonClickListener());
 		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
 
-		Button buttonAbort = new Button(skin, "abort");
+		Button buttonAbort = new Button(skin, ButtonStrings.ABORT);
 		buttonAbort.addListener(new ReturnButtonClickListener());
 		buttonAbort.pad(screenHeight / DEFAULTBUTTONSIZE);
 
-		buttonLeftMode = new Button(skin, "controlLeft");
+		buttonLeftMode = new Button(skin, ButtonStrings.CONTROL_LEFT);
 		buttonLeftMode.addListener(new LeftControlButtonClickListener());
 		buttonLeftMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 
-		buttonRightMode = new Button(skin, "controlRight");
+		buttonRightMode = new Button(skin, ButtonStrings.CONTROL_RIGHT);
 		buttonRightMode.addListener(new RightControlButtonClickListener());
 		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		

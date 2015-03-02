@@ -139,6 +139,20 @@ public class Constants {
 		public static final String CONTROL_RIGHT = "controlRight";
 		
 		public static final String NEXT_CHAR = "nextChar";
+
+		public static final String SOUND_UP = "soundUp";
+		
+		public static final String SOUND_DOWN = "soundDown";
+
+		public static final String SOUND_OFF = "soundOff";
+		
+		public static final String LOCKED = "locked";
+		
+		public static final String CHANGE_PROFILE = "changeProfile";
+		
+		public static final String ADD_PROFILE = "addProfile";
+		
+		public static final String DELETE_PROFILE = "deleteProfile";
 	}
 	
 	public static class RetroStrings {

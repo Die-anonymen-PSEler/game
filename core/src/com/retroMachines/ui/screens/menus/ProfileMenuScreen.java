@@ -89,16 +89,16 @@ public class ProfileMenuScreen extends MenuScreen implements
 						/ DIVIDEWIDTHDEFAULT);
 
 		// Make Buttons
-		Button buttonReturn = new Button(skin, "back");
+		Button buttonReturn = new Button(skin, ButtonStrings.BACK);
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ProfileReturnButtonClickListener());
-		Button buttonSelectProfile = new Button(skin, "changeProfile");
+		Button buttonSelectProfile = new Button(skin, ButtonStrings.CHANGE_PROFILE);
 		buttonSelectProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSelectProfile.addListener(new SelectProfileButtonClickListener());
-		Button buttonAddProfile = new Button(skin, "addProfile");
+		Button buttonAddProfile = new Button(skin, ButtonStrings.ADD_PROFILE);
 		buttonAddProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonAddProfile.addListener(new AddProfileButtonClickListener());
-		Button buttonDeleteProfile = new Button(skin, "deleteProfile");
+		Button buttonDeleteProfile = new Button(skin, ButtonStrings.DELETE_PROFILE);
 		buttonDeleteProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonDeleteProfile.addListener(new DeleteProfileButtonClickListener());
 
