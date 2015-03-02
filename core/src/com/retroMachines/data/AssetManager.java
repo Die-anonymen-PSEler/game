@@ -98,6 +98,8 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		}
 		setTiledMapTileSets(maps.getFirst());
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
+		
+		textureMap.put("Animation", new Texture("map/Animation.png"));
 		manager.finishLoading();
 	}
 

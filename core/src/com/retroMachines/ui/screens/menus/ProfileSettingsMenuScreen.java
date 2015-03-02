@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
  * The ProfileSettingsMenuScreen is part of the view of RetroMachines. The
@@ -102,7 +103,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// Make Image
 		Image charImage = new Image();
-		Texture texture = new Texture("map/Animation.png");
+		Texture texture = AssetManager.getTexture("Animation");
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		
 		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
