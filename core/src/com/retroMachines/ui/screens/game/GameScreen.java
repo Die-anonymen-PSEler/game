@@ -42,7 +42,8 @@ import com.retroMachines.util.lambda.Vertex;
 public class GameScreen extends AbstractScreen implements
 		SettingsChangeListener, InputProcessor {
 
-	private static final float ZOOM_ADDITION = 0.25f;
+	private static final float ZOOM_ADDITION = 0.20f;
+	private static final float RETROMAN_BUTTON_OFFSET = 2;
 	private final static float DIALOGWIDTH = (4f / 5f);
 	private final static float DIALOGHEIGHT = (7f / 9f);
 	private final static float PADDING30 = 30f;
@@ -105,7 +106,6 @@ public class GameScreen extends AbstractScreen implements
 	/*
 	 * Buttons
 	 */
-
 	private Button buttonLeft;
 
 	private Button buttonRight;
@@ -119,21 +119,23 @@ public class GameScreen extends AbstractScreen implements
 	 * @param leftiMode
 	 */
 	public GameScreen(RetroMachines game, GameController gameController,
-			boolean leftiMode) {
+			boolean leftMode) {
 		super(game);
+		this.gameController = gameController;
+		this.leftMode = leftMode;
 		mapBounds = new int[4];
 		camBounds = new float[4];
-		this.gameController = gameController;
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 30, 20);
-		camera.zoom -= ZOOM_ADDITION;
-		camera.update();
-		leftMode = leftiMode;
-		stage = new Stage();
 		initialize();
 	}
 
 	public void initialize() {
+		
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 35, 20);
+		camera.zoom -= ZOOM_ADDITION;
+		camera.update();
+		
+		stage = new Stage();
 		game.getSettingController().add(this);
 		music = AssetManager.getMusic();
 		inputMultiplexer.addProcessor(this);
@@ -221,6 +223,8 @@ public class GameScreen extends AbstractScreen implements
 		} else if (camBounds[0] >= mapBounds[0]) {
 			camera.position.y = mapBounds[0] - cameraHalfHeight;
 		}
+		
+		camera.position.y -= RETROMAN_BUTTON_OFFSET;
 	}
 
 	private void drawButtons() {
@@ -631,16 +635,16 @@ public class GameScreen extends AbstractScreen implements
 			
 			Table dialogTable = new Table(skin);
 			
-			Label header = new Label("Menü", skin);
+			Label header = new Label("MenÃ¼", skin);
 			header.setWrap(true);
 			header.setAlignment(Align.center);
 			
-			Label levelMenu = new Label("ins Level Menü", skin);
+			Label levelMenu = new Label("ins Level MenÃ¼", skin);
 			levelMenu.setWrap(true);
 			levelMenu.setAlignment(Align.center);
 			levelMenu.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 			
-			Label back = new Label("Zurück zum Spiel", skin);
+			Label back = new Label("ZurÃ¼ck zum Spiel", skin);
 			back.setWrap(true);
 			back.setAlignment(Align.center);
 			back.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
