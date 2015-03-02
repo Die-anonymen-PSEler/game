@@ -659,7 +659,7 @@ public class GameScreen extends AbstractScreen implements
 			
 			
 			gameController.getLevelHint().updateWidth();
-			printTree(gameController.getLevelHint(), new Vector2(50,200));
+			printTree(gameController.getLevelHint(), new Vector2(100,200));
 			this.add(size).expand();
 			
 		}
@@ -743,7 +743,7 @@ public class GameScreen extends AbstractScreen implements
 			buttonHome.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonHome.addListener(new LevelMenuClickListener());
 			
-			Button buttonBack = new Button(skin, ButtonStrings.HOME);
+			Button buttonBack = new Button(skin, "play");
 			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonBack.addListener(new BackToGameClickListener());
 			
