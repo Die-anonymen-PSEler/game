@@ -79,6 +79,11 @@ public class GameScreen extends AbstractScreen implements
 	 * the dialog which is shown when pauseButton is pressed
 	 */
 	private PauseDialog pauseDialog;
+	
+	/**
+	 * the dialog which is shown when targetButton is pressed
+	 */
+	private TaskDialog taskDialog;
 
 	/*
 	 * map attributes
@@ -145,8 +150,8 @@ public class GameScreen extends AbstractScreen implements
 		
 		// instanciate Dialogs
 		hintDialog = new HintDialog("", skin, "default");
-		
 		pauseDialog = new PauseDialog("", skin, "default");
+		taskDialog = new TaskDialog("", skin, "default");
 
 	}
 
@@ -370,7 +375,7 @@ public class GameScreen extends AbstractScreen implements
 	 * Shows the TaskScreen on top of the game.
 	 */
 	private void showTask() {
-
+		taskDialog.show(stage);
 	}
 
 	private void hideTask() {
@@ -510,6 +515,7 @@ public class GameScreen extends AbstractScreen implements
 	private class GetTaskClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
+			popupScreenIsShown = true;
 			showTask();
 		}
 	}
@@ -534,7 +540,7 @@ public class GameScreen extends AbstractScreen implements
 	 * 
 	 * @author Retro Factory
 	 */
-	private class LevelMenuClicklistner extends ClickListener {
+	private class LevelMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			gameController.abortLevel();
@@ -547,31 +553,117 @@ public class GameScreen extends AbstractScreen implements
 	 * 
 	 * @author Retro Factory
 	 */
-	private class BackToGameClickListner extends ClickListener {
+	private class BackToGameClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			pauseDialog.hide();
+			hintDialog.hide();
+			taskDialog.hide();
 			popupScreenIsShown = false;
 		}
+	}
+	
+	private class TaskDialog extends Dialog {
+
+		public TaskDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			initialize();
+		}
+
+		private void initialize() {
+			setStage(new Stage());
+			Table size = new Table();
+			//size.debug();
+			//set Buttons
+			Button buttonBack = new Button(skin, "ok");
+			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
+			buttonBack.addListener(new BackToGameClickListener());
+			
+			//size.add(buttonBack).expandX().expandY().bottom().row();
+			size.add().width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+			size.add().row();
+			size.add(buttonBack).expandX().expandY().bottom().row();
+			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
+			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
+			
+			
+			gameController.getLevelTarget().updateWidth();
+			printTree(gameController.getLevelTarget(), new Vector2(100,200));
+			this.add(size).expand();
+			
+		}
+		
+		private void printTree(Vertex actVertex, Vector2 position) {
+			while(actVertex != null) {
+				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex.getWidth() - 1)) / 2;
+				Vector2 pos = new Vector2(position.x + centerVertex, position.y);
+				
+				// Add depot
+				
+				int offset = (Integer) AssetManager.getDepots().getProperties().get("firstgid");
+				int color = Constants.DEPOT_ID;
+				DepotElement d = new DepotElement();
+				d.setTileId(color + offset);
+				d.setPosition(pos);
+				this.addActor(d);
+				
+				// Add element
+				offset = (Integer) actVertex.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+				color = actVertex.getColor();
+				actVertex.getGameElement().setTileId(color + offset);
+				
+				actVertex.getGameElement().setPosition(pos);
+				this.addActor(actVertex.getGameElement());
+				// print Family
+				if(actVertex.getfamily() != null) {
+					position.y += Constants.GAMELEMENT_PADDING;
+					Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
+					printTree(actVertex.getfamily(), famPos);
+					position.y -= Constants.GAMELEMENT_PADDING;
+				}
+				
+				position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
+				position.x += Constants.GAMELEMENT_PADDING;
+				actVertex = actVertex.getnext();
+			}
+		}
+
+		@Override
+		protected void result(Object object) {
+			this.hide();
+			popupScreenIsShown = false;
+		}
+
 	}
 
 	private class HintDialog extends Dialog {
 
 		public HintDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
-			setStage(new Stage());
-			Table size = new Table();
-			size.add().width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
-			this.add(size);
-			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
-			gameController.getLevelHint().updateWidth();
-			printTree(gameController.getLevelHint(), new Vector2(50,50));
-			
+			initialize();
 		}
 
 		private void initialize() {
-			// TODO: implement
+			setStage(new Stage());
+			Table size = new Table();
+			//size.debug();
+			//set Buttons
+			Button buttonBack = new Button(skin, "ok");
+			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
+			buttonBack.addListener(new BackToGameClickListener());
+			
+			//size.add(buttonBack).expandX().expandY().bottom().row();
+			size.add().width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+			size.add().row();
+			size.add(buttonBack).expandX().expandY().bottom().row();
+			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
+			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
+			
+			
+			gameController.getLevelHint().updateWidth();
+			printTree(gameController.getLevelHint(), new Vector2(50,200));
+			this.add(size).expand();
+			
 		}
 		
 		private void printTree(Vertex actVertex, Vector2 position) {
@@ -651,14 +743,14 @@ public class GameScreen extends AbstractScreen implements
 			
 			Button buttonHome = new Button(skin, "home");
 			buttonHome.pad(screenHeight / DEFAULTBUTTONSIZE);
-			buttonHome.addListener(new LevelMenuClicklistner());
+			buttonHome.addListener(new LevelMenuClickListener());
 			
 			Button buttonBack = new Button(skin, "play");
 			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
-			buttonBack.addListener(new BackToGameClickListner());
+			buttonBack.addListener(new BackToGameClickListener());
 			
 			
-			// Table settin and add
+			// Table setting and add
 			dialogTable.add(header).colspan(COLSPANx2).expandX().top().padTop(screenHeight / DEFAULTPADDING)
 										.padBottom(screenHeight / DEFAULTPADDING).row();
 			dialogTable.add(buttonHome).padLeft(screenWidth / DEFAULTPADDING);
