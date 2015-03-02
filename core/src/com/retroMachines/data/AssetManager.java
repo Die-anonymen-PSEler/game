@@ -97,6 +97,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 			notifyListeners(80 + (int) (i * 20 / (float)Constants.MAX_LEVEL_ID));
 		}
 		setTiledMapTileSets(maps.getFirst());
+		music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
 		manager.finishLoading();
 	}
 

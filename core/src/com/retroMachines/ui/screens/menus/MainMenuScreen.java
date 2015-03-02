@@ -3,7 +3,6 @@ package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -12,11 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.data.models.SettingsChangeListener;
-import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.ui.RetroDialog;
 import com.retroMachines.util.Constants.ButtonStrings;
+import com.retroMachines.util.MusicManager;
 
 /**
  * The MainMenuScreen is part of the view of RetroMachines.
@@ -26,7 +24,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * @author RetroFactory
  *
  */
-public class MainMenuScreen extends MenuScreen implements SettingsChangeListener {
+public class MainMenuScreen extends MenuScreen{
 	
 	/**
 	 * The Title of this Screen.
@@ -36,8 +34,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	
 	
 	private ExitDialog exitDialog;
-	
-	private Music music;
 		
 	/**
 	 * The constructor to create a new instance of the MainMenuScreen.
@@ -106,11 +102,15 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
 	    inputMultiplexer.addProcessor(stage);
 
         //sound initialisieren
-	    music = AssetManager.getMusic();
-	    //music.play();
-	    //music.setLooping(true);
+	    
         
        // game.getSettingController().add(this);
+	}
+	
+	@Override
+	public void show() {
+		MusicManager.getInstance().startMusic();
+		super.show();
 	}
     
     @Override
@@ -127,19 +127,6 @@ public class MainMenuScreen extends MenuScreen implements SettingsChangeListener
     	super.keyDown(keycode);
     	return false;
     }
-   
-	/**
-	 * Sets the sound to the new volume that was newly adjusted in the settings.
-	 */
-	@Override
-	public void onSettingsChanged() {
-		
-		// TODO Auto-generated method stub
-		float newVolume = game.getSettingController().getVolume();
-		music.setVolume(newVolume);
-		//changes the volume in the settings so that its saved while quitting the game
-		game.getSettingController().setVolume(newVolume);
-	}
 	
 
     private void disposeMusic() {

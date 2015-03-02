@@ -3,6 +3,7 @@ package com.retroMachines.ui.screens.menus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -30,6 +31,8 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	protected Table table;
 	
+	protected Music music;
+	
 	
 	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.
@@ -47,14 +50,17 @@ public abstract class MenuScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(inputMultiplexer);
+	    Gdx.input.setInputProcessor(inputMultiplexer);
 		super.show();
 	}
 	
 	@Override
-	public void dispose() {
+	public void hide() {
+		if (music != null) {
+			music.stop();
+		}
 		Gdx.input.setInputProcessor(null);
-		super.dispose();
+		super.hide();
 	}
 	
     /**

@@ -5,6 +5,7 @@ import java.util.Stack;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
@@ -14,6 +15,7 @@ import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
+import com.retroMachines.util.MusicManager;
 
 
 /**
@@ -67,6 +69,11 @@ public class RetroMachines extends Game{
 	 */
 	private int maxSystemVolume;
 	
+	/**
+	 * the game music
+	 */
+	private Music music;
+	
 	public RetroMachines() {
 		super();
 		systemVolume = -1;
@@ -92,21 +99,24 @@ public class RetroMachines extends Game{
 		boolean profileExists = profileController.loadLastProfile();
 		settingController = new SettingController(this);
 		settingController.initialize();
-		if (systemVolume != -1 && maxSystemVolume != -1) {
-			//settingController.setVolume(systemVolume / (float)maxSystemVolume);
-		}
+		
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);
 		
+		settingController.add(MusicManager.getInstance());
 		
 		if (profileExists) {
 			// a profile is available for loading
 			setScreen(new MainMenuScreen(this));
+			if (systemVolume != -1 && maxSystemVolume != -1) {
+				settingController.setVolume(systemVolume / (float)maxSystemVolume);
+			}
 		}
 		else {
 			// no profile go to createprofilemenuscreen
 			setScreen(new CreateProfileMenuScreen(this));
 		}
+		music = AssetManager.getMusic();
 	}
 	
 	@Override
