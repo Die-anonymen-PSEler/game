@@ -133,6 +133,13 @@ public class SettingController implements OnProfileChangedListener {
 		this.settings = setting;
 	}
 	
+	public boolean soundEnabled() {
+		if (settings.getVolume() == 0.0f || !settings.isSoundOnOff()) {
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * Controls if the profile was changed.
 	 */

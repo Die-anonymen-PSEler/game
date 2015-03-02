@@ -112,10 +112,6 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
     
     @Override
     public boolean keyDown(int keycode) {
-    	System.out.println("hi");
-    	if (keycode == Keys.VOLUME_DOWN) {
-    		System.out.println("weniger volume");
-    	}
     	return false;
     }
 

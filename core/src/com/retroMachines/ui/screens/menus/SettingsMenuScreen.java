@@ -76,6 +76,9 @@ public class SettingsMenuScreen  extends MenuScreen {
 		buttonSoundOff = new Button(skin, "soundOff");
 		buttonSoundOff.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSoundOff.addListener(new SoundOnOffButtonClickListener());
+		
+		buttonSoundOff.setChecked(!settingController.soundEnabled());
+		
 		Button buttonProfileSettings = new Button(skin, "profileSettings");
 		buttonProfileSettings.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonProfileSettings.addListener(new ProfileSettingsButtonClickListener());
@@ -85,7 +88,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 		volumeSlider.getStyle().background.setMinHeight(screenHeight * SLIDERBACKGROUNDSIZE);
 		volumeSlider.getStyle().knob.setMinHeight(screenHeight * SLIDERKNOBSIZE);
 		// TODO get Volume of Phone
-		volumeSlider.setValue(SLIDERMAX / 2);
+		volumeSlider.setValue(settingController.getVolume() * SLIDERMAX);
 		volumeSlider.addListener(new SliderListener());
 		
 		
