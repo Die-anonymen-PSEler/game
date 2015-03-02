@@ -65,7 +65,6 @@ public class Abstraction extends Vertex {
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
 				if (getFamilyColorList().get(i) == nextFam.get(j)) {
-					
 					//Replace color in next family
 					newColor = this.searchUnusedColorID();
 					if (newColor == - 1) {
@@ -221,35 +220,15 @@ public class Abstraction extends Vertex {
 	private int searchUnusedColorID() {
 		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
 		LinkedList<Integer> actFam = this.getFamilyColorList();
-		int sA = actFam.size();
-		int sN = nextFam.size();
 		int newColor = -1;
-		boolean idIsFree = true;
 		// search unused color ID
 		for(int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
 			// Search if id "i" is unused in firstList
-			for(int j = 0; j < sA; j++) {
-				if(actFam.get(j) == i) {
-					idIsFree = false;
-					break;
-				}
-			}
-			// if id "i" is unused in first list search in next List
-			if(idIsFree) {
-				for(int j = 0; j < sN; j++) {
-					if(nextFam.get(j) == i) {
-						idIsFree = false;
-						break;
-					}
-				}
-				// if id "i" is unused in both Lists set as return value
-				if(idIsFree) {
+			if(!actFam.contains(new Integer(i))) {
+				if(!nextFam.contains(new Integer(i))) {
 					newColor = i;
 					break;
 				}
-			}
-			if(!idIsFree && i < Constants.MAX_COLOR_ID) {
-				idIsFree = true;
 			}
 		}
 		return newColor;

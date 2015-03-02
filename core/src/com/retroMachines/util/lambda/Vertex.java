@@ -183,35 +183,23 @@ public abstract class Vertex {
 	 * @return true if renamed family successful, false otherwise
 	 */
 	protected boolean renameFamily(int oldColor, int newColor) {
-		System.out.println("rename" + oldColor + " " + newColor);
-		int index = 0;
-		// Get Index of oldColor 
-		while(this.familyColorList.get(index) < oldColor) {
-			index++;
-		}
 		
-		// Replace Color 
-		if (this.familyColorList.get(index) == oldColor) {
+		if(this.getFamilyColorList().contains(oldColor)) {
+			for(int i = 0; i < this.getFamilyColorList().size(); i++) {
+				if (this.getFamilyColorList().get(i) == oldColor) {
+					this.getFamilyColorList().remove(i);
+					break;
+				}
+			}
+			this.getFamilyColorList().add(newColor);
 			
-			// Replace Color in family Color List
-			this.familyColorList.set(index, newColor);
 			
-			// Replace own Color if needed
-			if (this.color == oldColor){
-				this.color = newColor;
+			if(this.getColor() == oldColor) {
+				this.setColor(newColor);
 				int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 				this.getGameElement().setTileId(newColor + offset);
 			}
-			
-			// Rename Family
-			if (this.family != null) {
-				
-				// Rename First in Family
-				if (this.family.renameFamily(oldColor, newColor)) {
-					//Error
-					return false;
-				}
-				
+			if(this.getfamily() != null) {
 				// Rename the Others if they are no imaginary Friends  
 				Vertex renamePointer = new Dummy();
 				renamePointer.setnext(this.getfamily());

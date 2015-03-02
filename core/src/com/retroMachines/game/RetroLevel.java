@@ -38,13 +38,6 @@ public class RetroLevel {
 	
 	private TiledMap map;
 	
-	/**
-	 * Dummy tree until all depots are filled and 
-	 * allDepotsFilled() = true 
-	 * 	then its tree with objects placed in the depots
-	 */
-	private LevelTree depotTree;
-	
 	private LinkedList<Vertex> vertexInDepot;
 	
 	/**
@@ -200,6 +193,9 @@ public class RetroLevel {
 			//Updtae ColorList
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
 			for(int i : fam.getFamilyColorList()) {
+				newColorList.add(i);
+			}
+			for(int i : fam.getNextColorList()) {
 				newColorList.add(i);
 			}
 			// Color of application is always the same
