@@ -16,8 +16,6 @@ public class LightElement extends GameElement {
 	 */
 	public LightElement() {
 		super();
-		// TODO Auto-generated constructor stub
-		// TODO update texture
 	}
 
 	@Override
