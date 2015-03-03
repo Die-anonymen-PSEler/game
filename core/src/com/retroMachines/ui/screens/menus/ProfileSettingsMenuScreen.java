@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.util.Constants;
 import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
@@ -34,14 +35,10 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	
 	private SettingController settingController;
 
-	/**
-	 * The actualCharacter represents the position in Character-String-Array in
-	 * Constants.java.
-	 */
-	private int actualCharacter;
-
 	private Button buttonRightMode;
 	private Button buttonLeftMode;
+	
+	private Image charImage;
 
 	public ProfileSettingsMenuScreen(RetroMachines game) {
 		super(game);		
@@ -53,6 +50,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		settingController = game.getSettingController();
+		
 		skin = AssetManager.getMenuSkin();
 
 		// Make Title
@@ -102,12 +100,8 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonNextChar.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		// Make Image
-		Image charImage = new Image();
-		Texture texture = AssetManager.getTexture("Unicorn");
-		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
-		
-		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
-		charImage.setScaling(Scaling.fit);
+		charImage = new Image();
+		setCharacterImage();
 
 		// Build Tables
 
@@ -141,16 +135,21 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 	}
+	
+	
+	
 
-	/**
-	 * Get Method to get the int value which represents position of the
-	 * character in the String Array in Constants.java.
-	 * 
-	 * @return The place in string array in Constants.
-	 */
-	public int getActualCharacter() {
-		return actualCharacter;
+	private void setCharacterImage() {
+		String name = Constants.TEXTURE_ANIMATION_NAMES[settingController.getCurrentCharacterId()];
+		Texture texture = AssetManager.getTexture(name);
+		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+		
+		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
+		charImage.setScaling(Scaling.fit);
 	}
+
+
+
 
 	/**
 	 * Listener when the button for ok a profile has been clicked
@@ -202,6 +201,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			settingController.toggleCharacter();
+			setCharacterImage();
 		}
 	}
 

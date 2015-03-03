@@ -15,6 +15,8 @@ public class Setting extends Model {
 	public static final boolean DEFAULT_SOUNDONOFF = true;
 	
 	public static final boolean DEFAULT_LEFTCONTROL = false;
+	
+	private static final int DEFAULT_SELECTEDCHARACTER = 0;
 
 	/**
 	 * the name of the table where the settings are stored
@@ -26,6 +28,8 @@ public class Setting extends Model {
 	private static final String KEY_SOUNDONOFF = "soundOnOff";
 	
 	private static final String KEY_LEFTCONTROL = "leftControl";
+
+	private static final String KEY_SELECTEDCHARACTER = "selectedCharacter";
 
 	/**
 	 * the volume of the game range 0.0f to 1.0f
@@ -41,6 +45,11 @@ public class Setting extends Model {
 	 * true if leftControl is enabled
 	 */
 	private boolean leftControl;
+	
+	/**
+	 * the id of the character that is selected
+	 */
+	private int selectedCharacter;
 
 	/**
 	 * Constructor which creates an Instance of Settings with all needed
@@ -74,7 +83,7 @@ public class Setting extends Model {
 		this.rowId = rowId;
 		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
 		fetch();
-	}	
+	}
 	
 	/*
 	 * inherited methods
@@ -85,6 +94,7 @@ public class Setting extends Model {
 		pref.putFloat(KEY_VOLUME, volume);
 		pref.putBoolean(KEY_LEFTCONTROL, leftControl);
 		pref.putBoolean(KEY_SOUNDONOFF, soundOnOff);
+		pref.putInteger(KEY_SELECTEDCHARACTER, selectedCharacter);
 		pref.flush();
 	}
 
@@ -98,6 +108,7 @@ public class Setting extends Model {
 		volume = pref.getFloat(KEY_VOLUME, DEFAULT_VOLUME);
 		leftControl = pref.getBoolean(KEY_LEFTCONTROL, DEFAULT_LEFTCONTROL);
 		soundOnOff = pref.getBoolean(KEY_SOUNDONOFF, DEFAULT_SOUNDONOFF);
+		selectedCharacter = pref.getInteger(KEY_SELECTEDCHARACTER, DEFAULT_SELECTEDCHARACTER);
 	}
 	
 	@Override
@@ -164,6 +175,14 @@ public class Setting extends Model {
 	 */
 	public boolean isSoundOnOff() {
 		return soundOnOff;
+	}
+	
+	public void setSelectedCharacter(int id) {
+		this.selectedCharacter = id;
+	}
+	
+	public int getSelectedCharacter() {
+		return this.selectedCharacter;
 	}
 	
 }

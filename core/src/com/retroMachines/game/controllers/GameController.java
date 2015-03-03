@@ -82,7 +82,8 @@ public class GameController {
 	 */
 	public void startLevel(int levelId) {
 		levelfinished = false;
-		retroMan = new RetroMan();
+		SettingController settingController = game.getSettingController();
+		retroMan = new RetroMan(Constants.TEXTURE_ANIMATION_NAMES[settingController.getCurrentCharacterId()]);
 		tempStepCounter = 0;
 		boolean left = game.getSettingController().getLeftMode();
 

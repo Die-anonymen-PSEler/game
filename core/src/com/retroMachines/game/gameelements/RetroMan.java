@@ -109,18 +109,18 @@ public class RetroMan {
 	 * Constructs a new Object of the RetroMan and sets his coordinates and
 	 * velocity to 0,0
 	 */
-	public RetroMan() {
-		this(15, 5);
+	public RetroMan(String textureName) {
+		this(textureName, 15, 5);
 	}
 	
-	public RetroMan(float x, float y) {
+	public RetroMan(String textureName, float x, float y) {
 		pos = new Vector2(x, y);
 		velocity = new Vector2();
 		
 		state = State.STANDING;
 		
 		//The animation
-		texture = AssetManager.getTexture("Horse");
+		texture = AssetManager.getTexture(textureName);
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		TextureRegion[] runingFrames = new TextureRegion[2];
 		TextureRegion[] runingFramesCarry = new TextureRegion[2];

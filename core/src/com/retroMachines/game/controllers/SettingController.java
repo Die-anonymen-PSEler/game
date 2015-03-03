@@ -6,6 +6,7 @@ import java.util.List;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Setting;
 import com.retroMachines.data.models.SettingsChangeListener;
+import com.retroMachines.util.Constants;
 
 /**
  * SettingsController is part of the controller of RetroMachines.
@@ -125,6 +126,23 @@ public class SettingController implements OnProfileChangedListener {
 		notifyListeners();
 	}
 	
+	public int toggleCharacter() {
+		int currentId = settings.getSelectedCharacter();
+		if (currentId + 1 < Constants.TEXTURE_ANIMATION_NAMES.length) {
+			settings.setSelectedCharacter(currentId + 1); 
+		}
+		else {
+			// start over
+			settings.setSelectedCharacter(0);
+		}
+		notifyListeners();
+		return settings.getSelectedCharacter();
+	}
+	
+	public int getCurrentCharacterId() {
+		return settings.getSelectedCharacter();
+	}
+	
 	/**
 	 * This method should only be used for DEBUG purposes only!
 	 * Assigns a settings object to this controller.
@@ -150,9 +168,5 @@ public class SettingController implements OnProfileChangedListener {
 		// TODO Auto-generated method stub
 		settings = game.getProfileController().getProfile().getSetting();
 		notifyListeners();
-	}
-
-	public void toggleCharacter() {
-		
 	}
 }
