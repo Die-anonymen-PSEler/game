@@ -1,20 +1,12 @@
 package com.retroMachines.game.controllers;
 
-import java.util.LinkedList;
-
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
-import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.Dummy;
 import com.retroMachines.util.lambda.EvaluationOptimizer;
-import com.retroMachines.util.lambda.LambdaUtil;
 import com.retroMachines.util.lambda.LevelTree;
-import com.retroMachines.util.lambda.Vertex;
 
 public class EvaluationController {
 	
