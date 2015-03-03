@@ -359,7 +359,6 @@ public class GameScreen extends AbstractScreen implements
 	 */
 	@Override
 	public void onSettingsChanged() {
-		// TODO Auto-generated method stub
 		float newVolume = game.getSettingController().getVolume();
 		music.setVolume(newVolume);
 		// changes the volume in the settings so that its saved while quitting
@@ -382,7 +381,6 @@ public class GameScreen extends AbstractScreen implements
 	 * Shows the HintScreen on top of the game.
 	 */
 	private void showHint() {
-
 		hintDialog.show(stage);
 	}
 
@@ -398,9 +396,7 @@ public class GameScreen extends AbstractScreen implements
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if (keycode == Keys.A) {
-			// gameController.doorTestMethod();
-		} else if (keycode == Keys.B) {
+		if (keycode == Keys.B) {
 			gameController.interactRetroMan();
 		}
 		return false;
@@ -408,43 +404,36 @@ public class GameScreen extends AbstractScreen implements
 
 	@Override
 	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
@@ -522,8 +511,6 @@ public class GameScreen extends AbstractScreen implements
 	private class MenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO: show level menu
-			// pause();
 			popupScreenIsShown = true;
 			showPauseDialog();
 		}

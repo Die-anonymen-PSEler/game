@@ -34,7 +34,6 @@ public class AboutMenuScreen extends MenuScreen {
 	 */
 	public AboutMenuScreen(RetroMachines game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
