@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.ui.RetroDialogChain;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.Constants.RetroStrings;
 import com.retroMachines.util.lambda.Dummy;
@@ -146,6 +147,14 @@ public class RetroLevel {
 			return false;
 		}
 		return true;
+	}
+	
+	public int getId() {
+		return levelId;
+	}
+	
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 	
 	private boolean makeEvaluationTree() {
@@ -353,8 +362,14 @@ public class RetroLevel {
 	public LevelTree getEvaluationTree() {
 		return evaluationTree;
 	}
-
 	
+	public boolean hasTutorial() {
+		return lambdaUtil.hasTutorial();
+	}
+
+	public RetroDialogChain getDialogChain() {
+		return null;
+	}
 	
 	/**
 	 * LevelBuilder class to generate a retrolevel.
@@ -434,15 +449,4 @@ public class RetroLevel {
 			}
 		}
 	}
-
-
-
-	public int getId() {
-		return levelId;
-	}
-	
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
 }

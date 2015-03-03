@@ -3,7 +3,6 @@ package com.retroMachines.ui.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
@@ -21,9 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.gameelements.DepotElement;
+import com.retroMachines.ui.RetroDialogChain;
+import com.retroMachines.ui.RetroDialogChain.DialogChainFinishedListener;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
@@ -39,8 +39,7 @@ import com.retroMachines.util.lambda.Vertex;
  * @author RetroFactory
  * 
  */
-public class GameScreen extends AbstractScreen implements
-		SettingsChangeListener, InputProcessor {
+public class GameScreen extends AbstractScreen implements InputProcessor, DialogChainFinishedListener {
 
 	private static final float ZOOM_ADDITION = 0.20f;
 	private static final float RETROMAN_BUTTON_OFFSET = 2;
@@ -64,11 +63,6 @@ public class GameScreen extends AbstractScreen implements
 	 * reference to the gameController for information regarding the user input
 	 */
 	private final GameController gameController;
-
-	/**
-	 * the sound which is played while this screen is displayed
-	 */
-	private Music music;
 
 	/**
 	 * the dialog which is shown when hintButton is pressed
@@ -141,8 +135,6 @@ public class GameScreen extends AbstractScreen implements
 		camera.update();
 		
 		stage = new Stage();
-		game.getSettingController().add(this);
-		music = AssetManager.getMusic();
 		inputMultiplexer.addProcessor(this);
 
 		drawButtons();
@@ -341,13 +333,15 @@ public class GameScreen extends AbstractScreen implements
 	 * can perform the logic.
 	 */
 	private void inputDetection() {
-		if (Gdx.input.isKeyPressed(Keys.SPACE) || buttonA.isPressed()) {
-			gameController.jumpRetroMan();
-		}
-		if (Gdx.input.isKeyPressed(Keys.RIGHT) || buttonRight.isPressed()) {
-			gameController.goRightRetroMan();
-		} else if (Gdx.input.isKeyPressed(Keys.LEFT) || buttonLeft.isPressed()) {
-			gameController.goLeftRetroMan();
+		if (!popupScreenIsShown) {
+			if (Gdx.input.isKeyPressed(Keys.SPACE) || buttonA.isPressed()) {
+				gameController.jumpRetroMan();
+			}
+			if (Gdx.input.isKeyPressed(Keys.RIGHT) || buttonRight.isPressed()) {
+				gameController.goRightRetroMan();
+			} else if (Gdx.input.isKeyPressed(Keys.LEFT) || buttonLeft.isPressed()) {
+				gameController.goLeftRetroMan();
+			}
 		}
 	}
 
@@ -355,16 +349,9 @@ public class GameScreen extends AbstractScreen implements
 	 * Getter and Setter
 	 */
 
-	/**
-	 * sets the sound to the new volume that was newly adjusted in the settings
-	 */
 	@Override
-	public void onSettingsChanged() {
-		float newVolume = game.getSettingController().getVolume();
-		music.setVolume(newVolume);
-		// changes the volume in the settings so that its saved while quitting
-		// the game
-		game.getSettingController().setVolume(newVolume);
+	public void dialogFinished() {
+		popupScreenIsShown = false;
 	}
 
 	// ------------------------------------
@@ -441,6 +428,10 @@ public class GameScreen extends AbstractScreen implements
 	public void showValidateError(String s) {
 		ErrorDialog error = new ErrorDialog("", skin, "default", s);
 		error.show(stage);
+	}
+	
+	public void showDialogChain(RetroDialogChain dialogChain) {
+		
 	}
 
 	// -----------------------------------
@@ -800,5 +791,4 @@ public class GameScreen extends AbstractScreen implements
 			return screenHeight * DIALOGHEIGHT;
 		}
 	}
-
 }

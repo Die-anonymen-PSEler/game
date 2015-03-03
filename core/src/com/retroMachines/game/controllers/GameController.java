@@ -94,6 +94,9 @@ public class GameController {
 		gameScreen.setMap(level.getMap());
 		levelBegin = new Date();
 		game.setScreen(gameScreen);
+		if (level.hasTutorial()) {
+			gameScreen.showDialogChain(level.getDialogChain());
+		}
 	}
 
 	/**

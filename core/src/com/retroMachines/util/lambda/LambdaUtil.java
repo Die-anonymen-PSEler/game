@@ -323,6 +323,14 @@ public class LambdaUtil {
 	public LevelTree getHintTree() {
 		return hintTree;
 	}
+	
+	public int getNumOfDepots() {
+		return numOfDepots;
+	}
+	
+	public boolean hasTutorial() {
+		return false;
+	}
 
 	public interface OnNextLambdaStepListener {
 
@@ -332,10 +340,5 @@ public class LambdaUtil {
 		 */
 		public void nextLambdaStepPerformed();
 
-	}
-	
-	public int getNumOfDepots() {
-		return numOfDepots;
-	}
-	
+	}	
 }
