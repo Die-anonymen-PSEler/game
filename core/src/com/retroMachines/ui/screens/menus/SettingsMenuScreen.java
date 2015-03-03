@@ -120,7 +120,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 			} else {
 				buttonSoundOff.setChecked(false);
 			}
-			settingController.setVolume(volumeSlider.getValue() / (float)SLIDERMAX);
+			settingController.setVolume(volumeSlider.getValue() / SLIDERMAX);
 				
 		}
 		
@@ -139,7 +139,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 			} else {
 				volumeSlider.setValue(100);
 			}
-			settingController.setVolume(volumeSlider.getValue() / (float)SLIDERMAX);
+			settingController.setVolume(volumeSlider.getValue() / SLIDERMAX);
 		}
 	}
 	
@@ -156,7 +156,7 @@ public class SettingsMenuScreen  extends MenuScreen {
 			} else {
 				volumeSlider.setValue(0);
 			}
-			settingController.setVolume(volumeSlider.getValue() / (float)SLIDERMAX);
+			settingController.setVolume(volumeSlider.getValue() / SLIDERMAX);
 		}
 	}
 	

@@ -55,6 +55,7 @@ public class Abstraction extends Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
+	@Override
 	public boolean alphaConversion() {
 		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
 		boolean returnValue = false;
@@ -164,6 +165,7 @@ public class Abstraction extends Vertex {
 	 * @param next
 	 * @return
 	 */
+	@Override
 	public Vertex cloneMe(){
 		// check if next or family is null
 		Vertex family;
@@ -183,6 +185,7 @@ public class Abstraction extends Vertex {
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
+	@Override
 	public Vertex cloneFamily(){
 		// check if next or family is null
 		Vertex next;
@@ -206,6 +209,7 @@ public class Abstraction extends Vertex {
 	/**
 	 * returns gameElemet according to this vertex
 	 */
+	@Override
 	public GameElement getGameElement() {
 		if (gameElement == null) {
 			gameElement = new MachineElement(getColor());
@@ -213,6 +217,7 @@ public class Abstraction extends Vertex {
 		return gameElement;
 	}
 	
+	@Override
 	public String getType() {
 		return "Abstraction";
 	}
@@ -234,6 +239,7 @@ public class Abstraction extends Vertex {
 		return newColor;
 	}
 
+	@Override
 	public Vertex getReadIn() {
 		return this.getnext();
 	}

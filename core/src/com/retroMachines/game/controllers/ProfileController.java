@@ -31,6 +31,7 @@ public class ProfileController {
 	/**
 	 * Calls to the application can be made via this object.
 	 */
+	@SuppressWarnings("unused")
 	private final RetroMachines game;
 
 	/**

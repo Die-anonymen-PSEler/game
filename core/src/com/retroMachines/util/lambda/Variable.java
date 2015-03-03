@@ -95,6 +95,7 @@ public class Variable extends Vertex {
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
+	@Override
 	public Vertex cloneFamily(){
 		// check if next or family is null
 		Vertex next;
@@ -126,10 +127,12 @@ public class Variable extends Vertex {
 		return gameElement;
 	}
 	
+	@Override
 	public String getType() {
 		return "Variable";
 	}
 
+	@Override
 	public Vertex getReadIn() {
 		return null;
 	}

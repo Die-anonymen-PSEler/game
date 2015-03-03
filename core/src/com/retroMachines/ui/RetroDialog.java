@@ -57,6 +57,7 @@ public class RetroDialog extends Dialog {
 		autoClear = t;
 	}
 	
+	@Override
 	protected void result(Object object) {
 		if (autoClear) {
 			this.remove();

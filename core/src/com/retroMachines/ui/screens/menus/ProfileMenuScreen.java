@@ -24,8 +24,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * @author RetroFactory
  * 
  */
-public class ProfileMenuScreen extends MenuScreen implements
-		OnProfileChangedListener {
+public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedListener {
 
 	private final static float FONTSIZE3 = 3f;
 	private final static float FONTSIZE2_5 = 2.5f;
@@ -218,6 +217,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 			button(new Button(skin, ButtonStrings.ABORT), false);
 		}
 		
+		@Override
 		protected void result(Object object) {
 			if ((Boolean) object && profileController.getAllProfiles().length > 1) {
 				profileController.deleteProfile(profileList.getSelected());

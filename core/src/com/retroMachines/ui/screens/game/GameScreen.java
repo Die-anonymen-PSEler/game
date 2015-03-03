@@ -158,6 +158,7 @@ public class GameScreen extends AbstractScreen implements
 	/**
 	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
+	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		// music.play();
@@ -782,6 +783,7 @@ public class GameScreen extends AbstractScreen implements
 			button(new Button(skin, ButtonStrings.OK), true);
 		}
 
+		@Override
 		protected void result(Object object) {
 			this.remove();
 		}

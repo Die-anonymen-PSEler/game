@@ -86,6 +86,7 @@ public class Application extends Vertex {
 	 * @param next
 	 * @return
 	 */
+	@Override
 	public Vertex cloneMe(){
 		// check if next or family is null
 		Vertex family;
@@ -105,6 +106,7 @@ public class Application extends Vertex {
 	 * Creates a clone of this Vertex and his hole Family
 	 * @return First Vertex in Tree structure
 	 */
+	@Override
 	public Vertex cloneFamily(){
 		Vertex next;
 		Vertex family;
@@ -132,6 +134,7 @@ public class Application extends Vertex {
 		return gameElement;
 	}
 	
+	@Override
 	public String getType() {
 		return "Application";
 	}
