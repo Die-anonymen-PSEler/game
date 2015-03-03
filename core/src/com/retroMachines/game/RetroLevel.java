@@ -368,7 +368,9 @@ public class RetroLevel {
 	}
 
 	public RetroDialogChain getDialogChain() {
-		return null;
+		RetroDialogChain chain = new RetroDialogChain();
+		// for () {}
+		return chain;
 	}
 	
 	/**

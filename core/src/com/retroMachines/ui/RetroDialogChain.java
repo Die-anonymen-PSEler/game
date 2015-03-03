@@ -34,8 +34,8 @@ public class RetroDialogChain {
 	}
 	
 	private void nextDialog() {
-		DialogChain dialog = dialogs.get(position);
-		if (dialog != null) {
+		if (dialogs.size() > position) {
+			DialogChain dialog = dialogs.get(position);
 			dialog.show(s);
 			position++;
 		}
