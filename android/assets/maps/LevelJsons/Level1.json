@@ -3,6 +3,16 @@
 	{
 		"description": "Level das (x) darstellt",
 		"hasTutorialScreen": true,
+		"tutorialScreens" : [
+			{
+				"title" : "",
+				"img" : ""
+			},
+			{
+				"title" : "",
+				"img" : ""
+			}
+		],
 		"levelid": 1,
 		"data": 
 		{
