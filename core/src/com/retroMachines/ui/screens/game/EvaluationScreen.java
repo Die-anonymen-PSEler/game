@@ -201,7 +201,7 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	}
 	
 	/**
-	 * Button which shows allt Evaluationsteps
+	 * Button which shows all Evaluationsteps
 	 * 
 	 * @author Retro Factory
 	 */

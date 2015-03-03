@@ -458,7 +458,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 	// ------------------------------
 
 	/**
-	 * Button which start Evalution Gamecontroller checks if possible or not
+	 * Button which starts Evalution Gamecontroller checks if possible or not
 	 * 
 	 * @author Retro Factory
 	 */
