@@ -24,9 +24,6 @@ import com.retroMachines.util.MusicManager;
  * 
  */
 public class RetroMachines extends Game{
-	
-	public static final String TITLE="Game Project"; 
-    public static final int WIDTH=1280,HEIGHT=720; // used later to set window size Desktop Mode
     
     private final Stack<Screen> screenStack;
 
