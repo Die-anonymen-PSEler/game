@@ -23,8 +23,8 @@ public class Application extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Application(int id) {
-		super(id, 1);
+	public Application() {
+		super(1);
 	}
 	
 	/**
@@ -36,8 +36,8 @@ public class Application extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Application(Vertex next, Vertex family,int id, LinkedList<Integer> familyColorlist) {
-		super(id, 1);
+	private Application(Vertex next, Vertex family, LinkedList<Integer> familyColorlist) {
+		super(1);
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
@@ -96,7 +96,7 @@ public class Application extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Application(null, family,this.getId(), this.getCopyOfFamilyColorList());
+		clone = new Application(null, family, this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -120,7 +120,7 @@ public class Application extends Vertex {
 		} else  {
 			family = null;
 		}
-		Vertex clone = new Application(next, family,this.getId(), this.getCopyOfFamilyColorList());
+		Vertex clone = new Application(next, family, this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -188,5 +188,11 @@ public class Application extends Vertex {
 		// update Gameelement Postions  after Gameelement of this was deleted 
 		this.getfamily().updateGameelementPosition(0, -1);
 		
+	}
+
+	@Override
+	public Vertex getClone() {
+		Vertex clone = new Application(null, null, null);
+		return clone;
 	}
 }

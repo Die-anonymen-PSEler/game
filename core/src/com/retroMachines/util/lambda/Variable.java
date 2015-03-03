@@ -23,8 +23,8 @@ public class Variable extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Variable(int id, int color) {
-		super(id, color);
+	public Variable(int color) {
+		super(color);
 	}
 	
 	/**
@@ -36,8 +36,8 @@ public class Variable extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Variable(Vertex next, Vertex family,int id, int color, LinkedList<Integer> familyColorlist) {
-		super(id,color);
+	private Variable(Vertex next, Vertex family, int color, LinkedList<Integer> familyColorlist) {
+		super(color);
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
@@ -85,7 +85,7 @@ public class Variable extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Variable( null, family, this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
+		clone = new Variable( null, family, this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -110,7 +110,7 @@ public class Variable extends Vertex {
 		} else  {
 			family = null;
 		}
-		Vertex clone = new Variable( next, family, this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
+		Vertex clone = new Variable( next, family, this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -166,6 +166,12 @@ public class Variable extends Vertex {
 		// Do nothing , you Have No Family ! :D
 		// Start next evaluation Step
 		EvaluationOptimizer.runNextStep();
+	}
+
+	@Override
+	public Vertex getClone() {
+		Vertex clone = new Variable(null, null, getColor(), null);
+		return clone;
 	}
 
 }

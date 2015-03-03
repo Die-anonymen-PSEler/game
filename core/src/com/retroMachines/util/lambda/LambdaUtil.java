@@ -42,11 +42,6 @@ public class LambdaUtil {
 	private LinkedList<Vertex> vertexList;
 	private LinkedList<GameElement> gameElementList;
 	
-	/**
-	 * the next available id will be stored within this variable;
-	 */
-	private int runningId;
-	
 
 	/**
 	 * Constructor to create a base for the lambda calculus.
@@ -247,14 +242,11 @@ public class LambdaUtil {
 		//getting and returning right type
 		Vertex result;
 		if (type.equals("Abs")) {
-			result = new Abstraction(runningId, color);
-			runningId++;
+			result = new Abstraction(color);
 		} else if (type.equals("App")) {
-			result = new Application(runningId);
-			runningId++;
+			result = new Application();
 		} else if (type.equals("Var")){
-			result = new Variable(runningId, color);
-			runningId++;
+			result = new Variable(color);
 		} else if (type.equals("Dum")){
 			result = new Dummy();
 		} else {

@@ -32,11 +32,6 @@ public abstract class Vertex {
 	 */
 	private int color;
 	
-	/**
-	 * unique identifier of this very vertex
-	 */
-	private int id;
-	
 	private Vector2 pos;
 	
 	private boolean isInDepot;
@@ -84,8 +79,7 @@ public abstract class Vertex {
 	 * @param color
 	 *            color to set.
 	 */
-	public Vertex(int id, int color) {
-		this.id = id;
+	public Vertex(int color) {
 		this.color = color;
 		this.familyColorList = new LinkedList<Integer>();
 		this.nextColorList = new LinkedList<Integer>();
@@ -98,25 +92,6 @@ public abstract class Vertex {
 	// --------------------------
 	// ---------Methods----------
 	// --------------------------
-	
-	/**
-	 * Replaces the oldId with the newId in the IdList.
-	 * It  is needed when a parent Abstraction performs a Beta-reduction or an Alpha-conversion.
-	 * @param oldId ID which should be replaced.
-	 * @param newId ID which should take place of the former ID.
-	 * @return true if the IdList contained the oldId and it was changed successfully.
-	 */
-	public boolean updateIdList(int oldId, int newId) {
-		boolean updated = false;
-		for(Integer id : familyColorList) {
-			if (id == oldId) {
-				id = newId;
-				updated = true;
-				//break;
-			}
-		}
-		return updated;
-	}
 	
 	/**
 	 * method to set new color for an vertex (e.g after alphaConversion)
@@ -304,6 +279,11 @@ public abstract class Vertex {
 		return listOfNewVertex;
 	}
 	
+	/**
+	 * Returns clone of this vertex without family and next
+	 * @return clone of this
+	 */
+	abstract public Vertex getClone();
 	
 	/**
 	 * Creates a clone of this Vertex without Next and his hole Family
@@ -592,11 +572,11 @@ public abstract class Vertex {
 		
 		// Move
 		Vector2 actPosition = this.getGameElement().getPosition();
-		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
-		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
+		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
+		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
 		// Start next evaluationStep
 		
-		EvaluationOptimizer.moveAnimation(new Vector2(newX, newY), this.getGameElement(), true);
+		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(), true);
 	}
 	
 	private void updateOtherGameelementPosition(int difX, int difY) {
@@ -607,10 +587,10 @@ public abstract class Vertex {
 		
 		// Move
 		Vector2 actPosition = this.getGameElement().getPosition();
-		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
-		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
+		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
+		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
 		
-		EvaluationOptimizer.moveAnimation(new Vector2(newX, newY), this.getGameElement(), false);
+		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(), false);
 		
 		if (this.getfamily() != null) {
 			this.getfamily().updateOtherGameelementPosition(difX, difY);
@@ -858,10 +838,6 @@ public abstract class Vertex {
 		return pos;
 	}
 
-	public int getId() {
-		return id;
-	}
-	
 	public void setWidth(int w) {
 		width = w;
 	}

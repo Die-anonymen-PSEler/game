@@ -186,8 +186,8 @@ public class RetroLevel {
 			if(fam == null) {
 				return null;
 			}
-			int index = findVertexPosY(y);
-			result = vertexInDepot.remove(index);
+
+			result = findVertexPosY(y);
 			
 			//Check if construct is valid
 			if(!checkValidVertexFamily(result, fam)) {
@@ -216,8 +216,7 @@ public class RetroLevel {
 			}
 			result.setFamilyColorlist(newColorList);
 		} else {
-			int index = findVertexPosY(y);
-			result = vertexInDepot.remove(index);
+			result = findVertexPosY(y);
 			result.setfamily(null);
 			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
@@ -236,9 +235,6 @@ public class RetroLevel {
 				return null;
 			}
 			// Check if construct is valid
-			if(!checkValidVertexNext(result, next)) {
-				return null;
-			}
 			result.setnext(next);
 			
 			// set nextWidth
@@ -257,9 +253,6 @@ public class RetroLevel {
 			
 		} else {
 			// Check if construct is valid
-			if(!checkValidVertexNext(result, null)) {
-				return null;
-			}
 			
 			result.setnext(null);
 			result.setNextColorlist(new LinkedList<Integer>());
@@ -282,35 +275,31 @@ public class RetroLevel {
 		}
 	}
 	
-	private boolean checkValidVertexNext(Vertex v, Vertex next) {
-		if (v.getType().equals(RetroStrings.ABSTRACTION_TYPE) && next == null) {
-			errorMessage = RetroStrings.ABSTRACTION_NEXT_INVALID;
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
 	/**
 	 * Returns index of Vertex with smallest x pos and given y pos
 	 * @param yPos yPosition of searched Vertex
 	 * @return index of searched Vertex in "vertexinDepot" List
 	 */
-	private int findVertexPosY(int yPos) {
-		 Vertex result = new Dummy();
-		 result.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
-		 int indexResult = -1;
-		 int i = 0;
-		 for (Vertex v: vertexInDepot) {
-			 if((int) v.getPosition().y == yPos) {
-				 if(v.getPosition().x <  result.getPosition().x) {
-					 result = v;
-					 indexResult = i;
-				 }
-			 }
-			 i++;
-		 }
-		 return indexResult;
+	private Vertex findVertexPosY(int yPos) {
+		Vertex result = new Dummy();
+		result.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
+		int index = -1;
+		int i = 0;
+		for (Vertex v: vertexInDepot) {
+			if((int) v.getPosition().y == yPos) {
+				if(v.getPosition().x <  result.getPosition().x) {
+					result = v;
+					index = i;
+				}
+			}
+			i++;
+		}
+		vertexInDepot.remove(index);
+		Vertex returnClone = result.getClone();
+		int offset = (Integer) returnClone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		int color = returnClone.getColor();
+		returnClone.getGameElement().setTileId(color + offset);
+		return  returnClone;
 	 }
 	
 

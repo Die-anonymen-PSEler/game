@@ -82,4 +82,10 @@ public class Dummy extends Vertex {
 		// Do nothing You are a Dummy
 	}
 
+	@Override
+	public Vertex getClone() {
+		// its a dummy
+		return null;
+	}
+
 }

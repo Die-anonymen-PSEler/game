@@ -15,6 +15,8 @@ import com.retroMachines.util.Constants;
  */
 public class Abstraction extends Vertex {
 	
+	private boolean nextNull;
+	
 	// --------------------------
 	// --------Constructor-------
 	// --------------------------
@@ -25,8 +27,8 @@ public class Abstraction extends Vertex {
 	 * @param id
 	 *            ID to set.
 	 */
-	public Abstraction(int id, int color) {
-		super(id, color);
+	public Abstraction( int color) {
+		super(color);
 	}
 	
 	/**
@@ -38,8 +40,8 @@ public class Abstraction extends Vertex {
 	 * @param color color of Clone
 	 * @param familyColorlist familyColorList of Clone
 	 */
-	private Abstraction(Vertex next, Vertex family,int id, int color, LinkedList<Integer> familyColorlist) {
-		super(id, color);
+	private Abstraction(Vertex next, Vertex family, int color, LinkedList<Integer> familyColorlist) {
+		super(color);
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
@@ -57,6 +59,9 @@ public class Abstraction extends Vertex {
 	 */
 	@Override
 	public boolean alphaConversion() {
+		if(this.getnext() == null) {
+			return false;
+		}
 		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
 		boolean returnValue = false;
 		int sA = getFamilyColorList().size();
@@ -93,7 +98,6 @@ public class Abstraction extends Vertex {
 	 */
 	@Override
 	public LinkedList<Vertex> betaReduction() {
-		
 		// Check if next is there
 		if(this.getnext() != null) {
 			// Check if family is there
@@ -138,7 +142,7 @@ public class Abstraction extends Vertex {
 				} else {
 					this.setnext(null);
 				}
-				
+				nextNull = false;
 				EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 				return returnList;
 				
@@ -147,8 +151,9 @@ public class Abstraction extends Vertex {
 				return null;
 			}
 		} else {
-			// Error every machine has next
-			return null;
+			nextNull = true;
+			EvaluationOptimizer.runNextStep();
+			return new LinkedList<Vertex>();
 		}
 		
 	}
@@ -175,7 +180,7 @@ public class Abstraction extends Vertex {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Abstraction(null, family,this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
+		clone = new Abstraction(null, family, this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -200,7 +205,7 @@ public class Abstraction extends Vertex {
 		} else  {
 			family = null;
 		}
-		Vertex clone = new Abstraction(next, family,this.getId(), this.getColor(), this.getCopyOfFamilyColorList());
+		Vertex clone = new Abstraction(next, family, this.getColor(), this.getCopyOfFamilyColorList());
 		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
@@ -246,19 +251,27 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
-		//Abstraction needs reorganizesation of Element positions
+		//Abstraction needs reorganizesation of Element position
 		this.setGameelementPosition(start, newPos);
 	}
 
 	@Override
 	public void DeleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
+		if(nextNull) {
+			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+			return;
+		}
 		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
 		
 	}
 
 	@Override
 	public Vertex updatePointerAfterBetaReduction() {
+		if(nextNull) {
+			return this.getnext();
+		}
+		
 		// Update pointer if needed
 		if(this.getnext() != null) {
 			// Search last Vertex in first Family layer
@@ -278,13 +291,31 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public Vertex getEvaluationResult() {
-		//Returns null because the Abstraction is no Part of Evaluation Result
-		return null;
+		if(nextNull) {
+			return this;
+		} else {
+			//Returns null because the Abstraction is no Part of Evaluation Result
+			return null;
+		}
+
 	}
 
 	@Override
 	public void updatePositionsAfterBetaReduction() {
-		// update Gameelement Postions  after Gameelement of this was deleted 
-		this.getfamily().updateGameelementPosition(0, -1);
+		if(nextNull) {
+			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+			return;
+		} else {
+			// update Gameelement Postions  after Gameelement of this was deleted 
+			this.getfamily().updateGameelementPosition(0, -1);
+		}
+
+	}
+
+	@Override
+	public Vertex getClone() {
+		Vertex clone = new Abstraction(null, null, getColor(), null);
+		
+		return clone;
 	}
 }

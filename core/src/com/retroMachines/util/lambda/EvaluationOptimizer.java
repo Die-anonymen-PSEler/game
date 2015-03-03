@@ -31,6 +31,8 @@ public class EvaluationOptimizer {
 	 */
 	private static Vertex resultPointer;
 	
+	private static Vertex readIn;
+	
 	/**
 	 * evaluationPointer . next is always the actual worker in evaluation
 	 */
@@ -56,6 +58,9 @@ public class EvaluationOptimizer {
 		evalutionPointer = new Dummy();
 		evalutionPointer.setnext(evaluationController.getlambdaTree().getStart());
 		actStep = 0;
+		resultTree = null;
+		vertexList = null;
+		readIn = null;
 		
 	}
 	
@@ -156,7 +161,7 @@ public class EvaluationOptimizer {
 		actStep = 1;
 		evalutionPointer.getnext().alphaConversion();
 		
-		Vertex readIn = evalutionPointer.getnext().getReadIn();
+		readIn = evalutionPointer.getnext().getReadIn();
 		if(readIn != null) {
 			readIn.readInAnimation(evalutionPointer.getnext().getGameElement().getPosition());
 			// Next Step by Animation
@@ -202,6 +207,7 @@ public class EvaluationOptimizer {
 		
 		//creating copy of current tree
 		LevelTree oldTree = new LevelTree(evalutionPointer.cloneMe());
+		evalutionPointer.setfamily(evalutionPointer.getnext());
 		Vertex result = evalutionPointer.getnext().getEvaluationResult();
 
 
@@ -231,7 +237,6 @@ public class EvaluationOptimizer {
 		if(evalutionPointer.getnext() == null) {
 			//End of Evaluation
 			resultPointer.getnext().setnext(null);
-			System.out.println("Check");
 			checkEvaluation();
 		} else {
 			if(evalutionPointer.getnext().getType().equals(Constants.RetroStrings.VARIABLE_TYPE)) {
@@ -258,7 +263,6 @@ public class EvaluationOptimizer {
 			System.out.println("nullPointer");
 		}
 		result = resultTree.equals(evaluationController.getLevel().getLambdaUtil().getTargetTree());
-		System.out.println(result);
 		if(result) {
 			evaluationController.getGameController().evaluationComplete();
 		} else {
