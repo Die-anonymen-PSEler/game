@@ -680,6 +680,7 @@ public class GameScreen extends AbstractScreen implements
 				this.addActor(d);
 				
 				// Add element
+				if (actVertex.getGameElement() != null) {
 				offset = (Integer) actVertex.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
 				color = actVertex.getColor();
 				actVertex.getGameElement().setTileId(color + offset);
@@ -693,11 +694,11 @@ public class GameScreen extends AbstractScreen implements
 					printTree(actVertex.getfamily(), famPos);
 					position.y -= Constants.GAMELEMENT_PADDING;
 				}
-				
+				}
 				position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
 				position.x += Constants.GAMELEMENT_PADDING;
 				actVertex = actVertex.getnext();
-			}
+			}		
 		}
 
 		@Override
