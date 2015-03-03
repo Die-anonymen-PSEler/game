@@ -103,7 +103,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// Make Image
 		Image charImage = new Image();
-		Texture texture = AssetManager.getTexture("Animation");
+		Texture texture = AssetManager.getTexture("Unicorn");
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		
 		charImage.setDrawable(new TextureRegionDrawable(regions[0]));

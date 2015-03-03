@@ -28,6 +28,14 @@ public class Constants {
 			"#66FFFF" // light blue
 	};
 	
+	
+	//Name of Animation textures
+	public static final String[] TEXTURE_ANIMATION_NAMES = {
+		"BlueMan", // Blauer Mann
+		"Horse", // Pferd mit reiter
+		"Unicorn", // Einhorn mit Reiter
+	};
+	
 	/**
 	 * tag for error or log messages.
 	 */
@@ -122,6 +130,8 @@ public class Constants {
 	
 	public static final float ACTION_TIME = 1f;
 	
+	public static final float FLOAT_EPSILON = 1E-1f;
+	
 	public static class ButtonStrings {
 		
 		public static final String HOME = "home";
@@ -189,6 +199,8 @@ public class Constants {
 		public static final String APPLICATION_FAMILY_INVALID = "Jede Ampel braucht eine Verarbeitungsbereich!";
 		
 		public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
+		
+		public static final String SOLUTION_INVALID = "Dein Lösung führt leider zu einem andere Ergebnis. Versuch es nochmal";
 		
 		public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein";
 	}

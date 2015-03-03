@@ -334,7 +334,7 @@ public class GameScreen extends AbstractScreen implements
 
 		inputMultiplexer.addProcessor(stage);
 	}
-
+	
 	/**
 	 * Performs the input detection and delegates calls to the controller so it
 	 * can perform the logic.

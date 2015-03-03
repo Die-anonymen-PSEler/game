@@ -1,5 +1,6 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -53,7 +54,7 @@ public class RetroMan {
 	/**
 	 * the minimum velocity that is considered moving;
 	 */
-	public static final float MIN_VELOCITY_X = 1E-1f;
+	public static final float MIN_VELOCITY_X = 1f;
 	
 	/**
 	 * the amount by which the x velocity is reduced so the character will get slower
@@ -93,10 +94,12 @@ public class RetroMan {
 	
 	private Animation standRight;
 	private Animation standERight;
-	private Animation runningRight;
-	private Animation runningRightE;
 	private Animation jumpingRight;
 	private Animation jumpingERight;
+	private Animation runingAnimation;
+	private Animation runingAnimationCarry;
+	
+	float timeSum;
 	
 	/**
 	 * the current velocity
@@ -118,16 +121,25 @@ public class RetroMan {
 		state = State.STANDING;
 		
 		//The animation
-		texture = AssetManager.getTexture("Animation");
+		texture = AssetManager.getTexture("Horse");
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+		TextureRegion[] runingFrames = new TextureRegion[2];
+		TextureRegion[] runingFramesCarry = new TextureRegion[2];
+		TextureRegion jumpFrames = new TextureRegion();
+		TextureRegion jumpFramesCarry = new TextureRegion();
+		runingFrames[0] = regions[0];
+		runingFrames[1] = regions[1];
+		runingFramesCarry[0] = regions[2];
+		runingFramesCarry[1] = regions[3];
+		
+		runingAnimation = new Animation(0.25f, runingFrames);
+		runingAnimationCarry = new Animation(0.25f, runingFramesCarry);
 		standRight = new Animation(0, regions[0]);
 		standERight = new Animation(0, regions[2]);
-		runningRight = new Animation(0.15f, regions[0], regions[1]);
-		runningRight.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-		runningRightE = new Animation(0.15f, regions[2], regions[3]);
-		runningRightE.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-		jumpingRight = new Animation(0, regions[8]);
-		jumpingERight = new Animation(0, regions[10]);
+		jumpingRight = new Animation(0, regions[4]);
+		jumpingERight = new Animation(0, regions[5]);
+		
+		timeSum = 0;
 	}
 
 	/**
@@ -170,7 +182,7 @@ public class RetroMan {
 	 * @return true if the character can jump; false otherwise
 	 */
 	public boolean canJump() {
-		if (state == State.JUMPING || state == State.JUMPINGE || Math.abs(velocity.y) > 0) {
+		if (state == State.JUMPING || state == State.JUMPINGE || Math.abs(velocity.y) > Constants.FLOAT_EPSILON) {
 			return false;
 		}
 		return true;
@@ -180,17 +192,17 @@ public class RetroMan {
 	 * moving
 	 */
 	
-	/**
-	 * Sets the velocity.
-	 */
-	public void setVelocity(float x, float y) {
-		if (x > 1E-10) {
-			velocity.x = x;
-		}
-		if (y > 1E-10) {
-			velocity.y = y;
-		}
-	}
+//	/**
+//	 * Sets the velocity.
+//	 */
+//	public void setVelocity(float x, float y) {
+//		if (x > 1E-10) {
+//			velocity.x = x;
+//		}
+//		if (y > 1E-10) {
+//			velocity.y = y;
+//		}
+//	}
 
 	/**
 	 * Adds negative velocity to the character however this does not update his
@@ -339,6 +351,7 @@ public class RetroMan {
 	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {
 		// based on the RetroMan state, get the animation frame
 		TextureRegion frame = null;
+		timeSum += deltaTime;
 		switch (state) {
 		case STANDING:
 			frame = standRight.getKeyFrame(deltaTime);
@@ -347,10 +360,10 @@ public class RetroMan {
 			frame = standERight.getKeyFrame(deltaTime);
 			break;
 		case RUNNING:
-			frame = runningRight.getKeyFrame(deltaTime);
+			frame = runingAnimation.getKeyFrame(timeSum, true);
 			break;
 		case RUNNINGE:
-			frame = runningRightE.getKeyFrame(deltaTime);
+			frame = runingAnimationCarry.getKeyFrame(timeSum, true);
 			break;
 		case JUMPING:
 			frame = jumpingRight.getKeyFrame(deltaTime);

@@ -222,16 +222,17 @@ public class GameController {
 	 * @param delta 
 	 */
 	public void update(float deltaTime) {
-		retroMan.getVelocity().add(0, Constants.WORLD_GRAVITY);
-
-		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
-			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
-		}
 		
+		//Check can jump before set velocity, y to 0.5 => can jump can't be true
 		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X && retroMan.canJump()) {
 			retroMan.getVelocity().x = 0;
 			retroMan.standing();
 		}
+		retroMan.getVelocity().add(0, Constants.WORLD_GRAVITY);
+		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
+			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
+		}
+
 		// multiply by delta time so we know how far we go
 		// in this frame
 		float previousPosition = retroMan.getPos().x;
@@ -324,6 +325,7 @@ public class GameController {
 	
 	public void evaluationInComplete() {
 		levelfinished = false;
+		gameScreen.showValidateError(Constants.RetroStrings.SOLUTION_INVALID);
 		game.setScreen(gameScreen);
 
 	}
