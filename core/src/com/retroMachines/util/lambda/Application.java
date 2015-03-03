@@ -173,13 +173,13 @@ public class Application extends Vertex {
 			// Set next Vertex of this as Next of Last in First Famiyl layer;
 			pointer.getnext().setnext(this.getnext());
 		}
-		// retrn new Worker
+		// return new Worker
 		return this.getfamily();
 	}
 
 	@Override
 	public Vertex getEvaluationResult() {
-		//Returns null because tthe Application is no Part of Evaluation Result
+		//Returns null because the Application is no Part of Evaluation Result
 		return null;
 	}
 

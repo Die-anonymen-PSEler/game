@@ -216,8 +216,7 @@ public class EvaluationOptimizer {
 					return;
 				}
 			}
-			// make resulTree if needed
-			System.out.println(resultTree);
+			// make resultTree if needed
 			if(resultTree != null) {
 				resultPointer.getnext().setnext(result);
 				resultPointer.setnext(resultPointer.getnext().getnext());
@@ -239,7 +238,7 @@ public class EvaluationOptimizer {
 				runNextEvaluationStep();
 				return;
 			}
-			//Wenn alle steps starten geklickt starte n�chsten schritt sonst wart auf eingabe
+			//Wenn alle steps starten geklickt starte nächsten schritt sonst wart auf eingabe
 			offsetX = (int) evalutionPointer.getnext().getGameElement().getPosition().x;
 			if(autoStep) {
 				runNextEvaluationStep();
@@ -254,8 +253,10 @@ public class EvaluationOptimizer {
 	 *  evaluation result is saved in resultTree
 	 */
 	private static void checkEvaluation() {
-		System.out.println(resultTree.getStart().getColor() + " - " + evaluationController.getLevel().getLambdaUtil().getTargetTree().getStart().getColor());
-		System.out.println(resultTree.getStart().getnext().getColor() + " - " + evaluationController.getLevel().getLambdaUtil().getTargetTree().getStart().getnext().getColor());
+
+		if (resultTree == null || evaluationController == null) {
+			System.out.println("nullPointer");
+		}
 		result = resultTree.equals(evaluationController.getLevel().getLambdaUtil().getTargetTree());
 		System.out.println(result);
 		if(result) {

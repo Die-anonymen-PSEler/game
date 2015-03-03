@@ -91,8 +91,6 @@ public class LambdaUtil {
 		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
 		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
 		
-		//System.out.println(levelTree.getStart().getnext().getfamily());
-		
 	}
 
 	public void registerNewListener(OnNextLambdaStepListener listener) {

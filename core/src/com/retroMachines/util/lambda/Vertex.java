@@ -686,6 +686,15 @@ public abstract class Vertex {
 		if (v == null) {
 			return false;
 		}
+		//veritices equal only if this.next and v.next are both null or both != null.
+		//For this we use xor. True if, and only if, one statement is true, while the other is false.
+		if(this.next != null ^ v.next != null) {
+			return false;
+		} else if(this.next != null) { //in case both are not null, need to compare them.
+			if (!this.next.equals(v)) { //if they do not equal we can return false
+				return false;
+			}
+		}
 		if (this.getType().equals(v.getType()) && this.getColor() == v.getColor()) {
 			if (this.family != null) {
 				return this.equals(v.family);
