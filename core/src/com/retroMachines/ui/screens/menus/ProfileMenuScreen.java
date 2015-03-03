@@ -211,16 +211,20 @@ public class ProfileMenuScreen extends MenuScreen implements
 	}
 	
 	private class DeleteDialog extends RetroDialog {
-
+		RetroDialog deletionError;
+		
+		
 		public DeleteDialog(String title, String msg) {
 			super(title, msg);
 			button(new Button(skin, ButtonStrings.ABORT), false);
 		}
 		
 		protected void result(Object object) {
-			if ((Boolean) object) {
+			if ((Boolean) object && profileController.getAllProfiles().length > 1) {
 				profileController.deleteProfile(profileList.getSelected());
 			} else {
+				deletionError = new RetroDialog("", "Zum Spielen brauchst du ein Profil!");
+				deletionError.show(stage);
 				this.remove();
 			}
 		}
