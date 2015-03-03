@@ -12,7 +12,6 @@ import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
-import com.retroMachines.ui.screens.menus.LoadMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 import com.retroMachines.util.MusicManager;
 
@@ -80,7 +79,6 @@ public class RetroMachines extends Game{
         Gdx.input.setCatchBackKey(true);
         Gdx.input.setCatchMenuKey(true);
         AssetManager.initializePreLoading();
-		setScreen(new LoadMenuScreen(this));
 		AssetManager.initializeWhileLoading();
 		GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
