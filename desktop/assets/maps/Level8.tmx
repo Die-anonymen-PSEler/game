@@ -28,7 +28,7 @@
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl2kOgjAQRkfc9TQKilUSvf+pnMaSNIRMp9IVOskLPyjLa7+W0lYAraJBVgCAB1gjG2SL7JA9ckCOyAk5A7+tj3vqbW2uaTTfIfLc3Ivyfy3cP8b43/GZDyZvB++Xmn/o6hbubzv+pnxeCELk2be/qYS6bohINEs+5v+wD2zcOeufy5z4Wv/EH+4xyuf6n7q7rNy/f1PnS+7+U6v45+tvyj7nO/Ek/DumP3fPHmN/Y6qcx99FhfYfy8pYLqhMUe25Gaur3578Q/jfVJvrzHJQK29q7OfaD7bu+lzo+yFnpDv1z18oLJkvLI94UQ==
+   eJztl2kOgjAQRkfc9TQKglUSvf+pHGJJmoZMp6Q7TPLCD8ry2q+ldBVAJ2mQDQDgAbbIDtkjB+SInJAzckGuwG/r455qW5trGsVXZzhXelH+74X7xxj/Fp/5ZPJx8H6p+YeufuH+tuNvyueNIESeffubSsjrdESiWfIx//U+sHHnrH8uc+Jr/RMz3GOUz/U/dfehcv7+meYKZ57k7O+iVv8y/FuLzKv1Ivx75r24e/YY+xtTlTL+cyu0/1RWpnJBZYpqz81YXf335F/C/yHb3AvLQS29qbEvtR9s3dW5MPZDzgzu1D//ysqS+QHaCXa7
   </data>
  </layer>
  <layer name="Open Gate" width="64" height="24">
@@ -43,12 +43,12 @@
  </layer>
  <layer name="Pipes" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1EEKgDAMBMA00B78/4OlUFG8eFMhMxDYY5ZAIgAAAOB/MiPGmu2SW3692ft6wc6cqt+/ev/p+H/3DPBkBwI9AGk=
+   eJzt1TEKACEMRNExoIX3P7AIirKNnS7MfxCYMkOKSAAAAAD+KkIqY+qWU7ze7L5s2BmL+/3d+7tzv797/27+/28GgJMGKwAAdw==
   </data>
  </layer>
  <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1bEJAAAIA0Gxc/+FHcHCRvCu+gECiQAAAOCiyrnhA5vnM18AbDRF+ABO
+   eJzt1qENAEAMA7GqrPsv/CM8KKkUG2WAA6kCAIC7pv8bEmieZPonmS8EbDwZ8QBZ
   </data>
  </layer>
  <layer name="Objektebene" width="64" height="24">
