@@ -26,7 +26,7 @@ public class AboutMenuScreen extends MenuScreen {
 	 */
 	public static final String CREDIT = "by RetroMachines aka Luca Becker, Henrike Hardt, Larissa Schmid, Adrian Schulte, Maik Wiesner";
 	public static final String INFO = "Der Lambda-Kalkuel ist ein Element der Informatik. Es ist eine formale "
-			+ "Sprache, die im Allgemeine dazu dient, Funktionen zu definieren bzw. beschreiben.";
+			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.";
 	
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
