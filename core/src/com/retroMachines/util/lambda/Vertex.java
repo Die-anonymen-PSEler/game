@@ -183,7 +183,6 @@ public abstract class Vertex {
 	 * @return true if renamed family successful, false otherwise
 	 */
 	protected boolean renameFamily(int oldColor, int newColor) {
-		
 		if(this.getFamilyColorList().contains(oldColor)) {
 			for(int i = 0; i < this.getFamilyColorList().size(); i++) {
 				if (this.getFamilyColorList().get(i) == oldColor) {
@@ -193,12 +192,14 @@ public abstract class Vertex {
 			}
 			this.getFamilyColorList().add(newColor);
 			
-			
-			if(this.getColor() == oldColor) {
-				this.setColor(newColor);
-				int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
-				this.getGameElement().setTileId(newColor + offset);
+			if(!this.getType().equals(Constants.RetroStrings.APPLICATION_TYPE)) {
+				if(this.getColor() == oldColor) {
+					this.setColor(newColor);
+					int offset = (Integer) this.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+					this.getGameElement().setTileId(newColor + offset);
+				}
 			}
+
 			if(this.getfamily() != null) {
 				// Rename the Others if they are no imaginary Friends  
 				Vertex renamePointer = new Dummy();
@@ -290,7 +291,7 @@ public abstract class Vertex {
 				position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 				
 				//Animation
-				EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(pos, this.getnext().getGameElement(), false);
+				EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position, this.getnext().getGameElement(), false);
 				
 				if(this.getnext().getnext() != null) {
 					replaced.setnext(this.getnext().getnext());

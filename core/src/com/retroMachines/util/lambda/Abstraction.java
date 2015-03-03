@@ -73,11 +73,11 @@ public class Abstraction extends Vertex {
 						// what should happen when there are more than 11 different Colors used ?
 						return true;
 					}
-					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
 						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: " + this.getColor());
 					}
+					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
 					returnValue = true;
 					newColor++;
 				}
