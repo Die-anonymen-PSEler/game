@@ -66,7 +66,7 @@ public class Constants {
 	/**
 	 * the id of the last level of the game
 	 */
-	public static final int MAX_LEVEL_ID = 7;
+	public static final int MAX_LEVEL_ID = 8;
 	
 	/**
 	 * the gravity that is dragging the character towards the grounds
