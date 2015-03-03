@@ -42,7 +42,6 @@ public class LevelMenuScreen extends MenuScreen {
 	 */
 	public LevelMenuScreen(RetroMachines game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -148,7 +147,6 @@ public class LevelMenuScreen extends MenuScreen {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Auto-generated method stub
 			gameController.startLevel(id);
 		}
 

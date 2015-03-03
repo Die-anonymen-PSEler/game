@@ -233,7 +233,6 @@ public class CreateProfileMenuScreen extends MenuScreen {
 			if (profileController.getAllProfiles().length > 0) {
 				game.previousScreen();
 			} else {
-				// TODO notice about the issue
 				errorDialog = new RetroDialog("", "Zum Spielen brauchst du ein Profil!");
 				errorDialog.show(stage);
 			}

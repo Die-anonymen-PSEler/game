@@ -104,7 +104,6 @@ public class SettingController implements OnProfileChangedListener {
 	 * @return A float variable within the range of 0-1.0.
 	 */
 	public float getVolume() {
-		// TODO Auto-generated method stub
 		return settings.getVolume();
 	}
 
@@ -165,7 +164,6 @@ public class SettingController implements OnProfileChangedListener {
 	 */
 	@Override
 	public void profileChanged() {
-		// TODO Auto-generated method stub
 		settings = game.getProfileController().getProfile().getSetting();
 		notifyListeners();
 	}

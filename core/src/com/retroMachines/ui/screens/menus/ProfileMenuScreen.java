@@ -62,7 +62,6 @@ public class ProfileMenuScreen extends MenuScreen implements
 	protected void initialize() {
 		profileController = game.getProfileController();
 		profileController.addProfileChangedListener(this);
-		// TODO Auto-generated method stub
 		skin = AssetManager.getMenuSkin();
 
 		// Make Title

@@ -29,7 +29,6 @@ public class StatisticMenuScreen  extends MenuScreen {
 	 */
 	public StatisticMenuScreen(RetroMachines game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
