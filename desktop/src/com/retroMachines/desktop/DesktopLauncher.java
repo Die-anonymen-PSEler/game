@@ -8,7 +8,9 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width=RetroMachines.WIDTH; // sets window width
-        config.height=RetroMachines.HEIGHT;  // sets window height
+		config.height=RetroMachines.HEIGHT;  // sets window height
+        config.resizable = false;
+        //config.fullscreen = true;
 		new LwjglApplication(new RetroMachines(), config);
 	}
 }
