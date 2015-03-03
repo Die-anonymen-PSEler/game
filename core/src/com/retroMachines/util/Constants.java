@@ -31,9 +31,10 @@ public class Constants {
 	
 	//Name of Animation textures
 	public static final String[] TEXTURE_ANIMATION_NAMES = {
+		"Robot", // Roboter
 		"BlueMan", // Blauer Mann
 		"Horse", // Pferd mit reiter
-		"Unicorn", // Einhorn mit Reiter
+		"Unicorn" // Einhorn mit Reiter
 	};
 	
 	/**
@@ -200,7 +201,7 @@ public class Constants {
 		
 		public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
 		
-		public static final String SOLUTION_INVALID = "Dein Lösung führt leider zu einem andere Ergebnis. Versuch es nochmal";
+		public static final String SOLUTION_INVALID = "Leider nicht richtig. Versuch es nochmal";
 		
 		public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein";
 	}
