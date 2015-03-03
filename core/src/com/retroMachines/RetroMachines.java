@@ -25,6 +25,9 @@ import com.retroMachines.util.MusicManager;
  */
 public class RetroMachines extends Game{
     
+	/**
+	 * a stack of screens in order to return to the previous
+	 */
     private final Stack<Screen> screenStack;
 
 	/**
@@ -48,20 +51,8 @@ public class RetroMachines extends Game{
 	 */
 	private StatisticController statisticController;
 	
-	/**
-	 * 
-	 */
-	private int systemVolume;
-	
-	/**
-	 * 
-	 */
-	private int maxSystemVolume;
-	
 	public RetroMachines() {
 		super();
-		systemVolume = -1;
-		maxSystemVolume = -1;
 		screenStack = new Stack<Screen>();
 	}
 
@@ -91,9 +82,6 @@ public class RetroMachines extends Game{
 		if (profileExists) {
 			// a profile is available for loading
 			setScreen(new MainMenuScreen(this));
-			if (systemVolume != -1 && maxSystemVolume != -1) {
-				settingController.setVolume(systemVolume / (float)maxSystemVolume);
-			}
 		}
 		else {
 			// no profile go to createprofilemenuscreen
@@ -167,15 +155,5 @@ public class RetroMachines extends Game{
 			screenStack.pop(); // remove current screen.
 			setScreen(screenStack.pop()); // set the screen before.
 		}
-	}
-
-	/**
-	 * sets the volume to the system volume
-	 * @param volume the actual volume the user has set
-	 * @param maxVolume the maximal volume 
-	 */
-	public void setSystemVolume(int volume, int maxVolume) {
-		systemVolume = volume;
-		maxSystemVolume = maxVolume;
 	}
 }
