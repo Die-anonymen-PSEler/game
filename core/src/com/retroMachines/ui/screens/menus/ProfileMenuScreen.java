@@ -29,7 +29,6 @@ public class ProfileMenuScreen extends MenuScreen implements
 
 	private final static float FONTSIZE3 = 3f;
 	private final static float FONTSIZE2_5 = 2.5f;
-	private final static float FONTSIZE2_1 = 2.1f;
 
 	/**
 	 * 

@@ -5,7 +5,6 @@ import java.util.Stack;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
@@ -31,12 +30,6 @@ public class RetroMachines extends Game{
     public static final int WIDTH=1280,HEIGHT=720; // used later to set window size Desktop Mode
     
     private final Stack<Screen> screenStack;
-
-	
-	/**
-	 * The Global Variables that are stored within persistent background storage.
-	 */
-	private GlobalVariables globalVariables;
 
 	/**
 	 * The Profile Controller controls the profile information.
@@ -69,11 +62,6 @@ public class RetroMachines extends Game{
 	 */
 	private int maxSystemVolume;
 	
-	/**
-	 * the game music
-	 */
-	private Music music;
-	
 	public RetroMachines() {
 		super();
 		systemVolume = -1;
@@ -94,7 +82,7 @@ public class RetroMachines extends Game{
         AssetManager.initializePreLoading();
 		setScreen(new LoadMenuScreen(this));
 		AssetManager.initializeWhileLoading();
-		globalVariables = GlobalVariables.getSingleton();
+		GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
 		boolean profileExists = profileController.loadLastProfile();
 		settingController = new SettingController(this);
@@ -116,7 +104,6 @@ public class RetroMachines extends Game{
 			// no profile go to createprofilemenuscreen
 			setScreen(new CreateProfileMenuScreen(this));
 		}
-		music = AssetManager.getMusic();
 	}
 	
 	@Override

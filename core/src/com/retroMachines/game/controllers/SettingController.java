@@ -151,4 +151,8 @@ public class SettingController implements OnProfileChangedListener {
 		settings = game.getProfileController().getProfile().getSetting();
 		notifyListeners();
 	}
+
+	public void toggleCharacter() {
+		
+	}
 }

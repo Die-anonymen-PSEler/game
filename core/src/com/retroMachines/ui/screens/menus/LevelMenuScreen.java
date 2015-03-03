@@ -25,13 +25,8 @@ import com.retroMachines.util.Constants.ButtonStrings;
 public class LevelMenuScreen extends MenuScreen {
 
 	private final static float LEVELBUTTONSIZE = 6f;
-	private final static float PADDING30 = 30f;
-	private final static float FONTSIZE2_1 = 2.1f;
 	private final static float FONTSIZE2_5 = 2.5f;
 	private final static float ONE_8th = (1f / 8f);
-	private final static float DIALOGTEXTWIDTH = (5f / 8f);
-	private final static float DIALOGWIDTH = (2f / 3f);
-	private final static float DIALOGHEIGHT = (5f / 9f);
 
 	private RetroDialog lockedDialog;
 
@@ -76,7 +71,7 @@ public class LevelMenuScreen extends MenuScreen {
 			TextButton ilevel;
 			if (i >= unlocked) {
 				ilevel = new TextButton(iToString.toString(), skin, ButtonStrings.LOCKED);
-				ilevel.addListener(new LevelLockedButtonClickListener(i));
+				ilevel.addListener(new LevelLockedButtonClickListener());
 			} else {
 				ilevel = new TextButton(iToString.toString(), skin);
 				ilevel.addListener(new LevelUnlockedButtonClickListener(i));
@@ -121,15 +116,6 @@ public class LevelMenuScreen extends MenuScreen {
 	 * 
 	 */
 	private class LevelLockedButtonClickListener extends ClickListener {
-
-		/**
-		 * the ID of the level so it can be started later on.
-		 */
-		private int id;
-
-		public LevelLockedButtonClickListener(int id) {
-			this.id = id;
-		}
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

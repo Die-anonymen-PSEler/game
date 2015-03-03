@@ -39,12 +39,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	 * The root of the lambda term structure for generation on the screen.
 	 */
 	private LevelTree tree;
-
-	/**
-	 * If true the render method will kick of the animation and render it to the
-	 * screen; if false the render method will stop the animation.
-	 */
-	private boolean animationInProgress;
 	
 	/**
 	 * 
@@ -61,7 +55,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 		super(game);
 		buttonStage = new Stage();
 		this.evaController = evaluationController;
-		animationInProgress = false;
 		inputMultiplexer.addProcessor(this);
 		initialize();
 	}
@@ -105,15 +98,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 		this.tree = t;
 		printTree(tree.getStart(), new Vector2(Constants.EVALUATIONSCREEN_PADDING, Constants.EVALUATIONSCREEN_PADDING));
 	}
-
-	/**
-	 * Sets animationProgress to true and triggers the animation and displays it
-	 * to the user.
-	 */
-	public void startAnimation() {
-		animationInProgress = true;
-		// TODO start animation
-	}
 	
 	/**
 	 * Updates the evaluation animation.
@@ -122,15 +106,6 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	public boolean updateScreen() {
 		
 		return false;
-	}
-
-	/**
-	 * Sets animationInProgress to false and freezes the animation in it's
-	 * current position.
-	 */
-	public void pauseAnimation() {
-		animationInProgress = false;
-		// TODO stop animation
 	}
 
 	@Override

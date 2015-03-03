@@ -1,6 +1,5 @@
 package com.retroMachines.game.gameelements;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -289,6 +288,8 @@ public class RetroMan {
 		case RUNNING:
 			state = State.RUNNINGE;
 			break;
+		default:
+			break;
 		}
 	}
 
@@ -311,6 +312,8 @@ public class RetroMan {
 			break;
 		case RUNNINGE:
 			state = State.RUNNING;
+			break;
+		default:
 			break;
 		}
 		return g;

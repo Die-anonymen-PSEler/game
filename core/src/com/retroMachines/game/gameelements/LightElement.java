@@ -1,9 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.data.AssetManager;
-import com.retroMachines.util.Constants;
 
 /**
  * This class is part of the model of RetroMachines.

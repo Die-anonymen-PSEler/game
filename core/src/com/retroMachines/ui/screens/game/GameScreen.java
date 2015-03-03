@@ -377,12 +377,6 @@ public class GameScreen extends AbstractScreen implements
 	private void showTask() {
 		taskDialog.show(stage);
 	}
-
-	private void hideTask() {
-
-	}
-	
-
 	
 	/**
 	 * Shows the HintScreen on top of the game.

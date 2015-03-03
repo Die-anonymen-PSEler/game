@@ -16,10 +16,6 @@ public class GlobalVariables extends Model {
 	 */
 	public static final String TABLE_NAME = "globalVariables";
 	
-	private static final String KEY_KEY = "key";
-	
-	private static final String KEY_VALUE = "value";
-	
 	/**
 	 * the key for the lastusedprofile id
 	 */

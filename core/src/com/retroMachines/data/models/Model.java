@@ -12,11 +12,6 @@ import com.badlogic.gdx.Preferences;
 public abstract class Model {
 	
 	/**
-	 * the timeout for a query to be executed
-	 */
-	private static final int QUERY_TIMEOUT = 10;
-	
-	/**
 	 * select query to receive the id of the row that was inserted by an insert query
 	 */
 	public static final String SELECT_LASTINSERTEDID = "SELECT last_insert_rowid()";

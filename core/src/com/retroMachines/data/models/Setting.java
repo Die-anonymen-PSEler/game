@@ -21,8 +21,6 @@ public class Setting extends Model {
 	 */
 	public static final String TABLE_NAME = "settings";
 	
-	private static final String KEY_ID = "id";
-	
 	private static final String KEY_VOLUME = "volume";
 	
 	private static final String KEY_SOUNDONOFF = "soundOnOff";

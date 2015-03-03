@@ -22,8 +22,6 @@ public class Statistic extends Model {
 	 */
 	public static final String TABLE_NAME = "statistics";
 
-	private static final String KEY_ID = "id";
-
 	private static final String KEY_PLAYTIME = "playtime";
 
 	private static final String KEY_LEVELCOMPLETED = "levelCompleted";

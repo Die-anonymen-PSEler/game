@@ -201,7 +201,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private class NextCharButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Change Char Pic and save it
+			settingController.toggleCharacter();
 		}
 	}
 

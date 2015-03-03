@@ -15,8 +15,6 @@ public class Profile extends Model {
 	 */
 	public static final String TABLE_NAME = "profiles";
 	
-	private static final String KEY_ID = "id";
-	
 	private static final String KEY_PROFILE_NAME = "name";
 	
 	private static final String KEY_STATISTIC = "statisticId";
