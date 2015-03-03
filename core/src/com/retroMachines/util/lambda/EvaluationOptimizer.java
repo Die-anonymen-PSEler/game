@@ -198,7 +198,6 @@ public class EvaluationOptimizer {
 	}
 	
 	private static void prepareNextEvaluation() {
-
 		actStep = 0;
 		
 		//creating copy of current tree
@@ -208,7 +207,7 @@ public class EvaluationOptimizer {
 
 		if(result != null) {
 			//check whether there is an infinite evaluation (same tree after evaluation as before)
-			if(result.getnext() != null) {
+			if(result.getnext() != null && !result.getType().equals(Constants.RetroStrings.VARIABLE_TYPE)) {
 				LevelTree newTree = new LevelTree(result.getnext());
 				if (oldTree.equals(newTree)) {
 					//we can stop evaluation at this point
@@ -218,6 +217,7 @@ public class EvaluationOptimizer {
 				}
 			}
 			// make resulTree if needed
+			System.out.println(resultTree);
 			if(resultTree != null) {
 				resultPointer.getnext().setnext(result);
 				resultPointer.setnext(resultPointer.getnext().getnext());
@@ -232,8 +232,13 @@ public class EvaluationOptimizer {
 		if(evalutionPointer.getnext() == null) {
 			//End of Evaluation
 			resultPointer.getnext().setnext(null);
+			System.out.println("Check");
 			checkEvaluation();
 		} else {
+			if(evalutionPointer.getnext().getType().equals(Constants.RetroStrings.VARIABLE_TYPE)) {
+				runNextEvaluationStep();
+				return;
+			}
 			//Wenn alle steps starten geklickt starte n�chsten schritt sonst wart auf eingabe
 			offsetX = (int) evalutionPointer.getnext().getGameElement().getPosition().x;
 			if(autoStep) {
@@ -249,7 +254,10 @@ public class EvaluationOptimizer {
 	 *  evaluation result is saved in resultTree
 	 */
 	private static void checkEvaluation() {
+		System.out.println(resultTree.getStart().getColor() + " - " + evaluationController.getLevel().getLambdaUtil().getTargetTree().getStart().getColor());
+		System.out.println(resultTree.getStart().getnext().getColor() + " - " + evaluationController.getLevel().getLambdaUtil().getTargetTree().getStart().getnext().getColor());
 		result = resultTree.equals(evaluationController.getLevel().getLambdaUtil().getTargetTree());
+		System.out.println(result);
 		if(result) {
 			evaluationController.getGameController().evaluationComplete();
 		} else {
