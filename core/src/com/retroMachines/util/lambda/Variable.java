@@ -64,7 +64,7 @@ public class Variable extends Vertex {
 	@Override
 	public LinkedList<Vertex> betaReduction() {
 		//Variable doesnt do betaReduction
-		EvaluationOptimizer.RunNextStep();
+		EvaluationOptimizer.runNextStep();
 		return new LinkedList<Vertex>();
 	}
 
@@ -137,14 +137,14 @@ public class Variable extends Vertex {
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		//Start next Step no reorganization is needed
-		EvaluationOptimizer.DelayAndRunNextStepAnim(this.getGameElement());
+		EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 		
 	}
 
 	@Override
 	public void DeleteAfterBetaReduction() {
 		//start next evaluationStep
-		EvaluationOptimizer.RunNextStep();
+		EvaluationOptimizer.runNextStep();
 		
 	}
 
@@ -159,10 +159,10 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public void UpdatePositionsAfterBetaReduction() {
+	public void updatePositionsAfterBetaReduction() {
 		// Do nothing , you Have No Family ! :D
 		// Start next evaluation Step
-		EvaluationOptimizer.RunNextStep();
+		EvaluationOptimizer.runNextStep();
 	}
 
 }

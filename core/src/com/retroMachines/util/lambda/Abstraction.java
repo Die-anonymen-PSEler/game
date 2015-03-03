@@ -118,7 +118,7 @@ public class Abstraction extends Vertex {
 					position.x += Constants.ABSTRACTION_OUTPUT;
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 
-					EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
+					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
 					
 					if(this.getfamily().getnext() != null) {
 						replace.setnext(this.getfamily().getnext());
@@ -138,7 +138,7 @@ public class Abstraction extends Vertex {
 					this.setnext(null);
 				}
 				
-				EvaluationOptimizer.DelayAndRunNextStepAnim(this.getGameElement());
+				EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 				return returnList;
 				
 			} else {
@@ -247,7 +247,7 @@ public class Abstraction extends Vertex {
 	@Override
 	public void DeleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		EvaluationOptimizer.ScaleAnimation(this.getGameElement(), true);
+		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
 		
 	}
 
@@ -277,7 +277,7 @@ public class Abstraction extends Vertex {
 	}
 
 	@Override
-	public void UpdatePositionsAfterBetaReduction() {
+	public void updatePositionsAfterBetaReduction() {
 		// update Gameelement Postions  after Gameelement of this was deleted 
 		this.getfamily().updateGameelementPosition(0, -1);
 	}

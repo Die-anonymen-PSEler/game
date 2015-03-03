@@ -255,7 +255,7 @@ public abstract class Vertex {
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 					
 					//Animation
-					EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
+					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
 					
 					if(this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
@@ -290,7 +290,7 @@ public abstract class Vertex {
 				position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 				
 				//Animation
-				EvaluationOptimizer.MoveAndScaleAnimationWithoutDelay(pos, this.getnext().getGameElement(), false);
+				EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(pos, this.getnext().getGameElement(), false);
 				
 				if(this.getnext().getnext() != null) {
 					replaced.setnext(this.getnext().getnext());
@@ -516,7 +516,7 @@ public abstract class Vertex {
 	/**
 	 * Update Position of Family if Worker was deleted in BetaReduction
 	 */
-	abstract public void UpdatePositionsAfterBetaReduction();
+	abstract public void updatePositionsAfterBetaReduction();
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
@@ -560,7 +560,7 @@ public abstract class Vertex {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		//Animation
-		EvaluationOptimizer.MoveAndScaleAnimation(pos, this.getGameElement(), true);
+		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(), true);
 		
 	}
 	
@@ -572,7 +572,7 @@ public abstract class Vertex {
 			this.getfamily().readInFamilyAnimation(pos);
 		}
 		
-		EvaluationOptimizer.MoveAndScaleAnimation(pos, this.getGameElement(), false);
+		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(), false);
 	}
 	
 	/**
@@ -595,7 +595,7 @@ public abstract class Vertex {
 		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
 		// Start next evaluationStep
 		
-		EvaluationOptimizer.MoveAnimation(new Vector2(newX, newY), this.getGameElement(), true);
+		EvaluationOptimizer.moveAnimation(new Vector2(newX, newY), this.getGameElement(), true);
 	}
 	
 	private void updateOtherGameelementPosition(int difX, int difY) {
@@ -609,7 +609,7 @@ public abstract class Vertex {
 		int newX = (int)actPosition.x + (Constants.GAMEELEMENT_WIDTH * difX);
 		int newY = (int)actPosition.y + (Constants.GAMEELEMENT_WIDTH * difY);
 		
-		EvaluationOptimizer.MoveAnimation(new Vector2(newX, newY), this.getGameElement(), false);
+		EvaluationOptimizer.moveAnimation(new Vector2(newX, newY), this.getGameElement(), false);
 		
 		if (this.getfamily() != null) {
 			this.getfamily().updateOtherGameelementPosition(difX, difY);
@@ -645,7 +645,7 @@ public abstract class Vertex {
 		}
 		
 		// Move	
-		EvaluationOptimizer.MoveAnimation(startPos, this.getGameElement(), true);
+		EvaluationOptimizer.moveAnimation(startPos, this.getGameElement(), true);
 	}
 	
 	/**
@@ -669,7 +669,7 @@ public abstract class Vertex {
 		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
 		
 		// Move	
-		EvaluationOptimizer.MoveAnimation(new Vector2(x + centerVertex, y), this.getGameElement(), false);
+		EvaluationOptimizer.moveAnimation(new Vector2(x + centerVertex, y), this.getGameElement(), false);
 		
 		if (this.getfamily() != null) {
 			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);

@@ -61,7 +61,7 @@ public class EvaluationOptimizer {
 	
 	//-----Methods-------
 	
-	public static void MoveAndScaleAnimationWithoutDelay(Vector2 pos, GameElement x, boolean nextStep) {
+	public static void moveAndScaleAnimationWithoutDelay(Vector2 pos, GameElement x, boolean nextStep) {
 		Action a;
 				
 		if(nextStep) {
@@ -84,7 +84,7 @@ public class EvaluationOptimizer {
 		evaluationController.runAnimation(x, a);
 	}
 	
-	public static void MoveAndScaleAnimation(Vector2 pos, GameElement x, boolean nextStep) {
+	public static void moveAndScaleAnimation(Vector2 pos, GameElement x, boolean nextStep) {
 		Action a;
 				
 		if(nextStep) {
@@ -109,7 +109,7 @@ public class EvaluationOptimizer {
 		evaluationController.runAnimation(x, a);
 	}
 	
-	public static void ScaleAnimation(GameElement x, boolean nextStep) {
+	public static void scaleAnimation(GameElement x, boolean nextStep) {
 		Action a;
 		if(nextStep) {
 			a =	Actions.sequence(
@@ -127,7 +127,7 @@ public class EvaluationOptimizer {
 		evaluationController.runAnimation(x, a);
 	}
 	
-	public static void MoveAnimation(Vector2 pos, GameElement x, boolean nextStep) {
+	public static void moveAnimation(Vector2 pos, GameElement x, boolean nextStep) {
 		Action a;
 				
 		if(nextStep) {
@@ -142,11 +142,11 @@ public class EvaluationOptimizer {
 		evaluationController.runAnimation(x, a);
 	}
 	
-	public static void RunNextStep() {
+	public static void runNextStep() {
 		runNextEvaluationStep();
 	}
 	
-	public static void DelayAndRunNextStepAnim(GameElement g) {
+	public static void delayAndRunNextStepAnim(GameElement g) {
 		
 		Action a = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions.run(new NextStepWithoutRemove()));
 		evaluationController.runAnimation(g, a);
@@ -194,10 +194,10 @@ public class EvaluationOptimizer {
 	
 	private static void step5UpdateFamilyPositions() {
 		actStep = 5;
-		evalutionPointer.getnext().UpdatePositionsAfterBetaReduction();
+		evalutionPointer.getnext().updatePositionsAfterBetaReduction();
 	}
 	
-	private static void PrepareNextEvaluation() {
+	private static void prepareNextEvaluation() {
 
 		actStep = 0;
 		
@@ -234,7 +234,7 @@ public class EvaluationOptimizer {
 			resultPointer.getnext().setnext(null);
 			checkEvaluation();
 		} else {
-			//Wenn alle steps starten geklickt starte nächsten schritt sonst wart auf eingabe
+			//Wenn alle steps starten geklickt starte nï¿½chsten schritt sonst wart auf eingabe
 			offsetX = (int) evalutionPointer.getnext().getGameElement().getPosition().x;
 			if(autoStep) {
 				runNextEvaluationStep();
@@ -292,7 +292,7 @@ public class EvaluationOptimizer {
 			step5UpdateFamilyPositions();
 			break;
 		case 5:
-			PrepareNextEvaluation();
+			prepareNextEvaluation();
 			break;
 		default:
 			Gdx.app.log(Constants.LOG_TAG, "act Step error");

@@ -78,7 +78,7 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public void UpdatePositionsAfterBetaReduction() {
+	public void updatePositionsAfterBetaReduction() {
 		// Do nothing You are a Dummy
 	}
 
