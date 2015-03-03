@@ -47,6 +47,8 @@ public final class MusicManager implements SettingsChangeListener {
 	@Override
 	public void onSettingsChanged() {
 		volume = ((RetroMachines) Gdx.app.getApplicationListener()).getSettingController().getVolume();
-		music.setVolume(volume);
+		if (music != null) {
+			music.setVolume(volume);
+		}
 	}
 }
