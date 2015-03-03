@@ -709,16 +709,16 @@ public class GameScreen extends AbstractScreen implements
 			
 			Table dialogTable = new Table(skin);
 			
-			Label header = new Label("Menü", skin);
+			Label header = new Label("Menue", skin);
 			header.setWrap(true);
 			header.setAlignment(Align.center);
 			
-			Label levelMenu = new Label("Ins Level-Menü", skin);
+			Label levelMenu = new Label("Ins Level-Menue", skin);
 			levelMenu.setWrap(true);
 			levelMenu.setAlignment(Align.center);
 			levelMenu.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
 			
-			Label back = new Label("Zurück zum Spiel", skin);
+			Label back = new Label("Zurueck zum Spiel", skin);
 			back.setWrap(true);
 			back.setAlignment(Align.center);
 			back.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
