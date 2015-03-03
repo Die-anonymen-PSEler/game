@@ -124,8 +124,6 @@ public class RetroMan {
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		TextureRegion[] runingFrames = new TextureRegion[2];
 		TextureRegion[] runingFramesCarry = new TextureRegion[2];
-		TextureRegion jumpFrames = new TextureRegion();
-		TextureRegion jumpFramesCarry = new TextureRegion();
 		runingFrames[0] = regions[0];
 		runingFrames[1] = regions[1];
 		runingFramesCarry[0] = regions[2];

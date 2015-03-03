@@ -8,14 +8,7 @@ import com.retroMachines.data.AssetManager;
  * A machine element that represents the abstraction within the lambda calculus.
  * @author RetroFactory
  */
-public class MachineElement extends GameElement {
-	
-	/**
-	 * The ID of the color this machine element should have.
-	 * The hex representation can be looked up within the constants class.
-	 */
-	private int colorId;
-	
+public class MachineElement extends GameElement {	
 	
 	/**
 	 * Creates a new instance of MachineElement and assigns a texture to it
@@ -23,7 +16,6 @@ public class MachineElement extends GameElement {
 	 */
 	public MachineElement(int colorId) {
 		super();
-		this.colorId = colorId;
 	}
 
 	@Override

@@ -11,17 +11,10 @@ import com.retroMachines.data.AssetManager;
 public class MetalElement extends GameElement {
 
 	/**
-	 * The ID of the color this metal element should have the hex representation
-	 * can be looked up within the constants class
-	 */
-	private int colorId;
-
-	/**
 	 * Creates a new instance of MetalElement
 	 */
 	public MetalElement(int colorId) {
 		super();
-		this.colorId = colorId;
 	}
 
 	@Override
