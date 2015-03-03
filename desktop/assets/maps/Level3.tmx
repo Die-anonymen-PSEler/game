@@ -43,12 +43,12 @@
  </layer>
  <layer name="Pipes" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAQBDEVFPuv2OtiT0hg/jMGAAAAwF9WdauZHgna6YEGTnoAoLkHpLQAFw==
+   eJztzjEKACAMADEVLP7/xXZwda5CArdfawAAAAD/GNnKIuvFL1Vm9cAD4gTA3QbvAAAj
   </data>
  </layer>
  <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt06ERAAAIxLC37L8wHoPmSEwnaAIAAABcU6PwjQcAdg0H9wAl
+   eJzt0zENAAAIBLFf8W8YBSSshHY6A5cAAAAAl9TQ8IUHAHYaCD8AJQ==
   </data>
  </layer>
  <layer name="Objektebene" width="64" height="24">
