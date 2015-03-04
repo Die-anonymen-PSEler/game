@@ -225,7 +225,7 @@ public class Setting extends Model {
 	}
 
 	public boolean getTutorialFinished(int levelId) {
-		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId), true);
+		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId), false);
 	}
 
 	public void setTutorialFinished(int levelId, boolean value) {
