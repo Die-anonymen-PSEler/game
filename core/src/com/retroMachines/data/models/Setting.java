@@ -179,6 +179,7 @@ public class Setting extends Model {
 	
 	public void setSelectedCharacter(int id) {
 		this.selectedCharacter = id;
+		write();
 	}
 	
 	public int getSelectedCharacter() {

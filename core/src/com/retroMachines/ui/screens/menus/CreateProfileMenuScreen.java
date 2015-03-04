@@ -62,6 +62,13 @@ public class CreateProfileMenuScreen extends MenuScreen {
 
 	private RetroDialog errorDialog;
 	
+	private Image charImage;
+	
+	/**
+	 * counter for the currently shown character image
+	 */
+	private int i = 0;
+	
 	/**
 	 * Creates a new CreateProfileMenuScreen.
 	 * 
@@ -138,10 +145,8 @@ public class CreateProfileMenuScreen extends MenuScreen {
 				/ DIVIDEWIDTHDEFAULT);
 
 		// Make Image
-		Image charImage = new Image();
-		charImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
-				new Texture(Constants.BACKGROUND_PATH))));
-		charImage.setScaling(Scaling.fit);
+		charImage = new Image();
+		setCharacterImage(i);
 
 		// Build Tables
 
@@ -196,6 +201,15 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		}
 		return false;
 	}
+	
+	private void setCharacterImage(int value) {
+		String name = Constants.TEXTURE_ANIMATION_NAMES[value % Constants.TEXTURE_ANIMATION_NAMES.length];
+		Texture texture = AssetManager.getTexture(name);
+		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+		
+		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
+		charImage.setScaling(Scaling.fit);
+	}
 
 	/**
 	 * Attempts to create a new profile.
@@ -205,6 +219,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		if (profileController.canUserBeCreated(name)) {
 			profileController.createProfile(name);
 			settingController.setLeftMode(buttonLeftMode.isChecked());
+			settingController.setCharacterId(i % Constants.TEXTURE_ANIMATION_NAMES.length);
 			game.setScreen(new ProfileMenuScreen(game));
 		} else {
 		}
@@ -274,7 +289,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	private class NextCharButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-
+			setCharacterImage(++i);
 		}
 	}
 }

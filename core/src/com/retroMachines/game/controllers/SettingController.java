@@ -142,6 +142,10 @@ public class SettingController implements OnProfileChangedListener {
 		return settings.getSelectedCharacter();
 	}
 	
+	public void setCharacterId(int i) {
+		settings.setSelectedCharacter(i);
+	}
+	
 	/**
 	 * This method should only be used for DEBUG purposes only!
 	 * Assigns a settings object to this controller.
@@ -167,4 +171,6 @@ public class SettingController implements OnProfileChangedListener {
 		settings = game.getProfileController().getProfile().getSetting();
 		notifyListeners();
 	}
+
+	
 }

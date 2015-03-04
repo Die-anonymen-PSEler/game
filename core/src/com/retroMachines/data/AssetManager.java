@@ -61,10 +61,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static final String[] assetNames = {};
 	
 	private static final LinkedList<TiledMap> maps = new LinkedList<TiledMap>();
-
-	private static final List<OnProgressChanged> listeners = new LinkedList<OnProgressChanged>();
 	
 	private static final HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
+	
+	private static final String CHARACTER_PATH_PATTERN = "Character/Animation%s.png";
 	
 	/**
 	 * Added assets that need to be ready before the first game screen will be displayed
@@ -81,44 +81,24 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	public static void initializeWhileLoading() {
 		manager.load("music/musicfile.ogg", Music.class);
-		notifyListeners(30);
 		TextureAtlas atlas = new TextureAtlas("skins/LambdaGame.pack");
 		TextureAtlas gameElementsAtlas = new TextureAtlas("Gameelements/Gameelements.pack");
 		manager.finishLoading();
 		menuSkin = new Skin(
 				Gdx.files.internal("skins/DefaultLambdaGame.json"),
 				atlas);
-		notifyListeners(66);
 		gameElementTexture = new Skin(gameElementsAtlas);
-		notifyListeners(80);
 		TmxMapLoader loader = new TmxMapLoader();
 		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
 			maps.add(loader.load("maps/Level" + i + ".tmx"));
-			notifyListeners(80 + (int) (i * 20 / (float)Constants.MAX_LEVEL_ID));
 		}
 		setTiledMapTileSets(maps.getFirst());
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
 		for(int i = 0; i < Constants.TEXTURE_ANIMATION_NAMES.length; i++) {
 			textureMap.put( Constants.TEXTURE_ANIMATION_NAMES[i],
-					new Texture("Character/Animation" +  Constants.TEXTURE_ANIMATION_NAMES[i] + ".png"));
+					new Texture(String.format(CHARACTER_PATH_PATTERN, Constants.TEXTURE_ANIMATION_NAMES[i])));
 		}
 		manager.finishLoading();
-	}
-
-	private static void notifyListeners(int value) {
-		for (OnProgressChanged listener : listeners) {
-			listener.progressChanged(value);
-		}
-	}
-	
-	public static void addProgressListener(OnProgressChanged listener) {
-		if (!listeners.contains(listener)) {
-			listeners.add(listener);
-		}
-	}
-	
-	public static void removeProgressListener(OnProgressChanged listener) {
-		listeners.remove(listener);
 	}
 
 	/**
@@ -161,10 +141,6 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	
 	public static Skin getMenuSkin() {
 		return menuSkin;
-	}
-	
-	public interface OnProgressChanged {
-		public void progressChanged(int value);
 	}
 	
 	// -------------------------------
