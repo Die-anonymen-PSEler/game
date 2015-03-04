@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.StatisticController;
+import com.retroMachines.util.Constants;
 
 public class StatisticMenuScreen  extends MenuScreen {
 
@@ -67,7 +68,7 @@ public class StatisticMenuScreen  extends MenuScreen {
 		playTime = new Label("Text", skin);
 		playTime.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);
 		playTime.setAlignment(Align.left);
-		playTime.setText(statisticController.getPlaytime() + "");
+		playTime.setText( ((int)statisticController.getPlaytime()) / Constants.SECONDS_IN_MINUTE + "");
 		
 		completedLevel = new Label("Text", skin);
 		completedLevel.setFontScale((FONTSIZE2_5 * screenWidth) /  DIVIDEWIDTHDEFAULT);

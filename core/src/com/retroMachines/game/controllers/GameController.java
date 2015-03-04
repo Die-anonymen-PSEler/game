@@ -53,7 +53,7 @@ public class GameController {
 	/**
 	 * level begin time
 	 */
-	private Date levelBegin;
+	private long levelBegin;
 	
 	/**
 	 * 
@@ -92,7 +92,7 @@ public class GameController {
 		level = builder.getLevel();
 		gameScreen = new GameScreen(game, this, left);
 		gameScreen.setMap(level.getMap());
-		levelBegin = new Date();
+		levelBegin = System.currentTimeMillis();
 		game.setScreen(gameScreen);
 		if (level.hasTutorial()) {
 			gameScreen.showDialogChain(level.getDialogChain());
@@ -131,10 +131,9 @@ public class GameController {
 	 * Saves the progress of the game to the persistent storage.
 	 */
 	private void saveProgress() {
-		Date now = new Date();
-		long diff = now.getTime() - levelBegin.getTime();
-		long diffMinutes = diff / (60 * 1000) % 60;
-		game.getStatisticController().incPlayTime(diffMinutes);
+		long now = System.currentTimeMillis();
+		float diff = (now - levelBegin) / 1000f;
+		game.getStatisticController().incPlayTime(diff);
 		game.getStatisticController().incStepCounter((int) tempStepCounter);
 	}
 

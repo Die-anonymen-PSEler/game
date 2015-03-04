@@ -31,7 +31,7 @@ public class Statistic extends Model {
 	/**
 	 * the play time the player has spent on the game in minutes
 	 */
-	private int playtime = 0;
+	private float playtime = 0;
 
 	/**
 	 * the amount of levels that where completed by the player
@@ -82,7 +82,7 @@ public class Statistic extends Model {
 	@Override
 	public void write() {
 		pref.putInteger(KEY_LEVELCOMPLETED, levelsComplete);
-		pref.putInteger(KEY_PLAYTIME, playtime);
+		pref.putFloat(KEY_PLAYTIME, playtime);
 		pref.putInteger(KEY_STEPCOUNTER, stepCounter);
 		pref.flush();
 	}
@@ -95,7 +95,7 @@ public class Statistic extends Model {
 	@Override
 	public void fetch() {
 		levelsComplete = pref.getInteger(KEY_LEVELCOMPLETED, DEFAULT_LEVELCOMPLETED);
-		playtime = pref.getInteger(KEY_PLAYTIME, DEFAULT_PLAYTIME);
+		playtime = pref.getFloat(KEY_PLAYTIME, DEFAULT_PLAYTIME);
 		stepCounter = pref.getInteger(KEY_STEPCOUNTER, DEFAULT_STEPCOUNTER);
 	}
 
@@ -140,7 +140,7 @@ public class Statistic extends Model {
 	 * @param playtime
 	 *            the name play time as an integer.
 	 */
-	public void setPlaytime(int playtime) {
+	public void setPlaytime(float playtime) {
 		this.playtime = playtime;
 		write();
 	}
@@ -168,7 +168,7 @@ public class Statistic extends Model {
 	 * 
 	 * @return the time the player has played already.
 	 */
-	public int getPlaytime() {
+	public float getPlaytime() {
 		return playtime;
 	}
 }

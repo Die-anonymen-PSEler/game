@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
-import com.retroMachines.util.Constants.RetroStrings;
 
 /**
  * This class is part of the model of RetroMachines. 

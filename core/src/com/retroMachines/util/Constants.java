@@ -136,6 +136,8 @@ public class Constants {
 	public static final float ACTION_TIME = 1f;
 	
 	public static final float FLOAT_EPSILON = 1E-1f;
+
+	public static final int SECONDS_IN_MINUTE = 60;
 	
 	public static class ButtonStrings {
 		

@@ -59,12 +59,8 @@ public class StatisticController implements OnProfileChangedListener {
 	 * Increases the playtime by a given amount
 	 * @param diff the amount to add to the play time; a value smaller than 0 will result in 1 minute added 
 	 */
-	public void incPlayTime(long diff) {
-		long value = diff;
-		if (value < 0) {
-			value = 1;
-		}
-		statistic.setPlaytime((int) (statistic.getPlaytime() + value));
+	public void incPlayTime(float diff) {
+		statistic.setPlaytime(statistic.getPlaytime() + diff);
 	}
 	
 	/**
@@ -84,7 +80,7 @@ public class StatisticController implements OnProfileChangedListener {
 		statistic = game.getProfileController().getProfile().getStatistic();
 	}
 	
-	public int getPlaytime() {
+	public float getPlaytime() {
 		return statistic.getPlaytime();
 	}
 	
