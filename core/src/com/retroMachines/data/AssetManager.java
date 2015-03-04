@@ -60,10 +60,19 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	public static final String[] assetNames = {};
 	
+	/**
+	 * list containing all maps for fast access.
+	 */
 	private static final LinkedList<TiledMap> maps = new LinkedList<TiledMap>();
 	
+	/**
+	 * a hashmap with (String,Texture) pairs.
+	 */
 	private static final HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
 	
+	/**
+	 * pattern where the character images are stored.
+	 */
 	private static final String CHARACTER_PATH_PATTERN = "Character/Animation%s.png";
 	
 	/**
@@ -120,6 +129,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// --------Music----------
 	// -----------------------
 	
+	/**
+	 * instance of the music of the game.
+	 * @return
+	 */
 	public static Music getMusic() {
 		return music;
 	}
@@ -139,6 +152,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		manager.load("skins/LambdaGame.pack", TextureAtlas.class);
 	}
 	
+	/**
+	 * skin instance for all buttons.
+	 * @return
+	 */
 	public static Skin getMenuSkin() {
 		return menuSkin;
 	}
@@ -151,6 +168,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		return gameElementTexture;
 	}
 	
+	/**
+	 * retrieves a texture from the hashmap
+	 * @param path
+	 * @return
+	 */
 	public static Texture getTexture(String path) {
 		if (textureMap.containsKey(path)) {
 			return textureMap.get(path);

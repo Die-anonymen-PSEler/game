@@ -89,7 +89,12 @@ public class Profile extends Model {
 	/*
 	 * Getter and Setter
 	 */
-
+	
+	/**
+	 * assigns a new statistic to the profile and writes
+	 * back.
+	 * @param statistic the statistic associated to the profile
+	 */
 	public void setStatistic(Statistic statistic) {
 		this.statistic = statistic;
 		write();

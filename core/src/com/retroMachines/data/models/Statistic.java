@@ -10,11 +10,20 @@ import com.badlogic.gdx.Gdx;
  * @author RetroFactory
  */
 public class Statistic extends Model {
-
+	
+	/**
+	 * the default value regarding the playtime.
+	 */
 	public static final int DEFAULT_PLAYTIME = 0;
 
+	/**
+	 * the default value regarding the stepcounter
+	 */
 	public static final int DEFAULT_STEPCOUNTER = 0;
 
+	/**
+	 * the default value regarding the level completed
+	 */
 	public static final int DEFAULT_LEVELCOMPLETED = 0;
 
 	/**
@@ -22,10 +31,19 @@ public class Statistic extends Model {
 	 */
 	public static final String TABLE_NAME = "statistics";
 
+	/**
+	 * the key where the playtime value is stored.
+	 */
 	private static final String KEY_PLAYTIME = "playtime";
 
+	/**
+	 * the key where the levelcompleted value is stored.
+	 */
 	private static final String KEY_LEVELCOMPLETED = "levelCompleted";
-
+	
+	/**
+	 * the key where the stepcounter value is stored.
+	 */
 	private static final String KEY_STEPCOUNTER = "stepCounter";
 
 	/**

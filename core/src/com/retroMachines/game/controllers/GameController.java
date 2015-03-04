@@ -1,7 +1,5 @@
 package com.retroMachines.game.controllers;
 
-import java.util.Date;
-
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -56,10 +54,13 @@ public class GameController {
 	private long levelBegin;
 	
 	/**
-	 * 
+	 * variable to count the steps made by the character
 	 */
 	private float tempStepCounter;
 	
+	/**
+	 * true if the level was finished successfully
+	 */
 	private boolean levelfinished;
 	
 	/**
@@ -225,8 +226,6 @@ public class GameController {
 	 * @param delta 
 	 */
 	public void update(float deltaTime) {
-		
-		//Check can jump before set velocity, y to 0.5 => can jump can't be true
 		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X && retroMan.canJump()) {
 			retroMan.getVelocity().x = 0;
 			retroMan.standing();
@@ -235,9 +234,6 @@ public class GameController {
 		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
 			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
 		}
-
-		// multiply by delta time so we know how far we go
-		// in this frame
 		float previousPosition = retroMan.getPos().x;
 		retroMan.getVelocity().scl(deltaTime);
 		
@@ -252,7 +248,6 @@ public class GameController {
 	}
 	
 	private void collisionDetection() {
-		//collision detection
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
 		int startX, startY, endX, endY;

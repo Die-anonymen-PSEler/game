@@ -10,25 +10,50 @@ import com.badlogic.gdx.Gdx;
  */
 public class Setting extends Model {
 	
+	/**
+	 * the value an empty settings instance is set to.
+	 */
 	public static final float DEFAULT_VOLUME = 0.5f;
 	
+	/**
+	 * the default value regarding sound on or off.
+	 */
 	public static final boolean DEFAULT_SOUNDONOFF = true;
 	
+	/**
+	 * default value regarding the left/right control feature.
+	 * by default right mode is enabled.
+	 */
 	public static final boolean DEFAULT_LEFTCONTROL = false;
 	
-	private static final int DEFAULT_SELECTEDCHARACTER = 0;
+	/**
+	 * the id of the character that is disabled by default
+	 */
+	public static final int DEFAULT_SELECTEDCHARACTER = 0;
 
 	/**
 	 * the name of the table where the settings are stored
 	 */
 	public static final String TABLE_NAME = "settings";
 	
+	/**
+	 * the key under which the volume is stored.
+	 */
 	private static final String KEY_VOLUME = "volume";
 	
+	/**
+	 * the key under which the sound on off variable is stored.
+	 */
 	private static final String KEY_SOUNDONOFF = "soundOnOff";
 	
+	/**
+	 * the key under which the left/right control is stored
+	 */
 	private static final String KEY_LEFTCONTROL = "leftControl";
-
+	
+	/**
+	 * the key under which the id of the selectedcharacter is stored
+	 */
 	private static final String KEY_SELECTEDCHARACTER = "selectedCharacter";
 
 	/**
@@ -177,11 +202,19 @@ public class Setting extends Model {
 		return soundOnOff;
 	}
 	
+	/**
+	 * assigns a new id regarding the character to the setting instance
+	 * @param id the id. should be within the range of available characters
+	 */
 	public void setSelectedCharacter(int id) {
 		this.selectedCharacter = id;
 		write();
 	}
 	
+	/**
+	 * getter method for the selected character id
+	 * @return the id
+	 */
 	public int getSelectedCharacter() {
 		return this.selectedCharacter;
 	}
