@@ -241,11 +241,7 @@ public class LambdaUtil {
 		for(JsonElement j : tutList) {
 			String name = j.getAsJsonObject().get(IMAGE).getAsString();
 			Texture img = new Texture(Gdx.files.internal(
-<<<<<<< HEAD
-					"maps/Tutorials/" + j.getAsJsonObject().get(IMAGE).getAsString() + ".png")
-=======
 					"maps/Tutorials/" + name + ".png")
->>>>>>> origin/master
 					);
 			resultList.addLast(img);
 		}

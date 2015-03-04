@@ -65,7 +65,7 @@ public class RetroDialogChain {
 	private class DialogChain extends Dialog {
 		
 		public DialogChain(String title, Texture image) {
-			super(title, AssetManager.getGameelementskin());
+			super(title, AssetManager.getMenuSkin());
 			initialize();
 		}
 		
