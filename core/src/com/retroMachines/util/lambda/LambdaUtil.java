@@ -239,8 +239,13 @@ public class LambdaUtil {
 	private LinkedList<Texture> makeTutorialImgList(JsonArray tutList) {
 		LinkedList<Texture> resultList = new LinkedList<Texture>();
 		for(JsonElement j : tutList) {
+			String name = j.getAsJsonObject().get(IMAGE).getAsString();
 			Texture img = new Texture(Gdx.files.internal(
+<<<<<<< HEAD
 					"maps/Tutorials/" + j.getAsJsonObject().get(IMAGE).getAsString() + ".png")
+=======
+					"maps/Tutorials/" + name + ".png")
+>>>>>>> origin/master
 					);
 			resultList.addLast(img);
 		}
@@ -345,7 +350,12 @@ public class LambdaUtil {
 	}
 	
 	public boolean hasTutorial() {
-		return tutorialImgs.size() != 0;
+		if(tutorialImgs != null) {
+			if(tutorialImgs.size() > 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public interface OnNextLambdaStepListener {
