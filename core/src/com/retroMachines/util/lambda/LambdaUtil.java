@@ -345,6 +345,11 @@ public class LambdaUtil {
 	}
 	
 	public boolean hasTutorial() {
+		if(tutorialImgs != null) {
+			if(tutorialImgs.size() > 0) {
+				return true;
+			}
+		}
 		return false;
 	}
 
