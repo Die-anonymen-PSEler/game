@@ -177,6 +177,12 @@ public class SettingController implements OnProfileChangedListener {
 		settings.setTutorialFinished(levelId, value);
 	}
 	
+	public void resetTutorials() {
+		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
+			settings.setTutorialFinished(i, false);
+		}
+	}
+	
 	/**
 	 * Controls if the profile was changed.
 	 */
@@ -184,5 +190,7 @@ public class SettingController implements OnProfileChangedListener {
 	public void profileChanged() {
 		settings = game.getProfileController().getProfile().getSetting();
 		notifyListeners();
-	}	
+	}
+
+	
 }
