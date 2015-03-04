@@ -240,7 +240,7 @@ public class LambdaUtil {
 		LinkedList<Texture> resultList = new LinkedList<Texture>();
 		for(JsonElement j : tutList) {
 			Texture img = new Texture(Gdx.files.internal(
-					"maps/Tutorials" + j.getAsJsonObject().get(IMAGE) + ".png")
+					"maps/Tutorials/" + j.getAsJsonObject().get(IMAGE).getAsString() + ".png")
 					);
 			resultList.addLast(img);
 		}
@@ -345,7 +345,7 @@ public class LambdaUtil {
 	}
 	
 	public boolean hasTutorial() {
-		return false;
+		return tutorialImgs.size() != 0;
 	}
 
 	public interface OnNextLambdaStepListener {

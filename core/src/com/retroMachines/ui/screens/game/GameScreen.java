@@ -431,7 +431,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 	}
 	
 	public void showDialogChain(RetroDialogChain dialogChain) {
-		
+		dialogChain.show(stage);
 	}
 
 	// -----------------------------------

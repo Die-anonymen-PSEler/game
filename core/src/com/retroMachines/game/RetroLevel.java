@@ -1,8 +1,10 @@
 package com.retroMachines.game;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -358,7 +360,10 @@ public class RetroLevel {
 
 	public RetroDialogChain getDialogChain() {
 		RetroDialogChain chain = new RetroDialogChain();
-		// for () {}
+		List<Texture> textures = lambdaUtil.getTutorials();
+		for (Texture texture : textures) {
+			chain.addDialog("", texture);
+		}
 		return chain;
 	}
 	
