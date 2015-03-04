@@ -239,8 +239,9 @@ public class LambdaUtil {
 	private LinkedList<Texture> makeTutorialImgList(JsonArray tutList) {
 		LinkedList<Texture> resultList = new LinkedList<Texture>();
 		for(JsonElement j : tutList) {
+			String name = j.getAsJsonObject().get(IMAGE).getAsString();
 			Texture img = new Texture(Gdx.files.internal(
-					"maps/Tutorials" + j.getAsJsonObject().get(IMAGE) + ".png")
+					"maps/Tutorials/" + name + ".png")
 					);
 			resultList.addLast(img);
 		}
