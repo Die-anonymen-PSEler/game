@@ -45,6 +45,8 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	 * @return
 	 */
 	private Stage buttonStage;
+	
+	private Vector2 screenPadding;
 
 	/**
 	 * Creates a new instance of EvaluationScreen.
@@ -61,7 +63,10 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 
 	private void initialize() {
 		skin = AssetManager.getMenuSkin();
-
+		screenPadding = new Vector2();
+		screenPadding.x = screenWidth * Constants.EVALUATIONSCREEN_PADDING_X;
+		screenPadding.y = screenHeight * Constants.EVALUATIONSCREEN_PADDING_Y;
+		
 		Table table = new Table(skin);
 		table.setBounds(0, 0, screenWidth, screenHeight);
 		
@@ -96,7 +101,7 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	 */
 	public void setLambaTerm(LevelTree t) {
 		this.tree = t;
-		printTree(tree.getStart(), new Vector2(Constants.EVALUATIONSCREEN_PADDING, Constants.EVALUATIONSCREEN_PADDING));
+		printTree(tree.getStart(), new Vector2(screenPadding));
 	}
 	
 	/**
@@ -132,14 +137,11 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 			stage.addActor(actVertex.getGameElement());
 			// print Family
 			if(actVertex.getfamily() != null) {
-				position.y += Constants.GAMELEMENT_PADDING;
 				Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
 				printTree(actVertex.getfamily(), famPos);
-				position.y -= Constants.GAMELEMENT_PADDING;
 			}
 			
-			position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
-			position.x += Constants.GAMELEMENT_PADDING;
+			position.x += (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
 			actVertex = actVertex.getnext();
 		}
 	}
@@ -215,5 +217,9 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor{
 	public void runAnimation(GameElement g, Action a) {
 		
 		g.addAction(a);
+	}
+	
+	public Vector2 getScreenPadding() {
+		return new Vector2(screenPadding);
 	}
 }

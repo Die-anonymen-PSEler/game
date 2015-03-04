@@ -121,7 +121,11 @@ public class Constants {
 	
 	public static final int ABSTRACTION_OUTPUT = 25;
 	
-	public static final int EVALUATIONSCREEN_PADDING = 200;
+	public static final int EVALUATION_DEFALT_LAYER_DIF = 1;
+	
+	public static final float EVALUATIONSCREEN_PADDING_X = 0.1f;
+	
+	public static final float EVALUATIONSCREEN_PADDING_Y = 0.3f;
 	
 	public static final int DEPOT_ID = 8;
 	

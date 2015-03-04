@@ -122,7 +122,6 @@ public class Abstraction extends Vertex {
 					Vector2 position = new Vector2(this.getGameElement().getPosition().x, this.getGameElement().getPosition().y);
 					position.x += Constants.ABSTRACTION_OUTPUT;
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
-
 					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
 					
 					if(this.getfamily().getnext() != null) {

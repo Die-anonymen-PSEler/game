@@ -614,15 +614,16 @@ public abstract class Vertex {
 		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
 		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + (int)start.x; 
 		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + (int)start.y;
-		
+		Vector2 paddingScreen = new Vector2(x,y);
 		Vector2 startPos = new Vector2(x + centerVertex, y);
 		
 		if(this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
+			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos, paddingScreen);
 		}
 		
 		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
+			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y 
+							+ Constants.EVALUATION_DEFALT_LAYER_DIF), startPos, paddingScreen);
 		}
 		
 		// Move	
@@ -632,11 +633,12 @@ public abstract class Vertex {
 	/**
 	 * Set Gameelement and family to given 
 	 * @param newPos as Number of GameelementWidths
+	 * @param startpos StartPosition of actual worker for dummys
 	 */
-	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos) {
+	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos, Vector2 paddingScreen) {
 		
 		if(this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos);
+			this.getnext().setOtherGameelementPosition(new Vector2(newPos.x + this.getWidth(), newPos.y), startPos, paddingScreen);
 		}
 		
 		// Clone Pre Set
@@ -646,14 +648,16 @@ public abstract class Vertex {
 		
 		// Move
 		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
-		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x + Constants.EVALUATIONSCREEN_PADDING; 
-		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y + Constants.EVALUATIONSCREEN_PADDING;
+		int x = Constants.GAMEELEMENT_WIDTH * (int)newPos.x; 
+		int y =	Constants.GAMEELEMENT_WIDTH * (int)newPos.y;
 		
 		// Move	
-		EvaluationOptimizer.moveAnimation(new Vector2(x + centerVertex, y), this.getGameElement(), false);
+		EvaluationOptimizer.moveAnimation(new Vector2(x + centerVertex + paddingScreen.x, y + paddingScreen.y), this.getGameElement(), false);
 		
 		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y + 1), startPos);
+			this.getfamily().setOtherGameelementPosition(new Vector2(newPos.x, newPos.y 
+							+ Constants.EVALUATION_DEFALT_LAYER_DIF),
+							startPos, paddingScreen);
 		}
 	}
 	

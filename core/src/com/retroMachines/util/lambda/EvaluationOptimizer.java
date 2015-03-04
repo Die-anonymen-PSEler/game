@@ -31,8 +31,6 @@ public class EvaluationOptimizer {
 	 */
 	private static Vertex resultPointer;
 	
-	private static Vertex readIn;
-	
 	/**
 	 * evaluationPointer . next is always the actual worker in evaluation
 	 */
@@ -60,7 +58,6 @@ public class EvaluationOptimizer {
 		actStep = 0;
 		resultTree = null;
 		vertexList = null;
-		readIn = null;
 		
 	}
 	
@@ -161,7 +158,7 @@ public class EvaluationOptimizer {
 		actStep = 1;
 		evalutionPointer.getnext().alphaConversion();
 		
-		readIn = evalutionPointer.getnext().getReadIn();
+		Vertex readIn = evalutionPointer.getnext().getReadIn();
 		if(readIn != null) {
 			readIn.readInAnimation(evalutionPointer.getnext().getGameElement().getPosition());
 			// Next Step by Animation
@@ -179,9 +176,8 @@ public class EvaluationOptimizer {
 	
 	private static void step3UpdatePositions() {
 		actStep = 3;
-		Vector2 start = new Vector2();
-		start.x = Constants.EVALUATIONSCREEN_PADDING + offsetX; 
-		start.y = Constants.EVALUATIONSCREEN_PADDING;
+		Vector2 start = evaluationController.getEvaluationscreenPadding();
+		start.x += offsetX;
 		evalutionPointer.getnext().reorganizePositions(start ,new Vector2(0,0));
 		// Next Step by Animation
 	}
@@ -223,6 +219,7 @@ public class EvaluationOptimizer {
 				}
 			}
 			// make resultTree if needed
+			offsetX += result.getWidth() * Constants.GAMEELEMENT_WIDTH;
 			if(resultTree != null) {
 				resultPointer.getnext().setnext(result);
 				resultPointer.setnext(resultPointer.getnext().getnext());
@@ -244,7 +241,6 @@ public class EvaluationOptimizer {
 				return;
 			}
 			//Wenn alle steps starten geklickt starte nächsten schritt sonst wart auf eingabe
-			offsetX = (int) evalutionPointer.getnext().getGameElement().getPosition().x;
 			if(autoStep) {
 				runNextEvaluationStep();
 			} else {

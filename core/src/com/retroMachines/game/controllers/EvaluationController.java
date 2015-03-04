@@ -1,5 +1,6 @@
 package com.retroMachines.game.controllers;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
@@ -79,5 +80,9 @@ public class EvaluationController {
 	
 	public void setOnStage(GameElement g) {
 		evaluationScreen.setOnStage(g);
+	}
+	
+	public Vector2 getEvaluationscreenPadding() {
+		return evaluationScreen.getScreenPadding();
 	}
 }
