@@ -259,13 +259,17 @@ public class RetroMan {
 	 */
 	public Vector2 nextPosition() {
 		int offset;
+		Vector2 elementPos;
 		if (getFaceLeft()) {
 			offset = -ELEMENT_OFFSET;
+			elementPos = new Vector2(((int) pos.x) + offset, (int)pos.y);
 		}
 		else {
-			offset = hasPickedUpElement() ? ELEMENT_OFFSET : ELEMENT_OFFSET;
+			offset = ELEMENT_OFFSET;
+			elementPos = new Vector2(((int) (pos.x + WIDTH)) + offset, (int)pos.y);
 		}
-		Vector2 elementPos = new Vector2(((int) pos.x) + offset, (int)pos.y);
+		System.out.println(pos);
+		System.out.println(elementPos);
 		return elementPos;
 	}
 

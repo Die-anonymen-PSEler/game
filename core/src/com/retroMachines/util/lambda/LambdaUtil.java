@@ -118,7 +118,7 @@ public class LambdaUtil {
 		//getting vertex
 		Vertex vertex = null;
 		for (Vertex v : vertexList) {
-			if (v.getPosition().x == posX && v.getPosition().y == posY) {
+			if ((int) v.getPosition().x == posX && (int) v.getPosition().y == posY) {
 				vertex = v;
 				break;
 			}
