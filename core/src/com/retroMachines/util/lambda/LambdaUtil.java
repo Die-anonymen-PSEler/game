@@ -243,6 +243,9 @@ public class LambdaUtil {
 	 * @return
 	 */
 	private LinkedList<Texture> makeTutorialImgList(JsonArray tutList) {
+		if(tutList == null || tutList.size() == 0) {
+			return new LinkedList<Texture>();
+		}
 		LinkedList<Texture> resultList = new LinkedList<Texture>();
 		for(JsonElement j : tutList) {
 			String name = j.getAsJsonObject().get(IMAGE).getAsString();
