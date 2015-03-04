@@ -5,10 +5,13 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
 
@@ -64,8 +67,11 @@ public class RetroDialogChain {
 	
 	private class DialogChain extends Dialog {
 		
+		private Texture img;
+		
 		public DialogChain(String title, Texture image) {
 			super(title, AssetManager.getMenuSkin());
+			img = image;
 			initialize();
 		}
 		
@@ -73,8 +79,16 @@ public class RetroDialogChain {
 			Skin skin = AssetManager.getMenuSkin();
 			int screenWidth = Gdx.graphics.getWidth();
 			int screenHeight = Gdx.graphics.getHeight();
-			padTop(screenWidth / 30f); // set padding on top of the dialog title
-			padBottom(screenWidth / 30f); // set padding on bottom of the dialog title
+			
+			Image tutImg = new Image();
+			tutImg.setDrawable(new TextureRegionDrawable(new TextureRegion(img)));
+			
+			getContentTable().add(tutImg);
+			
+			padTop(screenHeight / 30f); // set padding on top of the dialog title
+			padBottom(screenHeight / 30f); // set padding on bottom of the dialog title
+			padRight(screenWidth / 30f);
+			padLeft(screenWidth / 30f);
 	        getButtonTable().defaults().height(screenHeight * (1/4f)); // set buttons height
 	        getButtonTable().defaults().width(screenWidth * (1/4f)); // set buttons height
 	        setModal(true);
