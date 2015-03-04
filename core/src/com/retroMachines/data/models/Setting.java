@@ -55,6 +55,11 @@ public class Setting extends Model {
 	 * the key under which the id of the selectedcharacter is stored
 	 */
 	private static final String KEY_SELECTEDCHARACTER = "selectedCharacter";
+	
+	/**
+	 * pattern where the key under which the tutorial value is stored
+	 */
+	private static final String KEY_PATTERN_TUTORIALS = "tutorial_seen_%s";
 
 	/**
 	 * the volume of the game range 0.0f to 1.0f
@@ -217,6 +222,15 @@ public class Setting extends Model {
 	 */
 	public int getSelectedCharacter() {
 		return this.selectedCharacter;
+	}
+
+	public boolean getTutorialFinished(int levelId) {
+		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId), true);
+	}
+
+	public void setTutorialFinished(int levelId, boolean value) {
+		pref.putBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId), value);
+		pref.flush();
 	}
 	
 }

@@ -164,13 +164,25 @@ public class SettingController implements OnProfileChangedListener {
 	}
 	
 	/**
+	 * 
+	 * @param levelId
+	 * @return
+	 */
+	public boolean getTutorialFinished(int levelId) {
+		boolean value = settings.getTutorialFinished(levelId);
+		return value;
+	}
+	
+	public void setTutorialFinished(int levelId, boolean value) {
+		settings.setTutorialFinished(levelId, value);
+	}
+	
+	/**
 	 * Controls if the profile was changed.
 	 */
 	@Override
 	public void profileChanged() {
 		settings = game.getProfileController().getProfile().getSetting();
 		notifyListeners();
-	}
-
-	
+	}	
 }
