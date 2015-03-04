@@ -3,6 +3,12 @@
 	{
 		"description": "Level das (lambda x.xx)((lambda y.y)(lambda z.z)(a)) darstellt",
 		"hasTutorialScreen": true,
+		"tutorialScreens" : [
+			{
+				"title" : "Ampel",
+				"img" : "Tutorial_5_1"
+			},
+		],
 		"levelid": 5,
 		"data": 
 		{

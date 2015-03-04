@@ -3,6 +3,20 @@
 	{
 		"description": "Level das (lambda x.x)(y) darstellt",
 		"hasTutorialScreen": true,
+		"tutorialScreens" : [
+			{
+				"title" : "Maschine 1",
+				"img" : "Tutorial_2_1"
+			},
+			{
+				"title" : "Maschine 2",
+				"img" : "Tutorial_2_2"
+			},
+			{
+				"title" : "Alpha Konversion",
+				"img" : "Tutorial_2_3"
+			}
+		],
 		"levelid": 2,
 		"data": 
 		{

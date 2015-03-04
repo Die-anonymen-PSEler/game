@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
 
@@ -34,11 +35,13 @@ public class LambdaUtil {
 	private final static String LEVEL = "level";
 	private final static String TARGET = "target";
 	private final static String TUTORIALS = "tutorialScreens";
+	private final static String HAS_TUTORIALS = "hasTutorialScreen";
 	private final static String IMAGE = "img";
 	private final static String GAMEELEMENTS = "gameelements";
 	
 
 	private LevelTree levelTree;
+	private boolean hasTutorial;
 	private int numOfDepots;
 	private LevelTree targetTree;
 	private LevelTree hintTree;
@@ -73,6 +76,7 @@ public class LambdaUtil {
 		//
 		JsonObject level = root.getAsJsonObject(LEVEL);
 		JsonArray tutorials = level.getAsJsonArray(TUTORIALS);
+		JsonPrimitive HasTutScreens = level.getAsJsonPrimitive(HAS_TUTORIALS);
 		JsonObject data = level.getAsJsonObject(DATA);
 		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
 		JsonArray hint = data.getAsJsonArray(HINT);
@@ -84,6 +88,8 @@ public class LambdaUtil {
 		} catch (IOException e) {
 			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
 		}
+		
+		hasTutorial = HasTutScreens.getAsBoolean();
 		tutorialImgs = makeTutorialImgList(tutorials);
 		vertexList = makeVertexList(elements);
 		gameElementList = makeGameElementList();

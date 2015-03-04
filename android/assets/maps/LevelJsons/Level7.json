@@ -3,6 +3,7 @@
 	{
 		"description": "Level das (lambda f.f)(v)(f) darstellt",
 		"hasTutorialScreen": false,
+		"tutorialScreens" : [],
 		"levelid": 7,
 		"data": 
 		{

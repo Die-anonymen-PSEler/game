@@ -7,12 +7,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.Constants.ButtonStrings;
@@ -50,6 +52,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		settingController = game.getSettingController();
+		ProfileController profileController = game.getProfileController();
 		
 		skin = AssetManager.getMenuSkin();
 
@@ -60,7 +63,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// Profile Name
 		// TODO get Profile Name
-		Label profileName = new Label("Profile Name", skin);
+		Label profileName = new Label(profileController.getProfileName(), skin);
 		profileName.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		profileName.setAlignment(Align.center);
 
@@ -68,11 +71,20 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		Label steeringTitle = new Label("Steuerung", skin);
 		steeringTitle.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		steeringTitle.setAlignment(Align.center);
+		
+		Label resetTitle = new Label("Tutorial Reset", skin);
+		resetTitle.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		resetTitle.setWrap(true);
+		resetTitle.setAlignment(Align.center);
 
 		// Make Buttons
 		Button buttonOk = new Button(skin, ButtonStrings.OK);
 		buttonOk.addListener(new AcceptButtonClickListener());
 		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
+		
+		Button buttonTutReset = new Button(skin, ButtonStrings.ABORT);
+		buttonTutReset.addListener(new TutResetButtonClickListener());
+		buttonTutReset.pad(screenHeight / DEFAULTBUTTONSIZE);
 
 		Button buttonAbort = new Button(skin, ButtonStrings.ABORT);
 		buttonAbort.addListener(new ReturnButtonClickListener());
@@ -119,12 +131,22 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADDINGx4);
 		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADDINGx2)
 				.height((screenHeight) * THREE_FIFTH).width((screenWidth) * ONE_FOURTH);
-
+		
+		
+		//Tut Table
+		Table tutTable = new Table(skin);
+		tutTable.add(resetTitle).padTop(screenHeight / DEFAULTPADDING).width(screenWidth * ONE_THIRD);
+		tutTable.add(buttonTutReset).padTop(screenHeight / DEFAULTPADDING).row();
+		
+		
 		// RightTable
 		Table rightTable = new Table(skin);
 		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADDING).row();
 		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDING).row();
 		rightTable.add(leftiTable).expandX().padTop(screenHeight / DEFAULTPADDINGx2).row();
+		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH).padTop(screenHeight / DEFAULTPADDINGx2).row();
+
+		
 
 		// MainTable
 		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDING).row();
@@ -202,6 +224,18 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			settingController.toggleCharacter();
 			setCharacterImage();
+		}
+	}
+	
+	/**
+	 * Listener when the button for right control has been chosen.
+	 * 
+	 * @author RetroFactory
+	 */
+	private class TutResetButtonClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO Tut reset
 		}
 	}
 

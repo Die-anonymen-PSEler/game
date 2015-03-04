@@ -1,7 +1,8 @@
 {
     "level": {
         "description": "Level das (lambda x . x x)(y) darstellt",
-        "hasTutorialScreen": true,
+        "hasTutorialScreen": false,
+        "tutorialScreens" : [],
         "levelid": 3,
         "data": {
             "gameelements": [

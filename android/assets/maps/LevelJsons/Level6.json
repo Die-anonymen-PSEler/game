@@ -2,7 +2,8 @@
 	"level": 
 	{
 		"description": "Level das (lambda x.(lambdaf.(ff))(lambda y.y)(x))(z) darstellt",
-		"hasTutorialScreen": true,
+		"hasTutorialScreen": false,
+        "tutorialScreens" : [],
 		"levelid": 6,
 		"data": 
 		{

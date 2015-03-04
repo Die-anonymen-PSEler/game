@@ -3,6 +3,7 @@
 	{
 		"description": "Level das (lambda f.(lambda x. f (f x)))(u)(v) darstellt",
 		"hasTutorialScreen": false,
+		"tutorialScreens" : [],
 		"levelid": 8,
 		"data": 
 		{
