@@ -6,18 +6,35 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.data.models.SettingsChangeListener;
 
+/**
+ * MusicManger class to allow make sure it is played throughout the entire game.
+ * @author RetroFactory
+ */
 public final class MusicManager implements SettingsChangeListener {
 	
+	/**
+	 * the music that will be played
+	 */
 	private Music music;
 	
+	/**
+	 * the volume the music has. it is bound to the music set within the settingscontroller
+	 */
 	private float volume;
 	
+	/**
+	 * instance of the singleton
+	 */
 	private static MusicManager singleton;
 	
 	private MusicManager() {
 		
 	}
 	
+	/**
+	 * Returns the only copy of the MusicManager
+	 * @return singleton of the musicmanager
+	 */
 	public static MusicManager getInstance() {
 		if (singleton == null) {
 			singleton = new MusicManager();
@@ -25,6 +42,10 @@ public final class MusicManager implements SettingsChangeListener {
 		return singleton;
 	}
 	
+	/**
+	 * enables the music for the game.
+	 * in case it was paused before the music will continue for that point onwards.
+	 */
 	public void startMusic() {
 		if (music == null) {
 			music = AssetManager.getMusic();
@@ -37,13 +58,17 @@ public final class MusicManager implements SettingsChangeListener {
 		}
 	}
 	
-	public void stopMusic() {
+	/**
+	 * pauses the music.
+	 * may be continued with the startMusic method
+	 */
+	public void pauseMusic() {
 		if (music == null) {
 			music = AssetManager.getMusic();
 		}
 		music.pause();
 	}
-
+	
 	@Override
 	public void onSettingsChanged() {
 		volume = ((RetroMachines) Gdx.app.getApplicationListener()).getSettingController().getVolume();

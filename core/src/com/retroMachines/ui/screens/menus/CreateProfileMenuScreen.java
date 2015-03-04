@@ -239,7 +239,6 @@ public class CreateProfileMenuScreen extends MenuScreen {
 
 	/**
 	 * Listener when the user aborts the profile creation.
-	 * 
 	 * @author RetroFactory
 	 */
 	private class AbortCreateProfileButtonClickListener extends ClickListener {

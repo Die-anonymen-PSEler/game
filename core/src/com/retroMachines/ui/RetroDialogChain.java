@@ -12,6 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
 
+/**
+ * A DialogChain where every dialog will be displayed after the previous
+ * @author lucabecker
+ *
+ */
 public class RetroDialogChain {
 	
 	private List<DialogChain> dialogs;

@@ -9,18 +9,36 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
 
+/**
+ * Custom version of the dialogs.
+ * @author lucabecker
+ *
+ */
 public class RetroDialog extends Dialog {
 	
 	protected final static float DIVIDEWIDTHDEFAULT = 1920f;
 	
 	protected final static float DIALOGTEXTWIDTH = (10f / 17f);
 	
+	/**
+	 * the label which displays the message to the user
+	 */
 	private Label labelMsg;
 	
+	/**
+	 * the skin used by the dialog
+	 */
 	private Skin skin;
 	
+	/**
+	 * a possible runnable to be executed on the user his interaction
+	 */
 	private Runnable runnable;
 	
+	/**
+	 * if true the dialog will disappear on clicking any button
+	 * it is enabled by default
+	 */
 	private boolean autoClear;
 	
 	public RetroDialog(String title, String msg) {
@@ -43,16 +61,25 @@ public class RetroDialog extends Dialog {
 		getContentTable().add(labelMsg).width(screenWidth * DIALOGTEXTWIDTH);
 		button(new Button(skin, ButtonStrings.OK), true);
 	}
-
+	
 	public RetroDialog(String title, Skin skin) {
 		super(title, skin);
 		this.skin = skin;
 	}
 	
+	/**
+	 * Assign a runnable to the dialog that will be executed once the result is method is called.
+	 * To disable assign null
+	 * @param r the runnable
+	 */
 	public void setRunnable(Runnable r) {
 		runnable = r;
 	}
 	
+	/**
+	 * Disable / Enable the autoclear function
+	 * @param t true to enable it; false otherwise
+	 */
 	public void setAutoClear(boolean t) {
 		autoClear = t;
 	}

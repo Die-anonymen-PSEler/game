@@ -10,9 +10,11 @@ package com.retroMachines.util;
 public class Constants {
 	
 	private Constants() {
-		// du instanziierst das nicht!
 	}
 	
+	/**
+	 * The name of the background image file
+	 */
 	public static final String BACKGROUND_PATH = "Background.png";
 
 	/**
@@ -29,12 +31,15 @@ public class Constants {
 	};
 	
 	
-	//Name of Animation textures
+	/**
+	 * the name of each available character texture.
+	 * these names have to match the file names and will be used by the assetmanager.
+	 */
 	public static final String[] TEXTURE_ANIMATION_NAMES = {
-		"Robot", // Roboter
-		"BlueMan", // Blauer Mann
-		"Horse", // Pferd mit reiter
-		"Unicorn" // Einhorn mit Reiter
+		"Robot", 
+		"BlueMan", 
+		"Horse", 
+		"Unicorn"
 	};
 	
 	/**
@@ -60,14 +65,21 @@ public class Constants {
 	public static final float VOLUME_DELTA = 0.1f;
 
 	/**
-	 * This is the initial volume of the game.
-	 */
-	public static final float INITIAL_VOLUME = 0.5f;
-
-	/**
 	 * the id of the last level of the game
 	 */
 	public static final int MAX_LEVEL_ID = 8;
+	
+	/**
+	 * the amount of seconds in a minute
+	 * used by the statistic screen
+	 */
+	public static final int SECONDS_IN_MINUTE = 60;
+	
+	
+	/*
+	 * map related constants
+	 * especially the id of each layer
+	 */
 	
 	/**
 	 * the gravity that is dragging the character towards the grounds
@@ -109,6 +121,11 @@ public class Constants {
 	 */
 	public static final int OBJECT_LAYER_ID = 6;
 	
+	
+	/*
+	 * constants regarding the animation of the evaluation
+	 */
+	
 	public static final int DEPOTLAYER_Y_DIF = 3;
 	
 	public static final int GAMEELEMENT_WIDTH = 100;
@@ -136,9 +153,11 @@ public class Constants {
 	public static final float ACTION_TIME = 1f;
 	
 	public static final float FLOAT_EPSILON = 1E-1f;
-
-	public static final int SECONDS_IN_MINUTE = 60;
 	
+	/**
+	 * the names of the buttons that are in the skin file
+	 * @author RetroFactory
+	 */
 	public static class ButtonStrings {
 		
 		public static final String HOME = "home";
@@ -172,6 +191,11 @@ public class Constants {
 		public static final String DELETE_PROFILE = "deleteProfile";
 	}
 	
+	/**
+	 * Further strings that are used by the game.
+	 * @author lucabecker
+	 *
+	 */
 	public static class RetroStrings {
 		/**
 		 * TileSet name in TiledMap 
@@ -198,6 +222,10 @@ public class Constants {
 		public static final String APPLICATION_TYPE = "Application";
 		
 		public static final String ABSTRACTION_TYPE = "Abstraction";
+		
+		/*
+		 * error messages that will be displayed to the user
+		 */
 		
 		public static final String ABSTRACTION_FAMILY_INVALID = "Jede Maschine braucht ein Verarbeitungsbereich!";
 		
