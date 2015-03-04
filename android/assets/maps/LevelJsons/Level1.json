@@ -5,12 +5,28 @@
 		"hasTutorialScreen": true,
 		"tutorialScreens" : [
 			{
-				"title" : "",
-				"img" : ""
+				"title" : "Steuerung",
+				"img" : "Tutorial_1_1"
 			},
 			{
-				"title" : "",
-				"img" : ""
+				"title" : "Interaktion",
+				"img" : "Tutorial_1_2"
+			},
+			{
+				"title" : "Depots",
+				"img" : "Tutorial_1_3"
+			},
+			{
+				"title" : "Level Abschlieﬂen",
+				"img" : "Tutorial_1_4"
+			},
+			{
+				"title" : "Buttons",
+				"img" : "Tutorial_1_5"
+			},
+			{
+				"title" : "Auswertungsscreen",
+				"img" : "Tutorial_1_6"
 			}
 		],
 		"levelid": 1,

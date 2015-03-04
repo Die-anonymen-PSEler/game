@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.google.gson.Gson;
@@ -32,6 +33,8 @@ public class LambdaUtil {
 	private final static String HINT = "hint";
 	private final static String LEVEL = "level";
 	private final static String TARGET = "target";
+	private final static String TUTORIALS = "tutorialScreens";
+	private final static String IMAGE = "img";
 	private final static String GAMEELEMENTS = "gameelements";
 	
 
@@ -40,6 +43,7 @@ public class LambdaUtil {
 	private LevelTree targetTree;
 	private LevelTree hintTree;
 	private LinkedList<Vertex> vertexList;
+	private LinkedList<Texture> tutorialImgs;
 	private LinkedList<GameElement> gameElementList;
 	
 
@@ -68,6 +72,7 @@ public class LambdaUtil {
 		// get json elements(description, id...)
 		//
 		JsonObject level = root.getAsJsonObject(LEVEL);
+		JsonArray tutorials = level.getAsJsonArray(TUTORIALS);
 		JsonObject data = level.getAsJsonObject(DATA);
 		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
 		JsonArray hint = data.getAsJsonArray(HINT);
@@ -79,6 +84,7 @@ public class LambdaUtil {
 		} catch (IOException e) {
 			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
 		}
+		tutorialImgs = makeTutorialImgList(tutorials);
 		vertexList = makeVertexList(elements);
 		gameElementList = makeGameElementList();
 		numOfDepots = 0;
@@ -225,6 +231,22 @@ public class LambdaUtil {
 		return start;
 	}
 	
+	/**
+	 * Adds Alle TutorialImages of Level
+	 * @param tutList
+	 * @return
+	 */
+	private LinkedList<Texture> makeTutorialImgList(JsonArray tutList) {
+		LinkedList<Texture> resultList = new LinkedList<Texture>();
+		for(JsonElement j : tutList) {
+			Texture img = new Texture(Gdx.files.internal(
+					"maps/Tutorials" + j.getAsJsonObject().get(IMAGE) + ".png")
+					);
+			resultList.addLast(img);
+		}
+		return resultList;
+	}
+	
 
 	/**
 	 * returns new instance of vertex of type {Var,Abs,App}. If parameter does
@@ -304,6 +326,10 @@ public class LambdaUtil {
 	 */
 	public LevelTree getTargetTree() {
 		return targetTree;
+	}
+	
+	public LinkedList<Texture> getTutorials() {
+		return tutorialImgs;
 	}
 	
 	/**
