@@ -40,7 +40,6 @@ public class AboutMenuScreen extends MenuScreen {
 	public static final String GAMEINFO_4 = "Depot: \n" + "Hierin können Objekte Platziert werden. die anschließend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
 	
 	
-	
 	public static final String GAMEINFO_5 = "Verarbeitungsbereich: \n" + "Der Verarbeitungsbereich eines Objektes sind alle Depots"
 			+ " überhalb seines Depots, die durch die nach oben führende Röhre erreicht werden können.";
 	
@@ -120,8 +119,6 @@ public class AboutMenuScreen extends MenuScreen {
 		
 		// Make ScrollPane
 		Table scrollTable = new Table(skin);
-		System.out.println(screenWidth);
-		System.out.println(textWidth);
 		scrollTable.add(infoText).width(textWidth).padTop(screenHeight / DEFAULTPADDING).padBottom(screenHeight / DEFAULTPADDING).row();
 		scrollTable.add(gameInfoText1).width(textWidth).padTop(screenHeight / DEFAULTPADDING).padBottom(screenHeight / DEFAULTPADDING).row();
 		scrollTable.add(gameInfoText2).width(textWidth).padTop(screenHeight / DEFAULTPADDING).padBottom(screenHeight / DEFAULTPADDING).row();
