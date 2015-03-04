@@ -110,41 +110,6 @@ public abstract class Vertex {
 	protected static int getMappedColor(int vertexColor) {
 		return colorMap.get(vertexColor);
 	}
-	
-	/**
-	 * Add element to IdList
-	 * @param addId id which should be added
-	 */
-	public void addFamilyIdList(int addId){
-		if (familyColorList.contains(addId)) {
-			return; //list already contains id
-		}
-		int index = 0;
-		for (int id : familyColorList) {
-			if (id > addId) {
-				index = familyColorList.indexOf(id);
-				break;
-			}
-		}
-		if (index == 0) {
-			familyColorList.addFirst(addId);
-		} else {
-			familyColorList.add(index - 1, addId);
-		}		
-	}
-	
-	
-	/**
-	 * updates start vertex. This vertex if family is null.
-	 * @return
-	 */
-	public Vertex updateStart() {
-		if (family == null) {
-			return this;
-		} else {
-			return family;
-		}
-	}
 
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
@@ -299,82 +264,6 @@ public abstract class Vertex {
 	
 	abstract public String getType();
 	
-	
-	
-	/**
-	 * Removes Gameelement of this vertex and all family vertex from stage 
-	 * @return true = success
-	 */
-	public boolean removeGameelements() {
-		boolean check = true;
-		// remove Family
-		if(this.getfamily() != null) {
-			if(!this.getfamily().removeAllGameelements()) {
-				check = false;
-			}
-		}
-					
-		// remove yourself
-		if (this.getGameElement().remove()) {
-			check = false;
-		}
-		return check;
-	}
-	
-	private boolean removeAllGameelements() {
-		boolean check = true;
-			// Remove all next
-			if(this.getnext() != null) {
-				if (!this.getnext().removeAllGameelements()) {
-					check = false;
-				}
-			}
-			
-			// remove Family
-			if(this.getfamily() != null) {
-				if(!this.getfamily().removeAllGameelements()) {
-					check = false;
-				}
-			}
-			
-			// remove yourself
-			if (this.getGameElement().remove()) {
-				check = false;
-			}
-			return check;
-	}
-	
-	/**
-	 * Removes all Gameelemnts with type Variable and color of this vertex in family of this vertex
-	 * @return true = success
-	 */
-	public boolean removeVariableGameelements() {
-		return this.getfamily().removeVariableFamily(this.getColor());
-	}
-	
-	private boolean removeVariableFamily(int color) {
-		
-		boolean result = true;
-		if(this.getnext() != null) {
-			if(!this.getnext().removeVariableFamily(color)) {
-				result = false;
-			}
-		}
-		if(this.getfamily() != null) {
-			if(!this.getfamily().removeVariableFamily(color)) {
-				result = false;
-			}
-		}
-		if(this.getType().equals(RetroStrings.VARIABLE_TYPE) && this.getColor() == color) {
-			if(!this.getGameElement().remove()) {
-				result = false;
-			}
-		}
-		
-		return result;
-		
-	}
-	
 	/**
 	 * returns List of Vertex and his hole Family Vertex
 	 * @return List of Vertex
@@ -498,6 +387,13 @@ public abstract class Vertex {
 	 * Update Position of Family if Worker was deleted in BetaReduction
 	 */
 	abstract public void updatePositionsAfterBetaReduction();
+	
+	/**
+	 * Removes Gameelement from screen if this type of Vertex needs it
+	 * @param e Instance of Evaluation Controller for next Steps
+	 */
+	abstract public void DeleteAfterBetaReduction();
+	
 	//---------------------------------------------------
 	//-------- Beta Reduction and Alpha Conversion ------
 	//---------------------------------------------------
@@ -689,12 +585,6 @@ public abstract class Vertex {
 			return false;
 		}
 	}
-	
-	/**
-	 * Removes Gameelement from screen if this type of Vertex needs it
-	 * @param e Instance of Evaluation Controller for next Steps
-	 */
-	abstract public void DeleteAfterBetaReduction();
 	
 	
 	// --------------------------
