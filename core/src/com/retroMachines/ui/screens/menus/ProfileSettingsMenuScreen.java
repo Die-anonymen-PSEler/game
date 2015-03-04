@@ -141,9 +141,9 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		// RightTable
 		Table rightTable = new Table(skin);
 		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADDING).row();
-		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDING).row();
+		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDINGx2).row();
 		rightTable.add(leftiTable).expandX().padTop(screenHeight / DEFAULTPADDINGx2).row();
-		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH).padTop(screenHeight / DEFAULTPADDINGx2).row();
+		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH).padTop(screenHeight / DEFAULTPADDINGx4).row();
 
 		
 
@@ -151,7 +151,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDING).row();
 		table.add(imageTable).width(screenWidth * FOUR_NINTH);
 		table.add(rightTable).width(screenWidth * FIVE_NINTH).row();
-		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDING).row();
+		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDINGx2).row();
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
