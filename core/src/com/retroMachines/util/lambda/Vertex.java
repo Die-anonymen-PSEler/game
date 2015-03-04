@@ -117,7 +117,7 @@ public abstract class Vertex {
 	//---------------------------------------------------
 	
 	/**
-	 * replace OldColor with newColor in Hole Family
+	 * replace OldColor with newColor in whole Family
 	 * @param oldColor Color which should be replaced
 	 * @param newColor Color which should take place of OldColor
 	 * @return true if renamed family successful, false otherwise

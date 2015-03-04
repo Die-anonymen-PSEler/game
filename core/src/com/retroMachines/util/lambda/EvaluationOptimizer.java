@@ -254,10 +254,6 @@ public class EvaluationOptimizer {
 	 *  evaluation result is saved in resultTree
 	 */
 	private static void checkEvaluation() {
-
-		if (resultTree == null || evaluationController == null) {
-			System.out.println("nullPointer");
-		}
 		result = resultTree.equals(evaluationController.getLevel().getLambdaUtil().getTargetTree());
 		if(result) {
 			evaluationController.getGameController().evaluationComplete();

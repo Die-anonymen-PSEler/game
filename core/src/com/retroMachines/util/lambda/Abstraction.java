@@ -165,9 +165,8 @@ public class Abstraction extends Vertex {
 	//---------------------------------------------------
 	
 	/**
-	 * Creates a clone of this Vertex without Next and his hole Family
-	 * @param next
-	 * @return
+	 * Creates a clone of this Vertex without Next and his whole Family
+	 * @return clone of this vertex
 	 */
 	@Override
 	public Vertex cloneMe(){
