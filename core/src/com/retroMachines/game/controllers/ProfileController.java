@@ -89,6 +89,8 @@ public class ProfileController {
 				String key = (String) profileNames.keySet().toArray()[0];
 				id = profileNames.get(key);
 				profile = new Profile(id);
+				profile.setSetting(new Setting(id));
+				profile.setStatistic(new Statistic(id));
 				updateLastUsedProfile();
 			}
 		}
