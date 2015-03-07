@@ -79,7 +79,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * Only those assets are allowed here.
 	 */
 	public static void initializePreLoading() {
-		textureMap.put("Background.png", new Texture(Gdx.files.internal("Background.png")));
+		textureMap.put(Constants.BACKGROUND_PATH, new Texture(Gdx.files.internal("Background.png")));
 		manager.finishLoading();
 	}
 
@@ -139,17 +139,6 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----------------------
 	// -----Menu Skins--------
 	// -----------------------
-
-	/**
-	 * QueueLoading loads the assets in the format:
-	 * manager.load("file location in assets", fileType.class);
-	 * 
-	 * libGDX AssetManager currently supports: Pixmap, Texture, BitmapFont,
-	 * TextureAtlas, TiledAtlas, TiledMapRenderer, Music and Sound.
-	 */
-	public static void queueLoading() {
-		manager.load("skins/LambdaGame.pack", TextureAtlas.class);
-	}
 	
 	/**
 	 * skin instance for all buttons.
@@ -163,7 +152,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----GameElements skins--------
 	// -------------------------------
 	
-	public static Skin getGameelementskin() {
+	public static Skin getGameelementSkin() {
 		return gameElementTexture;
 	}
 	

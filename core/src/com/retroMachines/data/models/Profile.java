@@ -21,6 +21,8 @@ public class Profile extends Model {
 	
 	private static final String KEY_SETTING = "settingId";
 
+	private static final String DESTROYED_PROFILE = "destroyed_profile_does_not_exist_no_more";
+
 	/**
 	 * the name of the profile
 	 */
@@ -68,7 +70,7 @@ public class Profile extends Model {
 
 	@Override
 	public boolean hasRecord() {
-		return (!pref.getString(KEY_PROFILE_NAME, KEY_PROFILE_NAME).equals(KEY_PROFILE_NAME));
+		return !(pref.getString(KEY_PROFILE_NAME, "name").equals(DESTROYED_PROFILE));
 	}
 	
 	@Override
@@ -78,7 +80,7 @@ public class Profile extends Model {
 	
 	@Override
 	public void destroy() {
-		pref.putString(KEY_PROFILE_NAME, "");
+		pref.putString(KEY_PROFILE_NAME, DESTROYED_PROFILE);
 		pref.putInteger(KEY_SETTING, -1);
 		pref.putInteger(KEY_STATISTIC, -1);
 		pref.flush();
