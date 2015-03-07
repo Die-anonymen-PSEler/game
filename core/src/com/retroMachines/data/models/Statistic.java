@@ -70,10 +70,14 @@ public class Statistic extends Model {
 	 * @param stepCounter
 	 */
 	public Statistic(int rowId, int playtime, int levelsComplete, int stepCounter) {
+		this(rowId, (float)playtime, levelsComplete, stepCounter);
+	}
+	
+	public Statistic(int rowId, float playtime, int levelComplete, int stepCounter) {
 		super();
 		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
-		this.setPlaytime(playtime);
-		this.setLevelsComplete(levelsComplete);
+		this.setPlaytime(playtime); 
+		this.setLevelsComplete(levelComplete);
 		this.setStepCounter(stepCounter);
 		write();
 	}
