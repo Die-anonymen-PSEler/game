@@ -51,11 +51,7 @@ public final class MusicManager implements SettingsChangeListener {
 			music = AssetManager.getMusic();
 		}
 		float volume = 0.5f;
-		try {
-			volume = ((RetroMachines) Gdx.app.getApplicationListener()).getSettingController().getVolume();
-		} catch(ClassCastException e) {
-			// must be running as a junit test
-		}
+		volume = ((RetroMachines) Gdx.app.getApplicationListener()).getSettingController().getVolume();
 		if (!music.isPlaying()) {
 			
 			music.play();

@@ -1,33 +1,45 @@
 package com.retroMachines.ui.screens.menus;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.retroMachines.GdxTestRunner;
+import com.retroMachines.RetroMachineMock;
+import com.retroMachines.data.AssetManager;
+import com.retroMachines.util.MusicManager;
 
 @RunWith(GdxTestRunner.class)
 public class MainMenuScreenTest {
 	
-	MainMenuScreen screen;
+	private RetroMachineMock game;
+	
+	private MainMenuScreen screen;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		AssetManager.initializePreLoading();
+		AssetManager.initializeWhileLoading();
+	}
 
 	@Before
 	public void setUp() throws Exception {
-		//screen = new MainMenuScreen(null);
+		game = new RetroMachineMock();
+		screen = new MainMenuScreen(game);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		game = null;
+		screen = null;
 	}
 
 	@Test
-	public void test() {
-		//fail("Not yet implemented");
+	public void testMusicStarted() {
+		screen.show();
+		MusicManager.getInstance();
 	}
 
 }

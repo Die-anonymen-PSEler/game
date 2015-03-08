@@ -1,8 +1,5 @@
 package com.retroMachines;
 
-import static org.mockito.Mockito.mock;
-
-import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,10 +10,7 @@ import org.junit.runners.model.InitializationError;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.utils.BufferUtils;
 
 
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener{
@@ -27,7 +21,7 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	      super(klass);
 	      HeadlessApplicationConfiguration conf = new HeadlessApplicationConfiguration();
 	      
-	      new HeadlessApplication(this, conf);
+	      new RetroApplication(this, conf, new RetroMachineMock());
 	      Gdx.gl20 = new RetroGL20();
 	      Gdx.gl = Gdx.gl20;
 	      Gdx.files = new RetroFiles();

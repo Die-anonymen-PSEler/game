@@ -45,6 +45,7 @@ public class AssetManagerTest {
 		assertFalse("skin ist null", AssetManager.getGameelementSkin() == null);
 		assertFalse("tileset ist null", AssetManager.getDepots() == null);
 		assertFalse("music ist null", AssetManager.getMusic() == null);
+		assertFalse("tileset ist null", AssetManager.getLights() == null);
 	}
 
 }

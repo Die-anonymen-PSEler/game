@@ -1,13 +1,16 @@
 package com.retroMachines.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.retroMachines.RetroMachineMock;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.game.controllers.SettingController;
 
 public class MusicManagerTest {
 
@@ -24,10 +27,16 @@ public class MusicManagerTest {
 	}
 
 	@Test
-	public void test() {
+	public void testStartMusic() {
 		manager.startMusic();
 		Music music = AssetManager.getMusic();
-		assertFalse("music should be playing", music.isPlaying()); // should be false because the audio is mocked
+		assertFalse("music should be playing", music.isPlaying()); // should be true; mocked music says false unfortunately
 	}
-
+	
+	@Test
+	public void testListener() {
+		SettingController controller = ((RetroMachineMock) Gdx.app.getApplicationListener()).getSettingController();
+		controller.setVolume(0.3f);
+		manager.onSettingsChanged();
+	}
 }

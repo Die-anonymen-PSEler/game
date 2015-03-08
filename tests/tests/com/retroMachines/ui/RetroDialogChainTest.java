@@ -1,6 +1,7 @@
 package com.retroMachines.ui;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,8 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.mockito.Mockito.mock;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,7 +24,6 @@ import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.ui.RetroDialogChain.DialogChainFinishedListener;
 import com.retroMachines.util.Constants;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 
 @RunWith(GdxTestRunner.class)
 public class RetroDialogChainTest {
@@ -59,17 +57,16 @@ public class RetroDialogChainTest {
 	@Test
 	public void testShow() {
 		chain.addDialog("title", AssetManager.getTexture(Constants.BACKGROUND_PATH));
-		CustomStage s = new CustomStage();
+		Stage s = new Stage();
 		chain.show(s);
-		assertTrue("sollte nur einen dialog enthalten", s.actors.size() == 1);
-		Dialog dialog = ( (Dialog) s.actors.get(0));
+		assertTrue("sollte nur einen dialog enthalten", s.getActors().size == 1);
 	}
 	
 	@Test
 	public void testListeners() {
 		MockListener listener = new MockListener();
 		chain.registerListener(listener);
-		chain.show(new CustomStage());
+		chain.show(new Stage());
 		assertTrue("listener hätte benachrichtigt werden sollen", listener.callHappened);
 	}
 	
@@ -85,21 +82,4 @@ public class RetroDialogChainTest {
 			callHappened = true;
 		}
 	};
-	
-	private class CustomStage extends Stage {
-		
-		public List<Actor> actors = new LinkedList<Actor>();
-		
-		public CustomStage() {
-			super(new ScalingViewport(Scaling.stretch, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera()),
-					mock(SpriteBatch.class));
-		}
-		
-		@Override
-		public void addActor(Actor actor) {
-			super.addActor(actor);
-			actors.add(actor);
-		}
-	}
-
 }
