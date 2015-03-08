@@ -141,10 +141,7 @@ public class ProfileController {
 	 *         active.
 	 */
 	public String getProfileName() {
-		if (profile != null) {
-			return profile.getProfileName();
-		}
-		return "";
+		return (profile == null || !profile.hasRecord()) ? null : profile.getProfileName();
 	}
 
 	/**

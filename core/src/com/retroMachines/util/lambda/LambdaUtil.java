@@ -76,7 +76,7 @@ public class LambdaUtil {
 		//
 		JsonObject level = root.getAsJsonObject(LEVEL);
 		JsonArray tutorials = level.getAsJsonArray(TUTORIALS);
-		JsonPrimitive HasTutScreens = level.getAsJsonPrimitive(HAS_TUTORIALS);
+		JsonPrimitive hasTutScreens = level.getAsJsonPrimitive(HAS_TUTORIALS);
 		JsonObject data = level.getAsJsonObject(DATA);
 		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
 		JsonArray hint = data.getAsJsonArray(HINT);
@@ -89,7 +89,7 @@ public class LambdaUtil {
 			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
 		}
 		
-		hasTutorial = HasTutScreens.getAsBoolean();
+		hasTutorial = hasTutScreens.getAsBoolean();
 		tutorialImgs = makeTutorialImgList(tutorials);
 		vertexList = makeVertexList(elements);
 		gameElementList = makeGameElementList();
@@ -355,12 +355,7 @@ public class LambdaUtil {
 	}
 	
 	public boolean hasTutorial() {
-		if(tutorialImgs != null) {
-			if(tutorialImgs.size() > 0) {
-				return true;
-			}
-		}
-		return false;
+		return hasTutorial;
 	}
 
 	public interface OnNextLambdaStepListener {
