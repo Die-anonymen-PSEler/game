@@ -62,9 +62,13 @@ public class RetroDialog extends Dialog {
 		button(new Button(skin, ButtonStrings.OK), true);
 	}
 	
+	/**
+	 * don't use this constructor. please use the constructor with double string parameters
+	 * @param title will be used as the title of the dialog
+	 * @param skin this parameter will be ignored
+	 */
 	public RetroDialog(String title, Skin skin) {
-		super(title, skin);
-		this.skin = skin;
+		this(title, "");
 	}
 	
 	/**
