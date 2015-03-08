@@ -1,4 +1,4 @@
-package com.retroMachines;
+package com.retroMachines.gdxemulation;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;

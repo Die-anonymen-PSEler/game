@@ -3,23 +3,13 @@ package com.retroMachines.ui;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.utils.Scaling;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.ui.RetroDialogChain.DialogChainFinishedListener;

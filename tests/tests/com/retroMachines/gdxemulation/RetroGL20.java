@@ -1,4 +1,4 @@
-package com.retroMachines;
+package com.retroMachines.gdxemulation;
 
 import java.nio.Buffer;
 import java.nio.FloatBuffer;

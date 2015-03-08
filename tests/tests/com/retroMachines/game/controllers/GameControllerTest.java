@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.RetroMachineMock;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.gameelements.RetroMan;
+import com.retroMachines.gdxemulation.RetroMachineMock;
 import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 

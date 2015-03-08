@@ -11,6 +11,12 @@ import org.junit.runners.model.InitializationError;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
+import com.retroMachines.gdxemulation.RetroApplication;
+import com.retroMachines.gdxemulation.RetroFiles;
+import com.retroMachines.gdxemulation.RetroGL20;
+import com.retroMachines.gdxemulation.RetroGraphics;
+import com.retroMachines.gdxemulation.RetroInput;
+import com.retroMachines.gdxemulation.RetroMachineMock;
 
 
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener{
@@ -26,6 +32,7 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	      Gdx.gl = Gdx.gl20;
 	      Gdx.files = new RetroFiles();
 	      Gdx.graphics = new RetroGraphics();
+	      Gdx.input = new RetroInput();
 	   }
 
 	   

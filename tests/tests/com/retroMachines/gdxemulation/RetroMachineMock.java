@@ -1,6 +1,7 @@
-package com.retroMachines;
+package com.retroMachines.gdxemulation;
 
 import com.badlogic.gdx.Screen;
+import com.retroMachines.RetroMachines;
 import com.retroMachines.data.models.Setting;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;

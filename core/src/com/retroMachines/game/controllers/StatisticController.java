@@ -60,11 +60,11 @@ public class StatisticController implements OnProfileChangedListener {
 	 * @param diff the amount to add to the play time; a value smaller than 0 will result in 1 minute added 
 	 */
 	public void incPlayTime(float diff) {
-		statistic.setPlaytime(statistic.getPlaytime() + diff);
+		statistic.setPlaytime(diff < 0 ? statistic.getPlaytime() + Constants.SECONDS_IN_MINUTE : statistic.getPlaytime() + diff);
 	}
 	
 	/**
-	 * @param minimumLevel the level to which you wanna increase the level atleast
+	 * @param minimumLevel level 1 will result 
 	 */
 	public void incLevelCompleted(int minimumLevel) {
 		if (Constants.MAX_LEVEL_ID > statistic.getLevelsComplete() && getLevelsCompleted() < minimumLevel) {

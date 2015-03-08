@@ -1,4 +1,4 @@
-package com.retroMachines;
+package com.retroMachines.gdxemulation;
 
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.GL20;
@@ -47,7 +47,7 @@ public class RetroGraphics implements Graphics{
 	@Override
 	public float getDeltaTime() {
 
-		return 0;
+		return 0.1f;
 	}
 
 	@Override

@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.retroMachines.RetroMachineMock;
 import com.retroMachines.data.AssetManager;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.gdxemulation.RetroMachineMock;
 
 public class MusicManagerTest {
 

@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.RetroMachineMock;
 import com.retroMachines.data.AssetManager;
+import com.retroMachines.gdxemulation.RetroMachineMock;
 import com.retroMachines.util.MusicManager;
 
 @RunWith(GdxTestRunner.class)
