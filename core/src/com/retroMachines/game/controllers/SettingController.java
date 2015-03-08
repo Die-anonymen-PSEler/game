@@ -142,8 +142,17 @@ public class SettingController implements OnProfileChangedListener {
 		return settings.getSelectedCharacter();
 	}
 	
+	/**
+	 * Assigns a new character id to the settings.
+	 * IllegalArgumentException will be thrown in case the parameter exceeds the range.
+	 * @param i range (0 - {@link Constants}.TEXTURE_ANIMATION_NAMES.length - 1)
+	 */
 	public void setCharacterId(int i) {
-		settings.setSelectedCharacter(i);
+		if (i >= 0 && i < Constants.TEXTURE_ANIMATION_NAMES.length) {
+			settings.setSelectedCharacter(i);
+		} else {
+			throw new IllegalArgumentException("The value exceeds the bounds 0 and " + Constants.TEXTURE_ANIMATION_NAMES.length + ": " + i);
+		}
 	}
 	
 	/**
