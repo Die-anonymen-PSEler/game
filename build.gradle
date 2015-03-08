@@ -74,6 +74,21 @@ project(":core") {
     }
 }
 
+project(":tests") {
+    apply plugin: "java"
+
+
+    dependencies {
+        compile project(":core")
+        compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        compile 'junit:junit:4.8+'
+        compile "org.mockito:mockito-core:1.9.5"
+    }
+}
+
 tasks.eclipse.doLast {
     delete ".project"
 }
