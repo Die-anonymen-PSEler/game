@@ -2,6 +2,7 @@ package com.retroMachines;
 
 import static org.mockito.Mockito.mock;
 
+import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.utils.BufferUtils;
 
 
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener{
@@ -26,8 +28,8 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	      HeadlessApplicationConfiguration conf = new HeadlessApplicationConfiguration();
 	      
 	      new HeadlessApplication(this, conf);
-	      Gdx.gl = mock(GL20.class);
-	      Gdx.gl20 = mock(GL20.class);
+	      Gdx.gl20 = new RetroGL20();
+	      Gdx.gl = Gdx.gl20;
 	      Gdx.files = new RetroFiles();
 	   }
 
@@ -43,7 +45,16 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	   public void render() {
 	      synchronized (invokeInRender) {
 	         for(Map.Entry<FrameworkMethod, RunNotifier> each : invokeInRender.entrySet()){
-	            super.runChild(each.getKey(), each.getValue());
+	        	 try {
+	        		 super.runChild(each.getKey(), each.getValue());
+	        	 } catch (Exception e) {
+	        		 System.out.println("catching");
+	        		 if (!e.getMessage().contains("Error compiling shader:")) {
+	        			 System.out.println("hi");
+	        			 e.printStackTrace(); 
+	        		 }
+	        	 }
+	            
 	         }
 	         invokeInRender.clear();
 	      }
