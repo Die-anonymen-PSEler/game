@@ -31,6 +31,7 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	      Gdx.gl20 = new RetroGL20();
 	      Gdx.gl = Gdx.gl20;
 	      Gdx.files = new RetroFiles();
+	      Gdx.graphics = new RetroGraphics();
 	   }
 
 	   
@@ -45,16 +46,7 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	   public void render() {
 	      synchronized (invokeInRender) {
 	         for(Map.Entry<FrameworkMethod, RunNotifier> each : invokeInRender.entrySet()){
-	        	 try {
-	        		 super.runChild(each.getKey(), each.getValue());
-	        	 } catch (Exception e) {
-	        		 System.out.println("catching");
-	        		 if (!e.getMessage().contains("Error compiling shader:")) {
-	        			 System.out.println("hi");
-	        			 e.printStackTrace(); 
-	        		 }
-	        	 }
-	            
+        		 super.runChild(each.getKey(), each.getValue());
 	         }
 	         invokeInRender.clear();
 	      }
