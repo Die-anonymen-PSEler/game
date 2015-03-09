@@ -357,6 +357,14 @@ public class LambdaUtil {
 	public boolean hasTutorial() {
 		return hasTutorial;
 	}
+	
+	/**
+	 * getter for observers, needed for testcases.
+	 * @return observers as ArrayList
+	 */
+	public ArrayList<OnNextLambdaStepListener> getObservers() {
+		return (ArrayList<OnNextLambdaStepListener>) observers;
+	}
 
 	public interface OnNextLambdaStepListener {
 
