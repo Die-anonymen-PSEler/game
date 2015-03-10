@@ -4,14 +4,27 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import com.retroMachines.GdxTestRunner;
+import com.retroMachines.data.AssetManager;
 import com.retroMachines.util.lambda.LambdaUtil.OnNextLambdaStepListener;
 
+@RunWith(GdxTestRunner.class)
 public class LambdaUtilTest {
 	
 	private LambdaUtil util;
 	private OnNextLambdaStepListener listener;
+	
+	private String jsonFormat = "maps/LevelJsons/Level%d.json";
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		AssetManager.initializePreLoading();
+		AssetManager.initializeWhileLoading();
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -37,7 +50,8 @@ public class LambdaUtilTest {
 
 	@Test
 	public void testCreateTreeFromJson() {
-		fail("Not yet implemented");
+		String fileName = String.format(jsonFormat, 1);
+		util.createTreeFromJson(fileName);
 	}
 
 	@Test
@@ -55,7 +69,7 @@ public class LambdaUtilTest {
 
 	@Test
 	public void testGetGameElement() {
-		fail("Not yet implemented");
+		util.getGameElement(0, 0);
 	}
 
 	@Test
