@@ -27,22 +27,22 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * 
  */
 public class ProfileSettingsMenuScreen extends MenuScreen {
-	
-	private final static float FONTSIZE2_5 =  2.5f;
-	private final static float FONTSIZE2 =  2f;
+
+	private final static float FONTSIZE2_5 = 2.5f;
+	private final static float FONTSIZE2 = 2f;
 	private final static float THREE_FIFTH = (3f / 5f);
 	private final static float FOUR_NINTH = (4f / 9f);
 	private final static float FIVE_NINTH = (5f / 9f);
-	
+
 	private SettingController settingController;
 
 	private Button buttonRightMode;
 	private Button buttonLeftMode;
-	
+
 	private Image charImage;
 
 	public ProfileSettingsMenuScreen(RetroMachines game) {
-		super(game);		
+		super(game);
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	protected void initialize() {
 		settingController = game.getSettingController();
 		ProfileController profileController = game.getProfileController();
-		
+
 		skin = AssetManager.getMenuSkin();
 
 		// Make Title
@@ -63,14 +63,16 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		// Profile Name
 		// TODO get Profile Name
 		Label profileName = new Label(profileController.getProfileName(), skin);
-		profileName.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		profileName
+				.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		profileName.setAlignment(Align.center);
 
 		// Subtitle LeftiMode
 		Label steeringTitle = new Label("Steuerung", skin);
-		steeringTitle.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		steeringTitle.setFontScale((FONTSIZE2 * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
 		steeringTitle.setAlignment(Align.center);
-		
+
 		Label resetTitle = new Label("Tutorial Reset", skin);
 		resetTitle.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
 		resetTitle.setWrap(true);
@@ -80,7 +82,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		Button buttonOk = new Button(skin, ButtonStrings.OK);
 		buttonOk.addListener(new AcceptButtonClickListener());
 		buttonOk.pad(screenHeight / DEFAULTBUTTONSIZE);
-		
+
 		Button buttonTutReset = new Button(skin, ButtonStrings.ABORT);
 		buttonTutReset.addListener(new TutResetButtonClickListener());
 		buttonTutReset.pad(screenHeight / DEFAULTBUTTONSIZE);
@@ -96,12 +98,11 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonRightMode = new Button(skin, ButtonStrings.CONTROL_RIGHT);
 		buttonRightMode.addListener(new RightControlButtonClickListener());
 		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
-		
+
 		if (settingController.getLeftMode()) {
 			buttonLeftMode.setChecked(true);
 			buttonRightMode.setChecked(false);
-		}
-		else {
+		} else {
 			buttonLeftMode.setChecked(false);
 			buttonRightMode.setChecked(true);
 		}
@@ -127,50 +128,50 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// ImageTable
 		Table imageTable = new Table(skin);
-		imageTable.add(buttonNextChar).left().padRight(screenWidth / DEFAULTPADDINGx4);
+		imageTable.add(buttonNextChar).left()
+				.padRight(screenWidth / DEFAULTPADDINGx4);
 		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADDINGx2)
-				.height((screenHeight) * THREE_FIFTH).width((screenWidth) * ONE_FOURTH);
-		
-		
-		//Tut Table
+				.height((screenHeight) * THREE_FIFTH)
+				.width((screenWidth) * ONE_FOURTH);
+
+		// Tut Table
 		Table tutTable = new Table(skin);
-		tutTable.add(resetTitle).padTop(screenHeight / DEFAULTPADDING).width(screenWidth * ONE_THIRD);
-		tutTable.add(buttonTutReset).padTop(screenHeight / DEFAULTPADDING).row();
-		
-		
+		tutTable.add(resetTitle).padTop(screenHeight / DEFAULTPADDING)
+				.width(screenWidth * ONE_THIRD);
+		tutTable.add(buttonTutReset).padTop(screenHeight / DEFAULTPADDING)
+				.row();
+
 		// RightTable
 		Table rightTable = new Table(skin);
 		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADDING).row();
-		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDINGx2).row();
-		rightTable.add(leftiTable).expandX().padTop(screenHeight / DEFAULTPADDINGx2).row();
-		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH).padTop(screenHeight / DEFAULTPADDINGx4).row();
-
-		
+		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDINGx2)
+				.row();
+		rightTable.add(leftiTable).expandX()
+				.padTop(screenHeight / DEFAULTPADDINGx2).row();
+		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH)
+				.padTop(screenHeight / DEFAULTPADDINGx4).row();
 
 		// MainTable
-		table.add(title).expandX().colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDING).row();
+		table.add(title).expandX().colspan(COLSPANx2)
+				.padTop(screenHeight / DEFAULTPADDING).row();
 		table.add(imageTable).width(screenWidth * FOUR_NINTH);
 		table.add(rightTable).width(screenWidth * FIVE_NINTH).row();
-		table.add(buttonTable).colspan(COLSPANx2).padTop(screenHeight / DEFAULTPADDINGx2).row();
+		table.add(buttonTable).colspan(COLSPANx2)
+				.padTop(screenHeight / DEFAULTPADDINGx2).row();
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 	}
-	
-	
-	
 
 	private void setCharacterImage() {
-		String name = Constants.TEXTURE_ANIMATION_NAMES[settingController.getCurrentCharacterId()];
+		String name = Constants.TEXTURE_ANIMATION_NAMES[settingController
+				.getCurrentCharacterId()];
 		Texture texture = AssetManager.getTexture(name);
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
-		
+
 		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
 		charImage.setScaling(Scaling.fit);
 	}
-
-
-
 
 	/**
 	 * Listener when the button for ok a profile has been clicked
@@ -225,7 +226,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 			setCharacterImage();
 		}
 	}
-	
+
 	/**
 	 * Listener when the button for right control has been chosen.
 	 * 

@@ -6,7 +6,7 @@ package com.retroMachines;
  * @texignore
  */
 class UMLOptions {
-        
+
 }
 
 /**
@@ -23,11 +23,11 @@ class UMLOptions {
  * @match class com.badlogic.gdx.*
  * @opt qualify
  * @opt postfixpackage
- *
+ * 
  * @match class com.retroMachines.*
  * @opt all
  * @opt nodefillcolor 2
- *
+ * 
  * @match class com.retroMachines.game.controller.*
  * @opt nodefillcolor 3
  * 
@@ -36,16 +36,16 @@ class UMLOptions {
  * 
  * @match class com.retroMachines.ui.screens.game.*
  * @opt nodefillcolor 5
- *
+ * 
  * @match class com.retroMachines.ui.screens.menus.*
  * @opt nodefillcolor 11
- *
+ * 
  * @match class com.retroMachines.util.*
  * @opt nodefillcolor 12
  * 
  * @match class com.retroMachines.data.*
  * @opt nodefillcolor #ee7600
- *
+ * 
  * @match class com.retroMachines.data.models.*
  * @opt nodefillcolor #458b74
  * 
@@ -55,19 +55,19 @@ class UMLOptions {
  * 
  * @match class java.*
  * @opt hide
- *
+ * 
  * @match class com.badlogic.gdx.scenes.scene2d.utils.ClickListener
  * @opt hide
- *
+ * 
  * @match class com.retroMachines.ui.screens.menus.*.*ClickListener
  * @opt hide
- *
+ * 
  * @match class com.retroMachines.ui.screens.game.*.*ClickListener
  * @opt hide
- *
+ * 
  * @match class com.retroMachines.ui.screens.menus.*.*ButtonListener
  * @opt hide
- *
+ * 
  * @match class com.retroMachines.ui.screens.game.*.*ButtonListener
  * @opt hide
  * 

@@ -61,14 +61,14 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	private Button buttonLeftMode;
 
 	private RetroDialog errorDialog;
-	
+
 	private Image charImage;
-	
+
 	/**
 	 * counter for the currently shown character image
 	 */
 	private int i = 0;
-	
+
 	/**
 	 * Creates a new CreateProfileMenuScreen.
 	 * 
@@ -201,12 +201,13 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		}
 		return false;
 	}
-	
+
 	private void setCharacterImage(int value) {
-		String name = Constants.TEXTURE_ANIMATION_NAMES[value % Constants.TEXTURE_ANIMATION_NAMES.length];
+		String name = Constants.TEXTURE_ANIMATION_NAMES[value
+				% Constants.TEXTURE_ANIMATION_NAMES.length];
 		Texture texture = AssetManager.getTexture(name);
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
-		
+
 		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
 		charImage.setScaling(Scaling.fit);
 	}
@@ -219,7 +220,8 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		if (profileController.canUserBeCreated(name)) {
 			profileController.createProfile(name);
 			settingController.setLeftMode(buttonLeftMode.isChecked());
-			settingController.setCharacterId(i % Constants.TEXTURE_ANIMATION_NAMES.length);
+			settingController.setCharacterId(i
+					% Constants.TEXTURE_ANIMATION_NAMES.length);
 			game.setScreen(new ProfileMenuScreen(game));
 		} else {
 		}
@@ -239,6 +241,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 
 	/**
 	 * Listener when the user aborts the profile creation.
+	 * 
 	 * @author RetroFactory
 	 */
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
@@ -247,7 +250,8 @@ public class CreateProfileMenuScreen extends MenuScreen {
 			if (profileController.getAllProfiles().length > 0) {
 				game.previousScreen();
 			} else {
-				errorDialog = new RetroDialog("", "Zum Spielen brauchst du ein Profil!");
+				errorDialog = new RetroDialog("",
+						"Zum Spielen brauchst du ein Profil!");
 				errorDialog.show(stage);
 			}
 		}

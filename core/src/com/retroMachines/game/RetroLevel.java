@@ -23,28 +23,30 @@ import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
 /**
- * a class containing all relevant information regarding a level 
+ * a class containing all relevant information regarding a level
+ * 
  * @author RetroFactory
- *
+ * 
  */
 public class RetroLevel {
-	
+
 	public static final int DEPOTID = 8;
-	
+
 	private String errorMessage;
-	
+
 	private int levelId;
-	
+
 	private LambdaUtil lambdaUtil;
-	
+
 	private LevelTree evaluationTree;
-	
+
 	private TiledMap map;
-	
+
 	private LinkedList<Vertex> vertexInDepot;
-	
+
 	/**
 	 * private constructor so levelbuilder class has to be used
+	 * 
 	 * @param id
 	 * @param map
 	 * @param util
@@ -56,51 +58,65 @@ public class RetroLevel {
 	}
 
 	/**
-	 * Checks if a given position is suiteable for a gameelement (whether it makes sense)
-	 * @param pos the vector in question
+	 * Checks if a given position is suiteable for a gameelement (whether it
+	 * makes sense)
+	 * 
+	 * @param pos
+	 *            the vector in question
 	 * @return true if valid; false otherwise.
 	 */
 	public boolean isValidGameElementPosition(Vector2 pos) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
-		if (layer.getCell((int)pos.x, (int) pos.y) != null) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
+		if (layer.getCell((int) pos.x, (int) pos.y) != null) {
 			return false;
 		}
-		layer = (TiledMapTileLayer) map.getLayers().get(Constants.SOLID_LAYER_ID);
-		if (layer.getCell((int)pos.x , (int)pos.y) != null || layer.getCell( (int)pos.x, ((int)pos.y - 1)) == null) {
+		layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.SOLID_LAYER_ID);
+		if (layer.getCell((int) pos.x, (int) pos.y) != null
+				|| layer.getCell((int) pos.x, ((int) pos.y - 1)) == null) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Assigns a GameElement a new position and updates it's coordinates within the lambdautil.
-	 * Also adds the element back to the map for rendering.
-	 * You might wanna call the isValidGameElementPosition first
-	 * @param element the element which will be readded to the map
-	 * @param newPos the position where the element will be added.
+	 * Assigns a GameElement a new position and updates it's coordinates within
+	 * the lambdautil. Also adds the element back to the map for rendering. You
+	 * might wanna call the isValidGameElementPosition first
+	 * 
+	 * @param element
+	 *            the element which will be readded to the map
+	 * @param newPos
+	 *            the position where the element will be added.
 	 */
 	public void placeGameElement(GameElement element, Vector2 newPos) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
 		Vertex vertex = lambdaUtil.getVertex(element);
 		vertex.setPosition(newPos.cpy());
-		
+
 		Cell cell = new Cell();
 		cell.setTile(element.getTileSet().getTile(element.getTileId()));
 		layer.setCell((int) newPos.x, (int) newPos.y, cell);
 	}
-	
+
 	/**
-	 * Removes an Object from the map. This does only remove the visual appearance!
-	 * @param elementPosition the vector where element shall be removed
+	 * Removes an Object from the map. This does only remove the visual
+	 * appearance!
+	 * 
+	 * @param elementPosition
+	 *            the vector where element shall be removed
 	 */
 	public void removeGameElement(GameElement element, Vector2 elementPosition) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
 		layer.setCell((int) elementPosition.x, (int) elementPosition.y, null);
-		//Set vertex Pos to -1 -1 so its not longer placed on old place
+		// Set vertex Pos to -1 -1 so its not longer placed on old place
 		Vertex vertex = lambdaUtil.getVertex(element);
 		vertex.setPosition(new Vector2(-1, -1));
 	}
-	
+
 	/**
 	 * Returns GameElement at a given position in TiledMap
 	 * 
@@ -109,109 +125,115 @@ public class RetroLevel {
 	 * @return The GameElement at this position ( null when empty).
 	 */
 	public GameElement getGameElement(Vector2 posObj) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
 		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
-		return (cell == null) ? null : lambdaUtil.getGameElement((int) posObj.x, (int) posObj.y);
+		return (cell == null) ? null : lambdaUtil.getGameElement(
+				(int) posObj.x, (int) posObj.y);
 	}
-	
+
 	public boolean allDepotsFilled() {
-		
-		//Get Depot Tile as Cell objekt
-		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(Constants.DEPOT_LAYER);
-		TiledMapTileSet depotSet = map.getTileSets().getTileSet(RetroStrings.TILESETNAME_DEPOT);
+
+		// Get Depot Tile as Cell objekt
+		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.DEPOT_LAYER);
+		TiledMapTileSet depotSet = map.getTileSets().getTileSet(
+				RetroStrings.TILESETNAME_DEPOT);
 		int offsetDepot = (Integer) depotSet.getProperties().get("firstgid");
 		Cell depotCell = new Cell();
 		depotCell.setTile(depotSet.getTile(DEPOTID + offsetDepot));
-		
+
 		int numOfVInDepot = 0;
-		
+
 		vertexInDepot = new LinkedList<Vertex>();
 		for (Vertex v : lambdaUtil.getVertexList()) {
 			Vector2 pos = v.getPosition();
-			
-			//Check if position of v is same as an Depot
-			if (depotLayer.getCell((int)pos.x, (int)pos.y) != null 
-					&& depotLayer.getCell((int)pos.x, (int)pos.y).getTile().getId() == depotCell.getTile().getId() ) {
-				
+
+			// Check if position of v is same as an Depot
+			if (depotLayer.getCell((int) pos.x, (int) pos.y) != null
+					&& depotLayer.getCell((int) pos.x, (int) pos.y).getTile()
+							.getId() == depotCell.getTile().getId()) {
+
 				// increase counter
 				numOfVInDepot++;
-				
+
 				// Make List of all Vertex in Depot
 				vertexInDepot.add(v);
 			}
 		}
-		if ( numOfVInDepot < lambdaUtil.getNumOfDepots()) {
-			//not all elements are placed
+		if (numOfVInDepot < lambdaUtil.getNumOfDepots()) {
+			// not all elements are placed
 			errorMessage = RetroStrings.NOT_ALL_PLACED;
 			return false;
 		}
-		if(!makeEvaluationTree()) {
+		if (!makeEvaluationTree()) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	public int getId() {
 		return levelId;
 	}
-	
+
 	public String getErrorMessage() {
 		return errorMessage;
 	}
-	
+
 	private boolean makeEvaluationTree() {
 		errorMessage = "";
-		// Search start Vertex 
+		// Search start Vertex
 		int y = Integer.MAX_VALUE;
 		for (Vertex v : vertexInDepot) {
-			if((int)v.getPosition().y < y) {
-				y = (int)v.getPosition().y;
+			if ((int) v.getPosition().y < y) {
+				y = (int) v.getPosition().y;
 			}
 		}
-		if(y == Integer.MAX_VALUE) {
+		if (y == Integer.MAX_VALUE) {
 			// Error
 			Gdx.app.log(Constants.LOG_TAG, "No Start Vertex found");
 		}
 		Vertex start = buildTree(y, lambdaUtil.getLevelTree().getStart());
-		if(start == null) {
+		if (start == null) {
 			return false;
 		}
 		evaluationTree = new LevelTree(start);
 		return true;
 	}
-	
+
 	private Vertex buildTree(int y, Vertex dummy) {
 		Vertex result;
 		// Build family and your self
 		if (dummy.getfamily() != null) {
-			Vertex fam = buildTree(y + Constants.DEPOTLAYER_Y_DIF, dummy.getfamily());
-			if(fam == null) {
+			Vertex fam = buildTree(y + Constants.DEPOTLAYER_Y_DIF,
+					dummy.getfamily());
+			if (fam == null) {
 				return null;
 			}
 
 			result = findVertexPosY(y);
-			
-			//Check if construct is valid
-			if(!checkValidVertexFamily(result, fam)) {
+
+			// Check if construct is valid
+			if (!checkValidVertexFamily(result, fam)) {
 				return null;
 			}
-			
+
 			result.setfamily(fam);
 			// set Width
 			result.setWidth(fam.getWidth() + fam.getNextWidth());
-			
-			//Updtae ColorList
+
+			// Updtae ColorList
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
-			for(int i : fam.getFamilyColorList()) {
+			for (int i : fam.getFamilyColorList()) {
 				newColorList.add(i);
 			}
-			for(int i : fam.getNextColorList()) {
+			for (int i : fam.getNextColorList()) {
 				newColorList.add(i);
 			}
 			// Color of application is always the same
-			if(!result.getType().equals("Application")) {
+			if (!result.getType().equals("Application")) {
 				// Add own color if its not in colorlist
-				if(!newColorList.contains(new Integer(result.getColor()))) {
+				if (!newColorList.contains(new Integer(result.getColor()))) {
 					newColorList.add(result.getColor());
 				}
 			}
@@ -221,64 +243,68 @@ public class RetroLevel {
 			result.setfamily(null);
 			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
-			
+
 			// Color of application is always the same
-			if(!result.getType().equals("Application")) {
+			if (!result.getType().equals("Application")) {
 				newColorList.add(result.getColor());
 			}
 			result.setFamilyColorlist(newColorList);
 		}
-		
+
 		// Build vertex next to you if not null
-		if(dummy.getnext() != null) {
+		if (dummy.getnext() != null) {
 			Vertex next = buildTree(y, dummy.getnext());
-			if(next == null) {
+			if (next == null) {
 				return null;
 			}
 			// Check if construct is valid
 			result.setnext(next);
-			
+
 			// set nextWidth
 			result.setNextWidth(next.getWidth() + next.getNextWidth());
-			
+
 			LinkedList<Integer> nextColorList = new LinkedList<Integer>();
-			for(int i : next.getNextColorList()) {
+			for (int i : next.getNextColorList()) {
 				nextColorList.add(i);
 			}
-			for(Integer c : next.getFamilyColorList()) {
-				if(!nextColorList.contains(c)) {
+			for (Integer c : next.getFamilyColorList()) {
+				if (!nextColorList.contains(c)) {
 					nextColorList.add(c);
 				}
 			}
 			result.setNextColorlist(nextColorList);
-			
+
 		} else {
 			// Check if construct is valid
-			
+
 			result.setnext(null);
 			result.setNextColorlist(new LinkedList<Integer>());
 		}
 		return result;
 	}
-	
+
 	private boolean checkValidVertexFamily(Vertex v, Vertex fam) {
-		if(v.getType().equals(RetroStrings.VARIABLE_TYPE) && fam != null) {
+		if (v.getType().equals(RetroStrings.VARIABLE_TYPE) && fam != null) {
 			errorMessage = RetroStrings.VARIABLE_FAMILY_INVALID;
 			return false;
-		} else if (v.getType().equals(RetroStrings.ABSTRACTION_TYPE) && fam == null) {
+		} else if (v.getType().equals(RetroStrings.ABSTRACTION_TYPE)
+				&& fam == null) {
 			errorMessage = RetroStrings.ABSTRACTION_FAMILY_INVALID;
 			return false;
-		} else if (v.getType().equals(RetroStrings.APPLICATION_TYPE) && fam == null) {
+		} else if (v.getType().equals(RetroStrings.APPLICATION_TYPE)
+				&& fam == null) {
 			errorMessage = RetroStrings.APPLICATION_FAMILY_INVALID;
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Returns index of Vertex with smallest x pos and given y pos
-	 * @param yPos yPosition of searched Vertex
+	 * 
+	 * @param yPos
+	 *            yPosition of searched Vertex
 	 * @return index of searched Vertex in "vertexinDepot" List
 	 */
 	private Vertex findVertexPosY(int yPos) {
@@ -286,9 +312,9 @@ public class RetroLevel {
 		result.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
 		int index = -1;
 		int i = 0;
-		for (Vertex v: vertexInDepot) {
-			if((int) v.getPosition().y == yPos) {
-				if(v.getPosition().x <  result.getPosition().x) {
+		for (Vertex v : vertexInDepot) {
+			if ((int) v.getPosition().y == yPos) {
+				if (v.getPosition().x < result.getPosition().x) {
 					result = v;
 					index = i;
 				}
@@ -297,24 +323,33 @@ public class RetroLevel {
 		}
 		vertexInDepot.remove(index);
 		Vertex returnClone = result.getClone();
-		int offset = (Integer) returnClone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		int offset = (Integer) returnClone.getGameElement().getTileSet()
+				.getProperties().get("firstgid") - 1;
 		int color = returnClone.getColor();
 		returnClone.getGameElement().setTileId(color + offset);
-		return  returnClone;
-	 }
-	
+		return returnClone;
+	}
 
 	/**
-	 * Returns an array of rectangles based on the tiles that are within a given area.
-	 * @param startX the beginning x coordinate
-	 * @param startY the beginning y coordinate
-	 * @param endX the end x coordinate
-	 * @param endY the end y coordinate
-	 * @param layerId the id where the rectangles shall be gathered.
+	 * Returns an array of rectangles based on the tiles that are within a given
+	 * area.
+	 * 
+	 * @param startX
+	 *            the beginning x coordinate
+	 * @param startY
+	 *            the beginning y coordinate
+	 * @param endX
+	 *            the end x coordinate
+	 * @param endY
+	 *            the end y coordinate
+	 * @param layerId
+	 *            the id where the rectangles shall be gathered.
 	 * @return an array containing those gathered rectangles
 	 */
-	public Array<Rectangle> getTiles(int startX, int startY, int endX, int endY, int layerId) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(layerId);
+	public Array<Rectangle> getTiles(int startX, int startY, int endX,
+			int endY, int layerId) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				layerId);
 		Array<Rectangle> tiles = new Array<Rectangle>();
 		for (int y = startY; y <= endY; y++) {
 			for (int x = startX; x <= endX; x++) {
@@ -327,32 +362,34 @@ public class RetroLevel {
 		}
 		return tiles;
 	}
-	
 
 	/**
 	 * Get method for the map
+	 * 
 	 * @return the map associated with this level
 	 */
 	public TiledMap getMap() {
 		return map;
 	}
-	
+
 	/**
 	 * returns the lambda util associated with this level
+	 * 
 	 * @return
 	 */
 	public LambdaUtil getLambdaUtil() {
 		return lambdaUtil;
 	}
-	
+
 	/**
 	 * Getter for the evaluation tree of this level
+	 * 
 	 * @return evaluation Tree
 	 */
 	public LevelTree getEvaluationTree() {
 		return evaluationTree;
 	}
-	
+
 	public boolean hasTutorial() {
 		return lambdaUtil.hasTutorial();
 	}
@@ -365,34 +402,35 @@ public class RetroLevel {
 		}
 		return chain;
 	}
-	
+
 	/**
 	 * LevelBuilder class to generate a retrolevel.
+	 * 
 	 * @author RetroFactory
-	 *
+	 * 
 	 */
 	public static class LevelBuilder {
-		
+
 		/**
 		 * a pattern where the level json files may be found
 		 */
 		public static final String JSON_PATTERN = "maps/LevelJsons/Level%s.json";
-		
+
 		/**
 		 * the tiledmap that belongs with the level
 		 */
 		private TiledMap map;
-		
+
 		/**
 		 * the lambda util associated with the level
 		 */
 		private LambdaUtil lambdaUtil;
-		
+
 		/**
 		 * the level that was created based on the id
 		 */
 		private RetroLevel level;
-		
+
 		/**
 		 * Creates a new instance of the levelbuilder
 		 */
@@ -401,18 +439,21 @@ public class RetroLevel {
 			lambdaUtil = new LambdaUtil();
 			map = null;
 		}
-		
+
 		/**
 		 * Returns the level that was created once the prepare method was called
+		 * 
 		 * @return the level generated
 		 */
 		public RetroLevel getLevel() {
 			return level;
 		}
-		
+
 		/**
 		 * prepares both map and the lambda structure for the game controller
-		 * @param id the id of the level. range [1 - Constants.MAX_LEVEL]
+		 * 
+		 * @param id
+		 *            the id of the level. range [1 - Constants.MAX_LEVEL]
 		 */
 		public void prepare(int id) {
 			map = AssetManager.getMap(id);
@@ -421,26 +462,30 @@ public class RetroLevel {
 			addGameelements();
 			level = new RetroLevel(levelId, this.map, this.lambdaUtil);
 		}
-		
+
 		/**
 		 * adds the gameelements to the map.
 		 */
 		private void addGameelements() {
 			LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
-			
-			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Constants.OBJECT_LAYER_ID);
+
+			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+					Constants.OBJECT_LAYER_ID);
 			for (Vertex v : levelelements) {
-				int offset = (Integer) v.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+				int offset = (Integer) v.getGameElement().getTileSet()
+						.getProperties().get("firstgid") - 1;
 				int color = v.getColor();
 				v.getGameElement().setTileId(color + offset);
 				if (color <= Constants.MAX_COLOR_ID) {
 					Cell cell = new Cell();
-					cell.setTile(v.getGameElement().getTileSet().getTile(color + offset));
+					cell.setTile(v.getGameElement().getTileSet()
+							.getTile(color + offset));
 					Vector2 position = v.getPosition();
 					layer.setCell((int) position.x, (int) position.y, cell);
 				} else {
-					Gdx.app.log(Constants.LOG_TAG, "Out of ColorRange in TiledSets");
-				}	
+					Gdx.app.log(Constants.LOG_TAG,
+							"Out of ColorRange in TiledSets");
+				}
 			}
 		}
 	}

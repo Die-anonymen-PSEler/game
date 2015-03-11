@@ -5,33 +5,37 @@ import com.retroMachines.data.models.Statistic;
 import com.retroMachines.util.Constants;
 
 /**
- * The StatisticController is part of the controller of RetroMachines.
- * It controls the statistics of the profile and changes them.
+ * The StatisticController is part of the controller of RetroMachines. It
+ * controls the statistics of the profile and changes them.
  * 
  * @author RetroFactory
- *
+ * 
  */
 public class StatisticController implements OnProfileChangedListener {
-	
+
 	/**
 	 * Instance of the Game which is needed to get all statistical informations.
 	 */
 	private final RetroMachines game;
-	
+
 	/**
-	 * Private attribute of the statistics database which stores the statistical informations.
+	 * Private attribute of the statistics database which stores the statistical
+	 * informations.
 	 */
 	private Statistic statistic;
-	
+
 	/**
-	 * Constructor which starts an instance of StatisticController with the game as an attribute.
-	 * @param game Attribute of StatisticController.
+	 * Constructor which starts an instance of StatisticController with the game
+	 * as an attribute.
+	 * 
+	 * @param game
+	 *            Attribute of StatisticController.
 	 */
 	public StatisticController(RetroMachines game) {
 		this.game = game;
 		initialize();
 	}
-	
+
 	/**
 	 * Completes the setup of the controller.
 	 */
@@ -42,10 +46,13 @@ public class StatisticController implements OnProfileChangedListener {
 			statistic = game.getProfileController().getProfile().getStatistic();
 		}
 	}
-	
+
 	/**
 	 * Increases the StepCounter of the current statistic.
-	 * @param amount Adds the amount to the StepCounter. a value smaller than 0 will result in 1 step added
+	 * 
+	 * @param amount
+	 *            Adds the amount to the StepCounter. a value smaller than 0
+	 *            will result in 1 step added
 	 */
 	public void incStepCounter(int amount) {
 		int value = amount;
@@ -54,20 +61,26 @@ public class StatisticController implements OnProfileChangedListener {
 		}
 		statistic.setStepCounter(statistic.getStepCounter() + value);
 	}
-	
+
 	/**
 	 * Increases the playtime by a given amount
-	 * @param diff the amount to add to the play time; a value smaller than 0 will result in 1 minute added 
+	 * 
+	 * @param diff
+	 *            the amount to add to the play time; a value smaller than 0
+	 *            will result in 1 minute added
 	 */
 	public void incPlayTime(float diff) {
-		statistic.setPlaytime(diff < 0 ? statistic.getPlaytime() + Constants.SECONDS_IN_MINUTE : statistic.getPlaytime() + diff);
+		statistic.setPlaytime(diff < 0 ? statistic.getPlaytime()
+				+ Constants.SECONDS_IN_MINUTE : statistic.getPlaytime() + diff);
 	}
-	
+
 	/**
-	 * @param minimumLevel level 1 will result 
+	 * @param minimumLevel
+	 *            level 1 will result
 	 */
 	public void incLevelCompleted(int minimumLevel) {
-		if (Constants.MAX_LEVEL_ID > statistic.getLevelsComplete() && getLevelsCompleted() < minimumLevel) {
+		if (Constants.MAX_LEVEL_ID > statistic.getLevelsComplete()
+				&& getLevelsCompleted() < minimumLevel) {
 			statistic.setLevelsComplete(getLevelsCompleted() + 1);
 		}
 	}
@@ -79,15 +92,15 @@ public class StatisticController implements OnProfileChangedListener {
 	public void profileChanged() {
 		statistic = game.getProfileController().getProfile().getStatistic();
 	}
-	
+
 	public float getPlaytime() {
 		return statistic.getPlaytime();
 	}
-	
+
 	public int getStepCounter() {
 		return statistic.getStepCounter();
 	}
-	
+
 	public int getLevelsCompleted() {
 		return statistic.getLevelsComplete();
 	}

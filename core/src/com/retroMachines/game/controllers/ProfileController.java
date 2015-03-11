@@ -11,10 +11,11 @@ import com.retroMachines.data.models.Setting;
 import com.retroMachines.data.models.Statistic;
 
 /**
- * The ProfileController is part of the controller of the RetroMachines.
- * It controls the different profiles of the users.
+ * The ProfileController is part of the controller of the RetroMachines. It
+ * controls the different profiles of the users.
+ * 
  * @author RetroFactory
- *
+ * 
  */
 public class ProfileController {
 
@@ -37,8 +38,8 @@ public class ProfileController {
 	/**
 	 * The amount of profiles allowed in the game.
 	 */
-	public static final int MAX_PROFILE_NUMBER = 5; 
-	
+	public static final int MAX_PROFILE_NUMBER = 5;
+
 	/**
 	 * The list of Listener that want to be notified about profile changes.
 	 */
@@ -47,7 +48,9 @@ public class ProfileController {
 	/**
 	 * Creates a new instance of the profile controller and loads the data from
 	 * the background as well as loading the last profile.
-	 * @param game The game which is called to. 
+	 * 
+	 * @param game
+	 *            The game which is called to.
 	 */
 	public ProfileController(RetroMachines game) {
 		this.game = game;
@@ -62,8 +65,7 @@ public class ProfileController {
 			if (gv.get(String.format(GlobalVariables.KEY_SLOTS, i)).equals("1")) {
 				Profile tempProfile = new Profile(i);
 				map.put(tempProfile.getProfileName(), i);
-			}
-			else {
+			} else {
 			}
 		}
 		return map;
@@ -78,13 +80,13 @@ public class ProfileController {
 		new Profile(id).destroy();
 		new Statistic(id).destroy();
 		new Setting(id).destroy();
-		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, id), 0);
+		GlobalVariables.getSingleton().put(
+				String.format(GlobalVariables.KEY_SLOTS, id), 0);
 		profileNames = getProfileNameIdMap();
 		if (profileNames.size() == 0) {
 			GlobalVariables gv = GlobalVariables.getSingleton();
 			gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, "-1");
-		}
-		else {
+		} else {
 			if (activeProfileKilled) {
 				String key = (String) profileNames.keySet().toArray()[0];
 				id = profileNames.get(key);
@@ -102,7 +104,8 @@ public class ProfileController {
 	 * another profile already.
 	 */
 	public boolean canUserBeCreated(String username) {
-		if (profileNames.size() == MAX_PROFILE_NUMBER || username == null || username.equals("")) {
+		if (profileNames.size() == MAX_PROFILE_NUMBER || username == null
+				|| username.equals("")) {
 			return false;
 		}
 		for (String name : profileNames.keySet()) {
@@ -124,7 +127,8 @@ public class ProfileController {
 		Statistic statistic = new Statistic(freeId);
 		Setting setting = new Setting(freeId);
 		profile = new Profile(freeId, name, setting, statistic);
-		GlobalVariables.getSingleton().put(String.format(GlobalVariables.KEY_SLOTS, freeId), 1);
+		GlobalVariables.getSingleton().put(
+				String.format(GlobalVariables.KEY_SLOTS, freeId), 1);
 		profileNames = getProfileNameIdMap();
 		updateLastUsedProfile();
 		notifyProfileListeners();
@@ -141,11 +145,13 @@ public class ProfileController {
 	 *         active.
 	 */
 	public String getProfileName() {
-		return (profile == null || !profile.hasRecord()) ? null : profile.getProfileName();
+		return (profile == null || !profile.hasRecord()) ? null : profile
+				.getProfileName();
 	}
 
 	/**
 	 * Getter for the active profile.
+	 * 
 	 * @return The profile.
 	 */
 	public Profile getProfile() {
@@ -168,18 +174,22 @@ public class ProfileController {
 		notifyProfileListeners();
 	}
 
-	
 	/**
-	 * Adds a class to the list of profileChangeListeners that are notified when the active profile changes.
-	 * @param listener Class to be added.
+	 * Adds a class to the list of profileChangeListeners that are notified when
+	 * the active profile changes.
+	 * 
+	 * @param listener
+	 *            Class to be added.
 	 */
 	public void addProfileChangedListener(OnProfileChangedListener listener) {
 		profileChangeListeners.add(listener);
 	}
-	
+
 	/**
 	 * Removes a class from the list of profileChangedListeners.
-	 * @param listener Class to be removed.
+	 * 
+	 * @param listener
+	 *            Class to be removed.
 	 */
 	public void removeProfileChangedListener(OnProfileChangedListener listener) {
 		profileChangeListeners.remove(listener);
@@ -187,7 +197,8 @@ public class ProfileController {
 
 	public boolean loadLastProfile() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
-		int id = Integer.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));
+		int id = Integer
+				.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));
 		if (id == -1) {
 			return false;
 		}
@@ -198,14 +209,14 @@ public class ProfileController {
 		profile.setSetting(setting);
 		return true;
 	}
-	
+
 	private void updateLastUsedProfile() {
-		GlobalVariables.getSingleton().put(GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
+		GlobalVariables.getSingleton().put(
+				GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
 	}
 
-	
 	private void notifyProfileListeners() {
-		for(OnProfileChangedListener listener : profileChangeListeners) {
+		for (OnProfileChangedListener listener : profileChangeListeners) {
 			listener.profileChanged();
 		}
 	}

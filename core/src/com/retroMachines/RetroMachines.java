@@ -15,20 +15,19 @@ import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 import com.retroMachines.util.MusicManager;
 
-
 /**
- * The main class of the game "RetroMachines". It initializes all the controllers and 
- * starts the game.
+ * The main class of the game "RetroMachines". It initializes all the
+ * controllers and starts the game.
  * 
  * @author RetroFactory
  * 
  */
-public class RetroMachines extends Game{
-    
+public class RetroMachines extends Game {
+
 	/**
 	 * a stack of screens in order to return to the previous
 	 */
-    private final Stack<Screen> screenStack;
+	private final Stack<Screen> screenStack;
 
 	/**
 	 * The Profile Controller controls the profile information.
@@ -41,8 +40,8 @@ public class RetroMachines extends Game{
 	private SettingController settingController;
 
 	/**
-	 * The Game Controller controls the starting and playing of the levels and starts the
-	 * evaluation.
+	 * The Game Controller controls the starting and playing of the levels and
+	 * starts the evaluation.
 	 */
 	private GameController gameController;
 
@@ -50,7 +49,7 @@ public class RetroMachines extends Game{
 	 * The Statistic Controller controls the game statistics like PlayTime etc.
 	 */
 	private StatisticController statisticController;
-	
+
 	public RetroMachines() {
 		super();
 		screenStack = new Stack<Screen>();
@@ -63,43 +62,41 @@ public class RetroMachines extends Game{
 	 */
 	@Override
 	public void create() {
-		//Back and Home Button
-        Gdx.input.setCatchBackKey(true);
-        Gdx.input.setCatchMenuKey(true);
-        AssetManager.initializePreLoading();
+		// Back and Home Button
+		Gdx.input.setCatchBackKey(true);
+		Gdx.input.setCatchMenuKey(true);
+		AssetManager.initializePreLoading();
 		AssetManager.initializeWhileLoading();
 		GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
 		boolean profileExists = profileController.loadLastProfile();
 		settingController = new SettingController(this);
 		settingController.initialize();
-		
+
 		statisticController = new StatisticController(this);
 		gameController = new GameController(this);
-		
+
 		settingController.add(MusicManager.getInstance());
-		
+
 		if (profileExists) {
 			// a profile is available for loading
 			setScreen(new MainMenuScreen(this));
-		}
-		else {
+		} else {
 			// no profile go to createprofilemenuscreen
 			setScreen(new CreateProfileMenuScreen(this));
 		}
 	}
-	
+
 	@Override
 	public void pause() {
 		super.pause();
-		//RetroDatabase.closeDatabase();
+		// RetroDatabase.closeDatabase();
 	}
-	
+
 	@Override
 	public void resume() {
 		super.resume();
 	}
-	
 
 	/*
 	 * Getter and Setter
@@ -140,13 +137,13 @@ public class RetroMachines extends Game{
 	public StatisticController getStatisticController() {
 		return statisticController;
 	}
-	
+
 	@Override
 	public void setScreen(Screen screen) {
 		screenStack.push(screen);
 		super.setScreen(screen);
 	}
-	
+
 	/**
 	 * reloads the previous screen.
 	 */

@@ -39,7 +39,8 @@ import com.retroMachines.util.lambda.Vertex;
  * @author RetroFactory
  * 
  */
-public class GameScreen extends AbstractScreen implements InputProcessor, DialogChainFinishedListener {
+public class GameScreen extends AbstractScreen implements InputProcessor,
+		DialogChainFinishedListener {
 
 	private static final float ZOOM_ADDITION = 0.20f;
 	private static final float RETROMAN_BUTTON_OFFSET = 2;
@@ -73,7 +74,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 	 * the dialog which is shown when pauseButton is pressed
 	 */
 	private PauseDialog pauseDialog;
-	
+
 	/**
 	 * the dialog which is shown when targetButton is pressed
 	 */
@@ -128,18 +129,17 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 	}
 
 	public void initialize() {
-		
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 35, 20);
 		camera.zoom -= ZOOM_ADDITION;
 		camera.update();
-		
+
 		stage = new Stage();
 		inputMultiplexer.addProcessor(this);
 
 		drawButtons();
-		
-		
+
 		// instanciate Dialogs
 		hintDialog = new HintDialog("", skin, "default");
 		pauseDialog = new PauseDialog("", skin, "default");
@@ -174,8 +174,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 
 		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//Double stage.act() and draw();
-		//super.render(delta);
+		// Double stage.act() and draw();
+		// super.render(delta);
 
 		inputDetection();
 
@@ -188,7 +188,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 
 		gameController.update(delta);
 		gameController.getRetroMan().render(renderer, delta);
-		
+
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
 	}
@@ -221,7 +221,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 		} else if (camBounds[0] >= mapBounds[0]) {
 			camera.position.y = mapBounds[0] - cameraHalfHeight;
 		}
-		
+
 		camera.position.y -= RETROMAN_BUTTON_OFFSET;
 	}
 
@@ -327,7 +327,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 
 		inputMultiplexer.addProcessor(stage);
 	}
-	
+
 	/**
 	 * Performs the input detection and delegates calls to the controller so it
 	 * can perform the logic.
@@ -339,7 +339,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 			}
 			if (Gdx.input.isKeyPressed(Keys.RIGHT) || buttonRight.isPressed()) {
 				gameController.goRightRetroMan();
-			} else if (Gdx.input.isKeyPressed(Keys.LEFT) || buttonLeft.isPressed()) {
+			} else if (Gdx.input.isKeyPressed(Keys.LEFT)
+					|| buttonLeft.isPressed()) {
 				gameController.goLeftRetroMan();
 			}
 		}
@@ -364,7 +365,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 	private void showTask() {
 		taskDialog.show(stage);
 	}
-	
+
 	/**
 	 * Shows the HintScreen on top of the game.
 	 */
@@ -424,12 +425,12 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 	public boolean scrolled(int amount) {
 		return false;
 	}
-	
+
 	public void showValidateError(String s) {
 		ErrorDialog error = new ErrorDialog("", skin, "default", s);
 		error.show(stage);
 	}
-	
+
 	public void showDialogChain(RetroDialogChain dialogChain) {
 		dialogChain.show(stage);
 	}
@@ -507,7 +508,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 			showPauseDialog();
 		}
 	}
-	
+
 	/**
 	 * Button which shows the Level Menu and interrupts the Game
 	 * 
@@ -520,7 +521,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 			game.setScreen(new LevelMenuScreen(game));
 		}
 	}
-	
+
 	/**
 	 * Button which shows the Level Menu and interrupts the Game
 	 * 
@@ -535,7 +536,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 			popupScreenIsShown = false;
 		}
 	}
-	
+
 	private class TaskDialog extends Dialog {
 
 		public TaskDialog(String title, Skin skin, String windowStyleName) {
@@ -546,55 +547,63 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 		private void initialize() {
 			setStage(new Stage());
 			Table size = new Table();
-			//size.debug();
-			//set Buttons
+			// size.debug();
+			// set Buttons
 			Button buttonBack = new Button(skin, "ok");
 			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonBack.addListener(new BackToGameClickListener());
-			
-			//size.add(buttonBack).expandX().expandY().bottom().row();
-			size.add().width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+
+			// size.add(buttonBack).expandX().expandY().bottom().row();
+			size.add().width(screenWidth * DIALOGTEXTWIDTH)
+					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
 			size.add().row();
 			size.add(buttonBack).expandX().expandY().bottom().row();
-			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
-			
-			printTree(gameController.getLevelTarget(), new Vector2(50,200));
+			this.padTop(screenWidth / PADDING30); // set padding on top of the
+													// dialog
+			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
+														// the
+
+			printTree(gameController.getLevelTarget(), new Vector2(50, 200));
 			this.add(size).expand();
-			
+
 		}
-		
+
 		private void printTree(Vertex actVertex, Vector2 position) {
-			while(actVertex != null) {
-				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex.getWidth() - 1)) / 2;
+			while (actVertex != null) {
+				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex
+						.getWidth() - 1)) / 2;
 				Vector2 pos = new Vector2(position.x + centerVertex, position.y);
-				
+
 				// Add depot
-				
-				int offset = (Integer) AssetManager.getDepots().getProperties().get("firstgid");
+
+				int offset = (Integer) AssetManager.getDepots().getProperties()
+						.get("firstgid");
 				int color = Constants.DEPOT_ID;
 				DepotElement d = new DepotElement();
 				d.setTileId(color + offset);
 				d.setPosition(pos);
 				this.addActor(d);
-				
+
 				// Add element
 				if (actVertex.getGameElement() != null) {
-					offset = (Integer) actVertex.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+					offset = (Integer) actVertex.getGameElement().getTileSet()
+							.getProperties().get("firstgid") - 1;
 					color = actVertex.getColor();
 					actVertex.getGameElement().setTileId(color + offset);
-				
+
 					actVertex.getGameElement().setPosition(pos);
 					this.addActor(actVertex.getGameElement());
 					// print Family
-					if(actVertex.getfamily() != null) {
+					if (actVertex.getfamily() != null) {
 						position.y += Constants.GAMELEMENT_PADDING;
-						Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
+						Vector2 famPos = new Vector2(position.x, position.y
+								+ Constants.GAMEELEMENT_WIDTH);
 						printTree(actVertex.getfamily(), famPos);
 						position.y -= Constants.GAMELEMENT_PADDING;
 					}
 				}
-				position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
+				position.x = position.x
+						+ (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
 				position.x += Constants.GAMELEMENT_PADDING;
 				actVertex = actVertex.getnext();
 			}
@@ -618,60 +627,67 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 		private void initialize() {
 			setStage(new Stage());
 			Table size = new Table();
-			//size.debug();
-			//set Buttons
+			// size.debug();
+			// set Buttons
 			Button buttonBack = new Button(skin, "ok");
 			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonBack.addListener(new BackToGameClickListener());
-			
-			//size.add(buttonBack).expandX().expandY().bottom().row();
-			size.add().width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+
+			// size.add(buttonBack).expandX().expandY().bottom().row();
+			size.add().width(screenWidth * DIALOGTEXTWIDTH)
+					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
 			size.add().row();
 			size.add(buttonBack).expandX().expandY().bottom().row();
-			this.padTop(screenWidth / PADDING30); // set padding on top of the dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of the
-			
-			
+			this.padTop(screenWidth / PADDING30); // set padding on top of the
+													// dialog
+			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
+														// the
+
 			gameController.getLevelHint().updateWidth();
-			printTree(gameController.getLevelHint(), new Vector2(100,200));
+			printTree(gameController.getLevelHint(), new Vector2(100, 200));
 			this.add(size).expand();
-			
+
 		}
-		
+
 		private void printTree(Vertex actVertex, Vector2 position) {
-			while(actVertex != null) {
-				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex.getWidth() - 1)) / 2;
+			while (actVertex != null) {
+				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex
+						.getWidth() - 1)) / 2;
 				Vector2 pos = new Vector2(position.x + centerVertex, position.y);
-				
+
 				// Add depot
-				
-				int offset = (Integer) AssetManager.getDepots().getProperties().get("firstgid");
+
+				int offset = (Integer) AssetManager.getDepots().getProperties()
+						.get("firstgid");
 				int color = Constants.DEPOT_ID;
 				DepotElement d = new DepotElement();
 				d.setTileId(color + offset);
 				d.setPosition(pos);
 				this.addActor(d);
-				
+
 				// Add element
 				if (actVertex.getGameElement() != null) {
-				offset = (Integer) actVertex.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
-				color = actVertex.getColor();
-				actVertex.getGameElement().setTileId(color + offset);
-				
-				actVertex.getGameElement().setPosition(pos);
-				this.addActor(actVertex.getGameElement());
-				// print Family
-				if(actVertex.getfamily() != null) {
-					position.y += Constants.GAMELEMENT_PADDING;
-					Vector2 famPos = new Vector2(position.x, position.y + Constants.GAMEELEMENT_WIDTH);
-					printTree(actVertex.getfamily(), famPos);
-					position.y -= Constants.GAMELEMENT_PADDING;
+					offset = (Integer) actVertex.getGameElement().getTileSet()
+							.getProperties().get("firstgid") - 1;
+					color = actVertex.getColor();
+					actVertex.getGameElement().setTileId(color + offset);
+
+					actVertex.getGameElement().setPosition(pos);
+					this.addActor(actVertex.getGameElement());
+					// print Family
+					if (actVertex.getfamily() != null) {
+						position.y += Constants.GAMELEMENT_PADDING;
+						Vector2 famPos = new Vector2(position.x, position.y
+								+ Constants.GAMEELEMENT_WIDTH);
+						printTree(actVertex.getfamily(), famPos);
+						position.y -= Constants.GAMELEMENT_PADDING;
+					}
 				}
-				}
-				position.x = position.x + (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
+				position.x = position.x
+						+ (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
 				position.x += Constants.GAMELEMENT_PADDING;
 				actVertex = actVertex.getnext();
-			}		
+			}
 		}
 
 		@Override
@@ -687,66 +703,71 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 			super(title, skin, windowStyleName);
 			initialize();
 		}
-		
+
 		private void initialize() {
-			
+
 			padTop(screenWidth / PADDING30); // set padding on top of the dialog
 			padBottom(screenWidth / PADDING30); // set padding on bottom of the
-			
-			
+
 			setModal(true);
 			setMovable(false);
 			setResizable(false);
-			
+
 			Table dialogTable = new Table(skin);
-			
+
 			Label header = new Label("Menue", skin);
 			header.setWrap(true);
 			header.setAlignment(Align.center);
-			
+
 			Label levelMenu = new Label("Ins Level-Menue", skin);
 			levelMenu.setWrap(true);
 			levelMenu.setAlignment(Align.center);
-			levelMenu.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
-			
+			levelMenu.setFontScale((DIALOG_FONTSIZE * screenWidth)
+					/ DIVIDEWIDTHDEFAULT);
+
 			Label back = new Label("Zurueck zum Spiel", skin);
 			back.setWrap(true);
 			back.setAlignment(Align.center);
-			back.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
-			
+			back.setFontScale((DIALOG_FONTSIZE * screenWidth)
+					/ DIVIDEWIDTHDEFAULT);
+
 			Button buttonHome = new Button(skin, ButtonStrings.HOME);
 			buttonHome.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonHome.addListener(new LevelMenuClickListener());
-			
+
 			Button buttonBack = new Button(skin, "play");
 			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
 			buttonBack.addListener(new BackToGameClickListener());
-			
-			
+
 			// Table setting and add
-			dialogTable.add(header).colspan(COLSPANx2).expandX().top().padTop(screenHeight / DEFAULTPADDING)
-										.padBottom(screenHeight / DEFAULTPADDING).row();
+			dialogTable.add(header).colspan(COLSPANx2).expandX().top()
+					.padTop(screenHeight / DEFAULTPADDING)
+					.padBottom(screenHeight / DEFAULTPADDING).row();
 			dialogTable.add(buttonHome).padLeft(screenWidth / DEFAULTPADDING);
-			dialogTable.add(levelMenu).width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
-										.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
+			dialogTable.add(levelMenu)
+					.width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
+					.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
 			dialogTable.add(buttonBack).padLeft(screenWidth / DEFAULTPADDING);
-			dialogTable.add(back).width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
-										.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
-			
-			this.add(dialogTable).width(screenWidth * DIALOGTEXTWIDTH).height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
-			
+			dialogTable.add(back)
+					.width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
+					.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
+
+			this.add(dialogTable).width(screenWidth * DIALOGTEXTWIDTH)
+					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+
 		}
 
 		@Override
 		protected void result(Object object) {
 		}
 	}
-	
+
 	private class ErrorDialog extends Dialog {
 
-		private String errorMessage;	
-		
-		public ErrorDialog(String title, Skin skin, String windowStyleName, String errorMessage) {
+		private String errorMessage;
+
+		public ErrorDialog(String title, Skin skin, String windowStyleName,
+				String errorMessage) {
 			super(title, skin, windowStyleName);
 			this.errorMessage = errorMessage;
 			initialize();
@@ -769,8 +790,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor, Dialog
 			Label dialogText = new Label(errorMessage, skin);
 			dialogText.setWrap(true);
 			dialogText.setAlignment(Align.center);
-			dialogText.setFontScale((DIALOG_FONTSIZE * screenWidth) / DIVIDEWIDTHDEFAULT);
-			getContentTable().add(dialogText).width(screenWidth * DIALOGTEXTWIDTH);
+			dialogText.setFontScale((DIALOG_FONTSIZE * screenWidth)
+					/ DIVIDEWIDTHDEFAULT);
+			getContentTable().add(dialogText).width(
+					screenWidth * DIALOGTEXTWIDTH);
 			button(new Button(skin, ButtonStrings.OK), true);
 		}
 
