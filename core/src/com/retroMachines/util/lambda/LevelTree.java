@@ -43,14 +43,14 @@ public class LevelTree {
 	 *            tree object to be compared with this
 	 * @return true if and only if this.start.equals(tree.start) returns true
 	 */
-	public boolean equals(LevelTree tree) {
+	public boolean treeEquals(LevelTree tree) {
 		if (tree == null) {
 			return false;
 		}
 		if (this.start == null) {
 			return tree.start == null;
 		}
-		return this.start.equals(tree.start);
+		return this.start.vertexEquals(tree.start);
 	}
 
 	/*
