@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.gameelements.RetroMan;
 import com.retroMachines.util.Constants;
 
@@ -21,7 +21,7 @@ public class RetroManTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializeWhileLoading();
 	}
 
 	@Before

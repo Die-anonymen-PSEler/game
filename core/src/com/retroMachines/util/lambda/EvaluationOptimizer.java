@@ -12,7 +12,7 @@ import com.retroMachines.util.Constants;
 
 public class EvaluationOptimizer {
 
-	public static EvaluationOptimizer optimizer = new EvaluationOptimizer();
+	public final static EvaluationOptimizer optimizer = new EvaluationOptimizer();
 
 	private static EvaluationController evaluationController;
 
@@ -191,7 +191,7 @@ public class EvaluationOptimizer {
 		}
 
 		// At the end worker disappears when its an Abstraction or Application
-		evalutionPointer.getnext().DeleteAfterBetaReduction();
+		evalutionPointer.getnext().deleteAfterBetaReduction();
 	}
 
 	private static void step5UpdateFamilyPositions() {
@@ -199,7 +199,7 @@ public class EvaluationOptimizer {
 		evalutionPointer.getnext().updatePositionsAfterBetaReduction();
 	}
 
-	private static void prepareNextEvaluation() {
+	private synchronized static void prepareNextEvaluation() {
 		actStep = 0;
 
 		// creating copy of current tree

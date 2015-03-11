@@ -2,7 +2,6 @@ package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -13,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.util.Constants;
 
@@ -32,8 +31,6 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	protected Table table;
 
-	protected Music music;
-
 	/**
 	 * Creates a new MenuScreen that can be displayed to the user afterwards.
 	 * 
@@ -42,9 +39,9 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	public MenuScreen(RetroMachines game) {
 		super(game);
-		table = new Table(AssetManager.getMenuSkin());
+		table = new Table(RetroAssetManager.getMenuSkin());
 		table.background(new TextureRegionDrawable(new TextureRegion(
-				AssetManager.getTexture(Constants.BACKGROUND_PATH))));
+				RetroAssetManager.getTexture(Constants.BACKGROUND_PATH))));
 		table.setBounds(0, 0, screenWidth, screenHeight);
 		stage = new Stage();
 		initialize();
@@ -67,9 +64,6 @@ public abstract class MenuScreen extends AbstractScreen {
 
 	@Override
 	public void hide() {
-		if (music != null) {
-			music.stop();
-		}
 		Gdx.input.setInputProcessor(null);
 		super.hide();
 	}

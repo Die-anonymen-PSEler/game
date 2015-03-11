@@ -332,8 +332,8 @@ public abstract class Vertex {
 	 */
 	protected void updateColorList(LinkedList<Integer> clonedList, int color) {
 		// Update Color List in vertex
-		if (this.getFamilyColorList().contains(new Integer(color))) {
-			this.getFamilyColorList().remove(new Integer(color));
+		if (this.getFamilyColorList().contains(color)) {
+			this.getFamilyColorList().remove((Object) color);
 			for (Integer i : clonedList) {
 				this.getFamilyColorList().add(i);
 			}
@@ -348,13 +348,13 @@ public abstract class Vertex {
 		updateColorList(clonedList, color);
 
 		// Update Color List in next
-		if (this.getNextColorList().contains(new Integer(color))) {
+		if (this.getNextColorList().contains(color)) {
 			if (this.getnext() != null) {
 				this.getnext().updateFamilyColorList(clonedList, color);
 			}
 			this.setNextColorlist(this.getnext().getCopyOfNextColorList());
 			if (!this.getNextColorList().contains(
-					new Integer(this.getnext().getColor()))) {
+					this.getnext().getColor())) {
 				this.getNextColorList().add(this.getnext().getColor());
 			}
 		}
@@ -435,7 +435,7 @@ public abstract class Vertex {
 	 * @param e
 	 *            Instance of Evaluation Controller for next Steps
 	 */
-	abstract public void DeleteAfterBetaReduction();
+	abstract public void deleteAfterBetaReduction();
 
 	// ---------------------------------------------------
 	// -------- Beta Reduction and Alpha Conversion ------
@@ -640,40 +640,46 @@ public abstract class Vertex {
 	 * @return returns true if and only if this vertex and parameter have same
 	 *         color and same type
 	 */
-	public boolean equals(Vertex v) {
-		if (v == null) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-
+		if (getClass() != obj.getClass())
+			return false;
+		Vertex other = (Vertex) obj;
 		// Compare next
 		// veritices equal only if this.next and v.next are both null or both !=
 		// null.
 		// For this we use xor. True if, and only if, one statement is true,
 		// while the other is false.
-		if (this.getnext() != null ^ v.getnext() != null) {
+		if (this.getnext() != null ^ other.getnext() != null) {
 			return false;
 		} else if (this.getnext() != null) { // in case both are not null, need
 												// to compare them.
-			if (!this.getnext().equals(v.getnext())) { // if they do not equal
+			if (!this.getnext().equals(other.getnext())) { // if they do not equal
 														// we can return false
 				return false;
 			}
 		}
 
 		// Compare Family
-		if (this.getfamily() != null ^ v.getfamily() != null) {
+		if (this.getfamily() != null ^ other.getfamily() != null) {
 			return false;
 		} else if (this.getfamily() != null) { // in case both are not null,
 												// need to compare them.
-			if (!this.getfamily().equals(v.getfamily())) { // if they do not
+			if (!this.getfamily().equals(other.getfamily())) { // if they do not
 															// equal we can
 															// return false
 				return false;
 			}
 		}
 		// If family and next is equals compare color and type if equals they are equals
-		return (this.getType().equals(v.getType()) && this.getColor() == v.getColor());
+		return (this.getType().equals(other.getType()) && this.getColor() == other.getColor());
 	}
+	
+	
 
 	// --------------------------
 	// ------Setter-------

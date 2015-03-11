@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.ui.RetroDialog;
@@ -67,7 +67,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	/**
 	 * counter for the currently shown character image
 	 */
-	private int i = 0;
+	private int i;
 
 	/**
 	 * Creates a new CreateProfileMenuScreen.
@@ -86,7 +86,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 */
 	@Override
 	protected void initialize() {
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
 		Label title = new Label("Create Profile", skin);
@@ -146,6 +146,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 
 		// Make Image
 		charImage = new Image();
+		i = 0;
 		setCharacterImage(i);
 
 		// Build Tables
@@ -205,7 +206,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	private void setCharacterImage(int value) {
 		String name = Constants.TEXTURE_ANIMATION_NAMES[value
 				% Constants.TEXTURE_ANIMATION_NAMES.length];
-		Texture texture = AssetManager.getTexture(name);
+		Texture texture = RetroAssetManager.getTexture(name);
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 
 		charImage.setDrawable(new TextureRegionDrawable(regions[0]));

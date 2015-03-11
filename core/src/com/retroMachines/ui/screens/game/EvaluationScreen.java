@@ -1,7 +1,6 @@
 package com.retroMachines.ui.screens.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
@@ -26,7 +25,7 @@ import com.retroMachines.util.lambda.Vertex;
  * @author RetroFactory
  * 
  */
-public class EvaluationScreen extends AbstractScreen implements InputProcessor {
+public class EvaluationScreen extends AbstractScreen {
 
 	/**
 	 * Reference to the GameController for it to handle events that are
@@ -65,7 +64,7 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor {
 	}
 
 	private void initialize() {
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 		screenPadding = new Vector2();
 		screenPadding.x = screenWidth * Constants.EVALUATIONSCREEN_PADDING_X;
 		screenPadding.y = screenHeight * Constants.EVALUATIONSCREEN_PADDING_Y;
@@ -206,7 +205,7 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor {
 	private class NextEvaluationStep extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			evaController.StepEvaluationClicked();
+			evaController.stepEvaluationClicked();
 		}
 	}
 
@@ -218,7 +217,7 @@ public class EvaluationScreen extends AbstractScreen implements InputProcessor {
 	private class EvaluationStart extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			evaController.AutoEvaluationClicked();
+			evaController.autoEvaluationClicked();
 		}
 	}
 

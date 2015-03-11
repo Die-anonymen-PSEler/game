@@ -102,7 +102,6 @@ public class GlobalVariables extends Model {
 			try {
 				result = Integer.parseInt(value);
 			} catch (NumberFormatException e) {
-				e.getStackTrace();
 				result = -1;
 			}
 			if (result == 0) {

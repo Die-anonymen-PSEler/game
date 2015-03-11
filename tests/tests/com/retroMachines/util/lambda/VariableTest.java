@@ -1,6 +1,10 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import java.util.LinkedList;
 
@@ -74,7 +78,7 @@ public class VariableTest {
 	
 	@Test
 	public void testDeleteAfterBetaReduction() {
-		var.DeleteAfterBetaReduction();
+		var.deleteAfterBetaReduction();
 		//TODO: coolen assert überlegen
 	}
 	

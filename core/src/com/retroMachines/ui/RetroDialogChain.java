@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
@@ -70,13 +70,13 @@ public class RetroDialogChain {
 		private Texture img;
 
 		public DialogChain(String title, Texture image) {
-			super(title, AssetManager.getMenuSkin());
+			super(title, RetroAssetManager.getMenuSkin());
 			img = image;
 			initialize();
 		}
 
 		private void initialize() {
-			Skin skin = AssetManager.getMenuSkin();
+			Skin skin = RetroAssetManager.getMenuSkin();
 			int screenWidth = Gdx.graphics.getWidth();
 			int screenHeight = Gdx.graphics.getHeight();
 

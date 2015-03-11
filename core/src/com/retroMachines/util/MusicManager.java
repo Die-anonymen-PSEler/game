@@ -3,7 +3,7 @@ package com.retroMachines.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.data.models.SettingsChangeListener;
 
 /**
@@ -38,7 +38,7 @@ public final class MusicManager implements SettingsChangeListener {
 	 * 
 	 * @return singleton of the musicmanager
 	 */
-	public static MusicManager getInstance() {
+	public synchronized static MusicManager getInstance() {
 		if (singleton == null) {
 			singleton = new MusicManager();
 		}
@@ -51,7 +51,7 @@ public final class MusicManager implements SettingsChangeListener {
 	 */
 	public void startMusic() {
 		if (music == null) {
-			music = AssetManager.getMusic();
+			music = RetroAssetManager.getMusic();
 		}
 		float volume = 0.5f;
 		volume = ((RetroMachines) Gdx.app.getApplicationListener())
@@ -69,7 +69,7 @@ public final class MusicManager implements SettingsChangeListener {
 	 */
 	public void pauseMusic() {
 		if (music == null) {
-			music = AssetManager.getMusic();
+			music = RetroAssetManager.getMusic();
 		}
 		music.pause();
 	}

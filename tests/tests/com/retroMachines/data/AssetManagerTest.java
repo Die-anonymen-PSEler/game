@@ -22,30 +22,30 @@ public class AssetManagerTest {
 
 	@Test
 	public void testInitializePreLoading() {
-		AssetManager.initializePreLoading();
-		assertTrue("asset wurde nicht geladen", AssetManager.getTexture(Constants.BACKGROUND_PATH) != null);
+		RetroAssetManager.initializePreLoading();
+		assertTrue("asset wurde nicht geladen", RetroAssetManager.getTexture(Constants.BACKGROUND_PATH) != null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testNonExistingTexture() {
-		AssetManager.getTexture("this texture won't ever exist in this project");
+		RetroAssetManager.getTexture("this texture won't ever exist in this project");
 	}
 	
 	@Test
 	public void testReloadMap() {
-		TiledMap map1 = AssetManager.getMap(1);
-		AssetManager.reloadMap(1);
-		assertFalse("maps sind identisch", map1 == AssetManager.getMap(1));
+		TiledMap map1 = RetroAssetManager.getMap(1);
+		RetroAssetManager.reloadMap(1);
+		assertFalse("maps sind identisch", map1 == RetroAssetManager.getMap(1));
 	}
 	
 	@Test
 	public void testLoaded() {
-		AssetManager.initializeWhileLoading();
-		assertFalse("skin ist null", AssetManager.getMenuSkin() == null);
-		assertFalse("skin ist null", AssetManager.getGameelementSkin() == null);
-		assertFalse("tileset ist null", AssetManager.getDepots() == null);
-		assertFalse("music ist null", AssetManager.getMusic() == null);
-		assertFalse("tileset ist null", AssetManager.getLights() == null);
+		RetroAssetManager.initializeWhileLoading();
+		assertFalse("skin ist null", RetroAssetManager.getMenuSkin() == null);
+		assertFalse("skin ist null", RetroAssetManager.getGameelementSkin() == null);
+		assertFalse("tileset ist null", RetroAssetManager.getDepots() == null);
+		assertFalse("music ist null", RetroAssetManager.getMusic() == null);
+		assertFalse("tileset ist null", RetroAssetManager.getLights() == null);
 	}
 
 }

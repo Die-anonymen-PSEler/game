@@ -5,7 +5,7 @@ import java.util.Stack;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.ProfileController;
@@ -64,8 +64,8 @@ public class RetroMachines extends Game {
 		// Back and Home Button
 		Gdx.input.setCatchBackKey(true);
 		Gdx.input.setCatchMenuKey(true);
-		AssetManager.initializePreLoading();
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializePreLoading();
+		RetroAssetManager.initializeWhileLoading();
 		GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
 		boolean profileExists = profileController.loadLastProfile();

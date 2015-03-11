@@ -1,7 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 
 /**
  * This class is part of the model of RetroMachines. A variable element that
@@ -20,7 +20,7 @@ public class MetalElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		return AssetManager.getObjects();
+		return RetroAssetManager.getObjects();
 	}
 
 }

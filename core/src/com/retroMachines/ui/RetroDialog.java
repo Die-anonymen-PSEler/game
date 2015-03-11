@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
@@ -43,8 +43,8 @@ public class RetroDialog extends Dialog {
 	private boolean autoClear;
 
 	public RetroDialog(String title, String msg) {
-		super(title, AssetManager.getMenuSkin());
-		this.skin = AssetManager.getMenuSkin();
+		super(title, RetroAssetManager.getMenuSkin());
+		this.skin = RetroAssetManager.getMenuSkin();
 		autoClear = true;
 		int screenWidth = Gdx.graphics.getWidth();
 		int screenHeight = Gdx.graphics.getHeight();

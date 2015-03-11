@@ -5,10 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.ui.RetroDialog;
@@ -52,7 +51,7 @@ public class LevelMenuScreen extends MenuScreen {
 		statisticController = game.getStatisticController();
 		gameController = game.getGameController();
 
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
 		Label title = super.makeTitle("Level", FONTSIZE2_5);
@@ -63,7 +62,7 @@ public class LevelMenuScreen extends MenuScreen {
 		Table levelTable = new Table(skin);
 		int unlocked = statisticController.getLevelsCompleted() + 1;
 		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
-			Integer iToString = new Integer(i + 1);
+			Integer iToString = i + 1;
 			TextButton ilevel;
 			if (i >= unlocked) {
 				ilevel = new TextButton(iToString.toString(), skin,

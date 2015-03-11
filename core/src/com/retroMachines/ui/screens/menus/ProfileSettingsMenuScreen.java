@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.util.Constants;
@@ -53,7 +53,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		settingController = game.getSettingController();
 		ProfileController profileController = game.getProfileController();
 
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
 		Label title = new Label("Profil Einstellungen", skin);
@@ -166,7 +166,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private void setCharacterImage() {
 		String name = Constants.TEXTURE_ANIMATION_NAMES[settingController
 				.getCurrentCharacterId()];
-		Texture texture = AssetManager.getTexture(name);
+		Texture texture = RetroAssetManager.getTexture(name);
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 
 		charImage.setDrawable(new TextureRegionDrawable(regions[0]));

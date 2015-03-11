@@ -61,7 +61,7 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction() {
+	public void deleteAfterBetaReduction() {
 		// Do nothing You are a Dummy
 
 	}
@@ -88,16 +88,4 @@ public class Dummy extends Vertex {
 		// its a dummy
 		return null;
 	}
-	
-	@Override
-	public boolean equals(Vertex v) {
-		if (v == null) {
-			return false;
-		} else if (this.getType().equals(v.getType())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 }

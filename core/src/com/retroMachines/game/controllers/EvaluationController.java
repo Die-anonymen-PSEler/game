@@ -54,11 +54,11 @@ public class EvaluationController {
 		EvaluationOptimizer.initialize(this);
 	}
 
-	public void StepEvaluationClicked() {
+	public void stepEvaluationClicked() {
 		EvaluationOptimizer.nextStepClicked();
 	}
 
-	public void AutoEvaluationClicked() {
+	public void autoEvaluationClicked() {
 		EvaluationOptimizer.autoStepClicked();
 	}
 

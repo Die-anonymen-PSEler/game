@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.util.Constants;
 
@@ -39,7 +39,7 @@ public class StatisticMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 		statisticController = game.getStatisticController();
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
 		Label title = super.makeTitle("Statistik", FONTSIZE2_5);

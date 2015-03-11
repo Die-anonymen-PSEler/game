@@ -164,7 +164,7 @@ public class Application extends Vertex {
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction() {
+	public void deleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
 		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
 

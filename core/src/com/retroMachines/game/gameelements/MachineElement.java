@@ -1,7 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 
 /**
  * This class is part of the model of RetroMachines. A machine element that
@@ -21,6 +21,6 @@ public class MachineElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		return AssetManager.getMachines();
+		return RetroAssetManager.getMachines();
 	}
 }

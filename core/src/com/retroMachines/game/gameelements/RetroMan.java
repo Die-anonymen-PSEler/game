@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.util.Constants;
 
 /**
@@ -121,7 +121,7 @@ public class RetroMan {
 		state = State.STANDING;
 
 		// The animation
-		texture = AssetManager.getTexture(textureName);
+		texture = RetroAssetManager.getTexture(textureName);
 		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
 		TextureRegion[] runingFrames = new TextureRegion[2];
 		TextureRegion[] runingFramesCarry = new TextureRegion[2];

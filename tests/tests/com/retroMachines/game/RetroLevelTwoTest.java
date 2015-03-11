@@ -6,12 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.RetroLevel.LevelBuilder;
 import com.retroMachines.game.gameelements.GameElement;
-import com.retroMachines.util.Constants;
 
 public class RetroLevelTwoTest {
 	
@@ -47,7 +45,7 @@ public class RetroLevelTwoTest {
 
 	@After
 	public void tearDown() throws Exception {
-		AssetManager.reloadMap(1);
+		RetroAssetManager.reloadMap(1);
 	}
 
 	@Test

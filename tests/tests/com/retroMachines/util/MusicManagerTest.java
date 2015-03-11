@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.gdxemulation.RetroMachineMock;
 
@@ -29,7 +29,7 @@ public class MusicManagerTest {
 	@Test
 	public void testStartMusic() {
 		manager.startMusic();
-		Music music = AssetManager.getMusic();
+		Music music = RetroAssetManager.getMusic();
 		assertFalse("music should be playing", music.isPlaying()); // should be true; mocked music says false unfortunately
 	}
 	

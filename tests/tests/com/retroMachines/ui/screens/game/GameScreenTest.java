@@ -12,7 +12,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.gdxemulation.RetroInput;
 import com.retroMachines.gdxemulation.RetroMachineMock;
@@ -28,8 +28,8 @@ public class GameScreenTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		AssetManager.initializePreLoading();
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializePreLoading();
+		RetroAssetManager.initializeWhileLoading();
 	}
 
 	@Before

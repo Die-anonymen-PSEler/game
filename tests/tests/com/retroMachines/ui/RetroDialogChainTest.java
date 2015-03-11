@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.ui.RetroDialogChain.DialogChainFinishedListener;
 import com.retroMachines.util.Constants;
 
@@ -24,8 +24,8 @@ public class RetroDialogChainTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		AssetManager.initializePreLoading();
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializePreLoading();
+		RetroAssetManager.initializeWhileLoading();
 	}
 	
 	@Before
@@ -41,12 +41,12 @@ public class RetroDialogChainTest {
 
 	@Test
 	public void testAddDialog() {
-		chain.addDialog("title", AssetManager.getTexture(Constants.BACKGROUND_PATH));
+		chain.addDialog("title", RetroAssetManager.getTexture(Constants.BACKGROUND_PATH));
 	}
 	
 	@Test
 	public void testShow() {
-		chain.addDialog("title", AssetManager.getTexture(Constants.BACKGROUND_PATH));
+		chain.addDialog("title", RetroAssetManager.getTexture(Constants.BACKGROUND_PATH));
 		Stage s = new Stage();
 		chain.show(s);
 		assertTrue("sollte nur einen dialog enthalten", s.getActors().size == 1);

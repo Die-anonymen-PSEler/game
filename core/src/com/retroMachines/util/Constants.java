@@ -9,26 +9,10 @@ package com.retroMachines.util;
  */
 public class Constants {
 
-	private Constants() {
-	}
-
 	/**
 	 * The name of the background image file
 	 */
 	public static final String BACKGROUND_PATH = "Background.png";
-
-	/**
-	 * String array containing all possible colors for the gameElements. 7
-	 * colors in total are available.
-	 */
-	public static final String[] COLOR_HEX = { "#0033CC", // blue
-			"#00CC00", // green
-			"#FF3300", // red
-			"#FFFF00", // yellow
-			"#660066", // purple
-			"#663300", // brown
-			"#66FFFF" // light blue
-	};
 
 	/**
 	 * the name of each available character texture. these names have to match

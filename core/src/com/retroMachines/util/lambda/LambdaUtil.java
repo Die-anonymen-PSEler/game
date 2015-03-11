@@ -44,15 +44,16 @@ public class LambdaUtil {
 	private int numOfDepots;
 	private LevelTree targetTree;
 	private LevelTree hintTree;
-	private LinkedList<Vertex> vertexList;
-	private LinkedList<Texture> tutorialImgs;
-	private LinkedList<GameElement> gameElementList;
+	private List<Vertex> vertexList;
+	private List<Texture> tutorialImgs;
+	private List<GameElement> gameElementList;
 
 	/**
 	 * Constructor to create a base for the lambda calculus.
 	 */
 	public LambdaUtil() {
 		observers = new ArrayList<OnNextLambdaStepListener>();
+		vertexList = new LinkedList<Vertex>();
 	}
 
 	/**
@@ -107,16 +108,6 @@ public class LambdaUtil {
 	public void unregisterNewListener(OnNextLambdaStepListener listener) {
 		observers.remove(listener);
 	}
-
-	// public void performEvaluation() {
-	// if (levelTree != null) {
-	// levelTree.evaluate();
-	// }
-	// for (OnNextLambdaStepListener listener : observers) {
-	// listener.nextLambdaStepPerformed();
-	//
-	// }
-	// }
 
 	/**
 	 * returns gameElement according to vertex with specified position. Null if
@@ -243,7 +234,6 @@ public class LambdaUtil {
 			if (count == 1) {
 				start = actVertex;
 			}
-			actVertex = actVertex.getnext();
 			count++;
 		}
 		return start;
@@ -324,7 +314,7 @@ public class LambdaUtil {
 	 * 
 	 * @return vertexList
 	 */
-	public LinkedList<Vertex> getVertexList() {
+	public List<Vertex> getVertexList() {
 		return vertexList;
 	}
 
@@ -333,7 +323,7 @@ public class LambdaUtil {
 	 * 
 	 * @return gameElementList
 	 */
-	public LinkedList<GameElement> getGameElementList() {
+	public List<GameElement> getGameElementList() {
 		return gameElementList;
 	}
 
@@ -357,7 +347,7 @@ public class LambdaUtil {
 		return targetTree;
 	}
 
-	public LinkedList<Texture> getTutorials() {
+	public List<Texture> getTutorials() {
 		return tutorialImgs;
 	}
 

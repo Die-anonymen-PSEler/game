@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.ui.RetroDialog;
 import com.retroMachines.util.Constants.ButtonStrings;
 import com.retroMachines.util.MusicManager;
@@ -48,7 +48,7 @@ public class MainMenuScreen extends MenuScreen {
 	@Override
 	protected void initialize() {
 
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 		// Make Title
 		Label title = new Label(TITLE, skin);
 		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);

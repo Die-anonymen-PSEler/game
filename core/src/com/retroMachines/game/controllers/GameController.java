@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.RetroMan;
@@ -106,7 +106,7 @@ public class GameController {
 	 * Cut a level short.
 	 */
 	public void abortLevel() {
-		AssetManager.reloadMap(level.getId() - 1);
+		RetroAssetManager.reloadMap(level.getId() - 1);
 		saveProgress();
 		game.setScreen(new LevelMenuScreen(game));
 	}
@@ -118,7 +118,7 @@ public class GameController {
 	public void levelFinished() {
 		saveProgress();
 		dispose();
-		AssetManager.reloadMap(level.getId() - 1);
+		RetroAssetManager.reloadMap(level.getId() - 1);
 		game.getStatisticController().incLevelCompleted(level.getId());
 		game.setScreen(new LevelMenuScreen(game));
 	}

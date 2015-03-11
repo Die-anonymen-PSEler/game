@@ -2,7 +2,6 @@ package com.retroMachines.ui.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
@@ -19,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.gameelements.DepotElement;
 import com.retroMachines.ui.RetroDialogChain;
@@ -39,7 +38,7 @@ import com.retroMachines.util.lambda.Vertex;
  * @author RetroFactory
  * 
  */
-public class GameScreen extends AbstractScreen implements InputProcessor,
+public class GameScreen extends AbstractScreen implements
 		DialogChainFinishedListener {
 
 	private static final float ZOOM_ADDITION = 0.20f;
@@ -226,7 +225,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 	}
 
 	private void drawButtons() {
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		Table table = new Table(skin);
 		table.setBounds(0, 0, screenWidth, screenHeight);
@@ -573,7 +572,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 
 				// Add depot
 
-				int offset = (Integer) AssetManager.getDepots().getProperties()
+				int offset = (Integer) RetroAssetManager.getDepots().getProperties()
 						.get("firstgid");
 				int color = Constants.DEPOT_ID;
 				DepotElement d = new DepotElement();

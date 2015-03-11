@@ -12,7 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.RetroDialogChain;
 import com.retroMachines.util.Constants;
@@ -233,7 +233,7 @@ public class RetroLevel {
 			// Color of application is always the same
 			if (!result.getType().equals("Application")) {
 				// Add own color if its not in colorlist
-				if (!newColorList.contains(new Integer(result.getColor()))) {
+				if (!newColorList.contains(result.getColor())) {
 					newColorList.add(result.getColor());
 				}
 			}
@@ -456,7 +456,7 @@ public class RetroLevel {
 		 *            the id of the level. range [1 - Constants.MAX_LEVEL]
 		 */
 		public void prepare(int id) {
-			map = AssetManager.getMap(id);
+			map = RetroAssetManager.getMap(id);
 			int levelId = id + 1;
 			lambdaUtil.createTreeFromJson(String.format(JSON_PATTERN, levelId));
 			addGameelements();
@@ -467,7 +467,7 @@ public class RetroLevel {
 		 * adds the gameelements to the map.
 		 */
 		private void addGameelements() {
-			LinkedList<Vertex> levelelements = lambdaUtil.getVertexList();
+			List<Vertex> levelelements = lambdaUtil.getVertexList();
 
 			TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
 					Constants.OBJECT_LAYER_ID);

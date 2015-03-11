@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.gdxemulation.RetroMachineMock;
 import com.retroMachines.util.MusicManager;
 
@@ -20,8 +20,8 @@ public class MainMenuScreenTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		AssetManager.initializePreLoading();
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializePreLoading();
+		RetroAssetManager.initializeWhileLoading();
 	}
 
 	@Before

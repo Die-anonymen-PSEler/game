@@ -153,7 +153,7 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction() {
+	public void deleteAfterBetaReduction() {
 		// start next evaluationStep
 		EvaluationOptimizer.runNextStep();
 

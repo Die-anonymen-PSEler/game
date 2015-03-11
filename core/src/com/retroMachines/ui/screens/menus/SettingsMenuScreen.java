@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.util.Constants.ButtonStrings;
 
@@ -37,7 +37,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	/**
 	 * 1 The setting controller, so changes can be committed.
 	 */
-	private final SettingController settingController;
+	private SettingController settingController;
 
 	private Slider volumeSlider;
 	private Button buttonSoundOff;
@@ -50,9 +50,6 @@ public class SettingsMenuScreen extends MenuScreen {
 	 */
 	public SettingsMenuScreen(RetroMachines game) {
 		super(game);
-		settingController = game.getSettingController();
-		buttonSoundOff.setChecked(!settingController.soundEnabled());
-		volumeSlider.setValue(settingController.getVolume() * SLIDERMAX);
 	}
 
 	/**
@@ -60,7 +57,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	 */
 	@Override
 	protected void initialize() {
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
 		Label title = new Label("Einstellungen", skin);
@@ -126,7 +123,10 @@ public class SettingsMenuScreen extends MenuScreen {
 		stage.addActor(table);
 
 		inputMultiplexer.addProcessor(stage);
-
+		
+		settingController = game.getSettingController();
+		buttonSoundOff.setChecked(!settingController.soundEnabled());
+		volumeSlider.setValue(settingController.getVolume() * SLIDERMAX);
 	}
 
 	private class SliderListener extends ChangeListener {

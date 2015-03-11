@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 
 @RunWith(GdxTestRunner.class)
 public class RetroDialogTest {
@@ -24,8 +24,8 @@ public class RetroDialogTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		AssetManager.initializePreLoading();
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializePreLoading();
+		RetroAssetManager.initializeWhileLoading();
 	}
 	
 	@Before
@@ -72,7 +72,7 @@ public class RetroDialogTest {
 	
 	@Test
 	public void testSecondConstructor() {
-		RetroDialog retroDialog = new RetroDialog(TITLE, AssetManager.getMenuSkin());
+		RetroDialog retroDialog = new RetroDialog(TITLE, RetroAssetManager.getMenuSkin());
 		TestRunnable r = new TestRunnable();
 		retroDialog.setRunnable(r);
 		retroDialog.result(null);

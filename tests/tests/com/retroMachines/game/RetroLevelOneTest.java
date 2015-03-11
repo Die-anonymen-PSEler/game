@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.GdxTestRunner;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.RetroLevel.LevelBuilder;
 import com.retroMachines.game.gameelements.GameElement;
 
@@ -32,7 +32,7 @@ public class RetroLevelOneTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		AssetManager.initializeWhileLoading();
+		RetroAssetManager.initializeWhileLoading();
 	}
 	
 	@AfterClass
@@ -48,7 +48,7 @@ public class RetroLevelOneTest {
 
 	@After
 	public void tearDown() throws Exception {
-		AssetManager.reloadMap(0);
+		RetroAssetManager.reloadMap(0);
 	}
 
 	@Test

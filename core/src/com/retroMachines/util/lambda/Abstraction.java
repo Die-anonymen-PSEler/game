@@ -92,7 +92,6 @@ public class Abstraction extends Vertex {
 					updateMap(nextFam.get(j), newColor); // updating mapped
 															// color of vertex
 					returnValue = true;
-					newColor++;
 				}
 			}
 		}
@@ -252,8 +251,8 @@ public class Abstraction extends Vertex {
 		// search unused color ID
 		for (int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
 			// Search if id "i" is unused in firstList
-			if (!actFam.contains(new Integer(i))) {
-				if (!nextFam.contains(new Integer(i))) {
+			if (!actFam.contains(i)) {
+				if (!nextFam.contains(i)) {
 					newColor = i;
 					break;
 				}
@@ -274,7 +273,7 @@ public class Abstraction extends Vertex {
 	}
 
 	@Override
-	public void DeleteAfterBetaReduction() {
+	public void deleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
 		if (nextNull) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());

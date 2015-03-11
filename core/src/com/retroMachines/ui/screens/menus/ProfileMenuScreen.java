@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.OnProfileChangedListener;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.ui.RetroDialog;
@@ -62,7 +62,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	protected void initialize() {
 		profileController = game.getProfileController();
 		profileController.addProfileChangedListener(this);
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
 		Label title = new Label("Profile", skin);

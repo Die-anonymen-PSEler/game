@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.retroMachines.util.Constants;
 
 /**
@@ -21,11 +20,6 @@ public abstract class GameElement extends Actor {
 	 * A texture where the image of the GameElement can be stored.
 	 */
 	protected TextureRegion textureRegion;
-
-	/**
-	 * The skin of all Screens
-	 */
-	protected Skin skin;
 
 	/**
 	 * the id of the tileset that represents this element

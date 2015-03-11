@@ -1,7 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 
 /**
  * This class is part of the model of RetroMachines. A light element that
@@ -21,7 +21,7 @@ public class LightElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		return AssetManager.getLights();
+		return RetroAssetManager.getLights();
 	}
 
 }

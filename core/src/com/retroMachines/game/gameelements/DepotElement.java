@@ -1,7 +1,7 @@
 package com.retroMachines.game.gameelements;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 
 public class DepotElement extends GameElement {
 
@@ -15,7 +15,7 @@ public class DepotElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-		return AssetManager.getDepots();
+		return RetroAssetManager.getDepots();
 	}
 
 }

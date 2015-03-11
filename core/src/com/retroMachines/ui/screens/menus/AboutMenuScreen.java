@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.data.AssetManager;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
 
 /**
@@ -32,25 +32,25 @@ public class AboutMenuScreen extends MenuScreen {
 			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.";
 
 	public static final String GAMEINFO_1 = "Metallobjekt: \n"
-			+ "Entspricht der Variable im Lambda-Kalkül, kann von der Maschine vearbeitet werden";
+			+ "Entspricht der Variable im Lambda-Kalkï¿½l, kann von der Maschine vearbeitet werden";
 
 	public static final String GAMEINFO_2 = "Maschine: \n"
-			+ "Entspricht der Abstraktion im Lambda-Kalkül, kann andere Objekte verarbeiten";
+			+ "Entspricht der Abstraktion im Lambda-Kalkï¿½l, kann andere Objekte verarbeiten";
 
 	public static final String GAMEINFO_3 = "Ampel: \n"
-			+ "Entspricht der Applikation im Lambda-Kalkül, dient zum zusammenfassen (klammern) mehrerer Objekte,"
-			+ " soadass sie als ein Objekt verarbeitet werden können";
+			+ "Entspricht der Applikation im Lambda-Kalkï¿½l, dient zum zusammenfassen (klammern) mehrerer Objekte,"
+			+ " soadass sie als ein Objekt verarbeitet werden kï¿½nnen";
 
 	public static final String GAMEINFO_4 = "Depot: \n"
-			+ "Hierin können Objekte Platziert werden. die anschließend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
+			+ "Hierin kï¿½nnen Objekte Platziert werden. die anschlieï¿½end ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
 
 	public static final String GAMEINFO_5 = "Verarbeitungsbereich: \n"
 			+ "Der Verarbeitungsbereich eines Objektes sind alle Depots"
-			+ " überhalb seines Depots, die durch die nach oben führende Röhre erreicht werden können.";
+			+ " ï¿½berhalb seines Depots, die durch die nach oben fï¿½hrende Rï¿½hre erreicht werden kï¿½nnen.";
 
 	public static final String GAMEINFO_6 = "Eingabe / EingabeBereich: \n"
 			+ "Der EingabeBereich eines Objektes,"
-			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Röhre) sowie dessen kompleter Verarbeitungsbereich. ";
+			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Rï¿½hre) sowie dessen kompleter Verarbeitungsbereich. ";
 
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
@@ -67,7 +67,7 @@ public class AboutMenuScreen extends MenuScreen {
 	 */
 	@Override
 	protected void initialize() {
-		skin = AssetManager.getMenuSkin();
+		skin = RetroAssetManager.getMenuSkin();
 		textWidth = screenWidth - (2 * (screenWidth / DEFAULTPADDING));
 
 		// Make Title
