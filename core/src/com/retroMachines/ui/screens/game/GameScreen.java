@@ -206,7 +206,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 		camBounds[0] = camera.position.y + cameraHalfHeight;
 
 		if (mapBounds[1] < camera.viewportWidth) {
-			camera.position.x = mapBounds[1] / 2;
+			camera.position.x = mapBounds[1] / 2f;
 		} else if (camBounds[3] <= 0) {
 			camera.position.x = 0 + cameraHalfWidth;
 		} else if (camBounds[1] >= mapBounds[1]) {
@@ -215,7 +215,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 
 		// Vertical axis
 		if (mapBounds[0] < camera.viewportHeight) {
-			camera.position.y = mapBounds[0] / 2;
+			camera.position.y = mapBounds[0] / 2f;
 		} else if (camBounds[2] <= 0) {
 			camera.position.y = 0 + cameraHalfHeight;
 		} else if (camBounds[0] >= mapBounds[0]) {
