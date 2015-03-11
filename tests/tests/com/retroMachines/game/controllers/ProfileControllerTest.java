@@ -23,6 +23,10 @@ public class ProfileControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		profileController = new ProfileController(null);
+		HashMap<String, Integer> map = profileController.getProfileNameIdMap();
+		for (String name : map.keySet()) {
+			profileController.deleteProfile(name);
+		}
 		profileController.createProfile(NAME);
 		profileController.createProfile(NAME2);
 	}
