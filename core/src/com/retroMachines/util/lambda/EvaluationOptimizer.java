@@ -327,8 +327,7 @@ public class EvaluationOptimizer {
 	}
 
 	private static class NextStep implements Runnable {
-
-		GameElement element;
+		private GameElement element;
 
 		public NextStep(GameElement g) {
 			this.element = g;

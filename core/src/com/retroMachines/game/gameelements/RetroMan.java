@@ -99,7 +99,7 @@ public class RetroMan {
 	private Animation runingAnimation;
 	private Animation runingAnimationCarry;
 
-	float timeSum;
+	private float timeSum;
 
 	/**
 	 * the current velocity

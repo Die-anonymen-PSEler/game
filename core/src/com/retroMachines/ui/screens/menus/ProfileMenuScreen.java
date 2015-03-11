@@ -211,7 +211,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	}
 
 	private class DeleteDialog extends RetroDialog {
-		RetroDialog deletionError;
+		private RetroDialog deletionError;
 
 		public DeleteDialog(String title, String msg) {
 			super(title, msg);
