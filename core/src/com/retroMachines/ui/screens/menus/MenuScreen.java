@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.retroMachines.RetroMachines;
@@ -47,6 +49,14 @@ public abstract class MenuScreen extends AbstractScreen {
 		stage = new Stage();
 		initialize();
 		inputMultiplexer.addProcessor(this);
+	}
+	
+	public Label makeTitle(String name, float fontsize) {
+		Label title = new Label(name, skin);
+		title.setWrap(true);
+		title.setFontScale((fontsize* screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setAlignment(Align.center);
+		return title;
 	}
 
 	@Override

@@ -171,25 +171,6 @@ public class Application extends Vertex {
 	}
 
 	@Override
-	public Vertex updatePointerAfterBetaReduction() {
-		// Update pointer if needed
-		if (this.getnext() != null) {
-			// Search last Vertex in first Family layer
-			Vertex pointer = new Dummy();
-			pointer.setnext(this.getfamily());
-			if (pointer.getnext() != null) {
-				while (pointer.getnext().getnext() != null) {
-					pointer.setnext(pointer.getnext().getnext());
-				}
-			}
-			// Set next Vertex of this as Next of Last in First Famiyl layer;
-			pointer.getnext().setnext(this.getnext());
-		}
-		// return new Worker
-		return this.getfamily();
-	}
-
-	@Override
 	public Vertex getEvaluationResult() {
 		// Returns null because the Application is no Part of Evaluation Result
 		return null;

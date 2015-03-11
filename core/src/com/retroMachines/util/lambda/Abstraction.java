@@ -289,22 +289,8 @@ public class Abstraction extends Vertex {
 		if (nextNull) {
 			return this.getnext();
 		}
-
-		// Update pointer if needed
-		if (this.getnext() != null) {
-			// Search last Vertex in first Family layer
-			Vertex pointer = new Dummy();
-			pointer.setnext(this.getfamily());
-			if (pointer.getnext() != null) {
-				while (pointer.getnext().getnext() != null) {
-					pointer.setnext(pointer.getnext().getnext());
-				}
-			}
-			// Set next Vertex of this as Next of Last in First Family layer;
-			pointer.getnext().setnext(this.getnext());
-		}
-		// retrn new Worker
-		return this.getfamily();
+		
+		return super.updatePointerAfterBetaReduction();
 	}
 
 	@Override
