@@ -66,8 +66,7 @@ public class Variable extends Vertex {
 	/**
 	 * Fulfills one step of beta-reduction for a Abstraction
 	 * 
-	 * @return True if this abstraction has changed, false when an error
-	 *         appeared.
+	 * @return empty LinkedList
 	 */
 	@Override
 	public LinkedList<Vertex> betaReduction() {
