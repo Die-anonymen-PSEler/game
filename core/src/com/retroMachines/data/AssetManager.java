@@ -40,12 +40,12 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * The music which is played during the game is stored here.
 	 */
 	private static Music music;
-	
+
 	/**
 	 * The Gameelement textures
 	 */
 	private static Skin gameElementTexture;
-	
+
 	/**
 	 * TiledMapTileSets
 	 */
@@ -58,28 +58,29 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * Contains all file references to the files that need to be loaded.
 	 */
 	public static final String[] assetNames = {};
-	
+
 	/**
 	 * list containing all maps for fast access.
 	 */
 	private static final LinkedList<TiledMap> maps = new LinkedList<TiledMap>();
-	
+
 	/**
 	 * a hashmap with (String,Texture) pairs.
 	 */
 	private static final HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
-	
+
 	/**
 	 * pattern where the character images are stored.
 	 */
 	private static final String CHARACTER_PATH_PATTERN = "Character/Animation%s.png";
-	
+
 	/**
-	 * Added assets that need to be ready before the first game screen will be displayed
-	 * Only those assets are allowed here.
+	 * Added assets that need to be ready before the first game screen will be
+	 * displayed Only those assets are allowed here.
 	 */
 	public static void initializePreLoading() {
-		textureMap.put(Constants.BACKGROUND_PATH, new Texture(Gdx.files.internal("Background.png")));
+		textureMap.put(Constants.BACKGROUND_PATH,
+				new Texture(Gdx.files.internal("Background.png")));
 		manager.finishLoading();
 	}
 
@@ -90,10 +91,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static void initializeWhileLoading() {
 		manager.load("music/musicfile.ogg", Music.class);
 		TextureAtlas atlas = new TextureAtlas("skins/LambdaGame.pack");
-		TextureAtlas gameElementsAtlas = new TextureAtlas("Gameelements/Gameelements.pack");
+		TextureAtlas gameElementsAtlas = new TextureAtlas(
+				"Gameelements/Gameelements.pack");
 		manager.finishLoading();
-		menuSkin = new Skin(
-				Gdx.files.internal("skins/DefaultLambdaGame.json"),
+		menuSkin = new Skin(Gdx.files.internal("skins/DefaultLambdaGame.json"),
 				atlas);
 		gameElementTexture = new Skin(gameElementsAtlas);
 		TmxMapLoader loader = new TmxMapLoader();
@@ -102,9 +103,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		}
 		setTiledMapTileSets(maps.getFirst());
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
-		for(int i = 0; i < Constants.TEXTURE_ANIMATION_NAMES.length; i++) {
-			textureMap.put( Constants.TEXTURE_ANIMATION_NAMES[i],
-					new Texture(String.format(CHARACTER_PATH_PATTERN, Constants.TEXTURE_ANIMATION_NAMES[i])));
+		for (int i = 0; i < Constants.TEXTURE_ANIMATION_NAMES.length; i++) {
+			textureMap.put(
+					Constants.TEXTURE_ANIMATION_NAMES[i],
+					new Texture(String.format(CHARACTER_PATH_PATTERN,
+							Constants.TEXTURE_ANIMATION_NAMES[i])));
 		}
 		manager.finishLoading();
 	}
@@ -119,17 +122,19 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static TiledMap getMap(int levelId) {
 		return maps.get(levelId);
 	}
-	
+
 	public static void reloadMap(int levelId) {
-		maps.set(levelId, new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
+		maps.set(levelId,
+				new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
 	}
 
 	// -----------------------
 	// --------Music----------
 	// -----------------------
-	
+
 	/**
 	 * instance of the music of the game.
+	 * 
 	 * @return
 	 */
 	public static Music getMusic() {
@@ -139,39 +144,43 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----------------------
 	// -----Menu Skins--------
 	// -----------------------
-	
+
 	/**
 	 * skin instance for all buttons.
+	 * 
 	 * @return
 	 */
 	public static Skin getMenuSkin() {
 		return menuSkin;
 	}
-	
+
 	// -------------------------------
 	// -----GameElements skins--------
 	// -------------------------------
-	
+
 	public static Skin getGameelementSkin() {
 		return gameElementTexture;
 	}
-	
+
 	/**
 	 * retrieves a texture from the hashmap
+	 * 
 	 * @param path
 	 * @return
 	 */
 	public static Texture getTexture(String path) {
 		if (textureMap.containsKey(path)) {
 			return textureMap.get(path);
-		}
-		else {
-			throw new IllegalArgumentException("That path has not been loaded? Might wanna change that " + path);
+		} else {
+			throw new IllegalArgumentException(
+					"That path has not been loaded? Might wanna change that "
+							+ path);
 		}
 	}
-	
+
 	/**
 	 * Adds TileSets of Machine Metalobjects and Lights of currentMap
+	 * 
 	 * @param currentMap
 	 */
 	private static void setTiledMapTileSets(TiledMap currentMap) {
@@ -181,34 +190,37 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		lights = levelSets.getTileSet(RetroStrings.TILESETNAME_LIGHT);
 		depots = levelSets.getTileSet(RetroStrings.TILESETNAME_DEPOT);
 	}
-	
+
 	/**
 	 * getter for TiledMapTileSet of Objects in TiledMap
+	 * 
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getObjects() {
 		return objects;
 	}
-	
+
 	/**
 	 * getter for TiledMapTileSet of Machines in TiledMap
+	 * 
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getMachines() {
 		return machines;
 	}
-	
+
 	/**
 	 * getter for TiledMapTileSet of Lights in TiledMap
+	 * 
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getLights() {
 		return lights;
 	}
-	
-	
+
 	/**
 	 * getter for TiledMapTileSet of Depots in TiledMap
+	 * 
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getDepots() {

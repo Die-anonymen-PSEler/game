@@ -3,11 +3,11 @@ package com.retroMachines.game.gameelements;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.retroMachines.data.AssetManager;
 
-public class DepotElement extends GameElement{
-	
+public class DepotElement extends GameElement {
+
 	/**
-	 * Creates a new instance of DepotElement and assigns a texture to it
-	 * for rendering purposes.
+	 * Creates a new instance of DepotElement and assigns a texture to it for
+	 * rendering purposes.
 	 */
 	public DepotElement() {
 		super();
@@ -15,7 +15,7 @@ public class DepotElement extends GameElement{
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-	    return AssetManager.getDepots();
+		return AssetManager.getDepots();
 	}
 
 }

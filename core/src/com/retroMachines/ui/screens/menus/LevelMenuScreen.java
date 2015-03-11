@@ -69,7 +69,8 @@ public class LevelMenuScreen extends MenuScreen {
 			Integer iToString = new Integer(i + 1);
 			TextButton ilevel;
 			if (i >= unlocked) {
-				ilevel = new TextButton(iToString.toString(), skin, ButtonStrings.LOCKED);
+				ilevel = new TextButton(iToString.toString(), skin,
+						ButtonStrings.LOCKED);
 				ilevel.addListener(new LevelLockedButtonClickListener());
 			} else {
 				ilevel = new TextButton(iToString.toString(), skin);
@@ -151,7 +152,7 @@ public class LevelMenuScreen extends MenuScreen {
 		}
 
 	}
-	
+
 	protected class ReturnButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

@@ -9,16 +9,16 @@ import com.retroMachines.data.models.SettingsChangeListener;
 import com.retroMachines.util.Constants;
 
 /**
- * SettingsController is part of the controller of RetroMachines.
- * It controls the different setting of the game e.g. the volume and 
- * the side of the buttons in the game.
+ * SettingsController is part of the controller of RetroMachines. It controls
+ * the different setting of the game e.g. the volume and the side of the buttons
+ * in the game.
  * 
  * @author RetroFactory
  * 
  */
 
 public class SettingController implements OnProfileChangedListener {
-	
+
 	/**
 	 * Private attribute of the Settings Database which stores the setting
 	 * informations.
@@ -41,13 +41,14 @@ public class SettingController implements OnProfileChangedListener {
 	 * information.
 	 * 
 	 * @param game
-	 *            Instance of the game that is needed to get the Profile settings.
+	 *            Instance of the game that is needed to get the Profile
+	 *            settings.
 	 */
 	public SettingController(RetroMachines game) {
 		this.game = game;
 		toBeNotified = new LinkedList<SettingsChangeListener>();
 	}
-	
+
 	/**
 	 * completes the setup of the controller
 	 */
@@ -60,20 +61,21 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * Adds a class to the list of classes which must be notified if the settings
-	 * are changed.
+	 * Adds a class to the list of classes which must be notified if the
+	 * settings are changed.
 	 * 
 	 * @param toBeAdded
-	 *            The new class which should be notified when the settings are changed.
+	 *            The new class which should be notified when the settings are
+	 *            changed.
 	 */
 	public void add(SettingsChangeListener toBeAdded) {
 		toBeNotified.add(toBeAdded);
 	}
-	
+
 	public void removeListener(SettingsChangeListener listener) {
 		toBeNotified.remove(listener);
 	}
-	
+
 	private void notifyListeners() {
 		for (SettingsChangeListener listener : toBeNotified) {
 			listener.onSettingsChanged();
@@ -108,70 +110,79 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * Returns true if the LeftiMode is activated for this Player. False otherwise.
+	 * Returns true if the LeftiMode is activated for this Player. False
+	 * otherwise.
 	 * 
 	 * @return True when LeftiMode is activated
 	 */
 	public boolean getLeftMode() {
 		return settings.isLeftControl();
 	}
-	
+
 	/**
 	 * Sets the left mode for the current setting and notifies listeners
-	 * @param enabled true to enable left mode; false to disable (aka right mode)
+	 * 
+	 * @param enabled
+	 *            true to enable left mode; false to disable (aka right mode)
 	 */
 	public void setLeftMode(boolean enabled) {
 		settings.setLeftControl(enabled);
 		notifyListeners();
 	}
-	
+
 	public int toggleCharacter() {
 		int currentId = settings.getSelectedCharacter();
 		if (currentId + 1 < Constants.TEXTURE_ANIMATION_NAMES.length) {
-			settings.setSelectedCharacter(currentId + 1); 
-		}
-		else {
+			settings.setSelectedCharacter(currentId + 1);
+		} else {
 			// start over
 			settings.setSelectedCharacter(0);
 		}
 		notifyListeners();
 		return settings.getSelectedCharacter();
 	}
-	
+
 	public int getCurrentCharacterId() {
 		return settings.getSelectedCharacter();
 	}
-	
+
 	/**
-	 * Assigns a new character id to the settings.
-	 * IllegalArgumentException will be thrown in case the parameter exceeds the range.
-	 * @param i range (0 - {@link Constants}.TEXTURE_ANIMATION_NAMES.length - 1)
+	 * Assigns a new character id to the settings. IllegalArgumentException will
+	 * be thrown in case the parameter exceeds the range.
+	 * 
+	 * @param i
+	 *            range (0 - {@link Constants}.TEXTURE_ANIMATION_NAMES.length -
+	 *            1)
 	 */
 	public void setCharacterId(int i) {
 		if (i >= 0 && i < Constants.TEXTURE_ANIMATION_NAMES.length) {
 			settings.setSelectedCharacter(i);
 		} else {
-			throw new IllegalArgumentException("The value exceeds the bounds 0 and " + Constants.TEXTURE_ANIMATION_NAMES.length + ": " + i);
+			throw new IllegalArgumentException(
+					"The value exceeds the bounds 0 and "
+							+ Constants.TEXTURE_ANIMATION_NAMES.length + ": "
+							+ i);
 		}
 	}
-	
+
 	/**
-	 * This method should only be used for DEBUG purposes only!
-	 * Assigns a settings object to this controller.
-	 * normally this controller should be linked to the profile
+	 * This method should only be used for DEBUG purposes only! Assigns a
+	 * settings object to this controller. normally this controller should be
+	 * linked to the profile
+	 * 
 	 * @param setting
 	 */
 	public void setSetting(Setting setting) {
 		this.settings = setting;
 	}
-	
+
 	public boolean soundEnabled() {
 		if (settings.getVolume() == 0.0f || !settings.isSoundOnOff()) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 
 	 * @param levelId
@@ -181,17 +192,17 @@ public class SettingController implements OnProfileChangedListener {
 		boolean value = settings.getTutorialFinished(levelId);
 		return value;
 	}
-	
+
 	public void setTutorialFinished(int levelId, boolean value) {
 		settings.setTutorialFinished(levelId, value);
 	}
-	
+
 	public void resetTutorials() {
 		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
 			settings.setTutorialFinished(i, false);
 		}
 	}
-	
+
 	/**
 	 * Controls if the profile was changed.
 	 */
@@ -201,5 +212,4 @@ public class SettingController implements OnProfileChangedListener {
 		notifyListeners();
 	}
 
-	
 }

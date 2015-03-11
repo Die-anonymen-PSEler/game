@@ -4,8 +4,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.retroMachines.data.AssetManager;
 
 /**
- * This class is part of the model of RetroMachines.
- * A variable element that represents the application within the lambda calculus.
+ * This class is part of the model of RetroMachines. A variable element that
+ * represents the application within the lambda calculus.
+ * 
  * @author RetroFactory
  */
 public class MetalElement extends GameElement {

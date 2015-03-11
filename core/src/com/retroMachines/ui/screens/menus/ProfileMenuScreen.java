@@ -24,7 +24,8 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * @author RetroFactory
  * 
  */
-public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedListener {
+public class ProfileMenuScreen extends MenuScreen implements
+		OnProfileChangedListener {
 
 	private final static float FONTSIZE3 = 3f;
 	private final static float FONTSIZE2_5 = 2.5f;
@@ -87,13 +88,15 @@ public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedLis
 		Button buttonReturn = new Button(skin, ButtonStrings.BACK);
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ProfileReturnButtonClickListener());
-		Button buttonSelectProfile = new Button(skin, ButtonStrings.CHANGE_PROFILE);
+		Button buttonSelectProfile = new Button(skin,
+				ButtonStrings.CHANGE_PROFILE);
 		buttonSelectProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonSelectProfile.addListener(new SelectProfileButtonClickListener());
 		Button buttonAddProfile = new Button(skin, ButtonStrings.ADD_PROFILE);
 		buttonAddProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonAddProfile.addListener(new AddProfileButtonClickListener());
-		Button buttonDeleteProfile = new Button(skin, ButtonStrings.DELETE_PROFILE);
+		Button buttonDeleteProfile = new Button(skin,
+				ButtonStrings.DELETE_PROFILE);
 		buttonDeleteProfile.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonDeleteProfile.addListener(new DeleteProfileButtonClickListener());
 
@@ -147,8 +150,7 @@ public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedLis
 	/*
 	 * ClickListener
 	 */
-	
-	
+
 	private class ProfileReturnButtonClickListener extends
 			MenuScreen.ReturnButtonClickListener {
 		@Override
@@ -204,29 +206,30 @@ public class ProfileMenuScreen extends MenuScreen implements OnProfileChangedLis
 						profileList.getSelected());
 				game.setScreen(new MainMenuScreen(game));
 			}
-			
+
 		}
 	}
-	
+
 	private class DeleteDialog extends RetroDialog {
 		RetroDialog deletionError;
-		
-		
+
 		public DeleteDialog(String title, String msg) {
 			super(title, msg);
 			button(new Button(skin, ButtonStrings.ABORT), false);
 		}
-		
+
 		@Override
 		protected void result(Object object) {
-			if ((Boolean) object && profileController.getAllProfiles().length > 1) {
+			if ((Boolean) object
+					&& profileController.getAllProfiles().length > 1) {
 				profileController.deleteProfile(profileList.getSelected());
 			} else {
-				deletionError = new RetroDialog("", "Zum Spielen brauchst du ein Profil!");
+				deletionError = new RetroDialog("",
+						"Zum Spielen brauchst du ein Profil!");
 				deletionError.show(stage);
 				this.remove();
 			}
 		}
-		
+
 	}
 }

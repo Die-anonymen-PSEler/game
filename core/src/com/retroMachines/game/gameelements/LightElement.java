@@ -4,15 +4,16 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.retroMachines.data.AssetManager;
 
 /**
- * This class is part of the model of RetroMachines.
- * A light element that represents the application within the lambda calculus.
+ * This class is part of the model of RetroMachines. A light element that
+ * represents the application within the lambda calculus.
+ * 
  * @author RetroFactory
  */
 public class LightElement extends GameElement {
-	
+
 	/**
-	 * Creates a new instance of LightElement and assigns a texture to it
-	 * for rendering purposes.
+	 * Creates a new instance of LightElement and assigns a texture to it for
+	 * rendering purposes.
 	 */
 	public LightElement() {
 		super();
@@ -20,7 +21,7 @@ public class LightElement extends GameElement {
 
 	@Override
 	public TiledMapTileSet getTileSet() {
-	    return AssetManager.getLights();
+		return AssetManager.getLights();
 	}
-	
+
 }

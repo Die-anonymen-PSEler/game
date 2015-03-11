@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
  * @author RetroFactory
  */
 public class Statistic extends Model {
-	
+
 	/**
 	 * the default value regarding the playtime.
 	 */
@@ -40,7 +40,7 @@ public class Statistic extends Model {
 	 * the key where the levelcompleted value is stored.
 	 */
 	private static final String KEY_LEVELCOMPLETED = "levelCompleted";
-	
+
 	/**
 	 * the key where the stepcounter value is stored.
 	 */
@@ -69,14 +69,16 @@ public class Statistic extends Model {
 	 * @param levelsComplete
 	 * @param stepCounter
 	 */
-	public Statistic(int rowId, int playtime, int levelsComplete, int stepCounter) {
-		this(rowId, (float)playtime, levelsComplete, stepCounter);
+	public Statistic(int rowId, int playtime, int levelsComplete,
+			int stepCounter) {
+		this(rowId, (float) playtime, levelsComplete, stepCounter);
 	}
-	
-	public Statistic(int rowId, float playtime, int levelComplete, int stepCounter) {
+
+	public Statistic(int rowId, float playtime, int levelComplete,
+			int stepCounter) {
 		super();
 		pref = Gdx.app.getPreferences(TABLE_NAME + rowId);
-		this.setPlaytime(playtime); 
+		this.setPlaytime(playtime);
 		this.setLevelsComplete(levelComplete);
 		this.setStepCounter(stepCounter);
 		write();
@@ -116,7 +118,8 @@ public class Statistic extends Model {
 
 	@Override
 	public void fetch() {
-		levelsComplete = pref.getInteger(KEY_LEVELCOMPLETED, DEFAULT_LEVELCOMPLETED);
+		levelsComplete = pref.getInteger(KEY_LEVELCOMPLETED,
+				DEFAULT_LEVELCOMPLETED);
 		playtime = pref.getFloat(KEY_PLAYTIME, DEFAULT_PLAYTIME);
 		stepCounter = pref.getInteger(KEY_STEPCOUNTER, DEFAULT_STEPCOUNTER);
 	}
@@ -166,7 +169,7 @@ public class Statistic extends Model {
 		this.playtime = playtime;
 		write();
 	}
-	
+
 	/**
 	 * Get method for the completed levels.
 	 * 
@@ -184,7 +187,7 @@ public class Statistic extends Model {
 	public int getStepCounter() {
 		return stepCounter;
 	}
-	
+
 	/**
 	 * Get method that returns the time the user placed as an integer.
 	 * 

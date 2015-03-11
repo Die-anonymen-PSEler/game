@@ -23,7 +23,7 @@ import com.retroMachines.util.Constants;
 /**
  * 
  * @author RetroFactory
- *
+ * 
  */
 public class LambdaUtil {
 
@@ -38,7 +38,6 @@ public class LambdaUtil {
 	private final static String HAS_TUTORIALS = "hasTutorialScreen";
 	private final static String IMAGE = "img";
 	private final static String GAMEELEMENTS = "gameelements";
-	
 
 	private LevelTree levelTree;
 	private boolean hasTutorial;
@@ -48,7 +47,6 @@ public class LambdaUtil {
 	private LinkedList<Vertex> vertexList;
 	private LinkedList<Texture> tutorialImgs;
 	private LinkedList<GameElement> gameElementList;
-	
 
 	/**
 	 * Constructor to create a base for the lambda calculus.
@@ -82,13 +80,13 @@ public class LambdaUtil {
 		JsonArray hint = data.getAsJsonArray(HINT);
 		JsonArray target = data.getAsJsonArray(TARGET);
 		JsonArray tree = data.getAsJsonArray(TREE);
-		
+
 		try {
 			br.close();
 		} catch (IOException e) {
 			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
 		}
-		
+
 		hasTutorial = hasTutScreens.getAsBoolean();
 		tutorialImgs = makeTutorialImgList(tutorials);
 		vertexList = makeVertexList(elements);
@@ -97,7 +95,7 @@ public class LambdaUtil {
 		levelTree = new LevelTree(makeStartVertexTree(tree));
 		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
 		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
-		
+
 	}
 
 	public void registerNewListener(OnNextLambdaStepListener listener) {
@@ -110,32 +108,37 @@ public class LambdaUtil {
 		observers.remove(listener);
 	}
 
-//	public void performEvaluation() {
-//		if (levelTree != null) {
-//			levelTree.evaluate();
-//		}
-//		for (OnNextLambdaStepListener listener : observers) {
-//			listener.nextLambdaStepPerformed();
-//		
-//		}
-//	}
-	
+	// public void performEvaluation() {
+	// if (levelTree != null) {
+	// levelTree.evaluate();
+	// }
+	// for (OnNextLambdaStepListener listener : observers) {
+	// listener.nextLambdaStepPerformed();
+	//
+	// }
+	// }
+
 	/**
-	 * returns gameElement according to vertex with specified position. Null if there is no such vertex
-	 * @param posX x coordinate
-	 * @param posY y coordinate
+	 * returns gameElement according to vertex with specified position. Null if
+	 * there is no such vertex
+	 * 
+	 * @param posX
+	 *            x coordinate
+	 * @param posY
+	 *            y coordinate
 	 * @return gameElement according to vertex
 	 */
 	public GameElement getGameElement(int posX, int posY) {
-		//getting vertex
+		// getting vertex
 		Vertex vertex = null;
 		for (Vertex v : vertexList) {
-			if ((int) v.getPosition().x == posX && (int) v.getPosition().y == posY) {
+			if ((int) v.getPosition().x == posX
+					&& (int) v.getPosition().y == posY) {
 				vertex = v;
 				break;
 			}
 		}
-		return (vertex != null) ? vertex.getGameElement() : null;		
+		return (vertex != null) ? vertex.getGameElement() : null;
 	}
 
 	private LinkedList<Vertex> makeVertexList(JsonArray elements) {
@@ -143,13 +146,15 @@ public class LambdaUtil {
 		for (JsonElement e : elements) {
 			JsonObject elementObject = e.getAsJsonObject();
 			Vertex element = getSpecializedVertex(elementObject);
-			Vector2 newPos = new Vector2(elementObject.get("posx").getAsFloat(), elementObject.get("posy").getAsFloat());
+			Vector2 newPos = new Vector2(
+					elementObject.get("posx").getAsFloat(), elementObject.get(
+							"posy").getAsFloat());
 			element.setPosition(newPos);
 			elementList.add(element);
 		}
 		return elementList;
 	}
-	
+
 	private LinkedList<GameElement> makeGameElementList() {
 		if (vertexList == null) {
 			return null;
@@ -164,45 +169,51 @@ public class LambdaUtil {
 	/**
 	 * creates lambda-tree representation of given json array for level tree.
 	 * Tree contains only dummy vertices. So only structure of tree is given.
-	 * @param tree tree in json representation
+	 * 
+	 * @param tree
+	 *            tree in json representation
 	 * @return root vertex of tree
 	 */
 	private Vertex makeStartVertexTree(JsonArray tree) {
-		
+
 		if (tree.size() == 0) {
 			return null;
 		}
-		
+
 		Vertex start = new Dummy();
-		int count = 1; //index of current element
+		int count = 1; // index of current element
 		Vertex actVertex = new Dummy();
 		for (JsonElement t : tree) {
 
 			numOfDepots++;
 			if (count == tree.size()) {
-				actVertex.setnext(null); //lastVertex.next is null
+				actVertex.setnext(null); // lastVertex.next is null
 			} else {
 				actVertex.setnext(new Dummy());
 			}
-			
+
 			actVertex.setfamily(makeStartVertexTree(t.getAsJsonObject()
-						.getAsJsonArray(TREE)));
-			if(count == 1) {
-				//pointer on start
+					.getAsJsonArray(TREE)));
+			if (count == 1) {
+				// pointer on start
 				start.setnext(actVertex);
 			}
 			actVertex = actVertex.getnext();
-			
+
 			count++;
 		}
-		
+
 		return start.getnext();
 	}
-	
+
 	/**
-	 * creates lambda-tree representation of given json array for target- or hint tree.
-	 * @param array tree in json representation
-	 * @param type type of tree: must be HINT or TARGET
+	 * creates lambda-tree representation of given json array for target- or
+	 * hint tree.
+	 * 
+	 * @param array
+	 *            tree in json representation
+	 * @param type
+	 *            type of tree: must be HINT or TARGET
 	 * @return root vertex of tree
 	 */
 	private Vertex makeStartVertexHintOrTarget(JsonArray array, String type) {
@@ -213,22 +224,23 @@ public class LambdaUtil {
 			return null;
 		}
 		Vertex start = null;
-		int count = 1; //index of current element in array
-		
+		int count = 1; // index of current element in array
+
 		for (JsonElement t : array) {
-			//creating vertex
+			// creating vertex
 			Vertex actVertex = getSpecializedVertex(t.getAsJsonObject());
-			//setting v.next
+			// setting v.next
 			if (count == array.size()) {
-				actVertex.setnext(null); //lastVertex.next is null
+				actVertex.setnext(null); // lastVertex.next is null
 			} else {
 				JsonObject nextOb = array.get(count).getAsJsonObject();
 				actVertex.setnext(getSpecializedVertex(nextOb));
 			}
-			//setting family
-			actVertex.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject().getAsJsonArray(type), type));
-			
-			if(count == 1) {
+			// setting family
+			actVertex.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject()
+					.getAsJsonArray(type), type));
+
+			if (count == 1) {
 				start = actVertex;
 			}
 			actVertex = actVertex.getnext();
@@ -236,27 +248,26 @@ public class LambdaUtil {
 		}
 		return start;
 	}
-	
+
 	/**
 	 * Adds Alle TutorialImages of Level
+	 * 
 	 * @param tutList
 	 * @return
 	 */
 	private LinkedList<Texture> makeTutorialImgList(JsonArray tutList) {
-		if(tutList == null || tutList.size() == 0) {
+		if (tutList == null || tutList.size() == 0) {
 			return new LinkedList<Texture>();
 		}
 		LinkedList<Texture> resultList = new LinkedList<Texture>();
-		for(JsonElement j : tutList) {
+		for (JsonElement j : tutList) {
 			String name = j.getAsJsonObject().get(IMAGE).getAsString();
-			Texture img = new Texture(Gdx.files.internal(
-					"maps/Tutorials/" + name + ".png")
-					);
+			Texture img = new Texture(Gdx.files.internal("maps/Tutorials/"
+					+ name + ".png"));
 			resultList.addLast(img);
 		}
 		return resultList;
 	}
-	
 
 	/**
 	 * returns new instance of vertex of type {Var,Abs,App}. If parameter does
@@ -271,15 +282,15 @@ public class LambdaUtil {
 	private Vertex getSpecializedVertex(JsonObject j) {
 		String type = j.get("type").getAsString();
 		int color = j.get("color").getAsInt();
-		//getting and returning right type
+		// getting and returning right type
 		Vertex result;
 		if (type.equals("Abs")) {
 			result = new Abstraction(color);
 		} else if (type.equals("App")) {
 			result = new Application();
-		} else if (type.equals("Var")){
+		} else if (type.equals("Var")) {
 			result = new Variable(color);
-		} else if (type.equals("Dum")){
+		} else if (type.equals("Dum")) {
 			result = new Dummy();
 		} else {
 			Gdx.app.error(Constants.LOG_TAG, "invalid vertex type: " + type);
@@ -288,10 +299,12 @@ public class LambdaUtil {
 
 		return result;
 	}
-	
+
 	/**
 	 * returns vertex belonging to given gameElement.
-	 * @param g GameElement to get vertex of
+	 * 
+	 * @param g
+	 *            GameElement to get vertex of
 	 * @return vertex belonging to GameElement
 	 */
 	public Vertex getVertex(GameElement g) {
@@ -305,61 +318,70 @@ public class LambdaUtil {
 		}
 		return null;
 	}
-	
-	
+
 	/**
 	 * getter for vertexList
+	 * 
 	 * @return vertexList
 	 */
 	public LinkedList<Vertex> getVertexList() {
 		return vertexList;
 	}
-	
+
 	/**
 	 * getter for gameElementList
+	 * 
 	 * @return gameElementList
 	 */
 	public LinkedList<GameElement> getGameElementList() {
 		return gameElementList;
 	}
+
 	/**
 	 * getter for levelTree
-	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked
+	 * 
+	 * @return may be null if {@link #createTreeFromJson(String)
+	 *         createTreeFromJson} method was not invoked
 	 */
 	public LevelTree getLevelTree() {
 		return levelTree;
 	}
-	
+
 	/**
 	 * getter for targetTree
-	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked
+	 * 
+	 * @return may be null if {@link #createTreeFromJson(String)
+	 *         createTreeFromJson} method was not invoked
 	 */
 	public LevelTree getTargetTree() {
 		return targetTree;
 	}
-	
+
 	public LinkedList<Texture> getTutorials() {
 		return tutorialImgs;
 	}
-	
+
 	/**
 	 * getter for hintTree
-	 * @return may be null if {@link #createTreeFromJson(String) createTreeFromJson} method was not invoked
+	 * 
+	 * @return may be null if {@link #createTreeFromJson(String)
+	 *         createTreeFromJson} method was not invoked
 	 */
 	public LevelTree getHintTree() {
 		return hintTree;
 	}
-	
+
 	public int getNumOfDepots() {
 		return numOfDepots;
 	}
-	
+
 	public boolean hasTutorial() {
 		return hasTutorial;
 	}
-	
+
 	/**
 	 * getter for observers, needed for testcases.
+	 * 
 	 * @return observers as ArrayList
 	 */
 	public ArrayList<OnNextLambdaStepListener> getObservers() {
@@ -374,5 +396,5 @@ public class LambdaUtil {
 		 */
 		public void nextLambdaStepPerformed();
 
-	}	
+	}
 }
