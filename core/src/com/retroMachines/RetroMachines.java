@@ -20,7 +20,6 @@ import com.retroMachines.util.MusicManager;
  * controllers and starts the game.
  * 
  * @author RetroFactory
- * 
  */
 public class RetroMachines extends Game {
 

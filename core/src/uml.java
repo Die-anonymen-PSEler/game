@@ -6,7 +6,7 @@
  * @texignore
  */
 class UMLOptions {
-        
+
 }
 
 /**
