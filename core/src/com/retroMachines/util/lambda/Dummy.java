@@ -90,7 +90,7 @@ public class Dummy extends Vertex {
 	}
 	
 	@Override
-	public boolean equals(Vertex v) {
+	public boolean vertexEquals(Vertex v) {
 		if (v == null) {
 			return false;
 		} else if (this.getType().equals(v.getType())) {
