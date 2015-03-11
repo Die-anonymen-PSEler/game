@@ -27,9 +27,16 @@ public class LevelTreeTest {
 
 	@Test
 	public void testEqualsLevelTree() {
-		assertFalse("Null Tree nicht beachtet", tree.equals(null));
+		//tree.start is null at this point
+		LevelTree comp = new LevelTree(null);
+		assertTrue(tree.equals(comp));
+		//tree.start is still now
 		Vertex v = new Application();
-		LevelTree comp = new LevelTree(v);
+		comp.setStart(v);
+		//tree.equals(comp) should return false
+		assertFalse(tree.equals(comp));
+		//testing equals method with null tree
+		assertFalse("Null Tree nicht beachtet", tree.equals(null));
 		tree.setStart(v);
 		assertTrue("equals schlägt fehlt", tree.equals(comp));
 	}
@@ -38,14 +45,14 @@ public class LevelTreeTest {
 	public void testSetStart() {
 		Vertex v = new Dummy();
 		tree.setStart(v);
-		assertTrue(tree.getStart().getType() == v.getType());
+		assertTrue(tree.getStart().equals(v));
 	}
 
 	@Test
 	public void testGetStart() {
-		Vertex v = new Abstraction(0);
+		Vertex v = new Dummy();
 		tree.setStart(v);
-		assertTrue(tree.getStart().getType() == v.getType() && tree.getStart().getColor() == v.getColor());
+		assertTrue(tree.getStart().equals(v));
 	}
 
 }

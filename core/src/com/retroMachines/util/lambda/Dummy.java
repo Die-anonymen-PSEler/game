@@ -87,5 +87,16 @@ public class Dummy extends Vertex {
 		// its a dummy
 		return null;
 	}
+	
+	@Override
+	public boolean equals(Vertex v) {
+		if (v == null) {
+			return false;
+		} else if (this.getType().equals(v.getType())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
