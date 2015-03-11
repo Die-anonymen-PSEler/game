@@ -42,27 +42,27 @@ public class GameController {
 	 * 
 	 */
 	private RetroLevel level;
-	
+
 	/**
 	 * controls Evaluation
 	 */
 	private EvaluationController evaControl;
-	
+
 	/**
 	 * level begin time
 	 */
 	private long levelBegin;
-	
+
 	/**
 	 * variable to count the steps made by the character
 	 */
 	private float tempStepCounter;
-	
+
 	/**
 	 * true if the level was finished successfully
 	 */
 	private boolean levelfinished;
-	
+
 	/**
 	 * Makes a new instance of the GameController.
 	 * 
@@ -73,8 +73,6 @@ public class GameController {
 		this.game = game;
 	}
 
-	
-
 	/**
 	 * Sets and initializes a given level and starts it.
 	 * 
@@ -84,7 +82,9 @@ public class GameController {
 	public void startLevel(int levelId) {
 		levelfinished = false;
 		SettingController settingController = game.getSettingController();
-		retroMan = new RetroMan(Constants.TEXTURE_ANIMATION_NAMES[settingController.getCurrentCharacterId()]);
+		retroMan = new RetroMan(
+				Constants.TEXTURE_ANIMATION_NAMES[settingController
+						.getCurrentCharacterId()]);
 		tempStepCounter = 0;
 		boolean left = game.getSettingController().getLeftMode();
 
@@ -95,7 +95,8 @@ public class GameController {
 		gameScreen.setMap(level.getMap());
 		levelBegin = System.currentTimeMillis();
 		game.setScreen(gameScreen);
-		if (level.hasTutorial() && !settingController.getTutorialFinished(levelId)) {
+		if (level.hasTutorial()
+				&& !settingController.getTutorialFinished(levelId)) {
 			gameScreen.showDialogChain(level.getDialogChain());
 			settingController.setTutorialFinished(levelId, true);
 		}
@@ -160,9 +161,9 @@ public class GameController {
 			// picking up elements does not work while falling
 			return;
 		}
-		
+
 		// end of level
-		if(levelfinished) {
+		if (levelfinished) {
 			Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 					retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
 			int startX, startY, endX, endY;
@@ -170,11 +171,13 @@ public class GameController {
 				startX = endX = (int) (retroMan.getPos().x + RetroMan.WIDTH + retroMan
 						.getVelocity().x);
 			} else {
-				startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
+				startX = endX = (int) (retroMan.getPos().x + retroMan
+						.getVelocity().x);
 			}
 			startY = (int) (retroMan.getPos().y);
 			endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-			Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
+			Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY,
+					Constants.DOOR_CLOSED_LAYER);
 			for (Rectangle tile : tiles) {
 				if (retroManRect.overlaps(tile)) {
 					levelFinished();
@@ -182,9 +185,10 @@ public class GameController {
 			}
 		} else {
 			// when evel finished no reposition possible
-	 		Vector2 elementPosition = retroMan.nextPosition();
-	 		GameElement element = level.getGameElement(elementPosition);
-			if (retroMan.hasPickedUpElement() && element == null && level.isValidGameElementPosition(elementPosition)) {
+			Vector2 elementPosition = retroMan.nextPosition();
+			GameElement element = level.getGameElement(elementPosition);
+			if (retroMan.hasPickedUpElement() && element == null
+					&& level.isValidGameElementPosition(elementPosition)) {
 				GameElement previous = retroMan.layDownElement();
 				level.placeGameElement(previous, elementPosition);
 			} else if (!retroMan.hasPickedUpElement() && element != null) {
@@ -224,30 +228,33 @@ public class GameController {
 	/**
 	 * Performs a collision detection to stop the character in case of walls or
 	 * any other solid object standing in the way.
-	 * @param delta 
+	 * 
+	 * @param delta
 	 */
 	public void update(float deltaTime) {
-		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X && retroMan.canJump()) {
+		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X
+				&& retroMan.canJump()) {
 			retroMan.getVelocity().x = 0;
 			retroMan.standing();
 		}
 		retroMan.getVelocity().add(0, Constants.WORLD_GRAVITY);
 		if (Math.abs(retroMan.getVelocity().y) > RetroMan.MAX_VELOCITY_Y) {
-			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y) * RetroMan.MAX_VELOCITY_Y;
+			retroMan.getVelocity().y = Math.signum(retroMan.getVelocity().y)
+					* RetroMan.MAX_VELOCITY_Y;
 		}
 		float previousPosition = retroMan.getPos().x;
 		retroMan.getVelocity().scl(deltaTime);
-		
+
 		collisionDetection();
-				
+
 		retroMan.getPos().add(retroMan.getVelocity());
 		retroMan.getVelocity().scl(1 / deltaTime);
 		// update the step counter
 		tempStepCounter += (retroMan.getPos().x - previousPosition);
 		retroMan.getVelocity().x *= RetroMan.DAMPING;
-		
+
 	}
-	
+
 	private void collisionDetection() {
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
@@ -260,9 +267,12 @@ public class GameController {
 		}
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
-		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
-		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
+		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY,
+				Constants.SOLID_LAYER_ID);
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.DEPOT_LAYER));
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.OBJECT_LAYER_ID));
 		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -270,7 +280,7 @@ public class GameController {
 				break;
 			}
 		}
-		
+
 		retroManRect.x = retroMan.getPos().x;
 
 		// detection upwards
@@ -282,9 +292,12 @@ public class GameController {
 		}
 		startX = (int) (retroMan.getPos().x);
 		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
-		tiles = level.getTiles(startX, startY, endX, endY, Constants.SOLID_LAYER_ID);
-		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.DEPOT_LAYER));
-		tiles.addAll(level.getTiles(startX, startY, endX, endY, Constants.OBJECT_LAYER_ID));
+		tiles = level.getTiles(startX, startY, endX, endY,
+				Constants.SOLID_LAYER_ID);
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.DEPOT_LAYER));
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.OBJECT_LAYER_ID));
 		retroManRect.y += retroMan.getVelocity().y;
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
@@ -315,22 +328,24 @@ public class GameController {
 			gameScreen.showValidateError(level.getErrorMessage());
 		}
 	}
-	
+
 	public void evaluationComplete() {
 		game.setScreen(gameScreen);
-		level.getMap().getLayers().get(Constants.DOOR_CLOSED_LAYER).setVisible(false);
+		level.getMap().getLayers().get(Constants.DOOR_CLOSED_LAYER)
+				.setVisible(false);
 		levelfinished = true;
 	}
-	
+
 	public void evaluationInComplete() {
 		levelfinished = false;
 		gameScreen.showValidateError(Constants.RetroStrings.SOLUTION_INVALID);
 		game.setScreen(gameScreen);
 
 	}
-	
+
 	/**
-	 * checks if retroman is in the correct position and opens the door in case he is.
+	 * checks if retroman is in the correct position and opens the door in case
+	 * he is.
 	 */
 	public void walkThroughDoor() {
 		if (!levelfinished) {
@@ -347,18 +362,19 @@ public class GameController {
 		}
 		startY = (int) (retroMan.getPos().y);
 		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY, Constants.DOOR_CLOSED_LAYER);
+		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY,
+				Constants.DOOR_CLOSED_LAYER);
 		for (Rectangle tile : tiles) {
 			if (retroManRect.overlaps(tile)) {
 				levelFinished();
 			}
 		}
 	}
-	
+
 	public Vertex getLevelHint() {
 		return level.getLambdaUtil().getHintTree().getStart();
 	}
-	
+
 	public Vertex getLevelTarget() {
 		return level.getLambdaUtil().getTargetTree().getStart();
 	}

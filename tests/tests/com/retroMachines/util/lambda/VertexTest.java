@@ -1,11 +1,18 @@
 package com.retroMachines.util.lambda;
 
 import static org.junit.Assert.*;
+import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import com.retroMachines.GdxTestRunner;
+import com.retroMachines.data.AssetManager;
+
+@RunWith(GdxTestRunner.class)
 public class VertexTest {
 	
 	private Vertex app;
@@ -15,6 +22,12 @@ public class VertexTest {
 	
 	private int absColor = 0;
 	private int varColor = 0;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		AssetManager.initializePreLoading();
+		AssetManager.initializeWhileLoading();
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -63,7 +76,21 @@ public class VertexTest {
 
 	@Test
 	public void testRenameFamily() {
-		fail("Not yet implemented");
+		LinkedList<Integer> famCol = new LinkedList<Integer>();
+		famCol.add(1);
+		var.setColor(1);
+		abs.setColor(1);
+		abs.setfamily(var);
+		abs.setnext(null);
+		var.setnext(null);
+		var.setfamily(null);
+		var.setFamilyColorlist(famCol);
+		abs.setFamilyColorlist(famCol);
+		
+		
+		assertTrue(abs.renameFamily(1, 2));
+		assertEquals(2, var.getColor());
+		assertEquals(2, abs.getColor());
 	}
 
 	@Test

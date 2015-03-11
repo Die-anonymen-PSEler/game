@@ -1,0 +1,167 @@
+{
+	"level": 
+	{
+		"description": "Level das (x) darstellt",
+		"hasTutorialScreen": false,
+		"tutorialScreens" : [],
+		"levelid": 9001,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 1,
+					"type": "Abs",
+					"posx": 3,
+					"posy": 5
+				},
+				{
+					"color": 1,
+					"type": "Var",
+					"posx": 4,
+					"posy": 8
+				},
+				{
+					"color": 2,
+					"type": "Abs",
+					"posx": 2,
+					"posy": 8
+				},
+				{
+					"color": 2,
+					"type": "Var",
+					"posx": 2,
+					"posy": 11
+				},
+				{
+					"color": 1,
+					"type": "App",
+					"posx": 10,
+					"posy": 5
+				},
+				{
+					"color": 3,
+					"type": "Abs",
+					"posx": 7,
+					"posy": 8
+				},
+				{
+					"color": 3,
+					"type": "Var",
+					"posx": 7,
+					"posy": 11
+				},
+				{
+					"color": 4,
+					"type": "Abs",
+					"posx": 9,
+					"posy": 8
+				},
+				{
+					"color": 4,
+					"type": "Var",
+					"posx": 9,
+					"posy": 11
+				},
+				{
+					"color": 5,
+					"type": "Abs",
+					"posx": 11,
+					"posy": 8
+				},
+				{
+					"color": 5,
+					"type": "Var",
+					"posx": 11,
+					"posy": 11
+				},
+				{
+					"color": 6,
+					"type": "Var",
+					"posx": 13,
+					"posy": 8
+				},
+				{
+					"color": 7,
+					"type": "Var",
+					"posx": 16,
+					"posy": 5
+				},
+				
+			],
+
+			"tree": 
+			[
+				{
+					"tree": [
+						{
+							"tree": [
+							{
+								"tree": []
+							}
+							]
+						},
+						{
+							"tree": []
+						}
+					]
+				},
+				{
+					"tree": [
+					{
+						"tree": [
+						{
+							"tree": []
+						}
+						]
+					},
+					{
+						"tree": [
+						{
+							"tree": []
+						}
+						]
+					},
+					{
+						"tree": [
+						{
+							"tree": []
+						}
+						]
+					},
+					{						{
+					"tree": []
+					}
+					]
+				},
+				{
+					"tree": []
+				}
+				
+			],
+
+			"target": 
+			[
+				{
+					"color": 6,
+					"type": "Var",
+					"target": []
+				},
+				{
+					"color": 7,
+					"type": "Var",
+					"target": []
+				}
+			],
+
+			"hint": 
+			[
+				{
+					"color": 2,
+					"type": "Var",
+					"hint": []
+				}
+			]
+		}
+	}
+}

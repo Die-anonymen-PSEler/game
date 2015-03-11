@@ -11,47 +11,52 @@ import com.retroMachines.util.Constants;
 /**
  * 
  * @author RetroFactory
- *
+ * 
  */
 public class Abstraction extends Vertex {
-	
+
 	private boolean nextNull;
-	
+
 	// --------------------------
 	// --------Constructor-------
 	// --------------------------
-	
+
 	/**
 	 * Creates a new instance of the Vertex class.
 	 * 
 	 * @param id
 	 *            ID to set.
 	 */
-	public Abstraction( int color) {
+	public Abstraction(int color) {
 		super(color);
 	}
-	
+
 	/**
 	 * Creates a clone for beta reduction
 	 * 
-	 * @param next next Clone
-	 * @param family family Clone
-	 * @param type type of Clone
-	 * @param color color of Clone
-	 * @param familyColorlist familyColorList of Clone
+	 * @param next
+	 *            next Clone
+	 * @param family
+	 *            family Clone
+	 * @param type
+	 *            type of Clone
+	 * @param color
+	 *            color of Clone
+	 * @param familyColorlist
+	 *            familyColorList of Clone
 	 */
-	private Abstraction(Vertex next, Vertex family, int color, LinkedList<Integer> familyColorlist) {
+	private Abstraction(Vertex next, Vertex family, int color,
+			LinkedList<Integer> familyColorlist) {
 		super(color);
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
-	
-	//------------------------------
-	//--------Alpha Conversion & Beta Reduction ------
-	//------------------------------
-	
-	
+
+	// ------------------------------
+	// --------Alpha Conversion & Beta Reduction ------
+	// ------------------------------
+
 	/**
 	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
 	 * 
@@ -59,7 +64,7 @@ public class Abstraction extends Vertex {
 	 */
 	@Override
 	public boolean alphaConversion() {
-		if(this.getnext() == null) {
+		if (this.getnext() == null) {
 			return false;
 		}
 		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
@@ -71,18 +76,21 @@ public class Abstraction extends Vertex {
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
 				if (getFamilyColorList().get(i) == nextFam.get(j)) {
-					//Replace color in next family
+					// Replace color in next family
 					newColor = this.searchUnusedColorID();
-					if (newColor == - 1) {
+					if (newColor == -1) {
 						Gdx.app.log(Constants.LOG_TAG, "out of ColorID Range");
-						// what should happen when there are more than 11 different Colors used ?
+						// what should happen when there are more than 11
+						// different Colors used ?
 						return true;
 					}
 					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
 						// Error
-						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: " + this.getColor());
+						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: "
+								+ this.getColor());
 					}
-					updateMap(nextFam.get(j), newColor); //updating mapped color of vertex
+					updateMap(nextFam.get(j), newColor); // updating mapped
+															// color of vertex
 					returnValue = true;
 					newColor++;
 				}
@@ -90,61 +98,69 @@ public class Abstraction extends Vertex {
 		}
 		return returnValue;
 	}
-	
+
 	/**
 	 * Fulfills one step of beta-reduction for a Abstraction
 	 * 
-	 * @return True if this abstraction has changed, false when an error appeared.
+	 * @return True if this abstraction has changed, false when an error
+	 *         appeared.
 	 */
 	@Override
 	public LinkedList<Vertex> betaReduction() {
 		// Check if next is there
-		if(this.getnext() != null) {
+		if (this.getnext() != null) {
 			// Check if family is there
 			if (this.getfamily() != null) {
 
-				//Start Beta Reduction
-				LinkedList<Vertex> returnList = this.getfamily().replaceInFamily(this);
-				
+				// Start Beta Reduction
+				LinkedList<Vertex> returnList = this.getfamily()
+						.replaceInFamily(this);
+
 				// Replace own family Vertex
-				//Replace Family Vertex if Color and Type are ok
-				if (this.getfamily().getType().equals("Variable") && this.getfamily().getColor() == this.getColor()) {
+				// Replace Family Vertex if Color and Type are ok
+				if (this.getfamily().getType().equals("Variable")
+						&& this.getfamily().getColor() == this.getColor()) {
 					Vertex replace = this.getnext().cloneMe();
-					
-					//Update listOfNewVertex
+
+					// Update listOfNewVertex
 					LinkedList<Vertex> cloneList = replace.getVertexList();
-					for(Vertex v : cloneList) {
+					for (Vertex v : cloneList) {
 						returnList.add(v);
 					}
-					
+
 					// Insert clone in Family
-					
-					Vector2 position = new Vector2(this.getGameElement().getPosition().x, this.getGameElement().getPosition().y);
+
+					Vector2 position = new Vector2(this.getGameElement()
+							.getPosition().x, this.getGameElement()
+							.getPosition().y);
 					position.x += Constants.ABSTRACTION_OUTPUT;
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
-					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position, this.getfamily().getGameElement(), false);
-					
-					if(this.getfamily().getnext() != null) {
+					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(
+							position, this.getfamily().getGameElement(), false);
+
+					if (this.getfamily().getnext() != null) {
 						replace.setnext(this.getfamily().getnext());
 					}
 					this.setfamily(replace);
 				}
-				
-				//Update colorList
-				this.updateColorList(this.getnext().getCopyOfFamilyColorList(), this.getColor());
-				
+
+				// Update colorList
+				this.updateColorList(this.getnext().getCopyOfFamilyColorList(),
+						this.getColor());
+
 				// Update width
 				this.updateWidth();
-				
-				if(this.getnext().getnext() != null) {
+
+				if (this.getnext().getnext() != null) {
 					this.setnext(this.getnext().getnext());
 				} else {
 					this.setnext(null);
 				}
 				nextNull = false;
-				EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+				EvaluationOptimizer.delayAndRunNextStepAnim(this
+						.getGameElement());
 				return returnList;
-				
+
 			} else {
 				// Error every machine has a family
 				return null;
@@ -154,61 +170,65 @@ public class Abstraction extends Vertex {
 			EvaluationOptimizer.runNextStep();
 			return new LinkedList<Vertex>();
 		}
-		
+
 	}
 
-	
-	
-	//---------------------------------------------------
-	//-------- Beta Reduction and Alpha Conversion ------
-	//------------------Help Methods---------------------
-	//---------------------------------------------------
-	
+	// ---------------------------------------------------
+	// -------- Beta Reduction and Alpha Conversion ------
+	// ------------------Help Methods---------------------
+	// ---------------------------------------------------
+
 	/**
 	 * Creates a clone of this Vertex without Next and his whole Family
+	 * 
 	 * @return clone of this vertex
 	 */
 	@Override
-	public Vertex cloneMe(){
+	public Vertex cloneMe() {
 		// check if next or family is null
 		Vertex family;
-		if(this.getfamily() != null) {
+		if (this.getfamily() != null) {
 			family = this.getfamily().cloneFamily();
-		} else  {
+		} else {
 			family = null;
 		}
 		Vertex clone;
-		clone = new Abstraction(null, family, this.getColor(), this.getCopyOfFamilyColorList());
-		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		clone = new Abstraction(null, family, this.getColor(),
+				this.getCopyOfFamilyColorList());
+		int offset = (Integer) clone.getGameElement().getTileSet()
+				.getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
 	}
-	
+
 	/**
-	 * Creates a clone of this Vertex and his hole Family
+	 * Creates a clone of this Vertex and his whole Family
+	 * 
 	 * @return First Vertex in Tree structure
 	 */
 	@Override
-	public Vertex cloneFamily(){
+	public Vertex cloneFamily() {
 		// check if next or family is null
 		Vertex next;
 		Vertex family;
-		if(this.getnext() != null) {
+		if (this.getnext() != null) {
 			next = this.getnext().cloneFamily();
-		} else  {
+		} else {
 			next = null;
 		}
-		if(this.getfamily() != null) {
+		if (this.getfamily() != null) {
 			family = this.getfamily().cloneFamily();
-		} else  {
+		} else {
 			family = null;
 		}
-		Vertex clone = new Abstraction(next, family, this.getColor(), this.getCopyOfFamilyColorList());
-		int offset = (Integer) clone.getGameElement().getTileSet().getProperties().get("firstgid") - 1;
+		Vertex clone = new Abstraction(next, family, this.getColor(),
+				this.getCopyOfFamilyColorList());
+		int offset = (Integer) clone.getGameElement().getTileSet()
+				.getProperties().get("firstgid") - 1;
 		clone.getGameElement().setTileId(this.getColor() + offset);
 		return clone;
 	}
-	
+
 	/**
 	 * returns gameElemet according to this vertex
 	 */
@@ -219,21 +239,21 @@ public class Abstraction extends Vertex {
 		}
 		return gameElement;
 	}
-	
+
 	@Override
 	public String getType() {
 		return "Abstraction";
 	}
-	
+
 	private int searchUnusedColorID() {
 		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
 		LinkedList<Integer> actFam = this.getFamilyColorList();
 		int newColor = -1;
 		// search unused color ID
-		for(int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
+		for (int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
 			// Search if id "i" is unused in firstList
-			if(!actFam.contains(new Integer(i))) {
-				if(!nextFam.contains(new Integer(i))) {
+			if (!actFam.contains(new Integer(i))) {
+				if (!nextFam.contains(new Integer(i))) {
 					newColor = i;
 					break;
 				}
@@ -249,33 +269,33 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
-		//Abstraction needs reorganizesation of Element position
+		// Abstraction needs reorganizesation of Element position
 		this.setGameelementPosition(start, newPos);
 	}
 
 	@Override
 	public void DeleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		if(nextNull) {
+		if (nextNull) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 			return;
 		}
 		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
-		
+
 	}
 
 	@Override
 	public Vertex updatePointerAfterBetaReduction() {
-		if(nextNull) {
+		if (nextNull) {
 			return this.getnext();
 		}
-		
+
 		// Update pointer if needed
-		if(this.getnext() != null) {
+		if (this.getnext() != null) {
 			// Search last Vertex in first Family layer
 			Vertex pointer = new Dummy();
 			pointer.setnext(this.getfamily());
-			if(pointer.getnext() != null) {
+			if (pointer.getnext() != null) {
 				while (pointer.getnext().getnext() != null) {
 					pointer.setnext(pointer.getnext().getnext());
 				}
@@ -289,10 +309,11 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public Vertex getEvaluationResult() {
-		if(nextNull) {
+		if (nextNull) {
 			return this;
 		} else {
-			//Returns null because the Abstraction is no Part of Evaluation Result
+			// Returns null because the Abstraction is no Part of Evaluation
+			// Result
 			return null;
 		}
 
@@ -300,11 +321,11 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public void updatePositionsAfterBetaReduction() {
-		if(nextNull) {
+		if (nextNull) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 			return;
 		} else {
-			// update Gameelement Postions  after Gameelement of this was deleted 
+			// update Gameelement Postions after Gameelement of this was deleted
 			this.getfamily().updateGameelementPosition(0, -1);
 		}
 
@@ -313,7 +334,6 @@ public class Abstraction extends Vertex {
 	@Override
 	public Vertex getClone() {
 		Vertex clone = new Abstraction(null, null, getColor(), null);
-		
 		return clone;
 	}
 }
