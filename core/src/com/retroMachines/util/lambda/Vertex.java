@@ -633,7 +633,7 @@ public abstract class Vertex {
 	 * @return returns true if and only if this vertex and parameter have same
 	 *         color and same type
 	 */
-	public boolean equals(Vertex v) {
+	public boolean vertexEquals(Vertex v) {
 		if (v == null) {
 			return false;
 		}
@@ -647,7 +647,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getnext() != null) { // in case both are not null, need
 												// to compare them.
-			if (!this.getnext().equals(v.getnext())) { // if they do not equal
+			if (!this.getnext().vertexEquals(v.getnext())) { // if they do not equal
 														// we can return false
 				return false;
 			}
@@ -658,20 +658,14 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getfamily() != null) { // in case both are not null,
 												// need to compare them.
-			if (!this.getfamily().equals(v.getfamily())) { // if they do not
+			if (!this.getfamily().vertexEquals(v.getfamily())) { // if they do not
 															// equal we can
 															// return false
 				return false;
 			}
 		}
-		// If famaly and next is equals compare color and type if equals they
-		// are equals
-		if (this.getType().equals(v.getType())
-				&& this.getColor() == v.getColor()) {
-			return true;
-		} else {
-			return false;
-		}
+		// If family and next is equals compare color and type if equals they are equals
+		return (this.getType().equals(v.getType()) && this.getColor() == v.getColor());
 	}
 
 	// --------------------------

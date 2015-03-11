@@ -206,7 +206,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 		camBounds[0] = camera.position.y + cameraHalfHeight;
 
 		if (mapBounds[1] < camera.viewportWidth) {
-			camera.position.x = mapBounds[1] / 2;
+			camera.position.x = mapBounds[1] / 2f;
 		} else if (camBounds[3] <= 0) {
 			camera.position.x = 0 + cameraHalfWidth;
 		} else if (camBounds[1] >= mapBounds[1]) {
@@ -215,7 +215,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 
 		// Vertical axis
 		if (mapBounds[0] < camera.viewportHeight) {
-			camera.position.y = mapBounds[0] / 2;
+			camera.position.y = mapBounds[0] / 2f;
 		} else if (camBounds[2] <= 0) {
 			camera.position.y = 0 + cameraHalfHeight;
 		} else if (camBounds[0] >= mapBounds[0]) {
@@ -537,14 +537,14 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 		}
 	}
 
-	private class TaskDialog extends Dialog {
-
-		public TaskDialog(String title, Skin skin, String windowStyleName) {
+	private class GameDialog extends Dialog {
+		public GameDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
 			initialize();
 		}
 
 		private void initialize() {
+
 			setStage(new Stage());
 			Table size = new Table();
 			// size.debug();
@@ -562,10 +562,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 													// dialog
 			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
 														// the
-
-			printTree(gameController.getLevelTarget(), new Vector2(50, 200));
 			this.add(size).expand();
-
 		}
 
 		private void printTree(Vertex actVertex, Vector2 position) {
@@ -607,6 +604,20 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 				position.x += Constants.GAMELEMENT_PADDING;
 				actVertex = actVertex.getnext();
 			}
+		}
+
+	}
+
+	private class TaskDialog extends GameDialog {
+
+		public TaskDialog(String title, Skin skin, String windowStyleName) {
+			super(title, skin, windowStyleName);
+			initialize();
+		}
+
+		private void initialize() {
+			super.printTree(gameController.getLevelTarget(), new Vector2(50,
+					200));
 		}
 
 		@Override
@@ -617,7 +628,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 
 	}
 
-	private class HintDialog extends Dialog {
+	private class HintDialog extends GameDialog {
 
 		public HintDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
@@ -625,69 +636,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 		}
 
 		private void initialize() {
-			setStage(new Stage());
-			Table size = new Table();
-			// size.debug();
-			// set Buttons
-			Button buttonBack = new Button(skin, "ok");
-			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
-			buttonBack.addListener(new BackToGameClickListener());
-
-			// size.add(buttonBack).expandX().expandY().bottom().row();
-			size.add().width(screenWidth * DIALOGTEXTWIDTH)
-					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
-			size.add().row();
-			size.add(buttonBack).expandX().expandY().bottom().row();
-			this.padTop(screenWidth / PADDING30); // set padding on top of the
-													// dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
-														// the
-
-			gameController.getLevelHint().updateWidth();
-			printTree(gameController.getLevelHint(), new Vector2(100, 200));
-			this.add(size).expand();
-
-		}
-
-		private void printTree(Vertex actVertex, Vector2 position) {
-			while (actVertex != null) {
-				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex
-						.getWidth() - 1)) / 2;
-				Vector2 pos = new Vector2(position.x + centerVertex, position.y);
-
-				// Add depot
-
-				int offset = (Integer) AssetManager.getDepots().getProperties()
-						.get("firstgid");
-				int color = Constants.DEPOT_ID;
-				DepotElement d = new DepotElement();
-				d.setTileId(color + offset);
-				d.setPosition(pos);
-				this.addActor(d);
-
-				// Add element
-				if (actVertex.getGameElement() != null) {
-					offset = (Integer) actVertex.getGameElement().getTileSet()
-							.getProperties().get("firstgid") - 1;
-					color = actVertex.getColor();
-					actVertex.getGameElement().setTileId(color + offset);
-
-					actVertex.getGameElement().setPosition(pos);
-					this.addActor(actVertex.getGameElement());
-					// print Family
-					if (actVertex.getfamily() != null) {
-						position.y += Constants.GAMELEMENT_PADDING;
-						Vector2 famPos = new Vector2(position.x, position.y
-								+ Constants.GAMEELEMENT_WIDTH);
-						printTree(actVertex.getfamily(), famPos);
-						position.y -= Constants.GAMELEMENT_PADDING;
-					}
-				}
-				position.x = position.x
-						+ (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
-				position.x += Constants.GAMELEMENT_PADDING;
-				actVertex = actVertex.getnext();
-			}
+			super.printTree(gameController.getLevelHint(),
+					new Vector2(100, 200));
 		}
 
 		@Override

@@ -28,27 +28,27 @@
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl9sOwiAMQOu869foJhNdov//VZbIEkJMVwwwLmtysocx3KEtw74B6DUdsgIAvMAa2SBbZIfskQNyRE7IGfhjQ8xpjnV5pjN8bdS90oPyf1buP0f+Bf7mncnLw/ul5h87hsr9XfM/VZ8Xghj1HNp/KqR+zkYmWksh+t9eAxd3zv7ns05C7X/yD/c5IuT+n7q7ipy/f1O9wumTnP19xOKfp78w6tvuA5fvw4PwH5jzcM/snPei5gpxPso1/74itv+v/PrIq3Ccq22+Z/I34X/TY66F1UGrvancl7oOru5mL4zrkDPKnfrPv7BQMx8vrHeo
+   eJztl2kKgzAQRqd2b0/TarXUQHP/U/UTFEIoE5dsmgw8/GFi8mYmAZuCqOmpwI6I8KA9OIAjOIEzuIAruIE7jR/r4pvq2ClzKsVXp3u39eD828T9U6+/Tf8a33qP5Osx7yLXP/tb9K8D9fHcmOvvw5O7M2ytuaX+/5cvU55c+5vu/dBnZIz/nLyuJbbQ/0vqE5O/j/tOjyX+IfZrOz6Mv1iJwxAx3v9T9hqib2I6/z6jhNsDSMb/1Y/peAbIRamsbxtZ8LVXe6DScuELqazvApO7noMB4XhfJtqF87l//kwmZX4UAYH3
   </data>
  </layer>
  <layer name="Open Gate" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAPBmGAAAAQ==
+   eJztz0EJACAQAMHDcgoK2j+N97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtuLYB0g==
   </data>
  </layer>
  <layer name="Gate" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAPBmGAAAAQ==
+   eJztz0EJACAQAMHDbgoK2j+O97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtV64Bxg==
   </data>
  </layer>
  <layer name="Pipes" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1TEKACEMRNExoIX3P7AIirKNnS7MfxCYMkOKSAAAAAD+KkIqY+qWU7ze7L5s2BmL+/3d+7tzv797/27+/28GgJMGKwAAdw==
+   eJzt0kEKACAIRFETEu9/4ow6QRuJ+Q/cOzpmAAAA+Im7WdZEzfDubXpM0dzK/HY+hXu/0f3TgxC9g/r/1fMDAPBiATnMAF8=
   </data>
  </layer>
  <layer name="Ablagen" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1qENAEAMA7GqrPsv/CM8KKkUG2WAA6kCAIC7pv8bEmieZPonmS8EbDwZ8QBZ
+   eJzt07ERADAIAzGOjv0XzgKp6ACp8gDvCACAWSr/GzbTPfgBt2kegI4HhIMATg==
   </data>
  </layer>
  <layer name="Objektebene" width="64" height="24">

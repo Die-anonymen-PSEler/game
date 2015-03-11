@@ -214,7 +214,7 @@ public class EvaluationOptimizer {
 					&& !result.getType().equals(
 							Constants.RetroStrings.VARIABLE_TYPE)) {
 				LevelTree newTree = new LevelTree(result.getnext());
-				if (oldTree.equals(newTree)) {
+				if (oldTree.treeEquals(newTree)) {
 					// we can stop evaluation at this point
 					resultTree = oldTree;
 					checkEvaluation();
@@ -260,7 +260,7 @@ public class EvaluationOptimizer {
 	 * is saved in resultTree
 	 */
 	private static void checkEvaluation() {
-		result = resultTree.equals(evaluationController.getLevel()
+		result = resultTree.treeEquals(evaluationController.getLevel()
 				.getLambdaUtil().getTargetTree());
 		if (result) {
 			evaluationController.getGameController().evaluationComplete();
@@ -270,7 +270,7 @@ public class EvaluationOptimizer {
 	}
 
 	public static void autoStepClicked() {
-		if (autoStep == false && nextStep == false) {
+		if (!autoStep && !nextStep) {
 			autoStep = true;
 			runNextEvaluationStep();
 		}
@@ -278,7 +278,7 @@ public class EvaluationOptimizer {
 	}
 
 	public static void nextStepClicked() {
-		if (nextStep == false) {
+		if (!nextStep) {
 			nextStep = true;
 			runNextEvaluationStep();
 		}

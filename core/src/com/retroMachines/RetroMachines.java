@@ -20,7 +20,6 @@ import com.retroMachines.util.MusicManager;
  * controllers and starts the game.
  * 
  * @author RetroFactory
- * 
  */
 public class RetroMachines extends Game {
 
@@ -85,17 +84,6 @@ public class RetroMachines extends Game {
 			// no profile go to createprofilemenuscreen
 			setScreen(new CreateProfileMenuScreen(this));
 		}
-	}
-
-	@Override
-	public void pause() {
-		super.pause();
-		// RetroDatabase.closeDatabase();
-	}
-
-	@Override
-	public void resume() {
-		super.resume();
 	}
 
 	/*
