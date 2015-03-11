@@ -358,7 +358,6 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 	// ------------------------------------
 	// --Show different views in the game--
 	// ------------------------------------
-	
 
 	/**
 	 * Shows the TaskScreen on top of the game.
@@ -537,12 +536,35 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 			popupScreenIsShown = false;
 		}
 	}
-	
+
 	private class GameDialog extends Dialog {
 		public GameDialog(String title, Skin skin, String windowStyleName) {
 			super(title, skin, windowStyleName);
+			initialize();
 		}
-		
+
+		private void initialize() {
+
+			setStage(new Stage());
+			Table size = new Table();
+			// size.debug();
+			// set Buttons
+			Button buttonBack = new Button(skin, "ok");
+			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
+			buttonBack.addListener(new BackToGameClickListener());
+
+			// size.add(buttonBack).expandX().expandY().bottom().row();
+			size.add().width(screenWidth * DIALOGTEXTWIDTH)
+					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+			size.add().row();
+			size.add(buttonBack).expandX().expandY().bottom().row();
+			this.padTop(screenWidth / PADDING30); // set padding on top of the
+													// dialog
+			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
+														// the
+			this.add(size).expand();
+		}
+
 		private void printTree(Vertex actVertex, Vector2 position) {
 			while (actVertex != null) {
 				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex
@@ -584,7 +606,6 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 			}
 		}
 
-		
 	}
 
 	private class TaskDialog extends GameDialog {
@@ -595,28 +616,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 		}
 
 		private void initialize() {
-			setStage(new Stage());
-			Table size = new Table();
-			// size.debug();
-			// set Buttons
-			Button buttonBack = new Button(skin, "ok");
-			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
-			buttonBack.addListener(new BackToGameClickListener());
-
-			// size.add(buttonBack).expandX().expandY().bottom().row();
-			size.add().width(screenWidth * DIALOGTEXTWIDTH)
-					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
-			size.add().row();
-			size.add(buttonBack).expandX().expandY().bottom().row();
-			this.padTop(screenWidth / PADDING30); // set padding on top of the
-													// dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
-														// the
-
-			super.printTree(gameController.getLevelTarget(), new Vector2(50, 200));
-			this.add(size).expand();
+			super.printTree(gameController.getLevelTarget(), new Vector2(50,
+					200));
 		}
-		
+
 		@Override
 		protected void result(Object object) {
 			this.hide();
@@ -633,31 +636,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor,
 		}
 
 		private void initialize() {
-			setStage(new Stage());
-			Table size = new Table();
-			// size.debug();
-			// set Buttons
-			Button buttonBack = new Button(skin, "ok");
-			buttonBack.pad(screenHeight / DEFAULTBUTTONSIZE);
-			buttonBack.addListener(new BackToGameClickListener());
-
-			// size.add(buttonBack).expandX().expandY().bottom().row();
-			size.add().width(screenWidth * DIALOGTEXTWIDTH)
-					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
-			size.add().row();
-			size.add(buttonBack).expandX().expandY().bottom().row();
-			this.padTop(screenWidth / PADDING30); // set padding on top of the
-													// dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
-														// the
-
-			gameController.getLevelHint().updateWidth();
-			super.printTree(gameController.getLevelHint(), new Vector2(100, 200));
-			this.add(size).expand();
-
+			super.printTree(gameController.getLevelHint(),
+					new Vector2(100, 200));
 		}
 
-		
 		@Override
 		protected void result(Object object) {
 			this.hide();
