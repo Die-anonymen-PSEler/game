@@ -202,7 +202,7 @@ public class Abstraction extends Vertex {
 	}
 
 	/**
-	 * Creates a clone of this Vertex and his hole Family
+	 * Creates a clone of this Vertex and his whole Family
 	 * 
 	 * @return First Vertex in Tree structure
 	 */
@@ -334,7 +334,6 @@ public class Abstraction extends Vertex {
 	@Override
 	public Vertex getClone() {
 		Vertex clone = new Abstraction(null, null, getColor(), null);
-
 		return clone;
 	}
 }
