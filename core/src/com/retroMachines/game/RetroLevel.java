@@ -193,7 +193,6 @@ public class RetroLevel {
 			
 			//Check if construct is valid
 			if(!checkValidVertexFamily(result, fam)) {
-				System.out.println("null");
 				return null;
 			}
 			
