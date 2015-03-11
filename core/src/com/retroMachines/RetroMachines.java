@@ -89,18 +89,6 @@ public class RetroMachines extends Game{
 		}
 	}
 	
-	@Override
-	public void pause() {
-		super.pause();
-		//RetroDatabase.closeDatabase();
-	}
-	
-	@Override
-	public void resume() {
-		super.resume();
-	}
-	
-
 	/*
 	 * Getter and Setter
 	 */

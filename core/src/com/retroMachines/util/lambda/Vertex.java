@@ -585,12 +585,8 @@ public abstract class Vertex {
 				return false;
 			}
 		}
-		// If famaly and next is equals compare color and type if equals they are equals
-		if (this.getType().equals(v.getType()) && this.getColor() == v.getColor()) {
-			return true;
-		} else {
-			return false;
-		}
+		// If family and next is equals compare color and type if equals they are equals
+		return (this.getType().equals(v.getType()) && this.getColor() == v.getColor());
 	}
 	
 	

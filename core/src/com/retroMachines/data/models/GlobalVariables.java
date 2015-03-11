@@ -65,7 +65,6 @@ public class GlobalVariables extends Model {
 	
 	@Override
 	public void fetch() {
-		return;
 	}
 	
 	@Override
