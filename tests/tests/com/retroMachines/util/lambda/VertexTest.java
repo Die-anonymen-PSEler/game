@@ -1,6 +1,7 @@
 package com.retroMachines.util.lambda;
 
 import static org.junit.Assert.*;
+
 import java.util.LinkedList;
 
 import org.junit.After;
@@ -8,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.VarargMatcher;
 
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.AssetManager;
@@ -95,12 +97,29 @@ public class VertexTest {
 
 	@Test
 	public void testGetGameElement() {
-		fail("Not yet implemented");
+		// abstract Method
+		assertTrue(true);
 	}
 
 	@Test
 	public void testReplaceInFamily() {
-		fail("Not yet implemented");
+		abs.setColor(2);
+		var.setColor(1);
+		Variable var1 = new Variable(3);
+		Variable var2 = new Variable(1);
+		Variable var3 = new Variable(4);
+		abs.setnext(null);
+		abs.setfamily(null);
+		assertEquals(new LinkedList<Vertex>(), abs.replaceInFamily(var));
+		
+		abs.setnext(var1);
+		abs.setfamily(var2);
+		LinkedList<Integer> famCol = new LinkedList<Integer>();
+		famCol.add(1);
+		abs.setFamilyColorlist(famCol);
+		var.setnext(var3);
+		assertEquals(new LinkedList<Vertex>(), abs.replaceInFamily(var));
+		
 	}
 
 	@Test

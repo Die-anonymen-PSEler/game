@@ -55,10 +55,7 @@ public class LevelMenuScreen extends MenuScreen {
 		skin = AssetManager.getMenuSkin();
 
 		// Make Title
-		Label title = new Label("Level", skin);
-		title.setWrap(true);
-		title.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
-		title.setAlignment(Align.center);
+		Label title = super.makeTitle("Level", FONTSIZE2_5);
 
 		// Make Buttons
 

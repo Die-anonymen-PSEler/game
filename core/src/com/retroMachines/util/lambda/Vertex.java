@@ -34,6 +34,12 @@ public abstract class Vertex {
 	private Vector2 pos;
 
 	private boolean isInDepot;
+	
+	private Vertex replaced;
+	
+	private LinkedList<Vertex> cloneList;
+	
+	private Vector2 position;
 
 	protected GameElement gameElement;
 
@@ -172,6 +178,24 @@ public abstract class Vertex {
 	 * @return
 	 */
 	abstract public GameElement getGameElement();
+	
+	private void cloned(Vertex start, LinkedList<Vertex> listOfNewVertex) {
+		replaced = start.getnext().cloneMe();
+
+		// Update listOfNewVertex
+		cloneList = replaced.getVertexList();
+		for (Vertex v : cloneList) {
+			listOfNewVertex.add(v);
+		}
+
+		// Insert clone in Family
+		position = new Vector2(start.getGameElement()
+			.getPosition().x, start.getGameElement()
+			.getPosition().y);
+		position.x += Constants.ABSTRACTION_OUTPUT;
+		position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+	}
+	
 
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex
@@ -196,20 +220,7 @@ public abstract class Vertex {
 				// Replace Family Vertex if Color and Type are ok
 				if (this.getfamily().getType().equals("Variable")
 						&& this.getfamily().getColor() == start.getColor()) {
-					Vertex replaced = start.getnext().cloneMe();
-
-					// Update listOfNewVertex
-					LinkedList<Vertex> cloneList = replaced.getVertexList();
-					for (Vertex v : cloneList) {
-						listOfNewVertex.add(v);
-					}
-
-					// Insert clone in Family
-					Vector2 position = new Vector2(start.getGameElement()
-							.getPosition().x, start.getGameElement()
-							.getPosition().y);
-					position.x += Constants.ABSTRACTION_OUTPUT;
-					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+					cloned(start, listOfNewVertex);
 
 					// Animation
 					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(
@@ -237,20 +248,7 @@ public abstract class Vertex {
 			// Replace Next Vertex if Color and Type are Ok
 			if (this.getnext().getType().equals("Variable")
 					&& this.getnext().getColor() == start.getColor()) {
-				Vertex replaced = start.getnext().cloneMe();
-
-				// Update listOfNewVertex
-				LinkedList<Vertex> cloneList = replaced.getVertexList();
-				for (Vertex v : cloneList) {
-					listOfNewVertex.add(v);
-				}
-
-				// insert clone as Next
-				Vector2 position = new Vector2(start.getGameElement()
-						.getPosition().x,
-						start.getGameElement().getPosition().y);
-				position.x += Constants.ABSTRACTION_OUTPUT;
-				position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+				cloned(start, listOfNewVertex);
 
 				// Animation
 				EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position,
@@ -332,35 +330,27 @@ public abstract class Vertex {
 	/**
 	 * Updates ColorList of this Vertex and family
 	 */
-	protected void updateColorList(LinkedList<Integer> cloneList, int color) {
+	protected void updateColorList(LinkedList<Integer> clonedList, int color) {
 		// Update Color List in vertex
 		if (this.getFamilyColorList().contains(new Integer(color))) {
 			this.getFamilyColorList().remove(new Integer(color));
-			for (Integer i : cloneList) {
+			for (Integer i : clonedList) {
 				this.getFamilyColorList().add(i);
 			}
 			if (this.getfamily() != null) {
-				this.getfamily().updateFamilyColorList(cloneList, color);
+				this.getfamily().updateFamilyColorList(clonedList, color);
 			}
 		}
 	}
 
-	private void updateFamilyColorList(LinkedList<Integer> cloneList, int color) {
+	private void updateFamilyColorList(LinkedList<Integer> clonedList, int color) {
 		// Update Color List in vertex
-		if (this.getFamilyColorList().contains(new Integer(color))) {
-			this.getFamilyColorList().remove(new Integer(color));
-			for (Integer i : cloneList) {
-				this.getFamilyColorList().add(i);
-			}
-			if (this.getfamily() != null) {
-				this.getfamily().updateFamilyColorList(cloneList, color);
-			}
-		}
+		updateColorList(clonedList, color);
 
 		// Update Color List in next
 		if (this.getNextColorList().contains(new Integer(color))) {
 			if (this.getnext() != null) {
-				this.getnext().updateFamilyColorList(cloneList, color);
+				this.getnext().updateFamilyColorList(clonedList, color);
 			}
 			this.setNextColorlist(this.getnext().getCopyOfNextColorList());
 			if (!this.getNextColorList().contains(
@@ -408,10 +398,27 @@ public abstract class Vertex {
 	 * 
 	 * @return new Worker
 	 */
-	abstract public Vertex updatePointerAfterBetaReduction();
+	public Vertex updatePointerAfterBetaReduction() {
+
+		// Update pointer if needed
+		if (this.getnext() != null) {
+			// Search last Vertex in first Family layer
+			Vertex pointer = new Dummy();
+			pointer.setnext(this.getfamily());
+			if (pointer.getnext() != null) {
+				while (pointer.getnext().getnext() != null) {
+					pointer.setnext(pointer.getnext().getnext());
+				}
+			}
+			// Set next Vertex of this as Next of Last in First Family layer;
+			pointer.getnext().setnext(this.getnext());
+		}
+		// return new Worker
+		return this.getfamily();
+	}
 
 	/**
-	 * Returns Verex with should be added to the ResultTree
+	 * Returns Vertex with should be added to the ResultTree
 	 * 
 	 * @return Returns null if ther is no Vertex wich should be added
 	 */
