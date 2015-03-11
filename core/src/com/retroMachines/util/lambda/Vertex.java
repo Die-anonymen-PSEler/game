@@ -707,6 +707,7 @@ public abstract class Vertex {
 	 *            Color that is to set.
 	 */
 	public void setColor(int color) {
+		updateMap(this.color, color);
 		this.color = color;
 	}
 
