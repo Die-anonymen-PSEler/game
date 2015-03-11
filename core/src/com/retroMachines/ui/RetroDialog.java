@@ -12,7 +12,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
 /**
  * Custom version of the dialogs.
  * 
- * @author lucabecker
+ * @author RetroFactory
  * 
  */
 public class RetroDialog extends Dialog {

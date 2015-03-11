@@ -94,7 +94,7 @@ public class SettingController implements OnProfileChangedListener {
 	 *            The new volume of the sound.
 	 */
 	public void setVolume(float newVolume) {
-		if (newVolume - settings.getVolume() > 1E-14) {
+		if (Math.abs(newVolume - settings.getVolume()) > 1E-14) {
 			settings.setVolume(newVolume);
 			notifyListeners();
 		}
