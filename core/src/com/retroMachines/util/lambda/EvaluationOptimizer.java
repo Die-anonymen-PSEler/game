@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.util.ActionListElement;
 import com.retroMachines.util.Constants;
 
 public class EvaluationOptimizer {
@@ -45,6 +46,8 @@ public class EvaluationOptimizer {
 	private static boolean autoStep;
 
 	private static int actStep;
+	
+	private static LinkedList<ActionListElement> actionList;
 
 	public static void initialize(EvaluationController e) {
 		evaluationController = e;
@@ -58,7 +61,7 @@ public class EvaluationOptimizer {
 		actStep = 0;
 		resultTree = null;
 		vertexList = null;
-
+		actionList = new LinkedList<ActionListElement>();
 	}
 
 	// -----Methods-------
@@ -80,7 +83,7 @@ public class EvaluationOptimizer {
 					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
 					Actions.run(new DestroyElement(x)));
 		}
-		evaluationController.runAnimation(x, a);
+		actionList.addFirst(new ActionListElement(x, a));
 	}
 
 	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
@@ -106,7 +109,7 @@ public class EvaluationOptimizer {
 									Constants.ACTION_TIME)), Actions
 							.run(new DestroyElement(x)));
 		}
-		evaluationController.runAnimation(x, a);
+		actionList.addFirst(new ActionListElement(x, a));
 	}
 
 	public static void scaleAnimation(GameElement x, boolean nextStep) {
@@ -124,7 +127,7 @@ public class EvaluationOptimizer {
 							Constants.ACTION_TIME), Actions
 					.run(new DestroyElement(x)));
 		}
-		evaluationController.runAnimation(x, a);
+		actionList.addFirst(new ActionListElement(x, a));
 	}
 
 	public static void moveAnimation(Vector2 pos, GameElement x,
@@ -139,21 +142,23 @@ public class EvaluationOptimizer {
 		} else {
 			a = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
 		}
-		evaluationController.runAnimation(x, a);
+		actionList.addFirst(new ActionListElement(x, a));
 	}
 
 	public static void runNextStep() {
 		runNextEvaluationStep();
 	}
 
-	public static void delayAndRunNextStepAnim(GameElement g) {
+	public static void delayAndRunNextStepAnim(GameElement x) {
 
 		Action a = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
 				Actions.run(new NextStepWithoutRemove()));
-		evaluationController.runAnimation(g, a);
+		actionList.addFirst(new ActionListElement(x, a));
 	}
 
 	private static void step1AlphaConversion() {
+		//reset List
+		actionList = new LinkedList<ActionListElement>();
 		actStep = 1;
 		evalutionPointer.getnext().alphaConversion();
 
@@ -169,12 +174,17 @@ public class EvaluationOptimizer {
 	}
 
 	private static void step2BetaReduction() {
+		//reset List
+		actionList = new LinkedList<ActionListElement>();
 		actStep = 2;
 		vertexList = evalutionPointer.getnext().betaReduction();
 		// Next Step by Animation
+		n
 	}
 
 	private static void step3UpdatePositions() {
+		//reset List
+		actionList = new LinkedList<ActionListElement>();
 		actStep = 3;
 		Vector2 start = evaluationController.getEvaluationscreenPadding();
 		start.x += offsetX;
@@ -184,6 +194,8 @@ public class EvaluationOptimizer {
 	}
 
 	private static void step4InsertReadIn() {
+		//reset List
+		actionList = new LinkedList<ActionListElement>();
 		actStep = 4;
 		// only Abstraction returns a list with elements else it is empty
 		for (Vertex v : vertexList) {
@@ -195,6 +207,8 @@ public class EvaluationOptimizer {
 	}
 
 	private static void step5UpdateFamilyPositions() {
+		//reset List
+		actionList = new LinkedList<ActionListElement>();
 		actStep = 5;
 		evalutionPointer.getnext().updatePositionsAfterBetaReduction();
 	}
@@ -351,5 +365,16 @@ public class EvaluationOptimizer {
 			runNextEvaluationStep();
 		}
 
+	}
+	
+	public LinkedList<ActionListElement> getActionList() {
+		return actionList;
+	}
+	
+	/**
+	 *  called at the end of each step
+	 */
+	private static void notifyEvaluationController() {
+		//TODO notify controller ...  animations can run now
 	}
 }
