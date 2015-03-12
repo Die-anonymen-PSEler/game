@@ -167,9 +167,12 @@ public class EvaluationOptimizer {
 			readIn.readInAnimation(evalutionPointer.getnext().getGameElement()
 					.getPosition());
 			// Next Step by Animation
+			//notify Controller
+			notifyEvaluationController();
 		} else {
 			runNextEvaluationStep();
 		}
+		
 
 	}
 
@@ -179,7 +182,8 @@ public class EvaluationOptimizer {
 		actStep = 2;
 		vertexList = evalutionPointer.getnext().betaReduction();
 		// Next Step by Animation
-		n
+		//notify Controller
+		notifyEvaluationController();
 	}
 
 	private static void step3UpdatePositions() {
@@ -191,6 +195,8 @@ public class EvaluationOptimizer {
 		evalutionPointer.getnext()
 				.reorganizePositions(start, new Vector2(0, 0));
 		// Next Step by Animation
+		//notify Controller
+		notifyEvaluationController();
 	}
 
 	private static void step4InsertReadIn() {
@@ -204,6 +210,8 @@ public class EvaluationOptimizer {
 
 		// At the end worker disappears when its an Abstraction or Application
 		evalutionPointer.getnext().deleteAfterBetaReduction();
+		//notify Controller
+		notifyEvaluationController();
 	}
 
 	private static void step5UpdateFamilyPositions() {
@@ -211,6 +219,8 @@ public class EvaluationOptimizer {
 		actionList = new LinkedList<ActionListElement>();
 		actStep = 5;
 		evalutionPointer.getnext().updatePositionsAfterBetaReduction();
+		//notify Controller
+		notifyEvaluationController();
 	}
 
 	private synchronized static void prepareNextEvaluation() {
