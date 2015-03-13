@@ -16,6 +16,7 @@ public class RetroMachineMock extends RetroMachines {
 	public StatisticController statisticController;
 	
 	public Screen activeScreen;
+
 	
 	@Override
 	public StatisticController getStatisticController() {

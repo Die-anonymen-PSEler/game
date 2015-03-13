@@ -199,6 +199,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
 			game.previousScreen();
+			return true;
 		}
 		return false;
 	}

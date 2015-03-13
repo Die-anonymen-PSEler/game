@@ -32,25 +32,25 @@ public class AboutMenuScreen extends MenuScreen {
 			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.";
 
 	public static final String GAMEINFO_1 = "Metallobjekt: \n"
-			+ "Entspricht der Variable im Lambda-Kalk�l, kann von der Maschine vearbeitet werden";
+			+ "Entspricht der Variable im Lambda-Kalkül, kann von der Maschine vearbeitet werden";
 
 	public static final String GAMEINFO_2 = "Maschine: \n"
-			+ "Entspricht der Abstraktion im Lambda-Kalk�l, kann andere Objekte verarbeiten";
+			+ "Entspricht der Abstraktion im Lambda-Kalkül, kann andere Objekte verarbeiten";
 
 	public static final String GAMEINFO_3 = "Ampel: \n"
-			+ "Entspricht der Applikation im Lambda-Kalk�l, dient zum zusammenfassen (klammern) mehrerer Objekte,"
-			+ " soadass sie als ein Objekt verarbeitet werden k�nnen";
+			+ "Entspricht der Applikation im Lambda-Kalkül, dient zum zusammenfassen (klammern) mehrerer Objekte,"
+			+ " soadass sie als ein Objekt verarbeitet werden künnen";
 
 	public static final String GAMEINFO_4 = "Depot: \n"
-			+ "Hierin k�nnen Objekte Platziert werden. die anschlie�end ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
+			+ "Hierin künnen Objekte Platziert werden. die anschlieüend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
 
 	public static final String GAMEINFO_5 = "Verarbeitungsbereich: \n"
 			+ "Der Verarbeitungsbereich eines Objektes sind alle Depots"
-			+ " �berhalb seines Depots, die durch die nach oben f�hrende R�hre erreicht werden k�nnen.";
+			+ " überhalb seines Depots, die durch die nach oben führende Rohre erreicht werden können.";
 
 	public static final String GAMEINFO_6 = "Eingabe / EingabeBereich: \n"
-			+ "Der EingabeBereich eines Objektes,"
-			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine R�hre) sowie dessen kompleter Verarbeitungsbereich. ";
+			+ "Der Eingabebereich eines Objektes,"
+			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Rohre) sowie dessen kompleter Verarbeitungsbereich. ";
 
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.
