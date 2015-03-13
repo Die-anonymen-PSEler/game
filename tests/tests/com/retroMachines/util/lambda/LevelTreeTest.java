@@ -45,14 +45,14 @@ public class LevelTreeTest {
 	public void testSetStart() {
 		Vertex v = new Dummy();
 		tree.setStart(v);
-		assertTrue(tree.getStart().equalsVertex(v));
+		assertTrue(tree.getStart().equals(v));
 	}
 
 	@Test
 	public void testGetStart() {
 		Vertex v = new Dummy();
 		tree.setStart(v);
-		assertTrue(tree.getStart().equalsVertex(v));
+		assertTrue(tree.getStart().equals(v));
 	}
 
 }

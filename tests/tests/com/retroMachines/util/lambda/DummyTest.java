@@ -90,9 +90,9 @@ public class DummyTest {
 
 	@Test
 	public void testEquals() {
-		assertFalse(dummy.equalsVertex(null));
-		assertFalse(dummy.equalsVertex(new Application()));
-		assertTrue(dummy.equalsVertex(new Dummy()));
+		assertFalse(dummy.equals(null));
+		assertFalse(dummy.equals(new Application()));
+		assertTrue(dummy.equals(new Dummy()));
 	}
 
 }

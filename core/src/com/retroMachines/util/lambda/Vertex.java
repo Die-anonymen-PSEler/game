@@ -632,32 +632,25 @@ public abstract class Vertex {
 		}
 	}
 	
-	/**
-	 * equals method, compares this vertex with given one
-	 * @param obj object to compared with this
-	 * @return true if and only if object is instance of vertex and {@link equals(Vertex other} returns true
-	 */
 	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Vertex) {
-			return equalsVertex((Vertex) obj); 
-		}
-		return false;
-		
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((cloneList == null) ? 0 : cloneList.hashCode());
+		return result;
 	}
 
-	/**
-	 * compares this vertex with given one
-	 * 
-	 * @param other
-	 *            vertex to be compared with this
-	 * @return returns true if and only if this vertex and parameter have same
-	 *         color and same type
-	 */
-	public boolean equalsVertex(Vertex other) {
-		if (other == null) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		Vertex other = (Vertex) obj;
+		
 		// Compare next
 		// veritices equal only if this.next and v.next are both null or both !=
 		// null.
@@ -667,7 +660,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getnext() != null) { // in case both are not null, need
 												// to compare them.
-			if (!this.getnext().equalsVertex(other.getnext())) { // if they do not equal
+			if (!this.getnext().equals(other.getnext())) { // if they do not equal
 														// we can return false
 				return false;
 			}
@@ -678,7 +671,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getfamily() != null) { // in case both are not null,
 												// need to compare them.
-			if (!this.getfamily().equalsVertex(other.getfamily())) { // if they do not
+			if (!this.getfamily().equals(other.getfamily())) { // if they do not
 															// equal we can
 															// return false
 				return false;
@@ -687,6 +680,8 @@ public abstract class Vertex {
 		// If family and next is equals compare color and type if equals they are equals
 		return (this.getType().equals(other.getType()) && this.getColor() == other.getColor());
 	}
+
+
 	
 	
 
