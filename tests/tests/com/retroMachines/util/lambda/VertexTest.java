@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
-import com.retroMachines.game.controllers.EvaluationController;
 
 @RunWith(GdxTestRunner.class)
 public class VertexTest {
@@ -82,13 +81,13 @@ public class VertexTest {
 	@Test
 	public void testRenameFamily() {
 
-		abs.setfamily(var);
+		abs.canSetfamily(var);
 		abs.setnext(null);
 		var.setnext(null);
-		var.setfamily(null);
+		var.canSetfamily(null);
 		
 		
-		assertTrue(abs.renameFamily(0, 2));
+		assertTrue(abs.canRenameFamily(0, 2));
 		assertEquals(2, var.getColor());
 		assertEquals(2, abs.getColor());
 	}
@@ -116,9 +115,6 @@ public class VertexTest {
 		System.out.println(abs.getFamilyColorList());
 		
 		assertEquals(new LinkedList<Vertex>(), var.replaceInFamily(abs));
-		
-		
-		
 		
 	}
 

@@ -57,7 +57,7 @@ public class SettingTest {
 	public void testSetTutorialFinished() {
 		Setting setting = new Setting(TEST_ID);
 		setting.setTutorialFinished(0, true);
-		assertTrue(setting.getTutorialFinished(0));
+		assertTrue(setting.isTutorialFinished(0));
 		setting.setTutorialFinished(0, false);
 	}
 }

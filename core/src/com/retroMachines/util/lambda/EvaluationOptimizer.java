@@ -13,7 +13,7 @@ import com.retroMachines.util.Constants;
 
 public class EvaluationOptimizer {
 
-	public final static EvaluationOptimizer optimizer = new EvaluationOptimizer();
+	public final static EvaluationOptimizer OPTIMIZER = new EvaluationOptimizer();
 
 	private static EvaluationController evaluationController;
 
@@ -163,7 +163,7 @@ public class EvaluationOptimizer {
 		//reset List
 		actionList = new LinkedList<ActionListElement>();
 		actStep = 1;
-		evalutionPointer.getnext().alphaConversion();
+		evalutionPointer.getnext().canAlphaConversion();
 
 		Vertex readIn = evalutionPointer.getnext().getReadIn();
 		if (readIn != null) {
@@ -231,7 +231,7 @@ public class EvaluationOptimizer {
 
 		// creating copy of current tree
 		LevelTree oldTree = new LevelTree(evalutionPointer.cloneMe());
-		evalutionPointer.setfamily(evalutionPointer.getnext());
+		evalutionPointer.canSetfamily(evalutionPointer.getnext());
 		Vertex result = evalutionPointer.getnext().getEvaluationResult();
 
 		if (result != null) {
@@ -241,7 +241,7 @@ public class EvaluationOptimizer {
 					&& !result.getType().equals(
 							Constants.RetroStrings.VARIABLE_TYPE)) {
 				LevelTree newTree = new LevelTree(result.getnext());
-				if (oldTree.treeEquals(newTree)) {
+				if (oldTree.equalsTree(newTree)) {
 					// we can stop evaluation at this point
 					resultTree = oldTree;
 					checkEvaluation();
@@ -287,7 +287,7 @@ public class EvaluationOptimizer {
 	 * is saved in resultTree
 	 */
 	private static void checkEvaluation() {
-		result = resultTree.treeEquals(evaluationController.getLevel()
+		result = resultTree.equalsTree(evaluationController.getLevel()
 				.getLambdaUtil().getTargetTree());
 		if (result) {
 			evaluationController.getGameController().evaluationComplete();

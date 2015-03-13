@@ -132,7 +132,7 @@ public class RetroLevel {
 				(int) posObj.x, (int) posObj.y);
 	}
 
-	public boolean allDepotsFilled() {
+	public boolean isAllDepotsFilled() {
 
 		// Get Depot Tile as Cell objekt
 		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(
@@ -166,7 +166,7 @@ public class RetroLevel {
 			errorMessage = RetroStrings.NOT_ALL_PLACED;
 			return false;
 		}
-		if (!makeEvaluationTree()) {
+		if (!canMakeEvaluationTree()) {
 			return false;
 		}
 		return true;
@@ -180,7 +180,7 @@ public class RetroLevel {
 		return errorMessage;
 	}
 
-	private boolean makeEvaluationTree() {
+	private boolean canMakeEvaluationTree() {
 		errorMessage = "";
 		// Search start Vertex
 		int y = Integer.MAX_VALUE;
@@ -214,11 +214,11 @@ public class RetroLevel {
 			result = findVertexPosY(y);
 
 			// Check if construct is valid
-			if (!checkValidVertexFamily(result, fam)) {
+			if (!equalsValidVertexFamily(result, fam)) {
 				return null;
 			}
 
-			result.setfamily(fam);
+			result.canSetfamily(fam);
 			// set Width
 			result.setWidth(fam.getWidth() + fam.getNextWidth());
 
@@ -240,7 +240,7 @@ public class RetroLevel {
 			result.setFamilyColorlist(newColorList);
 		} else {
 			result = findVertexPosY(y);
-			result.setfamily(null);
+			result.canSetfamily(null);
 			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
 
@@ -283,7 +283,7 @@ public class RetroLevel {
 		return result;
 	}
 
-	private boolean checkValidVertexFamily(Vertex v, Vertex fam) {
+	private boolean equalsValidVertexFamily(Vertex v, Vertex fam) {
 		if (v.getType().equals(RetroStrings.VARIABLE_TYPE) && fam != null) {
 			errorMessage = RetroStrings.VARIABLE_FAMILY_INVALID;
 			return false;

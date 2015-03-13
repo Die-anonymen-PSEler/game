@@ -43,9 +43,9 @@ public class RetroManTest {
 	@Test
 	public void testFacing() {
 		retroMan.goLeft();
-		assertTrue("retroman is looking to the right", retroMan.getFaceLeft());
+		assertTrue("retroman is looking to the right", retroMan.isFacedLeft());
 		retroMan.goRight();
-		assertFalse("retroman is looking to the left", retroMan.getFaceLeft());
+		assertFalse("retroman is looking to the left", retroMan.isFacedLeft());
 	}
 	
 	@Test

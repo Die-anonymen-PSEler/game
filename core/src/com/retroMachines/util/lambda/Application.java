@@ -45,7 +45,7 @@ public class Application extends Vertex {
 			LinkedList<Integer> familyColorlist) {
 		super(1);
 		this.setnext(next);
-		this.setfamily(family);
+		this.canSetfamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 
@@ -58,7 +58,7 @@ public class Application extends Vertex {
 	 * applications
 	 */
 	@Override
-	public boolean alphaConversion() {
+	public boolean canAlphaConversion() {
 		// no alpha conversion
 		return false;
 	}

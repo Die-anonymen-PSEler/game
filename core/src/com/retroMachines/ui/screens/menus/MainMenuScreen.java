@@ -28,7 +28,7 @@ public class MainMenuScreen extends MenuScreen {
 	 * The Title of this Screen.
 	 */
 	public static final String TITLE = "RETROMACHINES";
-	private final static float FONTSIZE3 = 3f;
+	private final static float FONTSIZE_THREE = 3f;
 
 	private ExitDialog exitDialog;
 
@@ -51,7 +51,7 @@ public class MainMenuScreen extends MenuScreen {
 		skin = RetroAssetManager.getMenuSkin();
 		// Make Title
 		Label title = new Label(TITLE, skin);
-		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setFontScale((FONTSIZE_THREE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
 		// Make Buttons

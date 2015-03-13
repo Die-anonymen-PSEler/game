@@ -53,7 +53,7 @@ public class RetroLevelOneTest {
 
 	@Test
 	public void testDepotcheck() {
-		assertFalse("gameelement already in depot", level.allDepotsFilled());
+		assertFalse("gameelement already in depot", level.isAllDepotsFilled());
 		assertNotNull("string message sollte erstellt worden sein", level.getErrorMessage());
 		assertFalse("string sollte nicht leer sein", level.getErrorMessage().equals(""));
 	}
@@ -104,7 +104,7 @@ public class RetroLevelOneTest {
 		GameElement element = level.getGameElement(variablePosition);
 		level.removeGameElement(element, variablePosition);
 		level.placeGameElement(element, depotPosition);
-		assertTrue("alle spielelemente sollten plaziert sein", level.allDepotsFilled());
+		assertTrue("alle spielelemente sollten plaziert sein", level.isAllDepotsFilled());
 	}
 	
 	@Test
