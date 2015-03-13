@@ -24,12 +24,12 @@ import com.retroMachines.util.Constants.RetroStrings;
  * @author RetroFactory
  * 
  */
-public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
+public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 
 	/**
 	 * Default constructor which starts a simple instance of AssetManager.
 	 */
-	public static AssetManager manager = new AssetManager();
+	public final static RetroAssetManager manager = new RetroAssetManager();
 
 	/**
 	 * The design of the menus is stored here.
