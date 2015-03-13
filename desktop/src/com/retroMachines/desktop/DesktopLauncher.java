@@ -17,7 +17,7 @@ public class DesktopLauncher {
 		config.height = HEIGHT;  // sets window height
         config.resizable = false;
         config.title = WINDOW_TITLE;
-        //config.fullscreen = true;
+       // config.fullscreen = true;
 		new LwjglApplication(new RetroMachines(), config);
 	}
 }

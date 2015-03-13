@@ -27,7 +27,7 @@ public final class MusicManager implements SettingsChangeListener {
 	/**
 	 * instance of the singleton
 	 */
-	private static MusicManager singleton;
+	private static MusicManager Singleton;
 
 	private MusicManager() {
 
@@ -39,10 +39,10 @@ public final class MusicManager implements SettingsChangeListener {
 	 * @return singleton of the musicmanager
 	 */
 	public synchronized static MusicManager getInstance() {
-		if (singleton == null) {
-			singleton = new MusicManager();
+		if (Singleton == null) {
+			Singleton = new MusicManager();
 		}
-		return singleton;
+		return Singleton;
 	}
 
 	/**

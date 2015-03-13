@@ -183,7 +183,7 @@ public class LambdaUtil {
 				actVertex.setnext(new Dummy());
 			}
 
-			actVertex.canSetfamily(makeStartVertexTree(t.getAsJsonObject()
+			actVertex.setfamily(makeStartVertexTree(t.getAsJsonObject()
 					.getAsJsonArray(TREE)));
 			if (count == 1) {
 				// pointer on start
@@ -228,7 +228,7 @@ public class LambdaUtil {
 				actVertex.setnext(getSpecializedVertex(nextOb));
 			}
 			// setting family
-			actVertex.canSetfamily(makeStartVertexHintOrTarget(t.getAsJsonObject()
+			actVertex.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject()
 					.getAsJsonArray(type), type));
 
 			if (count == 1) {

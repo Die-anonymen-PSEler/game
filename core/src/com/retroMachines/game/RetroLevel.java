@@ -218,7 +218,7 @@ public class RetroLevel {
 				return null;
 			}
 
-			result.canSetfamily(fam);
+			result.setfamily(fam);
 			// set Width
 			result.setWidth(fam.getWidth() + fam.getNextWidth());
 
@@ -240,7 +240,7 @@ public class RetroLevel {
 			result.setFamilyColorlist(newColorList);
 		} else {
 			result = findVertexPosY(y);
-			result.canSetfamily(null);
+			result.setfamily(null);
 			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
 
