@@ -89,10 +89,9 @@ public class Application extends Vertex {
 	// ---------------------------------------------------
 
 	/**
-	 * Creates a clone of this Vertex without Next and his hole Family
+	 * Creates a clone of this Vertex without Next, but with his whole Family
 	 * 
-	 * @param next
-	 * @return
+	 * @return a deep copy of this vertex except the next attribute in vertex representation
 	 */
 	@Override
 	public Vertex cloneMe() {
@@ -112,9 +111,9 @@ public class Application extends Vertex {
 	}
 
 	/**
-	 * Creates a clone of this Vertex and his hole Family
+	 * Creates a clone of this Vertex and his whole Family
 	 * 
-	 * @return First Vertex in Tree structure
+	 * @return a deep copy of this vertex including next and family attribute
 	 */
 	@Override
 	public Vertex cloneFamily() {
