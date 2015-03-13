@@ -44,13 +44,13 @@ public class SettingControllerTest {
 	@Test
 	public void testVolumeDisabled() {
 		settingController.setVolume(0.0f);
-		assertFalse("ton ist immer noch an", settingController.soundEnabled());
+		assertFalse("ton ist immer noch an", settingController.isSoundEnabled());
 	}
 	
 	@Test
 	public void testSoundEnabled() {
 		settingController.setVolume(0.5f);
-		assertTrue("ton ist aus", settingController.soundEnabled());
+		assertTrue("ton ist aus", settingController.isSoundEnabled());
 	}
 
 	@Test
@@ -73,10 +73,10 @@ public class SettingControllerTest {
 	public void testResetTutorial() {
 		settingController.resetTutorials();
 		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
-			assertFalse(setting.getTutorialFinished(i));
+			assertFalse(setting.isTutorialFinished(i));
 		}
 		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
-			assertFalse(settingController.getTutorialFinished(i));
+			assertFalse(settingController.isTheTutorialFinished(i));
 		}
 	}
 	
@@ -92,15 +92,15 @@ public class SettingControllerTest {
 	@Test
 	public void testGetLeftMode() {
 		setting.setLeftControl(false);
-		assertFalse("should be disabled", settingController.getLeftMode());
+		assertFalse("should be disabled", settingController.isLeftMode());
 		setting.setLeftControl(true);
-		assertTrue("should be enabled", settingController.getLeftMode());
+		assertTrue("should be enabled", settingController.isLeftMode());
 		settingController.setLeftMode(true);
-		assertTrue("should be enabled", settingController.getLeftMode());
+		assertTrue("should be enabled", settingController.isLeftMode());
 		settingController.setLeftMode(false);
-		assertFalse("should be disabled", settingController.getLeftMode());
+		assertFalse("should be disabled", settingController.isLeftMode());
 		settingController.setLeftMode(true);
-		assertTrue("should be enalbed", settingController.getLeftMode());
+		assertTrue("should be enalbed", settingController.isLeftMode());
 	}
 	
 	@Test
@@ -128,9 +128,9 @@ public class SettingControllerTest {
 	
 	@Test
 	public void testSetTutorialFinished() {
-		boolean value = !setting.getTutorialFinished(1);
+		boolean value = !setting.isTutorialFinished(1);
 		settingController.setTutorialFinished(1, value);
-		assertTrue("sollten übereinstimmen", value == settingController.getTutorialFinished(1));
+		assertTrue("sollten übereinstimmen", value == settingController.isTheTutorialFinished(1));
 	}
 	
 	private class MockListener implements SettingsChangeListener {

@@ -49,7 +49,7 @@ public class Abstraction extends Vertex {
 			LinkedList<Integer> familyColorlist) {
 		super(color);
 		this.setnext(next);
-		this.setfamily(family);
+		this.canSetfamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 
@@ -63,7 +63,7 @@ public class Abstraction extends Vertex {
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	@Override
-	public boolean alphaConversion() {
+	public boolean canAlphaConversion() {
 		if (this.getnext() == null) {
 			return false;
 		}
@@ -84,7 +84,7 @@ public class Abstraction extends Vertex {
 						// different Colors used ?
 						return true;
 					}
-					if (!this.getnext().renameFamily(nextFam.get(j), newColor)) {
+					if (!this.getnext().canRenameFamily(nextFam.get(j), newColor)) {
 						// Error
 						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: "
 								+ this.getColor());
@@ -140,7 +140,7 @@ public class Abstraction extends Vertex {
 					if (this.getfamily().getnext() != null) {
 						replace.setnext(this.getfamily().getnext());
 					}
-					this.setfamily(replace);
+					this.canSetfamily(replace);
 				}
 
 				// Update colorList

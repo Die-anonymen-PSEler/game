@@ -84,15 +84,15 @@ public class VertexTest {
 		famCol.add(1);
 		var.setColor(1);
 		abs.setColor(1);
-		abs.setfamily(var);
+		abs.canSetfamily(var);
 		abs.setnext(null);
 		var.setnext(null);
-		var.setfamily(null);
+		var.canSetfamily(null);
 		var.setFamilyColorlist(famCol);
 		abs.setFamilyColorlist(famCol);
 		
 		
-		assertTrue(abs.renameFamily(1, 2));
+		assertTrue(abs.canRenameFamily(1, 2));
 		assertEquals(2, var.getColor());
 		assertEquals(2, abs.getColor());
 	}
@@ -111,11 +111,11 @@ public class VertexTest {
 		Variable var2 = new Variable(1);
 		Variable var3 = new Variable(4);
 		abs.setnext(null);
-		abs.setfamily(null);
+		abs.canSetfamily(null);
 		assertEquals(new LinkedList<Vertex>(), abs.replaceInFamily(var));
 		
 		abs.setnext(var1);
-		abs.setfamily(var2);
+		abs.canSetfamily(var2);
 		LinkedList<Integer> famCol = new LinkedList<Integer>();
 		famCol.add(1);
 		abs.setFamilyColorlist(famCol);

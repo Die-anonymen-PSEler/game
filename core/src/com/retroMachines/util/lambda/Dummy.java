@@ -20,7 +20,7 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public boolean alphaConversion() {
+	public boolean canAlphaConversion() {
 		// dummy object, does nothing
 		return false;
 	}

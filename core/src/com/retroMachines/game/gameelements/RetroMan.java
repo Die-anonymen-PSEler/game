@@ -239,7 +239,7 @@ public class RetroMan {
 	 * 
 	 * @return FaceLeft true means the RetroMan is looking to the left
 	 */
-	public boolean getFaceLeft() {
+	public boolean isFacedLeft() {
 		return faceLeft;
 	}
 
@@ -254,7 +254,7 @@ public class RetroMan {
 	public Vector2 nextPosition() {
 		int offset;
 		Vector2 elementPos;
-		if (getFaceLeft()) {
+		if (isFacedLeft()) {
 			offset = -ELEMENT_OFFSET;
 			elementPos = new Vector2(((int) pos.x) + offset, (int) pos.y);
 		} else {

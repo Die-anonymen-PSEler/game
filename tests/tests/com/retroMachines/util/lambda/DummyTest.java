@@ -75,7 +75,7 @@ public class DummyTest {
 
 	@Test
 	public void testAlphaConversion() {
-		assertFalse(dummy.alphaConversion());
+		assertFalse(dummy.canAlphaConversion());
 	}
 
 	@Test

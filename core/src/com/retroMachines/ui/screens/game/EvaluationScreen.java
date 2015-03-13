@@ -116,7 +116,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 * 
 	 * @return true animation finished successfully, false otherwise.
 	 */
-	public boolean updateScreen() {
+	public boolean isScreenUpdated() {
 
 		return false;
 	}

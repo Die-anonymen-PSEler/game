@@ -195,7 +195,7 @@ public class ProfileController {
 		profileChangeListeners.remove(listener);
 	}
 
-	public boolean loadLastProfile() {
+	public boolean canLoadLastProfile() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
 		int id = Integer
 				.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));

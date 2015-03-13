@@ -45,7 +45,7 @@ public class GameScreen extends AbstractScreen implements
 	private static final float RETROMAN_BUTTON_OFFSET = 2;
 	private final static float DIALOGWIDTH = (4f / 5f);
 	private final static float DIALOGHEIGHT = (7f / 9f);
-	private final static float PADDING30 = 30f;
+	private final static float PADDING_THIRTY = 30f;
 	private final static float DIALOG_FONTSIZE = 1.5f;
 	private final static float DIALOGTEXTWIDTH = (7f / 10f);
 
@@ -557,9 +557,9 @@ public class GameScreen extends AbstractScreen implements
 					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
 			size.add().row();
 			size.add(buttonBack).expandX().expandY().bottom().row();
-			this.padTop(screenWidth / PADDING30); // set padding on top of the
+			this.padTop(screenWidth / PADDING_THIRTY); // set padding on top of the
 													// dialog
-			this.padBottom(screenWidth / PADDING30); // set padding on bottom of
+			this.padBottom(screenWidth / PADDING_THIRTY); // set padding on bottom of
 														// the
 			this.add(size).expand();
 		}
@@ -655,8 +655,8 @@ public class GameScreen extends AbstractScreen implements
 
 		private void initialize() {
 
-			padTop(screenWidth / PADDING30); // set padding on top of the dialog
-			padBottom(screenWidth / PADDING30); // set padding on bottom of the
+			padTop(screenWidth / PADDING_THIRTY); // set padding on top of the dialog
+			padBottom(screenWidth / PADDING_THIRTY); // set padding on bottom of the
 
 			setModal(true);
 			setMovable(false);
@@ -723,9 +723,9 @@ public class GameScreen extends AbstractScreen implements
 		}
 
 		private void initialize() {
-			padTop(screenWidth / PADDING30); // set padding on top of the dialog
+			padTop(screenWidth / PADDING_THIRTY); // set padding on top of the dialog
 												// title
-			padBottom(screenWidth / PADDING30); // set padding on bottom of the
+			padBottom(screenWidth / PADDING_THIRTY); // set padding on bottom of the
 												// dialog title
 			getButtonTable().defaults().height(screenHeight * ONE_FOURTH); // set
 																			// buttons

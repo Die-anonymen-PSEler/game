@@ -135,7 +135,7 @@ public abstract class Vertex {
 	 *            Color which should take place of OldColor
 	 * @return true if renamed family successful, false otherwise
 	 */
-	protected boolean renameFamily(int oldColor, int newColor) {
+	protected boolean canRenameFamily(int oldColor, int newColor) {
 		if (this.getFamilyColorList().contains(oldColor)) {
 			for (int i = 0; i < this.getFamilyColorList().size(); i++) {
 				if (this.getFamilyColorList().get(i) == oldColor) {
@@ -159,7 +159,7 @@ public abstract class Vertex {
 				Vertex renamePointer = new Dummy();
 				renamePointer.setnext(this.getfamily());
 				while (renamePointer.getnext() != null) {
-					if (!renamePointer.getnext().renameFamily(oldColor,
+					if (!renamePointer.getnext().canRenameFamily(oldColor,
 							newColor)) {
 						// Error
 						return false;
@@ -229,7 +229,7 @@ public abstract class Vertex {
 					if (this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
-					this.setfamily(replaced);
+					this.canSetfamily(replaced);
 				}
 			}
 		}
@@ -454,7 +454,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
-	abstract public boolean alphaConversion();
+	abstract public boolean canAlphaConversion();
 
 	// ----------------------------------------
 	// -------- Animation Helper Methods ------
@@ -711,7 +711,7 @@ public abstract class Vertex {
 	 *            The start vertex for the family that is to set.
 	 * @return false if type of Vertex is Variable , true otherwise
 	 */
-	public boolean setfamily(Vertex family) {
+	public boolean canSetfamily(Vertex family) {
 		this.family = family;
 		return true;
 	}
