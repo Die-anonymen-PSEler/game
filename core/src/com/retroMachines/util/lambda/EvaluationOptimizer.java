@@ -47,7 +47,7 @@ public class EvaluationOptimizer {
 
 	private static int actStep;
 	
-	private static LinkedList<ActionListElement> actionList;
+	private static LinkedList<ActionListElement> actionList = new LinkedList<ActionListElement>();
 	
 	private static LinkedList<EvaluationController> animationListner; 
 
