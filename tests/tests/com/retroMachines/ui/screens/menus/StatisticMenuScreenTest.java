@@ -3,8 +3,6 @@ package com.retroMachines.ui.screens.menus;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,7 +11,6 @@ import org.junit.Test;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.ui.screens.menus.MenuScreen.ReturnButtonClickListener;
 

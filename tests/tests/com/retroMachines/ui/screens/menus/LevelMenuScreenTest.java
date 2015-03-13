@@ -1,10 +1,8 @@
 package com.retroMachines.ui.screens.menus;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.After;
@@ -68,16 +66,6 @@ public class LevelMenuScreenTest {
 	public void testLevelUnlocked() {
 		clickTextButton(LEVEL_BUTTON_TABLE_ID, 0);
 		assertTrue("sollten im gamescreen sein", GameScreen.class == game.getScreen().getClass());
-	}
-	
-	private void clickButton(int tableId, int idWithinTable) {
-		Actor[] actors = screen.table.getChildren().items;
-		assertTrue("sollte der main table sein", actors[tableId].getClass() == Table.class);
-		Table table = (Table) actors[tableId];
-		assertTrue("sollte ein button (profile) sein", table.getChildren().items[idWithinTable].getClass() == Button.class);
-		Button buttonProfile = (Button) table.getChildren().get(idWithinTable);
-		ClickListener listener = (ClickListener) buttonProfile.getListeners().get(1);
-		listener.clicked(null, 0, 0);
 	}
 	
 	private void clickTextButton(int tableId, int idWithinTable) {

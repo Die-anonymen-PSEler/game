@@ -1,6 +1,6 @@
 package com.retroMachines.ui.screens.menus;
 
-import static org.junit.Assert.*;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +23,10 @@ public class ProfileSettingsMenuScreenTest {
 	public void setUp() throws Exception {
 		game = new RetroMachines();
 		game.create();
+		HashMap<String, Integer> map = game.getProfileController().getProfileNameIdMap();
+		for (String name : map.keySet()) {
+			game.getProfileController().deleteProfile(name);
+		}
 		game.getProfileController().createProfile("maik");
 		screen = new ProfileSettingsMenuScreen(game);
 	}

@@ -108,4 +108,25 @@ public class GameControllerTest {
 		gameController.update(0.1f);
 		assertTrue("y velocity is too big", retroMan.getVelocity().y <= RetroMan.MAX_VELOCITY_Y);
 	}
+	
+	@Test
+	public void testWalkDoor() {
+		gameController.startLevel(1);
+		gameController.walkThroughDoor();
+	}
+	
+	@Test
+	public void testWalkDoor2() {
+		gameController.startLevel(1);
+		gameController.evaluationComplete();
+		gameController.walkThroughDoor();
+	}
+	
+	@Test
+	public void testWalkDoor3() {
+		gameController.startLevel(1);
+		gameController.goRightRetroMan();
+		gameController.evaluationComplete();
+		gameController.walkThroughDoor();
+	}
 }

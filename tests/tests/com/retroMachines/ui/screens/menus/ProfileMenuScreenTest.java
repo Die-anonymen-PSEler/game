@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
+import com.retroMachines.game.controllers.ProfileController;
 
 public class ProfileMenuScreenTest {
 	
@@ -60,6 +61,18 @@ public class ProfileMenuScreenTest {
 	public void testAddProfile() {
 		clickButton((int) ADD_BUTTON.x, (int) ADD_BUTTON.y);
 		assertTrue("sollte im createprofilescreen sein", game.getScreen().getClass() == CreateProfileMenuScreen.class);
+	}
+	
+	@Test
+	public void testAddProfile2() {
+		ProfileController controller = game.getProfileController();
+		controller.createProfile("a");
+		controller.createProfile("b");
+		controller.createProfile("c");
+		controller.createProfile("d");
+		controller.createProfile("e");
+		clickButton((int) ADD_BUTTON.x, (int) ADD_BUTTON.y);
+		assertTrue("sollte im createprofilescreen sein", game.getScreen() == screen);
 	}
 	
 	@Test

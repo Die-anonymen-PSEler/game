@@ -185,9 +185,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private class AcceptButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			settingController.setLeftMode(buttonLeftMode.isChecked());
 			game.setScreen(new MainMenuScreen(game));
-			super.clicked(event, x, y);
 		}
 	}
 
@@ -201,6 +199,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			buttonRightMode.setChecked(false);
 			buttonLeftMode.setChecked(true);
+			settingController.setLeftMode(buttonLeftMode.isChecked());
 		}
 	}
 
@@ -214,7 +213,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			buttonLeftMode.setChecked(false);
 			buttonRightMode.setChecked(true);
-			// TODO Save Lefti Change
+			settingController.setLeftMode(buttonLeftMode.isChecked());
 		}
 	}
 
