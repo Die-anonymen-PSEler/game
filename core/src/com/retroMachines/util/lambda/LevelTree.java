@@ -50,7 +50,7 @@ public class LevelTree {
 		if (this.start == null) {
 			return tree.start == null;
 		}
-		return this.start.equals(tree.start);
+		return this.start.equalsVertex(tree.start);
 	}
 
 	/*
