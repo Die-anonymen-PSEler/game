@@ -75,7 +75,7 @@ public class VertexTest {
 	@Test
 	public void testGetMappedColor() {
 		//should return identity 
-		assertEquals("Color wird initial nicht auf sich selbst gemappt", varColor, varColor);
+		assertEquals("Color wird initial nicht auf sich selbst gemappt", varColor, Vertex.getMappedColor(varColor));
 	}
 
 	@Test
@@ -99,22 +99,25 @@ public class VertexTest {
 
 	@Test
 	public void testReplaceInFamily() {
-		Variable var1 = new Variable(0);
+		Variable var1 = new Variable(2);
 		Variable var2 = new Variable(1);
-		Variable var3 = new Variable(0);
+		Variable var3 = new Variable(2);
 		Variable var4 = new Variable(1);
-		Abstraction abs1 = new Abstraction(0);
+		Abstraction abs1 = new Abstraction(2);
 		Abstraction abs2 = new Abstraction(1);
 		Abstraction abs3 = new Abstraction(1);
-		Abstraction abs4 = new Abstraction(0);
-
+		Abstraction abs4 = new Abstraction(2);
 		
-		var2.setnext(abs1);
-		abs1.setnext(var1);
+		var1.setnext(abs1);
+		abs1.setnext(var2);
+		var2.setnext(abs2);
+		abs2.setfamily(var4);
+		var4.setnext(var3);
 		abs.setnext(var);
-		LinkedList<Vertex> result = new LinkedList<Vertex>();
-		result.add(var1);
-		assertEquals(result, var2.replaceInFamily(abs));
+		LinkedList<Vertex> result = var1.replaceInFamily(abs);
+		assertEquals(2, result.size());
+		assertEquals(var2, result.get(0));
+		assertEquals(var4, result.get(1));
 	}
 
 	@Test
