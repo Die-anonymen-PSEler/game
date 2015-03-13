@@ -95,7 +95,7 @@ public class ProfileControllerTest {
 		GlobalVariables gv = GlobalVariables.getSingleton();
 		int savedValue = Integer.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));
 		gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, -1);
-		assertFalse("letzte profil sollte nicht verfügbar sein", profileController.loadLastProfile());
+		assertFalse("letzte profil sollte nicht verfügbar sein", profileController.canLoadLastProfile());
 		gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, savedValue);
 	}
 	
@@ -105,7 +105,7 @@ public class ProfileControllerTest {
 		int savedValue = Integer.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));
 		gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, 1);
 		Profile profile = new Profile(1);
-		assertTrue("letztes profil sollte geladen sein", profileController.loadLastProfile());
+		assertTrue("letztes profil sollte geladen sein", profileController.canLoadLastProfile());
 		assertTrue("falsches profil wurde geladen", profileController.getProfile().getProfileId() == profile.getProfileId());
 		gv.put(GlobalVariables.KEY_LAST_USED_PROFILE, savedValue);
 	}

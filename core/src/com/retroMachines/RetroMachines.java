@@ -71,7 +71,7 @@ public class RetroMachines extends Game {
 		RetroAssetManager.initializeWhileLoading();
 		GlobalVariables.getSingleton();
 		profileController = new ProfileController(this);
-		boolean profileExists = profileController.loadLastProfile();
+		boolean profileExists = profileController.canLoadLastProfile();
 		settingController = new SettingController(this);
 		settingController.initialize();
 

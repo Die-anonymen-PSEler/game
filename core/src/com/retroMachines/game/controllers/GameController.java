@@ -86,7 +86,7 @@ public class GameController {
 				Constants.TEXTURE_ANIMATION_NAMES[settingController
 						.getCurrentCharacterId()]);
 		tempStepCounter = 0;
-		boolean left = game.getSettingController().getLeftMode();
+		boolean left = game.getSettingController().isLeftMode();
 
 		RetroLevel.LevelBuilder builder = new RetroLevel.LevelBuilder();
 		builder.prepare(levelId);
@@ -96,7 +96,7 @@ public class GameController {
 		levelBegin = System.currentTimeMillis();
 		game.setScreen(gameScreen);
 		if (level.hasTutorial()
-				&& !settingController.getTutorialFinished(levelId)) {
+				&& !settingController.isTheTutorialFinished(levelId)) {
 			gameScreen.showDialogChain(level.getDialogChain());
 			settingController.setTutorialFinished(levelId, true);
 		}
@@ -321,7 +321,7 @@ public class GameController {
 	 * Starts the evaluation process.
 	 */
 	public void evaluationClicked() {
-		if (level.allDepotsFilled()) {
+		if (level.isAllDepotsFilled()) {
 			evaControl = new EvaluationController(level, game, this);
 			evaControl.startEvaluation();
 		} else {

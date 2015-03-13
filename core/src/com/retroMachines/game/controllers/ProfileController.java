@@ -203,11 +203,12 @@ public class ProfileController {
 		profileChangeListeners.remove(listener);
 	}
 
+
 	/**
 	 * loads the last profile
 	 * @return true if it could be loaded, false otherwise
 	 */
-	public boolean loadLastProfile() {
+	public boolean canLoadLastProfile() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
 		int id = Integer
 				.parseInt(gv.get(GlobalVariables.KEY_LAST_USED_PROFILE));

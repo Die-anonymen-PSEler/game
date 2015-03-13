@@ -122,7 +122,7 @@ public class SettingController implements OnProfileChangedListener {
 	 * 
 	 * @return True when LeftiMode is activated
 	 */
-	public boolean getLeftMode() {
+	public boolean isLeftMode() {
 		return settings.isLeftControl();
 	}
 
@@ -193,12 +193,13 @@ public class SettingController implements OnProfileChangedListener {
 		this.settings = setting;
 	}
 
+
 	/**
 	 * checks whether the sound is enabled or not
 	 * 
 	 * @return true if the sound is enabled, false otherwise
 	 */
-	public boolean soundEnabled() {
+	public boolean isSoundEnabled() {
 		if (settings.getVolume() < 1E-14 || !settings.isSoundOnOff()) {
 			return false;
 		}
@@ -211,8 +212,8 @@ public class SettingController implements OnProfileChangedListener {
 	 *            the level for which it should be checked
 	 * @return true if it's finished, false otherwise
 	 */
-	public boolean getTutorialFinished(int levelId) {
-		boolean value = settings.getTutorialFinished(levelId);
+	public boolean isTheTutorialFinished(int levelId) {
+		boolean value = settings.isTutorialFinished(levelId);
 		return value;
 	}
 

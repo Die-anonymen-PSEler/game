@@ -89,9 +89,7 @@ public abstract class MenuScreen extends AbstractScreen {
 
 	@Override
 	public boolean keyDown(int keycode) {
-		System.out.println(keycode);
 		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-			
 			game.previousScreen();
 			return true;
 		}

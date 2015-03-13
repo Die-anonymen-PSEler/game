@@ -37,7 +37,7 @@ public class VariableTest {
 
 	@Test
 	public void testAlphaConversion() {
-		assertFalse(var.alphaConversion());
+		assertFalse(var.canAlphaConversion());
 	}
 	
 	@Test

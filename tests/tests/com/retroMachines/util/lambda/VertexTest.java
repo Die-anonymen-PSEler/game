@@ -80,19 +80,14 @@ public class VertexTest {
 
 	@Test
 	public void testRenameFamily() {
-		LinkedList<Integer> famCol = new LinkedList<Integer>();
-		famCol.add(1);
-		var.setColor(1);
-		abs.setColor(1);
-		abs.setfamily(var);
+
+		abs.canSetfamily(var);
 		abs.setnext(null);
 		var.setnext(null);
-		var.setfamily(null);
-		var.setFamilyColorlist(famCol);
-		abs.setFamilyColorlist(famCol);
+		var.canSetfamily(null);
 		
 		
-		assertTrue(abs.renameFamily(1, 2));
+		assertTrue(abs.canRenameFamily(0, 2));
 		assertEquals(2, var.getColor());
 		assertEquals(2, abs.getColor());
 	}
@@ -105,22 +100,21 @@ public class VertexTest {
 
 	@Test
 	public void testReplaceInFamily() {
-		abs.setColor(2);
-		var.setColor(1);
-		Variable var1 = new Variable(3);
+		Variable var1 = new Variable(2);
 		Variable var2 = new Variable(1);
-		Variable var3 = new Variable(4);
-		abs.setnext(null);
-		abs.setfamily(null);
-		assertEquals(new LinkedList<Vertex>(), abs.replaceInFamily(var));
+		Variable var3 = new Variable(2);
+		Variable var4 = new Variable(1);
+		Abstraction abs1 = new Abstraction(2);
+		Abstraction abs2 = new Abstraction(1);
+		Abstraction abs3 = new Abstraction(1);
+		Abstraction abs4 = new Abstraction(2);
+
 		
-		abs.setnext(var1);
-		abs.setfamily(var2);
-		LinkedList<Integer> famCol = new LinkedList<Integer>();
-		famCol.add(1);
-		abs.setFamilyColorlist(famCol);
-		var.setnext(var3);
-		assertEquals(new LinkedList<Vertex>(), abs.replaceInFamily(var));
+		var.setnext(abs1);
+		System.out.println(abs.getColor());
+		System.out.println(abs.getFamilyColorList());
+		
+		assertEquals(new LinkedList<Vertex>(), var.replaceInFamily(abs));
 		
 	}
 

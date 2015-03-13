@@ -28,8 +28,8 @@ public class MainMenuScreen extends MenuScreen {
 	 * The Title of this Screen.
 	 */
 	public static final String TITLE = "RETROMACHINES";
-	
-	private final static float FONTSIZE3 = 3f;
+
+	private final static float FONTSIZE_THREE = 3f;
 
 	private ExitDialog exitDialog;
 
@@ -52,7 +52,7 @@ public class MainMenuScreen extends MenuScreen {
 		skin = RetroAssetManager.getMenuSkin();
 		// Make Title
 		Label title = new Label(TITLE, skin);
-		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setFontScale((FONTSIZE_THREE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
 		// Make Buttons
@@ -134,10 +134,6 @@ public class MainMenuScreen extends MenuScreen {
 		return false;
 	}
 
-	private void disposeMusic() {
-		// music.dispose();
-	}
-
 	/*
 	 * Button Listeners
 	 */
@@ -145,7 +141,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class PlayButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new LevelMenuScreen(game));
 		}
 	}
@@ -153,7 +148,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class SettingButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new SettingsMenuScreen(game));
 		}
 	}
@@ -161,7 +155,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class AboutButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new AboutMenuScreen(game));
 		}
 	}
@@ -169,7 +162,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class StatisticsButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new StatisticMenuScreen(game));
 		}
 	}
@@ -177,7 +169,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class ProfileMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
@@ -185,7 +176,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class ExitClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			if (exitDialog != null) {
 				exitDialog.show(stage);
 			} else {

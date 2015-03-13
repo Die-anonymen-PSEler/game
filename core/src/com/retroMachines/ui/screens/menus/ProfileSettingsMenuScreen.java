@@ -103,7 +103,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonRightMode.addListener(new RightControlButtonClickListener());
 		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 
-		if (settingController.getLeftMode()) {
+		if (settingController.isLeftMode()) {
 			buttonLeftMode.setChecked(true);
 			buttonRightMode.setChecked(false);
 		} else {

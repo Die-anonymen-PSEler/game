@@ -20,7 +20,7 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public boolean alphaConversion() {
+	public boolean canAlphaConversion() {
 		// dummy object, does nothing
 		return false;
 	}
@@ -87,5 +87,13 @@ public class Dummy extends Vertex {
 	public Vertex getClone() {
 		// its a dummy
 		return null;
+	}
+	
+	@Override 
+	public boolean equals(Object obj) {
+		if (obj instanceof Dummy) {
+			return true;
+		}
+		return false;
 	}
 }

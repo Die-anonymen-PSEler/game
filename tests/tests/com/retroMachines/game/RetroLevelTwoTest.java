@@ -50,7 +50,7 @@ public class RetroLevelTwoTest {
 
 	@Test
 	public void testAllDepotsFilled() {
-		assertTrue("alle depots sollten befüllt sein", level.allDepotsFilled());
+		assertTrue("alle depots sollten befüllt sein", level.isAllDepotsFilled());
 	}
 
 }

@@ -43,7 +43,7 @@ public class Variable extends Vertex {
 			LinkedList<Integer> familyColorlist) {
 		super(color);
 		this.setnext(next);
-		this.setfamily(family);
+		this.canSetfamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 
@@ -57,7 +57,7 @@ public class Variable extends Vertex {
 	 * @return false
 	 */
 	@Override
-	public boolean alphaConversion() {
+	public boolean canAlphaConversion() {
 		// no alpha conversion
 		return false;
 	}

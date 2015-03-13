@@ -249,7 +249,7 @@ public class Setting extends Model {
 	 * @param levelId the level for which it should be checked
 	 * @return true if its finished, false otherwise
 	 */
-	public boolean getTutorialFinished(int levelId) {
+	public boolean isTutorialFinished(int levelId) {
 		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId),
 				false);
 	}

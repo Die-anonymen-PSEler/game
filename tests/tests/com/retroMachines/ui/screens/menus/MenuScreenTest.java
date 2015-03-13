@@ -28,7 +28,7 @@ public class MenuScreenTest {
 	public void setUp() throws Exception {
 		game = new RetroMachines();
 		game.create();
-		screen = new MainMenuScreen(game);
+		screen = new TestMenuScreen(game);
 	}
 
 	@After
@@ -61,5 +61,17 @@ public class MenuScreenTest {
 		assertTrue("sollte der ursprüngliche screen sein", game.getScreen() == previous);
 		
 	}
+	
+	private static class TestMenuScreen extends MenuScreen {
 
+		public TestMenuScreen(RetroMachines game) {
+			super(game);
+		}
+
+		@Override
+		protected void initialize() {
+			
+		}
+		
+	}
 }

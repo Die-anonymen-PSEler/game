@@ -24,8 +24,8 @@ import com.retroMachines.util.Constants.ButtonStrings;
 public class LevelMenuScreen extends MenuScreen {
 
 	private final static float LEVELBUTTONSIZE = 6f;
-	private final static float FONTSIZE2_5 = 2.5f;
-	private final static float ONE_8th = (1f / 8f);
+	private final static float FONTSIZE_TWO_FIVE = 2.5f;
+	private final static float ONE_EIGHT_TH = (1f / 8f);
 
 	private RetroDialog lockedDialog;
 
@@ -54,7 +54,7 @@ public class LevelMenuScreen extends MenuScreen {
 		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
-		Label title = super.makeTitle("Level", FONTSIZE2_5);
+		Label title = super.makeTitle("Level", FONTSIZE_TWO_FIVE);
 
 		// Make Buttons
 
@@ -72,7 +72,7 @@ public class LevelMenuScreen extends MenuScreen {
 				ilevel = new TextButton(iToString.toString(), skin);
 				ilevel.addListener(new LevelUnlockedButtonClickListener(i));
 			}
-			ilevel.getStyle().font.setScale((FONTSIZE2_5 * screenWidth)
+			ilevel.getStyle().font.setScale((FONTSIZE_TWO_FIVE * screenWidth)
 					/ DIVIDEWIDTHDEFAULT);
 
 			if (i % 5 == 4 && i > 0) {
@@ -94,8 +94,8 @@ public class LevelMenuScreen extends MenuScreen {
 		// Make Table
 		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
 				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
-		table.add(title).width(screenWidth * (2 * ONE_8th)).right()
-				.padRight((screenWidth * HALF) - (screenWidth * ONE_8th))
+		table.add(title).width(screenWidth * (2 * ONE_EIGHT_TH)).right()
+				.padRight((screenWidth * HALF) - (screenWidth * ONE_EIGHT_TH))
 				.expandX().row();
 		table.add(levelTable).colspan(COLSPAN_X_TWO).expandY();
 

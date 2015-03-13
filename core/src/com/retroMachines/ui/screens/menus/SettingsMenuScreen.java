@@ -125,7 +125,7 @@ public class SettingsMenuScreen extends MenuScreen {
 		inputMultiplexer.addProcessor(stage);
 		
 		settingController = game.getSettingController();
-		buttonSoundOff.setChecked(!settingController.soundEnabled());
+		buttonSoundOff.setChecked(!settingController.isSoundEnabled());
 		volumeSlider.setValue(settingController.getVolume() * SLIDERMAX);
 	}
 

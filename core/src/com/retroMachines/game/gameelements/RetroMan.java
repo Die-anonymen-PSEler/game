@@ -21,11 +21,6 @@ import com.retroMachines.util.Constants;
 public class RetroMan {
 
 	/**
-	 * The maximum velocity the character is allowed to have in x direction
-	 */
-	public static final float MAX_VELOCITY_X = 10f;
-
-	/**
 	 * The maximum velocity the character is allowed to have in y direction
 	 */
 	public static final float MAX_VELOCITY_Y = 15f;
@@ -244,7 +239,7 @@ public class RetroMan {
 	 * 
 	 * @return FaceLeft true means the RetroMan is looking to the left
 	 */
-	public boolean getFaceLeft() {
+	public boolean isFacedLeft() {
 		return faceLeft;
 	}
 
@@ -259,7 +254,7 @@ public class RetroMan {
 	public Vector2 nextPosition() {
 		int offset;
 		Vector2 elementPos;
-		if (getFaceLeft()) {
+		if (isFacedLeft()) {
 			offset = -ELEMENT_OFFSET;
 			elementPos = new Vector2(((int) pos.x) + offset, (int) pos.y);
 		} else {
@@ -303,7 +298,7 @@ public class RetroMan {
 	}
 
 	public GameElement layDownElement() {
-		GameElement g = element;
+		GameElement gameElement = element;
 		element = null;
 		switch (state) {
 		case STANDINGE:
@@ -315,7 +310,7 @@ public class RetroMan {
 		default:
 			break;
 		}
-		return g;
+		return gameElement;
 	}
 
 	/**

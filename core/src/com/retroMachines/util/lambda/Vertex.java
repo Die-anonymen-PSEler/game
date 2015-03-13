@@ -135,7 +135,7 @@ public abstract class Vertex {
 	 *            Color which should take place of OldColor
 	 * @return true if renamed family successful, false otherwise
 	 */
-	protected boolean renameFamily(int oldColor, int newColor) {
+	protected boolean canRenameFamily(int oldColor, int newColor) {
 		if (this.getFamilyColorList().contains(oldColor)) {
 			for (int i = 0; i < this.getFamilyColorList().size(); i++) {
 				if (this.getFamilyColorList().get(i) == oldColor) {
@@ -147,7 +147,7 @@ public abstract class Vertex {
 
 			if (!this.getType().equals(Constants.RetroStrings.APPLICATION_TYPE)) {
 				if (this.getColor() == oldColor) {
-					this.setColor(newColor);
+					updateMap(this.color, newColor);
 					int offset = (Integer) this.getGameElement().getTileSet()
 							.getProperties().get("firstgid") - 1;
 					this.getGameElement().setTileId(newColor + offset);
@@ -159,7 +159,7 @@ public abstract class Vertex {
 				Vertex renamePointer = new Dummy();
 				renamePointer.setnext(this.getfamily());
 				while (renamePointer.getnext() != null) {
-					if (!renamePointer.getnext().renameFamily(oldColor,
+					if (!renamePointer.getnext().canRenameFamily(oldColor,
 							newColor)) {
 						// Error
 						return false;
@@ -229,7 +229,7 @@ public abstract class Vertex {
 					if (this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
-					this.setfamily(replaced);
+					this.canSetfamily(replaced);
 				}
 			}
 		}
@@ -454,7 +454,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
-	abstract public boolean alphaConversion();
+	abstract public boolean canAlphaConversion();
 
 	// ----------------------------------------
 	// -------- Animation Helper Methods ------
@@ -631,24 +631,33 @@ public abstract class Vertex {
 					paddingScreen);
 		}
 	}
+	
+	/**
+	 * equals method, compares this vertex with given one
+	 * @param obj object to compared with this
+	 * @return true if and only if object is instance of vertex and {@link equals(Vertex other} returns true
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Vertex) {
+			return obj.equals(this); 
+		}
+		return false;
+		
+	}
 
 	/**
 	 * compares this vertex with given one
 	 * 
-	 * @param v
+	 * @param other
 	 *            vertex to be compared with this
 	 * @return returns true if and only if this vertex and parameter have same
 	 *         color and same type
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+	public boolean equals(Vertex other) {
+		if (other == null) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Vertex other = (Vertex) obj;
+		}
 		// Compare next
 		// veritices equal only if this.next and v.next are both null or both !=
 		// null.
@@ -702,20 +711,9 @@ public abstract class Vertex {
 	 *            The start vertex for the family that is to set.
 	 * @return false if type of Vertex is Variable , true otherwise
 	 */
-	public boolean setfamily(Vertex family) {
+	public boolean canSetfamily(Vertex family) {
 		this.family = family;
 		return true;
-	}
-
-	/**
-	 * Setter for the Color.
-	 * 
-	 * @param color
-	 *            Color that is to set.
-	 */
-	public void setColor(int color) {
-		updateMap(this.color, color);
-		this.color = color;
 	}
 
 	/**
