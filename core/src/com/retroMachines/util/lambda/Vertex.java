@@ -631,24 +631,33 @@ public abstract class Vertex {
 					paddingScreen);
 		}
 	}
+	
+	/**
+	 * equals method, compares this vertex with given one
+	 * @param obj object to compared with this
+	 * @return true if and only if object is instance of vertex and {@link equals(Vertex other} returns true
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Vertex) {
+			return this.equals((Vertex) obj); 
+		}
+		return false;
+		
+	}
 
 	/**
 	 * compares this vertex with given one
 	 * 
-	 * @param v
+	 * @param other
 	 *            vertex to be compared with this
 	 * @return returns true if and only if this vertex and parameter have same
 	 *         color and same type
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+	public boolean equals(Vertex other) {
+		if (other == null) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Vertex other = (Vertex) obj;
+		}
 		// Compare next
 		// veritices equal only if this.next and v.next are both null or both !=
 		// null.
