@@ -3,6 +3,11 @@ package com.retroMachines.util;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.retroMachines.game.gameelements.GameElement;
 
+/**
+ * ActionListElement stores a GameElement with its action
+ * @author RetroFactory
+ *
+ */
 public class ActionListElement {
 	
 	private GameElement element;

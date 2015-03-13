@@ -3,6 +3,11 @@ package com.retroMachines.game.gameelements;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.retroMachines.data.RetroAssetManager;
 
+/**
+ * The class DepotElements are the depots in the game.
+ * @author RetroFactory
+ *
+ */
 public class DepotElement extends GameElement {
 
 	/**

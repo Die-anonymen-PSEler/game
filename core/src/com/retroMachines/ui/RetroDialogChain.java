@@ -36,7 +36,7 @@ public class RetroDialogChain {
 	/**
 	 * Stage of dialogues
 	 */
-	private Stage s;
+	private Stage stage;
 
 	/**
 	 * List of Listeners that check if a dialog is finished
@@ -60,7 +60,7 @@ public class RetroDialogChain {
 	private void nextDialog() {
 		if (dialogs.size() > position) {
 			DialogChain dialog = dialogs.get(position);
-			dialog.show(s);
+			dialog.show(stage);
 			position++;
 		} else {
 			notifyListeners();
@@ -81,7 +81,7 @@ public class RetroDialogChain {
 	 * @param s the stage it is
 	 */
 	public void show(Stage s) {
-		this.s = s;
+		this.stage = s;
 		nextDialog();
 	}
 

@@ -100,22 +100,22 @@ public class VertexTest {
 
 	@Test
 	public void testReplaceInFamily() {
-		Variable var1 = new Variable(2);
+		Variable var1 = new Variable(0);
 		Variable var2 = new Variable(1);
-		Variable var3 = new Variable(2);
+		Variable var3 = new Variable(0);
 		Variable var4 = new Variable(1);
-		Abstraction abs1 = new Abstraction(2);
+		Abstraction abs1 = new Abstraction(0);
 		Abstraction abs2 = new Abstraction(1);
 		Abstraction abs3 = new Abstraction(1);
-		Abstraction abs4 = new Abstraction(2);
+		Abstraction abs4 = new Abstraction(0);
 
 		
-		var.setnext(abs1);
-		System.out.println(abs.getColor());
-		System.out.println(abs.getFamilyColorList());
-		
-		assertEquals(new LinkedList<Vertex>(), var.replaceInFamily(abs));
-		
+		var2.setnext(abs1);
+		abs1.setnext(var1);
+		abs.setnext(var);
+		LinkedList<Vertex> result = new LinkedList<Vertex>();
+		result.add(var1);
+		assertEquals(result, var2.replaceInFamily(abs));
 	}
 
 	@Test

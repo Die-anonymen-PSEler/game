@@ -9,6 +9,13 @@ import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.StatisticController;
 import com.retroMachines.util.Constants;
 
+/**
+ * The statistic menu screen displays the statistics of the currently active
+ * profile.
+ * 
+ * @author Larissa
+ * 
+ */
 public class StatisticMenuScreen extends MenuScreen {
 
 	private final static float FONTSIZE_TWO_FIVE = 2.5f;
@@ -46,12 +53,13 @@ public class StatisticMenuScreen extends MenuScreen {
 
 		// Statistikkram
 		Label stepsLeft = new Label("Schritte:", skin);
-		stepsLeft
-				.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
+		stepsLeft.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
 		stepsLeft.setAlignment(Align.right);
 
 		Label timeLeft = new Label("Spielzeit:", skin);
-		timeLeft.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
+		timeLeft.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
 		timeLeft.setAlignment(Align.right);
 
 		Label completedLevelLeft = new Label("Abgeschlossene Level:", skin);
@@ -61,12 +69,14 @@ public class StatisticMenuScreen extends MenuScreen {
 		completedLevelLeft.setAlignment(Align.center);
 
 		steps = new Label("Text", skin);
-		steps.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
+		steps.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
 		steps.setAlignment(Align.left);
 		steps.setText(statisticController.getStepCounter() + "");
 
 		playTime = new Label("Text", skin);
-		playTime.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
+		playTime.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
 		playTime.setAlignment(Align.left);
 		playTime.setText(((int) statisticController.getPlaytime())
 				/ Constants.SECONDS_IN_MINUTE + "");

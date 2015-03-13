@@ -50,10 +50,10 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * TiledMapTileSet for objects
 	 */
 	private static TiledMapTileSet Objects;
+	
 	/**
 	 * TiledMapTileSet for machines
 	 */
-	
 	private static TiledMapTileSet Machines;
 	
 	/**
