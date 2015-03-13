@@ -639,8 +639,8 @@ public abstract class Vertex {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Vertex && obj.hashCode() == this.hashCode()) {
-			return obj.equals(this); 
+		if (obj instanceof Vertex) {
+			return equalsVertex((Vertex) obj); 
 		}
 		return false;
 		
