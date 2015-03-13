@@ -53,7 +53,7 @@ public abstract class Vertex {
 	 */
 	private int nextWidth;
 
-	private static HashMap<Integer, Integer> colorMap = new HashMap<Integer, Integer>();
+	private static HashMap<Integer, Integer> ColorMap = new HashMap<Integer, Integer>();
 
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
@@ -107,7 +107,7 @@ public abstract class Vertex {
 	 *            new color of vertex
 	 */
 	protected static void updateMap(int vertexColor, int mappedColor) {
-		colorMap.put(vertexColor, mappedColor);
+		ColorMap.put(vertexColor, mappedColor);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public abstract class Vertex {
 	 * @return mapped color of vertex
 	 */
 	protected static int getMappedColor(int vertexColor) {
-		return colorMap.get(vertexColor);
+		return ColorMap.get(vertexColor);
 	}
 
 	// ---------------------------------------------------
@@ -229,7 +229,7 @@ public abstract class Vertex {
 					if (this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
-					this.canSetfamily(replaced);
+					this.setfamily(replaced);
 				}
 			}
 		}
@@ -640,7 +640,7 @@ public abstract class Vertex {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vertex) {
-			return this.equals((Vertex) obj); 
+			return this.equalsVertex((Vertex) obj); 
 		}
 		return false;
 		
@@ -654,7 +654,7 @@ public abstract class Vertex {
 	 * @return returns true if and only if this vertex and parameter have same
 	 *         color and same type
 	 */
-	public boolean equals(Vertex other) {
+	public boolean equalsVertex(Vertex other) {
 		if (other == null) {
 			return false;
 		}
@@ -667,7 +667,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getnext() != null) { // in case both are not null, need
 												// to compare them.
-			if (!this.getnext().equals(other.getnext())) { // if they do not equal
+			if (!this.getnext().equalsVertex(other.getnext())) { // if they do not equal
 														// we can return false
 				return false;
 			}
@@ -678,7 +678,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getfamily() != null) { // in case both are not null,
 												// need to compare them.
-			if (!this.getfamily().equals(other.getfamily())) { // if they do not
+			if (!this.getfamily().equalsVertex(other.getfamily())) { // if they do not
 															// equal we can
 															// return false
 				return false;
@@ -711,9 +711,8 @@ public abstract class Vertex {
 	 *            The start vertex for the family that is to set.
 	 * @return false if type of Vertex is Variable , true otherwise
 	 */
-	public boolean canSetfamily(Vertex family) {
+	public void setfamily(Vertex family) {
 		this.family = family;
-		return true;
 	}
 
 	/**

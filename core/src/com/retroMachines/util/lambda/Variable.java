@@ -45,7 +45,7 @@ public class Variable extends Vertex {
 			LinkedList<Integer> familyColorlist) {
 		super(color);
 		this.setnext(next);
-		this.canSetfamily(family);
+		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 

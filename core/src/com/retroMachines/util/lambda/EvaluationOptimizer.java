@@ -15,56 +15,56 @@ public class EvaluationOptimizer {
 
 	public final static EvaluationOptimizer OPTIMIZER = new EvaluationOptimizer();
 
-	private static EvaluationController evaluationController;
+	private static EvaluationController EvaluationController;
 
 	/**
 	 * The resultTree represents the result of the Evaluation
 	 */
-	private static LevelTree resultTree;
+	private static LevelTree ResultTree;
 
 	/**
 	 * List of all gameElements in this level
 	 */
-	private static LinkedList<Vertex> vertexList;
+	private static LinkedList<Vertex> VertexList;
 
 	/**
 	 * resultPointer.next is always last element added to resultTree
 	 */
-	private static Vertex resultPointer;
+	private static Vertex ResultPointer;
 
 	/**
 	 * evaluationPointer . next is always the actual worker in evaluation
 	 */
-	private static Vertex evalutionPointer;
+	private static Vertex EvalutionPointer;
 
-	private static int offsetX;
+	private static int OffsetX;
 
-	private static boolean result;
+	private static boolean Result;
 
-	private static boolean nextStep;
+	private static boolean NextStep;
 
-	private static boolean autoStep;
+	private static boolean AutoStep;
 
-	private static int actStep;
+	private static int ActStep;
 	
-	private static LinkedList<ActionListElement> actionList = new LinkedList<ActionListElement>();
+	private static LinkedList<ActionListElement> ActionList = new LinkedList<ActionListElement>();
 	
-	private static LinkedList<EvaluationController> animationListner; 
+	private static LinkedList<EvaluationController> AnimationListner; 
 
 	public static void initialize(EvaluationController e) {
-		animationListner = new LinkedList<EvaluationController>();
-		evaluationController = e;
-		resultPointer = new Dummy();
-		offsetX = 0;
-		nextStep = false;
-		autoStep = false;
-		evalutionPointer = new Dummy();
-		evalutionPointer.setnext(evaluationController.getlambdaTree()
+		AnimationListner = new LinkedList<EvaluationController>();
+		EvaluationController = e;
+		ResultPointer = new Dummy();
+		OffsetX = 0;
+		NextStep = false;
+		AutoStep = false;
+		EvalutionPointer = new Dummy();
+		EvalutionPointer.setnext(EvaluationController.getlambdaTree()
 				.getStart());
-		actStep = 0;
-		resultTree = null;
-		vertexList = null;
-		actionList = new LinkedList<ActionListElement>();
+		ActStep = 0;
+		ResultTree = null;
+		VertexList = null;
+		ActionList = new LinkedList<ActionListElement>();
 	}
 
 	// -----Methods-------
@@ -86,7 +86,7 @@ public class EvaluationOptimizer {
 					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
 					Actions.run(new DestroyElement(x)));
 		}
-		actionList.addLast(new ActionListElement(x, action));
+		ActionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
@@ -112,7 +112,7 @@ public class EvaluationOptimizer {
 									Constants.ACTION_TIME)), Actions
 							.run(new DestroyElement(x)));
 		}
-		actionList.addLast(new ActionListElement(x, action));
+		ActionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void scaleAnimation(GameElement x, boolean nextStep) {
@@ -130,7 +130,7 @@ public class EvaluationOptimizer {
 							Constants.ACTION_TIME), Actions
 					.run(new DestroyElement(x)));
 		}
-		actionList.addLast(new ActionListElement(x, action));
+		ActionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void moveAnimation(Vector2 pos, GameElement x,
@@ -145,7 +145,7 @@ public class EvaluationOptimizer {
 		} else {
 			action = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
 		}
-		actionList.addLast(new ActionListElement(x, action));
+		ActionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void runNextStep() {
@@ -156,18 +156,18 @@ public class EvaluationOptimizer {
 
 		Action action = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
 				Actions.run(new NextStepWithoutRemove()));
-		actionList.addLast(new ActionListElement(x, action));
+		ActionList.addLast(new ActionListElement(x, action));
 	}
 
 	private static void step1AlphaConversion() {
 		//reset List
-		actionList = new LinkedList<ActionListElement>();
-		actStep = 1;
-		evalutionPointer.getnext().canAlphaConversion();
+		ActionList = new LinkedList<ActionListElement>();
+		ActStep = 1;
+		EvalutionPointer.getnext().canAlphaConversion();
 
-		Vertex readIn = evalutionPointer.getnext().getReadIn();
+		Vertex readIn = EvalutionPointer.getnext().getReadIn();
 		if (readIn != null) {
-			readIn.readInAnimation(evalutionPointer.getnext().getGameElement()
+			readIn.readInAnimation(EvalutionPointer.getnext().getGameElement()
 					.getPosition());
 			// Next Step by Animation
 			//notify Controller
@@ -181,9 +181,9 @@ public class EvaluationOptimizer {
 
 	private static void step2BetaReduction() {
 		//reset List
-		actionList = new LinkedList<ActionListElement>();
-		actStep = 2;
-		vertexList = evalutionPointer.getnext().betaReduction();
+		ActionList = new LinkedList<ActionListElement>();
+		ActStep = 2;
+		VertexList = EvalutionPointer.getnext().betaReduction();
 		// Next Step by Animation
 		//notify Controller
 		notifyEvaluationController();
@@ -191,11 +191,11 @@ public class EvaluationOptimizer {
 
 	private static void step3UpdatePositions() {
 		//reset List
-		actionList = new LinkedList<ActionListElement>();
-		actStep = 3;
-		Vector2 start = evaluationController.getEvaluationscreenPadding();
-		start.x += offsetX;
-		evalutionPointer.getnext()
+		ActionList = new LinkedList<ActionListElement>();
+		ActStep = 3;
+		Vector2 start = EvaluationController.getEvaluationscreenPadding();
+		start.x += OffsetX;
+		EvalutionPointer.getnext()
 				.reorganizePositions(start, new Vector2(0, 0));
 		// Next Step by Animation
 		//notify Controller
@@ -204,35 +204,35 @@ public class EvaluationOptimizer {
 
 	private static void step4InsertReadIn() {
 		//reset List
-		actionList = new LinkedList<ActionListElement>();
-		actStep = 4;
+		ActionList = new LinkedList<ActionListElement>();
+		ActStep = 4;
 		// only Abstraction returns a list with elements else it is empty
-		for (Vertex v : vertexList) {
-			evaluationController.setOnStage(v.getGameElement());
+		for (Vertex v : VertexList) {
+			EvaluationController.setOnStage(v.getGameElement());
 		}
 
 		// At the end worker disappears when its an Abstraction or Application
-		evalutionPointer.getnext().deleteAfterBetaReduction();
+		EvalutionPointer.getnext().deleteAfterBetaReduction();
 		//notify Controller
 		notifyEvaluationController();
 	}
 
 	private static void step5UpdateFamilyPositions() {
 		//reset List
-		actionList = new LinkedList<ActionListElement>();
-		actStep = 5;
-		evalutionPointer.getnext().updatePositionsAfterBetaReduction();
+		ActionList = new LinkedList<ActionListElement>();
+		ActStep = 5;
+		EvalutionPointer.getnext().updatePositionsAfterBetaReduction();
 		//notify Controller
 		notifyEvaluationController();
 	}
 
 	private synchronized static void prepareNextEvaluation() {
-		actStep = 0;
+		ActStep = 0;
 
 		// creating copy of current tree
-		LevelTree oldTree = new LevelTree(evalutionPointer.cloneMe());
-		evalutionPointer.canSetfamily(evalutionPointer.getnext());
-		Vertex result = evalutionPointer.getnext().getEvaluationResult();
+		LevelTree oldTree = new LevelTree(EvalutionPointer.cloneMe());
+		EvalutionPointer.setfamily(EvalutionPointer.getnext());
+		Vertex result = EvalutionPointer.getnext().getEvaluationResult();
 
 		if (result != null) {
 			// check whether there is an infinite evaluation (same tree after
@@ -243,41 +243,41 @@ public class EvaluationOptimizer {
 				LevelTree newTree = new LevelTree(result.getnext());
 				if (oldTree.equalsTree(newTree)) {
 					// we can stop evaluation at this point
-					resultTree = oldTree;
+					ResultTree = oldTree;
 					checkEvaluation();
 					return;
 				}
 			}
 			// make resultTree if needed
-			offsetX += result.getWidth() * Constants.GAMEELEMENT_WIDTH;
-			if (resultTree != null) {
-				resultPointer.getnext().setnext(result);
-				resultPointer.setnext(resultPointer.getnext().getnext());
+			OffsetX += result.getWidth() * Constants.GAMEELEMENT_WIDTH;
+			if (ResultTree != null) {
+				ResultPointer.getnext().setnext(result);
+				ResultPointer.setnext(ResultPointer.getnext().getnext());
 			} else {
-				resultTree = new LevelTree(result);
-				resultPointer.setnext(resultTree.getStart());
+				ResultTree = new LevelTree(result);
+				ResultPointer.setnext(ResultTree.getStart());
 			}
 		}
 
-		evalutionPointer.setnext(evalutionPointer.getnext()
+		EvalutionPointer.setnext(EvalutionPointer.getnext()
 				.updatePointerAfterBetaReduction());
 
-		if (evalutionPointer.getnext() == null) {
+		if (EvalutionPointer.getnext() == null) {
 			// End of Evaluation
-			resultPointer.getnext().setnext(null);
+			ResultPointer.getnext().setnext(null);
 			checkEvaluation();
 		} else {
-			if (evalutionPointer.getnext().getType()
+			if (EvalutionPointer.getnext().getType()
 					.equals(Constants.RetroStrings.VARIABLE_TYPE)) {
 				runNextEvaluationStep();
 				return;
 			}
 			// Wenn alle steps starten geklickt starte nächsten schritt sonst
 			// wart auf eingabe
-			if (autoStep) {
+			if (AutoStep) {
 				runNextEvaluationStep();
 			} else {
-				nextStep = false;
+				NextStep = false;
 			}
 		}
 	}
@@ -287,26 +287,26 @@ public class EvaluationOptimizer {
 	 * is saved in resultTree
 	 */
 	private static void checkEvaluation() {
-		result = resultTree.equalsTree(evaluationController.getLevel()
+		Result = ResultTree.equalsTree(EvaluationController.getLevel()
 				.getLambdaUtil().getTargetTree());
-		if (result) {
-			evaluationController.getGameController().evaluationComplete();
+		if (Result) {
+			EvaluationController.getGameController().evaluationComplete();
 		} else {
-			evaluationController.getGameController().evaluationInComplete();
+			EvaluationController.getGameController().evaluationInComplete();
 		}
 	}
 
 	public static void autoStepClicked() {
-		if (!autoStep && !nextStep) {
-			autoStep = true;
+		if (!AutoStep && !NextStep) {
+			AutoStep = true;
 			runNextEvaluationStep();
 		}
 
 	}
 
 	public static void nextStepClicked() {
-		if (!nextStep) {
-			nextStep = true;
+		if (!NextStep) {
+			NextStep = true;
 			runNextEvaluationStep();
 		}
 
@@ -314,7 +314,7 @@ public class EvaluationOptimizer {
 
 	private static void runNextEvaluationStep() {
 
-		switch (actStep) {
+		switch (ActStep) {
 		case 0:
 			step1AlphaConversion();
 			break;
@@ -381,22 +381,22 @@ public class EvaluationOptimizer {
 	}
 	
 	public static LinkedList<ActionListElement> getActionList() {
-		return actionList;
+		return ActionList;
 	}
 	
 	/**
 	 *  called at the end of each step
 	 */
 	private static void notifyEvaluationController() {
-		for (EvaluationController e : animationListner) {
+		for (EvaluationController e : AnimationListner) {
 			e.startAnimation();
 		}
 	}
 	
 	public static void addMeToListnerList(EvaluationController e) {
 		if (e != null) {
-			if(!animationListner.contains(e)) {
-				animationListner.add(e);
+			if(!AnimationListner.contains(e)) {
+				AnimationListner.add(e);
 			}
 		}
 	}

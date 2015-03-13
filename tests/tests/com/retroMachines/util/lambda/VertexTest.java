@@ -81,10 +81,10 @@ public class VertexTest {
 	@Test
 	public void testRenameFamily() {
 
-		abs.canSetfamily(var);
+		abs.setfamily(var);
 		abs.setnext(null);
 		var.setnext(null);
-		var.canSetfamily(null);
+		var.setfamily(null);
 		
 		
 		assertTrue(abs.canRenameFamily(0, 2));

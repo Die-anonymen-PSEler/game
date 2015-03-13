@@ -30,7 +30,7 @@ public class GlobalVariables extends Model {
 	/**
 	 * Private Instance of itself to implement the singleton pattern.
 	 */
-	private static GlobalVariables instance;
+	private static GlobalVariables Instance;
 
 	/**
 	 * Private constructor so this class can not be instantiated from the
@@ -45,7 +45,7 @@ public class GlobalVariables extends Model {
 	 * Creates a new instance of GlobalVariables and saves it to the attribute.
 	 */
 	private static void instantiate() {
-		instance = new GlobalVariables();
+		Instance = new GlobalVariables();
 	}
 
 	/**
@@ -133,9 +133,9 @@ public class GlobalVariables extends Model {
 	 * @return the singleton.
 	 */
 	public static GlobalVariables getSingleton() {
-		if (instance == null) {
+		if (Instance == null) {
 			instantiate();
 		}
-		return instance;
+		return Instance;
 	}
 }
