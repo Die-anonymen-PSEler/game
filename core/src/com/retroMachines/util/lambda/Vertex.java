@@ -640,7 +640,7 @@ public abstract class Vertex {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vertex) {
-			return this.equalsVertex((Vertex) obj); 
+			return obj.equals(this);
 		}
 		return false;
 		
@@ -654,7 +654,7 @@ public abstract class Vertex {
 	 * @return returns true if and only if this vertex and parameter have same
 	 *         color and same type
 	 */
-	public boolean equalsVertex(Vertex other) {
+	public boolean equals(Vertex other) {
 		if (other == null) {
 			return false;
 		}
@@ -667,7 +667,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getnext() != null) { // in case both are not null, need
 												// to compare them.
-			if (!this.getnext().equalsVertex(other.getnext())) { // if they do not equal
+			if (!this.getnext().equals(other.getnext())) { // if they do not equal
 														// we can return false
 				return false;
 			}
@@ -678,7 +678,7 @@ public abstract class Vertex {
 			return false;
 		} else if (this.getfamily() != null) { // in case both are not null,
 												// need to compare them.
-			if (!this.getfamily().equalsVertex(other.getfamily())) { // if they do not
+			if (!this.getfamily().equals(other.getfamily())) { // if they do not
 															// equal we can
 															// return false
 				return false;

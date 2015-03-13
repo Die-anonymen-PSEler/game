@@ -49,7 +49,7 @@ public class EvaluationOptimizer {
 	
 	private static LinkedList<ActionListElement> ActionList = new LinkedList<ActionListElement>();
 	
-	private static LinkedList<EvaluationController> AnimationListner; 
+	private static LinkedList<EvaluationController> AnimationListner = new LinkedList<EvaluationController>(); 
 
 	public static void initialize(EvaluationController e) {
 		AnimationListner = new LinkedList<EvaluationController>();

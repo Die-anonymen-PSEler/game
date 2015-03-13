@@ -88,4 +88,12 @@ public class Dummy extends Vertex {
 		// its a dummy
 		return null;
 	}
+	
+	@Override 
+	public boolean equals(Object obj) {
+		if (obj instanceof Dummy) {
+			return true;
+		}
+		return false;
+	}
 }
