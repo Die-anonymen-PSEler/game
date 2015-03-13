@@ -71,7 +71,7 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 	 * @param game
 	 *            the main game class
 	 */
-	public AbstractScreen(RetroMachines game) {
+	protected AbstractScreen(RetroMachines game) {
 		stage = new Stage();
 		this.game = game;
 		inputMultiplexer = new InputMultiplexer();

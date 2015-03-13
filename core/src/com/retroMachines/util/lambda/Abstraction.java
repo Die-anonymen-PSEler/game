@@ -75,7 +75,7 @@ public class Abstraction extends Vertex {
 		// Searched for double used colors
 		for (int i = 0; i < sA; i++) {
 			for (int j = 0; j < sN; j++) {
-				if (getFamilyColorList().get(i) == nextFam.get(j)) {
+				if (getFamilyColorList().get(i).equals(nextFam.get(j))) {
 					// Replace color in next family
 					newColor = this.searchUnusedColorID();
 					if (newColor == -1) {

@@ -368,6 +368,8 @@ public class RetroMan {
 		case JUMPINGE:
 			frame = jumpingERight.getKeyFrame(deltaTime);
 			break;
+		default:
+			break;
 		}
 
 		Batch batch = renderer.getBatch();

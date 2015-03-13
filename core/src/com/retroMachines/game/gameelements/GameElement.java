@@ -29,7 +29,7 @@ public abstract class GameElement extends Actor {
 	/**
 	 * creates a new instance of GameElement
 	 */
-	public GameElement() {
+	protected GameElement() {
 		setX(0f);
 		setY(0f);
 		setBounds(getX(), getY(), Constants.GAMEELEMENT_WIDTH,

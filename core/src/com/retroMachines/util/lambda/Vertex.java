@@ -74,7 +74,7 @@ public abstract class Vertex {
 	/**
 	 * Default Public Constructor for Dummy Element
 	 */
-	public Vertex() {
+	protected Vertex() {
 		isInDepot = false;
 	}
 
@@ -84,7 +84,7 @@ public abstract class Vertex {
 	 * @param color
 	 *            color to set.
 	 */
-	public Vertex(int color) {
+	protected Vertex(int color) {
 		this.color = color;
 		this.familyColorList = new LinkedList<Integer>();
 		this.nextColorList = new LinkedList<Integer>();

@@ -37,7 +37,7 @@ public abstract class MenuScreen extends AbstractScreen {
 	 * @param game
 	 *            The game that uses this Screen.
 	 */
-	public MenuScreen(RetroMachines game) {
+	protected MenuScreen(RetroMachines game) {
 		super(game);
 		table = new Table(RetroAssetManager.getMenuSkin());
 		table.background(new TextureRegionDrawable(new TextureRegion(

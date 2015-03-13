@@ -32,7 +32,7 @@ public abstract class Model {
 	 * Creates a new Model instance and retrieves a copy of the database
 	 * connection in order to update, insert and select data from it.
 	 */
-	public Model() {
+	protected Model() {
 		rowId = -1;
 	}
 
