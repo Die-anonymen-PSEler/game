@@ -1,7 +1,5 @@
 package com.retroMachines.game.controllers;
 
-
-
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
@@ -10,6 +8,13 @@ import com.retroMachines.ui.screens.game.EvaluationScreen;
 import com.retroMachines.util.lambda.EvaluationOptimizer;
 import com.retroMachines.util.lambda.LevelTree;
 
+/**
+ * The EvaluationController takes care of the evaluation. It starts the
+ * evaluation itself and the animation for it.
+ * 
+ * @author RetroFactory
+ * 
+ */
 public class EvaluationController {
 
 	/**
@@ -39,9 +44,13 @@ public class EvaluationController {
 
 	/**
 	 * creates a new instance of EvaluationController
-	 * @param level the actual level
-	 * @param g instance of the actual game
-	 * @param gameControl gameController of the game
+	 * 
+	 * @param level
+	 *            the actual level
+	 * @param g
+	 *            instance of the actual game
+	 * @param gameControl
+	 *            gameController of the game
 	 */
 	public EvaluationController(RetroLevel level, RetroMachines g,
 			GameController gameControl) {
@@ -75,9 +84,10 @@ public class EvaluationController {
 	public void autoEvaluationClicked() {
 		EvaluationOptimizer.autoStepClicked();
 	}
-	
+
 	/**
 	 * returns the gameController of this class
+	 * 
 	 * @return gameController
 	 */
 	public GameController getGameController() {
@@ -86,6 +96,7 @@ public class EvaluationController {
 
 	/**
 	 * returns the level of this class
+	 * 
 	 * @return level
 	 */
 	public RetroLevel getLevel() {
@@ -94,6 +105,7 @@ public class EvaluationController {
 
 	/**
 	 * returns the lambdaTree of this class
+	 * 
 	 * @return lambdaTree
 	 */
 	public LevelTree getlambdaTree() {
@@ -109,7 +121,9 @@ public class EvaluationController {
 
 	/**
 	 * places a gameElement on the stage
-	 * @param g the gameElement to be placed
+	 * 
+	 * @param g
+	 *            the gameElement to be placed
 	 */
 	public void setOnStage(GameElement g) {
 		evaluationScreen.setOnStage(g);
@@ -117,6 +131,7 @@ public class EvaluationController {
 
 	/**
 	 * returns the padding of evaluation screen
+	 * 
 	 * @return the padding of evaluation screen
 	 */
 	public Vector2 getEvaluationscreenPadding() {

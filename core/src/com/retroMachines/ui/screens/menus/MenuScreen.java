@@ -57,7 +57,7 @@ public abstract class MenuScreen extends AbstractScreen {
 	public Label makeTitle(String name, float fontsize) {
 		Label title = new Label(name, skin);
 		title.setWrap(true);
-		title.setFontScale((fontsize* screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setFontScale((fontsize * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 		return title;
 	}
