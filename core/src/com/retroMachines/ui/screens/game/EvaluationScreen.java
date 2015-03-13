@@ -1,5 +1,7 @@
 package com.retroMachines.ui.screens.game;
 
+import java.util.LinkedList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -13,7 +15,9 @@ import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.EvaluationController;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
+import com.retroMachines.util.ActionListElement;
 import com.retroMachines.util.Constants;
+import com.retroMachines.util.lambda.EvaluationOptimizer;
 import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -221,9 +225,12 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 
-	public void runAnimation(GameElement g, Action a) {
-
-		g.addAction(a);
+	public void runAnimation() {
+		LinkedList<ActionListElement> actionList = EvaluationOptimizer.getActionList();
+		for (int i = 0; i < actionList.size(); i++) {
+			ActionListElement a = actionList.get(i);
+			a.getGameElement().addAction(a.getAction());
+		}
 	}
 
 	public Vector2 getScreenPadding() {

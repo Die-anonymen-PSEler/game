@@ -1,11 +1,14 @@
 package com.retroMachines.game.controllers;
 
+import java.util.LinkedList;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
+import com.retroMachines.util.ActionListElement;
 import com.retroMachines.util.lambda.EvaluationOptimizer;
 import com.retroMachines.util.lambda.LevelTree;
 
@@ -51,6 +54,7 @@ public class EvaluationController {
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
+		EvaluationOptimizer.addMeToListnerList(this);
 		EvaluationOptimizer.initialize(this);
 	}
 
@@ -74,8 +78,8 @@ public class EvaluationController {
 		return lambdaTree;
 	}
 
-	public void runAnimation(GameElement g, Action a) {
-		evaluationScreen.runAnimation(g, a);
+	public void startAnimation() {
+		evaluationScreen.runAnimation();
 	}
 
 	public void setOnStage(GameElement g) {

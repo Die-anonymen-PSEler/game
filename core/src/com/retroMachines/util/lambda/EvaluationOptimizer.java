@@ -48,8 +48,11 @@ public class EvaluationOptimizer {
 	private static int actStep;
 	
 	private static LinkedList<ActionListElement> actionList;
+	
+	private static LinkedList<EvaluationController> animationListner; 
 
 	public static void initialize(EvaluationController e) {
+		animationListner = new LinkedList<EvaluationController>();
 		evaluationController = e;
 		resultPointer = new Dummy();
 		offsetX = 0;
@@ -83,7 +86,7 @@ public class EvaluationOptimizer {
 					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
 					Actions.run(new DestroyElement(x)));
 		}
-		actionList.addFirst(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, a));
 	}
 
 	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
@@ -109,7 +112,7 @@ public class EvaluationOptimizer {
 									Constants.ACTION_TIME)), Actions
 							.run(new DestroyElement(x)));
 		}
-		actionList.addFirst(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, a));
 	}
 
 	public static void scaleAnimation(GameElement x, boolean nextStep) {
@@ -127,7 +130,7 @@ public class EvaluationOptimizer {
 							Constants.ACTION_TIME), Actions
 					.run(new DestroyElement(x)));
 		}
-		actionList.addFirst(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, a));
 	}
 
 	public static void moveAnimation(Vector2 pos, GameElement x,
@@ -142,7 +145,7 @@ public class EvaluationOptimizer {
 		} else {
 			a = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
 		}
-		actionList.addFirst(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, a));
 	}
 
 	public static void runNextStep() {
@@ -153,7 +156,7 @@ public class EvaluationOptimizer {
 
 		Action a = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
 				Actions.run(new NextStepWithoutRemove()));
-		actionList.addFirst(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, a));
 	}
 
 	private static void step1AlphaConversion() {
@@ -377,7 +380,7 @@ public class EvaluationOptimizer {
 
 	}
 	
-	public LinkedList<ActionListElement> getActionList() {
+	public static LinkedList<ActionListElement> getActionList() {
 		return actionList;
 	}
 	
@@ -385,6 +388,16 @@ public class EvaluationOptimizer {
 	 *  called at the end of each step
 	 */
 	private static void notifyEvaluationController() {
-		//TODO notify controller ...  animations can run now
+		for (EvaluationController e : animationListner) {
+			e.startAnimation();
+		}
+	}
+	
+	public static void addMeToListnerList(EvaluationController e) {
+		if (e != null) {
+			if(!animationListner.contains(e)) {
+				animationListner.add(e);
+			}
+		}
 	}
 }
