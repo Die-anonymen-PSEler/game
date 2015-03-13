@@ -1,6 +1,5 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -152,9 +151,9 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADDING);
 		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADDING);
 
-		Table leftiTable = new Table(skin);
-		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADDING);
-		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADDING);
+		Table leftTable = new Table(skin);
+		leftTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADDING);
+		leftTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADDING);
 
 		// ImageTable
 		Table imageTable = new Table(skin);
@@ -175,7 +174,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 				.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
 		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDING)
 				.row();
-		rightTable.add(leftiTable).expandX()
+		rightTable.add(leftTable).expandX()
 				.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
 
 		// MainTable
@@ -189,15 +188,6 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-			game.previousScreen();
-			return true;
-		}
-		return false;
 	}
 
 	private void setCharacterImage(int value) {
@@ -245,7 +235,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			if (profileController.getAllProfiles().length > 0) {
+			if (profileController.getProfileNameIdMap().size() > 0) {
 				game.previousScreen();
 			} else {
 				errorDialog = new RetroDialog("",

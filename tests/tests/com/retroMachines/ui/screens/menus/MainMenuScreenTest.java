@@ -19,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
-import com.retroMachines.gdxemulation.RetroMachineMock;
 import com.retroMachines.util.MusicManager;
 
 @RunWith(GdxTestRunner.class)

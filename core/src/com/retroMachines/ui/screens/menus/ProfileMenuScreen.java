@@ -1,6 +1,5 @@
 package com.retroMachines.ui.screens.menus;
 
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -135,16 +134,6 @@ public class ProfileMenuScreen extends MenuScreen implements
 		profileList.clearItems();
 		profileList.setItems(profileController.getAllProfiles());
 
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
-			game.previousScreen();
-			return true;
-		} else {
-			return super.keyDown(keycode);
-		}
 	}
 
 	/*

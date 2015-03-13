@@ -59,7 +59,34 @@ public class MenuScreenTest {
 		game.setScreen(screen);
 		screen.keyDown(Keys.BACK);
 		assertTrue("sollte der ursprüngliche screen sein", game.getScreen() == previous);
-		
+	}
+	
+	@Test
+	public void testKeyTyped() {
+		screen.keyTyped('c');
+	}
+	
+	@Test
+	public void testKeyUp() {
+		screen.keyUp(Keys.A);
+	}
+	
+	@Test
+	public void testMouseMoved() {
+		screen.mouseMoved(0, 0);
+	}
+	
+	@Test
+	public void testRender() {
+		screen.render(0.1f);
+	}
+	
+	@Test
+	public void testRemaining() {
+		screen.scrolled(1);
+		screen.touchDown(0, 0, 0, 0);
+		screen.touchDragged(0, 0, 0);
+		screen.touchUp(0, 0, 0, 0);
 	}
 	
 	private static class TestMenuScreen extends MenuScreen {

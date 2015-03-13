@@ -80,6 +80,9 @@ public class ProfileController {
 	 * @param name the profile to be deleted
 	 */
 	public void deleteProfile(String name) {
+		if (!profileNames.containsKey(name)) {
+			return;
+		}
 		int id = profileNames.get(name);
 		boolean activeProfileKilled = (id == profile.getProfileId());
 		new Profile(id).destroy();
