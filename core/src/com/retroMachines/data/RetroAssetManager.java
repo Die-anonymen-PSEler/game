@@ -34,37 +34,37 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * The design of the menus is stored here.
 	 */
-	private static Skin menuSkin;
+	private static Skin MenuSkin;
 
 	/**
 	 * The music which is played during the game is stored here.
 	 */
-	private static Music music;
+	private static Music Music;
 
 	/**
 	 * The Gameelement textures
 	 */
-	private static Skin gameElementTexture;
+	private static Skin GameElementTexture;
 
 	/**
 	 * TiledMapTileSet for objects
 	 */
-	private static TiledMapTileSet objects;
+	private static TiledMapTileSet Objects;
 	/**
 	 * TiledMapTileSet for machines
 	 */
 	
-	private static TiledMapTileSet machines;
+	private static TiledMapTileSet Machines;
 	
 	/**
 	 * TiledMapTileSet for lights
 	 */
-	private static TiledMapTileSet lights;
+	private static TiledMapTileSet Lights;
 	
 	/**
 	 * TiledMapTileSet for depots
 	 */
-	private static TiledMapTileSet depots;
+	private static TiledMapTileSet Depots;
 
 	/**
 	 * Contains all file references to the files that need to be loaded.
@@ -106,15 +106,15 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 		TextureAtlas gameElementsAtlas = new TextureAtlas(
 				"Gameelements/Gameelements.pack");
 		MANAGER.finishLoading();
-		menuSkin = new Skin(Gdx.files.internal("skins/DefaultLambdaGame.json"),
+		MenuSkin = new Skin(Gdx.files.internal("skins/DefaultLambdaGame.json"),
 				atlas);
-		gameElementTexture = new Skin(gameElementsAtlas);
+		GameElementTexture = new Skin(gameElementsAtlas);
 		TmxMapLoader loader = new TmxMapLoader();
 		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
 			MAPS.add(loader.load("maps/Level" + i + ".tmx"));
 		}
 		setTiledMapTileSets(MAPS.getFirst());
-		music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
+		Music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
 		for (int i = 0; i < Constants.TEXTURE_ANIMATION_NAMES.length; i++) {
 			TEXTURE_MAP.put(
 					Constants.TEXTURE_ANIMATION_NAMES[i],
@@ -154,7 +154,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return the music of the game
 	 */
 	public static Music getMusic() {
-		return music;
+		return Music;
 	}
 
 	// -----------------------
@@ -167,7 +167,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return the skin of the menus
 	 */
 	public static Skin getMenuSkin() {
-		return menuSkin;
+		return MenuSkin;
 	}
 
 	// -------------------------------
@@ -179,7 +179,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return the game element texture
 	 */
 	public static Skin getGameelementSkin() {
-		return gameElementTexture;
+		return GameElementTexture;
 	}
 
 	/**
@@ -205,10 +205,10 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	private static void setTiledMapTileSets(TiledMap currentMap) {
 		TiledMapTileSets levelSets = currentMap.getTileSets();
-		objects = levelSets.getTileSet(RetroStrings.TILESETNAME_METALOBJECTS);
-		machines = levelSets.getTileSet(RetroStrings.TILESETNAME_MACHINE);
-		lights = levelSets.getTileSet(RetroStrings.TILESETNAME_LIGHT);
-		depots = levelSets.getTileSet(RetroStrings.TILESETNAME_DEPOT);
+		Objects = levelSets.getTileSet(RetroStrings.TILESETNAME_METALOBJECTS);
+		Machines = levelSets.getTileSet(RetroStrings.TILESETNAME_MACHINE);
+		Lights = levelSets.getTileSet(RetroStrings.TILESETNAME_LIGHT);
+		Depots = levelSets.getTileSet(RetroStrings.TILESETNAME_DEPOT);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getObjects() {
-		return objects;
+		return Objects;
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getMachines() {
-		return machines;
+		return Machines;
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getLights() {
-		return lights;
+		return Lights;
 	}
 
 	/**
@@ -244,6 +244,6 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return TiledMapTileSet
 	 */
 	public static TiledMapTileSet getDepots() {
-		return depots;
+		return Depots;
 	}
 }

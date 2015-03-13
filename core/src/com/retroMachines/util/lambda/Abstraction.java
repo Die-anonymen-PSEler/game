@@ -49,7 +49,7 @@ public class Abstraction extends Vertex {
 			LinkedList<Integer> familyColorlist) {
 		super(color);
 		this.setnext(next);
-		this.canSetfamily(family);
+		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 
@@ -63,7 +63,7 @@ public class Abstraction extends Vertex {
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	@Override
-	public boolean canAlphaConversion() {
+	public boolean alphaConversion() {
 		if (this.getnext() == null) {
 			return false;
 		}
@@ -140,7 +140,7 @@ public class Abstraction extends Vertex {
 					if (this.getfamily().getnext() != null) {
 						replace.setnext(this.getfamily().getnext());
 					}
-					this.canSetfamily(replace);
+					this.setfamily(replace);
 				}
 
 				// Update colorList

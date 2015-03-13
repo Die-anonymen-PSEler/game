@@ -53,7 +53,7 @@ public abstract class Vertex {
 	 */
 	private int nextWidth;
 
-	private static HashMap<Integer, Integer> colorMap = new HashMap<Integer, Integer>();
+	private static HashMap<Integer, Integer> ColorMap = new HashMap<Integer, Integer>();
 
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
@@ -107,7 +107,7 @@ public abstract class Vertex {
 	 *            new color of vertex
 	 */
 	protected static void updateMap(int vertexColor, int mappedColor) {
-		colorMap.put(vertexColor, mappedColor);
+		ColorMap.put(vertexColor, mappedColor);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public abstract class Vertex {
 	 * @return mapped color of vertex
 	 */
 	protected static int getMappedColor(int vertexColor) {
-		return colorMap.get(vertexColor);
+		return ColorMap.get(vertexColor);
 	}
 
 	// ---------------------------------------------------
@@ -229,7 +229,7 @@ public abstract class Vertex {
 					if (this.getfamily().getnext() != null) {
 						replaced.setnext(this.getfamily().getnext());
 					}
-					this.canSetfamily(replaced);
+					this.setfamily(replaced);
 				}
 			}
 		}
@@ -454,7 +454,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
-	abstract public boolean canAlphaConversion();
+	abstract public boolean alphaConversion();
 
 	// ----------------------------------------
 	// -------- Animation Helper Methods ------
@@ -639,7 +639,7 @@ public abstract class Vertex {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Vertex) {
+		if (obj instanceof Vertex && obj.hashCode() == this.hashCode()) {
 			return obj.equals(this); 
 		}
 		return false;
@@ -711,9 +711,8 @@ public abstract class Vertex {
 	 *            The start vertex for the family that is to set.
 	 * @return false if type of Vertex is Variable , true otherwise
 	 */
-	public boolean canSetfamily(Vertex family) {
+	public void setfamily(Vertex family) {
 		this.family = family;
-		return true;
 	}
 
 	/**
