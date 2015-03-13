@@ -24,8 +24,8 @@ public class VertexTest {
 	private Vertex var;
 	private Vertex dummy;
 	
-	private int absColor = 0;
-	private int varColor = 0;
+	private int absColor = 1;
+	private int varColor = 1;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -86,8 +86,7 @@ public class VertexTest {
 		var.setnext(null);
 		var.setfamily(null);
 		
-		
-		assertTrue(abs.canRenameFamily(0, 2));
+		assertTrue(abs.canRenameFamily(1, 2));
 		assertEquals(2, var.getColor());
 		assertEquals(2, abs.getColor());
 	}
