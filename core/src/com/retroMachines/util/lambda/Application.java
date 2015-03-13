@@ -58,7 +58,7 @@ public class Application extends Vertex {
 	 * applications
 	 */
 	@Override
-	public boolean canAlphaConversion() {
+	public boolean alphaConversion() {
 		// no alpha conversion
 		return false;
 	}

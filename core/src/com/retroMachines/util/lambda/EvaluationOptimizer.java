@@ -163,7 +163,7 @@ public class EvaluationOptimizer {
 		//reset List
 		ActionList = new LinkedList<ActionListElement>();
 		ActStep = 1;
-		EvalutionPointer.getnext().canAlphaConversion();
+		EvalutionPointer.getnext().alphaConversion();
 
 		Vertex readIn = EvalutionPointer.getnext().getReadIn();
 		if (readIn != null) {

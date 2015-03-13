@@ -454,7 +454,7 @@ public abstract class Vertex {
 	 * 
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
-	abstract public boolean canAlphaConversion();
+	abstract public boolean alphaConversion();
 
 	// ----------------------------------------
 	// -------- Animation Helper Methods ------

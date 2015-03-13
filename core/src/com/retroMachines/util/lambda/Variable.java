@@ -58,7 +58,7 @@ public class Variable extends Vertex {
 	 * variables
 	 */
 	@Override
-	public boolean canAlphaConversion() {
+	public boolean alphaConversion() {
 		// no alpha conversion
 		return false;
 	}

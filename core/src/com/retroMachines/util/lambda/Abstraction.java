@@ -63,7 +63,7 @@ public class Abstraction extends Vertex {
 	 * @return True if at least one ID has changed, false if no ID has changed.
 	 */
 	@Override
-	public boolean canAlphaConversion() {
+	public boolean alphaConversion() {
 		if (this.getnext() == null) {
 			return false;
 		}
