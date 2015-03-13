@@ -21,11 +21,6 @@ import com.retroMachines.util.Constants;
 public class RetroMan {
 
 	/**
-	 * The maximum velocity the character is allowed to have in x direction
-	 */
-	public static final float MAX_VELOCITY_X = 10f;
-
-	/**
 	 * The maximum velocity the character is allowed to have in y direction
 	 */
 	public static final float MAX_VELOCITY_Y = 15f;
