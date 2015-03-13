@@ -28,6 +28,7 @@ public class MainMenuScreen extends MenuScreen {
 	 * The Title of this Screen.
 	 */
 	public static final String TITLE = "RETROMACHINES";
+	
 	private final static float FONTSIZE3 = 3f;
 
 	private ExitDialog exitDialog;

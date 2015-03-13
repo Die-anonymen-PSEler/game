@@ -14,6 +14,7 @@ public class MachineElement extends GameElement {
 	/**
 	 * Creates a new instance of MachineElement and assigns a texture to it for
 	 * rendering purposes.
+	 * @param color of the machineElement
 	 */
 	public MachineElement(int colorId) {
 		super();

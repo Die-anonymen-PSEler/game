@@ -32,10 +32,6 @@ import com.retroMachines.util.Constants.ButtonStrings;
  */
 public class CreateProfileMenuScreen extends MenuScreen {
 
-	/**
-	 * The ProfileController which is needed for this screen.
-	 */
-
 	private final static float FONTSIZE_THREE = 3f;
 	private final static float FONTSIZE_TWO = 2f;
 	private final static float TEXTFIELDHEIGHTMULTIPLICATOR = 50f;

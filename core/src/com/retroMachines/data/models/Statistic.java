@@ -65,15 +65,26 @@ public class Statistic extends Model {
 	 * creates a new instance of Statistic and assigns all the variables to the
 	 * instance
 	 * 
-	 * @param playtime
-	 * @param levelsComplete
-	 * @param stepCounter
+	 * @param rowId
+	 *            the ID of the row where it should be stored
+	 * @param playtime time already played
+	 * @param levelsComplete how many levels are complete
+	 * @param stepCounter how many steps were made
 	 */
 	public Statistic(int rowId, int playtime, int levelsComplete,
 			int stepCounter) {
 		this(rowId, (float) playtime, levelsComplete, stepCounter);
 	}
 
+	/**
+	 * creates a new instance of Statistic and assigns all the variables to the
+	 * instance
+	 * 
+	 * @param rowId the ID of the row where it should be stored
+	 * @param playtime time already played
+	 * @param levelComplete how many levels are complete
+	 * @param stepCounter how many steps were made
+	 */
 	public Statistic(int rowId, float playtime, int levelComplete,
 			int stepCounter) {
 		super();

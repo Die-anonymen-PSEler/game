@@ -26,6 +26,9 @@ public abstract class GameElement extends Actor {
 	 */
 	protected int tileId;
 
+	/**
+	 * creates a new instance of GameElement
+	 */
 	public GameElement() {
 		setX(0f);
 		setY(0f);
@@ -40,19 +43,35 @@ public abstract class GameElement extends Actor {
 	 */
 	public abstract TiledMapTileSet getTileSet();
 
+	/**
+	 * returns the textureRegion of this class
+	 * @return the textureRegion
+	 */
 	public TextureRegion getTextureRegion() {
 		return textureRegion;
 	}
 
+	/**
+	 * sets the texture region
+	 * @param region the textureRegion it should be
+	 */
 	public void setTextureRegion(TextureRegion region) {
 		this.textureRegion = region;
 	}
 
+	/**
+	 * sets the tileId
+	 * @param i new tileId
+	 */
 	public void setTileId(int i) {
 		this.tileId = i;
 		textureRegion = getTileSet().getTile(i).getTextureRegion();
 	}
 
+	/**
+	 * returns the tileId
+	 * @return the tileId
+	 */
 	public int getTileId() {
 		return tileId;
 	}

@@ -48,6 +48,12 @@ public abstract class MenuScreen extends AbstractScreen {
 		inputMultiplexer.addProcessor(this);
 	}
 	
+	/**
+	 * makes the title of the screen
+	 * @param name name of the title
+	 * @param fontsize size of the font
+	 * @return the title made
+	 */
 	public Label makeTitle(String name, float fontsize) {
 		Label title = new Label(name, skin);
 		title.setWrap(true);
@@ -70,6 +76,7 @@ public abstract class MenuScreen extends AbstractScreen {
 
 	/**
 	 * Renders the Stage to the Screen.
+	 * @param delta deltatime
 	 */
 	@Override
 	public void render(float delta) {

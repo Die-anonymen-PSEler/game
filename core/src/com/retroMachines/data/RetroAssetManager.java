@@ -47,11 +47,23 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	private static Skin gameElementTexture;
 
 	/**
-	 * TiledMapTileSets
+	 * TiledMapTileSet for objects
 	 */
 	private static TiledMapTileSet objects;
+	/**
+	 * TiledMapTileSet for machines
+	 */
+	
 	private static TiledMapTileSet machines;
+	
+	/**
+	 * TiledMapTileSet for lights
+	 */
 	private static TiledMapTileSet lights;
+	
+	/**
+	 * TiledMapTileSet for depots
+	 */
 	private static TiledMapTileSet depots;
 
 	/**
@@ -115,7 +127,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * Loads a map from the Storage based on it's ID.
 	 * 
-	 * @param LevelId
+	 * @param levelId
 	 *            , the ID of the map to be loaded.
 	 * @return The map, it is loaded as a TiledMap.
 	 */
@@ -123,6 +135,10 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 		return MAPS.get(levelId);
 	}
 
+	/**
+	 * reload the map
+	 * @param levelId the level where the map should be reloaded
+	 */
 	public static void reloadMap(int levelId) {
 		MAPS.set(levelId,
 				new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
@@ -135,7 +151,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * instance of the music of the game.
 	 * 
-	 * @return
+	 * @return the music of the game
 	 */
 	public static Music getMusic() {
 		return music;
@@ -148,7 +164,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * skin instance for all buttons.
 	 * 
-	 * @return
+	 * @return the skin of the menus
 	 */
 	public static Skin getMenuSkin() {
 		return menuSkin;
@@ -158,6 +174,10 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----GameElements skins--------
 	// -------------------------------
 
+	/**
+	 * getter for the gameElement textures
+	 * @return the game element texture
+	 */
 	public static Skin getGameelementSkin() {
 		return gameElementTexture;
 	}
@@ -166,7 +186,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * retrieves a texture from the hashmap
 	 * 
 	 * @param path
-	 * @return
+	 * @return the texture asked for
 	 */
 	public static Texture getTexture(String path) {
 		if (TEXTURE_MAP.containsKey(path)) {

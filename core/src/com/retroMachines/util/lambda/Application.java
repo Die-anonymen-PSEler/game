@@ -20,8 +20,6 @@ public class Application extends Vertex {
 	/**
 	 * Creates a new instance of the Vertex class.
 	 * 
-	 * @param id
-	 *            ID to set.
 	 */
 	public Application() {
 		super(1);
@@ -34,10 +32,6 @@ public class Application extends Vertex {
 	 *            next Clone
 	 * @param family
 	 *            family Clone
-	 * @param type
-	 *            type of Clone
-	 * @param color
-	 *            color of Clone
 	 * @param familyColorlist
 	 *            familyColorList of Clone
 	 */
@@ -56,6 +50,7 @@ public class Application extends Vertex {
 	/**
 	 * this method does nothing because there is no alpha conversion for
 	 * applications
+	 * @return false
 	 */
 	@Override
 	public boolean alphaConversion() {
@@ -91,8 +86,7 @@ public class Application extends Vertex {
 	/**
 	 * Creates a clone of this Vertex without Next and his hole Family
 	 * 
-	 * @param next
-	 * @return
+	 * @return the cloned vertex
 	 */
 	@Override
 	public Vertex cloneMe() {

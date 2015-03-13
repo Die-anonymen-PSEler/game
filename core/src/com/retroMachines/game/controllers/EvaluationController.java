@@ -39,6 +39,12 @@ public class EvaluationController {
 	 */
 	private RetroLevel level;
 
+	/**
+	 * creates a new instance of EvaluationController
+	 * @param level the actual level
+	 * @param g instance of the actual game
+	 * @param gameControl gameController of the game
+	 */
 	public EvaluationController(RetroLevel level, RetroMachines g,
 			GameController gameControl) {
 		this.level = level;
@@ -58,34 +64,63 @@ public class EvaluationController {
 		EvaluationOptimizer.initialize(this);
 	}
 
+	/**
+	 * when the button for the next step is clicked
+	 */
 	public void stepEvaluationClicked() {
 		EvaluationOptimizer.nextStepClicked();
 	}
 
+	/**
+	 * when the button for the whole evaluation is clicked
+	 */
 	public void autoEvaluationClicked() {
 		EvaluationOptimizer.autoStepClicked();
 	}
-
+	
+	/**
+	 * returns the gameController of this class
+	 * @return gameController
+	 */
 	public GameController getGameController() {
 		return gameController;
 	}
 
+	/**
+	 * returns the level of this class
+	 * @return level
+	 */
 	public RetroLevel getLevel() {
 		return level;
 	}
 
+	/**
+	 * returns the lambdaTree of this class
+	 * @return lambdaTree
+	 */
 	public LevelTree getlambdaTree() {
 		return lambdaTree;
 	}
 
+	/**
+	 * starts the animation
+	 */
 	public void startAnimation() {
 		evaluationScreen.runAnimation();
 	}
 
+	/**
+	 * places a gameElement on the stage
+	 * @param g the gameElement to be placed
+	 */
 	public void setOnStage(GameElement g) {
 		evaluationScreen.setOnStage(g);
 	}
 
+	/**
+	 * returns the padding of evaluation screen
+	 * @return the padding of evaluation screen
+	 */
 	public Vector2 getEvaluationscreenPadding() {
 		return evaluationScreen.getScreenPadding();
 	}

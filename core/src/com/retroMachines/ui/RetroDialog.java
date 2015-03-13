@@ -17,8 +17,14 @@ import com.retroMachines.util.Constants.ButtonStrings;
  */
 public class RetroDialog extends Dialog {
 
+	/**
+	 * Default width
+	 */
 	protected final static float DIVIDEWIDTHDEFAULT = 1920f;
 
+	/**
+	 * Width of Dialog
+	 */
 	protected final static float DIALOGTEXTWIDTH = (10f / 17f);
 
 	/**
@@ -42,6 +48,11 @@ public class RetroDialog extends Dialog {
 	 */
 	private boolean autoClear;
 
+	/**
+	 * creates a new instance of RetroDialog
+	 * @param title title the dialog should have
+	 * @param msg the message of the dialog
+	 */
 	public RetroDialog(String title, String msg) {
 		super(title, RetroAssetManager.getMenuSkin());
 		this.skin = RetroAssetManager.getMenuSkin();

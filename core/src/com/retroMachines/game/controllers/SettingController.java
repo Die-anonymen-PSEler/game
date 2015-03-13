@@ -72,6 +72,13 @@ public class SettingController implements OnProfileChangedListener {
 		toBeNotified.add(toBeAdded);
 	}
 
+	/**
+	 * removes a class from the list of classes which must be notified if the
+	 * settings are changed.
+	 * 
+	 * @param listener
+	 *            the class to be removed
+	 */
 	public void removeListener(SettingsChangeListener listener) {
 		toBeNotified.remove(listener);
 	}
@@ -130,6 +137,11 @@ public class SettingController implements OnProfileChangedListener {
 		notifyListeners();
 	}
 
+	/**
+	 * changes the character
+	 * 
+	 * @return the number of the next character
+	 */
 	public int toggleCharacter() {
 		int currentId = settings.getSelectedCharacter();
 		if (currentId + 1 < Constants.TEXTURE_ANIMATION_NAMES.length) {
@@ -142,6 +154,11 @@ public class SettingController implements OnProfileChangedListener {
 		return settings.getSelectedCharacter();
 	}
 
+	/**
+	 * returns the ID of the current character
+	 * 
+	 * @return ID of current character
+	 */
 	public int getCurrentCharacterId() {
 		return settings.getSelectedCharacter();
 	}
@@ -176,6 +193,11 @@ public class SettingController implements OnProfileChangedListener {
 		this.settings = setting;
 	}
 
+	/**
+	 * checks whether the sound is enabled or not
+	 * 
+	 * @return true if the sound is enabled, false otherwise
+	 */
 	public boolean soundEnabled() {
 		if (settings.getVolume() < 1E-14 || !settings.isSoundOnOff()) {
 			return false;
@@ -186,17 +208,26 @@ public class SettingController implements OnProfileChangedListener {
 	/**
 	 * 
 	 * @param levelId
-	 * @return
+	 *            the level for which it should be checked
+	 * @return true if it's finished, false otherwise
 	 */
 	public boolean getTutorialFinished(int levelId) {
 		boolean value = settings.getTutorialFinished(levelId);
 		return value;
 	}
 
+	/**
+	 * sets whether the tutorial is finished or not
+	 * @param levelId the level for which this should be set
+	 * @param value true if it's finished, false otherwise
+	 */
 	public void setTutorialFinished(int levelId, boolean value) {
 		settings.setTutorialFinished(levelId, value);
 	}
 
+	/**
+	 * sets all tutorials to not finished
+	 */
 	public void resetTutorials() {
 		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
 			settings.setTutorialFinished(i, false);

@@ -101,69 +101,157 @@ public class Constants {
 	 * constants regarding the animation of the evaluation
 	 */
 
+	/**
+	 * The layer in where the depots are
+	 */
 	public static final int DEPOTLAYER_Y_DIF = 3;
 
+	/**
+	 * the width of gameElements
+	 */
 	public static final int GAMEELEMENT_WIDTH = 100;
 
+	/**
+	 * the width of the animation of gameElements
+	 */
 	public static final int GAMEELEMENT_ANIMATION_WIDTH = 90;
 
+	/**
+	 * the padding of gameElements
+	 */
 	public static final int GAMELEMENT_PADDING = 25;
 
+	/**
+	 * the input size of the abstraction
+	 */
 	public static final int ABSTRACTION_INPUT = 35;
 
+	/**
+	 * the output size of the abstraction
+	 */
 	public static final int ABSTRACTION_OUTPUT = 25;
 
+	/**
+	 * the layer in where the evaluation happens
+	 */
 	public static final int EVALUATION_DEFALT_LAYER_DIF = 1;
 
+	/**
+	 * padding of the evaluation screen to the x axis 
+	 */
 	public static final float EVALUATIONSCREEN_PADDING_X = 0.1f;
 
+	/**
+	 * padding of the evaluation screen to the y axis
+	 */
 	public static final float EVALUATIONSCREEN_PADDING_Y = 0.3f;
 
+	/**
+	 * ID of the depots
+	 */
 	public static final int DEPOT_ID = 8;
 
+	/**
+	 * scaling of the gameElements
+	 */
 	public static final float GAMEELEMENT_SCALING = 0.25f;
 
+	/**
+	 * the time how long the moving in an action is
+	 */
 	public static final float ACTION_MOVINGTIME = 2f;
 
+	/**
+	 * the time how long an action is
+	 */
 	public static final float ACTION_TIME = 1f;
 
+	/**
+	 * epsilon for float comparisons
+	 */
 	public static final float FLOAT_EPSILON = 1E-1f;
 
+	
+	
 	/**
 	 * the names of the buttons that are in the skin file
 	 * 
 	 * @author RetroFactory
 	 */
 	public static class ButtonStrings {
-
+		/**
+		 * home button
+		 */
 		public static final String HOME = "home";
 
+		/**
+		 * play button
+		 */
 		public static final String PLAY = "play";
 
+		/**
+		 * ok button
+		 */
 		public static final String OK = "ok";
 
+		/**
+		 * back button
+		 */
 		public static final String BACK = "back";
 
+		/**
+		 * abort button
+		 */
 		public static final String ABORT = "abort";
 
+		/**
+		 * left hand control button
+		 */
 		public static final String CONTROL_LEFT = "controlLeft";
 
+		/**
+		 * right hand control button
+		 */
 		public static final String CONTROL_RIGHT = "controlRight";
 
+		/**
+		 * next character button
+		 */
 		public static final String NEXT_CHAR = "nextChar";
 
+		/**
+		 * sound up button
+		 */
 		public static final String SOUND_UP = "soundUp";
 
+		/**
+		 * sound quieter button
+		 */
 		public static final String SOUND_DOWN = "soundDown";
 
+		/**
+		 * sound off button
+		 */
 		public static final String SOUND_OFF = "soundOff";
 
+		/**
+		 * locked button (e.g. level locked)
+		 */
 		public static final String LOCKED = "locked";
 
+		/**
+		 * change profile button
+		 */
 		public static final String CHANGE_PROFILE = "changeProfile";
 
+		/**
+		 * add profile button
+		 */
 		public static final String ADD_PROFILE = "addProfile";
 
+		/**
+		 * delete profile button
+		 */
 		public static final String DELETE_PROFILE = "deleteProfile";
 	}
 

@@ -87,17 +87,26 @@ public class GlobalVariables extends Model {
 	 * @param key
 	 *            the key under which the value should be stored.
 	 * @param value
-	 *            the value that wil be stored.
+	 *            the value that will be stored.
 	 */
 	public void put(String key, String value) {
 		pref.putString(key, value);
 		write();
 	}
 
+	/**
+	 * Stores a keyValue pair within this class. The int value is casted to a string.
+	 * @param key the key under which the value should be stored
+	 * @param value the value that will be stored.
+	 */
 	public void put(String key, int value) {
 		put(key, String.valueOf(value));
 	}
-
+	
+	/**
+	 * evaluates the ID of the next row that is free
+	 * @return the ID of the next free row
+	 */
 	public int nextFreeId() {
 		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
 			String value = pref.getString(String.format(KEY_SLOTS, i), "0");

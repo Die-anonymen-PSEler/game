@@ -20,8 +20,8 @@ public class Variable extends Vertex {
 	/**
 	 * Creates a new instance of the Vertex class.
 	 * 
-	 * @param id
-	 *            ID to set.
+	 * @param color
+	 *            color to set.
 	 */
 	public Variable(int color) {
 		super(color);
@@ -34,8 +34,6 @@ public class Variable extends Vertex {
 	 *            next Clone
 	 * @param family
 	 *            family Clone
-	 * @param type
-	 *            type of Clone
 	 * @param color
 	 *            color of Clone
 	 * @param familyColorlist
@@ -56,6 +54,7 @@ public class Variable extends Vertex {
 	/**
 	 * this method does nothing because there is no alpha conversion for
 	 * variables
+	 * @return false
 	 */
 	@Override
 	public boolean alphaConversion() {

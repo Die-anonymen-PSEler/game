@@ -58,6 +58,10 @@ public class ProfileController {
 		profileNames = getProfileNameIdMap();
 	}
 
+	/**
+	 * get all profileNames
+	 * @return a hashmap with key value pairs of the profilenames
+	 */
 	public HashMap<String, Integer> getProfileNameIdMap() {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		GlobalVariables gv = GlobalVariables.getSingleton();
@@ -73,6 +77,7 @@ public class ProfileController {
 
 	/**
 	 * Removes the currently active profile.
+	 * @param name the profile to be deleted
 	 */
 	public void deleteProfile(String name) {
 		int id = profileNames.get(name);
@@ -102,6 +107,8 @@ public class ProfileController {
 	/**
 	 * Checks if a given user name is valid, meaning it is not occupied by
 	 * another profile already.
+	 * @param username the name to be checked
+	 * @return true if it's valid, false otherwise
 	 */
 	public boolean canUserBeCreated(String username) {
 		if (profileNames.size() == MAX_PROFILE_NUMBER || username == null
@@ -118,6 +125,7 @@ public class ProfileController {
 
 	/**
 	 * Method for creating a new Profile.
+	 * @param name the name of the new profile
 	 */
 	public void createProfile(String name) {
 		if (!canUserBeCreated(name)) {
@@ -195,6 +203,10 @@ public class ProfileController {
 		profileChangeListeners.remove(listener);
 	}
 
+	/**
+	 * loads the last profile
+	 * @return true if it could be loaded, false otherwise
+	 */
 	public boolean loadLastProfile() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
 		int id = Integer
@@ -221,6 +233,10 @@ public class ProfileController {
 		}
 	}
 
+	/**
+	 * returns all profiles
+	 * @return a String array containing the names of all profiles
+	 */
 	public String[] getAllProfiles() {
 		String[] result = new String[profileNames.size()];
 		int i = 0;

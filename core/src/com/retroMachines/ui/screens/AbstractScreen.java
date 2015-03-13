@@ -55,7 +55,14 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 	 */
 	protected InputMultiplexer inputMultiplexer;
 
+	/**
+	 * width of the screen
+	 */
 	protected float screenWidth;
+	
+	/**
+	 * height of the screen
+	 */
 	protected float screenHeight;
 
 	/**
@@ -74,6 +81,7 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 
 	/**
 	 * Renders the Stage to the Screen.
+	 * @param delta time
 	 */
 	@Override
 	public void render(float delta) {

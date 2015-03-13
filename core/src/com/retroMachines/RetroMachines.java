@@ -49,6 +49,9 @@ public class RetroMachines extends Game {
 	 */
 	private StatisticController statisticController;
 
+	/**
+	 * creates a new instance of retroMachines
+	 */
 	public RetroMachines() {
 		super();
 		screenStack = new Stack<Screen>();

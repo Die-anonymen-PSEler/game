@@ -16,12 +16,24 @@ public class Profile extends Model {
 	 */
 	public static final String TABLE_NAME = "profiles";
 
+	/**
+	 * The key for the profile name
+	 */
 	private static final String KEY_PROFILE_NAME = "name";
 
+	/**
+	 * The key for the statistics
+	 */
 	private static final String KEY_STATISTIC = "statisticId";
 
+	/**
+	 * The key for the settingId
+	 */
 	private static final String KEY_SETTING = "settingId";
 
+	/**
+	 * destroyed profile
+	 */
 	private static final String DESTROYED_PROFILE = "destroyed_profile_does_not_exist_no_more";
 
 	/**
@@ -40,7 +52,7 @@ public class Profile extends Model {
 	private Statistic statistic;
 
 	/**
-	 * Creates a new profile and attempts to fetch the further data form the
+	 * Creates a new profile and attempts to fetch the further data from the
 	 * persistent background storage.
 	 * 
 	 * @param rowId
@@ -53,6 +65,13 @@ public class Profile extends Model {
 		fetch();
 	}
 
+	/**
+	 * Creates a new profile
+	 * @param i where it should be stored
+	 * @param name name of the profile
+	 * @param setting settings of the profile
+	 * @param statistic statistics of the profile
+	 */
 	public Profile(int i, String name, Setting setting, Statistic statistic) {
 		super();
 		rowId = i;

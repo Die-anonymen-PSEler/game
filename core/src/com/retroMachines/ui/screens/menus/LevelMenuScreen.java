@@ -138,6 +138,10 @@ public class LevelMenuScreen extends MenuScreen {
 		 */
 		private int id;
 
+		/**
+		 * creates a new instance of this class
+		 * @param id ID of the level
+		 */
 		public LevelUnlockedButtonClickListener(int id) {
 			this.id = id;
 		}

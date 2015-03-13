@@ -43,8 +43,7 @@ public class EvaluationScreen extends AbstractScreen {
 	private LevelTree tree;
 
 	/**
-	 * 
-	 * @return
+	 * stage for the buttons
 	 */
 	private Stage buttonStage;
 
@@ -157,6 +156,10 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 
+	/**
+	 * sets an element to the stage
+	 * @param g gameElement to be set
+	 */
 	public void setOnStage(GameElement g) {
 		stage.addActor(g);
 	}
@@ -225,6 +228,9 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 
+	/**
+	 * runs the animation for the evaluation
+	 */
 	public void runAnimation() {
 		LinkedList<ActionListElement> actionList = EvaluationOptimizer.getActionList();
 		for (int i = 0; i < actionList.size(); i++) {
@@ -233,6 +239,10 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 
+	/**
+	 * returns the padding of the screen
+	 * @return vector of screen padding
+	 */
 	public Vector2 getScreenPadding() {
 		return new Vector2(screenPadding);
 	}

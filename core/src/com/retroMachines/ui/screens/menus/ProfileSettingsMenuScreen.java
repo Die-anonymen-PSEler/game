@@ -41,6 +41,10 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 	private Image charImage;
 
+	/**
+	 * creates a new instance of this class
+	 * @param game the actual game
+	 */
 	public ProfileSettingsMenuScreen(RetroMachines game) {
 		super(game);
 	}

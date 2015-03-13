@@ -93,14 +93,29 @@ public class StatisticController implements OnProfileChangedListener {
 		statistic = game.getProfileController().getProfile().getStatistic();
 	}
 
+	/**
+	 * returns the playtime
+	 * 
+	 * @return the playtime
+	 */
 	public float getPlaytime() {
 		return statistic.getPlaytime();
 	}
 
+	/**
+	 * returns the step counter
+	 * 
+	 * @return number of steps made
+	 */
 	public int getStepCounter() {
 		return statistic.getStepCounter();
 	}
 
+	/**
+	 * returns the number of levels completed
+	 * 
+	 * @return the number of levels completed
+	 */
 	public int getLevelsCompleted() {
 		return statistic.getLevelsComplete();
 	}

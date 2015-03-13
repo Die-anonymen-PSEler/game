@@ -86,6 +86,8 @@ public class Setting extends Model {
 	 * Constructor which creates an Instance of Settings with all needed
 	 * Attributs
 	 * 
+	 * @param rowId
+	 *            the ID of the row where it should be stored
 	 * @param leftControl
 	 *            true if in Game the Controlbuttons of RetroMan changed Sites
 	 *            (Steering on the right not Left and Jump and Interact Button
@@ -242,11 +244,21 @@ public class Setting extends Model {
 		return this.selectedCharacter;
 	}
 
+	/**
+	 * checks whether the tutorial is finished or not 
+	 * @param levelId the level for which it should be checked
+	 * @return true if its finished, false otherwise
+	 */
 	public boolean getTutorialFinished(int levelId) {
 		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId),
 				false);
 	}
 
+	/**
+	 * sets whether the tutorial is finished or not
+	 * @param levelId the level where it should be set
+	 * @param value true if finished, false otherwise
+	 */
 	public void setTutorialFinished(int levelId, boolean value) {
 		pref.putBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId), value);
 		pref.flush();

@@ -13,6 +13,7 @@ public class MetalElement extends GameElement {
 
 	/**
 	 * Creates a new instance of MetalElement
+	 * @param the color of the metalElement
 	 */
 	public MetalElement(int colorId) {
 		super();
