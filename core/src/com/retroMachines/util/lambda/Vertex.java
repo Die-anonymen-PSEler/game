@@ -639,7 +639,7 @@ public abstract class Vertex {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Vertex) {
+		if (obj instanceof Vertex && obj.hashCode() == this.hashCode()) {
 			return obj.equals(this); 
 		}
 		return false;
