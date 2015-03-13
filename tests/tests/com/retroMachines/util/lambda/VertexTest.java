@@ -89,12 +89,6 @@ public class VertexTest {
 	}
 
 	@Test
-	public void testGetGameElement() {
-		// abstract Method
-		assertTrue(true);
-	}
-
-	@Test
 	public void testReplaceInFamily() {
 		Variable var1 = new Variable(2);
 		Variable var2 = new Variable(1);
@@ -124,33 +118,24 @@ public class VertexTest {
 	}
 
 	@Test
-	public void testGetClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCloneMe() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCloneFamily() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testGetVertexList() {
-		fail("Not yet implemented");
+		abs.setfamily(var);
+		LinkedList<Vertex> expectedResult = new LinkedList<Vertex>();
+		expectedResult.add(var);
+		expectedResult.add(abs);
+		assertEquals(expectedResult, abs.getVertexList());
 	}
 
 	@Test
 	public void testUpdateColorList() {
-		fail("Not yet implemented");
+		LinkedList<Integer> clonedList = new LinkedList<Integer>();
+		clonedList.add(2);
+		abs.setfamily(var);
+		abs.updateColorList(clonedList, 1);
+		assertEquals(1, abs.getFamilyColorList().size());
+		assertEquals(clonedList.getFirst(), abs.getFamilyColorList().getFirst());
+		assertEquals(1, var.getFamilyColorList().size());
+		assertEquals(clonedList.getFirst(), var.getFamilyColorList().getFirst());
 	}
 
 	@Test
