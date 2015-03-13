@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
-import com.retroMachines.game.controllers.EvaluationController;
 
 @RunWith(GdxTestRunner.class)
 public class VertexTest {
