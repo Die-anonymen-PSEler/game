@@ -640,7 +640,7 @@ public abstract class Vertex {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vertex) {
-			return this.equals((Vertex) obj); 
+			return obj.equals(this); 
 		}
 		return false;
 		
