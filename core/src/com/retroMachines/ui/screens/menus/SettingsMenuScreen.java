@@ -24,8 +24,8 @@ import com.retroMachines.util.Constants.ButtonStrings;
  */
 public class SettingsMenuScreen extends MenuScreen {
 
-	private final static float PADDING30 = 30f;
-	private final static float FONTSIZE2_5 = 2.5f;
+	private final static float PADDING_THIRTY = 30f;
+	private final static float FONTSIZE_TWO_FIVE = 2.5f;
 	private final static float HALFTITLEWIDTH = (1f / 3.6f);
 	private final static float TITLEWIDTH = (1f / 1.8f);
 	private final static int SLIDERMIN = 0;
@@ -62,7 +62,7 @@ public class SettingsMenuScreen extends MenuScreen {
 		// Make Title
 		Label title = new Label("Einstellungen", skin);
 		title.setWrap(true);
-		title.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
 		// Make Buttons
@@ -97,28 +97,28 @@ public class SettingsMenuScreen extends MenuScreen {
 
 		// Make Sound Table
 		Table soundTable = new Table(skin);
-		soundTable.add(buttonSoundOff).padLeft(screenWidth / PADDING30)
+		soundTable.add(buttonSoundOff).padLeft(screenWidth / PADDING_THIRTY)
 				.width(screenWidth * ONE_NINTH);
-		soundTable.add(buttonQuieter).padLeft(screenWidth / PADDING30)
+		soundTable.add(buttonQuieter).padLeft(screenWidth / PADDING_THIRTY)
 				.width(screenWidth * ONE_NINTH);
-		soundTable.add(volumeSlider).padLeft(screenWidth / PADDING30)
+		soundTable.add(volumeSlider).padLeft(screenWidth / PADDING_THIRTY)
 				.width(screenWidth * HALF);
-		soundTable.add(buttonLouder).padLeft(screenWidth / PADDING30)
-				.padRight(screenWidth / PADDING30)
+		soundTable.add(buttonLouder).padLeft(screenWidth / PADDING_THIRTY)
+				.padRight(screenWidth / PADDING_THIRTY)
 				.width(screenWidth * ONE_NINTH);
 
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
 		table.add(title)
 				.width(screenWidth * TITLEWIDTH)
 				.right()
 				.padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH))
 				.expandX().row();
 		table.add(soundTable).padTop(screenHeight / DEFAULTPADDING).expandY()
-				.expandX().colspan(COLSPANx2).row();
+				.expandX().colspan(COLSPAN_X_TWO).row();
 		table.add(buttonProfileSettings).right()
 				.padRight(screenWidth * ONE_NINTH)
-				.padBottom(screenWidth / DEFAULTPADDINGx2).colspan(COLSPANx2);
+				.padBottom(screenWidth / DEFAULTPADDING_X_TWO).colspan(COLSPAN_X_TWO);
 
 		stage.addActor(table);
 

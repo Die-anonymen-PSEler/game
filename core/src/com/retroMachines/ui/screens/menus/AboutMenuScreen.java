@@ -18,7 +18,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  */
 public class AboutMenuScreen extends MenuScreen {
 
-	private final static float FONTSIZE2_5 = 2.0f;
+	private final static float FONTSIZE_TWO_FIVE = 2.0f;
 	private final static float CENTERTITLE = (1f / 4f);
 
 	private float textWidth;
@@ -31,24 +31,24 @@ public class AboutMenuScreen extends MenuScreen {
 	public static final String INFO = "Der Lambda-Kalkuel ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.";
 
-	public static final String GAMEINFO_1 = "Metallobjekt: \n"
+	public static final String GAMEINFO_ONE = "Metallobjekt: \n"
 			+ "Entspricht der Variable im Lambda-Kalkül, kann von der Maschine vearbeitet werden";
 
-	public static final String GAMEINFO_2 = "Maschine: \n"
+	public static final String GAMEINFO_TWO = "Maschine: \n"
 			+ "Entspricht der Abstraktion im Lambda-Kalkül, kann andere Objekte verarbeiten";
 
-	public static final String GAMEINFO_3 = "Ampel: \n"
+	public static final String GAMEINFO_THREE = "Ampel: \n"
 			+ "Entspricht der Applikation im Lambda-Kalkül, dient zum zusammenfassen (klammern) mehrerer Objekte,"
 			+ " soadass sie als ein Objekt verarbeitet werden künnen";
 
-	public static final String GAMEINFO_4 = "Depot: \n"
+	public static final String GAMEINFO_FOUR = "Depot: \n"
 			+ "Hierin künnen Objekte Platziert werden. die anschlieüend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
 
-	public static final String GAMEINFO_5 = "Verarbeitungsbereich: \n"
+	public static final String GAMEINFO_FIVE = "Verarbeitungsbereich: \n"
 			+ "Der Verarbeitungsbereich eines Objektes sind alle Depots"
 			+ " überhalb seines Depots, die durch die nach oben führende Rohre erreicht werden können.";
 
-	public static final String GAMEINFO_6 = "Eingabe / EingabeBereich: \n"
+	public static final String GAMEINFO_SIX = "Eingabe / EingabeBereich: \n"
 			+ "Der Eingabebereich eines Objektes,"
 			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Rohre) sowie dessen kompleter Verarbeitungsbereich. ";
 
@@ -73,62 +73,62 @@ public class AboutMenuScreen extends MenuScreen {
 		// Make Title
 		Label title1 = new Label("Information", skin);
 		title1.setWrap(true);
-		title1.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title1.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title1.setAlignment(Align.center);
 
 		// Make Text
-		Label gameInfoText1 = new Label(GAMEINFO_1, skin);
+		Label gameInfoText1 = new Label(GAMEINFO_ONE, skin);
 		gameInfoText1.setWrap(true);
-		gameInfoText1.setFontScale((FONTSIZE2_5 * screenWidth)
+		gameInfoText1.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		gameInfoText1.setAlignment(Align.center);
 
 		// Make Text
-		Label gameInfoText2 = new Label(GAMEINFO_2, skin);
+		Label gameInfoText2 = new Label(GAMEINFO_TWO, skin);
 		gameInfoText2.setWrap(true);
-		gameInfoText2.setFontScale((FONTSIZE2_5 * screenWidth)
+		gameInfoText2.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		gameInfoText2.setAlignment(Align.center);
 
 		// Make Text
-		Label gameInfoText3 = new Label(GAMEINFO_3, skin);
+		Label gameInfoText3 = new Label(GAMEINFO_THREE, skin);
 		gameInfoText3.setWrap(true);
-		gameInfoText3.setFontScale((FONTSIZE2_5 * screenWidth)
+		gameInfoText3.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		gameInfoText3.setAlignment(Align.center);
 
 		// Make Text
-		Label gameInfoText4 = new Label(GAMEINFO_4, skin);
+		Label gameInfoText4 = new Label(GAMEINFO_FOUR, skin);
 		gameInfoText4.setWrap(true);
-		gameInfoText4.setFontScale((FONTSIZE2_5 * screenWidth)
+		gameInfoText4.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		gameInfoText4.setAlignment(Align.center);
 
 		// Make Text
-		Label gameInfoText5 = new Label(GAMEINFO_5, skin);
+		Label gameInfoText5 = new Label(GAMEINFO_FIVE, skin);
 		gameInfoText5.setWrap(true);
-		gameInfoText5.setFontScale((FONTSIZE2_5 * screenWidth)
+		gameInfoText5.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		gameInfoText5.setAlignment(Align.center);
 
 		// Make Text
-		Label gameInfoText6 = new Label(GAMEINFO_6, skin);
+		Label gameInfoText6 = new Label(GAMEINFO_SIX, skin);
 		gameInfoText6.setWrap(true);
-		gameInfoText6.setFontScale((FONTSIZE2_5 * screenWidth)
+		gameInfoText6.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		gameInfoText6.setAlignment(Align.center);
 
 		// Make Text
 		Label infoText = new Label(INFO, skin);
 		infoText.setWrap(true);
-		infoText.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		infoText.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		infoText.setAlignment(Align.center);
 
 		// Make Text
 		Label aboutText = new Label(CREDIT, skin);
 		aboutText.setWrap(true);
 		aboutText
-				.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+				.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		aboutText.setAlignment(Align.center);
 
 		// Make ScrollPane
@@ -166,14 +166,14 @@ public class AboutMenuScreen extends MenuScreen {
 		Button buttonReturn = new Button(skin, ButtonStrings.BACK);
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
 		table.add(title1).width(screenWidth * HALF).right()
 				.padRight((screenWidth * HALF) - (screenWidth * CENTERTITLE))
 				.expandX().row();
 		table.add(aboutScroll).expandY().colspan(2)
-				.padTop(screenHeight / DEFAULTPADDINGx4)
-				.padBottom(screenHeight / DEFAULTPADDINGx4).row();
+				.padTop(screenHeight / DEFAULTPADDING_X_FOUR)
+				.padBottom(screenHeight / DEFAULTPADDING_X_FOUR).row();
 
 		stage.addActor(table);
 

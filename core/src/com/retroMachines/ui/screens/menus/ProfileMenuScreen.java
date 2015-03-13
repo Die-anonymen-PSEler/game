@@ -27,8 +27,8 @@ import com.retroMachines.util.Constants.ButtonStrings;
 public class ProfileMenuScreen extends MenuScreen implements
 		OnProfileChangedListener {
 
-	private final static float FONTSIZE3 = 3f;
-	private final static float FONTSIZE2_5 = 2.5f;
+	private final static float FONTSIZE_THREE = 3f;
+	private final static float FONTSIZE_TWO_FIVE = 2.5f;
 
 	/**
 	 * 
@@ -67,7 +67,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 		// Make Title
 		Label title = new Label("Profile", skin);
 		title.setWrap(true);
-		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setFontScale((FONTSIZE_THREE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
 		// Make Profile List
@@ -75,7 +75,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 		profileList.setItems(profileController.getAllProfiles());
 		profileList.setSelected(profileController.getProfileName());
 
-		profileList.getStyle().font.setScale((FONTSIZE2_5 * screenWidth)
+		profileList.getStyle().font.setScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		Table scrollTable = new Table(skin);
 		scrollTable.add(profileList);
@@ -115,15 +115,15 @@ public class ProfileMenuScreen extends MenuScreen implements
 				.width(screenWidth * ONE_NINTH);
 
 		// Make Table
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
 		table.add(title).width(screenWidth * (2 * ONE_FIFTH)).right()
 				.padRight((screenWidth * HALF) - (screenWidth * ONE_FIFTH))
 				.expandX().row();
-		table.add(profileScroll).expandY().colspan(COLSPANx2)
+		table.add(profileScroll).expandY().colspan(COLSPAN_X_TWO)
 				.padTop(screenHeight / DEFAULTPADDING)
 				.padBottom(screenHeight / DEFAULTPADDING).row();
-		table.add(buttons).colspan(COLSPANx2).row();
+		table.add(buttons).colspan(COLSPAN_X_TWO).row();
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);

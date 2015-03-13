@@ -78,11 +78,11 @@ public class LevelMenuScreen extends MenuScreen {
 			if (i % 5 == 4 && i > 0) {
 				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE)
 						.height(screenHeight / LEVELBUTTONSIZE)
-						.pad(screenHeight / DEFAULTPADDINGx4).row();
+						.pad(screenHeight / DEFAULTPADDING_X_FOUR).row();
 			} else {
 				levelTable.add(ilevel).width(screenWidth / LEVELBUTTONSIZE)
 						.height(screenHeight / LEVELBUTTONSIZE)
-						.pad(screenHeight / DEFAULTPADDINGx4);
+						.pad(screenHeight / DEFAULTPADDING_X_FOUR);
 			}
 		}
 
@@ -92,12 +92,12 @@ public class LevelMenuScreen extends MenuScreen {
 		buttonReturn.addListener(new ReturnButtonClickListener());
 
 		// Make Table
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
 		table.add(title).width(screenWidth * (2 * ONE_8th)).right()
 				.padRight((screenWidth * HALF) - (screenWidth * ONE_8th))
 				.expandX().row();
-		table.add(levelTable).colspan(COLSPANx2).expandY();
+		table.add(levelTable).colspan(COLSPAN_X_TWO).expandY();
 
 		stage.addActor(table);
 

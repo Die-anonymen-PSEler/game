@@ -90,12 +90,12 @@ public class MainMenuScreen extends MenuScreen {
 
 		// Left Part of Menu
 		Table mainPart = new Table(skin);
-		mainPart.add(buttonExit).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left().row();
-		mainPart.add(title).padTop(screenHeight / DEFAULTPADDINGx2).expandX()
+		mainPart.add(buttonExit).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left().row();
+		mainPart.add(title).padTop(screenHeight / DEFAULTPADDING_X_TWO).expandX()
 				.right().row();
 		mainPart.add(buttonPlay)
-				.padTop(screenHeight / DEFAULTPADDINGx4)
+				.padTop(screenHeight / DEFAULTPADDING_X_FOUR)
 				.padLeft(
 						(HALF * screenWidth) - (ONE_FIFTH * screenHeight)
 								- (buttonPlay.getWidth() * HALF)).left().row();

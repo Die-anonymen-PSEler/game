@@ -272,56 +272,56 @@ public class GameScreen extends AbstractScreen implements
 		buttonEvaluation.setColor(1, 1, 1, 0.66f);
 
 		// Make Table
-		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
-		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padRight(screenWidth / DEFAULTPADDINGx4).right().row();
+		table.add(buttonMenu).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
+		table.add(buttonEvaluation).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padRight(screenWidth / DEFAULTPADDING_X_FOUR).right().row();
 		table.add().expand().row();
 
 		innerButtonTable.add(buttonHint)
-				.padRight(screenWidth / DEFAULTPADDINGx4)
+				.padRight(screenWidth / DEFAULTPADDING_X_FOUR)
 				.padLeft(screenWidth / DEFAULTPADDING)
-				.padBottom(screenWidth / DEFAULTPADDINGx2);
+				.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 		innerButtonTable.add(buttonQuest)
 				.padRight(screenWidth / DEFAULTPADDING)
-				.padLeft(screenWidth / DEFAULTPADDINGx4)
-				.padBottom(screenWidth / DEFAULTPADDINGx2);
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR)
+				.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 
 		// Add to Table check LeftMode is activated
 		if (leftMode) {
-			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx4)
-					.padLeft(screenWidth / DEFAULTPADDINGx2)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDING_X_FOUR)
+					.padLeft(screenWidth / DEFAULTPADDING_X_TWO)
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDING)
-					.padLeft(screenWidth / DEFAULTPADDINGx4)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+					.padLeft(screenWidth / DEFAULTPADDING_X_FOUR)
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 			buttonTable.add(innerButtonTable);
 			buttonTable.add(buttonLeft)
-					.padRight(screenWidth / DEFAULTPADDINGx4)
+					.padRight(screenWidth / DEFAULTPADDING_X_FOUR)
 					.padLeft(screenWidth / DEFAULTPADDING)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 			buttonTable.add(buttonRight)
-					.padRight(screenWidth / DEFAULTPADDINGx2)
-					.padLeft(screenWidth / DEFAULTPADDINGx4)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+					.padRight(screenWidth / DEFAULTPADDING_X_TWO)
+					.padLeft(screenWidth / DEFAULTPADDING_X_FOUR)
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 		} else {
 			buttonTable.add(buttonLeft)
-					.padRight(screenWidth / DEFAULTPADDINGx4)
-					.padLeft(screenWidth / DEFAULTPADDINGx2)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+					.padRight(screenWidth / DEFAULTPADDING_X_FOUR)
+					.padLeft(screenWidth / DEFAULTPADDING_X_TWO)
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 			buttonTable.add(buttonRight).padRight(screenWidth / DEFAULTPADDING)
-					.padLeft(screenWidth / DEFAULTPADDINGx4)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+					.padLeft(screenWidth / DEFAULTPADDING_X_FOUR)
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 			buttonTable.add(innerButtonTable);
-			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDINGx4)
+			buttonTable.add(buttonB).padRight(screenWidth / DEFAULTPADDING_X_FOUR)
 					.padLeft(screenWidth / DEFAULTPADDING)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
-			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDINGx2)
-					.padLeft(screenWidth / DEFAULTPADDINGx4)
-					.padBottom(screenWidth / DEFAULTPADDINGx2);
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
+			buttonTable.add(buttonA).padRight(screenWidth / DEFAULTPADDING_X_TWO)
+					.padLeft(screenWidth / DEFAULTPADDING_X_FOUR)
+					.padBottom(screenWidth / DEFAULTPADDING_X_TWO);
 		}
 
-		table.add(buttonTable).colspan(COLSPANx2);
+		table.add(buttonTable).colspan(COLSPAN_X_TWO);
 		stage.addActor(table);
 
 		inputMultiplexer.addProcessor(stage);
@@ -689,7 +689,7 @@ public class GameScreen extends AbstractScreen implements
 			buttonBack.addListener(new BackToGameClickListener());
 
 			// Table setting and add
-			dialogTable.add(header).colspan(COLSPANx2).expandX().top()
+			dialogTable.add(header).colspan(COLSPAN_X_TWO).expandX().top()
 					.padTop(screenHeight / DEFAULTPADDING)
 					.padBottom(screenHeight / DEFAULTPADDING).row();
 			dialogTable.add(buttonHome).padLeft(screenWidth / DEFAULTPADDING);

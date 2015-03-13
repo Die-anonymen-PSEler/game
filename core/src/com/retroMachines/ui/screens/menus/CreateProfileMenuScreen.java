@@ -36,8 +36,8 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 * The ProfileController which is needed for this screen.
 	 */
 
-	private final static float FONTSIZE3 = 3f;
-	private final static float FONTSIZE2 = 2f;
+	private final static float FONTSIZE_THREE = 3f;
+	private final static float FONTSIZE_TWO = 2f;
 	private final static float TEXTFIELDHEIGHTMULTIPLICATOR = 50f;
 	private final static float TEXTFIELDTABLEWIDTH = 2f;
 	private final static float TEXTFIELDTABLEHEIGHT = 120f;
@@ -90,13 +90,13 @@ public class CreateProfileMenuScreen extends MenuScreen {
 
 		// Make Title
 		Label title = new Label("Create Profile", skin);
-		title.setFontScale((FONTSIZE3 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setFontScale((FONTSIZE_THREE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
 		// Profile Name
 		Label profileName = new Label("Name", skin);
 		profileName
-				.setFontScale((FONTSIZE2 * screenWidth) / DIVIDEWIDTHDEFAULT);
+				.setFontScale((FONTSIZE_TWO * screenWidth) / DIVIDEWIDTHDEFAULT);
 		profileName.setAlignment(Align.center);
 
 		// Subtitle LeftiMode
@@ -163,8 +163,8 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		// ImageTable
 		Table imageTable = new Table(skin);
 		imageTable.add(buttonNextChar).left()
-				.padRight(screenWidth / DEFAULTPADDINGx4);
-		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADDINGx2)
+				.padRight(screenWidth / DEFAULTPADDING_X_FOUR);
+		imageTable.add(charImage).padTop(screenHeight / DEFAULTPADDING_X_TWO)
 				.height(screenHeight * IMAGEHEIGHT)
 				.width(screenWidth * IMAGEWIDTH);
 
@@ -176,18 +176,18 @@ public class CreateProfileMenuScreen extends MenuScreen {
 				.height(TEXTFIELDTABLEHEIGHT
 						* ((screenWidth) / DIVIDEWIDTHDEFAULT))
 				.width(screenWidth / TEXTFIELDTABLEWIDTH)
-				.padTop(screenHeight / DEFAULTPADDINGx2).row();
+				.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
 		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDING)
 				.row();
 		rightTable.add(leftiTable).expandX()
-				.padTop(screenHeight / DEFAULTPADDINGx2).row();
+				.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
 
 		// MainTable
-		table.add(title).expandX().colspan(COLSPANx2)
+		table.add(title).expandX().colspan(COLSPAN_X_TWO)
 				.padTop(screenHeight / DEFAULTPADDING).row();
 		table.add(imageTable).width(screenWidth * IMAGETABLEWIDTH);
 		table.add(rightTable).width(screenWidth * RIGHTTABLEWIDTH).row();
-		table.add(buttonTable).colspan(COLSPANx2)
+		table.add(buttonTable).colspan(COLSPAN_X_TWO)
 				.padTop(screenHeight / DEFAULTPADDING).row();
 
 		stage.addActor(table);

@@ -20,9 +20,9 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 
 	protected final static float DEFAULTBUTTONSIZE = 10f;
 	protected final static float DEFAULTPADDING = 25f;
-	protected final static float DEFAULTPADDINGx2 = DEFAULTPADDING * 2;
-	protected final static float DEFAULTPADDINGx4 = DEFAULTPADDING * 4;
-	protected final static float DEFAULTBUTTONSIZEx2 = DEFAULTBUTTONSIZE * 2;
+	protected final static float DEFAULTPADDING_X_TWO = DEFAULTPADDING * 2;
+	protected final static float DEFAULTPADDING_X_FOUR = DEFAULTPADDING * 4;
+	protected final static float DEFAULTBUTTONSIZE_X_TWO = DEFAULTBUTTONSIZE * 2;
 	protected final static float DEFAULTKNOBSIZE = 15f;
 	protected final static float DIVIDEWIDTHDEFAULT = 1920f;
 	protected final static float DIVIDEHEIGHTDEFAULT = 1080f;
@@ -33,7 +33,7 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 	protected final static float ONE_THIRD = (1 / 3f);
 	protected final static float TWO_THIRD = (2 / 3f);
 	protected final static float ONE_NINTH = (1 / 9f);
-	protected final static int COLSPANx2 = 2;
+	protected final static int COLSPAN_X_TWO = 2;
 
 	/**
 	 * The stage containing all the actors that belong within the screen.

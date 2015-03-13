@@ -29,7 +29,7 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * Default constructor which starts a simple instance of AssetManager.
 	 */
-	public final static RetroAssetManager manager = new RetroAssetManager();
+	public static final RetroAssetManager MANAGER = new RetroAssetManager();
 
 	/**
 	 * The design of the menus is stored here.
@@ -57,17 +57,17 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * Contains all file references to the files that need to be loaded.
 	 */
-	public static final String[] assetNames = {};
+	public static final String[] ASSET_NAMES = {};
 
 	/**
 	 * list containing all maps for fast access.
 	 */
-	private static final LinkedList<TiledMap> maps = new LinkedList<TiledMap>();
+	private static final LinkedList<TiledMap> MAPS = new LinkedList<TiledMap>();
 
 	/**
 	 * a hashmap with (String,Texture) pairs.
 	 */
-	private static final HashMap<String, Texture> textureMap = new HashMap<String, Texture>();
+	private static final HashMap<String, Texture> TEXTURE_MAP = new HashMap<String, Texture>();
 
 	/**
 	 * pattern where the character images are stored.
@@ -79,9 +79,9 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * displayed Only those assets are allowed here.
 	 */
 	public static void initializePreLoading() {
-		textureMap.put(Constants.BACKGROUND_PATH,
+		TEXTURE_MAP.put(Constants.BACKGROUND_PATH,
 				new Texture(Gdx.files.internal("Background.png")));
-		manager.finishLoading();
+		MANAGER.finishLoading();
 	}
 
 	/**
@@ -89,27 +89,27 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * drawing.
 	 */
 	public static void initializeWhileLoading() {
-		manager.load("music/musicfile.ogg", Music.class);
+		MANAGER.load("music/musicfile.ogg", Music.class);
 		TextureAtlas atlas = new TextureAtlas("skins/LambdaGame.pack");
 		TextureAtlas gameElementsAtlas = new TextureAtlas(
 				"Gameelements/Gameelements.pack");
-		manager.finishLoading();
+		MANAGER.finishLoading();
 		menuSkin = new Skin(Gdx.files.internal("skins/DefaultLambdaGame.json"),
 				atlas);
 		gameElementTexture = new Skin(gameElementsAtlas);
 		TmxMapLoader loader = new TmxMapLoader();
 		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
-			maps.add(loader.load("maps/Level" + i + ".tmx"));
+			MAPS.add(loader.load("maps/Level" + i + ".tmx"));
 		}
-		setTiledMapTileSets(maps.getFirst());
+		setTiledMapTileSets(MAPS.getFirst());
 		music = Gdx.audio.newMusic(Gdx.files.internal("music/musicfile.ogg"));
 		for (int i = 0; i < Constants.TEXTURE_ANIMATION_NAMES.length; i++) {
-			textureMap.put(
+			TEXTURE_MAP.put(
 					Constants.TEXTURE_ANIMATION_NAMES[i],
 					new Texture(String.format(CHARACTER_PATH_PATTERN,
 							Constants.TEXTURE_ANIMATION_NAMES[i])));
 		}
-		manager.finishLoading();
+		MANAGER.finishLoading();
 	}
 
 	/**
@@ -120,11 +120,11 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return The map, it is loaded as a TiledMap.
 	 */
 	public static TiledMap getMap(int levelId) {
-		return maps.get(levelId);
+		return MAPS.get(levelId);
 	}
 
 	public static void reloadMap(int levelId) {
-		maps.set(levelId,
+		MAPS.set(levelId,
 				new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
 	}
 
@@ -169,8 +169,8 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * @return
 	 */
 	public static Texture getTexture(String path) {
-		if (textureMap.containsKey(path)) {
-			return textureMap.get(path);
+		if (TEXTURE_MAP.containsKey(path)) {
+			return TEXTURE_MAP.get(path);
 		} else {
 			throw new IllegalArgumentException(
 					"That path has not been loaded? Might wanna change that "

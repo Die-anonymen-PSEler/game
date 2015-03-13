@@ -11,7 +11,7 @@ import com.retroMachines.util.Constants;
 
 public class StatisticMenuScreen extends MenuScreen {
 
-	private final static float FONTSIZE2_5 = 2.5f;
+	private final static float FONTSIZE_TWO_FIVE = 2.5f;
 	private final static float HALFTITLEWIDTH = (1f / 4f);
 	private final static float TITLEWIDTH = (1f / 2f);
 	private final static float ONE_THIRD = (1f / 3f);
@@ -42,37 +42,37 @@ public class StatisticMenuScreen extends MenuScreen {
 		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
-		Label title = super.makeTitle("Statistik", FONTSIZE2_5);
+		Label title = super.makeTitle("Statistik", FONTSIZE_TWO_FIVE);
 
 		// Statistikkram
 		Label stepsLeft = new Label("Schritte:", skin);
 		stepsLeft
-				.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+				.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		stepsLeft.setAlignment(Align.right);
 
 		Label timeLeft = new Label("Spielzeit:", skin);
-		timeLeft.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		timeLeft.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		timeLeft.setAlignment(Align.right);
 
 		Label completedLevelLeft = new Label("Abgeschlossene Level:", skin);
 		completedLevelLeft.setWrap(true);
-		completedLevelLeft.setFontScale((FONTSIZE2_5 * screenWidth)
+		completedLevelLeft.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		completedLevelLeft.setAlignment(Align.center);
 
 		steps = new Label("Text", skin);
-		steps.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		steps.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		steps.setAlignment(Align.left);
 		steps.setText(statisticController.getStepCounter() + "");
 
 		playTime = new Label("Text", skin);
-		playTime.setFontScale((FONTSIZE2_5 * screenWidth) / DIVIDEWIDTHDEFAULT);
+		playTime.setFontScale((FONTSIZE_TWO_FIVE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		playTime.setAlignment(Align.left);
 		playTime.setText(((int) statisticController.getPlaytime())
 				/ Constants.SECONDS_IN_MINUTE + "");
 
 		completedLevel = new Label("Text", skin);
-		completedLevel.setFontScale((FONTSIZE2_5 * screenWidth)
+		completedLevel.setFontScale((FONTSIZE_TWO_FIVE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		completedLevel.setAlignment(Align.left);
 		completedLevel.setText(statisticController.getLevelsCompleted() + "");
@@ -102,16 +102,16 @@ public class StatisticMenuScreen extends MenuScreen {
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDINGx2)
-				.padLeft(screenWidth / DEFAULTPADDINGx4).left();
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
 		table.add(title)
 				.width(screenWidth * TITLEWIDTH)
 				.right()
 				.padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH))
 				.expandX().row();
-		table.add(statisticTable).colspan(COLSPANx2)
-				.padBottom(screenWidth / DEFAULTPADDINGx4).row();
-		table.add().expandY().colspan(COLSPANx2);
+		table.add(statisticTable).colspan(COLSPAN_X_TWO)
+				.padBottom(screenWidth / DEFAULTPADDING_X_FOUR).row();
+		table.add().expandY().colspan(COLSPAN_X_TWO);
 
 		stage.addActor(table);
 

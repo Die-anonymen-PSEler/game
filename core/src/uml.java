@@ -58,5 +58,5 @@ class UMLOptions {
  * 
  * @texignore
  */
-public class uml {
+public class Uml {
 }

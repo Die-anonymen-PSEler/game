@@ -22,6 +22,9 @@ public class GlobalVariables extends Model {
 	 */
 	public static final String KEY_LAST_USED_PROFILE = "lastUsedProfile";
 
+	/**
+	 * the key for the slots
+	 */
 	public static final String KEY_SLOTS = "Slot_%d";
 
 	/**
@@ -102,6 +105,7 @@ public class GlobalVariables extends Model {
 			try {
 				result = Integer.parseInt(value);
 			} catch (NumberFormatException e) {
+				e.getMessage();
 				result = -1;
 			}
 			if (result == 0) {

@@ -29,7 +29,7 @@ public class Constants {
 	/**
 	 * String array containing path to all possible characters.
 	 */
-	public static final String[] pathCharacter = {
+	public static final String[] PATH_CHARACTER = {
 	// TO-DO
 	};
 
