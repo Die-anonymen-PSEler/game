@@ -298,7 +298,7 @@ public class RetroMan {
 	}
 
 	public GameElement layDownElement() {
-		GameElement g = element;
+		GameElement gameElement = element;
 		element = null;
 		switch (state) {
 		case STANDINGE:
@@ -310,7 +310,7 @@ public class RetroMan {
 		default:
 			break;
 		}
-		return g;
+		return gameElement;
 	}
 
 	/**

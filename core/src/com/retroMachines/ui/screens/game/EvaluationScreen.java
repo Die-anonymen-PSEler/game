@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -228,8 +227,8 @@ public class EvaluationScreen extends AbstractScreen {
 	public void runAnimation() {
 		LinkedList<ActionListElement> actionList = EvaluationOptimizer.getActionList();
 		for (int i = 0; i < actionList.size(); i++) {
-			ActionListElement a = actionList.get(i);
-			a.getGameElement().addAction(a.getAction());
+			ActionListElement actListEle = actionList.get(i);
+			actListEle.getGameElement().addAction(actListEle.getAction());
 		}
 	}
 

@@ -25,32 +25,32 @@ public class AboutMenuScreen extends MenuScreen {
 	/**
 	 * The developers of RetroMachine. The information about the lambda.
 	 */
-	public static final String CREDIT = "by RetroMachines: \n \n"
-			+ " Luca Becker\n Henrike Hardt\n Larissa Schmid\n Adrian Schulte\n Maik Wiesner";
+	public static final String CREDIT = String.format("by RetroMachines: %n %n"
+			+ " Luca Becker%n Henrike Hardt%n Larissa Schmid%n Adrian Schulte%n Maik Wiesner");
 
-	public static final String INFO = "Der Lambda-Kalkuel ist ein Element der Informatik. Es ist eine formale "
-			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.";
+	public static final String INFO = String.format("Der Lambda-Kalkuel ist ein Element der Informatik. Es ist eine formale "
+			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.");
 
-	public static final String GAMEINFO_ONE = "Metallobjekt: \n"
-			+ "Entspricht der Variable im Lambda-Kalkül, kann von der Maschine vearbeitet werden";
+	public static final String GAMEINFO_ONE = String.format("Metallobjekt: %n"
+			+ "Entspricht der Variable im Lambda-Kalkuel, kann von der Maschine vearbeitet werden");
 
-	public static final String GAMEINFO_TWO = "Maschine: \n"
-			+ "Entspricht der Abstraktion im Lambda-Kalkül, kann andere Objekte verarbeiten";
+	public static final String GAMEINFO_TWO = String.format("Maschine: %n"
+			+ "Entspricht der Abstraktion im Lambda-Kalkuel, kann andere Objekte verarbeiten");
 
-	public static final String GAMEINFO_THREE = "Ampel: \n"
-			+ "Entspricht der Applikation im Lambda-Kalkül, dient zum zusammenfassen (klammern) mehrerer Objekte,"
-			+ " soadass sie als ein Objekt verarbeitet werden künnen";
+	public static final String GAMEINFO_THREE = String.format("Ampel: %n"
+			+ "Entspricht der Applikation im Lambda-Kalkuel, dient zum zusammenfassen (klammern) mehrerer Objekte,"
+			+ " soadass sie als ein Objekt verarbeitet werden koennen");
 
-	public static final String GAMEINFO_FOUR = "Depot: \n"
-			+ "Hierin künnen Objekte Platziert werden. die anschlieüend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
+	public static final String GAMEINFO_FOUR = String.format("Depot: %n"
+			+ "Hierin kuennen Objekte Platziert werden. die anschlieueend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)");
 
-	public static final String GAMEINFO_FIVE = "Verarbeitungsbereich: \n"
+	public static final String GAMEINFO_FIVE = String.format("Verarbeitungsbereich: %n"
 			+ "Der Verarbeitungsbereich eines Objektes sind alle Depots"
-			+ " überhalb seines Depots, die durch die nach oben führende Rohre erreicht werden können.";
+			+ " ueberhalb seines Depots, die durch die nach oben fuehrende Rohre erreicht werden koennen.");
 
-	public static final String GAMEINFO_SIX = "Eingabe / EingabeBereich: \n"
+	public static final String GAMEINFO_SIX = String.format("Eingabe / EingabeBereich: %n"
 			+ "Der Eingabebereich eines Objektes,"
-			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Rohre) sowie dessen kompleter Verarbeitungsbereich. ";
+			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Rohre) sowie dessen kompleter Verarbeitungsbereich. ");
 
 	/**
 	 * The constructor to create a new instance of the AboutMenuScreen.

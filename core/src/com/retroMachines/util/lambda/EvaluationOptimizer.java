@@ -71,30 +71,30 @@ public class EvaluationOptimizer {
 
 	public static void moveAndScaleAnimationWithoutDelay(Vector2 pos,
 			GameElement x, boolean nextStep) {
-		Action a;
+		Action action;
 
 		if (nextStep) {
-			a = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
+			action = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
 					Constants.ACTION_TIME), Actions.scaleTo(
 					Constants.GAMEELEMENT_SCALING,
 					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
 					Actions.run(new NextStep(x)));
 		} else {
-			a = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
+			action = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
 					Constants.ACTION_TIME), Actions.scaleTo(
 					Constants.GAMEELEMENT_SCALING,
 					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
 					Actions.run(new DestroyElement(x)));
 		}
-		actionList.addLast(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
 			boolean nextStep) {
-		Action a;
+		Action action;
 
 		if (nextStep) {
-			a = Actions
+			action = Actions
 					.sequence(Actions.delay(Constants.ACTION_TIME), Actions
 							.parallel(Actions.moveTo(pos.x, pos.y,
 									Constants.ACTION_TIME), Actions.scaleTo(
@@ -103,7 +103,7 @@ public class EvaluationOptimizer {
 									Constants.ACTION_TIME)), Actions
 							.run(new NextStep(x)));
 		} else {
-			a = Actions
+			action = Actions
 					.sequence(Actions.delay(Constants.ACTION_TIME), Actions
 							.parallel(Actions.moveTo(pos.x, pos.y,
 									Constants.ACTION_TIME), Actions.scaleTo(
@@ -112,40 +112,40 @@ public class EvaluationOptimizer {
 									Constants.ACTION_TIME)), Actions
 							.run(new DestroyElement(x)));
 		}
-		actionList.addLast(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void scaleAnimation(GameElement x, boolean nextStep) {
-		Action a;
+		Action action;
 		if (nextStep) {
-			a = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
+			action = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
 					.scaleTo(Constants.GAMEELEMENT_SCALING,
 							Constants.GAMEELEMENT_SCALING,
 							Constants.ACTION_TIME), Actions
 					.run(new NextStep(x)));
 		} else {
-			a = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
+			action = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
 					.scaleTo(Constants.GAMEELEMENT_SCALING,
 							Constants.GAMEELEMENT_SCALING,
 							Constants.ACTION_TIME), Actions
 					.run(new DestroyElement(x)));
 		}
-		actionList.addLast(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void moveAnimation(Vector2 pos, GameElement x,
 			boolean nextStep) {
-		Action a;
+		Action action;
 
 		if (nextStep) {
-			a = Actions.sequence(
+			action = Actions.sequence(
 					Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
 					Actions.run(new NextStepWithoutRemove()));
 
 		} else {
-			a = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
+			action = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
 		}
-		actionList.addLast(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, action));
 	}
 
 	public static void runNextStep() {
@@ -154,9 +154,9 @@ public class EvaluationOptimizer {
 
 	public static void delayAndRunNextStepAnim(GameElement x) {
 
-		Action a = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
+		Action action = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
 				Actions.run(new NextStepWithoutRemove()));
-		actionList.addLast(new ActionListElement(x, a));
+		actionList.addLast(new ActionListElement(x, action));
 	}
 
 	private static void step1AlphaConversion() {
