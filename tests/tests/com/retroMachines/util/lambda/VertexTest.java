@@ -1,9 +1,6 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.LinkedList;
 
@@ -116,8 +113,14 @@ public class VertexTest {
 		abs.setnext(var);
 		LinkedList<Vertex> result = var1.replaceInFamily(abs);
 		assertEquals(2, result.size());
-		assertEquals(var2, result.get(0));
-		assertEquals(var4, result.get(1));
+		assertEquals(var2.getColor(), result.get(0).getColor());
+		assertEquals(var2.getType(), result.get(0).getType());
+		assertEquals(var4.getColor(), result.get(1).getColor());
+		assertEquals(var4.getType(), result.get(1).getType());
+		assertNotSame(var2, result.get(0));
+		assertNotSame(var2, result.get(1));
+		assertNotSame(var4, result.get(0));
+		assertNotSame(var4, result.get(1));
 	}
 
 	@Test
