@@ -96,7 +96,7 @@ public class GameController {
 		levelBegin = System.currentTimeMillis();
 		game.setScreen(gameScreen);
 		if (level.hasTutorial()
-				&& !settingController.isTheTutorialFinished(levelId)) {
+				&& !settingController.isTutorialFinished(levelId)) {
 			gameScreen.showDialogChain(level.getDialogChain());
 			settingController.setTutorialFinished(levelId, true);
 		}

@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -39,6 +40,10 @@ public class CreateProfileMenuScreenTest {
 	private static final Vector2 OK_BUTTON = new Vector2(BUTTON_TABLE_ID, 1);
 	
 	private static final Vector2 ABORT_BUTTON = new Vector2(BUTTON_TABLE_ID, 0);
+	
+	private static final Vector3 LEFT_BUTTON = new Vector3(RIGHT_TABLE_ID, 3, 0);
+	
+	private static final Vector3 RIGHT_BUTTON = new Vector3(RIGHT_TABLE_ID, 3, 1);
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -97,12 +102,50 @@ public class CreateProfileMenuScreenTest {
 		game.getProfileController().deleteProfile(name);
 	}
 	
+	@Test
+	public void testCreateProfileWithLeftMode() {
+		clickButton((int) LEFT_BUTTON.x, (int) LEFT_BUTTON.y, (int) LEFT_BUTTON.z);
+		Table table = (Table) screen.table.getChildren().get((int)PROFILE_NAME_INPUT_FIELD.x);
+		TextField textField = (TextField) table.getChildren().get((int) PROFILE_NAME_INPUT_FIELD.y);
+		String name = "asdfasdfay";
+		textField.setText(name);
+		clickButton((int) OK_BUTTON.x, (int) OK_BUTTON.y);
+		assertTrue("sollte das neue profile enthalten", game.getProfileController().getProfileNameIdMap().containsKey(name));
+		assertTrue("sollten im left mode sein", game.getSettingController().isLeftMode());
+		game.getProfileController().deleteProfile(name);
+	}
+	
+	@Test
+	public void testCreateProfileWithRightMode() {
+		clickButton((int) RIGHT_BUTTON.x, (int) RIGHT_BUTTON.y, (int) RIGHT_BUTTON.z);
+		Table table = (Table) screen.table.getChildren().get((int)PROFILE_NAME_INPUT_FIELD.x);
+		TextField textField = (TextField) table.getChildren().get((int) PROFILE_NAME_INPUT_FIELD.y);
+		String name = "asdfasdfay";
+		textField.setText(name);
+		clickButton((int) OK_BUTTON.x, (int) OK_BUTTON.y);
+		assertTrue("sollte das neue profile enthalten", game.getProfileController().getProfileNameIdMap().containsKey(name));
+		assertFalse("sollten im left mode sein", game.getSettingController().isLeftMode());
+		game.getProfileController().deleteProfile(name);
+	}
+	
 	private void clickButton(int tableId, int idWithinTable) {
 		Actor[] actors = screen.table.getChildren().items;
 		assertTrue("sollte der main table sein", actors[tableId].getClass() == Table.class);
 		Table table = (Table) actors[tableId];
 		assertTrue("sollte ein button (profile) sein", table.getChildren().items[idWithinTable].getClass() == Button.class);
 		Button buttonProfile = (Button) table.getChildren().get(idWithinTable);
+		ClickListener listener = (ClickListener) buttonProfile.getListeners().get(1);
+		listener.clicked(null, 0, 0);
+	}
+	
+	private void clickButton(int firstLevel, int secondLevel, int thirdLevel) {
+		Actor[] actors = screen.table.getChildren().items;
+		assertTrue("sollte der main table sein", actors[firstLevel].getClass() == Table.class);
+		Table table = (Table) actors[firstLevel];
+		assertTrue("sollte ein table sein", table.getChildren().get(secondLevel).getClass() == Table.class);
+		table = (Table) table.getChildren().get(secondLevel);
+		assertTrue("sollte ein button sein", table.getChildren().items[thirdLevel].getClass() == Button.class);
+		Button buttonProfile = (Button) table.getChildren().get(thirdLevel);
 		ClickListener listener = (ClickListener) buttonProfile.getListeners().get(1);
 		listener.clicked(null, 0, 0);
 	}

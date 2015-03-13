@@ -212,7 +212,7 @@ public class SettingController implements OnProfileChangedListener {
 	 *            the level for which it should be checked
 	 * @return true if it's finished, false otherwise
 	 */
-	public boolean isTheTutorialFinished(int levelId) {
+	public boolean isTutorialFinished(int levelId) {
 		boolean value = settings.isTutorialFinished(levelId);
 		return value;
 	}

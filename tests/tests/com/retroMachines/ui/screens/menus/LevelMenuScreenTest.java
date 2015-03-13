@@ -57,7 +57,8 @@ public class LevelMenuScreenTest {
 	}
 	
 	@Test
-	public void testLevelNotUnlocked() {
+	public void testLevelLocked() {
+		clickTextButton(LEVEL_BUTTON_TABLE_ID, 1);
 		clickTextButton(LEVEL_BUTTON_TABLE_ID, 1);
 		assertEquals("sollten im selben screen sein", screen, game.getScreen());
 	}

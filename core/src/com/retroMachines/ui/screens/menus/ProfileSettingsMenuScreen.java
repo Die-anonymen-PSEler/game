@@ -126,9 +126,9 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADDING);
 		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADDING);
 
-		Table leftiTable = new Table(skin);
-		leftiTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADDING);
-		leftiTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADDING);
+		Table leftTable = new Table(skin);
+		leftTable.add(buttonLeftMode).padRight(screenWidth / DEFAULTPADDING);
+		leftTable.add(buttonRightMode).padLeft(screenWidth / DEFAULTPADDING);
 
 		// ImageTable
 		Table imageTable = new Table(skin);
@@ -150,7 +150,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		rightTable.add(profileName).padTop(screenHeight / DEFAULTPADDING).row();
 		rightTable.add(steeringTitle).padTop(screenHeight / DEFAULTPADDING_X_TWO)
 				.row();
-		rightTable.add(leftiTable).expandX()
+		rightTable.add(leftTable).expandX()
 				.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
 		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH)
 				.padTop(screenHeight / DEFAULTPADDING_X_FOUR).row();

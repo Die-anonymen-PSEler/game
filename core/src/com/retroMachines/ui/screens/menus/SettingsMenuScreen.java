@@ -212,7 +212,6 @@ public class SettingsMenuScreen extends MenuScreen {
 	private class ProfileSettingsButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO Get Profile ID
 			game.setScreen(new ProfileSettingsMenuScreen(game));
 		}
 	}

@@ -76,7 +76,7 @@ public class SettingControllerTest {
 			assertFalse(setting.isTutorialFinished(i));
 		}
 		for (int i = 1; i <= Constants.MAX_LEVEL_ID; i++) {
-			assertFalse(settingController.isTheTutorialFinished(i));
+			assertFalse(settingController.isTutorialFinished(i));
 		}
 	}
 	
@@ -130,7 +130,7 @@ public class SettingControllerTest {
 	public void testSetTutorialFinished() {
 		boolean value = !setting.isTutorialFinished(1);
 		settingController.setTutorialFinished(1, value);
-		assertTrue("sollten übereinstimmen", value == settingController.isTheTutorialFinished(1));
+		assertTrue("sollten übereinstimmen", value == settingController.isTutorialFinished(1));
 	}
 	
 	private class MockListener implements SettingsChangeListener {
