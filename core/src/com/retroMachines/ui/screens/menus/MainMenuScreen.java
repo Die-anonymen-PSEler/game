@@ -133,10 +133,6 @@ public class MainMenuScreen extends MenuScreen {
 		return false;
 	}
 
-	private void disposeMusic() {
-		// music.dispose();
-	}
-
 	/*
 	 * Button Listeners
 	 */
@@ -144,7 +140,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class PlayButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new LevelMenuScreen(game));
 		}
 	}
@@ -152,7 +147,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class SettingButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new SettingsMenuScreen(game));
 		}
 	}
@@ -160,7 +154,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class AboutButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new AboutMenuScreen(game));
 		}
 	}
@@ -168,7 +161,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class StatisticsButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new StatisticMenuScreen(game));
 		}
 	}
@@ -176,7 +168,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class ProfileMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			game.setScreen(new ProfileMenuScreen(game));
 		}
 	}
@@ -184,7 +175,6 @@ public class MainMenuScreen extends MenuScreen {
 	private class ExitClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			disposeMusic();
 			if (exitDialog != null) {
 				exitDialog.show(stage);
 			} else {

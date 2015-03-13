@@ -147,7 +147,7 @@ public abstract class Vertex {
 
 			if (!this.getType().equals(Constants.RetroStrings.APPLICATION_TYPE)) {
 				if (this.getColor() == oldColor) {
-					this.setColor(newColor);
+					updateMap(this.color, newColor);
 					int offset = (Integer) this.getGameElement().getTileSet()
 							.getProperties().get("firstgid") - 1;
 					this.getGameElement().setTileId(newColor + offset);
@@ -714,17 +714,6 @@ public abstract class Vertex {
 	public boolean canSetfamily(Vertex family) {
 		this.family = family;
 		return true;
-	}
-
-	/**
-	 * Setter for the Color.
-	 * 
-	 * @param color
-	 *            Color that is to set.
-	 */
-	public void setColor(int color) {
-		updateMap(this.color, color);
-		this.color = color;
 	}
 
 	/**
