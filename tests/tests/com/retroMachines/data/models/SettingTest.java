@@ -1,6 +1,7 @@
 package com.retroMachines.data.models;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -59,5 +60,27 @@ public class SettingTest {
 		setting.setTutorialFinished(0, true);
 		assertTrue(setting.isTutorialFinished(0));
 		setting.setTutorialFinished(0, false);
+	}
+	
+	@Test
+	public void testUnusedMethods() {
+		new Setting(TEST_ID).hasRecord();
+	}
+	
+	@Test
+	public void testSetVolume() {
+		Setting setting = new Setting(TEST_ID);
+		try {
+			setting.setVolume(-0.1f);
+			fail("exception expected");
+		} catch(IllegalArgumentException e) {
+			// was expected
+		}
+		try {
+			setting.setVolume(1.1f);
+			fail("exception expected");
+		} catch(IllegalArgumentException e) {
+			// was expected
+		}
 	}
 }

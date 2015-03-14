@@ -60,4 +60,9 @@ public class StatisticTest {
 		assertTrue("falsche level completed", statistic2.getLevelsComplete() == 9000);
 		statistic2.setLevelsComplete(TEST_LEVELCOMPLETED);
 	}
+	
+	@Test
+	public void testUnusedMethods() {
+		new Statistic(TEST_ID).hasRecord();
+	}
 }

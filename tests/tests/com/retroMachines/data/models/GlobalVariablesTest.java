@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.models.GlobalVariables;
+import com.retroMachines.game.controllers.ProfileController;
 
 @RunWith(GdxTestRunner.class)
 public class GlobalVariablesTest {
@@ -38,6 +39,27 @@ public class GlobalVariablesTest {
 		gv.put(KEY_LASTUSEDPROFILE, "abc123");
 		assertTrue("falsche daten zurück geschrieben", gv.get(KEY_LASTUSEDPROFILE).equals("abc123"));
 		gv.put(KEY_LASTUSEDPROFILE, VALUE_LASTUSEDPROFILE);
+	}
+	
+	@Test
+	public void testUnusedMethods() {
+		GlobalVariables gv = GlobalVariables.getSingleton();
+		gv.hasRecord();
+		gv.fetch();
+		gv.destroy();
+	}
+	
+	@Test
+	public void testNextFreeId() {
+		GlobalVariables gv = GlobalVariables.getSingleton();
+		gv.nextFreeId();
+		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
+			gv.put(String.format(GlobalVariables.KEY_SLOTS, i), "Ein String");
+		}
+		assertEquals("sollte -1 sein", -1, gv.nextFreeId());
+		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
+			gv.put(String.format(GlobalVariables.KEY_SLOTS, i), 0);
+		}
 	}
 
 }
