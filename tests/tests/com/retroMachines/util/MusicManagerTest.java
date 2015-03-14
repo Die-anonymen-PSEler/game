@@ -34,6 +34,11 @@ public class MusicManagerTest {
 	}
 	
 	@Test
+	public void testStopMusic() {
+		manager.pauseMusic();
+	}
+	
+	@Test
 	public void testListener() {
 		SettingController controller = ((RetroMachineMock) Gdx.app.getApplicationListener()).getSettingController();
 		controller.setVolume(0.3f);

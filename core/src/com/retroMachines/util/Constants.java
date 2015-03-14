@@ -7,7 +7,7 @@ package com.retroMachines.util;
  * @author RetroFactory
  * 
  */
-public class Constants {
+public abstract class Constants {
 
 	/**
 	 * The name of the background image file
@@ -178,7 +178,7 @@ public class Constants {
 	 * 
 	 * @author RetroFactory
 	 */
-	public static class ButtonStrings {
+	public abstract static class ButtonStrings {
 		/**
 		 * home button
 		 */
@@ -261,7 +261,7 @@ public class Constants {
 	 * @author lucabecker
 	 * 
 	 */
-	public static class RetroStrings {
+	public abstract static class RetroStrings {
 		/**
 		 * TileSet name in TiledMap
 		 */
