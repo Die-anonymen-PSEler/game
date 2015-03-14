@@ -311,7 +311,11 @@ public class Abstraction extends Vertex {
 			return;
 		} else {
 			// update Gameelement Postions after Gameelement of this was deleted
-			this.getfamily().updateGameelementPosition(0, -1);
+			if(this.getfamily() != null) {
+				// In Theorie Abstraction has at all time a family object .....
+				this.getfamily().updateGameelementPosition(0, -1);
+			}
+
 		}
 
 	}

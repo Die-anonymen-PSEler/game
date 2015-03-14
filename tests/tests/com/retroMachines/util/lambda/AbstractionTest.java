@@ -1,6 +1,10 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import java.util.LinkedList;
 
@@ -10,9 +14,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.util.Constants;
 
 @RunWith(GdxTestRunner.class)
 public class AbstractionTest {
@@ -82,18 +88,15 @@ public class AbstractionTest {
 		abs.updatePointerAfterBetaReduction();
 		abs.setnext(null);
 		abs.updatePointerAfterBetaReduction();
-		//@Adrian: die updatePointerAfterBetaReduction schmeißt ne NullPointer, wenn next null ist.
-		//an der Stelle pointer.getnext.setnext...
 	}
 
 	@Test
 	public void testGetEvaluationResult() {
 		abs.setnext(null);
-		assertNull(abs.getEvaluationResult());
+		assertEquals(abs, abs.getEvaluationResult());
 		abs.setnext(new Abstraction(3));
 		assertNull(abs.getEvaluationResult());
-		fail(); //test funktioniert richtig, eingefügt damit der nachfolgende Kommentar nicht verloren geht
-		//getEvaluationResult liefert immer Null zurück, ist das so gewollt?
+		//Get Evaluation result  gibt nur null zur�ck when abs.next  == null alles supi
 	}
 
 	@Test
@@ -138,7 +141,21 @@ public class AbstractionTest {
 
 	@Test
 	public void testReorganizePositions() {
-		abs.reorganizePositions(null, null);
+		//reset action list
+		EvaluationOptimizer.initialize(null);
+		abs.setPosition(new Vector2(1f,1f));
+		abs.setfamily(new Application());
+		Application a = new Application();
+		a.setfamily(new Application());
+		a.setnext(new Application());
+		abs.setnext(a);
+		abs.reorganizePositions(new Vector2(2, 2) , new Vector2(3f, 0f));
+		// position should not yet updated
+		assertEquals(0f, abs.getGameElement().getPosition().x, Constants.FLOAT_EPSILON);
+		assertEquals(0f, abs.getGameElement().getPosition().y, Constants.FLOAT_EPSILON);
+		assertEquals(5, EvaluationOptimizer.getActionList().size());
+		assertEquals(abs.getGameElement(), EvaluationOptimizer.getActionList().getLast().getGameElement());
+		
 	}
 
 	@Test

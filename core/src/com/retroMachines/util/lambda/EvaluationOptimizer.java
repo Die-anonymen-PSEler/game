@@ -53,18 +53,20 @@ public class EvaluationOptimizer {
 
 	public static void initialize(EvaluationController e) {
 		AnimationListner = new LinkedList<EvaluationController>();
+		ActionList = new LinkedList<ActionListElement>();
 		EvaluationController = e;
 		ResultPointer = new Dummy();
 		OffsetX = 0;
 		NextStep = false;
 		AutoStep = false;
 		EvalutionPointer = new Dummy();
-		EvalutionPointer.setnext(EvaluationController.getlambdaTree()
-				.getStart());
+		if(EvaluationController != null) {
+			EvalutionPointer.setnext(EvaluationController.getlambdaTree()
+					.getStart());
+		}
 		ActStep = 0;
 		ResultTree = null;
-		VertexList = null;
-		ActionList = new LinkedList<ActionListElement>();
+		VertexList = null;	
 	}
 
 	// -----Methods-------
@@ -313,7 +315,10 @@ public class EvaluationOptimizer {
 	}
 
 	private static void runNextEvaluationStep() {
-
+		if(EvaluationController == null) {
+			Gdx.app.log(Constants.LOG_TAG, "EvaluationOptimizer not initialized");
+			return;
+		}
 		switch (ActStep) {
 		case 0:
 			step1AlphaConversion();

@@ -22,7 +22,7 @@ import com.retroMachines.game.gameelements.GameElement;
 public class VariableTest {
 	
 	private Variable var;
-	private static int varColor = 0;
+	private static int varColor = 1;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -118,7 +118,7 @@ public class VariableTest {
 	
 	@Test
 	public void testUpdatePositionsAfterBetaReduction() {
-		assertEquals(var, var.getEvaluationResult());
+		var.updatePositionsAfterBetaReduction();
 	}
 	
 	@Test
