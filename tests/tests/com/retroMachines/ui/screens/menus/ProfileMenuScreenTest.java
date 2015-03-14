@@ -105,6 +105,14 @@ public class ProfileMenuScreenTest {
 		assertTrue("sollte im main menu sein", game.getScreen().getClass() == MainMenuScreen.class);
 	}
 	
+	@Test
+	public void testNoProfileSelected() {
+		String profileName = game.getProfileController().getProfileName();
+		selectProfile(null);
+		clickButton((int) SELECT_BUTTON.x, (int) SELECT_BUTTON.y);
+		assertEquals("sollte das profil nicht wechseln", profileName, game.getProfileController().getProfileName());
+	}
+	
 	private void clickButton(int tableId, int idWithinTable) {
 		Actor[] actors = screen.table.getChildren().items;
 		assertTrue("sollte der main table sein", actors[tableId].getClass() == Table.class);
@@ -120,6 +128,6 @@ public class ProfileMenuScreenTest {
 		Table table = (Table) pane.getChildren().get(0);
 		@SuppressWarnings("unchecked")
 		List<String> list = (List<String>) table.getChildren().get(0);
-		list.setSelected("ABC");
+		list.setSelected(name);
 	}
 }
