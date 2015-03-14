@@ -29,16 +29,16 @@ public class LevelTreeTest {
 	public void testEqualsLevelTree() {
 		//tree.start is null at this point
 		LevelTree comp = new LevelTree(null);
-		assertTrue(tree.equals(comp));
+		assertTrue(tree.equalsTree(comp));
 		//tree.start is still now
 		Vertex v = new Application();
 		comp.setStart(v);
 		//tree.equals(comp) should return false
-		assertFalse(tree.equals(comp));
+		assertFalse(tree.equalsTree(comp));
 		//testing equals method with null tree
-		assertFalse("Null Tree nicht beachtet", tree.equals(null));
+		assertFalse("Null Tree nicht beachtet", tree.equalsTree(null));
 		tree.setStart(v);
-		assertTrue("equals schlägt fehlt", tree.equals(comp));
+		assertTrue("equals schlägt fehlt", tree.equalsTree(comp));
 	}
 
 	@Test

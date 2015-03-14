@@ -10,14 +10,25 @@ import java.util.LinkedList;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import com.retroMachines.GdxTestRunner;
+import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.gameelements.GameElement;
 
+@RunWith(GdxTestRunner.class)
 public class VariableTest {
 	
 	private Variable var;
 	private static int varColor = 0;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		RetroAssetManager.initializePreLoading();
+		RetroAssetManager.initializeWhileLoading();
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -48,16 +59,29 @@ public class VariableTest {
 	
 	@Test
 	public void testCloneMe() {
-		var.cloneMe();
-		fail("Not Yet Implemented");
-		//TODO: implement
+		Variable fam = new Variable(1);
+		var.setfamily(fam);
+		Vertex clone = var.cloneMe();
+		assertEquals(clone.getfamily(), fam);
+		var.setfamily(null);
+		clone = var.cloneMe();
+		assertNull(clone.getfamily());
 	}
 	
 	@Test
 	public void testCloneFamily() {
-		var.cloneFamily();
-		fail("Not Yet Implemented");
-		//TODO: implement
+		Variable next = new Variable(1);
+		Variable fam = new Variable(2);
+		var.setnext(next);
+		var.setfamily(fam);
+		Vertex clone = var.cloneFamily();
+		assertEquals(clone.getnext(), var.getnext());
+		assertEquals(clone.getfamily(), var.getfamily());
+		var.setfamily(null);
+		var.setnext(null);
+		clone = var.cloneFamily();
+		assertNull(clone.getfamily());
+		assertNull(clone.getnext());
 	}
 	
 	@Test
@@ -73,25 +97,18 @@ public class VariableTest {
 	@Test 
 	public void testreorganizePositions() {
 		var.reorganizePositions(null, null);
-		//TODO: coolen assert überlegen
 	}
 	
 	@Test
 	public void testDeleteAfterBetaReduction() {
 		var.deleteAfterBetaReduction();
-		//TODO: coolen assert überlegen
 	}
 	
 	@Test
 	public void testUpdatePointerAfterBetaReduction() {
-		var.updatePointerAfterBetaReduction();
-		//TODO: coolen assert überlegen
-	}
-	
-	@Test
-	public void testUpdatePointerAfterBetaReduction1() {
-		Vertex v = var.updatePointerAfterBetaReduction();
-		assertEquals(v, var.getnext());
+		Vertex next = var.updatePointerAfterBetaReduction();
+		assertEquals(var.getnext(), next);
+		
 	}
 	
 	@Test
@@ -101,12 +118,11 @@ public class VariableTest {
 	
 	@Test
 	public void testUpdatePositionsAfterBetaReduction() {
-		var.updatePositionsAfterBetaReduction();
-		//void methode, sollte einfach nur keine Exception werfen
+		assertEquals(var, var.getEvaluationResult());
 	}
 	
 	@Test
 	public void testGetClone() {
-		Vertex v = var.getClone();
+		assertEquals(var.getClone().getColor(), var.getColor());
 	}
 }

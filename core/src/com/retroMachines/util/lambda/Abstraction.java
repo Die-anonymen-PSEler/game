@@ -15,7 +15,7 @@ import com.retroMachines.util.Constants;
  */
 public class Abstraction extends Vertex {
 
-	private boolean nextNull;
+	//private boolean nextNull;
 
 	// --------------------------
 	// --------Constructor-------
@@ -155,7 +155,7 @@ public class Abstraction extends Vertex {
 				} else {
 					this.setnext(null);
 				}
-				nextNull = false;
+				//nextNull = false;
 				EvaluationOptimizer.delayAndRunNextStepAnim(this
 						.getGameElement());
 				return returnList;
@@ -165,7 +165,7 @@ public class Abstraction extends Vertex {
 				return null;
 			}
 		} else {
-			nextNull = true;
+			//nextNull = true;
 			EvaluationOptimizer.runNextStep();
 			return new LinkedList<Vertex>();
 		}
@@ -275,7 +275,7 @@ public class Abstraction extends Vertex {
 	@Override
 	public void deleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		if (nextNull) {
+		if (getnext() == null) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 			return;
 		}
@@ -285,7 +285,7 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public Vertex updatePointerAfterBetaReduction() {
-		if (nextNull) {
+		if (getnext() == null) {
 			return this.getnext();
 		}
 		
@@ -294,7 +294,7 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public Vertex getEvaluationResult() {
-		if (nextNull) {
+		if (getnext() == null) {
 			return this;
 		} else {
 			// Returns null because the Abstraction is no Part of Evaluation
@@ -306,7 +306,7 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public void updatePositionsAfterBetaReduction() {
-		if (nextNull) {
+		if (getnext() == null) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 			return;
 		} else {
