@@ -10,6 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.ui.RetroDialogChain.DialogChainFinishedListener;
@@ -50,6 +53,13 @@ public class RetroDialogChainTest {
 		Stage s = new Stage();
 		chain.show(s);
 		assertTrue("sollte nur einen dialog enthalten", s.getActors().size == 1);
+		assertTrue("sollte ein dialog sein", s.getActors().get(0) instanceof Dialog);
+		Dialog dialog = (Dialog) s.getActors().get(0);
+		assertTrue("sollte einen Button enthalten", dialog.getButtonTable().getChildren().get(0).getClass() == Button.class);
+		Button button = (Button) dialog.getButtonTable().getChildren().get(0);
+		assertTrue("sollte kind von clicklistener sein", button.getListeners().get(0) instanceof ClickListener);
+		ClickListener listener = (ClickListener) button.getListeners().get(0);
+		listener.clicked(null, 0, 0);
 	}
 	
 	@Test
