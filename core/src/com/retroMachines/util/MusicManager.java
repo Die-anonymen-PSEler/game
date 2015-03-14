@@ -16,7 +16,7 @@ public final class MusicManager implements SettingsChangeListener {
 	/**
 	 * the music that will be played
 	 */
-	private Music music;
+	private static Music music;
 
 	/**
 	 * the volume the music has. it is bound to the music set within the
@@ -41,6 +41,7 @@ public final class MusicManager implements SettingsChangeListener {
 	public synchronized static MusicManager getInstance() {
 		if (Singleton == null) {
 			Singleton = new MusicManager();
+			music = RetroAssetManager.getMusic();
 		}
 		return Singleton;
 	}
@@ -50,9 +51,6 @@ public final class MusicManager implements SettingsChangeListener {
 	 * will continue for that point onwards.
 	 */
 	public void startMusic() {
-		if (music == null) {
-			music = RetroAssetManager.getMusic();
-		}
 		float volume = 0.5f;
 		volume = ((RetroMachines) Gdx.app.getApplicationListener())
 				.getSettingController().getVolume();
@@ -68,9 +66,6 @@ public final class MusicManager implements SettingsChangeListener {
 	 * pauses the music. may be continued with the startMusic method
 	 */
 	public void pauseMusic() {
-		if (music == null) {
-			music = RetroAssetManager.getMusic();
-		}
 		music.pause();
 	}
 
