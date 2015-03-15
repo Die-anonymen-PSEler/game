@@ -52,14 +52,6 @@ public abstract class GameElement extends Actor {
 	}
 
 	/**
-	 * sets the texture region
-	 * @param region the textureRegion it should be
-	 */
-	public void setTextureRegion(TextureRegion region) {
-		this.textureRegion = region;
-	}
-
-	/**
 	 * sets the tileId
 	 * @param i new tileId
 	 */
@@ -94,13 +86,4 @@ public abstract class GameElement extends Actor {
 	public Vector2 getPosition() {
 		return new Vector2(getX(), getY());
 	}
-
-	@Override
-	public void draw(Batch batch, float alpha) {
-
-		batch.draw(textureRegion, getX(), getY(), this.getOriginX(),
-				this.getOriginY(), this.getWidth(), this.getHeight(),
-				this.getScaleX(), this.getScaleY(), this.getRotation());
-	}
-
 }

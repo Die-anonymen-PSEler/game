@@ -186,18 +186,6 @@ public class RetroMan {
 	 * moving
 	 */
 
-	// /**
-	// * Sets the velocity.
-	// */
-	// public void setVelocity(float x, float y) {
-	// if (x > 1E-10) {
-	// velocity.x = x;
-	// }
-	// if (y > 1E-10) {
-	// velocity.y = y;
-	// }
-	// }
-
 	/**
 	 * Adds negative velocity to the character however this does not update his
 	 * position a call to the update method is needed for that
