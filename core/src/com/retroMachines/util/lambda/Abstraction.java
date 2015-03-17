@@ -64,38 +64,8 @@ public class Abstraction extends Vertex {
 	 */
 	@Override
 	public boolean alphaConversion() {
-		if (this.getnext() == null) {
-			return false;
-		}
-		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
-		boolean returnValue = false;
-		int sA = getFamilyColorList().size();
-		int sN = nextFam.size();
-		int newColor;
-		// Searched for double used colors
-		for (int i = 0; i < sA; i++) {
-			for (int j = 0; j < sN; j++) {
-				if (getFamilyColorList().get(i).equals(nextFam.get(j))) {
-					// Replace color in next family
-					newColor = this.searchUnusedColorID();
-					if (newColor == -1) {
-						Gdx.app.log(Constants.LOG_TAG, "out of ColorID Range");
-						// what should happen when there are more than 11
-						// different Colors used ?
-						return true;
-					}
-					if (!this.getnext().canRenameFamily(nextFam.get(j), newColor)) {
-						// Error
-						Gdx.app.log(Constants.LOG_TAG, "AlphaConversionError: "
-								+ this.getColor());
-					}
-					updateMap(nextFam.get(j), newColor); // updating mapped
-															// color of vertex
-					returnValue = true;
-				}
-			}
-		}
-		return returnValue;
+		int newColor = searchUnusedColorID();
+		return this.getfamily().SearchEqualAbstractions(this.getColor(), newColor);
 	}
 
 	/**
@@ -243,19 +213,16 @@ public class Abstraction extends Vertex {
 	public String getType() {
 		return "Abstraction";
 	}
-
+	
 	private int searchUnusedColorID() {
-		LinkedList<Integer> nextFam = this.getnext().getFamilyColorList();
 		LinkedList<Integer> actFam = this.getFamilyColorList();
 		int newColor = -1;
 		// search unused color ID
 		for (int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
 			// Search if id "i" is unused in firstList
 			if (!actFam.contains(i)) {
-				if (!nextFam.contains(i)) {
-					newColor = i;
-					break;
-				}
+				newColor = i;
+				break;
 			}
 		}
 		return newColor;

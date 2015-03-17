@@ -57,13 +57,11 @@ public abstract class Vertex {
 
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
-	 * color's are sorted after their size small to big
 	 */
 	private LinkedList<Integer> familyColorList;
 
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
-	 * color's are sorted after their size small to big
 	 */
 	private LinkedList<Integer> nextColorList;
 
@@ -127,15 +125,88 @@ public abstract class Vertex {
 	// ---------------------------------------------------
 
 	/**
-	 * replace OldColor with newColor in whole Family
+	 * replace all Abstractions with OldColor nect to this vertex and in his family
 	 * 
 	 * @param oldColor
 	 *            Color which should be replaced
-	 * @param newColor
-	 *            Color which should take place of OldColor
-	 * @return true if renamed family successful, false otherwise
+	 * @return true if something is replaced false otherwise
 	 */
-	protected boolean canRenameFamily(int oldColor, int newColor) {
+	protected boolean SearchEqualAbstractions(int oldColor, int newColor) {
+		boolean retValue = false;
+		if(this.getColor() == oldColor && this.getType().equals(Constants.RetroStrings.ABSTRACTION_TYPE)) {
+			// Change Color of Family
+			if (this.getfamily() != null) {
+				this.getfamily().recolorFamily(newColor, oldColor);
+			}
+			// change own Color
+			updateMap(this.color, newColor);
+			int offset = (Integer) this.getGameElement().getTileSet()
+					.getProperties().get("firstgid") - 1;
+			this.getGameElement().setTileId(newColor + offset);
+			
+			// Update family Color List
+			for (int i = 0; i < this.getFamilyColorList().size(); i++) {
+				if (this.getFamilyColorList().get(i) == oldColor) {
+					this.getFamilyColorList().remove(i);
+					break;
+				}
+			}	
+			this.getFamilyColorList().add(newColor);
+			retValue = true;
+		} else if( this.getColor() == oldColor) {
+			if (this.getfamily() != null) {
+				if (this.getFamilyColorList().contains(oldColor)) {
+					if(this.getfamily().SearchEqualAbstractions(oldColor , newColor)) {
+						// Update family Color List
+						this.getFamilyColorList().add(newColor);
+					}
+					retValue = true;
+
+				}
+			}
+			
+		} else {
+			if (this.getfamily() != null) {
+				if (this.getFamilyColorList().contains(oldColor)) {
+					if(this.getfamily().SearchEqualAbstractions(oldColor, newColor)) {
+						// Update family Color List
+						for (int i = 0; i < this.getFamilyColorList().size(); i++) {
+							if (this.getFamilyColorList().get(i) == oldColor) {
+								this.getFamilyColorList().remove(i);
+								break;
+							}
+						}	
+						this.getFamilyColorList().add(newColor);
+						retValue = true;
+					}
+				}
+			}	
+		}
+		
+		if (this.getnext() != null) {
+			if(this.getnext().SearchEqualAbstractions(oldColor, newColor)) {
+				// Update family Color List
+				for (int i = 0; i < this.getNextColorList().size(); i++) {
+					if (this.getNextColorList().get(i) == oldColor) {
+						this.getNextColorList().remove(i);
+						break;
+					}
+				}	
+				this.getNextColorList().add(newColor);
+				retValue = true;
+			}
+		}
+		
+		return retValue;
+	}
+	
+	/**
+	 * Replace all Color of Vertices with oldColor with  given new Color in hole family and next
+	 * @param newColor new Color of vertex
+	 * @param oldColor old Color of vertec
+	 */
+	protected void recolorFamily(int newColor, int oldColor) {
+		// Update family Color List
 		if (this.getFamilyColorList().contains(oldColor)) {
 			for (int i = 0; i < this.getFamilyColorList().size(); i++) {
 				if (this.getFamilyColorList().get(i) == oldColor) {
@@ -143,35 +214,26 @@ public abstract class Vertex {
 					break;
 				}
 			}
-			this.getFamilyColorList().add(newColor);
-
-			if (!this.getType().equals(Constants.RetroStrings.APPLICATION_TYPE)) {
-				if (this.getColor() == oldColor) {
-					updateMap(this.color, newColor);
-					int offset = (Integer) this.getGameElement().getTileSet()
-							.getProperties().get("firstgid") - 1;
-					this.getGameElement().setTileId(newColor + offset);
-				}
-			}
-
-			if (this.getfamily() != null) {
-				// Rename the Others if they are no imaginary Friends
-				Vertex renamePointer = new Dummy();
-				renamePointer.setnext(this.getfamily());
-				while (renamePointer.getnext() != null) {
-					if (!renamePointer.getnext().canRenameFamily(oldColor,
-							newColor)) {
-						// Error
-						return false;
-					}
-					// Set
-					renamePointer.setnext(renamePointer.getnext().getnext());
-				}
+		}
+		this.getFamilyColorList().add(newColor);
+		
+		if(!this.getType().equals(Constants.RetroStrings.APPLICATION_TYPE)) {
+			if(this.getColor() == oldColor) {
+				updateMap(this.color, newColor);
+				int offset = (Integer) this.getGameElement().getTileSet()
+						.getProperties().get("firstgid") - 1;
+				this.getGameElement().setTileId(newColor + offset);
 			}
 		}
-		return true;
+		if (this.getfamily() != null) {
+			this.getfamily().recolorFamily(newColor, oldColor);
+		}
+		
+		if (this.getnext() != null) {
+			this.getnext().recolorFamily(newColor, oldColor);
+		}
 	}
-
+	
 	/**
 	 * returns GameElement according to this vertex
 	 * 
