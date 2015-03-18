@@ -42,12 +42,37 @@ public class GameScreen extends AbstractScreen implements
 		DialogChainFinishedListener {
 
 	private static final float ZOOM_ADDITION = 0.20f;
+	
 	private static final float RETROMAN_BUTTON_OFFSET = 2;
+	
 	private final static float DIALOGWIDTH = (4f / 5f);
+	
 	private final static float DIALOGHEIGHT = (7f / 9f);
+	
 	private final static float PADDING_THIRTY = 30f;
+	
 	private final static float DIALOG_FONTSIZE = 1.5f;
+	
 	private final static float DIALOGTEXTWIDTH = (7f / 10f);
+
+	/**
+	 * reference to the gameController for information regarding the user input
+	 */
+	private final GameController gameController;
+
+	/*
+	 * map attributes
+	 */
+
+	/**
+	 * like in css the order goes top-> right -> bottom -> left
+	 */
+	private final int[] mapBounds;
+
+	/**
+	 * 
+	 */
+	private final float[] camBounds;
 
 	/**
 	 * a render for displaying the map and everything else to the screen.
@@ -58,11 +83,6 @@ public class GameScreen extends AbstractScreen implements
 	 * OrthographicCamera so we can look from the side onto our map.
 	 */
 	private OrthographicCamera camera;
-
-	/**
-	 * reference to the gameController for information regarding the user input
-	 */
-	private final GameController gameController;
 
 	/**
 	 * the dialog which is shown when hintButton is pressed
@@ -78,20 +98,6 @@ public class GameScreen extends AbstractScreen implements
 	 * the dialog which is shown when targetButton is pressed
 	 */
 	private TaskDialog taskDialog;
-
-	/*
-	 * map attributes
-	 */
-
-	/**
-	 * like in css the order goes top-> right -> bottom -> left
-	 */
-	private final int[] mapBounds;
-
-	/**
-	 * 
-	 */
-	private final float[] camBounds;
 
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
@@ -126,72 +132,7 @@ public class GameScreen extends AbstractScreen implements
 		camBounds = new float[4];
 		initialize();
 	}
-
-	public void initialize() {
-
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 35, 20);
-		camera.zoom -= ZOOM_ADDITION;
-		camera.update();
-
-		stage = new Stage();
-		inputMultiplexer.addProcessor(this);
-
-		drawButtons();
-
-		// instanciate Dialogs
-		hintDialog = new HintDialog("", skin, "default");
-		pauseDialog = new PauseDialog("", skin, "default");
-		taskDialog = new TaskDialog("", skin, "default");
-
-	}
-
-	/**
-	 * Is called when this screen should be displayed. Starts to play the sound.
-	 */
-	@Override
-	public void show() {
-		Gdx.input.setInputProcessor(inputMultiplexer);
-		// music.play();
-	}
-
-	/**
-	 * Assigns a new TiledMap to the screen.
-	 * 
-	 * @param map
-	 *            the tiled map for this screen.
-	 */
-	public void setMap(TiledMap map) {
-		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
-		MapProperties prop = map.getProperties();
-		mapBounds[1] = prop.get("width", Integer.class);
-		mapBounds[0] = prop.get("height", Integer.class);
-	}
-
-	@Override
-	public void render(float delta) {
-
-		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		// Double stage.act() and draw();
-		// super.render(delta);
-
-		inputDetection();
-
-		updateCameraPosition(gameController.getRetroMan().getPos().x,
-				gameController.getRetroMan().getPos().y);
-		camera.update();
-
-		renderer.setView(camera);
-		renderer.render();
-
-		gameController.update(delta);
-		gameController.getRetroMan().render(renderer, delta);
-
-		stage.act(Gdx.graphics.getDeltaTime());
-		stage.draw();
-	}
-
+	
 	private void updateCameraPosition(float x, float y) {
 		camera.position.x = gameController.getRetroMan().getPos().x;
 		camera.position.y = gameController.getRetroMan().getPos().y;
@@ -344,16 +285,7 @@ public class GameScreen extends AbstractScreen implements
 			}
 		}
 	}
-
-	/*
-	 * Getter and Setter
-	 */
-
-	@Override
-	public void dialogFinished() {
-		popupScreenIsShown = false;
-	}
-
+	
 	// ------------------------------------
 	// --Show different views in the game--
 	// ------------------------------------
@@ -376,11 +308,43 @@ public class GameScreen extends AbstractScreen implements
 		pauseDialog.show(stage);
 	}
 
-	/*
-	 * input processing (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.InputProcessor#keyDown(int)
+	/**
+	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
+	@Override
+	public void show() {
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		// music.play();
+	}
+	
+	@Override
+	public void render(float delta) {
+
+		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		// Double stage.act() and draw();
+		// super.render(delta);
+
+		inputDetection();
+
+		updateCameraPosition(gameController.getRetroMan().getPos().x,
+				gameController.getRetroMan().getPos().y);
+		camera.update();
+
+		renderer.setView(camera);
+		renderer.render();
+
+		gameController.update(delta);
+		gameController.getRetroMan().render(renderer, delta);
+
+		stage.act(Gdx.graphics.getDeltaTime());
+		stage.draw();
+	}
+
+	@Override
+	public void dialogFinished() {
+		popupScreenIsShown = false;
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {
@@ -425,6 +389,25 @@ public class GameScreen extends AbstractScreen implements
 		return false;
 	}
 
+	public void initialize() {
+
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 35, 20);
+		camera.zoom -= ZOOM_ADDITION;
+		camera.update();
+
+		stage = new Stage();
+		inputMultiplexer.addProcessor(this);
+
+		drawButtons();
+
+		// instanciate Dialogs
+		hintDialog = new HintDialog("", skin, "default");
+		pauseDialog = new PauseDialog("", skin, "default");
+		taskDialog = new TaskDialog("", skin, "default");
+
+	}
+
 	public void showValidateError(String s) {
 		ErrorDialog error = new ErrorDialog("", skin, "default", s);
 		error.show(stage);
@@ -435,6 +418,24 @@ public class GameScreen extends AbstractScreen implements
 		dialogChain.registerListener(this);
 		popupScreenIsShown = true;
 	}
+
+	/*
+	 * Getter and Setter
+	 */
+	
+	/**
+	 * Assigns a new TiledMap to the screen.
+	 * 
+	 * @param map
+	 *            the tiled map for this screen.
+	 */
+	public void setMap(TiledMap map) {
+		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
+		MapProperties prop = map.getProperties();
+		mapBounds[1] = prop.get("width", Integer.class);
+		mapBounds[0] = prop.get("height", Integer.class);
+	}
+
 
 	// -----------------------------------
 	// --------Retro-Man-Controlls--------

@@ -99,43 +99,6 @@ public class EvaluationScreen extends AbstractScreen {
 		inputMultiplexer.addProcessor(buttonStage);
 	}
 
-	/**
-	 * Assigns a lambda term to the screen for the animation.
-	 * 
-	 * @param t
-	 *            the lambda term in question
-	 */
-	public void setLambaTerm(LevelTree t) {
-		this.tree = t;
-		printTree(tree.getStart(), new Vector2(screenPadding));
-	}
-
-	/**
-	 * Updates the evaluation animation.
-	 * 
-	 * @return true animation finished successfully, false otherwise.
-	 */
-	public boolean isScreenUpdated() {
-
-		return false;
-	}
-
-	@Override
-	public void render(float delta) {
-		super.render(delta);
-		buttonStage.act(Gdx.graphics.getDeltaTime());
-		buttonStage.draw();
-	}
-
-	/**
-	 * Is called when this screen should be displayed. Starts to play the sound.
-	 */
-	@Override
-	public void show() {
-		Gdx.input.setInputProcessor(inputMultiplexer);
-		// music.play();
-	}
-
 	private void printTree(Vertex actVertex, Vector2 position) {
 		while (actVertex != null) {
 			int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex
@@ -154,13 +117,21 @@ public class EvaluationScreen extends AbstractScreen {
 			actVertex = actVertex.getNext();
 		}
 	}
+	
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+		buttonStage.act(Gdx.graphics.getDeltaTime());
+		buttonStage.draw();
+	}
 
 	/**
-	 * sets an element to the stage
-	 * @param g gameElement to be set
+	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
-	public void setOnStage(GameElement g) {
-		stage.addActor(g);
+	@Override
+	public void show() {
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		// music.play();
 	}
 
 	@Override
@@ -204,6 +175,58 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
+	 * Updates the evaluation animation.
+	 * 
+	 * @return true animation finished successfully, false otherwise.
+	 */
+	public boolean isScreenUpdated() {
+
+		return false;
+	}
+
+	/**
+	 * runs the animation for the evaluation
+	 */
+	public void runAnimation() {
+		LinkedList<ActionListElement> actionList = EvaluationOptimizer.getActionList();
+		for (int i = 0; i < actionList.size(); i++) {
+			ActionListElement actListEle = actionList.get(i);
+			actListEle.getGameElement().addAction(actListEle.getAction());
+		}
+	}
+	
+	/*
+	 * Getter and Setter
+	 */
+
+	/**
+	 * returns the padding of the screen
+	 * @return vector of screen padding
+	 */
+	public Vector2 getScreenPadding() {
+		return new Vector2(screenPadding);
+	}
+
+	/**
+	 * Assigns a lambda term to the screen for the animation.
+	 * 
+	 * @param t
+	 *            the lambda term in question
+	 */
+	public void setLambaTerm(LevelTree t) {
+		this.tree = t;
+		printTree(tree.getStart(), new Vector2(screenPadding));
+	}
+
+	/**
+	 * sets an element to the stage
+	 * @param g gameElement to be set
+	 */
+	public void setOnStage(GameElement g) {
+		stage.addActor(g);
+	}
+	
+	/**
 	 * Button which shows next Evaluationstep
 	 * 
 	 * @author Retro Factory
@@ -225,24 +248,5 @@ public class EvaluationScreen extends AbstractScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			evaController.autoEvaluationClicked();
 		}
-	}
-
-	/**
-	 * runs the animation for the evaluation
-	 */
-	public void runAnimation() {
-		LinkedList<ActionListElement> actionList = EvaluationOptimizer.getActionList();
-		for (int i = 0; i < actionList.size(); i++) {
-			ActionListElement actListEle = actionList.get(i);
-			actListEle.getGameElement().addAction(actListEle.getAction());
-		}
-	}
-
-	/**
-	 * returns the padding of the screen
-	 * @return vector of screen padding
-	 */
-	public Vector2 getScreenPadding() {
-		return new Vector2(screenPadding);
 	}
 }
