@@ -1,6 +1,7 @@
 package com.retroMachines.data.models;
 
 import com.badlogic.gdx.Gdx;
+import com.retroMachines.util.Constants;
 
 /**
  * This class is part of the model of RetroMachines. It has knowledge about all
@@ -154,6 +155,9 @@ public class Setting extends Model {
 		volume = DEFAULT_VOLUME;
 		leftControl = DEFAULT_LEFTCONTROL;
 		soundOnOff = DEFAULT_SOUNDONOFF;
+		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
+			pref.putBoolean(String.format(KEY_PATTERN_TUTORIALS, i), false);
+		}
 		write();
 	}
 
