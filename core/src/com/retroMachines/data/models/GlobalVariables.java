@@ -76,10 +76,6 @@ public class GlobalVariables extends Model {
 		// nothing to do. just override the value
 	}
 
-	/*
-	 * Getter and Setter of this class
-	 */
-
 	/**
 	 * Stores a keyValue pair within this class. If the key already exists it
 	 * will override the previous value.
@@ -123,16 +119,9 @@ public class GlobalVariables extends Model {
 		return rowId;
 	}
 
-	/**
-	 * Returns the value according to the key.
-	 * 
-	 * @param key
-	 *            of the key value pair for lookup
-	 * @return the value that was found. null if the key does not exist.
+	/*
+	 * Getter and Setter of this class
 	 */
-	public String get(String key) {
-		return pref.getString(key, "-1");
-	}
 
 	/**
 	 * Returns the only instance of this class. If none has been created yet one
@@ -145,5 +134,16 @@ public class GlobalVariables extends Model {
 			instantiate();
 		}
 		return Instance;
+	}
+	
+	/**
+	 * Returns the value according to the key.
+	 * 
+	 * @param key
+	 *            of the key value pair for lookup
+	 * @return the value that was found. null if the key does not exist.
+	 */
+	public String get(String key) {
+		return pref.getString(key, "-1");
 	}
 }

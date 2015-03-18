@@ -12,11 +12,6 @@ import com.badlogic.gdx.Gdx;
 public class Profile extends Model {
 
 	/**
-	 * The name of the table where the profiles are stored.
-	 */
-	public static final String TABLE_NAME = "profiles";
-
-	/**
 	 * The key for the profile name
 	 */
 	private static final String KEY_PROFILE_NAME = "name";
@@ -35,6 +30,11 @@ public class Profile extends Model {
 	 * destroyed profile
 	 */
 	private static final String DESTROYED_PROFILE = "destroyed_profile_does_not_exist_no_more";
+	
+	/**
+	 * The name of the table where the profiles are stored.
+	 */
+	public static final String TABLE_NAME = "profiles";
 
 	/**
 	 * the name of the profile

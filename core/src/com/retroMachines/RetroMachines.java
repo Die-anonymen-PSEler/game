@@ -88,6 +88,16 @@ public class RetroMachines extends Game {
 			setScreen(new CreateProfileMenuScreen(this));
 		}
 	}
+	
+	/**
+	 * reloads the previous screen.
+	 */
+	public void previousScreen() {
+		if (screenStack.size() >= 2) {
+			screenStack.pop(); // remove current screen.
+			setScreen(screenStack.pop()); // set the screen before.
+		}
+	}
 
 	/*
 	 * Getter and Setter
@@ -133,15 +143,5 @@ public class RetroMachines extends Game {
 	public void setScreen(Screen screen) {
 		screenStack.push(screen);
 		super.setScreen(screen);
-	}
-
-	/**
-	 * reloads the previous screen.
-	 */
-	public void previousScreen() {
-		if (screenStack.size() >= 2) {
-			screenStack.pop(); // remove current screen.
-			setScreen(screenStack.pop()); // set the screen before.
-		}
 	}
 }

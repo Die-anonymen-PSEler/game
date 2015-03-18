@@ -27,10 +27,30 @@ import com.retroMachines.util.Constants.RetroStrings;
 public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 
 	/**
+	 * list containing all maps for fast access.
+	 */
+	private static final LinkedList<TiledMap> MAPS = new LinkedList<TiledMap>();
+
+	/**
+	 * a hashmap with (String,Texture) pairs.
+	 */
+	private static final HashMap<String, Texture> TEXTURE_MAP = new HashMap<String, Texture>();
+
+	/**
+	 * pattern where the character images are stored.
+	 */
+	private static final String CHARACTER_PATH_PATTERN = "Character/Animation%s.png";
+	
+	/**
 	 * Default constructor which starts a simple instance of AssetManager.
 	 */
 	public static final RetroAssetManager MANAGER = new RetroAssetManager();
 
+	/**
+	 * Contains all file references to the files that need to be loaded.
+	 */
+	public static final String[] ASSET_NAMES = {};
+	
 	/**
 	 * The design of the menus is stored here.
 	 */
@@ -65,26 +85,19 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * TiledMapTileSet for depots
 	 */
 	private static TiledMapTileSet Depots;
-
+	
 	/**
-	 * Contains all file references to the files that need to be loaded.
+	 * Adds TileSets of Machine Metalobjects and Lights of currentMap
+	 * 
+	 * @param currentMap
 	 */
-	public static final String[] ASSET_NAMES = {};
-
-	/**
-	 * list containing all maps for fast access.
-	 */
-	private static final LinkedList<TiledMap> MAPS = new LinkedList<TiledMap>();
-
-	/**
-	 * a hashmap with (String,Texture) pairs.
-	 */
-	private static final HashMap<String, Texture> TEXTURE_MAP = new HashMap<String, Texture>();
-
-	/**
-	 * pattern where the character images are stored.
-	 */
-	private static final String CHARACTER_PATH_PATTERN = "Character/Animation%s.png";
+	private static void setTiledMapTileSets(TiledMap currentMap) {
+		TiledMapTileSets levelSets = currentMap.getTileSets();
+		Objects = levelSets.getTileSet(RetroStrings.TILESETNAME_METALOBJECTS);
+		Machines = levelSets.getTileSet(RetroStrings.TILESETNAME_MACHINE);
+		Lights = levelSets.getTileSet(RetroStrings.TILESETNAME_LIGHT);
+		Depots = levelSets.getTileSet(RetroStrings.TILESETNAME_DEPOT);
+	}
 
 	/**
 	 * Added assets that need to be ready before the first game screen will be
@@ -125,6 +138,15 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	/**
+	 * reload the map
+	 * @param levelId the level where the map should be reloaded
+	 */
+	public static void reloadMap(int levelId) {
+		MAPS.set(levelId,
+				new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
+	}
+	
+	/**
 	 * Loads a map from the Storage based on it's ID.
 	 * 
 	 * @param levelId
@@ -133,15 +155,6 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	public static TiledMap getMap(int levelId) {
 		return MAPS.get(levelId);
-	}
-
-	/**
-	 * reload the map
-	 * @param levelId the level where the map should be reloaded
-	 */
-	public static void reloadMap(int levelId) {
-		MAPS.set(levelId,
-				new TmxMapLoader().load("maps/Level" + (levelId + 1) + ".tmx"));
 	}
 
 	// -----------------------
@@ -196,19 +209,6 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 					"That path has not been loaded? Might wanna change that "
 							+ path);
 		}
-	}
-
-	/**
-	 * Adds TileSets of Machine Metalobjects and Lights of currentMap
-	 * 
-	 * @param currentMap
-	 */
-	private static void setTiledMapTileSets(TiledMap currentMap) {
-		TiledMapTileSets levelSets = currentMap.getTileSets();
-		Objects = levelSets.getTileSet(RetroStrings.TILESETNAME_METALOBJECTS);
-		Machines = levelSets.getTileSet(RetroStrings.TILESETNAME_MACHINE);
-		Lights = levelSets.getTileSet(RetroStrings.TILESETNAME_LIGHT);
-		Depots = levelSets.getTileSet(RetroStrings.TILESETNAME_DEPOT);
 	}
 
 	/**
