@@ -163,42 +163,6 @@ public class VertexTest {
 		v.updatePointerAfterBetaReduction();
 	}
 
-// abstract method	
-//	@Test
-//	public void testGetEvaluationResult() {
-//		fail("Not yet implemented");
-//	}
-
-// abstract method	
-//	@Test
-//	public void testUpdatePositionsAfterBetaReduction() {
-//		fail("Not yet implemented");
-//	}
-
-// abstract method	
-//	@Test
-//	public void testDeleteAfterBetaReduction() {
-//		fail("Not yet implemented");
-//	}
-
-//	abstract methodd	
-//	@Test
-//	public void testBetaReduction() {
-//		fail("Not yet implemented");
-//	}
-
-// abstract method	
-//	@Test
-//	public void testAlphaConversion() {
-//		fail("Not yet implemented");
-//	}
-
-//	abstract method	
-//	@Test
-//	public void testGetReadIn() {
-//		fail("Not yet implemented");
-//	}
-
 	@Test
 	public void testReadInAnimation() {
 		fail("Not yet implemented");
