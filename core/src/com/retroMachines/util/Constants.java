@@ -27,13 +27,6 @@ public abstract class Constants {
 	public static final String LOG_TAG = "RetroFactory";
 
 	/**
-	 * String array containing path to all possible characters.
-	 */
-	public static final String[] PATH_CHARACTER = {
-	// TO-DO
-	};
-
-	/**
 	 * maximum value of id
 	 */
 	public static final int MAX_COLOR_ID = 11;
