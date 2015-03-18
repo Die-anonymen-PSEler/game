@@ -201,9 +201,9 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Replace all Color of Vertices with oldColor with  given new Color in hole family and next
+	 * Replace all Color of Vertices with oldColor with  given new Color in whole family and next
 	 * @param newColor new Color of vertex
-	 * @param oldColor old Color of vertec
+	 * @param oldColor old Color of vertex
 	 */
 	protected void recolorFamily(int newColor, int oldColor) {
 		// Update family Color List
