@@ -113,7 +113,9 @@ public class ProfileController {
 			return false;
 		}
 		for (String name : profileNames.keySet()) {
-			if (name.equals(username)) {
+			String lowerCaseList = name.toLowerCase();
+			String usernameLower = username.toLowerCase();
+			if (lowerCaseList.equals(usernameLower)) {
 				return false;
 			}
 		}
