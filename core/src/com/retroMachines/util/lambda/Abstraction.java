@@ -78,7 +78,7 @@ public class Abstraction extends Vertex {
 	@Override
 	public boolean alphaConversion() {
 		int newColor = searchUnusedColorID();
-		return this.getfamily().searchEqualAbstractions(this.getColor(), newColor);
+		return this.getFamily().searchEqualAbstractions(this.getColor(), newColor);
 	}
 
 	/**
@@ -92,16 +92,16 @@ public class Abstraction extends Vertex {
 		// Check if next is there
 		if (this.getnext() != null) {
 			// Check if family is there
-			if (this.getfamily() != null) {
+			if (this.getFamily() != null) {
 
 				// Start Beta Reduction
-				LinkedList<Vertex> returnList = this.getfamily()
+				LinkedList<Vertex> returnList = this.getFamily()
 						.replaceInFamily(this);
 
 				// Replace own family Vertex
 				// Replace Family Vertex if Color and Type are ok
-				if (this.getfamily().getType().equals("Variable")
-						&& this.getfamily().getColor() == this.getColor()) {
+				if (this.getFamily().getType().equals("Variable")
+						&& this.getFamily().getColor() == this.getColor()) {
 					Vertex replace = this.getnext().cloneMe();
 
 					// Update listOfNewVertex
@@ -118,10 +118,10 @@ public class Abstraction extends Vertex {
 					position.x += Constants.ABSTRACTION_OUTPUT;
 					position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(
-							position, this.getfamily().getGameElement(), false);
+							position, this.getFamily().getGameElement(), false);
 
-					if (this.getfamily().getnext() != null) {
-						replace.setnext(this.getfamily().getnext());
+					if (this.getFamily().getnext() != null) {
+						replace.setnext(this.getFamily().getnext());
 					}
 					this.setfamily(replace);
 				}
@@ -169,8 +169,8 @@ public class Abstraction extends Vertex {
 	public Vertex cloneMe() {
 		// check if next or family is null
 		Vertex family;
-		if (this.getfamily() != null) {
-			family = this.getfamily().cloneFamily();
+		if (this.getFamily() != null) {
+			family = this.getFamily().cloneFamily();
 		} else {
 			family = null;
 		}
@@ -198,8 +198,8 @@ public class Abstraction extends Vertex {
 		} else {
 			next = null;
 		}
-		if (this.getfamily() != null) {
-			family = this.getfamily().cloneFamily();
+		if (this.getFamily() != null) {
+			family = this.getFamily().cloneFamily();
 		} else {
 			family = null;
 		}
@@ -242,9 +242,9 @@ public class Abstraction extends Vertex {
 			return;
 		} else {
 			// update Gameelement Postions after Gameelement of this was deleted
-			if(this.getfamily() != null) {
+			if(this.getFamily() != null) {
 				// In Theorie Abstraction has at all time a family object .....
-				this.getfamily().updateGameelementPosition(0, -1);
+				this.getFamily().updateGameelementPosition(0, -1);
 			}
 		}
 	}
