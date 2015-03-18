@@ -37,6 +37,14 @@ public class StatisticController implements OnProfileChangedListener {
 	}
 
 	/**
+	 * Controls if the profile was changed.
+	 */
+	@Override
+	public void profileChanged() {
+		statistic = game.getProfileController().getProfile().getStatistic();
+	}
+
+	/**
 	 * Completes the setup of the controller.
 	 */
 	public void initialize() {
@@ -84,15 +92,11 @@ public class StatisticController implements OnProfileChangedListener {
 			statistic.setLevelsComplete(getLevelsCompleted() + 1);
 		}
 	}
-
-	/**
-	 * Controls if the profile was changed.
+	
+	/*
+	 * Getter and Setter
 	 */
-	@Override
-	public void profileChanged() {
-		statistic = game.getProfileController().getProfile().getStatistic();
-	}
-
+	
 	/**
 	 * returns the playtime
 	 * 

@@ -83,7 +83,18 @@ public class EvaluationController {
 	 */
 	public void autoEvaluationClicked() {
 		EvaluationOptimizer.autoStepClicked();
+	}	
+
+	/**
+	 * starts the animation
+	 */
+	public void startAnimation() {
+		evaluationScreen.runAnimation();
 	}
+	
+	/*
+	 * Getter and Setter
+	 */
 
 	/**
 	 * returns the gameController of this class
@@ -113,10 +124,12 @@ public class EvaluationController {
 	}
 
 	/**
-	 * starts the animation
+	 * returns the padding of evaluation screen
+	 * 
+	 * @return the padding of evaluation screen
 	 */
-	public void startAnimation() {
-		evaluationScreen.runAnimation();
+	public Vector2 getEvaluationscreenPadding() {
+		return evaluationScreen.getScreenPadding();
 	}
 
 	/**
@@ -127,14 +140,5 @@ public class EvaluationController {
 	 */
 	public void setOnStage(GameElement g) {
 		evaluationScreen.setOnStage(g);
-	}
-
-	/**
-	 * returns the padding of evaluation screen
-	 * 
-	 * @return the padding of evaluation screen
-	 */
-	public Vector2 getEvaluationscreenPadding() {
-		return evaluationScreen.getScreenPadding();
 	}
 }

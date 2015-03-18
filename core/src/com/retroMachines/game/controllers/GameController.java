@@ -74,6 +74,81 @@ public class GameController {
 	}
 
 	/**
+	 * Disposes all objects that are in use by this controller.
+	 */
+	private void dispose() {
+		gameScreen.dispose();
+	}
+
+	/**
+	 * Saves the progress of the game to the persistent storage.
+	 */
+	private void saveProgress() {
+		long now = System.currentTimeMillis();
+		float diff = (now - levelBegin) / 1000f;
+		game.getStatisticController().incPlayTime(diff);
+		game.getStatisticController().incStepCounter((int) tempStepCounter);
+	}
+	
+	private void collisionDetection() {
+		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
+				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
+		int startX, startY, endX, endY;
+		if (retroMan.getVelocity().x > 0) {
+			startX = endX = (int) (retroMan.getPos().x + RetroMan.WIDTH + retroMan
+					.getVelocity().x);
+		} else {
+			startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
+		}
+		startY = (int) (retroMan.getPos().y);
+		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
+		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY,
+				Constants.SOLID_LAYER_ID);
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.DEPOT_LAYER));
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.OBJECT_LAYER_ID));
+		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
+		for (Rectangle tile : tiles) {
+			if (retroManRect.overlaps(tile)) {
+				retroMan.getVelocity().x = 0;
+				break;
+			}
+		}
+
+		retroManRect.x = retroMan.getPos().x;
+
+		// detection upwards
+		if (retroMan.getVelocity().y > 0) {
+			startY = endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT + retroMan
+					.getVelocity().y);
+		} else {
+			startY = endY = (int) (retroMan.getPos().y + retroMan.getVelocity().y);
+		}
+		startX = (int) (retroMan.getPos().x);
+		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
+		tiles = level.getTiles(startX, startY, endX, endY,
+				Constants.SOLID_LAYER_ID);
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.DEPOT_LAYER));
+		tiles.addAll(level.getTiles(startX, startY, endX, endY,
+				Constants.OBJECT_LAYER_ID));
+		retroManRect.y += retroMan.getVelocity().y;
+		for (Rectangle tile : tiles) {
+			if (retroManRect.overlaps(tile)) {
+				if (retroMan.getVelocity().y > 0) {
+					retroMan.getPos().y = tile.y - RetroMan.HEIGHT;
+				} else {
+					retroMan.getPos().y = tile.height + tile.y;
+					retroMan.landed();
+				}
+				retroMan.getVelocity().y = 0;
+				break;
+			}
+		}
+	}
+
+	/**
 	 * Sets and initializes a given level and starts it.
 	 * 
 	 * @param levelId
@@ -121,23 +196,6 @@ public class GameController {
 		RetroAssetManager.reloadMap(level.getId() - 1);
 		game.getStatisticController().incLevelCompleted(level.getId());
 		game.setScreen(new LevelMenuScreen(game));
-	}
-
-	/**
-	 * Disposes all objects that are in use by this controller.
-	 */
-	private void dispose() {
-		gameScreen.dispose();
-	}
-
-	/**
-	 * Saves the progress of the game to the persistent storage.
-	 */
-	private void saveProgress() {
-		long now = System.currentTimeMillis();
-		float diff = (now - levelBegin) / 1000f;
-		game.getStatisticController().incPlayTime(diff);
-		game.getStatisticController().incStepCounter((int) tempStepCounter);
 	}
 
 	// --------------------------
@@ -212,15 +270,6 @@ public class GameController {
 		retroMan.goRight();
 	}
 
-	/**
-	 * Returns the instance of the RetroMan.
-	 * 
-	 * @return The instance of the RetroMan which is held by this controller.
-	 */
-	public RetroMan getRetroMan() {
-		return retroMan;
-	}
-
 	// --------------------------
 	// --------Map-logic---------
 	// --------------------------
@@ -253,64 +302,6 @@ public class GameController {
 		tempStepCounter += (retroMan.getPos().x - previousPosition);
 		retroMan.getVelocity().x *= RetroMan.DAMPING;
 
-	}
-
-	private void collisionDetection() {
-		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
-				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
-		int startX, startY, endX, endY;
-		if (retroMan.getVelocity().x > 0) {
-			startX = endX = (int) (retroMan.getPos().x + RetroMan.WIDTH + retroMan
-					.getVelocity().x);
-		} else {
-			startX = endX = (int) (retroMan.getPos().x + retroMan.getVelocity().x);
-		}
-		startY = (int) (retroMan.getPos().y);
-		endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT);
-		Array<Rectangle> tiles = level.getTiles(startX, startY, endX, endY,
-				Constants.SOLID_LAYER_ID);
-		tiles.addAll(level.getTiles(startX, startY, endX, endY,
-				Constants.DEPOT_LAYER));
-		tiles.addAll(level.getTiles(startX, startY, endX, endY,
-				Constants.OBJECT_LAYER_ID));
-		retroManRect.x = retroManRect.x + retroMan.getVelocity().x;
-		for (Rectangle tile : tiles) {
-			if (retroManRect.overlaps(tile)) {
-				retroMan.getVelocity().x = 0;
-				break;
-			}
-		}
-
-		retroManRect.x = retroMan.getPos().x;
-
-		// detection upwards
-		if (retroMan.getVelocity().y > 0) {
-			startY = endY = (int) (retroMan.getPos().y + RetroMan.HEIGHT + retroMan
-					.getVelocity().y);
-		} else {
-			startY = endY = (int) (retroMan.getPos().y + retroMan.getVelocity().y);
-		}
-		startX = (int) (retroMan.getPos().x);
-		endX = (int) (retroMan.getPos().x + RetroMan.WIDTH);
-		tiles = level.getTiles(startX, startY, endX, endY,
-				Constants.SOLID_LAYER_ID);
-		tiles.addAll(level.getTiles(startX, startY, endX, endY,
-				Constants.DEPOT_LAYER));
-		tiles.addAll(level.getTiles(startX, startY, endX, endY,
-				Constants.OBJECT_LAYER_ID));
-		retroManRect.y += retroMan.getVelocity().y;
-		for (Rectangle tile : tiles) {
-			if (retroManRect.overlaps(tile)) {
-				if (retroMan.getVelocity().y > 0) {
-					retroMan.getPos().y = tile.y - RetroMan.HEIGHT;
-				} else {
-					retroMan.getPos().y = tile.height + tile.y;
-					retroMan.landed();
-				}
-				retroMan.getVelocity().y = 0;
-				break;
-			}
-		}
 	}
 
 	// --------------------------
@@ -369,6 +360,19 @@ public class GameController {
 				levelFinished();
 			}
 		}
+	}
+
+	/*
+	 * Getter and Setter
+	 */
+	
+	/**
+	 * Returns the instance of the RetroMan.
+	 * 
+	 * @return The instance of the RetroMan which is held by this controller.
+	 */
+	public RetroMan getRetroMan() {
+		return retroMan;
 	}
 
 	public Vertex getLevelHint() {

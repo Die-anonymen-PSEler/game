@@ -20,16 +20,6 @@ import com.retroMachines.data.models.Statistic;
 public class ProfileController {
 
 	/**
-	 * String array which stores the ProfileNames of existing Profiles.
-	 */
-	private HashMap<String, Integer> profileNames;
-
-	/**
-	 * The currently active profile.
-	 */
-	private Profile profile;
-
-	/**
 	 * Calls to the application can be made via this object.
 	 */
 	@SuppressWarnings("unused")
@@ -46,6 +36,16 @@ public class ProfileController {
 	public final List<OnProfileChangedListener> profileChangeListeners;
 
 	/**
+	 * String array which stores the ProfileNames of existing Profiles.
+	 */
+	private HashMap<String, Integer> profileNames;
+
+	/**
+	 * The currently active profile.
+	 */
+	private Profile profile;
+
+	/**
 	 * Creates a new instance of the profile controller and loads the data from
 	 * the background as well as loading the last profile.
 	 * 
@@ -58,21 +58,15 @@ public class ProfileController {
 		profileNames = getProfileNameIdMap();
 	}
 
-	/**
-	 * get all profileNames
-	 * @return a hashmap with key value pairs of the profilenames
-	 */
-	public HashMap<String, Integer> getProfileNameIdMap() {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		GlobalVariables gv = GlobalVariables.getSingleton();
-		for (int i = 1; i <= MAX_PROFILE_NUMBER; i++) {
-			if (gv.get(String.format(GlobalVariables.KEY_SLOTS, i)).equals("1")) {
-				Profile tempProfile = new Profile(i);
-				map.put(tempProfile.getProfileName(), i);
-			} else {
-			}
+	private void updateLastUsedProfile() {
+		GlobalVariables.getSingleton().put(
+				GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
+	}
+
+	private void notifyProfileListeners() {
+		for (OnProfileChangedListener listener : profileChangeListeners) {
+			listener.profileChanged();
 		}
-		return map;
 	}
 
 	/**
@@ -145,30 +139,6 @@ public class ProfileController {
 		notifyProfileListeners();
 	}
 
-	/*
-	 * Getter and Setter
-	 */
-
-	/**
-	 * Get the name of the currently active user.
-	 * 
-	 * @return The name of the currently active user; Empty String if no user is
-	 *         active.
-	 */
-	public String getProfileName() {
-		return (profile == null || !profile.hasRecord()) ? null : profile
-				.getProfileName();
-	}
-
-	/**
-	 * Getter for the active profile.
-	 * 
-	 * @return The profile.
-	 */
-	public Profile getProfile() {
-		return profile;
-	}
-
 	/**
 	 * Changes the current profile to another profile.
 	 * 
@@ -226,15 +196,46 @@ public class ProfileController {
 		return true;
 	}
 
-	private void updateLastUsedProfile() {
-		GlobalVariables.getSingleton().put(
-				GlobalVariables.KEY_LAST_USED_PROFILE, profile.getProfileId());
+
+	/*
+	 * Getter and Setter
+	 */
+
+	/**
+	 * Get the name of the currently active user.
+	 * 
+	 * @return The name of the currently active user; Empty String if no user is
+	 *         active.
+	 */
+	public String getProfileName() {
+		return (profile == null || !profile.hasRecord()) ? null : profile
+				.getProfileName();
 	}
 
-	private void notifyProfileListeners() {
-		for (OnProfileChangedListener listener : profileChangeListeners) {
-			listener.profileChanged();
+	/**
+	 * Getter for the active profile.
+	 * 
+	 * @return The profile.
+	 */
+	public Profile getProfile() {
+		return profile;
+	}
+	
+	/**
+	 * get all profileNames
+	 * @return a hashmap with key value pairs of the profilenames
+	 */
+	public HashMap<String, Integer> getProfileNameIdMap() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		GlobalVariables gv = GlobalVariables.getSingleton();
+		for (int i = 1; i <= MAX_PROFILE_NUMBER; i++) {
+			if (gv.get(String.format(GlobalVariables.KEY_SLOTS, i)).equals("1")) {
+				Profile tempProfile = new Profile(i);
+				map.put(tempProfile.getProfileName(), i);
+			} else {
+			}
 		}
+		return map;
 	}
 
 	/**
