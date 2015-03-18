@@ -51,15 +51,6 @@ public abstract class GameElement extends Actor {
 	}
 
 	/**
-	 * sets the tileId
-	 * @param i new tileId
-	 */
-	public void setTileId(int i) {
-		this.tileId = i;
-		textureRegion = getTileSet().getTile(i).getTextureRegion();
-	}
-
-	/**
 	 * returns the tileId
 	 * @return the tileId
 	 */
@@ -68,6 +59,24 @@ public abstract class GameElement extends Actor {
 	}
 
 	/**
+	 * get Position (evaluation Screen)
+	 * 
+	 * @return position of Game element
+	 */
+	public Vector2 getPosition() {
+		return new Vector2(getX(), getY());
+	}
+
+	/**
+	 * sets the tileId
+	 * @param i new tileId
+	 */
+	public void setTileId(int i) {
+		this.tileId = i;
+		textureRegion = getTileSet().getTile(i).getTextureRegion();
+	}
+	
+	/**
 	 * Set Position (evaluation Screen)
 	 * 
 	 * @param pos
@@ -75,14 +84,5 @@ public abstract class GameElement extends Actor {
 	public void setPosition(Vector2 pos) {
 		setX(pos.x);
 		setY(pos.y);
-	}
-
-	/**
-	 * get Position (evaluation Screen)
-	 * 
-	 * @return position of Gameelement
-	 */
-	public Vector2 getPosition() {
-		return new Vector2(getX(), getY());
 	}
 }
