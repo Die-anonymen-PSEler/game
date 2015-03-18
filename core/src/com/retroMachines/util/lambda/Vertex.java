@@ -213,11 +213,11 @@ public abstract class Vertex {
 		}
 
 		// Add family
-		if (this.getfamily() != null) {
+		if (this.getFamily() != null) {
 			if (returnList.isEmpty()) {
-				returnList = this.getfamily().getFamilyVertexList();
+				returnList = this.getFamily().getFamilyVertexList();
 			} else {
-				LinkedList<Vertex> familyList = this.getfamily()
+				LinkedList<Vertex> familyList = this.getFamily()
 						.getFamilyVertexList();
 				for (Vertex v : familyList) {
 					returnList.add(v);
@@ -248,10 +248,10 @@ public abstract class Vertex {
 	
 	private void updateFamilyWidth() {
 		// Update width
-		if (this.getfamily() != null) {
-			this.getfamily().updateFamilyWidth();
-			this.setWidth(this.getfamily().getWidth()
-					+ this.getfamily().getNextWidth());
+		if (this.getFamily() != null) {
+			this.getFamily().updateFamilyWidth();
+			this.setWidth(this.getFamily().getWidth()
+					+ this.getFamily().getNextWidth());
 		} else {
 			this.setWidth(1);
 		}
@@ -281,8 +281,8 @@ public abstract class Vertex {
 		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
 				false);
 
-		if (this.getfamily() != null) {
-			this.getfamily().updateOtherGameelementPosition(difX, difY);
+		if (this.getFamily() != null) {
+			this.getFamily().updateOtherGameelementPosition(difX, difY);
 		}
 	}
 	
@@ -318,8 +318,8 @@ public abstract class Vertex {
 				+ paddingScreen.x, y + paddingScreen.y), this.getGameElement(),
 				false);
 
-		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(
+		if (this.getFamily() != null) {
+			this.getFamily().setOtherGameelementPosition(
 					new Vector2(newPos.x, newPos.y
 							+ Constants.EVALUATION_DEFALT_LAYER_DIF), startPos,
 					paddingScreen);
@@ -365,8 +365,8 @@ public abstract class Vertex {
 		boolean retValue = false;
 		if(this.getColor() == oldColor && this.getType().equals(Constants.RetroStrings.ABSTRACTION_TYPE)) {
 			// Change Color of Family
-			if (this.getfamily() != null) {
-				this.getfamily().recolorFamily(newColor, oldColor);
+			if (this.getFamily() != null) {
+				this.getFamily().recolorFamily(newColor, oldColor);
 			}
 			// change own Color
 			updateMap(this.color, newColor);
@@ -384,9 +384,9 @@ public abstract class Vertex {
 			this.getFamilyColorList().add(newColor);
 			retValue = true;
 		} else if( this.getColor() == oldColor) {
-			if (this.getfamily() != null) {
+			if (this.getFamily() != null) {
 				if (this.getFamilyColorList().contains(oldColor)) {
-					if(this.getfamily().searchEqualAbstractions(oldColor , newColor)) {
+					if(this.getFamily().searchEqualAbstractions(oldColor , newColor)) {
 						// Update family Color List
 						this.getFamilyColorList().add(newColor);
 					}
@@ -396,9 +396,9 @@ public abstract class Vertex {
 			}
 			
 		} else {
-			if (this.getfamily() != null) {
+			if (this.getFamily() != null) {
 				if (this.getFamilyColorList().contains(oldColor)) {
-					if(this.getfamily().searchEqualAbstractions(oldColor, newColor)) {
+					if(this.getFamily().searchEqualAbstractions(oldColor, newColor)) {
 						// Update family Color List
 						for (int i = 0; i < this.getFamilyColorList().size(); i++) {
 							if (this.getFamilyColorList().get(i) == oldColor) {
@@ -455,8 +455,8 @@ public abstract class Vertex {
 				this.getGameElement().setTileId(newColor + offset);
 			}
 		}
-		if (this.getfamily() != null) {
-			this.getfamily().recolorFamily(newColor, oldColor);
+		if (this.getFamily() != null) {
+			this.getFamily().recolorFamily(newColor, oldColor);
 		}
 		
 		if (this.getnext() != null) {
@@ -479,22 +479,22 @@ public abstract class Vertex {
 		// if family contains color, search and replace it
 		if (this.getFamilyColorList().contains(start.getColor())) {
 
-			if (this.getfamily() != null) {
+			if (this.getFamily() != null) {
 				// Check Family Vertexes before you check to replace the first
 				// in Family
-				listOfNewVertex = this.getfamily().replaceInFamily(start);
+				listOfNewVertex = this.getFamily().replaceInFamily(start);
 
 				// Replace Family Vertex if Color and Type are ok
-				if (this.getfamily().getType().equals("Variable")
-						&& this.getfamily().getColor() == start.getColor()) {
+				if (this.getFamily().getType().equals("Variable")
+						&& this.getFamily().getColor() == start.getColor()) {
 					cloned(start, listOfNewVertex);
 
 					// Animation
 					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(
-							position, this.getfamily().getGameElement(), false);
+							position, this.getFamily().getGameElement(), false);
 
-					if (this.getfamily().getnext() != null) {
-						replaced.setnext(this.getfamily().getnext());
+					if (this.getFamily().getnext() != null) {
+						replaced.setnext(this.getFamily().getnext());
 					}
 					this.setfamily(replaced);
 				}
@@ -541,8 +541,8 @@ public abstract class Vertex {
 		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
 
 		// Add family
-		if (this.getfamily() != null) {
-			returnList = this.getfamily().getFamilyVertexList();
+		if (this.getFamily() != null) {
+			returnList = this.getFamily().getFamilyVertexList();
 		}
 		returnList.add(this);
 		return returnList;
@@ -558,8 +558,8 @@ public abstract class Vertex {
 			for (Integer i : clonedList) {
 				this.getFamilyColorList().add(i);
 			}
-			if (this.getfamily() != null) {
-				this.getfamily().updateFamilyColorList(clonedList, color);
+			if (this.getFamily() != null) {
+				this.getFamily().updateFamilyColorList(clonedList, color);
 			}
 		}
 	}
@@ -568,8 +568,8 @@ public abstract class Vertex {
 		if (this.getnext() != null) {
 			this.getnext().readInFamilyAnimation(pos);
 		}
-		if (this.getfamily() != null) {
-			this.getfamily().readInFamilyAnimation(pos);
+		if (this.getFamily() != null) {
+			this.getFamily().readInFamilyAnimation(pos);
 		}
 
 		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
@@ -596,8 +596,8 @@ public abstract class Vertex {
 					startPos, paddingScreen);
 		}
 
-		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(
+		if (this.getFamily() != null) {
+			this.getFamily().setOtherGameelementPosition(
 					new Vector2(newPos.x, newPos.y
 							+ Constants.EVALUATION_DEFALT_LAYER_DIF), startPos,
 					paddingScreen);
@@ -643,11 +643,11 @@ public abstract class Vertex {
 		}
 
 		// Compare Family
-		if (this.getfamily() != null ^ other.getfamily() != null) {
+		if (this.getFamily() != null ^ other.getFamily() != null) {
 			return false;
-		} else if (this.getfamily() != null) { // in case both are not null,
+		} else if (this.getFamily() != null) { // in case both are not null,
 												// need to compare them.
-			if (!this.getfamily().equals(other.getfamily())) { // if they do not
+			if (!this.getFamily().equals(other.getFamily())) { // if they do not
 															// equal we can
 															// return false
 				return false;
@@ -659,10 +659,10 @@ public abstract class Vertex {
 
 	public void updateWidth() {
 		// Update width
-		if (this.getfamily() != null) {
-			this.getfamily().updateFamilyWidth();
-			this.setWidth(this.getfamily().getWidth()
-					+ this.getfamily().getNextWidth());
+		if (this.getFamily() != null) {
+			this.getFamily().updateFamilyWidth();
+			this.setWidth(this.getFamily().getWidth()
+					+ this.getFamily().getNextWidth());
 		} else {
 			this.setWidth(0);
 		}
@@ -678,9 +678,9 @@ public abstract class Vertex {
 		// Update pointer if needed
 		if (this.getnext() != null) {
 			// Search last Vertex in first Family layer
-			if (this.getfamily() != null) {
+			if (this.getFamily() != null) {
 				Vertex pointer = new Dummy();
-				pointer.setnext(this.getfamily());
+				pointer.setnext(this.getFamily());
 				while (pointer.getnext().getnext() != null) {
 					pointer.setnext(pointer.getnext().getnext());
 				}
@@ -689,7 +689,7 @@ public abstract class Vertex {
 			}
 		}
 		// return new Worker
-		return this.getfamily();
+		return this.getFamily();
 	}
 
 	/**
@@ -706,8 +706,8 @@ public abstract class Vertex {
 		pos.x += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 		pos.y += Constants.ABSTRACTION_INPUT;
 
-		if (this.getfamily() != null) {
-			this.getfamily().readInFamilyAnimation(pos);
+		if (this.getFamily() != null) {
+			this.getFamily().readInFamilyAnimation(pos);
 		}
 		// Animation
 		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
@@ -729,8 +729,8 @@ public abstract class Vertex {
 			this.getnext().updateOtherGameelementPosition(difX, difY);
 		}
 
-		if (this.getfamily() != null) {
-			this.getfamily().updateOtherGameelementPosition(difX, difY);
+		if (this.getFamily() != null) {
+			this.getFamily().updateOtherGameelementPosition(difX, difY);
 		}
 
 		// Move
@@ -809,7 +809,7 @@ public abstract class Vertex {
 	 * 
 	 * @return The family tree of this vertex.
 	 */
-	public Vertex getfamily() {
+	public Vertex getFamily() {
 		return family;
 	}
 
