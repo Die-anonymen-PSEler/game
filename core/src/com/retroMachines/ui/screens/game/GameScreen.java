@@ -143,7 +143,6 @@ public class GameScreen extends AbstractScreen implements
 		hintDialog = new HintDialog("", skin, "default");
 		pauseDialog = new PauseDialog("", skin, "default");
 		taskDialog = new TaskDialog("", skin, "default");
-
 	}
 
 	/**
@@ -152,7 +151,6 @@ public class GameScreen extends AbstractScreen implements
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		// music.play();
 	}
 
 	/**

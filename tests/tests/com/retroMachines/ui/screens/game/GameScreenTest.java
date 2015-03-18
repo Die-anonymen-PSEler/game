@@ -15,6 +15,7 @@ import com.retroMachines.GdxTestRunner;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
+import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.gdxemulation.RetroInput;
 
 @RunWith(GdxTestRunner.class)
@@ -37,13 +38,16 @@ public class GameScreenTest {
 		game = new RetroMachines();
 		game.create();
 		game.getProfileController().createProfile("ABC");
+		SettingController settingController = game.getSettingController();
+		settingController.setTutorialFinished(0, false);
 		gameController = new TestGameController(game);
-		gameController.startLevel(1);
+		gameController.startLevel(0);
 		screen = (GameScreen) game.getScreen();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		game.setScreen(null);
 		game.getProfileController().deleteProfile("ABC");
 	}
 
