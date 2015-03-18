@@ -38,8 +38,8 @@ public class Application extends Vertex {
 	private Application(Vertex next, Vertex family,
 			LinkedList<Integer> familyColorlist) {
 		super(1);
-		this.setnext(next);
-		this.setfamily(family);
+		this.setNext(next);
+		this.setFamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 
@@ -92,8 +92,8 @@ public class Application extends Vertex {
 	public Vertex cloneMe() {
 		// check if next or family is null
 		Vertex family;
-		if (this.getfamily() != null) {
-			family = this.getfamily().cloneFamily();
+		if (this.getFamily() != null) {
+			family = this.getFamily().cloneFamily();
 		} else {
 			family = null;
 		}
@@ -114,13 +114,13 @@ public class Application extends Vertex {
 	public Vertex cloneFamily() {
 		Vertex next;
 		Vertex family;
-		if (this.getnext() != null) {
-			next = this.getnext().cloneFamily();
+		if (this.getNext() != null) {
+			next = this.getNext().cloneFamily();
 		} else {
 			next = null;
 		}
-		if (this.getfamily() != null) {
-			family = this.getfamily().cloneFamily();
+		if (this.getFamily() != null) {
+			family = this.getFamily().cloneFamily();
 		} else {
 			family = null;
 		}
@@ -173,7 +173,7 @@ public class Application extends Vertex {
 	@Override
 	public void updatePositionsAfterBetaReduction() {
 		// update Gameelement Postions after Gameelement of this was deleted
-		this.getfamily().updateGameelementPosition(0, -1);
+		this.getFamily().updateGameelementPosition(0, -1);
 
 	}
 

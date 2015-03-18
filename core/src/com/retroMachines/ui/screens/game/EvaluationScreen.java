@@ -144,14 +144,14 @@ public class EvaluationScreen extends AbstractScreen {
 			actVertex.getGameElement().setPosition(pos);
 			stage.addActor(actVertex.getGameElement());
 			// print Family
-			if (actVertex.getfamily() != null) {
+			if (actVertex.getFamily() != null) {
 				Vector2 famPos = new Vector2(position.x, position.y
 						+ Constants.GAMEELEMENT_WIDTH);
-				printTree(actVertex.getfamily(), famPos);
+				printTree(actVertex.getFamily(), famPos);
 			}
 
 			position.x += (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
-			actVertex = actVertex.getnext();
+			actVertex = actVertex.getNext();
 		}
 	}
 

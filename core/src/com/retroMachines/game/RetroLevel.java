@@ -204,9 +204,9 @@ public class RetroLevel {
 	private Vertex buildTree(int y, Vertex dummy) {
 		Vertex result;
 		// Build family and your self
-		if (dummy.getfamily() != null) {
+		if (dummy.getFamily() != null) {
 			Vertex fam = buildTree(y + Constants.DEPOTLAYER_Y_DIF,
-					dummy.getfamily());
+					dummy.getFamily());
 			if (fam == null) {
 				return null;
 			}
@@ -218,7 +218,7 @@ public class RetroLevel {
 				return null;
 			}
 
-			result.setfamily(fam);
+			result.setFamily(fam);
 			// set Width
 			result.setWidth(fam.getWidth() + fam.getNextWidth());
 
@@ -240,7 +240,7 @@ public class RetroLevel {
 			result.setFamilyColorlist(newColorList);
 		} else {
 			result = findVertexPosY(y);
-			result.setfamily(null);
+			result.setFamily(null);
 			// Make family color list only with own color
 			LinkedList<Integer> newColorList = new LinkedList<Integer>();
 
@@ -252,13 +252,13 @@ public class RetroLevel {
 		}
 
 		// Build vertex next to you if not null
-		if (dummy.getnext() != null) {
-			Vertex next = buildTree(y, dummy.getnext());
+		if (dummy.getNext() != null) {
+			Vertex next = buildTree(y, dummy.getNext());
 			if (next == null) {
 				return null;
 			}
 			// Check if construct is valid
-			result.setnext(next);
+			result.setNext(next);
 
 			// set nextWidth
 			result.setNextWidth(next.getWidth() + next.getNextWidth());
@@ -277,7 +277,7 @@ public class RetroLevel {
 		} else {
 			// Check if construct is valid
 
-			result.setnext(null);
+			result.setNext(null);
 			result.setNextColorlist(new LinkedList<Integer>());
 		}
 		return result;
