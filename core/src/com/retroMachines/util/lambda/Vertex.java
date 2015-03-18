@@ -888,7 +888,7 @@ public abstract class Vertex {
 		pos = p;
 	}
 
-	public void setIsInDepot(boolean i) {
-		isInDepot = i;
+	public void setIsInDepot(boolean b) {
+		isInDepot = b;
 	}
 }
