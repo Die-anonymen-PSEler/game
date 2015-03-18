@@ -384,7 +384,7 @@ public class GameScreen extends AbstractScreen implements
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if (keycode == Keys.B) {
+		if (keycode == Keys.B && !popupScreenIsShown) {
 			gameController.interactRetroMan();
 		}
 		return false;
@@ -432,6 +432,8 @@ public class GameScreen extends AbstractScreen implements
 
 	public void showDialogChain(RetroDialogChain dialogChain) {
 		dialogChain.show(stage);
+		dialogChain.registerListener(this);
+		popupScreenIsShown = true;
 	}
 
 	// -----------------------------------

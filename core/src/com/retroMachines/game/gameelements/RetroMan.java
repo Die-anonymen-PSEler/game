@@ -62,14 +62,19 @@ public class RetroMan {
 	public static final int ELEMENT_OFFSET = 1;
 
 	/**
-	 * true if the character is looking to the left; false otherwise
-	 */
-	private boolean faceLeft = false;
-
-	/**
 	 * the position of the character on the screen
 	 */
 	private final Vector2 pos;
+
+	/**
+	 * the current velocity
+	 */
+	private final Vector2 velocity;
+	
+	/**
+	 * true if the character is looking to the left; false otherwise
+	 */
+	private boolean faceLeft = false;
 
 	/**
 	 * if the character is jumping the attribute should be true prevents jumping
@@ -88,18 +93,18 @@ public class RetroMan {
 	private Texture texture;
 
 	private Animation standRight;
+	
 	private Animation standERight;
+	
 	private Animation jumpingRight;
+	
 	private Animation jumpingERight;
+	
 	private Animation runingAnimation;
+	
 	private Animation runingAnimationCarry;
 
 	private float timeSum;
-
-	/**
-	 * the current velocity
-	 */
-	private final Vector2 velocity;
 
 	/**
 	 * Constructs a new Object of the RetroMan and sets his coordinates and
@@ -135,7 +140,44 @@ public class RetroMan {
 		timeSum = 0;
 	}
 
-	/**
+	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {
+		// based on the RetroMan state, get the animation frame
+		TextureRegion frame = null;
+		timeSum += deltaTime;
+		switch (state) {
+		case STANDING:
+			frame = standRight.getKeyFrame(deltaTime);
+			break;
+		case STANDINGE:
+			frame = standERight.getKeyFrame(deltaTime);
+			break;
+		case RUNNING:
+			frame = runingAnimation.getKeyFrame(timeSum, true);
+			break;
+		case RUNNINGE:
+			frame = runingAnimationCarry.getKeyFrame(timeSum, true);
+			break;
+		case JUMPING:
+			frame = jumpingRight.getKeyFrame(deltaTime);
+			break;
+		case JUMPINGE:
+			frame = jumpingERight.getKeyFrame(deltaTime);
+			break;
+		default:
+			break;
+		}
+
+		Batch batch = renderer.getBatch();
+		batch.begin();
+		if (faceLeft) {
+			batch.draw(frame, pos.x + WIDTH, pos.y, -WIDTH, HEIGHT);
+		} else {
+			batch.draw(frame, pos.x, pos.y, WIDTH, HEIGHT);
+		}
+		batch.end();
+	}
+
+	/*
 	 * jumping part
 	 */
 
@@ -182,7 +224,7 @@ public class RetroMan {
 		return true;
 	}
 
-	/**
+	/*
 	 * moving
 	 */
 
@@ -231,10 +273,6 @@ public class RetroMan {
 		return faceLeft;
 	}
 
-	public Vector2 getVelocity() {
-		return velocity;
-	}
-
 	/**
 	 * returns the position that would be next to him. text into account his
 	 * facing direction
@@ -253,7 +291,7 @@ public class RetroMan {
 		return elementPos;
 	}
 
-	/**
+	/*
 	 * Interacting with the game elements.
 	 */
 
@@ -301,20 +339,7 @@ public class RetroMan {
 		return gameElement;
 	}
 
-	/**
-	 * getters and setters
-	 */
-
-	/**
-	 * Retrieves the position of the character as a Vector2
-	 * 
-	 * @return the current position as a Vector2
-	 */
-	public Vector2 getPos() {
-		return pos;
-	}
-
-	/**
+	/*
 	 * rendering
 	 */
 
@@ -333,45 +358,25 @@ public class RetroMan {
 		}
 	}
 
-	private void renderRetroMan(BatchTiledMapRenderer renderer, float deltaTime) {
-		// based on the RetroMan state, get the animation frame
-		TextureRegion frame = null;
-		timeSum += deltaTime;
-		switch (state) {
-		case STANDING:
-			frame = standRight.getKeyFrame(deltaTime);
-			break;
-		case STANDINGE:
-			frame = standERight.getKeyFrame(deltaTime);
-			break;
-		case RUNNING:
-			frame = runingAnimation.getKeyFrame(timeSum, true);
-			break;
-		case RUNNINGE:
-			frame = runingAnimationCarry.getKeyFrame(timeSum, true);
-			break;
-		case JUMPING:
-			frame = jumpingRight.getKeyFrame(deltaTime);
-			break;
-		case JUMPINGE:
-			frame = jumpingERight.getKeyFrame(deltaTime);
-			break;
-		default:
-			break;
-		}
+	/*
+	 * getters and setters
+	 */
 
-		Batch batch = renderer.getBatch();
-		batch.begin();
-		if (faceLeft) {
-			batch.draw(frame, pos.x + WIDTH, pos.y, -WIDTH, HEIGHT);
-		} else {
-			batch.draw(frame, pos.x, pos.y, WIDTH, HEIGHT);
-		}
-		batch.end();
+	public Vector2 getVelocity() {
+		return velocity;
 	}
 
 	/**
-	 * subclasses and enums
+	 * Retrieves the position of the character as a Vector2
+	 * 
+	 * @return the current position as a Vector2
+	 */
+	public Vector2 getPos() {
+		return pos;
+	}
+
+	/*
+	 * enums
 	 */
 
 	/**

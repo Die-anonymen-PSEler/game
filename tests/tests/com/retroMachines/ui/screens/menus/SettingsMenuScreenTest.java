@@ -30,8 +30,6 @@ public class SettingsMenuScreenTest {
 	
 	private static final Vector2 SOUNDOFF_BUTTON = new Vector2(MAIN_TABLE, 0);
 	
-	private static final Vector2 PROFILE_SETTINGS_BUTTON = new Vector2();
-	
 	private static final int MAX_VOLUME_LOOPS = 50;
 
 	@BeforeClass

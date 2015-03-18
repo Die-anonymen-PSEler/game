@@ -12,6 +12,31 @@ import com.badlogic.gdx.Gdx;
 public class Setting extends Model {
 
 	/**
+	 * the key under which the volume is stored.
+	 */
+	private static final String KEY_VOLUME = "volume";
+
+	/**
+	 * the key under which the sound on off variable is stored.
+	 */
+	private static final String KEY_SOUNDONOFF = "soundOnOff";
+
+	/**
+	 * the key under which the left/right control is stored
+	 */
+	private static final String KEY_LEFTCONTROL = "leftControl";
+
+	/**
+	 * the key under which the id of the selected character is stored
+	 */
+	private static final String KEY_SELECTEDCHARACTER = "selectedCharacter";
+
+	/**
+	 * pattern where the key under which the tutorial value is stored
+	 */
+	private static final String KEY_PATTERN_TUTORIALS = "tutorial_seen_%s";
+
+	/**
 	 * the value an empty settings instance is set to.
 	 */
 	public static final float DEFAULT_VOLUME = 0.5f;
@@ -36,31 +61,6 @@ public class Setting extends Model {
 	 * the name of the table where the settings are stored
 	 */
 	public static final String TABLE_NAME = "settings";
-
-	/**
-	 * the key under which the volume is stored.
-	 */
-	private static final String KEY_VOLUME = "volume";
-
-	/**
-	 * the key under which the sound on off variable is stored.
-	 */
-	private static final String KEY_SOUNDONOFF = "soundOnOff";
-
-	/**
-	 * the key under which the left/right control is stored
-	 */
-	private static final String KEY_LEFTCONTROL = "leftControl";
-
-	/**
-	 * the key under which the id of the selectedcharacter is stored
-	 */
-	private static final String KEY_SELECTEDCHARACTER = "selectedCharacter";
-
-	/**
-	 * pattern where the key under which the tutorial value is stored
-	 */
-	private static final String KEY_PATTERN_TUTORIALS = "tutorial_seen_%s";
 
 	/**
 	 * the volume of the game range 0.0f to 1.0f
@@ -162,6 +162,51 @@ public class Setting extends Model {
 	 */
 
 	/**
+	 * Get method to check whether left or right control is enabled in this
+	 * settings objects.
+	 * 
+	 * @return true if the left control; false equals right control.
+	 */
+	public boolean isLeftControl() {
+		return leftControl;
+	}
+
+	/**
+	 * Get method to check whether sound is enabled or not.
+	 * 
+	 * @return true if sound is enabled; false otherwise.
+	 */
+	public boolean isSoundOnOff() {
+		return soundOnOff;
+	}
+
+	/**
+	 * checks whether the tutorial is finished or not 
+	 * @param levelId the level for which it should be checked
+	 * @return true if its finished, false otherwise
+	 */
+	public boolean isTutorialFinished(int levelId) {
+		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId),
+				false);
+	}
+	
+	/**
+	 * @return the current volume
+	 */
+	public float getVolume() {
+		return volume;
+	}
+	
+	/**
+	 * getter method for the selected character id
+	 * 
+	 * @return the id
+	 */
+	public int getSelectedCharacter() {
+		return this.selectedCharacter;
+	}
+
+	/**
 	 * Assigns a new volume to this object.
 	 * 
 	 * @param volume
@@ -199,32 +244,6 @@ public class Setting extends Model {
 	}
 
 	/**
-	 * @return the current volume
-	 */
-	public float getVolume() {
-		return volume;
-	}
-
-	/**
-	 * Get method to check whether left or right control is enabled in this
-	 * settings objects.
-	 * 
-	 * @return true if the left control; false equals right control.
-	 */
-	public boolean isLeftControl() {
-		return leftControl;
-	}
-
-	/**
-	 * Get method to check whether sound is enabled or not.
-	 * 
-	 * @return true if sound is enabled; false otherwise.
-	 */
-	public boolean isSoundOnOff() {
-		return soundOnOff;
-	}
-
-	/**
 	 * assigns a new id regarding the character to the setting instance
 	 * 
 	 * @param id
@@ -233,25 +252,6 @@ public class Setting extends Model {
 	public void setSelectedCharacter(int id) {
 		this.selectedCharacter = id;
 		write();
-	}
-
-	/**
-	 * getter method for the selected character id
-	 * 
-	 * @return the id
-	 */
-	public int getSelectedCharacter() {
-		return this.selectedCharacter;
-	}
-
-	/**
-	 * checks whether the tutorial is finished or not 
-	 * @param levelId the level for which it should be checked
-	 * @return true if its finished, false otherwise
-	 */
-	public boolean isTutorialFinished(int levelId) {
-		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId),
-				false);
 	}
 
 	/**

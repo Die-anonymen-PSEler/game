@@ -20,12 +20,6 @@ import com.retroMachines.util.Constants;
 public class SettingController implements OnProfileChangedListener {
 
 	/**
-	 * Private attribute of the Settings Database which stores the setting
-	 * informations.
-	 */
-	private Setting settings;
-
-	/**
 	 * Instance of the Game itself.
 	 */
 	private final RetroMachines game;
@@ -35,6 +29,12 @@ public class SettingController implements OnProfileChangedListener {
 	 * have to be notified if the settings are changed.
 	 */
 	private final List<SettingsChangeListener> toBeNotified;
+	
+	/**
+	 * Private attribute of the Settings Database which stores the setting
+	 * informations.
+	 */
+	private Setting settings;
 
 	/**
 	 * Constructor which starts an instance of SettingController with all needed
@@ -49,6 +49,21 @@ public class SettingController implements OnProfileChangedListener {
 		toBeNotified = new LinkedList<SettingsChangeListener>();
 	}
 
+	private void notifyListeners() {
+		for (SettingsChangeListener listener : toBeNotified) {
+			listener.onSettingsChanged();
+		}
+	}
+
+	/**
+	 * Controls if the profile was changed.
+	 */
+	@Override
+	public void profileChanged() {
+		settings = game.getProfileController().getProfile().getSetting();
+		notifyListeners();
+	}
+	
 	/**
 	 * completes the setup of the controller
 	 */
@@ -81,39 +96,6 @@ public class SettingController implements OnProfileChangedListener {
 	 */
 	public void removeListener(SettingsChangeListener listener) {
 		toBeNotified.remove(listener);
-	}
-
-	private void notifyListeners() {
-		for (SettingsChangeListener listener : toBeNotified) {
-			listener.onSettingsChanged();
-		}
-	}
-
-	/*
-	 * Getter and Setter
-	 */
-
-	/**
-	 * Assigns the volume to a new loudness specified by the user in the
-	 * SettingsMenuScreen.
-	 * 
-	 * @param newVolume
-	 *            The new volume of the sound.
-	 */
-	public void setVolume(float newVolume) {
-		if (Math.abs(newVolume - settings.getVolume()) > 1E-14) {
-			settings.setVolume(newVolume);
-			notifyListeners();
-		}
-	}
-
-	/**
-	 * Returns the currently set volume within the settings instance.
-	 * 
-	 * @return A float variable within the range of 0-1.0.
-	 */
-	public float getVolume() {
-		return settings.getVolume();
 	}
 
 	/**
@@ -155,6 +137,51 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
+	 * 
+	 * @param levelId
+	 *            the level for which it should be checked
+	 * @return true if it's finished, false otherwise
+	 */
+	public boolean isTutorialFinished(int levelId) {
+		boolean value = settings.isTutorialFinished(levelId);
+		return value;
+	}
+
+	/**
+	 * sets all tutorials to not finished
+	 */
+	public void resetTutorials() {
+		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
+			settings.setTutorialFinished(i, false);
+		}
+	}
+
+	/**
+	 * checks whether the sound is enabled or not
+	 * 
+	 * @return true if the sound is enabled, false otherwise
+	 */
+	public boolean isSoundEnabled() {
+		if (settings.getVolume() < 1E-14 || !settings.isSoundOnOff()) {
+			return false;
+		}
+		return true;
+	}
+
+	/*
+	 * Getter and Setter
+	 */
+
+	/**
+	 * Returns the currently set volume within the settings instance.
+	 * 
+	 * @return A float variable within the range of 0-1.0.
+	 */
+	public float getVolume() {
+		return settings.getVolume();
+	}
+
+	/**
 	 * returns the ID of the current character
 	 * 
 	 * @return ID of current character
@@ -193,30 +220,6 @@ public class SettingController implements OnProfileChangedListener {
 		this.settings = setting;
 	}
 
-
-	/**
-	 * checks whether the sound is enabled or not
-	 * 
-	 * @return true if the sound is enabled, false otherwise
-	 */
-	public boolean isSoundEnabled() {
-		if (settings.getVolume() < 1E-14 || !settings.isSoundOnOff()) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * 
-	 * @param levelId
-	 *            the level for which it should be checked
-	 * @return true if it's finished, false otherwise
-	 */
-	public boolean isTutorialFinished(int levelId) {
-		boolean value = settings.isTutorialFinished(levelId);
-		return value;
-	}
-
 	/**
 	 * sets whether the tutorial is finished or not
 	 * @param levelId the level for which this should be set
@@ -227,21 +230,16 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * sets all tutorials to not finished
+	 * Assigns the volume to a new loudness specified by the user in the
+	 * SettingsMenuScreen.
+	 * 
+	 * @param newVolume
+	 *            The new volume of the sound.
 	 */
-	public void resetTutorials() {
-		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
-			settings.setTutorialFinished(i, false);
+	public void setVolume(float newVolume) {
+		if (Math.abs(newVolume - settings.getVolume()) > 1E-14) {
+			settings.setVolume(newVolume);
+			notifyListeners();
 		}
 	}
-
-	/**
-	 * Controls if the profile was changed.
-	 */
-	@Override
-	public void profileChanged() {
-		settings = game.getProfileController().getProfile().getSetting();
-		notifyListeners();
-	}
-
 }

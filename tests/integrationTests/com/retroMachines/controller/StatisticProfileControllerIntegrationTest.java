@@ -2,6 +2,8 @@ package com.retroMachines.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +25,10 @@ public class StatisticProfileControllerIntegrationTest {
 		game.create();
 		statisticController = game.getStatisticController();
 		profileController = game.getProfileController();
+		HashMap<String, Integer> map = profileController.getProfileNameIdMap();
+		for (String name : map.keySet()) {
+			profileController.deleteProfile(name);
+		}
 	}
 
 	@After

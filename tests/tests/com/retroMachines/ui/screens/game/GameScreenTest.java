@@ -1,5 +1,6 @@
 package com.retroMachines.ui.screens.game;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -15,14 +16,13 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.gdxemulation.RetroInput;
-import com.retroMachines.gdxemulation.RetroMachineMock;
 
 @RunWith(GdxTestRunner.class)
 public class GameScreenTest {
 	
 	private GameScreen screen;
 	
-	private RetroMachineMock game;
+	private RetroMachines game;
 	
 	private TestGameController gameController;
 	
@@ -34,19 +34,22 @@ public class GameScreenTest {
 
 	@Before
 	public void setUp() throws Exception {
-		game = new RetroMachineMock();
+		game = new RetroMachines();
+		game.create();
+		game.getProfileController().createProfile("ABC");
 		gameController = new TestGameController(game);
 		gameController.startLevel(1);
-		screen = (GameScreen) game.activeScreen;
+		screen = (GameScreen) game.getScreen();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		game.getProfileController().deleteProfile("ABC");
 	}
 
 	@Test
 	public void testInteract() {
-		screen.initialize();
+		screen.dialogFinished();
 		screen.keyDown(Keys.B);
 		assertTrue("interact request wurde gemacht", gameController.interactRetroMan);
 		gameController.interactRetroMan = false;
@@ -54,7 +57,7 @@ public class GameScreenTest {
 	
 	@Test
 	public void testJumpScreen() {
-		screen.initialize();
+		screen.dialogFinished();
 		((RetroInput) Gdx.input).addPressedKey(Keys.SPACE);
 		screen.render(0.1f);
 		assertTrue("retroman sollte jumpen", gameController.jumpRetroMan);
@@ -63,11 +66,37 @@ public class GameScreenTest {
 	
 	@Test
 	public void testLeft() {
-		screen.initialize();
+		screen.dialogFinished();
 		((RetroInput) Gdx.input).addPressedKey(Keys.LEFT);
 		screen.render(0.1f);
 		assertTrue("retroman sollte nach links gehen", gameController.leftRetroMan);
 		((RetroInput) Gdx.input).removePressedKey(Keys.LEFT);
+	}
+	
+	@Test
+	public void testScreenLeft() {
+		game.getSettingController().setLeftMode(true);
+		gameController = new TestGameController(game);
+		gameController.startLevel(1);
+	}
+	
+	@Test
+	public void testPopUpScreen() {
+		((RetroInput) Gdx.input).addPressedKey(Keys.LEFT);
+		screen.render(0.1f);
+		assertFalse("retroman sollte nicht links gehen", gameController.leftRetroMan);
+		((RetroInput) Gdx.input).removePressedKey(Keys.LEFT);
+	}
+	
+	@Test
+	public void testUnusedMethods() {
+		screen.keyTyped('c');
+		screen.keyUp(Keys.A);
+		screen.mouseMoved(0, 0);
+		screen.scrolled(0);
+		screen.touchDown(0, 0, 0, 0);
+		screen.touchDragged(0, 0, 0);
+		screen.touchUp(0, 0, 0, 0);
 	}
 	
 	private class TestGameController extends GameController {

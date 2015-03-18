@@ -156,7 +156,9 @@ public abstract class Vertex {
 		} else if( this.getColor() == oldColor) {
 			if (this.getFamily() != null) {
 				if (this.getFamilyColorList().contains(oldColor)) {
+
 					if(this.getFamily().searchEqualAbstractions(oldColor , newColor)) {
+
 						// Update family Color List
 						this.getFamilyColorList().add(newColor);
 					}
@@ -168,7 +170,9 @@ public abstract class Vertex {
 		} else {
 			if (this.getFamily() != null) {
 				if (this.getFamilyColorList().contains(oldColor)) {
+
 					if(this.getFamily().searchEqualAbstractions(oldColor, newColor)) {
+
 						// Update family Color List
 						for (int i = 0; i < this.getFamilyColorList().size(); i++) {
 							if (this.getFamilyColorList().get(i) == oldColor) {
@@ -185,6 +189,7 @@ public abstract class Vertex {
 		
 		if (this.getNext() != null) {
 			if(this.getNext().searchEqualAbstractions(oldColor, newColor)) {
+
 				// Update family Color List
 				for (int i = 0; i < this.getNextColorList().size(); i++) {
 					if (this.getNextColorList().get(i) == oldColor) {

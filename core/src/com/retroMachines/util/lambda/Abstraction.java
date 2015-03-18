@@ -65,6 +65,7 @@ public class Abstraction extends Vertex {
 	public boolean alphaConversion() {
 		int newColor = searchUnusedColorID();
 		return this.getFamily().searchEqualAbstractions(this.getColor(), newColor);
+
 	}
 
 	/**

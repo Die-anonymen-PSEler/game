@@ -92,6 +92,20 @@ public class RetroDialog extends Dialog {
 		this(title, "");
 	}
 
+	@Override
+	protected void result(Object object) {
+		if (autoClear) {
+			this.remove();
+		}
+		if (runnable != null) {
+			runnable.run();
+		}
+	}
+	
+	/*
+	 * Getter and Setter
+	 */
+
 	/**
 	 * Assign a runnable to the dialog that will be executed once the result is
 	 * method is called. To disable assign null
@@ -111,15 +125,5 @@ public class RetroDialog extends Dialog {
 	 */
 	public void setAutoClear(boolean t) {
 		autoClear = t;
-	}
-
-	@Override
-	protected void result(Object object) {
-		if (autoClear) {
-			this.remove();
-		}
-		if (runnable != null) {
-			runnable.run();
-		}
 	}
 }

@@ -12,6 +12,21 @@ import com.badlogic.gdx.Gdx;
 public class Statistic extends Model {
 
 	/**
+	 * the key where the playtime value is stored.
+	 */
+	private static final String KEY_PLAYTIME = "playtime";
+
+	/**
+	 * the key where the levelcompleted value is stored.
+	 */
+	private static final String KEY_LEVELCOMPLETED = "levelCompleted";
+
+	/**
+	 * the key where the stepcounter value is stored.
+	 */
+	private static final String KEY_STEPCOUNTER = "stepCounter";
+	
+	/**
 	 * the default value regarding the playtime.
 	 */
 	public static final int DEFAULT_PLAYTIME = 0;
@@ -30,21 +45,6 @@ public class Statistic extends Model {
 	 * the name of the table where the statistics are stored
 	 */
 	public static final String TABLE_NAME = "statistics";
-
-	/**
-	 * the key where the playtime value is stored.
-	 */
-	private static final String KEY_PLAYTIME = "playtime";
-
-	/**
-	 * the key where the levelcompleted value is stored.
-	 */
-	private static final String KEY_LEVELCOMPLETED = "levelCompleted";
-
-	/**
-	 * the key where the stepcounter value is stored.
-	 */
-	private static final String KEY_STEPCOUNTER = "stepCounter";
 
 	/**
 	 * the play time the player has spent on the game in minutes
@@ -146,7 +146,34 @@ public class Statistic extends Model {
 	/*
 	 * Getter and Setter
 	 */
+	
+	/**
+	 * Get method for the completed levels.
+	 * 
+	 * @return number of completed Levels
+	 */
+	public int getLevelsComplete() {
+		return levelsComplete;
+	}
 
+	/**
+	 * Returns the number of steps the player made with the character.
+	 * 
+	 * @return number of steps made by the character.
+	 */
+	public int getStepCounter() {
+		return stepCounter;
+	}
+
+	/**
+	 * Get method that returns the time the user placed as an integer.
+	 * 
+	 * @return the time the player has played already.
+	 */
+	public float getPlaytime() {
+		return playtime;
+	}
+	
 	/**
 	 * Set method to assign a new amount of levels that were completed by the
 	 * user.
@@ -179,32 +206,5 @@ public class Statistic extends Model {
 	public void setPlaytime(float playtime) {
 		this.playtime = playtime;
 		write();
-	}
-
-	/**
-	 * Get method for the completed levels.
-	 * 
-	 * @return number of completed Levels
-	 */
-	public int getLevelsComplete() {
-		return levelsComplete;
-	}
-
-	/**
-	 * Returns the number of steps the player made with the character.
-	 * 
-	 * @return number of steps made by the character.
-	 */
-	public int getStepCounter() {
-		return stepCounter;
-	}
-
-	/**
-	 * Get method that returns the time the user placed as an integer.
-	 * 
-	 * @return the time the player has played already.
-	 */
-	public float getPlaytime() {
-		return playtime;
 	}
 }

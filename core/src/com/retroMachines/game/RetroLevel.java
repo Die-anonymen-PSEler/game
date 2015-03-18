@@ -56,130 +56,7 @@ public class RetroLevel {
 		this.map = map;
 		lambdaUtil = util;
 	}
-
-	/**
-	 * Checks if a given position is suiteable for a gameelement (whether it
-	 * makes sense)
-	 * 
-	 * @param pos
-	 *            the vector in question
-	 * @return true if valid; false otherwise.
-	 */
-	public boolean isValidGameElementPosition(Vector2 pos) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
-				Constants.OBJECT_LAYER_ID);
-		if (layer.getCell((int) pos.x, (int) pos.y) != null) {
-			return false;
-		}
-		layer = (TiledMapTileLayer) map.getLayers().get(
-				Constants.SOLID_LAYER_ID);
-		if (layer.getCell((int) pos.x, (int) pos.y) != null
-				|| layer.getCell((int) pos.x, ((int) pos.y - 1)) == null) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Assigns a GameElement a new position and updates it's coordinates within
-	 * the lambdautil. Also adds the element back to the map for rendering. You
-	 * might wanna call the isValidGameElementPosition first
-	 * 
-	 * @param element
-	 *            the element which will be readded to the map
-	 * @param newPos
-	 *            the position where the element will be added.
-	 */
-	public void placeGameElement(GameElement element, Vector2 newPos) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
-				Constants.OBJECT_LAYER_ID);
-		Vertex vertex = lambdaUtil.getVertex(element);
-		vertex.setPosition(newPos.cpy());
-
-		Cell cell = new Cell();
-		cell.setTile(element.getTileSet().getTile(element.getTileId()));
-		layer.setCell((int) newPos.x, (int) newPos.y, cell);
-	}
-
-	/**
-	 * Removes an Object from the map. This does only remove the visual
-	 * appearance!
-	 * 
-	 * @param elementPosition
-	 *            the vector where element shall be removed
-	 */
-	public void removeGameElement(GameElement element, Vector2 elementPosition) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
-				Constants.OBJECT_LAYER_ID);
-		layer.setCell((int) elementPosition.x, (int) elementPosition.y, null);
-		// Set vertex Pos to -1 -1 so its not longer placed on old place
-		Vertex vertex = lambdaUtil.getVertex(element);
-		vertex.setPosition(new Vector2(-1, -1));
-	}
-
-	/**
-	 * Returns GameElement at a given position in TiledMap
-	 * 
-	 * @param posObj
-	 *            Position in TiledMap of the GameElement.
-	 * @return The GameElement at this position ( null when empty).
-	 */
-	public GameElement getGameElement(Vector2 posObj) {
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
-				Constants.OBJECT_LAYER_ID);
-		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
-		return (cell == null) ? null : lambdaUtil.getGameElement(
-				(int) posObj.x, (int) posObj.y);
-	}
-
-	public boolean isAllDepotsFilled() {
-
-		// Get Depot Tile as Cell objekt
-		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(
-				Constants.DEPOT_LAYER);
-		TiledMapTileSet depotSet = map.getTileSets().getTileSet(
-				RetroStrings.TILESETNAME_DEPOT);
-		int offsetDepot = (Integer) depotSet.getProperties().get("firstgid");
-		Cell depotCell = new Cell();
-		depotCell.setTile(depotSet.getTile(DEPOTID + offsetDepot));
-
-		int numOfVInDepot = 0;
-
-		vertexInDepot = new LinkedList<Vertex>();
-		for (Vertex v : lambdaUtil.getVertexList()) {
-			Vector2 pos = v.getPosition();
-
-			// Check if position of v is same as an Depot
-			if (depotLayer.getCell((int) pos.x, (int) pos.y) != null
-					&& depotLayer.getCell((int) pos.x, (int) pos.y).getTile()
-							.getId() == depotCell.getTile().getId()) {
-
-				// increase counter
-				numOfVInDepot++;
-
-				// Make List of all Vertex in Depot
-				vertexInDepot.add(v);
-			}
-		}
-		if (numOfVInDepot < lambdaUtil.getNumOfDepots()) {
-			// not all elements are placed
-			errorMessage = RetroStrings.NOT_ALL_PLACED;
-			return false;
-		}
-		if (!canMakeEvaluationTree()) {
-			return false;
-		}
-		return true;
-	}
-
-	public int getId() {
-		return levelId;
-	}
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
+	
 	private boolean canMakeEvaluationTree() {
 		errorMessage = "";
 		// Search start Vertex
@@ -331,6 +208,138 @@ public class RetroLevel {
 	}
 
 	/**
+	 * Checks if a given position is suiteable for a gameelement (whether it
+	 * makes sense)
+	 * 
+	 * @param pos
+	 *            the vector in question
+	 * @return true if valid; false otherwise.
+	 */
+	public boolean isValidGameElementPosition(Vector2 pos) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
+		if (layer.getCell((int) pos.x, (int) pos.y) != null) {
+			return false;
+		}
+		layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.SOLID_LAYER_ID);
+		if (layer.getCell((int) pos.x, (int) pos.y) != null
+				|| layer.getCell((int) pos.x, ((int) pos.y - 1)) == null) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Assigns a GameElement a new position and updates it's coordinates within
+	 * the lambdautil. Also adds the element back to the map for rendering. You
+	 * might wanna call the isValidGameElementPosition first
+	 * 
+	 * @param element
+	 *            the element which will be readded to the map
+	 * @param newPos
+	 *            the position where the element will be added.
+	 */
+	public void placeGameElement(GameElement element, Vector2 newPos) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
+		Vertex vertex = lambdaUtil.getVertex(element);
+		vertex.setPosition(newPos.cpy());
+
+		Cell cell = new Cell();
+		cell.setTile(element.getTileSet().getTile(element.getTileId()));
+		layer.setCell((int) newPos.x, (int) newPos.y, cell);
+	}
+
+	/**
+	 * Removes an Object from the map. This does only remove the visual
+	 * appearance!
+	 * 
+	 * @param elementPosition
+	 *            the vector where element shall be removed
+	 */
+	public void removeGameElement(GameElement element, Vector2 elementPosition) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
+		layer.setCell((int) elementPosition.x, (int) elementPosition.y, null);
+		// Set vertex Pos to -1 -1 so its not longer placed on old place
+		Vertex vertex = lambdaUtil.getVertex(element);
+		vertex.setPosition(new Vector2(-1, -1));
+	}
+	
+	public boolean isAllDepotsFilled() {
+
+		// Get Depot Tile as Cell objekt
+		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.DEPOT_LAYER);
+		TiledMapTileSet depotSet = map.getTileSets().getTileSet(
+				RetroStrings.TILESETNAME_DEPOT);
+		int offsetDepot = (Integer) depotSet.getProperties().get("firstgid");
+		Cell depotCell = new Cell();
+		depotCell.setTile(depotSet.getTile(DEPOTID + offsetDepot));
+
+		int numOfVInDepot = 0;
+
+		vertexInDepot = new LinkedList<Vertex>();
+		for (Vertex v : lambdaUtil.getVertexList()) {
+			Vector2 pos = v.getPosition();
+
+			// Check if position of v is same as an Depot
+			if (depotLayer.getCell((int) pos.x, (int) pos.y) != null
+					&& depotLayer.getCell((int) pos.x, (int) pos.y).getTile()
+							.getId() == depotCell.getTile().getId()) {
+
+				// increase counter
+				numOfVInDepot++;
+
+				// Make List of all Vertex in Depot
+				vertexInDepot.add(v);
+			}
+		}
+		if (numOfVInDepot < lambdaUtil.getNumOfDepots()) {
+			// not all elements are placed
+			errorMessage = RetroStrings.NOT_ALL_PLACED;
+			return false;
+		}
+		if (!canMakeEvaluationTree()) {
+			return false;
+		}
+		return true;
+	}
+	
+
+	public boolean hasTutorial() {
+		return lambdaUtil.hasTutorial();
+	}
+
+	/*
+	 * Getter and Setter
+	 */
+	
+	/**
+	 * Returns GameElement at a given position in TiledMap
+	 * 
+	 * @param posObj
+	 *            Position in TiledMap of the GameElement.
+	 * @return The GameElement at this position ( null when empty).
+	 */
+	public GameElement getGameElement(Vector2 posObj) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
+				Constants.OBJECT_LAYER_ID);
+		Cell cell = layer.getCell((int) posObj.x, (int) posObj.y);
+		return (cell == null) ? null : lambdaUtil.getGameElement(
+				(int) posObj.x, (int) posObj.y);
+	}
+
+	public int getId() {
+		return levelId;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	/**
 	 * Returns an array of rectangles based on the tiles that are within a given
 	 * area.
 	 * 
@@ -390,10 +399,6 @@ public class RetroLevel {
 		return evaluationTree;
 	}
 
-	public boolean hasTutorial() {
-		return lambdaUtil.hasTutorial();
-	}
-
 	public RetroDialogChain getDialogChain() {
 		RetroDialogChain chain = new RetroDialogChain();
 		List<Texture> textures = lambdaUtil.getTutorials();
@@ -441,30 +446,7 @@ public class RetroLevel {
 		}
 
 		/**
-		 * Returns the level that was created once the prepare method was called
-		 * 
-		 * @return the level generated
-		 */
-		public RetroLevel getLevel() {
-			return level;
-		}
-
-		/**
-		 * prepares both map and the lambda structure for the game controller
-		 * 
-		 * @param id
-		 *            the id of the level. range [1 - Constants.MAX_LEVEL]
-		 */
-		public void prepare(int id) {
-			map = RetroAssetManager.getMap(id);
-			int levelId = id + 1;
-			lambdaUtil.createTreeFromJson(String.format(JSON_PATTERN, levelId));
-			addGameelements();
-			level = new RetroLevel(levelId, this.map, this.lambdaUtil);
-		}
-
-		/**
-		 * adds the gameelements to the map.
+		 * adds the game elements to the map.
 		 */
 		private void addGameelements() {
 			List<Vertex> levelelements = lambdaUtil.getVertexList();
@@ -487,6 +469,29 @@ public class RetroLevel {
 							"Out of ColorRange in TiledSets");
 				}
 			}
+		}
+		
+		/**
+		 * prepares both map and the lambda structure for the game controller
+		 * 
+		 * @param id
+		 *            the id of the level. range [1 - Constants.MAX_LEVEL]
+		 */
+		public void prepare(int id) {
+			map = RetroAssetManager.getMap(id);
+			int levelId = id + 1;
+			lambdaUtil.createTreeFromJson(String.format(JSON_PATTERN, levelId));
+			addGameelements();
+			level = new RetroLevel(levelId, this.map, this.lambdaUtil);
+		}
+
+		/**
+		 * Returns the level that was created once the prepare method was called
+		 * 
+		 * @return the level generated
+		 */
+		public RetroLevel getLevel() {
+			return level;
 		}
 	}
 }
