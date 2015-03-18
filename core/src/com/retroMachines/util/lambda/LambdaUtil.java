@@ -163,7 +163,7 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * Adds Alle TutorialImages of Level
+	 * Adds all TutorialImages of Level
 	 * 
 	 * @param tutList
 	 * @return

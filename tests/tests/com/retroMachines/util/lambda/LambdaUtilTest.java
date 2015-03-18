@@ -10,16 +10,19 @@ import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
+import com.retroMachines.game.gameelements.GameElement;
+import com.retroMachines.game.gameelements.LightElement;
+import com.retroMachines.game.gameelements.MachineElement;
 import com.retroMachines.util.lambda.LambdaUtil.OnNextLambdaStepListener;
 
 @RunWith(GdxTestRunner.class)
 public class LambdaUtilTest {
-	
+
 	private LambdaUtil util;
 	private OnNextLambdaStepListener listener;
-	
+
 	private String jsonFormat = "maps/LevelJsons/Level%d.json";
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		RetroAssetManager.initializePreLoading();
@@ -30,10 +33,10 @@ public class LambdaUtilTest {
 	public void setUp() throws Exception {
 		util = new LambdaUtil();
 		listener = new OnNextLambdaStepListener() {
-			
+
 			@Override
 			public void nextLambdaStepPerformed() {
-				//stub
+				// stub
 			}
 		};
 	}
@@ -51,13 +54,14 @@ public class LambdaUtilTest {
 	@Test
 	public void testCreateTreeFromJson() {
 		String fileName = String.format(jsonFormat, 1);
+		util.createTreeFromJson(String.format(jsonFormat, -1)); //throws Exception in method, should be catched
 		util.createTreeFromJson(fileName);
 	}
 
 	@Test
 	public void testRegisterNewListener() {
 		util.registerNewListener(listener);
-		//listener should be observer now
+		// listener should be observer now
 		assertTrue(util.getObservers().contains(listener));
 	}
 
@@ -73,48 +77,54 @@ public class LambdaUtilTest {
 	}
 
 	@Test
-	public void testGetVertex() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testGetVertexList() {
-		fail("Not yet implemented");
+		util.getVertexList();
 	}
 
 	@Test
 	public void testGetGameElementList() {
-		fail("Not yet implemented");
+		util.getGameElementList();
 	}
 
 	@Test
 	public void testGetLevelTree() {
-		fail("Not yet implemented");
+		util.getLevelTree();
 	}
 
 	@Test
 	public void testGetTargetTree() {
-		fail("Not yet implemented");
+		util.getTargetTree();
 	}
 
 	@Test
 	public void testGetTutorials() {
-		fail("Not yet implemented");
+		util.getTutorials();
 	}
 
 	@Test
 	public void testGetHintTree() {
-		fail("Not yet implemented");
+		util.getHintTree();
 	}
 
 	@Test
 	public void testGetNumOfDepots() {
-		fail("Not yet implemented");
+		util.getNumOfDepots();
 	}
 
 	@Test
 	public void testHasTutorial() {
-		fail("Not yet implemented");
+		util.hasTutorial();
+	}
+	
+	@Test
+	public void testGetVertex() {
+		assertNull(util.getVertex(null));
+		util.createTreeFromJson(String.format(jsonFormat, 1)); //initializes vertex list
+		Vertex v = util.getVertexList().get(0);
+		GameElement g = v.getGameElement();
+		assertEquals(util.getVertex(g), v);
+		g = new MachineElement(1);
+		assertNull(util.getVertex(g));
 	}
 
 }
