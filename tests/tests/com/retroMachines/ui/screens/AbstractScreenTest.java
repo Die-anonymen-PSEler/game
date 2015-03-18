@@ -1,7 +1,5 @@
 package com.retroMachines.ui.screens;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -10,7 +8,6 @@ import org.junit.runner.RunWith;
 
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.RetroMachines;
-import com.retroMachines.ui.screens.menus.AboutMenuScreen;
 
 @RunWith(GdxTestRunner.class)
 public class AbstractScreenTest {

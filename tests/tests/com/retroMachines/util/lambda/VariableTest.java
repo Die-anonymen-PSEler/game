@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
-
 import java.util.LinkedList;
 
 import org.junit.After;
@@ -60,28 +58,28 @@ public class VariableTest {
 	@Test
 	public void testCloneMe() {
 		Variable fam = new Variable(1);
-		var.setfamily(fam);
+		var.setFamily(fam);
 		Vertex clone = var.cloneMe();
-		assertEquals(clone.getfamily(), fam);
-		var.setfamily(null);
+		assertEquals(clone.getFamily(), fam);
+		var.setFamily(null);
 		clone = var.cloneMe();
-		assertNull(clone.getfamily());
+		assertNull(clone.getFamily());
 	}
 	
 	@Test
 	public void testCloneFamily() {
 		Variable next = new Variable(1);
 		Variable fam = new Variable(2);
-		var.setnext(next);
-		var.setfamily(fam);
+		var.setNext(next);
+		var.setFamily(fam);
 		Vertex clone = var.cloneFamily();
-		assertEquals(clone.getnext(), var.getnext());
-		assertEquals(clone.getfamily(), var.getfamily());
-		var.setfamily(null);
-		var.setnext(null);
+		assertEquals(clone.getNext(), var.getNext());
+		assertEquals(clone.getFamily(), var.getFamily());
+		var.setFamily(null);
+		var.setNext(null);
 		clone = var.cloneFamily();
-		assertNull(clone.getfamily());
-		assertNull(clone.getnext());
+		assertNull(clone.getFamily());
+		assertNull(clone.getNext());
 	}
 	
 	@Test
@@ -107,7 +105,7 @@ public class VariableTest {
 	@Test
 	public void testUpdatePointerAfterBetaReduction() {
 		Vertex next = var.updatePointerAfterBetaReduction();
-		assertEquals(var.getnext(), next);
+		assertEquals(var.getNext(), next);
 		
 	}
 	
