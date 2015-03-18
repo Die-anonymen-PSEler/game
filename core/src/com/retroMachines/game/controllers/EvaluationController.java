@@ -67,8 +67,8 @@ public class EvaluationController {
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
-		EvaluationOptimizer.addMeToListnerList(this);
 		EvaluationOptimizer.initialize(this);
+		EvaluationOptimizer.addMeToListnerList(this);
 	}
 
 	/**
