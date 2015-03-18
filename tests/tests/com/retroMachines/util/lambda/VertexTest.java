@@ -1,9 +1,6 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.LinkedList;
 
@@ -13,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
 
@@ -81,10 +79,10 @@ public class VertexTest {
 	@Test
 	public void testRenameFamily() {
 
-		abs.setfamily(var);
-		abs.setnext(null);
-		var.setnext(null);
-		var.setfamily(null);
+		abs.setFamily(var);
+		abs.setNext(null);
+		var.setNext(null);
+		var.setFamily(null);
 		//assertTrue(abs.recolorFamily(1, 2));
 		assertEquals(2, var.getColor());
 		assertEquals(2, abs.getColor());
@@ -98,15 +96,15 @@ public class VertexTest {
 		Variable var4 = new Variable(1);
 		Abstraction abs1 = new Abstraction(2);
 		Abstraction abs2 = new Abstraction(1);
-		Abstraction abs3 = new Abstraction(1);
-		Abstraction abs4 = new Abstraction(2);
+		new Abstraction(1);
+		new Abstraction(2);
 		
-		var1.setnext(abs1);
-		abs1.setnext(var2);
-		var2.setnext(abs2);
-		abs2.setfamily(var4);
-		var4.setnext(var3);
-		abs.setnext(var);
+		var1.setNext(abs1);
+		abs1.setNext(var2);
+		var2.setNext(abs2);
+		abs2.setFamily(var4);
+		var4.setNext(var3);
+		abs.setNext(var);
 		LinkedList<Vertex> result = var1.replaceInFamily(abs);
 		assertEquals(2, result.size());
 		assertEquals(var2.getColor(), result.get(0).getColor());
@@ -121,7 +119,7 @@ public class VertexTest {
 
 	@Test
 	public void testGetVertexList() {
-		abs.setfamily(var);
+		abs.setFamily(var);
 		LinkedList<Vertex> expectedResult = new LinkedList<Vertex>();
 		expectedResult.add(var);
 		expectedResult.add(abs);
@@ -132,7 +130,7 @@ public class VertexTest {
 	public void testUpdateColorList() {
 		LinkedList<Integer> clonedList = new LinkedList<Integer>();
 		clonedList.add(2);
-		abs.setfamily(var);
+		abs.setFamily(var);
 		abs.updateColorList(clonedList, 1);
 		assertEquals(1, abs.getFamilyColorList().size());
 		assertEquals(clonedList.getFirst(), abs.getFamilyColorList().getFirst());
@@ -147,38 +145,59 @@ public class VertexTest {
 
 	@Test
 	public void testUpdatePointerAfterBetaReduction() {
-		fail("Not yet implemented");
+		Vertex v = abs;
+		Abstraction next = new Abstraction(absColor + 1);
+		Abstraction family  = new Abstraction(absColor + 2);
+		abs.setFamily(family);
+		abs.setNext(next);
+		assertEquals(v.updatePointerAfterBetaReduction(), family);
+		v.setNext(null);
+		v.setFamily(null);
+		assertNull(v.updatePointerAfterBetaReduction());
+		Abstraction familyNext = new Abstraction(absColor + 3);
+		family.setNext(familyNext);
+		abs.setFamily(family);
+		abs.setNext(next);
+		v.updatePointerAfterBetaReduction();
+		abs.setFamily(null);
+		v.updatePointerAfterBetaReduction();
 	}
 
-	@Test
-	public void testGetEvaluationResult() {
-		fail("Not yet implemented");
-	}
+// abstract method	
+//	@Test
+//	public void testGetEvaluationResult() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testUpdatePositionsAfterBetaReduction() {
-		fail("Not yet implemented");
-	}
+// abstract method	
+//	@Test
+//	public void testUpdatePositionsAfterBetaReduction() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testDeleteAfterBetaReduction() {
-		fail("Not yet implemented");
-	}
+// abstract method	
+//	@Test
+//	public void testDeleteAfterBetaReduction() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testBetaReduction() {
-		fail("Not yet implemented");
-	}
+//	abstract methodd	
+//	@Test
+//	public void testBetaReduction() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testAlphaConversion() {
-		fail("Not yet implemented");
-	}
+// abstract method	
+//	@Test
+//	public void testAlphaConversion() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testGetReadIn() {
-		fail("Not yet implemented");
-	}
+//	abstract method	
+//	@Test
+//	public void testGetReadIn() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testReadInAnimation() {
@@ -195,10 +214,11 @@ public class VertexTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testReorganizePositions() {
-		fail("Not yet implemented");
-	}
+// abstraction	
+//	@Test
+//	public void testReorganizePositions() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testSetGameelementPosition() {
@@ -206,108 +226,154 @@ public class VertexTest {
 	}
 
 	@Test
-	public void testEqualsVertex() {
-		fail("Not yet implemented");
+	public void testEquals() {
+		assertFalse(abs.equals(null));
+		assertTrue(abs.equals(abs));
+		assertFalse(abs.equals(dummy));
+		//testing next
+		abs.setNext(new Abstraction(absColor + 2));
+		Abstraction other = new Abstraction(absColor);
+		other.setNext(null);
+		assertFalse(abs.equals(other));
+		other.setNext(dummy);
+		assertFalse(abs.equals(other));
+		//testing family 
+		//next attribute has to be the same, otherwise we would not reach the section were family is completed
+		abs.setNext(abs);
+		other.setNext(abs);
+		abs.setFamily(abs);
+		other.setFamily(null);
+		assertFalse(abs.equals(other));
+		other.setFamily(dummy);
+		assertFalse(abs.equals(other));
+		other.setNext(abs.getNext());
+		other.setFamily(abs.getFamily());
+		assertTrue(abs.equals(other));
+		//branch with different colors is missing
+		other = new Abstraction(absColor + 1);
+		other.setFamily(abs.getFamily());
+		other.setNext(abs.getNext());
+		assertFalse(abs.equals(other));
+		
 	}
 
 	@Test
 	public void testSetnext() {
-		fail("Not yet implemented");
+		abs.setNext(dummy);
 	}
 
 	@Test
 	public void testSetfamily() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetColor() {
-		fail("Not yet implemented");
+		abs.setFamily(dummy);
 	}
 
 	@Test
 	public void testSetFamilyColorlist() {
-		fail("Not yet implemented");
+		abs.setFamilyColorlist(new LinkedList<Integer>());
 	}
 
 	@Test
 	public void testSetNextColorlist() {
-		fail("Not yet implemented");
+		abs.setNextColorlist(new LinkedList<Integer>());
 	}
 
 	@Test
 	public void testSetPosition() {
-		fail("Not yet implemented");
+		abs.setPosition(new Vector2(0, 0));
 	}
 
 	@Test
 	public void testSetIsInDepot() {
-		fail("Not yet implemented");
+		abs.setIsInDepot(false);
 	}
 
 	@Test
 	public void testGetFamilyColorList() {
-		fail("Not yet implemented");
+		abs.getFamilyColorList();
 	}
 
 	@Test
 	public void testGetCopyOfFamilyColorList() {
-		fail("Not yet implemented");
+		LinkedList<Integer> colorList = new LinkedList<Integer>();
+		colorList.add(0);
+		colorList.add(1);
+		colorList.add(2);
+		abs.setFamilyColorlist(colorList);
+		LinkedList<Integer> list = abs.getCopyOfFamilyColorList();
+		assertEquals(list.size(), colorList.size());
+		for (int i  = 0; i < list.size(); i++) {
+			assertEquals(list.get(i), colorList.get(i));
+		}
 	}
 
 	@Test
 	public void testGetNextColorList() {
-		fail("Not yet implemented");
+		abs.getNextColorList();
 	}
 
 	@Test
 	public void testGetCopyOfNextColorList() {
-		fail("Not yet implemented");
+		LinkedList<Integer> colorList = new LinkedList<Integer>();
+		colorList.add(0);
+		colorList.add(1);
+		colorList.add(2);
+		abs.setNextColorlist(colorList);
+		LinkedList<Integer> list = abs.getCopyOfNextColorList();
+		assertEquals(list.size(), colorList.size());
+		for (int i  = 0; i < list.size(); i++) {
+			assertEquals(list.get(i), colorList.get(i));
+		}
 	}
 
 	@Test
 	public void testIsInDepot() {
-		fail("Not yet implemented");
+		abs.isInDepot();
 	}
 
 	@Test
 	public void testGetColor() {
-		fail("Not yet implemented");
+		assertEquals(abs.getColor(), absColor);
 	}
 
 	@Test
 	public void testGetfamily() {
-		fail("Not yet implemented");
+		abs.getFamily();
 	}
 
 	@Test
 	public void testGetnext() {
-		fail("Not yet implemented");
+		abs.getNext();
 	}
 
 	@Test
 	public void testGetPosition() {
-		fail("Not yet implemented");
+		abs.getPosition();
 	}
 
 	@Test
 	public void testSetWidth() {
-		fail("Not yet implemented");
+		abs.setWidth(17);
 	}
 
 	@Test
 	public void testGetWidth() {
-		fail("Not yet implemented");
+		abs.getWidth();
 	}
 
 	@Test
 	public void testSetNextWidth() {
-		fail("Not yet implemented");
+		abs.setNextWidth(17);
 	}
 
 	@Test
 	public void testGetNextWidth() {
-		fail("Not yet implemented");
+		abs.getNextWidth();
+	}
+	
+	@Test
+	public void testHashCode() {
+		Vertex v = abs;
+		assertEquals(v.hashCode(), 31);
 	}
 
 }

@@ -48,36 +48,36 @@ public class ApplicationTest {
 	@Test
 	public void testCloneMe() {
 		//branch with family = null;
-		app.setfamily(null);
+		app.setFamily(null);
 		Vertex clone = app.cloneMe();
-		assertNull(clone.getfamily());
+		assertNull(clone.getFamily());
 		assertEquals(clone.getColor(), app.getColor());
 		Application dummy = new Application();
-		app.setfamily(dummy);
+		app.setFamily(dummy);
 		clone  = app.cloneMe();
-		assertEquals(clone.getfamily(), app.getfamily());
+		assertEquals(clone.getFamily(), app.getFamily());
 		
 		
 	}
 
 	@Test
 	public void testCloneFamily() {
-		app.setnext(null);
-		app.setfamily(null);
+		app.setNext(null);
+		app.setFamily(null);
 		Vertex clone = app.cloneFamily();
-		assertNull(clone.getfamily());
-		assertNull(clone.getnext());
+		assertNull(clone.getFamily());
+		assertNull(clone.getNext());
 		Application next = new Application();
 		Application family = new Application();
 		Application nextNext = new Application();
-		next.setnext(nextNext);
-		next.setfamily(null);
-		app.setnext(next);
-		app.setfamily(family);
+		next.setNext(nextNext);
+		next.setFamily(null);
+		app.setNext(next);
+		app.setFamily(family);
 		clone = app.cloneFamily();
-		assertEquals(clone.getnext(), next);
-		assertEquals(clone.getnext().getnext(), nextNext);
-		assertEquals(clone.getfamily(), family);
+		assertEquals(clone.getNext(), next);
+		assertEquals(clone.getNext().getNext(), nextNext);
+		assertEquals(clone.getFamily(), family);
 	}
 
 	@Test
@@ -92,7 +92,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testUpdatePositionsAfterBetaReduction() {
-		app.setfamily(new Application());
+		app.setFamily(new Application());
 		app.updatePositionsAfterBetaReduction();
 	}
 

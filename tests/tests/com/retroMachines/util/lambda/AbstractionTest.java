@@ -64,16 +64,16 @@ public class AbstractionTest {
 	public void testCloneFamily() {
 		Abstraction next = new Abstraction(1);
 		Abstraction fam = new Abstraction(2);
-		abs.setfamily(fam);
-		abs.setnext(next);
+		abs.setFamily(fam);
+		abs.setNext(next);
 		Vertex clone = abs.cloneFamily();
-		assertEquals(clone.getfamily(), abs.getfamily());
-		assertEquals(clone.getnext(), abs.getnext());
-		abs.setfamily(null);
-		abs.setnext(null);
+		assertEquals(clone.getFamily(), abs.getFamily());
+		assertEquals(clone.getNext(), abs.getNext());
+		abs.setFamily(null);
+		abs.setNext(null);
 		clone = abs.cloneFamily();
-		assertNull(clone.getfamily());
-		assertNull(clone.getnext());
+		assertNull(clone.getFamily());
+		assertNull(clone.getNext());
 	}
 
 	@Test
@@ -84,41 +84,41 @@ public class AbstractionTest {
 	@Test
 	public void testUpdatePointerAfterBetaReduction() {
 		Abstraction next = new Abstraction(2);
-		abs.setnext(next);
+		abs.setNext(next);
 		abs.updatePointerAfterBetaReduction();
-		abs.setnext(null);
+		abs.setNext(null);
 		abs.updatePointerAfterBetaReduction();
 	}
 
 	@Test
 	public void testGetEvaluationResult() {
-		abs.setnext(null);
+		abs.setNext(null);
 		assertEquals(abs, abs.getEvaluationResult());
-		abs.setnext(new Abstraction(3));
+		abs.setNext(new Abstraction(3));
 		assertNull(abs.getEvaluationResult());
-		//Get Evaluation result  gibt nur null zurück when abs.next  == null alles supi
+		//Get Evaluation result  gibt nur null zurï¿½ck when abs.next  == null alles supi
 	}
 
 	@Test
 	public void testUpdatePositionsAfterBetaReduction() {
-		abs.setnext(null);
+		abs.setNext(null);
 		abs.updatePositionsAfterBetaReduction();
-		abs.setnext(new Abstraction(2));
+		abs.setNext(new Abstraction(2));
 		abs.updatePositionsAfterBetaReduction();
 	}
 
 	@Test
 	public void testDeleteAfterBetaReduction() {
-		abs.setnext(null);
+		abs.setNext(null);
 		abs.deleteAfterBetaReduction();
-		abs.setnext(new Abstraction(2));
+		abs.setNext(new Abstraction(2));
 		abs.deleteAfterBetaReduction();
 	}
 
 	@Test
 	public void testBetaReduction() {
-		abs.setnext(new Abstraction(2));
-		abs.setfamily(new Abstraction(3));
+		abs.setNext(new Abstraction(2));
+		abs.setFamily(new Abstraction(3));
 		LinkedList<Vertex> list = abs.betaReduction();
 		fail();
 		//TODO: validate list
@@ -126,9 +126,10 @@ public class AbstractionTest {
 
 	@Test
 	public void testAlphaConversion() {
-		abs.setnext(null);
+		abs.setNext(null);
+		abs.setFamily(new Abstraction(absColor));
 		assertFalse(abs.alphaConversion());
-		abs.setnext(new Abstraction(2));
+		abs.setNext(new Abstraction(2));
 		boolean b = abs.alphaConversion();
 		fail();
 		//TODO: validate b
@@ -136,7 +137,7 @@ public class AbstractionTest {
 
 	@Test
 	public void testGetReadIn() {
-		assertEquals(abs.getReadIn(), abs.getnext());
+		assertEquals(abs.getReadIn(), abs.getNext());
 	}
 
 	@Test
@@ -144,11 +145,11 @@ public class AbstractionTest {
 		//reset action list
 		EvaluationOptimizer.initialize(null);
 		abs.setPosition(new Vector2(1f,1f));
-		abs.setfamily(new Application());
+		abs.setFamily(new Application());
 		Application a = new Application();
-		a.setfamily(new Application());
-		a.setnext(new Application());
-		abs.setnext(a);
+		a.setFamily(new Application());
+		a.setNext(new Application());
+		abs.setNext(a);
 		abs.reorganizePositions(new Vector2(2, 2) , new Vector2(3f, 0f));
 		// position should not yet updated
 		assertEquals(0f, abs.getGameElement().getPosition().x, Constants.FLOAT_EPSILON);

@@ -32,8 +32,8 @@ public class Variable extends Vertex {
 	private Variable(Vertex next, Vertex family, int color,
 			LinkedList<Integer> familyColorlist) {
 		super(color);
-		this.setnext(next);
-		this.setfamily(family);
+		this.setNext(next);
+		this.setFamily(family);
 		this.setFamilyColorlist(familyColorlist);
 	}
 	
@@ -83,8 +83,8 @@ public class Variable extends Vertex {
 	public Vertex cloneMe() {
 		// check if next or family is null
 		Vertex family;
-		if (this.getfamily() != null) {
-			family = this.getfamily().cloneFamily();
+		if (this.getFamily() != null) {
+			family = this.getFamily().cloneFamily();
 		} else {
 			family = null;
 		}
@@ -107,13 +107,13 @@ public class Variable extends Vertex {
 		// check if next or family is null
 		Vertex next;
 		Vertex family;
-		if (this.getnext() != null) {
-			next = this.getnext().cloneFamily();
+		if (this.getNext() != null) {
+			next = this.getNext().cloneFamily();
 		} else {
 			next = null;
 		}
-		if (this.getfamily() != null) {
-			family = this.getfamily().cloneFamily();
+		if (this.getFamily() != null) {
+			family = this.getFamily().cloneFamily();
 		} else {
 			family = null;
 		}
@@ -141,7 +141,7 @@ public class Variable extends Vertex {
 
 	@Override
 	public Vertex updatePointerAfterBetaReduction() {
-		return this.getnext();
+		return this.getNext();
 	}
 
 	@Override

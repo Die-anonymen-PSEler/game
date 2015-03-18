@@ -101,23 +101,23 @@ public class LambdaUtil {
 
 			numOfDepots++;
 			if (count == tree.size()) {
-				actVertex.setnext(null); // lastVertex.next is null
+				actVertex.setNext(null); // lastVertex.next is null
 			} else {
-				actVertex.setnext(new Dummy());
+				actVertex.setNext(new Dummy());
 			}
 
-			actVertex.setfamily(makeStartVertexTree(t.getAsJsonObject()
+			actVertex.setFamily(makeStartVertexTree(t.getAsJsonObject()
 					.getAsJsonArray(TREE)));
 			if (count == 1) {
 				// pointer on start
-				start.setnext(actVertex);
+				start.setNext(actVertex);
 			}
-			actVertex = actVertex.getnext();
+			actVertex = actVertex.getNext();
 
 			count++;
 		}
 
-		return start.getnext();
+		return start.getNext();
 	}
 
 	/**
@@ -145,13 +145,13 @@ public class LambdaUtil {
 			Vertex actVertex = getSpecializedVertex(t.getAsJsonObject());
 			// setting v.next
 			if (count == array.size()) {
-				actVertex.setnext(null); // lastVertex.next is null
+				actVertex.setNext(null); // lastVertex.next is null
 			} else {
 				JsonObject nextOb = array.get(count).getAsJsonObject();
-				actVertex.setnext(getSpecializedVertex(nextOb));
+				actVertex.setNext(getSpecializedVertex(nextOb));
 			}
 			// setting family
-			actVertex.setfamily(makeStartVertexHintOrTarget(t.getAsJsonObject()
+			actVertex.setFamily(makeStartVertexHintOrTarget(t.getAsJsonObject()
 					.getAsJsonArray(type), type));
 
 			if (count == 1) {
