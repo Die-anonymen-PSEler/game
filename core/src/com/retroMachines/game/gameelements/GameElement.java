@@ -1,5 +1,6 @@
 package com.retroMachines.game.gameelements;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
@@ -84,5 +85,14 @@ public abstract class GameElement extends Actor {
 	public void setPosition(Vector2 pos) {
 		setX(pos.x);
 		setY(pos.y);
+	}
+	
+	//This method is called by Screen to draw gameelemnt
+	@Override
+	public void draw(Batch batch, float alpha) {
+
+		batch.draw(textureRegion, getX(), getY(), this.getOriginX(),
+				this.getOriginY(), this.getWidth(), this.getHeight(),
+				this.getScaleX(), this.getScaleY(), this.getRotation());
 	}
 }
