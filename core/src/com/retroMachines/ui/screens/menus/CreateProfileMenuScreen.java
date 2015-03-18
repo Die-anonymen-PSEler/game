@@ -76,6 +76,31 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		settingController = game.getSettingController();
 	}
 
+	private void setCharacterImage(int value) {
+		String name = Constants.TEXTURE_ANIMATION_NAMES[value
+				% Constants.TEXTURE_ANIMATION_NAMES.length];
+		Texture texture = RetroAssetManager.getTexture(name);
+		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+
+		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
+		charImage.setScaling(Scaling.fit);
+	}
+
+	/**
+	 * Attempts to create a new profile.
+	 */
+	private void createProfile() {
+		String name = nameTextField.getText();
+		if (profileController.canUserBeCreated(name)) {
+			profileController.createProfile(name);
+			settingController.setLeftMode(buttonLeftMode.isChecked());
+			settingController.setCharacterId(i
+					% Constants.TEXTURE_ANIMATION_NAMES.length);
+			game.setScreen(new ProfileMenuScreen(game));
+		} else {
+		}
+	}
+	
 	/**
 	 * Initializes the CreateProfileMenuScreen.
 	 */
@@ -187,32 +212,6 @@ public class CreateProfileMenuScreen extends MenuScreen {
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
-
-	}
-
-	private void setCharacterImage(int value) {
-		String name = Constants.TEXTURE_ANIMATION_NAMES[value
-				% Constants.TEXTURE_ANIMATION_NAMES.length];
-		Texture texture = RetroAssetManager.getTexture(name);
-		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
-
-		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
-		charImage.setScaling(Scaling.fit);
-	}
-
-	/**
-	 * Attempts to create a new profile.
-	 */
-	private void createProfile() {
-		String name = nameTextField.getText();
-		if (profileController.canUserBeCreated(name)) {
-			profileController.createProfile(name);
-			settingController.setLeftMode(buttonLeftMode.isChecked());
-			settingController.setCharacterId(i
-					% Constants.TEXTURE_ANIMATION_NAMES.length);
-			game.setScreen(new ProfileMenuScreen(game));
-		} else {
-		}
 	}
 
 	/**

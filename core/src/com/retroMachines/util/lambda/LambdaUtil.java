@@ -27,8 +27,6 @@ import com.retroMachines.util.Constants;
  */
 public class LambdaUtil {
 
-	private List<OnNextLambdaStepListener> observers;
-
 	private final static String DATA = "data";
 	private final static String TREE = "tree";
 	private final static String HINT = "hint";
@@ -39,6 +37,7 @@ public class LambdaUtil {
 	private final static String IMAGE = "img";
 	private final static String GAMEELEMENTS = "gameelements";
 
+	private List<OnNextLambdaStepListener> observers;
 	private LevelTree levelTree;
 	private boolean hasTutorial;
 	private int numOfDepots;
@@ -55,83 +54,7 @@ public class LambdaUtil {
 		observers = new ArrayList<OnNextLambdaStepListener>();
 		vertexList = new LinkedList<Vertex>();
 	}
-
-	/**
-	 * creates LambdaTree based on JSON description of level
-	 */
-	public void createTreeFromJson(String fileName) {
-
-		BufferedReader br = null;
-		FileHandle jsonFile = Gdx.files.internal(fileName);
-		try {
-			br = new BufferedReader(jsonFile.reader());
-		} catch (GdxRuntimeException e) {
-			Gdx.app.log(Constants.LOG_TAG, "File not found", e);
-			return;
-		}
-		Gson gson = new GsonBuilder().create();
-		JsonObject root = gson.fromJson(br, JsonObject.class);
-		// get json elements(description, id...)
-		//
-		JsonObject level = root.getAsJsonObject(LEVEL);
-		JsonArray tutorials = level.getAsJsonArray(TUTORIALS);
-		JsonPrimitive hasTutScreens = level.getAsJsonPrimitive(HAS_TUTORIALS);
-		JsonObject data = level.getAsJsonObject(DATA);
-		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
-		JsonArray hint = data.getAsJsonArray(HINT);
-		JsonArray target = data.getAsJsonArray(TARGET);
-		JsonArray tree = data.getAsJsonArray(TREE);
-
-		try {
-			br.close();
-		} catch (IOException e) {
-			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
-		}
-
-		hasTutorial = hasTutScreens.getAsBoolean();
-		tutorialImgs = makeTutorialImgList(tutorials);
-		vertexList = makeVertexList(elements);
-		gameElementList = makeGameElementList();
-		numOfDepots = 0;
-		levelTree = new LevelTree(makeStartVertexTree(tree));
-		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
-		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
-
-	}
-
-	public void registerNewListener(OnNextLambdaStepListener listener) {
-		if (!observers.contains(listener)) {
-			observers.add(listener);
-		}
-	}
-
-	public void unregisterNewListener(OnNextLambdaStepListener listener) {
-		observers.remove(listener);
-	}
-
-	/**
-	 * returns gameElement according to vertex with specified position. Null if
-	 * there is no such vertex
-	 * 
-	 * @param posX
-	 *            x coordinate
-	 * @param posY
-	 *            y coordinate
-	 * @return gameElement according to vertex
-	 */
-	public GameElement getGameElement(int posX, int posY) {
-		// getting vertex
-		Vertex vertex = null;
-		for (Vertex v : vertexList) {
-			if ((int) v.getPosition().x == posX
-					&& (int) v.getPosition().y == posY) {
-				vertex = v;
-				break;
-			}
-		}
-		return (vertex != null) ? vertex.getGameElement() : null;
-	}
-
+	
 	private LinkedList<Vertex> makeVertexList(JsonArray elements) {
 		LinkedList<Vertex> elementList = new LinkedList<Vertex>();
 		for (JsonElement e : elements) {
@@ -291,6 +214,90 @@ public class LambdaUtil {
 	}
 
 	/**
+	 * creates LambdaTree based on JSON description of level
+	 */
+	public void createTreeFromJson(String fileName) {
+
+		BufferedReader br = null;
+		FileHandle jsonFile = Gdx.files.internal(fileName);
+		try {
+			br = new BufferedReader(jsonFile.reader());
+		} catch (GdxRuntimeException e) {
+			Gdx.app.log(Constants.LOG_TAG, "File not found", e);
+			return;
+		}
+		Gson gson = new GsonBuilder().create();
+		JsonObject root = gson.fromJson(br, JsonObject.class);
+		// get json elements(description, id...)
+		//
+		JsonObject level = root.getAsJsonObject(LEVEL);
+		JsonArray tutorials = level.getAsJsonArray(TUTORIALS);
+		JsonPrimitive hasTutScreens = level.getAsJsonPrimitive(HAS_TUTORIALS);
+		JsonObject data = level.getAsJsonObject(DATA);
+		JsonArray elements = data.getAsJsonArray(GAMEELEMENTS);
+		JsonArray hint = data.getAsJsonArray(HINT);
+		JsonArray target = data.getAsJsonArray(TARGET);
+		JsonArray tree = data.getAsJsonArray(TREE);
+
+		try {
+			br.close();
+		} catch (IOException e) {
+			Gdx.app.log(Constants.LOG_TAG, "Could not close BufferedReader!", e);
+		}
+
+		hasTutorial = hasTutScreens.getAsBoolean();
+		tutorialImgs = makeTutorialImgList(tutorials);
+		vertexList = makeVertexList(elements);
+		gameElementList = makeGameElementList();
+		numOfDepots = 0;
+		levelTree = new LevelTree(makeStartVertexTree(tree));
+		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
+		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
+
+	}
+
+	public void registerNewListener(OnNextLambdaStepListener listener) {
+		if (!observers.contains(listener)) {
+			observers.add(listener);
+		}
+	}
+
+	public void unregisterNewListener(OnNextLambdaStepListener listener) {
+		observers.remove(listener);
+	}
+
+	public boolean hasTutorial() {
+		return hasTutorial;
+	}
+
+	/*
+	 * Getter and Setter
+	 */
+	
+	/**
+	 * returns gameElement according to vertex with specified position. Null if
+	 * there is no such vertex
+	 * 
+	 * @param posX
+	 *            x coordinate
+	 * @param posY
+	 *            y coordinate
+	 * @return gameElement according to vertex
+	 */
+	public GameElement getGameElement(int posX, int posY) {
+		// getting vertex
+		Vertex vertex = null;
+		for (Vertex v : vertexList) {
+			if ((int) v.getPosition().x == posX
+					&& (int) v.getPosition().y == posY) {
+				vertex = v;
+				break;
+			}
+		}
+		return (vertex != null) ? vertex.getGameElement() : null;
+	}
+
+	/**
 	 * returns vertex belonging to given gameElement.
 	 * 
 	 * @param g
@@ -363,10 +370,6 @@ public class LambdaUtil {
 
 	public int getNumOfDepots() {
 		return numOfDepots;
-	}
-
-	public boolean hasTutorial() {
-		return hasTutorial;
 	}
 
 	/**

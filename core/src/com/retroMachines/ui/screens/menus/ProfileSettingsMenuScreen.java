@@ -49,6 +49,16 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		super(game);
 	}
 
+	private void setCharacterImage() {
+		String name = Constants.TEXTURE_ANIMATION_NAMES[settingController
+				.getCurrentCharacterId()];
+		Texture texture = RetroAssetManager.getTexture(name);
+		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
+
+		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
+		charImage.setScaling(Scaling.fit);
+	}
+
 	/**
 	 * Initializes this screen.
 	 */
@@ -165,16 +175,6 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
-	}
-
-	private void setCharacterImage() {
-		String name = Constants.TEXTURE_ANIMATION_NAMES[settingController
-				.getCurrentCharacterId()];
-		Texture texture = RetroAssetManager.getTexture(name);
-		TextureRegion[] regions = TextureRegion.split(texture, 60, 64)[0];
-
-		charImage.setDrawable(new TextureRegionDrawable(regions[0]));
-		charImage.setScaling(Scaling.fit);
 	}
 
 	/**

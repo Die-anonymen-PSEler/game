@@ -24,12 +24,12 @@ import com.retroMachines.util.MusicManager;
  */
 public class MainMenuScreen extends MenuScreen {
 
+	private final static float FONTSIZE_THREE = 3f;
+	
 	/**
 	 * The Title of this Screen.
 	 */
 	public static final String TITLE = "RETROMACHINES";
-
-	private final static float FONTSIZE_THREE = 3f;
 
 	private ExitDialog exitDialog;
 

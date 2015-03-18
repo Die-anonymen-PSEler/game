@@ -38,23 +38,6 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public GameElement getGameElement() {
-		// no gameElement, just a dummy object
-		return null;
-	}
-
-	@Override
-	public String getType() {
-		return "Dummy";
-
-	}
-
-	@Override
-	public Vertex getReadIn() {
-		return null;
-	}
-
-	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		// DO nothing because i'm a dummy
 
@@ -73,20 +56,8 @@ public class Dummy extends Vertex {
 	}
 
 	@Override
-	public Vertex getEvaluationResult() {
-		// Do nothing You are a Dummy
-		return null;
-	}
-
-	@Override
 	public void updatePositionsAfterBetaReduction() {
 		// Do nothing You are a Dummy
-	}
-
-	@Override
-	public Vertex getClone() {
-		// its a dummy
-		return null;
 	}
 	
 	@Override 
@@ -96,4 +67,38 @@ public class Dummy extends Vertex {
 		}
 		return false;
 	}
+	
+	/*
+	 * Getter and Setter
+	 */
+
+	@Override
+	public Vertex getClone() {
+		// its a dummy
+		return null;
+	}
+
+	@Override
+	public Vertex getEvaluationResult() {
+		// Do nothing You are a Dummy
+		return null;
+	}
+	
+	@Override
+	public GameElement getGameElement() {
+		// no gameElement, just a dummy object
+		return null;
+	}
+
+	@Override
+	public String getType() {
+		return "Dummy";
+
+	}
+
+	@Override
+	public Vertex getReadIn() {
+		return null;
+	}
+
 }

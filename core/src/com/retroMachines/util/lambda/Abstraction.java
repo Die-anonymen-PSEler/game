@@ -21,16 +21,6 @@ public class Abstraction extends Vertex {
 	// --------------------------
 
 	/**
-	 * Creates a new instance of the Vertex class.
-	 * 
-	 * @param id
-	 *            ID to set.
-	 */
-	public Abstraction(int color) {
-		super(color);
-	}
-
-	/**
 	 * Creates a clone for beta reduction
 	 * 
 	 * @param next
@@ -50,6 +40,30 @@ public class Abstraction extends Vertex {
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
+	}
+	
+	/**
+	 * Creates a new instance of the Vertex class.
+	 * 
+	 * @param id
+	 *            ID to set.
+	 */
+	public Abstraction(int color) {
+		super(color);
+	}
+	
+	private int searchUnusedColorID() {
+		LinkedList<Integer> actFam = this.getFamilyColorList();
+		int newColor = -1;
+		// search unused color ID
+		for (int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
+			// Search if id "i" is unused in firstList
+			if (!actFam.contains(i)) {
+				newColor = i;
+				break;
+			}
+		}
+		return newColor;
 	}
 
 	// ------------------------------
@@ -197,6 +211,58 @@ public class Abstraction extends Vertex {
 		return clone;
 	}
 
+	@Override
+	public void reorganizePositions(Vector2 start, Vector2 newPos) {
+		// Abstraction needs reorganizesation of Element position
+		this.setGameelementPosition(start, newPos);
+	}
+
+	@Override
+	public void deleteAfterBetaReduction() {
+		// Remove element and Start next Step of BetaReduction
+		if (getnext() == null) {
+			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+			return;
+		}
+		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
+	}
+
+	@Override
+	public Vertex updatePointerAfterBetaReduction() {
+		if (getnext() == null) {
+			return this.getnext();
+		}	
+		return super.updatePointerAfterBetaReduction();
+	}
+
+	@Override
+	public void updatePositionsAfterBetaReduction() {
+		if (getnext() == null) {
+			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+			return;
+		} else {
+			// update Gameelement Postions after Gameelement of this was deleted
+			if(this.getfamily() != null) {
+				// In Theorie Abstraction has at all time a family object .....
+				this.getfamily().updateGameelementPosition(0, -1);
+			}
+		}
+	}
+
+	/*
+	 * Getter and Setter
+	 */
+	@Override
+	public Vertex getEvaluationResult() {
+		if (getnext() == null) {
+			return this;
+		} else {
+			// Returns null because the Abstraction is no Part of Evaluation
+			// Result
+			return null;
+		}
+	}
+	
 	/**
 	 * returns gameElemet according to this vertex
 	 */
@@ -212,78 +278,10 @@ public class Abstraction extends Vertex {
 	public String getType() {
 		return "Abstraction";
 	}
-	
-	private int searchUnusedColorID() {
-		LinkedList<Integer> actFam = this.getFamilyColorList();
-		int newColor = -1;
-		// search unused color ID
-		for (int i = 1; i <= Constants.MAX_COLOR_ID; i++) {
-			// Search if id "i" is unused in firstList
-			if (!actFam.contains(i)) {
-				newColor = i;
-				break;
-			}
-		}
-		return newColor;
-	}
 
 	@Override
 	public Vertex getReadIn() {
 		return this.getnext();
-	}
-
-	@Override
-	public void reorganizePositions(Vector2 start, Vector2 newPos) {
-		// Abstraction needs reorganizesation of Element position
-		this.setGameelementPosition(start, newPos);
-	}
-
-	@Override
-	public void deleteAfterBetaReduction() {
-		// Remove element and Start next Step of BetaReduction
-		if (getnext() == null) {
-			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
-			return;
-		}
-		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
-
-	}
-
-	@Override
-	public Vertex updatePointerAfterBetaReduction() {
-		if (getnext() == null) {
-			return this.getnext();
-		}
-		
-		return super.updatePointerAfterBetaReduction();
-	}
-
-	@Override
-	public Vertex getEvaluationResult() {
-		if (getnext() == null) {
-			return this;
-		} else {
-			// Returns null because the Abstraction is no Part of Evaluation
-			// Result
-			return null;
-		}
-
-	}
-
-	@Override
-	public void updatePositionsAfterBetaReduction() {
-		if (getnext() == null) {
-			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
-			return;
-		} else {
-			// update Gameelement Postions after Gameelement of this was deleted
-			if(this.getfamily() != null) {
-				// In Theorie Abstraction has at all time a family object .....
-				this.getfamily().updateGameelementPosition(0, -1);
-			}
-
-		}
-
 	}
 
 	@Override

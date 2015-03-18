@@ -18,14 +18,6 @@ public class Application extends Vertex {
 	// --------------------------
 
 	/**
-	 * Creates a new instance of the Vertex class.
-	 * 
-	 */
-	public Application() {
-		super(1);
-	}
-
-	/**
 	 * Creates a clone for beta reduction
 	 * 
 	 * @param next
@@ -41,6 +33,14 @@ public class Application extends Vertex {
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
+	}
+
+	/**
+	 * Creates a new instance of the Vertex class.
+	 * 
+	 */
+	public Application() {
+		super(1);
 	}
 
 	// ------------------------------
@@ -133,6 +133,37 @@ public class Application extends Vertex {
 	}
 
 	@Override
+	public void reorganizePositions(Vector2 start, Vector2 newPos) {
+		// Start next Step no reorganization is needed
+		EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+
+	}
+
+	@Override
+	public void deleteAfterBetaReduction() {
+		// Remove element and Start next Step of BetaReduction
+		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
+
+	}
+
+	@Override
+	public void updatePositionsAfterBetaReduction() {
+		// update Gameelement Postions after Gameelement of this was deleted
+		this.getfamily().updateGameelementPosition(0, -1);
+
+	}
+	
+	/*
+	 * Getter and Setter
+	 */
+	
+	@Override
+	public Vertex getEvaluationResult() {
+		// Returns null because the Application is no Part of Evaluation Result
+		return null;
+	}
+	
+	@Override
 	public GameElement getGameElement() {
 		if (gameElement == null) {
 			gameElement = new LightElement();
@@ -148,33 +179,6 @@ public class Application extends Vertex {
 	@Override
 	public Vertex getReadIn() {
 		return null;
-	}
-
-	@Override
-	public void reorganizePositions(Vector2 start, Vector2 newPos) {
-		// Start next Step no reorganization is needed
-		EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
-
-	}
-
-	@Override
-	public void deleteAfterBetaReduction() {
-		// Remove element and Start next Step of BetaReduction
-		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
-
-	}
-
-	@Override
-	public Vertex getEvaluationResult() {
-		// Returns null because the Application is no Part of Evaluation Result
-		return null;
-	}
-
-	@Override
-	public void updatePositionsAfterBetaReduction() {
-		// update Gameelement Postions after Gameelement of this was deleted
-		this.getfamily().updateGameelementPosition(0, -1);
-
 	}
 
 	@Override

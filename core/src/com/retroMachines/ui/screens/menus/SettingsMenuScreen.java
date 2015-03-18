@@ -25,13 +25,21 @@ import com.retroMachines.util.Constants.ButtonStrings;
 public class SettingsMenuScreen extends MenuScreen {
 
 	private final static float PADDING_THIRTY = 30f;
+	
 	private final static float FONTSIZE_TWO_FIVE = 2.5f;
+	
 	private final static float HALFTITLEWIDTH = (1f / 3.6f);
+	
 	private final static float TITLEWIDTH = (1f / 1.8f);
+	
 	private final static int SLIDERMIN = 0;
+	
 	private final static int SLIDERMAX = 100;
+	
 	private final static int SLIDERSTEPSIZE = 1;
+	
 	private final static float SLIDERKNOBSIZE = (1f / 5f);
+	
 	private final static float SLIDERBACKGROUNDSIZE = (1f / 75f);
 
 	/**
@@ -40,6 +48,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	private SettingController settingController;
 
 	private Slider volumeSlider;
+	
 	private Button buttonSoundOff;
 
 	/**

@@ -54,6 +54,18 @@ public class LevelTree {
 	}
 
 	/*
+	 * Getter
+	 */
+	/**
+	 * Getter for the starting point.
+	 * 
+	 * @return start
+	 */
+	public Vertex getStart() {
+		return start;
+	}
+	
+	/*
 	 * Setter
 	 */
 	/**
@@ -65,17 +77,4 @@ public class LevelTree {
 	public void setStart(Vertex start) {
 		this.start = start;
 	}
-
-	/*
-	 * Getter
-	 */
-	/**
-	 * Getter for the starting point.
-	 * 
-	 * @return start
-	 */
-	public Vertex getStart() {
-		return start;
-	}
-
 }

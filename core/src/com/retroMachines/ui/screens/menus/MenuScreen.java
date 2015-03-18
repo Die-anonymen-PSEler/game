@@ -47,20 +47,13 @@ public abstract class MenuScreen extends AbstractScreen {
 		initialize();
 		inputMultiplexer.addProcessor(this);
 	}
-	
+
 	/**
-	 * makes the title of the screen
-	 * @param name name of the title
-	 * @param fontsize size of the font
-	 * @return the title made
+	 * Call this method to set up the menu screen. Only fills the Table with
+	 * Buttons or other UI elements that are needed. The table will be added to
+	 * the stage by the MenuScreen class.
 	 */
-	public Label makeTitle(String name, float fontsize) {
-		Label title = new Label(name, skin);
-		title.setWrap(true);
-		title.setFontScale((fontsize * screenWidth) / DIVIDEWIDTHDEFAULT);
-		title.setAlignment(Align.center);
-		return title;
-	}
+	protected abstract void initialize();
 
 	@Override
 	public void show() {
@@ -131,13 +124,20 @@ public abstract class MenuScreen extends AbstractScreen {
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
-
+	
 	/**
-	 * Call this method to set up the menu screen. Only fills the Table with
-	 * Buttons or other UI elements that are needed. The table will be added to
-	 * the stage by the MenuScreen class.
+	 * makes the title of the screen
+	 * @param name name of the title
+	 * @param fontsize size of the font
+	 * @return the title made
 	 */
-	protected abstract void initialize();
+	public Label makeTitle(String name, float fontsize) {
+		Label title = new Label(name, skin);
+		title.setWrap(true);
+		title.setFontScale((fontsize * screenWidth) / DIVIDEWIDTHDEFAULT);
+		title.setAlignment(Align.center);
+		return title;
+	}
 
 	/**
 	 * Button to return to the MainMenuScreen.

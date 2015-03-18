@@ -50,117 +50,7 @@ public class EvaluationOptimizer {
 	private static LinkedList<ActionListElement> ActionList = new LinkedList<ActionListElement>();
 	
 	private static LinkedList<EvaluationController> AnimationListner = new LinkedList<EvaluationController>(); 
-
-	public static void initialize(EvaluationController e) {
-		AnimationListner = new LinkedList<EvaluationController>();
-		ActionList = new LinkedList<ActionListElement>();
-		EvaluationController = e;
-		ResultPointer = new Dummy();
-		OffsetX = 0;
-		NextStep = false;
-		AutoStep = false;
-		EvalutionPointer = new Dummy();
-		if(EvaluationController != null) {
-			EvalutionPointer.setnext(EvaluationController.getlambdaTree()
-					.getStart());
-		}
-		ActStep = 0;
-		ResultTree = null;
-		VertexList = null;	
-	}
-
-	// -----Methods-------
-
-	public static void moveAndScaleAnimationWithoutDelay(Vector2 pos,
-			GameElement x, boolean nextStep) {
-		Action action;
-
-		if (nextStep) {
-			action = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
-					Constants.ACTION_TIME), Actions.scaleTo(
-					Constants.GAMEELEMENT_SCALING,
-					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
-					Actions.run(new NextStep(x)));
-		} else {
-			action = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
-					Constants.ACTION_TIME), Actions.scaleTo(
-					Constants.GAMEELEMENT_SCALING,
-					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
-					Actions.run(new DestroyElement(x)));
-		}
-		ActionList.addLast(new ActionListElement(x, action));
-	}
-
-	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
-			boolean nextStep) {
-		Action action;
-
-		if (nextStep) {
-			action = Actions
-					.sequence(Actions.delay(Constants.ACTION_TIME), Actions
-							.parallel(Actions.moveTo(pos.x, pos.y,
-									Constants.ACTION_TIME), Actions.scaleTo(
-									Constants.GAMEELEMENT_SCALING,
-									Constants.GAMEELEMENT_SCALING,
-									Constants.ACTION_TIME)), Actions
-							.run(new NextStep(x)));
-		} else {
-			action = Actions
-					.sequence(Actions.delay(Constants.ACTION_TIME), Actions
-							.parallel(Actions.moveTo(pos.x, pos.y,
-									Constants.ACTION_TIME), Actions.scaleTo(
-									Constants.GAMEELEMENT_SCALING,
-									Constants.GAMEELEMENT_SCALING,
-									Constants.ACTION_TIME)), Actions
-							.run(new DestroyElement(x)));
-		}
-		ActionList.addLast(new ActionListElement(x, action));
-	}
-
-	public static void scaleAnimation(GameElement x, boolean nextStep) {
-		Action action;
-		if (nextStep) {
-			action = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
-					.scaleTo(Constants.GAMEELEMENT_SCALING,
-							Constants.GAMEELEMENT_SCALING,
-							Constants.ACTION_TIME), Actions
-					.run(new NextStep(x)));
-		} else {
-			action = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
-					.scaleTo(Constants.GAMEELEMENT_SCALING,
-							Constants.GAMEELEMENT_SCALING,
-							Constants.ACTION_TIME), Actions
-					.run(new DestroyElement(x)));
-		}
-		ActionList.addLast(new ActionListElement(x, action));
-	}
-
-	public static void moveAnimation(Vector2 pos, GameElement x,
-			boolean nextStep) {
-		Action action;
-
-		if (nextStep) {
-			action = Actions.sequence(
-					Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
-					Actions.run(new NextStepWithoutRemove()));
-
-		} else {
-			action = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
-		}
-		ActionList.addLast(new ActionListElement(x, action));
-	}
-
-	public static void runNextStep() {
-		runNextEvaluationStep();
-	}
-
-	public static void delayAndRunNextStepAnim(GameElement x) {
-
-		Action action = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
-				Actions.run(new NextStepWithoutRemove()));
-		ActionList.addLast(new ActionListElement(x, action));
-	}
-
+	
 	private static void step1AlphaConversion() {
 		//reset List
 		ActionList = new LinkedList<ActionListElement>();
@@ -298,22 +188,6 @@ public class EvaluationOptimizer {
 		}
 	}
 
-	public static void autoStepClicked() {
-		if (!AutoStep && !NextStep) {
-			AutoStep = true;
-			runNextEvaluationStep();
-		}
-
-	}
-
-	public static void nextStepClicked() {
-		if (!NextStep) {
-			NextStep = true;
-			runNextEvaluationStep();
-		}
-
-	}
-
 	private static void runNextEvaluationStep() {
 		if(EvaluationController == null) {
 			Gdx.app.log(Constants.LOG_TAG, "EvaluationOptimizer not initialized");
@@ -340,6 +214,152 @@ public class EvaluationOptimizer {
 			break;
 		default:
 			Gdx.app.log(Constants.LOG_TAG, "act Step error");
+		}
+	}
+	
+	/**
+	 *  called at the end of each step
+	 */
+	private static void notifyEvaluationController() {
+		for (EvaluationController e : AnimationListner) {
+			e.startAnimation();
+		}
+	}
+
+	public static void initialize(EvaluationController e) {
+		AnimationListner = new LinkedList<EvaluationController>();
+		ActionList = new LinkedList<ActionListElement>();
+		EvaluationController = e;
+		ResultPointer = new Dummy();
+		OffsetX = 0;
+		NextStep = false;
+		AutoStep = false;
+		EvalutionPointer = new Dummy();
+		if(EvaluationController != null) {
+			EvalutionPointer.setnext(EvaluationController.getlambdaTree()
+					.getStart());
+		}
+		ActStep = 0;
+		ResultTree = null;
+		VertexList = null;	
+	}
+
+	// -----Methods-------
+
+	public static void moveAndScaleAnimationWithoutDelay(Vector2 pos,
+			GameElement x, boolean nextStep) {
+		Action action;
+
+		if (nextStep) {
+			action = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
+					Constants.ACTION_TIME), Actions.scaleTo(
+					Constants.GAMEELEMENT_SCALING,
+					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
+					Actions.run(new NextStep(x)));
+		} else {
+			action = Actions.sequence(Actions.parallel(Actions.moveTo(pos.x, pos.y,
+					Constants.ACTION_TIME), Actions.scaleTo(
+					Constants.GAMEELEMENT_SCALING,
+					Constants.GAMEELEMENT_SCALING, Constants.ACTION_TIME)),
+					Actions.run(new DestroyElement(x)));
+		}
+		ActionList.addLast(new ActionListElement(x, action));
+	}
+
+	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
+			boolean nextStep) {
+		Action action;
+
+		if (nextStep) {
+			action = Actions
+					.sequence(Actions.delay(Constants.ACTION_TIME), Actions
+							.parallel(Actions.moveTo(pos.x, pos.y,
+									Constants.ACTION_TIME), Actions.scaleTo(
+									Constants.GAMEELEMENT_SCALING,
+									Constants.GAMEELEMENT_SCALING,
+									Constants.ACTION_TIME)), Actions
+							.run(new NextStep(x)));
+		} else {
+			action = Actions
+					.sequence(Actions.delay(Constants.ACTION_TIME), Actions
+							.parallel(Actions.moveTo(pos.x, pos.y,
+									Constants.ACTION_TIME), Actions.scaleTo(
+									Constants.GAMEELEMENT_SCALING,
+									Constants.GAMEELEMENT_SCALING,
+									Constants.ACTION_TIME)), Actions
+							.run(new DestroyElement(x)));
+		}
+		ActionList.addLast(new ActionListElement(x, action));
+	}
+
+	public static void scaleAnimation(GameElement x, boolean nextStep) {
+		Action action;
+		if (nextStep) {
+			action = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
+					.scaleTo(Constants.GAMEELEMENT_SCALING,
+							Constants.GAMEELEMENT_SCALING,
+							Constants.ACTION_TIME), Actions
+					.run(new NextStep(x)));
+		} else {
+			action = Actions.sequence(Actions.delay(Constants.ACTION_TIME), Actions
+					.scaleTo(Constants.GAMEELEMENT_SCALING,
+							Constants.GAMEELEMENT_SCALING,
+							Constants.ACTION_TIME), Actions
+					.run(new DestroyElement(x)));
+		}
+		ActionList.addLast(new ActionListElement(x, action));
+	}
+
+	public static void moveAnimation(Vector2 pos, GameElement x,
+			boolean nextStep) {
+		Action action;
+
+		if (nextStep) {
+			action = Actions.sequence(
+					Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME),
+					Actions.run(new NextStepWithoutRemove()));
+
+		} else {
+			action = Actions.moveTo(pos.x, pos.y, Constants.ACTION_TIME);
+		}
+		ActionList.addLast(new ActionListElement(x, action));
+	}
+
+	public static void runNextStep() {
+		runNextEvaluationStep();
+	}
+
+	public static void delayAndRunNextStepAnim(GameElement x) {
+
+		Action action = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
+				Actions.run(new NextStepWithoutRemove()));
+		ActionList.addLast(new ActionListElement(x, action));
+	}
+
+	public static void autoStepClicked() {
+		if (!AutoStep && !NextStep) {
+			AutoStep = true;
+			runNextEvaluationStep();
+		}
+
+	}
+
+	public static void nextStepClicked() {
+		if (!NextStep) {
+			NextStep = true;
+			runNextEvaluationStep();
+		}
+	}
+	
+	public static LinkedList<ActionListElement> getActionList() {
+		return ActionList;
+	}
+	
+	public static void addMeToListnerList(EvaluationController e) {
+		if (e != null) {
+			if(!AnimationListner.contains(e)) {
+				AnimationListner.add(e);
+			}
 		}
 	}
 
@@ -382,27 +402,6 @@ public class EvaluationOptimizer {
 		public void run() {
 			runNextEvaluationStep();
 		}
-
 	}
 	
-	public static LinkedList<ActionListElement> getActionList() {
-		return ActionList;
-	}
-	
-	/**
-	 *  called at the end of each step
-	 */
-	private static void notifyEvaluationController() {
-		for (EvaluationController e : AnimationListner) {
-			e.startAnimation();
-		}
-	}
-	
-	public static void addMeToListnerList(EvaluationController e) {
-		if (e != null) {
-			if(!AnimationListner.contains(e)) {
-				AnimationListner.add(e);
-			}
-		}
-	}
 }

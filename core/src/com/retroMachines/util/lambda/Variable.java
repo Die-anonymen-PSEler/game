@@ -18,16 +18,6 @@ public class Variable extends Vertex {
 	// --------------------------
 
 	/**
-	 * Creates a new instance of the Vertex class.
-	 * 
-	 * @param color
-	 *            color to set.
-	 */
-	public Variable(int color) {
-		super(color);
-	}
-
-	/**
 	 * Creates a clone for beta reduction
 	 * 
 	 * @param next
@@ -45,6 +35,16 @@ public class Variable extends Vertex {
 		this.setnext(next);
 		this.setfamily(family);
 		this.setFamilyColorlist(familyColorlist);
+	}
+	
+	/**
+	 * Creates a new instance of the Vertex class.
+	 * 
+	 * @param color
+	 *            color to set.
+	 */
+	public Variable(int color) {
+		super(color);
 	}
 
 	// ------------------------------
@@ -126,25 +126,6 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public GameElement getGameElement() {
-		// only one instance of gameElement allowed
-		if (gameElement == null) {
-			gameElement = new MetalElement(getColor());
-		}
-		return gameElement;
-	}
-
-	@Override
-	public String getType() {
-		return "Variable";
-	}
-
-	@Override
-	public Vertex getReadIn() {
-		return null;
-	}
-
-	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		// Start next Step no reorganization is needed
 		EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
@@ -164,15 +145,38 @@ public class Variable extends Vertex {
 	}
 
 	@Override
-	public Vertex getEvaluationResult() {
-		return this;
-	}
-
-	@Override
 	public void updatePositionsAfterBetaReduction() {
 		// Do nothing , you Have No Family ! :D
 		// Start next evaluation Step
 		EvaluationOptimizer.runNextStep();
+	}
+	
+	/*
+	 * Getter and Setter
+	 */
+	
+	@Override
+	public GameElement getGameElement() {
+		// only one instance of gameElement allowed
+		if (gameElement == null) {
+			gameElement = new MetalElement(getColor());
+		}
+		return gameElement;
+	}
+
+	@Override
+	public String getType() {
+		return "Variable";
+	}
+
+	@Override
+	public Vertex getReadIn() {
+		return null;
+	}
+
+	@Override
+	public Vertex getEvaluationResult() {
+		return this;
 	}
 
 	@Override

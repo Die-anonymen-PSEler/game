@@ -36,14 +36,14 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 	protected final static int COLSPAN_X_TWO = 2;
 
 	/**
-	 * The stage containing all the actors that belong within the screen.
-	 */
-	protected Stage stage;
-
-	/**
 	 * The gameObject so access to Controllers is granted.
 	 */
 	protected final RetroMachines game;
+	
+	/**
+	 * The stage containing all the actors that belong within the screen.
+	 */
+	protected Stage stage;
 
 	/**
 	 * The skin of all Screens

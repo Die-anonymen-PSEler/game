@@ -19,15 +19,15 @@ public final class MusicManager implements SettingsChangeListener {
 	private static Music music;
 
 	/**
+	 * instance of the singleton
+	 */
+	private static MusicManager Singleton;
+
+	/**
 	 * the volume the music has. it is bound to the music set within the
 	 * settingscontroller
 	 */
 	private float volume;
-
-	/**
-	 * instance of the singleton
-	 */
-	private static MusicManager Singleton;
 
 	private MusicManager() {
 
@@ -44,6 +44,15 @@ public final class MusicManager implements SettingsChangeListener {
 			music = RetroAssetManager.getMusic();
 		}
 		return Singleton;
+	}
+
+	@Override
+	public void onSettingsChanged() {
+		volume = ((RetroMachines) Gdx.app.getApplicationListener())
+				.getSettingController().getVolume();
+		if (music != null) {
+			music.setVolume(volume);
+		}
 	}
 
 	/**
@@ -67,14 +76,5 @@ public final class MusicManager implements SettingsChangeListener {
 	 */
 	public void pauseMusic() {
 		music.pause();
-	}
-
-	@Override
-	public void onSettingsChanged() {
-		volume = ((RetroMachines) Gdx.app.getApplicationListener())
-				.getSettingController().getVolume();
-		if (music != null) {
-			music.setVolume(volume);
-		}
 	}
 }

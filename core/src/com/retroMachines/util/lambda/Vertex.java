@@ -16,6 +16,8 @@ import com.retroMachines.util.Constants;
  */
 public abstract class Vertex {
 
+	private static HashMap<Integer, Integer> ColorMap = new HashMap<Integer, Integer>();
+
 	/**
 	 * Reference to next input.
 	 */
@@ -41,8 +43,6 @@ public abstract class Vertex {
 	
 	private Vector2 position;
 
-	protected GameElement gameElement;
-
 	/**
 	 * the width of this vertex as number of Vertex in his family
 	 */
@@ -53,8 +53,6 @@ public abstract class Vertex {
 	 */
 	private int nextWidth;
 
-	private static HashMap<Integer, Integer> ColorMap = new HashMap<Integer, Integer>();
-
 	/**
 	 * List of all color's of vertices corresponding to this abstraction.
 	 */
@@ -64,6 +62,8 @@ public abstract class Vertex {
 	 * List of all color's of vertices corresponding to this abstraction.
 	 */
 	private LinkedList<Integer> nextColorList;
+
+	protected GameElement gameElement;
 
 	// --------------------------
 	// --------Constructor-------
@@ -91,11 +91,241 @@ public abstract class Vertex {
 		this.nextWidth = 0;
 		updateMap(color, color); // vertex is not mapped yet
 	}
+	
 
 	// --------------------------
 	// ---------Methods----------
 	// --------------------------
+	
+	/**
+	 * returns GameElement according to this vertex
+	 * 
+	 * @return
+	 */
+	abstract public GameElement getGameElement();
+	
+	/**
+	 * Returns clone of this vertex without family and next
+	 * 
+	 * @return clone of this
+	 */
+	abstract public Vertex getClone();
 
+	/**
+	 * Creates a clone of this Vertex without Next and his hole Family
+	 * 
+	 * @return deep copy of next
+	 */
+	abstract public Vertex cloneMe();
+
+	/**
+	 * Creates a clone of this Vertex and his hole Family
+	 * 
+	 * @return clone of Vertex with hole family and next coned
+	 */
+	abstract public Vertex cloneFamily();
+
+	abstract public String getType();
+
+	/**
+	 * Returns Vertex with should be added to the ResultTree
+	 * 
+	 * @return Returns null if ther is no Vertex wich should be added
+	 */
+	abstract public Vertex getEvaluationResult();
+
+	/**
+	 * Update Position of Family if Worker was deleted in BetaReduction
+	 */
+	abstract public void updatePositionsAfterBetaReduction();
+
+	/**
+	 * Removes Gameelement from screen if this type of Vertex needs it
+	 * 
+	 * @param e
+	 *            Instance of Evaluation Controller for next Steps
+	 */
+	abstract public void deleteAfterBetaReduction();
+
+	// ---------------------------------------------------
+	// -------- Beta Reduction and Alpha Conversion ------
+	// ---------------------------------------------------
+
+	/**
+	 * Fulfills one step of beta-reduction.
+	 * 
+	 * @return True if this abstraction has changed, false when an error
+	 *         appeared.
+	 */
+	abstract public LinkedList<Vertex> betaReduction();
+
+	/**
+	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
+	 * 
+	 * @return True if at least one ID has changed, false if no ID has changed.
+	 */
+	abstract public boolean alphaConversion();
+
+	// ----------------------------------------
+	// -------- Animation Helper Methods ------
+	// ----------------------------------------
+
+	/**
+	 * return vertex witch will be replaced in beta Reduction
+	 * 
+	 * @return return null if no vertex should be read in
+	 */
+	abstract public Vertex getReadIn();
+
+	/**
+	 * Reorganizes Position of Vertex if needed
+	 * 
+	 * @param start
+	 *            Offset of positon perhaps Padding to border ...
+	 * @param newPos
+	 *            new Position of this Vertex in num Of GameelementWidths
+	 * @param e
+	 *            instance of evaluationController for next steps
+	 */
+	abstract public void reorganizePositions(Vector2 start, Vector2 newPos);
+	
+	private void cloned(Vertex start, LinkedList<Vertex> listOfNewVertex) {
+		replaced = start.getnext().cloneMe();
+
+		// Update listOfNewVertex
+		cloneList = replaced.getVertexList();
+		for (Vertex v : cloneList) {
+			listOfNewVertex.add(v);
+		}
+
+		// Insert clone in Family
+		position = new Vector2(start.getGameElement()
+			.getPosition().x, start.getGameElement()
+			.getPosition().y);
+		position.x += Constants.ABSTRACTION_OUTPUT;
+		position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+	}
+	
+	private LinkedList<Vertex> getFamilyVertexList() {
+		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
+		if (this.getnext() != null) {
+			returnList = this.getnext().getFamilyVertexList();
+		}
+
+		// Add family
+		if (this.getfamily() != null) {
+			if (returnList.isEmpty()) {
+				returnList = this.getfamily().getFamilyVertexList();
+			} else {
+				LinkedList<Vertex> familyList = this.getfamily()
+						.getFamilyVertexList();
+				for (Vertex v : familyList) {
+					returnList.add(v);
+				}
+			}
+
+		}
+		returnList.add(this);
+		return returnList;
+	}
+	
+	private void updateFamilyColorList(LinkedList<Integer> clonedList, int color) {
+		// Update Color List in vertex
+		updateColorList(clonedList, color);
+
+		// Update Color List in next
+		if (this.getNextColorList().contains(color)) {
+			if (this.getnext() != null) {
+				this.getnext().updateFamilyColorList(clonedList, color);
+			}
+			this.setNextColorlist(this.getnext().getCopyOfNextColorList());
+			if (!this.getNextColorList().contains(
+					this.getnext().getColor())) {
+				this.getNextColorList().add(this.getnext().getColor());
+			}
+		}
+	}
+	
+	private void updateFamilyWidth() {
+		// Update width
+		if (this.getfamily() != null) {
+			this.getfamily().updateFamilyWidth();
+			this.setWidth(this.getfamily().getWidth()
+					+ this.getfamily().getNextWidth());
+		} else {
+			this.setWidth(1);
+		}
+
+		// Update next width
+		if (this.getnext() != null) {
+			this.getnext().updateFamilyWidth();
+			this.setNextWidth(this.getnext().getWidth()
+					+ this.getnext().getNextWidth());
+		} else {
+			this.setNextWidth(0);
+		}
+
+		// Update self
+	}
+	
+	private void updateOtherGameelementPosition(int difX, int difY) {
+		if (this.getnext() != null) {
+			this.getnext().updateOtherGameelementPosition(difX, difY);
+		}
+
+		// Move
+		Vector2 actPosition = this.getGameElement().getPosition();
+		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
+		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
+
+		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
+				false);
+
+		if (this.getfamily() != null) {
+			this.getfamily().updateOtherGameelementPosition(difX, difY);
+		}
+	}
+	
+	/**
+	 * Set Game element and family to given
+	 * 
+	 * @param newPos
+	 *            as Number of GameelementWidths
+	 * @param startpos
+	 *            StartPosition of actual worker for dummys
+	 */
+	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos,
+			Vector2 paddingScreen) {
+
+		if (this.getnext() != null) {
+			this.getnext().setOtherGameelementPosition(
+					new Vector2(newPos.x + this.getWidth(), newPos.y),
+					startPos, paddingScreen);
+		}
+
+		// Clone Pre Set
+		if (this.getGameElement().getPosition().equals(new Vector2(0, 0))) {
+			this.getGameElement().setPosition(startPos);
+		}
+
+		// Move
+		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
+		int x = Constants.GAMEELEMENT_WIDTH * (int) newPos.x;
+		int y = Constants.GAMEELEMENT_WIDTH * (int) newPos.y;
+
+		// Move
+		EvaluationOptimizer.moveAnimation(new Vector2(x + centerVertex
+				+ paddingScreen.x, y + paddingScreen.y), this.getGameElement(),
+				false);
+
+		if (this.getfamily() != null) {
+			this.getfamily().setOtherGameelementPosition(
+					new Vector2(newPos.x, newPos.y
+							+ Constants.EVALUATION_DEFALT_LAYER_DIF), startPos,
+					paddingScreen);
+		}
+	}
+	
 	/**
 	 * method to set new color for an vertex (e.g after alphaConversion)
 	 * 
@@ -232,32 +462,7 @@ public abstract class Vertex {
 		if (this.getnext() != null) {
 			this.getnext().recolorFamily(newColor, oldColor);
 		}
-	}
-	
-	/**
-	 * returns GameElement according to this vertex
-	 * 
-	 * @return
-	 */
-	abstract public GameElement getGameElement();
-	
-	private void cloned(Vertex start, LinkedList<Vertex> listOfNewVertex) {
-		replaced = start.getnext().cloneMe();
-
-		// Update listOfNewVertex
-		cloneList = replaced.getVertexList();
-		for (Vertex v : cloneList) {
-			listOfNewVertex.add(v);
-		}
-
-		// Insert clone in Family
-		position = new Vector2(start.getGameElement()
-			.getPosition().x, start.getGameElement()
-			.getPosition().y);
-		position.x += Constants.ABSTRACTION_OUTPUT;
-		position.y += Constants.GAMEELEMENT_ANIMATION_WIDTH;
-	}
-	
+	}	
 
 	/**
 	 * replaces all Elements of a specific color in family of start Vertex
@@ -328,29 +533,6 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * Returns clone of this vertex without family and next
-	 * 
-	 * @return clone of this
-	 */
-	abstract public Vertex getClone();
-
-	/**
-	 * Creates a clone of this Vertex without Next and his hole Family
-	 * 
-	 * @return deep copy of next
-	 */
-	abstract public Vertex cloneMe();
-
-	/**
-	 * Creates a clone of this Vertex and his hole Family
-	 * 
-	 * @return clone of Vertex with hole family and next coned
-	 */
-	abstract public Vertex cloneFamily();
-
-	abstract public String getType();
-
-	/**
 	 * returns List of Vertex and his hole Family Vertex
 	 * 
 	 * @return List of Vertex
@@ -361,29 +543,6 @@ public abstract class Vertex {
 		// Add family
 		if (this.getfamily() != null) {
 			returnList = this.getfamily().getFamilyVertexList();
-		}
-		returnList.add(this);
-		return returnList;
-	}
-
-	private LinkedList<Vertex> getFamilyVertexList() {
-		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
-		if (this.getnext() != null) {
-			returnList = this.getnext().getFamilyVertexList();
-		}
-
-		// Add family
-		if (this.getfamily() != null) {
-			if (returnList.isEmpty()) {
-				returnList = this.getfamily().getFamilyVertexList();
-			} else {
-				LinkedList<Vertex> familyList = this.getfamily()
-						.getFamilyVertexList();
-				for (Vertex v : familyList) {
-					returnList.add(v);
-				}
-			}
-
 		}
 		returnList.add(this);
 		return returnList;
@@ -405,153 +564,6 @@ public abstract class Vertex {
 		}
 	}
 
-	private void updateFamilyColorList(LinkedList<Integer> clonedList, int color) {
-		// Update Color List in vertex
-		updateColorList(clonedList, color);
-
-		// Update Color List in next
-		if (this.getNextColorList().contains(color)) {
-			if (this.getnext() != null) {
-				this.getnext().updateFamilyColorList(clonedList, color);
-			}
-			this.setNextColorlist(this.getnext().getCopyOfNextColorList());
-			if (!this.getNextColorList().contains(
-					this.getnext().getColor())) {
-				this.getNextColorList().add(this.getnext().getColor());
-			}
-		}
-	}
-
-	public void updateWidth() {
-		// Update width
-		if (this.getfamily() != null) {
-			this.getfamily().updateFamilyWidth();
-			this.setWidth(this.getfamily().getWidth()
-					+ this.getfamily().getNextWidth());
-		} else {
-			this.setWidth(0);
-		}
-	}
-
-	private void updateFamilyWidth() {
-		// Update width
-		if (this.getfamily() != null) {
-			this.getfamily().updateFamilyWidth();
-			this.setWidth(this.getfamily().getWidth()
-					+ this.getfamily().getNextWidth());
-		} else {
-			this.setWidth(1);
-		}
-
-		// Update next width
-		if (this.getnext() != null) {
-			this.getnext().updateFamilyWidth();
-			this.setNextWidth(this.getnext().getWidth()
-					+ this.getnext().getNextWidth());
-		} else {
-			this.setNextWidth(0);
-		}
-
-		// Update self
-	}
-
-	/**
-	 * Updates Pointer after Beta Redction and returns new Worker
-	 * 
-	 * @return new Worker
-	 */
-	public Vertex updatePointerAfterBetaReduction() {
-
-		// Update pointer if needed
-		if (this.getnext() != null) {
-			// Search last Vertex in first Family layer
-			if (this.getfamily() != null) {
-				Vertex pointer = new Dummy();
-				pointer.setnext(this.getfamily());
-				while (pointer.getnext().getnext() != null) {
-					pointer.setnext(pointer.getnext().getnext());
-				}
-				// Set next Vertex of this as Next of Last in First Family layer;
-				pointer.getnext().setnext(this.getnext());
-			}
-		}
-		// return new Worker
-		return this.getfamily();
-	}
-
-	/**
-	 * Returns Vertex with should be added to the ResultTree
-	 * 
-	 * @return Returns null if ther is no Vertex wich should be added
-	 */
-	abstract public Vertex getEvaluationResult();
-
-	/**
-	 * Update Position of Family if Worker was deleted in BetaReduction
-	 */
-	abstract public void updatePositionsAfterBetaReduction();
-
-	/**
-	 * Removes Gameelement from screen if this type of Vertex needs it
-	 * 
-	 * @param e
-	 *            Instance of Evaluation Controller for next Steps
-	 */
-	abstract public void deleteAfterBetaReduction();
-
-	// ---------------------------------------------------
-	// -------- Beta Reduction and Alpha Conversion ------
-	// ---------------------------------------------------
-
-	/**
-	 * Fulfills one step of beta-reduction.
-	 * 
-	 * @return True if this abstraction has changed, false when an error
-	 *         appeared.
-	 */
-	abstract public LinkedList<Vertex> betaReduction();
-
-	/**
-	 * Fulfills alpha conversion. Makes sure that all vertices have unique ID's.
-	 * 
-	 * @return True if at least one ID has changed, false if no ID has changed.
-	 */
-	abstract public boolean alphaConversion();
-
-	// ----------------------------------------
-	// -------- Animation Helper Methods ------
-	// ----------------------------------------
-
-	/**
-	 * return vertex witch will be replaced in beta Reduction
-	 * 
-	 * @return return null if no vertex should be read in
-	 */
-	abstract public Vertex getReadIn();
-
-	/**
-	 * Read In Animation for Vertex and his family
-	 * 
-	 * @param pos
-	 *            Position of Worker
-	 * @param e
-	 *            EvaluationController where next step should be called
-	 */
-	public void readInAnimation(Vector2 pos) {
-
-		// Update Position Input
-		pos.x += Constants.GAMEELEMENT_ANIMATION_WIDTH;
-		pos.y += Constants.ABSTRACTION_INPUT;
-
-		if (this.getfamily() != null) {
-			this.getfamily().readInFamilyAnimation(pos);
-		}
-		// Animation
-		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
-				true);
-
-	}
-
 	protected void readInFamilyAnimation(Vector2 pos) {
 		if (this.getnext() != null) {
 			this.getnext().readInFamilyAnimation(pos);
@@ -563,67 +575,9 @@ public abstract class Vertex {
 		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
 				false);
 	}
-
+	
 	/**
-	 * update coordinate of gameelement with given difference(Num of
-	 * Gameelemnts)
-	 * 
-	 * @param difX
-	 *            dif on x axis
-	 * @param difY
-	 *            dif on y axis
-	 */
-	public void updateGameelementPosition(int difX, int difY) {
-		if (this.getnext() != null) {
-			this.getnext().updateOtherGameelementPosition(difX, difY);
-		}
-
-		if (this.getfamily() != null) {
-			this.getfamily().updateOtherGameelementPosition(difX, difY);
-		}
-
-		// Move
-		Vector2 actPosition = this.getGameElement().getPosition();
-		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
-		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
-		// Start next evaluationStep
-
-		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
-				true);
-	}
-
-	private void updateOtherGameelementPosition(int difX, int difY) {
-		if (this.getnext() != null) {
-			this.getnext().updateOtherGameelementPosition(difX, difY);
-		}
-
-		// Move
-		Vector2 actPosition = this.getGameElement().getPosition();
-		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
-		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
-
-		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
-				false);
-
-		if (this.getfamily() != null) {
-			this.getfamily().updateOtherGameelementPosition(difX, difY);
-		}
-	}
-
-	/**
-	 * Reorganizese Position of Vertex if needed
-	 * 
-	 * @param start
-	 *            Offset of positon perhaps Padding to border ...
-	 * @param newPos
-	 *            new Position of this Vertex in num Of GameelementWidths
-	 * @param e
-	 *            instance of evaluationController for next steps
-	 */
-	abstract public void reorganizePositions(Vector2 start, Vector2 newPos);
-
-	/**
-	 * Set Gameelement and family to given
+	 * Set Game element and family to given
 	 * 
 	 * @param newPos
 	 *            as Number of GameelementWidths
@@ -652,46 +606,6 @@ public abstract class Vertex {
 		// Move
 		EvaluationOptimizer
 				.moveAnimation(startPos, this.getGameElement(), true);
-	}
-
-	/**
-	 * Set Gameelement and family to given
-	 * 
-	 * @param newPos
-	 *            as Number of GameelementWidths
-	 * @param startpos
-	 *            StartPosition of actual worker for dummys
-	 */
-	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos,
-			Vector2 paddingScreen) {
-
-		if (this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(
-					new Vector2(newPos.x + this.getWidth(), newPos.y),
-					startPos, paddingScreen);
-		}
-
-		// Clone Pre Set
-		if (this.getGameElement().getPosition().equals(new Vector2(0, 0))) {
-			this.getGameElement().setPosition(startPos);
-		}
-
-		// Move
-		int centerVertex = (Constants.GAMEELEMENT_WIDTH * (this.getWidth() - 1)) / 2;
-		int x = Constants.GAMEELEMENT_WIDTH * (int) newPos.x;
-		int y = Constants.GAMEELEMENT_WIDTH * (int) newPos.y;
-
-		// Move
-		EvaluationOptimizer.moveAnimation(new Vector2(x + centerVertex
-				+ paddingScreen.x, y + paddingScreen.y), this.getGameElement(),
-				false);
-
-		if (this.getfamily() != null) {
-			this.getfamily().setOtherGameelementPosition(
-					new Vector2(newPos.x, newPos.y
-							+ Constants.EVALUATION_DEFALT_LAYER_DIF), startPos,
-					paddingScreen);
-		}
 	}
 	
 	@Override
@@ -743,14 +657,192 @@ public abstract class Vertex {
 		return (this.getType().equals(other.getType()) && this.getColor() == other.getColor());
 	}
 
+	public void updateWidth() {
+		// Update width
+		if (this.getfamily() != null) {
+			this.getfamily().updateFamilyWidth();
+			this.setWidth(this.getfamily().getWidth()
+					+ this.getfamily().getNextWidth());
+		} else {
+			this.setWidth(0);
+		}
+	}
+
+	/**
+	 * Updates Pointer after Beta Redction and returns new Worker
+	 * 
+	 * @return new Worker
+	 */
+	public Vertex updatePointerAfterBetaReduction() {
+
+		// Update pointer if needed
+		if (this.getnext() != null) {
+			// Search last Vertex in first Family layer
+			if (this.getfamily() != null) {
+				Vertex pointer = new Dummy();
+				pointer.setnext(this.getfamily());
+				while (pointer.getnext().getnext() != null) {
+					pointer.setnext(pointer.getnext().getnext());
+				}
+				// Set next Vertex of this as Next of Last in First Family layer;
+				pointer.getnext().setnext(this.getnext());
+			}
+		}
+		// return new Worker
+		return this.getfamily();
+	}
+
+	/**
+	 * Read In Animation for Vertex and his family
+	 * 
+	 * @param pos
+	 *            Position of Worker
+	 * @param e
+	 *            EvaluationController where next step should be called
+	 */
+	public void readInAnimation(Vector2 pos) {
+
+		// Update Position Input
+		pos.x += Constants.GAMEELEMENT_ANIMATION_WIDTH;
+		pos.y += Constants.ABSTRACTION_INPUT;
+
+		if (this.getfamily() != null) {
+			this.getfamily().readInFamilyAnimation(pos);
+		}
+		// Animation
+		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
+				true);
+
+	}
+
+	/**
+	 * update coordinate of gameelement with given difference(Num of
+	 * Gameelemnts)
+	 * 
+	 * @param difX
+	 *            dif on x axis
+	 * @param difY
+	 *            dif on y axis
+	 */
+	public void updateGameelementPosition(int difX, int difY) {
+		if (this.getnext() != null) {
+			this.getnext().updateOtherGameelementPosition(difX, difY);
+		}
+
+		if (this.getfamily() != null) {
+			this.getfamily().updateOtherGameelementPosition(difX, difY);
+		}
+
+		// Move
+		Vector2 actPosition = this.getGameElement().getPosition();
+		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
+		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
+		// Start next evaluationStep
+
+		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
+				true);
+	}
+	
+	public boolean isInDepot() {
+		return isInDepot;
+	}
+
+	/*
+	 * Getter and Setter
+	 */
+	
+	/**
+	 * Getter for the familyColorList
+	 * 
+	 * @return The familyColorList of this Vertex
+	 */
+	public LinkedList<Integer> getFamilyColorList() {
+		return familyColorList;
+	}
+
+	/**
+	 * Getter for the familyColorList
+	 * 
+	 * @return The familyColorList of this Vertex
+	 */
+	public LinkedList<Integer> getCopyOfFamilyColorList() {
+		LinkedList<Integer> copyList = new LinkedList<Integer>();
+		for (Integer i : familyColorList) {
+			copyList.add(i);
+		}
+		return copyList;
+	}
+
+	/**
+	 * Getter for the nextColorList
+	 * 
+	 * @return The nextColorList of this Vertex
+	 */
+	public LinkedList<Integer> getNextColorList() {
+		return nextColorList;
+	}
+
+	/**
+	 * Getter for the nextColorList
+	 * 
+	 * @return The nextColorList of this Vertex
+	 */
+	public LinkedList<Integer> getCopyOfNextColorList() {
+		LinkedList<Integer> copyList = new LinkedList<Integer>();
+		for (Integer i : nextColorList) {
+			copyList.add(i);
+		}
+		return copyList;
+	}
+
+	/**
+	 * Getter for the Color.
+	 * 
+	 * @return The current Color of the vertex.
+	 */
+	public int getColor() {
+		return getMappedColor(color);
+	}
+
+	/**
+	 * Getter for the family tree of this vertex.
+	 * 
+	 * @return The family tree of this vertex.
+	 */
+	public Vertex getfamily() {
+		return family;
+	}
+
+	/**
+	 * Getter for next Vertex in lambda-tree.
+	 * 
+	 * @return The next Vertex in the lambda-tree.
+	 */
+	public Vertex getnext() {
+		return next;
+	}
+
+	public Vector2 getPosition() {
+		return pos;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getNextWidth() {
+		return nextWidth;
+	}
+
+	public void setNextWidth(int w) {
+		nextWidth = w;
+	}	
+	
+	public void setWidth(int w) {
+		width = w;
+	}
 
 	
-	
-
-	// --------------------------
-	// ------Setter-------
-	// --------------------------
-
 	/**
 	 * Setter for next Vertex in the lambda-tree.
 	 * 
@@ -798,100 +890,5 @@ public abstract class Vertex {
 
 	public void setIsInDepot(boolean i) {
 		isInDepot = i;
-	}
-
-	/**
-	 * Getter for the familyColorList
-	 * 
-	 * @return The familyColorList of this Vertex
-	 */
-	public LinkedList<Integer> getFamilyColorList() {
-		return familyColorList;
-	}
-
-	/**
-	 * Getter for the familyColorList
-	 * 
-	 * @return The familyColorList of this Vertex
-	 */
-	public LinkedList<Integer> getCopyOfFamilyColorList() {
-		LinkedList<Integer> copyList = new LinkedList<Integer>();
-		for (Integer i : familyColorList) {
-			copyList.add(i);
-		}
-		return copyList;
-	}
-
-	/**
-	 * Getter for the nextColorList
-	 * 
-	 * @return The nextColorList of this Vertex
-	 */
-	public LinkedList<Integer> getNextColorList() {
-		return nextColorList;
-	}
-
-	/**
-	 * Getter for the nextColorList
-	 * 
-	 * @return The nextColorList of this Vertex
-	 */
-	public LinkedList<Integer> getCopyOfNextColorList() {
-		LinkedList<Integer> copyList = new LinkedList<Integer>();
-		for (Integer i : nextColorList) {
-			copyList.add(i);
-		}
-		return copyList;
-	}
-
-	public boolean isInDepot() {
-		return isInDepot;
-	}
-
-	/**
-	 * Getter for the Color.
-	 * 
-	 * @return The current Color of the vertex.
-	 */
-	public int getColor() {
-		return getMappedColor(color);
-	}
-
-	/**
-	 * Getter for the family tree of this vertex.
-	 * 
-	 * @return The family tree of this vertex.
-	 */
-	public Vertex getfamily() {
-		return family;
-	}
-
-	/**
-	 * Getter for next Vertex in lambda-tree.
-	 * 
-	 * @return The next Vertex in the lambda-tree.
-	 */
-	public Vertex getnext() {
-		return next;
-	}
-
-	public Vector2 getPosition() {
-		return pos;
-	}
-
-	public void setWidth(int w) {
-		width = w;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setNextWidth(int w) {
-		nextWidth = w;
-	}
-
-	public int getNextWidth() {
-		return nextWidth;
 	}
 }

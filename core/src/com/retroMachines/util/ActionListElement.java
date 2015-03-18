@@ -11,6 +11,7 @@ import com.retroMachines.game.gameelements.GameElement;
 public class ActionListElement {
 	
 	private GameElement element;
+	
 	private Action act;
 	
 	/**
@@ -22,6 +23,10 @@ public class ActionListElement {
 		element = g;
 		act = a;
 	}
+	
+	/*
+	 * Getter and Setter
+	 */
 	
 	/**
 	 * returns the gameElement of this class
