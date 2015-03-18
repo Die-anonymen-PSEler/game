@@ -15,6 +15,7 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
+import com.retroMachines.ui.RetroDialog;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.Constants.ButtonStrings;
 
@@ -235,6 +236,8 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			settingController.resetTutorials();
+			RetroDialog dialog = new RetroDialog("", "Erfolg");
+			dialog.show(stage);
 		}
 	}
 

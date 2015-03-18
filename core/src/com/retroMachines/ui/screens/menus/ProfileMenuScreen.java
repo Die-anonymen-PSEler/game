@@ -214,14 +214,16 @@ public class ProfileMenuScreen extends MenuScreen implements
 
 		@Override
 		protected void result(Object object) {
-			if ((Boolean) object
-					&& profileController.getAllProfiles().length > 1) {
-				profileController.deleteProfile(profileList.getSelected());
-			} else {
-				deletionError = new RetroDialog("",
-						"Zum Spielen brauchst du ein Profil!");
-				deletionError.show(stage);
-				this.remove();
+			if ((Boolean) object) {
+				if (profileController.getAllProfiles().length > 1) {
+					profileController.deleteProfile(profileList.getSelected());
+				}
+				else {
+					deletionError = new RetroDialog("",
+							"Zum Spielen brauchst du ein Profil!");
+					deletionError.show(stage);
+					this.remove();
+				}
 			}
 		}
 
