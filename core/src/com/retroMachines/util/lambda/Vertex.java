@@ -131,7 +131,7 @@ public abstract class Vertex {
 	 *            Color which should be replaced
 	 * @return true if something is replaced false otherwise
 	 */
-	protected boolean SearchEqualAbstractions(int oldColor, int newColor) {
+	protected boolean searchEqualAbstractions(int oldColor, int newColor) {
 		boolean retValue = false;
 		if(this.getColor() == oldColor && this.getType().equals(Constants.RetroStrings.ABSTRACTION_TYPE)) {
 			// Change Color of Family
@@ -156,7 +156,7 @@ public abstract class Vertex {
 		} else if( this.getColor() == oldColor) {
 			if (this.getfamily() != null) {
 				if (this.getFamilyColorList().contains(oldColor)) {
-					if(this.getfamily().SearchEqualAbstractions(oldColor , newColor)) {
+					if(this.getfamily().searchEqualAbstractions(oldColor , newColor)) {
 						// Update family Color List
 						this.getFamilyColorList().add(newColor);
 					}
@@ -168,7 +168,7 @@ public abstract class Vertex {
 		} else {
 			if (this.getfamily() != null) {
 				if (this.getFamilyColorList().contains(oldColor)) {
-					if(this.getfamily().SearchEqualAbstractions(oldColor, newColor)) {
+					if(this.getfamily().searchEqualAbstractions(oldColor, newColor)) {
 						// Update family Color List
 						for (int i = 0; i < this.getFamilyColorList().size(); i++) {
 							if (this.getFamilyColorList().get(i) == oldColor) {
@@ -184,7 +184,7 @@ public abstract class Vertex {
 		}
 		
 		if (this.getnext() != null) {
-			if(this.getnext().SearchEqualAbstractions(oldColor, newColor)) {
+			if(this.getnext().searchEqualAbstractions(oldColor, newColor)) {
 				// Update family Color List
 				for (int i = 0; i < this.getNextColorList().size(); i++) {
 					if (this.getNextColorList().get(i) == oldColor) {
