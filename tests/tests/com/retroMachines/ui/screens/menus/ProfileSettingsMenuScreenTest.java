@@ -29,9 +29,7 @@ public class ProfileSettingsMenuScreenTest {
 	
 	private static final Vector2 NEXT_CHAR_BUTTON = new Vector2(IMAGE_TABLE_ID, 0);
 	
-	private static final Vector2 ABORT_BUTTON = new Vector2(BUTTON_TABLE_ID, 0);
-	
-	private static final Vector2 OK_BUTTON = new Vector2(BUTTON_TABLE_ID, 1);
+	private static final Vector2 OK_BUTTON = new Vector2(BUTTON_TABLE_ID, 0);
 	
 	private static final Vector3 LEFT_BUTTON = new Vector3(RIGHT_TABLE_ID, 2, 0);
 	
@@ -63,12 +61,6 @@ public class ProfileSettingsMenuScreenTest {
 	@After
 	public void tearDown() throws Exception {
 		game.getProfileController().deleteProfile("maik");
-	}
-	
-	@Test
-	public void testAbortButton() {
-		clickButton((int) ABORT_BUTTON.x, (int) ABORT_BUTTON.y);
-		assertFalse("sollte nicht mehr der gleiche screen sein", game.getScreen() == screen);
 	}
 	
 	@Test
