@@ -321,13 +321,13 @@ public class VertexTest {
 		LinkedList<Integer> list = abs.getCopyOfNextColorList();
 		assertEquals(list.size(), colorList.size());
 		for (int i  = 0; i < list.size(); i++) {
-			assertEquals(list.get(i), colorList.get(0));
+			assertEquals(list.get(i), colorList.get(i));
 		}
 	}
 
 	@Test
 	public void testIsInDepot() {
-		fail("Not yet implemented");
+		abs.isInDepot();
 	}
 
 	@Test

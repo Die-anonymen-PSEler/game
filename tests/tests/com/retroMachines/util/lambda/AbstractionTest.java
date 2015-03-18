@@ -127,6 +127,7 @@ public class AbstractionTest {
 	@Test
 	public void testAlphaConversion() {
 		abs.setNext(null);
+		abs.setFamily(new Abstraction(absColor));
 		assertFalse(abs.alphaConversion());
 		abs.setNext(new Abstraction(2));
 		boolean b = abs.alphaConversion();
