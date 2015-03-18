@@ -101,10 +101,6 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		buttonTutReset.addListener(new TutResetButtonClickListener());
 		buttonTutReset.pad(screenHeight / DEFAULTBUTTONSIZE);
 
-		Button buttonAbort = new Button(skin, ButtonStrings.ABORT);
-		buttonAbort.addListener(new ReturnButtonClickListener());
-		buttonAbort.pad(screenHeight / DEFAULTBUTTONSIZE);
-
 		buttonLeftMode = new Button(skin, ButtonStrings.CONTROL_LEFT);
 		buttonLeftMode.addListener(new LeftControlButtonClickListener());
 		buttonLeftMode.pad(screenHeight / DEFAULTBUTTONSIZE);
@@ -133,7 +129,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 
 		// ButtonTables
 		Table buttonTable = new Table(skin);
-		buttonTable.add(buttonAbort).padRight(screenWidth / DEFAULTPADDING);
+
 		buttonTable.add(buttonOk).padLeft(screenWidth / DEFAULTPADDING);
 
 		Table leftTable = new Table(skin);
