@@ -190,7 +190,7 @@ public abstract class Vertex {
 	abstract public void reorganizePositions(Vector2 start, Vector2 newPos);
 	
 	private void cloned(Vertex start, LinkedList<Vertex> listOfNewVertex) {
-		replaced = start.getnext().cloneMe();
+		replaced = start.getNext().cloneMe();
 
 		// Update listOfNewVertex
 		cloneList = replaced.getVertexList();
@@ -208,8 +208,8 @@ public abstract class Vertex {
 	
 	private LinkedList<Vertex> getFamilyVertexList() {
 		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
-		if (this.getnext() != null) {
-			returnList = this.getnext().getFamilyVertexList();
+		if (this.getNext() != null) {
+			returnList = this.getNext().getFamilyVertexList();
 		}
 
 		// Add family
@@ -235,13 +235,13 @@ public abstract class Vertex {
 
 		// Update Color List in next
 		if (this.getNextColorList().contains(color)) {
-			if (this.getnext() != null) {
-				this.getnext().updateFamilyColorList(clonedList, color);
+			if (this.getNext() != null) {
+				this.getNext().updateFamilyColorList(clonedList, color);
 			}
-			this.setNextColorlist(this.getnext().getCopyOfNextColorList());
+			this.setNextColorlist(this.getNext().getCopyOfNextColorList());
 			if (!this.getNextColorList().contains(
-					this.getnext().getColor())) {
-				this.getNextColorList().add(this.getnext().getColor());
+					this.getNext().getColor())) {
+				this.getNextColorList().add(this.getNext().getColor());
 			}
 		}
 	}
@@ -257,10 +257,10 @@ public abstract class Vertex {
 		}
 
 		// Update next width
-		if (this.getnext() != null) {
-			this.getnext().updateFamilyWidth();
-			this.setNextWidth(this.getnext().getWidth()
-					+ this.getnext().getNextWidth());
+		if (this.getNext() != null) {
+			this.getNext().updateFamilyWidth();
+			this.setNextWidth(this.getNext().getWidth()
+					+ this.getNext().getNextWidth());
 		} else {
 			this.setNextWidth(0);
 		}
@@ -269,8 +269,8 @@ public abstract class Vertex {
 	}
 	
 	private void updateOtherGameelementPosition(int difX, int difY) {
-		if (this.getnext() != null) {
-			this.getnext().updateOtherGameelementPosition(difX, difY);
+		if (this.getNext() != null) {
+			this.getNext().updateOtherGameelementPosition(difX, difY);
 		}
 
 		// Move
@@ -297,8 +297,8 @@ public abstract class Vertex {
 	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos,
 			Vector2 paddingScreen) {
 
-		if (this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(
+		if (this.getNext() != null) {
+			this.getNext().setOtherGameelementPosition(
 					new Vector2(newPos.x + this.getWidth(), newPos.y),
 					startPos, paddingScreen);
 		}
@@ -413,8 +413,8 @@ public abstract class Vertex {
 			}	
 		}
 		
-		if (this.getnext() != null) {
-			if(this.getnext().searchEqualAbstractions(oldColor, newColor)) {
+		if (this.getNext() != null) {
+			if(this.getNext().searchEqualAbstractions(oldColor, newColor)) {
 				// Update family Color List
 				for (int i = 0; i < this.getNextColorList().size(); i++) {
 					if (this.getNextColorList().get(i) == oldColor) {
@@ -459,8 +459,8 @@ public abstract class Vertex {
 			this.getFamily().recolorFamily(newColor, oldColor);
 		}
 		
-		if (this.getnext() != null) {
-			this.getnext().recolorFamily(newColor, oldColor);
+		if (this.getNext() != null) {
+			this.getNext().recolorFamily(newColor, oldColor);
 		}
 	}	
 
@@ -493,39 +493,39 @@ public abstract class Vertex {
 					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(
 							position, this.getFamily().getGameElement(), false);
 
-					if (this.getFamily().getnext() != null) {
-						replaced.setnext(this.getFamily().getnext());
+					if (this.getFamily().getNext() != null) {
+						replaced.setNext(this.getFamily().getNext());
 					}
-					this.setfamily(replaced);
+					this.setFamily(replaced);
 				}
 			}
 		}
 
 		// if next Vertex contains color, search and replace it
-		if (this.getnext() != null) {
+		if (this.getNext() != null) {
 
 			// Check all Vertexes next to you, before you check to replace the
 			// Next Vertex
-			LinkedList<Vertex> listOfNextVertex = this.getnext()
+			LinkedList<Vertex> listOfNextVertex = this.getNext()
 					.replaceInFamily(start);
 			for (Vertex v : listOfNextVertex) {
 				listOfNewVertex.add(v);
 			}
 
 			// Replace Next Vertex if Color and Type are Ok
-			if (this.getnext().getType().equals("Variable")
-					&& this.getnext().getColor() == start.getColor()) {
+			if (this.getNext().getType().equals("Variable")
+					&& this.getNext().getColor() == start.getColor()) {
 				cloned(start, listOfNewVertex);
 
 				// Animation
 				EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position,
-						this.getnext().getGameElement(), false);
+						this.getNext().getGameElement(), false);
 
-				if (this.getnext().getnext() != null) {
-					replaced.setnext(this.getnext().getnext());
+				if (this.getNext().getNext() != null) {
+					replaced.setNext(this.getNext().getNext());
 				}
 
-				this.setnext(replaced);
+				this.setNext(replaced);
 			}
 		}
 		// At the End return the ColorList, if something is replaced;
@@ -565,8 +565,8 @@ public abstract class Vertex {
 	}
 
 	protected void readInFamilyAnimation(Vector2 pos) {
-		if (this.getnext() != null) {
-			this.getnext().readInFamilyAnimation(pos);
+		if (this.getNext() != null) {
+			this.getNext().readInFamilyAnimation(pos);
 		}
 		if (this.getFamily() != null) {
 			this.getFamily().readInFamilyAnimation(pos);
@@ -590,8 +590,8 @@ public abstract class Vertex {
 		Vector2 paddingScreen = new Vector2(x, y);
 		Vector2 startPos = new Vector2(x + centerVertex, y);
 
-		if (this.getnext() != null) {
-			this.getnext().setOtherGameelementPosition(
+		if (this.getNext() != null) {
+			this.getNext().setOtherGameelementPosition(
 					new Vector2(newPos.x + this.getWidth(), newPos.y),
 					startPos, paddingScreen);
 		}
@@ -632,11 +632,11 @@ public abstract class Vertex {
 		// null.
 		// For this we use xor. True if, and only if, one statement is true,
 		// while the other is false.
-		if (this.getnext() != null ^ other.getnext() != null) {
+		if (this.getNext() != null ^ other.getNext() != null) {
 			return false;
-		} else if (this.getnext() != null) { // in case both are not null, need
+		} else if (this.getNext() != null) { // in case both are not null, need
 												// to compare them.
-			if (!this.getnext().equals(other.getnext())) { // if they do not equal
+			if (!this.getNext().equals(other.getNext())) { // if they do not equal
 														// we can return false
 				return false;
 			}
@@ -676,16 +676,16 @@ public abstract class Vertex {
 	public Vertex updatePointerAfterBetaReduction() {
 
 		// Update pointer if needed
-		if (this.getnext() != null) {
+		if (this.getNext() != null) {
 			// Search last Vertex in first Family layer
 			if (this.getFamily() != null) {
 				Vertex pointer = new Dummy();
-				pointer.setnext(this.getFamily());
-				while (pointer.getnext().getnext() != null) {
-					pointer.setnext(pointer.getnext().getnext());
+				pointer.setNext(this.getFamily());
+				while (pointer.getNext().getNext() != null) {
+					pointer.setNext(pointer.getNext().getNext());
 				}
 				// Set next Vertex of this as Next of Last in First Family layer;
-				pointer.getnext().setnext(this.getnext());
+				pointer.getNext().setNext(this.getNext());
 			}
 		}
 		// return new Worker
@@ -725,8 +725,8 @@ public abstract class Vertex {
 	 *            dif on y axis
 	 */
 	public void updateGameelementPosition(int difX, int difY) {
-		if (this.getnext() != null) {
-			this.getnext().updateOtherGameelementPosition(difX, difY);
+		if (this.getNext() != null) {
+			this.getNext().updateOtherGameelementPosition(difX, difY);
 		}
 
 		if (this.getFamily() != null) {
@@ -818,7 +818,7 @@ public abstract class Vertex {
 	 * 
 	 * @return The next Vertex in the lambda-tree.
 	 */
-	public Vertex getnext() {
+	public Vertex getNext() {
 		return next;
 	}
 
@@ -849,7 +849,7 @@ public abstract class Vertex {
 	 * @param next
 	 *            Next vertex that is to set.
 	 */
-	public void setnext(Vertex next) {
+	public void setNext(Vertex next) {
 		this.next = next;
 	}
 
@@ -860,7 +860,7 @@ public abstract class Vertex {
 	 *            The start vertex for the family that is to set.
 	 * @return false if type of Vertex is Variable , true otherwise
 	 */
-	public void setfamily(Vertex family) {
+	public void setFamily(Vertex family) {
 		this.family = family;
 	}
 

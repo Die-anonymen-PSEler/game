@@ -55,11 +55,11 @@ public class EvaluationOptimizer {
 		//reset List
 		ActionList = new LinkedList<ActionListElement>();
 		ActStep = 1;
-		EvalutionPointer.getnext().alphaConversion();
+		EvalutionPointer.getNext().alphaConversion();
 
-		Vertex readIn = EvalutionPointer.getnext().getReadIn();
+		Vertex readIn = EvalutionPointer.getNext().getReadIn();
 		if (readIn != null) {
-			readIn.readInAnimation(EvalutionPointer.getnext().getGameElement()
+			readIn.readInAnimation(EvalutionPointer.getNext().getGameElement()
 					.getPosition());
 			// Next Step by Animation
 			//notify Controller
@@ -75,7 +75,7 @@ public class EvaluationOptimizer {
 		//reset List
 		ActionList = new LinkedList<ActionListElement>();
 		ActStep = 2;
-		VertexList = EvalutionPointer.getnext().betaReduction();
+		VertexList = EvalutionPointer.getNext().betaReduction();
 		// Next Step by Animation
 		//notify Controller
 		notifyEvaluationController();
@@ -87,7 +87,7 @@ public class EvaluationOptimizer {
 		ActStep = 3;
 		Vector2 start = EvaluationController.getEvaluationscreenPadding();
 		start.x += OffsetX;
-		EvalutionPointer.getnext()
+		EvalutionPointer.getNext()
 				.reorganizePositions(start, new Vector2(0, 0));
 		// Next Step by Animation
 		//notify Controller
@@ -104,7 +104,7 @@ public class EvaluationOptimizer {
 		}
 
 		// At the end worker disappears when its an Abstraction or Application
-		EvalutionPointer.getnext().deleteAfterBetaReduction();
+		EvalutionPointer.getNext().deleteAfterBetaReduction();
 		//notify Controller
 		notifyEvaluationController();
 	}
@@ -113,7 +113,7 @@ public class EvaluationOptimizer {
 		//reset List
 		ActionList = new LinkedList<ActionListElement>();
 		ActStep = 5;
-		EvalutionPointer.getnext().updatePositionsAfterBetaReduction();
+		EvalutionPointer.getNext().updatePositionsAfterBetaReduction();
 		//notify Controller
 		notifyEvaluationController();
 	}
@@ -123,16 +123,16 @@ public class EvaluationOptimizer {
 
 		// creating copy of current tree
 		LevelTree oldTree = new LevelTree(EvalutionPointer.cloneMe());
-		EvalutionPointer.setfamily(EvalutionPointer.getnext());
-		Vertex result = EvalutionPointer.getnext().getEvaluationResult();
+		EvalutionPointer.setFamily(EvalutionPointer.getNext());
+		Vertex result = EvalutionPointer.getNext().getEvaluationResult();
 
 		if (result != null) {
 			// check whether there is an infinite evaluation (same tree after
 			// evaluation as before)
-			if (result.getnext() != null
+			if (result.getNext() != null
 					&& !result.getType().equals(
 							Constants.RetroStrings.VARIABLE_TYPE)) {
-				LevelTree newTree = new LevelTree(result.getnext());
+				LevelTree newTree = new LevelTree(result.getNext());
 				if (oldTree.equalsTree(newTree)) {
 					// we can stop evaluation at this point
 					ResultTree = oldTree;
@@ -143,23 +143,23 @@ public class EvaluationOptimizer {
 			// make resultTree if needed
 			OffsetX += result.getWidth() * Constants.GAMEELEMENT_WIDTH;
 			if (ResultTree != null) {
-				ResultPointer.getnext().setnext(result);
-				ResultPointer.setnext(ResultPointer.getnext().getnext());
+				ResultPointer.getNext().setNext(result);
+				ResultPointer.setNext(ResultPointer.getNext().getNext());
 			} else {
 				ResultTree = new LevelTree(result);
-				ResultPointer.setnext(ResultTree.getStart());
+				ResultPointer.setNext(ResultTree.getStart());
 			}
 		}
 
-		EvalutionPointer.setnext(EvalutionPointer.getnext()
+		EvalutionPointer.setNext(EvalutionPointer.getNext()
 				.updatePointerAfterBetaReduction());
 
-		if (EvalutionPointer.getnext() == null) {
+		if (EvalutionPointer.getNext() == null) {
 			// End of Evaluation
-			ResultPointer.getnext().setnext(null);
+			ResultPointer.getNext().setNext(null);
 			checkEvaluation();
 		} else {
-			if (EvalutionPointer.getnext().getType()
+			if (EvalutionPointer.getNext().getType()
 					.equals(Constants.RetroStrings.VARIABLE_TYPE)) {
 				runNextEvaluationStep();
 				return;
@@ -236,7 +236,7 @@ public class EvaluationOptimizer {
 		AutoStep = false;
 		EvalutionPointer = new Dummy();
 		if(EvaluationController != null) {
-			EvalutionPointer.setnext(EvaluationController.getlambdaTree()
+			EvalutionPointer.setNext(EvaluationController.getlambdaTree()
 					.getStart());
 		}
 		ActStep = 0;
