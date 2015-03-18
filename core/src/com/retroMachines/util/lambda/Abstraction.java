@@ -14,7 +14,7 @@ import com.retroMachines.util.Constants;
  */
 public class Abstraction extends Vertex {
 
-	//private boolean nextNull;
+	private boolean nextNull;
 
 	// --------------------------
 	// --------Constructor-------
@@ -138,7 +138,7 @@ public class Abstraction extends Vertex {
 				} else {
 					this.setNext(null);
 				}
-				//nextNull = false;
+				nextNull = false;
 				EvaluationOptimizer.delayAndRunNextStepAnim(this
 						.getGameElement());
 				return returnList;
@@ -148,7 +148,7 @@ public class Abstraction extends Vertex {
 				return null;
 			}
 		} else {
-			//nextNull = true;
+			nextNull = true;
 			EvaluationOptimizer.runNextStep();
 			return new LinkedList<Vertex>();
 		}
@@ -220,16 +220,18 @@ public class Abstraction extends Vertex {
 	@Override
 	public void deleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		if (getNext() == null) {
+		if (nextNull) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 			return;
+		} else {
+			EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
 		}
-		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
+
 	}
 
 	@Override
 	public Vertex updatePointerAfterBetaReduction() {
-		if (getNext() == null) {
+		if (nextNull) {
 			return this.getNext();
 		}	
 		return super.updatePointerAfterBetaReduction();
@@ -237,7 +239,7 @@ public class Abstraction extends Vertex {
 
 	@Override
 	public void updatePositionsAfterBetaReduction() {
-		if (getNext() == null) {
+		if (nextNull) {
 			EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
 			return;
 		} else {
@@ -254,7 +256,7 @@ public class Abstraction extends Vertex {
 	 */
 	@Override
 	public Vertex getEvaluationResult() {
-		if (getNext() == null) {
+		if (nextNull) {
 			return this;
 		} else {
 			// Returns null because the Abstraction is no Part of Evaluation
