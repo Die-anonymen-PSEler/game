@@ -39,7 +39,7 @@ public abstract class Constants {
 	/**
 	 * the id of the last level of the game
 	 */
-	public static final int MAX_LEVEL_ID = 8;
+	public static final int MAX_LEVEL_ID = 10;
 
 	/**
 	 * the amount of seconds in a minute used by the statistic screen

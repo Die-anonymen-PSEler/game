@@ -27,7 +27,7 @@
 					"color": 3,
 					"type" : "Var",
 					"posx": 42,
-					"posy": 21
+					"posy": 10
 				},
 				
 				{
@@ -109,19 +109,19 @@
 			"target": 
 			[				
 				{
-					"color": 5,
-					"type": "Var",
-					"target": []
-				},
-				
-				{
-					"color": 5,
-					"type": "Var",
-					"target": []
-				},
-				
-				{
 					"color": 6,
+					"type": "Var",
+					"target": []
+				},
+				
+				{
+					"color": 5,
+					"type": "Var",
+					"target": []
+				},
+				
+				{
+					"color": 5,
 					"type": "Var",
 					"target": []
 				}

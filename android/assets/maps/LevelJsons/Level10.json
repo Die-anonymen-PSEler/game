@@ -1,0 +1,110 @@
+{
+	"level": 
+	{
+		"description": "Level das ((lambda x.x)(lambda x.x)) darstellt",
+		"hasTutorialScreen": false,
+		"tutorialScreens" : [],
+		"levelid": 10,
+		"data": 
+		{
+			"gameelements": 
+			[
+				{
+					"color": 10,
+					"type": "Abs",
+					"posx": 19,
+					"posy": 18
+				},
+					
+				{
+					"color": 10,
+					"type": "Abs",
+					"posx": 27,
+					"posy": 7
+					
+				},
+
+				{
+					"color": 10,
+					"type": "Var",
+					"posx": 4,
+					"posy": 6
+				},
+			
+				{
+				
+					"color": 10,
+					"type": "Var",
+					"posx": 37,
+					"posy": 4
+				},
+
+				{
+					"color": 1,
+					"type": "App",
+					"posx": 18,
+					"posy":4
+				}
+			],
+
+			"tree": 
+			[		
+				{
+					"tree": 
+					[	
+						{
+							"tree": []	
+						}
+					]
+				},
+				
+				{
+					"tree":
+					[
+						{
+							"tree":
+							[
+								{
+									"tree":[]
+								}
+							]
+						}
+					]
+				}
+			],
+
+			"target": 
+			[				
+				{
+					"color": 10,
+					"type": "Abs",
+					"target": 
+					[				
+						{
+							"color": 10,
+							"type": "Var",
+							"target": []
+						}
+					]
+				}
+			],
+			
+			"hint":  
+			[							
+				{
+					"color": 1,
+					"type": "App",
+					"target":
+					[
+						{
+							"color": 10,
+							"type": "Abs",
+							"target": []
+						}
+					]
+				}
+
+			]
+		}
+	}
+}

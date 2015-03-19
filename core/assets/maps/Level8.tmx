@@ -33,12 +33,12 @@
  </layer>
  <layer name="Open Gate" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAPBmGAAAAQ==
+   eJztz0EJACAQAMHDcgoK2j+N97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtuLYB0g==
   </data>
  </layer>
  <layer name="Gate" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAPBmGAAAAQ==
+   eJztz0EJACAQAMHDbgoK2j+O97SBoDMJdiMAAADgHbVEtHK74p6e7+Pj/5nv6+N/ADhtV64Bxg==
   </data>
  </layer>
  <layer name="Pipes" width="64" height="24">

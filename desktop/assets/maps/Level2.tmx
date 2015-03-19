@@ -28,7 +28,7 @@
  </layer>
  <layer name="Laufebene" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlg0KwzAIhb3UfrN2ge3+Z1qEBkQSE1vTjiYPHhRCNZ+KrQMAt/gO5xcyuoznA++1lyT+3vs/+M8vD33z997/wT/4e+bHfxwr/lvw1fR27WXVf2T/Bj/ApgbP4NfiC3n+GMSmkvh9ZYzIjrHeoKtB5ETGHNtUGWuNtvafslNr50DLyOdj7Vxo+GnOaM7Na9BiZrm2zMfW/k8FU/H6tawL71MuV4n/6H2emjnL2pX4rfb5vwn3Fu4NiR+t3edSrhrvlQd3tgeZ3WIO+LdR2pcxTy1DiikXN5W7hp3XwPJO1F44mytjaN7RsA8P9+If0xSB8A==
+   eJztlg0KwzAIhb3UfrN2ge3+Z1qEBkQSE1vTjiYPHhRCNZ+KrQMAt/gO5xcyuoznA++1lyT+3vs/+M8vD33z997/wT/4e+bHfxwr/lvw1fR27WXVf2T/Bj/ApgbP4NfiC3n+GMSmkvh9ZYzIjrHeoKtB5ETGHNtUGWuNtvafslNr50DLyOdj7Vxo+GnOaM7Na9BiZrm2zMfW/k8FU/H6tapLqk+5XCX+o/d5isWydiV+q33+b8K9hXtD4kdr97mUq8Z75cGd7UFmt5gD/m2U9mXMU8uQYsrFTeWuYec1sLwTtRfO5soYmnc07MPDvfgHsMqCKg==
   </data>
  </layer>
  <layer name="Open gate" width="64" height="24">
