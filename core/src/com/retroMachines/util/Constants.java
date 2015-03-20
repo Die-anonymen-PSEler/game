@@ -112,7 +112,7 @@ public abstract class Constants {
 	/**
 	 * the padding of gameElements
 	 */
-	public static final int GAMELEMENT_PADDING = 25;
+	public static final int GAMELEMENT_PADDING = 15;
 
 	/**
 	 * the input size of the abstraction
@@ -281,6 +281,7 @@ public abstract class Constants {
 
 		public static final String ABSTRACTION_TYPE = "Abstraction";
 
+		public static final String DUMMY_TYPE = "Dummy";
 		/*
 		 * error messages that will be displayed to the user
 		 */

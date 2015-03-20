@@ -10,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.util.Constants.ButtonStrings;
@@ -22,6 +24,12 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * 
  */
 public class RetroDialogChain {
+	
+	private final static float DEFAULTBUTTONSIZE = 10f;
+	private final static float DIVIDEWIDTHDEFAULT = 1920f;
+	private final static float DIALOGWIDTH = (4f / 5f);
+	private final static float DIALOGHEIGHT = (7f / 9f);
+	private final static float FOUR_FIFTH = (4 / 5f);
 
 	/**
 	 * List of DialogChains to be displayed
@@ -112,11 +120,28 @@ public class RetroDialogChain {
 			Skin skin = RetroAssetManager.getMenuSkin();
 			int screenWidth = Gdx.graphics.getWidth();
 			int screenHeight = Gdx.graphics.getHeight();
-
+			
+			Table size = new Table();
+			
+			
 			Image tutImg = new Image();
 			tutImg.setDrawable(new TextureRegionDrawable(new TextureRegion(img)));
 
-			getContentTable().add(tutImg);
+			//Put tut img in ScrollPane
+			
+			Table scrollTable = new Table(skin);
+			scrollTable.add(tutImg);
+			ScrollPane scroll = new ScrollPane(scrollTable, skin);
+			scroll.getStyle().hScrollKnob
+					.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+							/ DIVIDEWIDTHDEFAULT);
+			scroll.getStyle().vScrollKnob
+			.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+					/ DIVIDEWIDTHDEFAULT);
+			size.add(scroll).width(screenWidth * DIALOGWIDTH)
+			.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
+			
+			getContentTable().add(size).expand();
 
 			padTop(screenHeight / 30f); // set padding on top of the dialog
 										// title

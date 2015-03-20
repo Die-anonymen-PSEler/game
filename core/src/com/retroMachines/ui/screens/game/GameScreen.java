@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -27,6 +28,7 @@ import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.ui.screens.menus.LevelMenuScreen;
 import com.retroMachines.util.Constants;
 import com.retroMachines.util.Constants.ButtonStrings;
+import com.retroMachines.util.lambda.Dummy;
 import com.retroMachines.util.lambda.Vertex;
 
 /**
@@ -559,17 +561,19 @@ public class GameScreen extends AbstractScreen implements
 			size.add(buttonBack).expandX().expandY().bottom().row();
 			this.padTop(screenWidth / PADDING_THIRTY); // set padding on top of the
 													// dialog
-			this.padBottom(screenWidth / PADDING_THIRTY); // set padding on bottom of
+			this.padBottom(screenWidth / DEFAULTPADDING_X_TWO); // set padding on bottom of
 														// the
 			this.add(size).expand();
 		}
 
 		private void printTree(Vertex actVertex, Vector2 position) {
-			while (actVertex != null) {
-				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (actVertex
+			Vertex pointer = new Dummy();
+			pointer.setNext(actVertex);
+			while (pointer.getNext() != null) {
+				int centerVertex = (Constants.GAMEELEMENT_WIDTH * (pointer.getNext()
 						.getWidth() - 1)) / 2;
 				Vector2 pos = new Vector2(position.x + centerVertex, position.y);
-
+				pos.x += Constants.GAMELEMENT_PADDING * pointer.getNext().getWidth();
 				// Add depot
 
 				int offset = (Integer) RetroAssetManager.getDepots().getProperties()
@@ -581,27 +585,39 @@ public class GameScreen extends AbstractScreen implements
 				this.addActor(d);
 
 				// Add element
-				if (actVertex.getGameElement() != null) {
-					offset = (Integer) actVertex.getGameElement().getTileSet()
+				if (pointer.getNext().getGameElement() != null) {
+					offset = (Integer) pointer.getNext().getGameElement().getTileSet()
 							.getProperties().get("firstgid") - 1;
-					color = actVertex.getColor();
-					actVertex.getGameElement().setTileId(color + offset);
+					color = pointer.getNext().getColor();
+					pointer.getNext().getGameElement().setTileId(color + offset);
 
-					actVertex.getGameElement().setPosition(pos);
-					this.addActor(actVertex.getGameElement());
+					pointer.getNext().getGameElement().setPosition(pos);
+					this.addActor(pointer.getNext().getGameElement());
 					// print Family
-					if (actVertex.getFamily() != null) {
+					if (pointer.getNext().getFamily() != null) {
 						position.y += Constants.GAMELEMENT_PADDING;
 						Vector2 famPos = new Vector2(position.x, position.y
 								+ Constants.GAMEELEMENT_WIDTH);
-						printTree(actVertex.getFamily(), famPos);
+						printTree(pointer.getNext().getFamily(), famPos);
 						position.y -= Constants.GAMELEMENT_PADDING;
+					}
+				} else {
+					//Check dummy
+					if (pointer.getNext().getType().equals(Constants.RetroStrings.DUMMY_TYPE)) {
+						if (pointer.getNext().getFamily() != null) {
+							position.y += Constants.GAMELEMENT_PADDING;
+							Vector2 famPos = new Vector2(position.x, position.y
+									+ Constants.GAMEELEMENT_WIDTH);
+							printTree(pointer.getNext().getFamily(), famPos);
+							position.y -= Constants.GAMELEMENT_PADDING;
+						}
 					}
 				}
 				position.x = position.x
-						+ (Constants.GAMEELEMENT_WIDTH * actVertex.getWidth());
-				position.x += Constants.GAMELEMENT_PADDING;
-				actVertex = actVertex.getNext();
+						+ (Constants.GAMEELEMENT_WIDTH * pointer.getNext().getWidth());
+				position.x += 2 *(Constants.GAMELEMENT_PADDING * pointer.getNext().getWidth());
+				//Update pointer
+				pointer.setNext(pointer.getNext().getNext());
 			}
 		}
 
@@ -615,8 +631,8 @@ public class GameScreen extends AbstractScreen implements
 		}
 
 		private void initialize() {
-			super.printTree(gameController.getLevelTarget(), new Vector2(50,
-					200));
+			super.printTree(gameController.getLevelTarget(), new Vector2(screenWidth / DEFAULTPADDING,
+					screenHeight * ONE_FIFTH));
 		}
 
 		@Override
@@ -636,7 +652,7 @@ public class GameScreen extends AbstractScreen implements
 
 		private void initialize() {
 			super.printTree(gameController.getLevelHint(),
-					new Vector2(100, 200));
+					new Vector2(screenWidth / DEFAULTPADDING, screenHeight * ONE_FOURTH));
 		}
 
 		@Override
@@ -700,8 +716,21 @@ public class GameScreen extends AbstractScreen implements
 			dialogTable.add(back)
 					.width(screenWidth * DIALOGTEXTWIDTH * FOUR_FIFTH)
 					.height(screenHeight * DIALOGHEIGHT * ONE_THIRD).row();
-
-			this.add(dialogTable).width(screenWidth * DIALOGTEXTWIDTH)
+			
+			//add scroll table
+			
+			Table scrollTable = new Table(skin);
+			ScrollPane scroll = new ScrollPane(dialogTable, skin);
+			scroll.getStyle().hScrollKnob
+					.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+							/ DIVIDEWIDTHDEFAULT);
+			scroll.getStyle().vScrollKnob
+			.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+					/ DIVIDEWIDTHDEFAULT);
+			
+			scrollTable.add(scroll);
+			
+			this.add(scrollTable).width(screenWidth * DIALOGTEXTWIDTH)
 					.height(screenHeight * DIALOGHEIGHT * FOUR_FIFTH);
 
 		}

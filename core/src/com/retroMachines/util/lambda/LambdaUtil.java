@@ -181,6 +181,19 @@ public class LambdaUtil {
 		}
 		return resultList;
 	}
+	
+	/**
+	 * Updates the with of given Vertex and all next and family Vertices
+	 * @param v Vertex as Start of make Width
+	 */
+	private void makeVertexWidth(Vertex v) {
+		Vertex pointer = new Dummy();
+		pointer.setNext(v);
+		while(pointer.getNext() != null) {
+			pointer.getNext().updateWidth();
+			pointer.setNext(pointer.getNext().getNext());
+		}
+	}
 
 	/**
 	 * returns new instance of vertex of type {Var,Abs,App}. If parameter does
@@ -252,8 +265,9 @@ public class LambdaUtil {
 		numOfDepots = 0;
 		levelTree = new LevelTree(makeStartVertexTree(tree));
 		hintTree = new LevelTree(makeStartVertexHintOrTarget(hint, HINT));
+		makeVertexWidth(hintTree.getStart());
 		targetTree = new LevelTree(makeStartVertexHintOrTarget(target, TARGET));
-
+		makeVertexWidth(targetTree.getStart());
 	}
 
 	public void registerNewListener(OnNextLambdaStepListener listener) {

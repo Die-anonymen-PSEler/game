@@ -664,7 +664,7 @@ public abstract class Vertex {
 			this.setWidth(this.getFamily().getWidth()
 					+ this.getFamily().getNextWidth());
 		} else {
-			this.setWidth(0);
+			this.setWidth(1);
 		}
 	}
 

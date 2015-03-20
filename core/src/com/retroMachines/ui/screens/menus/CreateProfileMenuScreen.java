@@ -137,7 +137,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		buttonLeftMode.addListener(new LeftControlButtonClickListener());
 		buttonLeftMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 
-		buttonRightMode = new Button(skin, ButtonStrings.CONTROL_LEFT);
+		buttonRightMode = new Button(skin, ButtonStrings.CONTROL_RIGHT);
 		buttonRightMode.addListener(new RightControlButtonClickListener());
 		buttonRightMode.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonRightMode.setChecked(true);

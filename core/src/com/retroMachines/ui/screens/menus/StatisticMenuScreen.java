@@ -2,6 +2,7 @@ package com.retroMachines.ui.screens.menus;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.retroMachines.RetroMachines;
@@ -118,16 +119,32 @@ public class StatisticMenuScreen extends MenuScreen {
 		buttonReturn.pad(screenHeight / DEFAULTBUTTONSIZE);
 		buttonReturn.addListener(new ReturnButtonClickListener());
 
-		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+		
+		// Put all in ScrollTable
+		
+		Table scrollTable = new Table(skin);
+				
+		scrollTable.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
 				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
-		table.add(title)
+		scrollTable.add(title)
 				.width(screenWidth * TITLEWIDTH)
 				.right()
 				.padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH))
 				.expandX().row();
-		table.add(statisticTable).colspan(COLSPAN_X_TWO)
+		scrollTable.add(statisticTable).colspan(COLSPAN_X_TWO)
 				.padBottom(screenWidth / DEFAULTPADDING_X_FOUR).row();
-		table.add().expandY().colspan(COLSPAN_X_TWO);
+		scrollTable.add().expandY().colspan(COLSPAN_X_TWO);
+		ScrollPane scroll = new ScrollPane(scrollTable, skin);
+		scroll.getStyle().hScrollKnob
+				.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+						/ DIVIDEWIDTHDEFAULT);
+		scroll.getStyle().vScrollKnob
+		.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
+		
+		
+		table.add(scroll);
+
 
 		stage.addActor(table);
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -162,14 +163,27 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 		rightTable.add(tutTable).width(screenWidth * FIVE_NINTH)
 				.padTop(screenHeight / DEFAULTPADDING_X_FOUR).row();
 
+		// Put all in ScrollTable
+		
+		Table scrollTable = new Table(skin);
+		scrollTable.add(title).expandX().colspan(COLSPAN_X_TWO)
+		.padTop(screenHeight / DEFAULTPADDING).row();
+		scrollTable.add(imageTable).width(screenWidth * FOUR_NINTH);
+		scrollTable.add(rightTable).width(screenWidth * FIVE_NINTH).row();
+		scrollTable.add(buttonTable).colspan(COLSPAN_X_TWO)
+		.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
+		ScrollPane scroll = new ScrollPane(scrollTable, skin);
+		scroll.getStyle().hScrollKnob
+				.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+						/ DIVIDEWIDTHDEFAULT);
+		scroll.getStyle().vScrollKnob
+		.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
+				/ DIVIDEWIDTHDEFAULT);
+		
+		
 		// MainTable
-		table.add(title).expandX().colspan(COLSPAN_X_TWO)
-				.padTop(screenHeight / DEFAULTPADDING).row();
-		table.add(imageTable).width(screenWidth * FOUR_NINTH);
-		table.add(rightTable).width(screenWidth * FIVE_NINTH).row();
-		table.add(buttonTable).colspan(COLSPAN_X_TWO)
-				.padTop(screenHeight / DEFAULTPADDING_X_TWO).row();
-
+		table.add(scroll);
+		
 		stage.addActor(table);
 		inputMultiplexer.addProcessor(stage);
 	}
