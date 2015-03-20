@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.retroMachines.RetroMachines;
@@ -104,7 +105,9 @@ public class ProfileSettingsMenuScreenTest {
 	}
 	
 	private void clickButton(int tableId, int idWithinTable) {
-		Actor[] actors = screen.table.getChildren().items;
+		ScrollPane scroll = (ScrollPane) screen.table.getChildren().get(0);
+		Table scrollTable = (Table) scroll.getChildren().get(0);
+		Actor[] actors = scrollTable.getChildren().items;
 		assertTrue("sollte der main table sein", actors[tableId].getClass() == Table.class);
 		Table table = (Table) actors[tableId];
 		assertTrue("sollte ein button sein", table.getChildren().items[idWithinTable].getClass() == Button.class);
@@ -114,7 +117,9 @@ public class ProfileSettingsMenuScreenTest {
 	}
 	
 	private void clickButton(int firstLevel, int secondLevel, int thirdLevel) {
-		Actor[] actors = screen.table.getChildren().items;
+		ScrollPane scroll = (ScrollPane) screen.table.getChildren().get(0);
+		Table scrollTable = (Table) scroll.getChildren().get(0);
+		Actor[] actors = scrollTable.getChildren().items;
 		assertTrue("sollte der main table sein", actors[firstLevel].getClass() == Table.class);
 		Table table = (Table) actors[firstLevel];
 		assertTrue("sollte ein table sein", table.getChildren().get(secondLevel).getClass() == Table.class);

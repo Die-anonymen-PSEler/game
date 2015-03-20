@@ -1,6 +1,11 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +16,6 @@ import org.junit.runner.RunWith;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.gameelements.GameElement;
-import com.retroMachines.game.gameelements.LightElement;
 import com.retroMachines.game.gameelements.MachineElement;
 import com.retroMachines.util.lambda.LambdaUtil.OnNextLambdaStepListener;
 
@@ -54,7 +58,13 @@ public class LambdaUtilTest {
 	@Test
 	public void testCreateTreeFromJson() {
 		String fileName = String.format(jsonFormat, 1);
-		util.createTreeFromJson(String.format(jsonFormat, -1)); //throws Exception in method, should be catched
+		try {
+			util.createTreeFromJson(String.format(jsonFormat, -1)); //throws Exception in method, should be catched
+			fail("expected file not found exception");
+		} catch(Exception e) {
+			
+		}
+		
 		util.createTreeFromJson(fileName);
 	}
 
