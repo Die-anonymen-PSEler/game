@@ -146,19 +146,19 @@
 				{
 					"color": 3,
 					"type": "Var",
-					"target": []
+					"hint": []
 				},
 				
 				{
 					"color": 3,
 					"type": "Var",
-					"target": []
+					"hint": []
 				},
 				
 				{
 					"color": 9,
 					"type":"Var",
-					"target": []
+					"hint": []
 				}
 
 			]

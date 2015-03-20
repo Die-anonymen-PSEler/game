@@ -99,38 +99,36 @@
 				{
 					"color": 6,
 					"type": "Abs",
-					"target": 
+					"hint": 
 					[
-						{
-						"color": 6,
-						"type": "Var",
-						"target": []
-						},
-						
 						{
 						"color": 4,
 						"type": "Abs",
-						"target" :
+						"hint" :
 							[
 								{
 								"color": 4,
 								"type": "Var",
-								"target": []
+								"hint": []
 								},
-								
 								{
 								"color": 4,
 								"type": "Var",
-								"target": []
+								"hint": []
 								}
 							]
+						},
+						{
+						"color": 6,
+						"type": "Var",
+						"hint": []
 						}
 					]
 				},
 				{
 					"color": 11,
 					"type": "Var",
-					"target": []
+					"hint": []
 				}
 			]
 		}

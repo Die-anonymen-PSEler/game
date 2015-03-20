@@ -94,12 +94,12 @@
 				{
 					"color": 1,
 					"type": "App",
-					"target":
+					"hint":
 					[
 						{
 							"color": 10,
 							"type": "Abs",
-							"target": []
+							"hint": []
 						}
 					]
 				}

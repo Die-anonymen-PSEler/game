@@ -79,12 +79,12 @@
 				{
 					"color": 1,
 					"type": "Dum",
-					"target":
+					"hint":
 						[
 							{
 								"color": 1,
 								"type": "Dum",
-								"target": []
+								"hint": []
 							}
 						]
 				},
@@ -92,13 +92,13 @@
 				{
 					"color": 8,
 					"type": "Var",
-					"target": []
+					"hint": []
 				},
 				
 				{
 					"color": 7,
 					"type":"Var",
-					"target": []
+					"hint": []
 				}
 
 			]
