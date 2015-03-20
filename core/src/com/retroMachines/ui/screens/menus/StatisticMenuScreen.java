@@ -123,14 +123,15 @@ public class StatisticMenuScreen extends MenuScreen {
 		// Put all in ScrollTable
 		
 		Table scrollTable = new Table(skin);
-				
+		/*		
 		scrollTable.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
-				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
+				.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left(); 
 		scrollTable.add(title)
 				.width(screenWidth * TITLEWIDTH)
 				.right()
 				.padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH))
-				.expandX().row();
+				.expandX().row(); */
+				
 		scrollTable.add(statisticTable).colspan(COLSPAN_X_TWO)
 				.padBottom(screenWidth / DEFAULTPADDING_X_FOUR).row();
 		scrollTable.add().expandY().colspan(COLSPAN_X_TWO);
@@ -142,8 +143,14 @@ public class StatisticMenuScreen extends MenuScreen {
 		.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
 				/ DIVIDEWIDTHDEFAULT);
 		
-		
-		table.add(scroll);
+		table.add(buttonReturn).padTop(screenHeight / DEFAULTPADDING_X_TWO)
+		.padLeft(screenWidth / DEFAULTPADDING_X_FOUR).left();
+		table.add(title).width(screenWidth * HALF).right()
+		.padRight((screenWidth * HALF) - (screenWidth * HALFTITLEWIDTH))
+		.expandX().row();
+		table.add(scrollTable).expandY().colspan(2)
+		.padTop(screenHeight / DEFAULTPADDING_X_FOUR)
+		.padBottom(screenHeight / DEFAULTPADDING_X_FOUR).row();
 
 
 		stage.addActor(table);
