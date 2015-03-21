@@ -721,6 +721,7 @@ public class GameScreen extends AbstractScreen implements
 			
 			Table scrollTable = new Table(skin);
 			ScrollPane scroll = new ScrollPane(dialogTable, skin);
+			scroll.setScrollingDisabled(true, false);
 			scroll.getStyle().hScrollKnob
 					.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
 							/ DIVIDEWIDTHDEFAULT);

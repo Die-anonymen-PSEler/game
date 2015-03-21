@@ -134,6 +134,7 @@ public class StatisticMenuScreen extends MenuScreen {
 				.padBottom(screenWidth / DEFAULTPADDING_X_FOUR).row();
 		scrollTable.add().expandY().colspan(COLSPAN_X_TWO);
 		ScrollPane scroll = new ScrollPane(scrollTable, skin);
+		scroll.setScrollingDisabled(true, false);
 		scroll.getStyle().hScrollKnob
 				.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
 						/ DIVIDEWIDTHDEFAULT);

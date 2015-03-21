@@ -132,6 +132,7 @@ public class RetroDialogChain {
 			Table scrollTable = new Table(skin);
 			scrollTable.add(tutImg);
 			ScrollPane scroll = new ScrollPane(scrollTable, skin);
+			scroll.setScrollingDisabled(true, false);
 			scroll.getStyle().hScrollKnob
 					.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
 							/ DIVIDEWIDTHDEFAULT);

@@ -24,8 +24,8 @@ public class AboutMenuScreen extends MenuScreen {
 	/**
 	 * The developers of RetroMachine. The information about the lambda.
 	 */
-	public static final String CREDIT = String.format("by RetroMachines: %n %n"
-			+ " Luca Becker%n Henrike Hardt%n Larissa Schmid%n Adrian Schulte%n Maik Wiesner");
+	public static final String CREDIT = String.format("by RetroMachines: \n \n"
+			+ " Luca Becker\n Henrike Hardt\n Larissa Schmid\n Adrian Schulte\n Maik Wiesner");
 
 	/**
 	 * information about the lambda-calculus.
@@ -36,39 +36,39 @@ public class AboutMenuScreen extends MenuScreen {
 	/**
 	 * information about the role of the metal objects
 	 */
-	public static final String GAMEINFO_ONE = "Metallobjekt: %n"
+	public static final String GAMEINFO_ONE = "Metallobjekt: \n"
 			+ "Entspricht der Variable im Lambda-Kalkuel, kann von der Maschine vearbeitet werden";
 
 	/**
 	 * information about the role of the machines
 	 */
-	public static final String GAMEINFO_TWO = "Maschine: %n"
+	public static final String GAMEINFO_TWO = "Maschine: \n"
 			+ "Entspricht der Abstraktion im Lambda-Kalkuel, kann andere Objekte verarbeiten";
 
 	/**
 	 * information about the role of the lights
 	 */
-	public static final String GAMEINFO_THREE = "Ampel: %n"
+	public static final String GAMEINFO_THREE = "Ampel: \n"
 			+ "Entspricht der Applikation im Lambda-Kalkuel, dient zum zusammenfassen (klammern) mehrerer Objekte,"
 			+ " soadass sie als ein Objekt verarbeitet werden künnen";
 
 	/**
 	 * information about the role of the depots
 	 */
-	public static final String GAMEINFO_FOUR = "Depot: %n"
+	public static final String GAMEINFO_FOUR = "Depot: \n"
 			+ "Hierin koennen Objekte Platziert werden. die anschliessend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
 
 	/**
 	 * information about the processing area of an object
 	 */
-	public static final String GAMEINFO_FIVE = "Verarbeitungsbereich: %n"
+	public static final String GAMEINFO_FIVE = "Verarbeitungsbereich: \n"
 			+ "Der Verarbeitungsbereich eines Objektes sind alle Depots"
 			+ " ueberhalb seines Depots, die durch die nach oben fuehrende Rohre erreicht werden koennen.";
 
 	/**
 	 * information about the input and the input area of an object
 	 */
-	public static final String GAMEINFO_SIX = String.format("Eingabe / EingabeBereich: %n"
+	public static final String GAMEINFO_SIX = String.format("Eingabe / EingabeBereich: \n"
 			+ "Der Eingabebereich eines Objektes,"
 			+ " ist der Inhalt des Depots rechts davon (verbunden durch eine Rohre) sowie dessen kompleter Verarbeitungsbereich. ");
 
@@ -182,6 +182,7 @@ public class AboutMenuScreen extends MenuScreen {
 				.padTop(screenHeight / DEFAULTPADDING)
 				.padBottom(screenHeight / DEFAULTPADDING).row();
 		ScrollPane aboutScroll = new ScrollPane(scrollTable, skin);
+		aboutScroll.setScrollingDisabled(true, false);
 		aboutScroll.getStyle().hScrollKnob
 				.setMinWidth((DEFAULTBUTTONSIZE * screenWidth)
 						/ DIVIDEWIDTHDEFAULT);

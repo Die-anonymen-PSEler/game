@@ -79,6 +79,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 		Table scrollTable = new Table(skin);
 		scrollTable.add(profileList);
 		ScrollPane profileScroll = new ScrollPane(scrollTable, skin);
+		profileScroll.setScrollingDisabled(true, false);
 		profileScroll.getStyle().hScrollKnob
 				.setMinWidth((DEFAULTKNOBSIZE * screenWidth)
 						/ DIVIDEWIDTHDEFAULT);
