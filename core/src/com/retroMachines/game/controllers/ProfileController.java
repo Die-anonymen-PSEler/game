@@ -9,6 +9,7 @@ import com.retroMachines.data.models.GlobalVariables;
 import com.retroMachines.data.models.Profile;
 import com.retroMachines.data.models.Setting;
 import com.retroMachines.data.models.Statistic;
+import com.retroMachines.util.Constants.RetroStrings;
 
 /**
  * The ProfileController is part of the controller of the RetroMachines. It
@@ -44,6 +45,11 @@ public class ProfileController {
 	 * The currently active profile.
 	 */
 	private Profile profile;
+	
+	/**
+	 * error msg. can be requested via getErrorMsg();
+	 */
+	private String errorMsg;
 
 	/**
 	 * Creates a new instance of the profile controller and loads the data from
@@ -108,14 +114,19 @@ public class ProfileController {
 	 * @return true if it's valid, false otherwise
 	 */
 	public boolean canUserBeCreated(String username) {
-		if (profileNames.size() == MAX_PROFILE_NUMBER || username == null
-				|| username.equals("")) {
+		if (profileNames.size() == MAX_PROFILE_NUMBER) {
+			errorMsg = RetroStrings.ERROR_MAX_USER;
+			return false;
+		}
+		if (username == null || username.equals("")) {
+			errorMsg = RetroStrings.ERROR_EMTPY_USER;
 			return false;
 		}
 		for (String name : profileNames.keySet()) {
 			String lowerCaseList = name.toLowerCase();
 			String usernameLower = username.toLowerCase();
 			if (lowerCaseList.equals(usernameLower)) {
+				errorMsg = RetroStrings.ERROR_SIMILAR_USER_EXISTS;
 				return false;
 			}
 		}
@@ -252,6 +263,10 @@ public class ProfileController {
 			i++;
 		}
 		return result;
+	}
+
+	public String getErrorMsg() {
+		return this.errorMsg;
 	}
 
 }

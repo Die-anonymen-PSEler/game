@@ -98,6 +98,12 @@ public class CreateProfileMenuScreen extends MenuScreen {
 					% Constants.TEXTURE_ANIMATION_NAMES.length);
 			game.setScreen(new ProfileMenuScreen(game));
 		} else {
+			String errorMsg = profileController.getErrorMsg();
+			if (errorDialog != null) {
+				errorDialog.remove();
+			}
+			errorDialog = new RetroDialog("", errorMsg);
+			errorDialog.show(stage);
 		}
 	}
 	

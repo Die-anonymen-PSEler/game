@@ -23,8 +23,6 @@ public class StatisticMenuScreen extends MenuScreen {
 	
 	private final static float HALFTITLEWIDTH = (1f / 4f);
 	
-	private final static float TITLEWIDTH = (1f / 2f);
-	
 	private final static float ONE_THIRD = (1f / 3f);
 	
 	private final static float TWO_THIRD = (2f / 3f);

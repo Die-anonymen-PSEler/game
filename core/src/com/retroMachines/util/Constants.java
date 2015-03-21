@@ -1,5 +1,7 @@
 package com.retroMachines.util;
 
+import com.retroMachines.game.controllers.ProfileController;
+
 /**
  * Constants class is part of the model of RetroMachines. It contains the
  * constants that are available through out the entire game and may be used.
@@ -294,8 +296,14 @@ public abstract class Constants {
 
 		public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
 
-		public static final String SOLUTION_INVALID = "Leider nicht richtig. Versuch es nochmal";
+		public static final String SOLUTION_INVALID = "Leider nicht richtig. Versuch es nochmal.";
 
-		public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein";
+		public static final String NOT_ALL_PLACED = "In allen Ablagen muss ein Objekt platziert sein.";
+
+		public static final String ERROR_SIMILAR_USER_EXISTS = "Es existiert bereits ein ähnlicher Benutzer.";
+
+		public static final String ERROR_MAX_USER = "Es können maximal " + ProfileController.MAX_PROFILE_NUMBER + " erstellt werden.";
+
+		public static final String ERROR_EMTPY_USER = "Bitte geben Sie einen Benutzernamen an.";
 	}
 }
