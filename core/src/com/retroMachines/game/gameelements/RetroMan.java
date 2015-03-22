@@ -16,104 +16,111 @@ import com.retroMachines.util.Constants;
  * moving on. Collision detection is also performed within the controller.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class RetroMan {
 
 	/**
-	 * The maximum velocity the character is allowed to have in y direction
+	 * The maximum velocity the character is allowed to have in y direction.
 	 */
 	public static final float MAX_VELOCITY_Y = 15f;
 
 	/**
-	 * the width of the character for collision purposes
+	 * The width of the character for collision purposes.
 	 */
 	public final static float WIDTH = 0.95f;
 
 	/**
-	 * the height of the character for collision purposes
+	 * The height of the character for collision purposes.
 	 */
 	public final static float HEIGHT = 0.95f;
 
 	/**
-	 * the impulse that is added to the retroman upon jumping
+	 * The impulse that is added to the retroMan upon jumping.
 	 */
 	public final static float JUMPING_IMPULSE = 25f;
 
 	/**
-	 * the impulse that is added to the retroman upon running
+	 * The impulse that is added to the retroMan upon running.
 	 */
 	public static final float RUNNING_IMPULSE = 1f;
 
 	/**
-	 * the minimum velocity that is considered moving;
+	 * The minimum velocity that is considered moving.
 	 */
 	public static final float MIN_VELOCITY_X = 1f;
 
 	/**
-	 * the amount by which the x velocity is reduced so the character will get
-	 * slower
+	 * The amount by which the x velocity is reduced so the character will get
+	 * slower.
 	 */
 	public static final float DAMPING = 0.87f;
 
 	/**
-	 * the distance to placing a gameelement
+	 * The distance to placing a game element.
 	 */
 	public static final int ELEMENT_OFFSET = 1;
 
-	/**
-	 * the position of the character on the screen
-	 */
+	//The position of the character on the screen.
 	private final Vector2 pos;
 
-	/**
-	 * the current velocity
-	 */
+	//The current velocity.
 	private final Vector2 velocity;
 	
-	/**
-	 * true if the character is looking to the left; false otherwise
-	 */
+	//True if the character is looking to the left. False otherwise.
 	private boolean faceLeft = false;
 
-	/**
-	 * if the character is jumping the attribute should be true prevents jumping
-	 * while the character is already in the air
+	/*
+	 * If the character is jumping the attribute should be true prevents jumping
+	 * while the character is already in the air.
 	 */
 	private State state;
 
-	/**
-	 * contains a potential gameElement if the character has picked one up
-	 */
+
+	 // Contains a potential gameElement if the character has picked one up
+
 	private GameElement element;
 
-	/**
-	 * the texture of the character
-	 */
+	// The texture of the character.
 	private Texture texture;
 
+	// RetroMan is looking to the right and stands.
 	private Animation standRight;
 	
+	// RetroMan is looking to the right, carries an element and stands.
 	private Animation standERight;
 	
+	// RetroMan is looking to the right and is jumping.
 	private Animation jumpingRight;
 	
+	// RetroMan is looking to the right, carries an element and is jumping.
 	private Animation jumpingERight;
 	
+	// The animation of RetroMan while running.
 	private Animation runingAnimation;
 	
+	// The animation of a running RetroMan if he is carrying an element.
 	private Animation runingAnimationCarry;
 
+	// The sum of the time played.
 	private float timeSum;
 
 	/**
-	 * Constructs a new Object of the RetroMan and sets his coordinates and
-	 * velocity to 0,0
+	 * Constructs a new object of the RetroMan and sets his coordinates and
+	 * velocity to 0,0.
+	 * 
+	 * @param textureName The name of the texture.
 	 */
 	public RetroMan(String textureName) {
 		this(textureName, 15, 5);
 	}
 
+	/**
+	 * Constructor to initialize a new instance of RetroMan.
+	 * @param textureName The name of the texture of RetroMan.
+	 * @param x The x position at the starting point.
+	 * @param y The y position at the starting point.
+	 */
 	public RetroMan(String textureName, float x, float y) {
 		pos = new Vector2(x, y);
 		velocity = new Vector2();
@@ -197,7 +204,7 @@ public class RetroMan {
 	}
 
 	/**
-	 * once the character has hit the bottom this method should be called in
+	 * Once the character has hit the bottom this method should be called in
 	 * order to release the jump prohibition.
 	 */
 	public void landed() {
@@ -214,7 +221,7 @@ public class RetroMan {
 	 * Checks whether the character is allowed to jump in order to avoid double
 	 * jumps in mid air.
 	 * 
-	 * @return true if the character can jump; false otherwise
+	 * @return True if the character can jump. False otherwise.
 	 */
 	public boolean canJump() {
 		if (state == State.JUMPING || state == State.JUMPINGE
@@ -230,7 +237,7 @@ public class RetroMan {
 
 	/**
 	 * Adds negative velocity to the character however this does not update his
-	 * position a call to the update method is needed for that
+	 * position a call to the update method is needed for that.
 	 */
 	public void goLeft() {
 		velocity.add(-RUNNING_IMPULSE, 0);
@@ -244,7 +251,7 @@ public class RetroMan {
 
 	/**
 	 * Adds positive velocity to the character however this does not update his
-	 * position a call to the update method is needed for that
+	 * position a call to the update method is needed for that.
 	 */
 	public void goRight() {
 		velocity.add(RUNNING_IMPULSE, 0);
@@ -256,6 +263,10 @@ public class RetroMan {
 		}
 	}
 
+	/**
+	 * Set the state of RetroMan to standing in regards to whether he is carrying a 
+	 * game element or not.
+	 */
 	public void standing() {
 		if (hasPickedUpElement()) {
 			state = State.STANDINGE;
@@ -265,17 +276,17 @@ public class RetroMan {
 	}
 
 	/**
-	 * Returns the direction which the retroMan Face
+	 * Get method for the direction which the RetroMan faces.
 	 * 
-	 * @return FaceLeft true means the RetroMan is looking to the left
+	 * @return FaceLeft true means the RetroMan is looking to the left.
 	 */
 	public boolean isFacedLeft() {
 		return faceLeft;
 	}
 
 	/**
-	 * returns the position that would be next to him. text into account his
-	 * facing direction
+	 * Get method for the position that would be next to him. Takes into account his
+	 * facing direction.
 	 */
 	public Vector2 nextPosition() {
 		int offset;
@@ -296,8 +307,8 @@ public class RetroMan {
 	 */
 
 	/**
-	 * 
-	 * @param element
+	 * Method to pick up an element.
+	 * @param element The element that is picked up.
 	 */
 	public void pickupElement(GameElement element) {
 		this.element = element;
@@ -314,15 +325,20 @@ public class RetroMan {
 	}
 
 	/**
-	 * Returns true if the RetroMan has already picked up an element.
+	 * Get method for whether RetroMan has already picked up an element or not.
 	 * 
-	 * @return true if the RetroMan currently holds a game element; false
+	 * @return True if the RetroMan currently holds a game element. False
 	 *         otherwise.
 	 */
 	public boolean hasPickedUpElement() {
 		return element != null;
 	}
 
+	/**
+	 * Method to lay down an element.
+	 * 
+	 * @return The element which was laid down.
+	 */
 	public GameElement layDownElement() {
 		GameElement gameElement = element;
 		element = null;
@@ -344,8 +360,10 @@ public class RetroMan {
 	 */
 
 	/**
+	 * Renders the RetroMan.
 	 * 
-	 * @param deltaTime
+	 * @param renderer The texture of the RetroMan.
+	 * @param deltaTime The scale for the position.
 	 */
 	public void render(BatchTiledMapRenderer renderer, float deltaTime) {
 		renderRetroMan(renderer, deltaTime);
@@ -362,14 +380,19 @@ public class RetroMan {
 	 * getters and setters
 	 */
 
+	/**
+	 * Get method for the velocity of the RetroMan.
+	 * 
+	 * @return The velocity of RetroMan.
+	 */
 	public Vector2 getVelocity() {
 		return velocity;
 	}
 
 	/**
-	 * Retrieves the position of the character as a Vector2
+	 * Retrieves the position of the character as a Vector2.
 	 * 
-	 * @return the current position as a Vector2
+	 * @return The current position as a Vector2.
 	 */
 	public Vector2 getPos() {
 		return pos;
@@ -383,42 +406,42 @@ public class RetroMan {
 	 * The states in which the figure can be in.
 	 * 
 	 * @author RetroMachines
-	 * 
+	 * @version 1.0
 	 */
 	private enum State {
 		/**
-		 * if the character is facing right and is standing on solid ground and
-		 * not moving he is STANDINGRIGHT
+		 * If the character is facing right and is standing on solid ground and
+		 * not moving he is STANDINGRIGHT.
 		 */
 		STANDING,
 
 		/**
-		 * if the character is facing right and is standing on solid ground and
-		 * he is carrying an element and he is not moving he is STANDINGERIGHT
+		 * If the character is facing right and is standing on solid ground and
+		 * he is carrying an element and he is not moving he is STANDINGERIGHT.
 		 */
 		STANDINGE,
 
 		/**
-		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is
-		 * on solid ground he is RUNNINGRIGHT
+		 * If the characters x-velocity is not 0 and x-velocity is >0 and he is
+		 * on solid ground he is RUNNINGRIGHT.
 		 */
 		RUNNING,
 
 		/**
-		 * if the characters x-velocity is not 0 and x-velocity is >0 and he is
-		 * carrying an element and he is on solid ground he is RUNNINGRIGHTE
+		 * If the characters x-velocity is not 0 and x-velocity is >0 and he is
+		 * carrying an element and he is on solid ground he is RUNNINGRIGHTE.
 		 */
 		RUNNINGE,
 
 		/**
-		 * if the character is facing right and is not on solid ground then he
-		 * is JUMPINGLEFT. His x-velocity may be 0
+		 * If the character is facing right and is not on solid ground then he
+		 * is JUMPINGLEFT. His x-velocity may be 0.
 		 */
 		JUMPING,
 
 		/**
-		 * if the character is facing left and is not on solid ground and he is
-		 * carrying an element, he is JUMPINGERIght. His x-velocity may be 0
+		 * If the character is facing left and is not on solid ground and he is
+		 * carrying an element, he is JUMPINGERIght. His x-velocity may be 0.
 		 */
 		JUMPINGE
 	}

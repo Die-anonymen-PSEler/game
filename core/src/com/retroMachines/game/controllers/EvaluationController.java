@@ -13,12 +13,12 @@ import com.retroMachines.util.lambda.LevelTree;
  * evaluation itself and the animation for it.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class EvaluationController {
 
 	/**
-	 * reference to the gameController for information regarding the user input
+	 * Reference to the gameController for information regarding the user input.
 	 */
 	private final GameController gameController;
 
@@ -28,7 +28,7 @@ public class EvaluationController {
 	private final RetroMachines game;
 
 	/**
-	 * The lambdaTree represents the Lambdaterm in our Game
+	 * The lambdaTree represents the Lambda-term in our game.
 	 */
 	private LevelTree lambdaTree;
 
@@ -38,19 +38,19 @@ public class EvaluationController {
 	private EvaluationScreen evaluationScreen;
 
 	/**
-	 * contains all trees and methods according to lambda model
+	 * Contains all trees and methods according to lambda model.
 	 */
 	private RetroLevel level;
 
 	/**
-	 * creates a new instance of EvaluationController
+	 * Creates a new instance of EvaluationController.
 	 * 
 	 * @param level
-	 *            the actual level
+	 *            The actual level.
 	 * @param g
-	 *            instance of the actual game
+	 *            Instance of the actual game.
 	 * @param gameControl
-	 *            gameController of the game
+	 *            The gameController of the game.
 	 */
 	public EvaluationController(RetroLevel level, RetroMachines g,
 			GameController gameControl) {
@@ -61,7 +61,7 @@ public class EvaluationController {
 	}
 
 	/**
-	 * 
+	 * Method to start the evaluation.
 	 */
 	public void startEvaluation() {
 		lambdaTree = level.getEvaluationTree();
@@ -72,21 +72,21 @@ public class EvaluationController {
 	}
 
 	/**
-	 * when the button for the next step is clicked
+	 * When the button for the next step is clicked.
 	 */
 	public void stepEvaluationClicked() {
 		EvaluationOptimizer.nextStepClicked();
 	}
 
 	/**
-	 * when the button for the whole evaluation is clicked
+	 * When the button for the whole evaluation is clicked.
 	 */
 	public void autoEvaluationClicked() {
 		EvaluationOptimizer.autoStepClicked();
 	}	
 
 	/**
-	 * starts the animation
+	 * Starts the animation of the evaluation.
 	 */
 	public void startAnimation() {
 		evaluationScreen.runAnimation();
@@ -97,46 +97,46 @@ public class EvaluationController {
 	 */
 
 	/**
-	 * returns the gameController of this class
+	 * Get method for the gameController of this class.
 	 * 
-	 * @return gameController
+	 * @return The gameController.
 	 */
 	public GameController getGameController() {
 		return gameController;
 	}
 
 	/**
-	 * returns the level of this class
+	 * Get method for the level of this class.
 	 * 
-	 * @return level
+	 * @return The level.
 	 */
 	public RetroLevel getLevel() {
 		return level;
 	}
 
 	/**
-	 * returns the lambdaTree of this class
+	 * Get method for the lambdaTree of this class.
 	 * 
-	 * @return lambdaTree
+	 * @return The lambdaTree.
 	 */
 	public LevelTree getlambdaTree() {
 		return lambdaTree;
 	}
 
 	/**
-	 * returns the padding of evaluation screen
+	 * Get method for the padding of evaluation screen.
 	 * 
-	 * @return the padding of evaluation screen
+	 * @return The padding of the evaluation screen.
 	 */
 	public Vector2 getEvaluationscreenPadding() {
 		return evaluationScreen.getScreenPadding();
 	}
 
 	/**
-	 * places a gameElement on the stage
+	 * Places a gameElement on the stage.
 	 * 
 	 * @param g
-	 *            the gameElement to be placed
+	 *            The gameElement that is to be placed.
 	 */
 	public void setOnStage(GameElement g) {
 		evaluationScreen.setOnStage(g);

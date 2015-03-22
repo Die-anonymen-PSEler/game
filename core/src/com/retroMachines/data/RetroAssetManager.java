@@ -22,22 +22,22 @@ import com.retroMachines.util.Constants.RetroStrings;
  * their views.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 
 	/**
-	 * list containing all maps for fast access.
+	 * List containing all maps for fast access.
 	 */
 	private static final LinkedList<TiledMap> MAPS = new LinkedList<TiledMap>();
 
 	/**
-	 * a hashmap with (String,Texture) pairs.
+	 * A hashmap with (String,Texture) pairs.
 	 */
 	private static final HashMap<String, Texture> TEXTURE_MAP = new HashMap<String, Texture>();
 
 	/**
-	 * pattern where the character images are stored.
+	 * Pattern where the character images are stored.
 	 */
 	private static final String CHARACTER_PATH_PATTERN = "Character/Animation%s.png";
 	
@@ -62,34 +62,34 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	private static Music Music;
 
 	/**
-	 * The Gameelement textures
+	 * The Game-element textures.
 	 */
 	private static Skin GameElementTexture;
 
 	/**
-	 * TiledMapTileSet for objects
+	 * TiledMapTileSet for objects.
 	 */
 	private static TiledMapTileSet Objects;
 	
 	/**
-	 * TiledMapTileSet for machines
+	 * TiledMapTileSet for machines.
 	 */
 	private static TiledMapTileSet Machines;
 	
 	/**
-	 * TiledMapTileSet for lights
+	 * TiledMapTileSet for lights.
 	 */
 	private static TiledMapTileSet Lights;
 	
 	/**
-	 * TiledMapTileSet for depots
+	 * TiledMapTileSet for depots.
 	 */
 	private static TiledMapTileSet Depots;
 	
 	/**
-	 * Adds TileSets of Machine Metalobjects and Lights of currentMap
+	 * Adds TileSets of Machine Metal-objects and Lights of currentMap.
 	 * 
-	 * @param currentMap
+	 * @param currentMap The current map.
 	 */
 	private static void setTiledMapTileSets(TiledMap currentMap) {
 		TiledMapTileSets levelSets = currentMap.getTileSets();
@@ -138,8 +138,8 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	/**
-	 * reload the map
-	 * @param levelId the level where the map should be reloaded
+	 * Method to reload the map.
+	 * @param levelId The level where the map should be reloaded.
 	 */
 	public static void reloadMap(int levelId) {
 		MAPS.set(levelId,
@@ -162,9 +162,9 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----------------------
 
 	/**
-	 * instance of the music of the game.
+	 * Instance of the music of the game.
 	 * 
-	 * @return the music of the game
+	 * @return The music of the game.
 	 */
 	public static Music getMusic() {
 		return Music;
@@ -175,9 +175,9 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -----------------------
 
 	/**
-	 * skin instance for all buttons.
+	 * Skin instance for all buttons.
 	 * 
-	 * @return the skin of the menus
+	 * @return The skin of the menus.
 	 */
 	public static Skin getMenuSkin() {
 		return MenuSkin;
@@ -188,18 +188,18 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	// -------------------------------
 
 	/**
-	 * getter for the gameElement textures
-	 * @return the game element texture
+	 * Getter for the gameElement textures.
+	 * @return The game element texture.
 	 */
 	public static Skin getGameelementSkin() {
 		return GameElementTexture;
 	}
 
 	/**
-	 * retrieves a texture from the hashmap
+	 * Retrieves a texture from the hashmap.
 	 * 
-	 * @param path
-	 * @return the texture asked for
+	 * @param path The path of the texture map.
+	 * @return The texture asked for.
 	 */
 	public static Texture getTexture(String path) {
 		if (TEXTURE_MAP.containsKey(path)) {
@@ -212,36 +212,36 @@ public class RetroAssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	/**
-	 * getter for TiledMapTileSet of Objects in TiledMap
+	 * Getter for TiledMapTileSet of Objects in TiledMap.
 	 * 
-	 * @return TiledMapTileSet
+	 * @return TiledMapTileSet.
 	 */
 	public static TiledMapTileSet getObjects() {
 		return Objects;
 	}
 
 	/**
-	 * getter for TiledMapTileSet of Machines in TiledMap
+	 * Getter for TiledMapTileSet of Machines in TiledMap.
 	 * 
-	 * @return TiledMapTileSet
+	 * @return TiledMapTileSet.
 	 */
 	public static TiledMapTileSet getMachines() {
 		return Machines;
 	}
 
 	/**
-	 * getter for TiledMapTileSet of Lights in TiledMap
+	 * Getter for TiledMapTileSet of Lights in TiledMap.
 	 * 
-	 * @return TiledMapTileSet
+	 * @return TiledMapTileSet.
 	 */
 	public static TiledMapTileSet getLights() {
 		return Lights;
 	}
 
 	/**
-	 * getter for TiledMapTileSet of Depots in TiledMap
+	 * Getter for TiledMapTileSet of Depots in TiledMap.
 	 * 
-	 * @return TiledMapTileSet
+	 * @return TiledMapTileSet.
 	 */
 	public static TiledMapTileSet getDepots() {
 		return Depots;

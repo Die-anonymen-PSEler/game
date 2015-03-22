@@ -6,6 +6,7 @@ package com.retroMachines.data.models;
  * changes that were made to them.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public interface SettingsChangeListener {
 

@@ -13,6 +13,7 @@ import com.retroMachines.util.Constants;
  * to implement a render method so they can be displayed to the user.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public abstract class GameElement extends Actor {
 
@@ -22,12 +23,12 @@ public abstract class GameElement extends Actor {
 	protected TextureRegion textureRegion;
 
 	/**
-	 * the id of the tileset that represents this element
+	 * The ID of the tileSet that represents this element.
 	 */
 	protected int tileId;
 
 	/**
-	 * creates a new instance of GameElement
+	 * Creates a new instance of GameElement.
 	 */
 	protected GameElement() {
 		setX(0f);
@@ -35,42 +36,59 @@ public abstract class GameElement extends Actor {
 		setBounds(getX(), getY(), Constants.GAMEELEMENT_WIDTH,
 				Constants.GAMEELEMENT_WIDTH);
 	}
+	
+	/**
+	 * The method is called by the screen to draw a game element.
+	 * 
+	 * @param batch The game element.
+	 * @param alpha The scale.
+	 */
+	@Override
+	public void draw(Batch batch, float alpha) {
+
+		batch.draw(textureRegion, getX(), getY(), this.getOriginX(),
+				this.getOriginY(), this.getWidth(), this.getHeight(),
+				this.getScaleX(), this.getScaleY(), this.getRotation());
+	}
 
 	/**
-	 * getter for TileSet belonging to GameElement
+	 * Get method for TileSet belonging to GameElement.
 	 * 
-	 * @return TiledMapTileSet belonging to GameElement
+	 * @return  The TiledMapTileSet belonging to GameElement.
 	 */
 	public abstract TiledMapTileSet getTileSet();
 
 	/**
-	 * returns the textureRegion of this class
-	 * @return the textureRegion
+	 * Get method for the textureRegion of this class.
+	 * 
+	 * @return the textureRegion.
 	 */
 	public TextureRegion getTextureRegion() {
 		return textureRegion;
 	}
 
 	/**
-	 * returns the tileId
-	 * @return the tileId
+	 * Get method for the tileId.
+	 * 
+	 * @return The tileId.
 	 */
 	public int getTileId() {
 		return tileId;
 	}
 
 	/**
-	 * get Position (evaluation Screen)
+	 * Get method for the position (evaluation Screen).
 	 * 
-	 * @return position of Game element
+	 * @return The position of game element.
 	 */
 	public Vector2 getPosition() {
 		return new Vector2(getX(), getY());
 	}
 
 	/**
-	 * sets the tileId
-	 * @param i new tileId
+	 * Sets the tileId.
+	 * 
+	 * @param i The new tileId.
 	 */
 	public void setTileId(int i) {
 		this.tileId = i;
@@ -78,21 +96,12 @@ public abstract class GameElement extends Actor {
 	}
 	
 	/**
-	 * Set Position (evaluation Screen)
+	 * Sets the position (evaluation Screen).
 	 * 
-	 * @param pos
+	 * @param pos The new position.
 	 */
 	public void setPosition(Vector2 pos) {
 		setX(pos.x);
 		setY(pos.y);
-	}
-	
-	//This method is called by Screen to draw gameelemnt
-	@Override
-	public void draw(Batch batch, float alpha) {
-
-		batch.draw(textureRegion, getX(), getY(), this.getOriginX(),
-				this.getOriginY(), this.getWidth(), this.getHeight(),
-				this.getScaleX(), this.getScaleY(), this.getRotation());
 	}
 }

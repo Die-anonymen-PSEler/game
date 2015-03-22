@@ -14,7 +14,7 @@ import com.retroMachines.util.Constants;
  * in the game.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 
 public class SettingController implements OnProfileChangedListener {
@@ -65,7 +65,7 @@ public class SettingController implements OnProfileChangedListener {
 	}
 	
 	/**
-	 * completes the setup of the controller
+	 * Completes the setup of the controller.
 	 */
 	public void initialize() {
 		game.getProfileController().addProfileChangedListener(this);
@@ -88,11 +88,11 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * removes a class from the list of classes which must be notified if the
+	 * Removes a class from the list of classes which must be notified if the
 	 * settings are changed.
 	 * 
 	 * @param listener
-	 *            the class to be removed
+	 *            The class that is to be removed.
 	 */
 	public void removeListener(SettingsChangeListener listener) {
 		toBeNotified.remove(listener);
@@ -102,17 +102,17 @@ public class SettingController implements OnProfileChangedListener {
 	 * Returns true if the LeftiMode is activated for this Player. False
 	 * otherwise.
 	 * 
-	 * @return True when LeftiMode is activated
+	 * @return True when LeftMode is activated.
 	 */
 	public boolean isLeftMode() {
 		return settings.isLeftControl();
 	}
 
 	/**
-	 * Sets the left mode for the current setting and notifies listeners
+	 * Sets the left mode for the current setting and notifies listeners.
 	 * 
 	 * @param enabled
-	 *            true to enable left mode; false to disable (aka right mode)
+	 *            True to enable left mode; false to disable (a.k.a. right mode).
 	 */
 	public void setLeftMode(boolean enabled) {
 		settings.setLeftControl(enabled);
@@ -120,9 +120,9 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * changes the character
+	 * Changes the character.
 	 * 
-	 * @return the number of the next character
+	 * @return The number of the next character.
 	 */
 	public int toggleCharacter() {
 		int currentId = settings.getSelectedCharacter();
@@ -137,10 +137,11 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
+	 * Method to control if the tutorial is finished.
 	 * 
 	 * @param levelId
-	 *            the level for which it should be checked
-	 * @return true if it's finished, false otherwise
+	 *            The level for which it should be checked.
+	 * @return True if it's finished. False otherwise.
 	 */
 	public boolean isTutorialFinished(int levelId) {
 		boolean value = settings.isTutorialFinished(levelId);
@@ -148,7 +149,7 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * sets all tutorials to not finished
+	 * Sets all tutorials to not finished.
 	 */
 	public void resetTutorials() {
 		for (int i = 0; i < Constants.MAX_LEVEL_ID; i++) {
@@ -157,7 +158,7 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * checks whether the sound is enabled or not
+	 * Checks whether the sound is enabled or not.
 	 * 
 	 * @return true if the sound is enabled, false otherwise
 	 */
@@ -173,7 +174,7 @@ public class SettingController implements OnProfileChangedListener {
 	 */
 
 	/**
-	 * Returns the currently set volume within the settings instance.
+	 * Get method for the currently set volume within the settings instance.
 	 * 
 	 * @return A float variable within the range of 0-1.0.
 	 */
@@ -182,9 +183,9 @@ public class SettingController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * returns the ID of the current character
+	 * Get method for the ID of the current character.
 	 * 
-	 * @return ID of current character
+	 * @return ID of current character.
 	 */
 	public int getCurrentCharacterId() {
 		return settings.getSelectedCharacter();
@@ -195,8 +196,8 @@ public class SettingController implements OnProfileChangedListener {
 	 * be thrown in case the parameter exceeds the range.
 	 * 
 	 * @param i
-	 *            range (0 - {@link Constants}.TEXTURE_ANIMATION_NAMES.length -
-	 *            1)
+	 *            Range (0 - {@link Constants}.TEXTURE_ANIMATION_NAMES.length -
+	 *            1).
 	 */
 	public void setCharacterId(int i) {
 		if (i >= 0 && i < Constants.TEXTURE_ANIMATION_NAMES.length) {
@@ -212,18 +213,18 @@ public class SettingController implements OnProfileChangedListener {
 	/**
 	 * This method should only be used for DEBUG purposes only! Assigns a
 	 * settings object to this controller. normally this controller should be
-	 * linked to the profile
+	 * linked to the profile.
 	 * 
-	 * @param setting
+	 * @param setting The setting that is to be set.
 	 */
 	public void setSetting(Setting setting) {
 		this.settings = setting;
 	}
 
 	/**
-	 * sets whether the tutorial is finished or not
-	 * @param levelId the level for which this should be set
-	 * @param value true if it's finished, false otherwise
+	 * Sets whether the tutorial is finished or not.
+	 * @param levelId The level for which this should be set.
+	 * @param value True if it's finished. False otherwise.
 	 */
 	public void setTutorialFinished(int levelId, boolean value) {
 		settings.setTutorialFinished(levelId, value);

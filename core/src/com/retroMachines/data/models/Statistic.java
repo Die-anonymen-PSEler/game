@@ -8,68 +8,69 @@ import com.badlogic.gdx.Gdx;
  * change that is made to this class.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class Statistic extends Model {
 
 	/**
-	 * the key where the playtime value is stored.
+	 * The key where the play-time value is stored.
 	 */
 	private static final String KEY_PLAYTIME = "playtime";
 
 	/**
-	 * the key where the levelcompleted value is stored.
+	 * The key where the level-completed value is stored.
 	 */
 	private static final String KEY_LEVELCOMPLETED = "levelCompleted";
 
 	/**
-	 * the key where the stepcounter value is stored.
+	 * The key where the step-counter value is stored.
 	 */
 	private static final String KEY_STEPCOUNTER = "stepCounter";
 	
 	/**
-	 * the default value regarding the playtime.
+	 * The default value regarding the play-time.
 	 */
 	public static final int DEFAULT_PLAYTIME = 0;
 
 	/**
-	 * the default value regarding the stepcounter
+	 * The default value regarding the step-counter.
 	 */
 	public static final int DEFAULT_STEPCOUNTER = 0;
 
 	/**
-	 * the default value regarding the level completed
+	 * The default value regarding if the level is completed.
 	 */
 	public static final int DEFAULT_LEVELCOMPLETED = 0;
 
 	/**
-	 * the name of the table where the statistics are stored
+	 * The name of the table where the statistics are stored.
 	 */
 	public static final String TABLE_NAME = "statistics";
 
 	/**
-	 * the play time the player has spent on the game in minutes
+	 * The play time the player has spent on the game in minutes.
 	 */
 	private float playtime = 0;
 
 	/**
-	 * the amount of levels that where completed by the player
+	 * The amount of levels that where completed by the player.
 	 */
 	private int levelsComplete = 0;
 
 	/**
-	 * the amount of steps the player has made with his game character
+	 * The amount of steps the player has made with his game character.
 	 */
 	private int stepCounter = 0;
 
 	/**
-	 * creates a new instance of Statistic and assigns all the variables to the
-	 * instance
+	 * Creates a new instance of "Statistic" and assigns all the variables to the
+	 * instance.
 	 * 
 	 * @param rowId
-	 *            the ID of the row where it should be stored
-	 * @param playtime time already played
-	 * @param levelsComplete how many levels are complete
-	 * @param stepCounter how many steps were made
+	 *            The ID of the row where it should be stored.
+	 * @param playtime The time that was already played.
+	 * @param levelsComplete How many levels were completed.
+	 * @param stepCounter How many steps were made.
 	 */
 	public Statistic(int rowId, int playtime, int levelsComplete,
 			int stepCounter) {
@@ -77,13 +78,13 @@ public class Statistic extends Model {
 	}
 
 	/**
-	 * creates a new instance of Statistic and assigns all the variables to the
-	 * instance
+	 * Creates a new instance of "Statistic" and assigns all the variables to the
+	 * instance.
 	 * 
-	 * @param rowId the ID of the row where it should be stored
-	 * @param playtime time already played
-	 * @param levelComplete how many levels are complete
-	 * @param stepCounter how many steps were made
+	 * @param rowId The ID of the row where it should be stored.
+	 * @param playtime The time that was already played.
+	 * @param levelComplete How many levels were completed.
+	 * @param stepCounter How many steps were made.
 	 */
 	public Statistic(int rowId, float playtime, int levelComplete,
 			int stepCounter) {
@@ -96,12 +97,12 @@ public class Statistic extends Model {
 	}
 
 	/**
-	 * creates a new statistic object and attempts to fetch further information
-	 * from the background storage
+	 * Creates a new statistic object and attempts to fetch further information
+	 * from the background storage.
 	 * 
 	 * @param rowId
-	 *            the id of the row where the record is stored within the
-	 *            background storage
+	 *            The ID of the row where the record is stored within the
+	 *            background storage.
 	 */
 	public Statistic(int rowId) {
 		super();
@@ -114,6 +115,9 @@ public class Statistic extends Model {
 	 * implemented methods
 	 */
 
+	/**
+	 * To edit the statistics.
+	 */
 	@Override
 	public void write() {
 		pref.putInteger(KEY_LEVELCOMPLETED, levelsComplete);
@@ -122,11 +126,17 @@ public class Statistic extends Model {
 		pref.flush();
 	}
 
+	/**
+	 * If a record exists.
+	 */
 	@Override
 	public boolean hasRecord() {
 		return false;
 	}
 
+	/**
+	 * Fetches the statistic.
+	 */
 	@Override
 	public void fetch() {
 		levelsComplete = pref.getInteger(KEY_LEVELCOMPLETED,
@@ -135,6 +145,9 @@ public class Statistic extends Model {
 		stepCounter = pref.getInteger(KEY_STEPCOUNTER, DEFAULT_STEPCOUNTER);
 	}
 
+	/**
+	 * Resets the statistics.
+	 */
 	@Override
 	public void destroy() {
 		this.levelsComplete = DEFAULT_LEVELCOMPLETED;
@@ -150,7 +163,7 @@ public class Statistic extends Model {
 	/**
 	 * Get method for the completed levels.
 	 * 
-	 * @return number of completed Levels
+	 * @return Number of completed Levels
 	 */
 	public int getLevelsComplete() {
 		return levelsComplete;
@@ -159,7 +172,7 @@ public class Statistic extends Model {
 	/**
 	 * Returns the number of steps the player made with the character.
 	 * 
-	 * @return number of steps made by the character.
+	 * @return Number of steps made by the character.
 	 */
 	public int getStepCounter() {
 		return stepCounter;
@@ -168,7 +181,7 @@ public class Statistic extends Model {
 	/**
 	 * Get method that returns the time the user placed as an integer.
 	 * 
-	 * @return the time the player has played already.
+	 * @return The time the player has played already.
 	 */
 	public float getPlaytime() {
 		return playtime;
@@ -179,7 +192,7 @@ public class Statistic extends Model {
 	 * user.
 	 * 
 	 * @param levelsComplete
-	 *            the number of completed levels.
+	 *            The number of completed levels.
 	 */
 	public void setLevelsComplete(int levelsComplete) {
 		this.levelsComplete = levelsComplete;
@@ -190,7 +203,7 @@ public class Statistic extends Model {
 	 * Sets number of steps which the character made.
 	 * 
 	 * @param stepCounter
-	 *            new number of steps made by the character.
+	 *            New number of steps made by the character.
 	 */
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
@@ -201,7 +214,7 @@ public class Statistic extends Model {
 	 * Assigns a new play time to this class.
 	 * 
 	 * @param playtime
-	 *            the name play time as an integer.
+	 *            The name play time as an integer.
 	 */
 	public void setPlaytime(float playtime) {
 		this.playtime = playtime;

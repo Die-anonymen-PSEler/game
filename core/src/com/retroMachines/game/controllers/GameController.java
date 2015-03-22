@@ -19,7 +19,7 @@ import com.retroMachines.util.lambda.Vertex;
  * disposes them afterwards. It saves progress to the persistent storage.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class GameController {
 
@@ -39,27 +39,27 @@ public class GameController {
 	private RetroMan retroMan;
 
 	/**
-	 * 
+	 * The current level.
 	 */
 	private RetroLevel level;
 
 	/**
-	 * controls Evaluation
+	 * The controller for the evaluation.
 	 */
 	private EvaluationController evaControl;
 
 	/**
-	 * level begin time
+	 * Level begin time.
 	 */
 	private long levelBegin;
 
 	/**
-	 * variable to count the steps made by the character
+	 * Variable to count the steps made by the character.
 	 */
 	private float tempStepCounter;
 
 	/**
-	 * true if the level was finished successfully
+	 * True if the level was finished successfully.
 	 */
 	private boolean levelfinished;
 
@@ -73,16 +73,12 @@ public class GameController {
 		this.game = game;
 	}
 
-	/**
-	 * Disposes all objects that are in use by this controller.
-	 */
+	//Disposes all objects that are in use by this controller.
 	private void dispose() {
 		gameScreen.dispose();
 	}
 
-	/**
-	 * Saves the progress of the game to the persistent storage.
-	 */
+	// Saves the progress of the game to the persistent storage.
 	private void saveProgress() {
 		long now = System.currentTimeMillis();
 		float diff = (now - levelBegin) / 1000f;
@@ -90,6 +86,7 @@ public class GameController {
 		game.getStatisticController().incStepCounter((int) tempStepCounter);
 	}
 	
+	//detects a collision in the map.
 	private void collisionDetection() {
 		Rectangle retroManRect = new Rectangle(retroMan.getPos().x,
 				retroMan.getPos().y, RetroMan.WIDTH, RetroMan.HEIGHT);
@@ -278,7 +275,7 @@ public class GameController {
 	 * Performs a collision detection to stop the character in case of walls or
 	 * any other solid object standing in the way.
 	 * 
-	 * @param delta
+	 * @param delta The scale for the positions.
 	 */
 	public void update(float deltaTime) {
 		if (Math.abs(retroMan.getVelocity().x) < RetroMan.MIN_VELOCITY_X
@@ -320,6 +317,9 @@ public class GameController {
 		}
 	}
 
+	/**
+	 * Returns to the level after the evaluation was completed successfully. The level is finished.
+	 */
 	public void evaluationComplete() {
 		game.setScreen(gameScreen);
 		level.getMap().getLayers().get(Constants.DOOR_CLOSED_LAYER)
@@ -327,6 +327,9 @@ public class GameController {
 		levelfinished = true;
 	}
 
+	/**
+	 * Returns to the level after evaluation was not successful. The level is not finished.
+	 */
 	public void evaluationInComplete() {
 		levelfinished = false;
 		gameScreen.showValidateError(Constants.RetroStrings.SOLUTION_INVALID);
@@ -335,7 +338,7 @@ public class GameController {
 	}
 
 	/**
-	 * checks if retroman is in the correct position and opens the door in case
+	 * Checks if the retroMan is in the correct position and opens the door in case
 	 * he is.
 	 */
 	public void walkThroughDoor() {
@@ -367,7 +370,7 @@ public class GameController {
 	 */
 	
 	/**
-	 * Returns the instance of the RetroMan.
+	 * Get method for the instance of the RetroMan.
 	 * 
 	 * @return The instance of the RetroMan which is held by this controller.
 	 */
@@ -375,10 +378,20 @@ public class GameController {
 		return retroMan;
 	}
 
+	/**
+	 * Get method for the hint that is given for the level.
+	 * 
+	 * @return The hint of the level.
+	 */
 	public Vertex getLevelHint() {
 		return level.getLambdaUtil().getHintTree().getStart();
 	}
 
+	/**
+	 * Get method for the target of the level.
+	 * 
+	 * @return The target of the level.
+	 */
 	public Vertex getLevelTarget() {
 		return level.getLambdaUtil().getTargetTree().getStart();
 	}

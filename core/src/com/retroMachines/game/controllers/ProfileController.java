@@ -16,7 +16,7 @@ import com.retroMachines.util.Constants.RetroStrings;
  * controls the different profiles of the users.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class ProfileController {
 
@@ -47,7 +47,7 @@ public class ProfileController {
 	private Profile profile;
 	
 	/**
-	 * error msg. can be requested via getErrorMsg();
+	 * Error message can be requested via getErrorMsg().
 	 */
 	private String errorMsg;
 
@@ -77,7 +77,8 @@ public class ProfileController {
 
 	/**
 	 * Removes the currently active profile.
-	 * @param name the profile to be deleted
+	 * 
+	 * @param name The profile that is to be deleted.
 	 */
 	public void deleteProfile(String name) {
 		if (!profileNames.containsKey(name)) {
@@ -110,8 +111,8 @@ public class ProfileController {
 	/**
 	 * Checks if a given user name is valid, meaning it is not occupied by
 	 * another profile already.
-	 * @param username the name to be checked
-	 * @return true if it's valid, false otherwise
+	 * @param username The name that is to be checked.
+	 * @return True if it's valid. False otherwise.
 	 */
 	public boolean canUserBeCreated(String username) {
 		if (profileNames.size() == MAX_PROFILE_NUMBER) {
@@ -135,7 +136,7 @@ public class ProfileController {
 
 	/**
 	 * Method for creating a new Profile.
-	 * @param name the name of the new profile
+	 * @param name The name of the new profile.
 	 */
 	public void createProfile(String name) {
 		if (!canUserBeCreated(name)) {
@@ -191,8 +192,9 @@ public class ProfileController {
 
 
 	/**
-	 * loads the last profile
-	 * @return true if it could be loaded, false otherwise
+	 * Loads the last profile.
+	 * 
+	 * @return True if it could be loaded. False otherwise.
 	 */
 	public boolean canLoadLastProfile() {
 		GlobalVariables gv = GlobalVariables.getSingleton();
@@ -215,7 +217,7 @@ public class ProfileController {
 	 */
 
 	/**
-	 * Get the name of the currently active user.
+	 * Get method for the name of the currently active user.
 	 * 
 	 * @return The name of the currently active user; Empty String if no user is
 	 *         active.
@@ -226,7 +228,7 @@ public class ProfileController {
 	}
 
 	/**
-	 * Getter for the active profile.
+	 * Get method for the active profile.
 	 * 
 	 * @return The profile.
 	 */
@@ -235,8 +237,9 @@ public class ProfileController {
 	}
 	
 	/**
-	 * get all profileNames
-	 * @return a hashmap with key value pairs of the profilenames
+	 * Get method for all profileNames.
+	 * 
+	 * @return A hashmap with key value pairs of the profileNames.
 	 */
 	public HashMap<String, Integer> getProfileNameIdMap() {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -252,8 +255,9 @@ public class ProfileController {
 	}
 
 	/**
-	 * returns all profiles
-	 * @return a String array containing the names of all profiles
+	 * Get method for all profiles.
+	 * 
+	 * @return A String array containing the names of all profiles.
 	 */
 	public String[] getAllProfiles() {
 		String[] result = new String[profileNames.size()];
@@ -265,6 +269,11 @@ public class ProfileController {
 		return result;
 	}
 
+	/**
+	 * Get method for the message of the error.
+	 * 
+	 * @return The error message.
+	 */
 	public String getErrorMsg() {
 		return this.errorMsg;
 	}

@@ -8,18 +8,25 @@ import com.retroMachines.data.RetroAssetManager;
  * represents the abstraction within the lambda calculus.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class MachineElement extends GameElement {
 
 	/**
 	 * Creates a new instance of MachineElement and assigns a texture to it for
 	 * rendering purposes.
-	 * @param color of the machineElement
+	 * 
+	 * @param color The color of the machineElement.
 	 */
 	public MachineElement(int colorId) {
 		super();
 	}
 
+	/**
+	 * Get method for the tileSet of the game element.
+	 * 
+	 * @return The tileSet of the element.
+	 */
 	@Override
 	public TiledMapTileSet getTileSet() {
 		return RetroAssetManager.getMachines();

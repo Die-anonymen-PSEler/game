@@ -26,10 +26,13 @@ import com.retroMachines.util.lambda.Vertex;
  * a class containing all relevant information regarding a level
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class RetroLevel {
 
+	/**
+	 * The ID of the depot.
+	 */
 	public static final int DEPOTID = 8;
 
 	private String errorMessage;
@@ -45,11 +48,11 @@ public class RetroLevel {
 	private LinkedList<Vertex> vertexInDepot;
 
 	/**
-	 * private constructor so levelbuilder class has to be used
+	 * A private constructor so that the "levelBuilder" class has to be used.
 	 * 
-	 * @param id
-	 * @param map
-	 * @param util
+	 * @param id The ID of the level.
+	 * @param map The map of the level.
+	 * @param util The util which are used.
 	 */
 	private RetroLevel(int id, TiledMap map, LambdaUtil util) {
 		this.levelId = id;
@@ -177,13 +180,6 @@ public class RetroLevel {
 		}
 	}
 
-	/**
-	 * Returns index of Vertex with smallest x pos and given y pos
-	 * 
-	 * @param yPos
-	 *            yPosition of searched Vertex
-	 * @return index of searched Vertex in "vertexinDepot" List
-	 */
 	private Vertex findVertexPosY(int yPos) {
 		Vertex result = new Dummy();
 		result.setPosition(new Vector2(Float.MAX_VALUE, Float.MAX_VALUE));
@@ -208,12 +204,12 @@ public class RetroLevel {
 	}
 
 	/**
-	 * Checks if a given position is suiteable for a gameelement (whether it
-	 * makes sense)
+	 * Checks if a given position is suitable for a game element (whether it
+	 * makes sense).
 	 * 
 	 * @param pos
-	 *            the vector in question
-	 * @return true if valid; false otherwise.
+	 *            The vector in question.
+	 * @return True if the position is valid. False otherwise.
 	 */
 	public boolean isValidGameElementPosition(Vector2 pos) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
@@ -232,13 +228,13 @@ public class RetroLevel {
 
 	/**
 	 * Assigns a GameElement a new position and updates it's coordinates within
-	 * the lambdautil. Also adds the element back to the map for rendering. You
-	 * might wanna call the isValidGameElementPosition first
+	 * the lambdaUtil. Also adds the element back to the map for rendering. You
+	 * might want to call the isValidGameElementPosition first.
 	 * 
 	 * @param element
-	 *            the element which will be readded to the map
+	 *            The element which will be read to the map.
 	 * @param newPos
-	 *            the position where the element will be added.
+	 *            The position where the element will be added.
 	 */
 	public void placeGameElement(GameElement element, Vector2 newPos) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
@@ -256,7 +252,7 @@ public class RetroLevel {
 	 * appearance!
 	 * 
 	 * @param elementPosition
-	 *            the vector where element shall be removed
+	 *            The vector where an element shall be removed.
 	 */
 	public void removeGameElement(GameElement element, Vector2 elementPosition) {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(
@@ -267,9 +263,13 @@ public class RetroLevel {
 		vertex.setPosition(new Vector2(-1, -1));
 	}
 	
+	/**
+	 * A method to control if all the depots are filled.
+	 * @return True if all the depots are filled. False otherwise.
+	 */
 	public boolean isAllDepotsFilled() {
 
-		// Get Depot Tile as Cell objekt
+		// Get a depot tile as a cell object
 		TiledMapTileLayer depotLayer = (TiledMapTileLayer) map.getLayers().get(
 				Constants.DEPOT_LAYER);
 		TiledMapTileSet depotSet = map.getTileSets().getTileSet(
@@ -307,7 +307,10 @@ public class RetroLevel {
 		return true;
 	}
 	
-
+	/**
+	 * Method to control if the level owns a tutorial.
+	 * @return True if a tutorial exists. False otherwise.
+	 */
 	public boolean hasTutorial() {
 		return lambdaUtil.hasTutorial();
 	}
@@ -317,7 +320,7 @@ public class RetroLevel {
 	 */
 	
 	/**
-	 * Returns GameElement at a given position in TiledMap
+	 * Returns the game element at a given position in the TiledMap.
 	 * 
 	 * @param posObj
 	 *            Position in TiledMap of the GameElement.
@@ -331,10 +334,20 @@ public class RetroLevel {
 				(int) posObj.x, (int) posObj.y);
 	}
 
+	/**
+	 * Get method for the ID of the level.
+	 * 
+	 * @return The ID of the level.
+	 */
 	public int getId() {
 		return levelId;
 	}
 
+	/**
+	 * Get method for the message if an error occurred.
+	 * 
+	 * @return The error-message.
+	 */
 	public String getErrorMessage() {
 		return errorMessage;
 	}
@@ -344,16 +357,16 @@ public class RetroLevel {
 	 * area.
 	 * 
 	 * @param startX
-	 *            the beginning x coordinate
+	 *            The beginning x coordinate.
 	 * @param startY
-	 *            the beginning y coordinate
+	 *            The beginning y coordinate.
 	 * @param endX
-	 *            the end x coordinate
+	 *            The end x coordinate.
 	 * @param endY
-	 *            the end y coordinate
+	 *            The end y coordinate.
 	 * @param layerId
-	 *            the id where the rectangles shall be gathered.
-	 * @return an array containing those gathered rectangles
+	 *            The ID where the rectangles shall be gathered.
+	 * @return An array containing those gathered rectangles.
 	 */
 	public Array<Rectangle> getTiles(int startX, int startY, int endX,
 			int endY, int layerId) {
@@ -373,27 +386,27 @@ public class RetroLevel {
 	}
 
 	/**
-	 * Get method for the map
+	 * Get method for the map.
 	 * 
-	 * @return the map associated with this level
+	 * @return The map associated with this level.
 	 */
 	public TiledMap getMap() {
 		return map;
 	}
 
 	/**
-	 * returns the lambda util associated with this level
+	 * Get method for the lambda util of this level.
 	 * 
-	 * @return
+	 * @return The lambda util associated with this level.
 	 */
 	public LambdaUtil getLambdaUtil() {
 		return lambdaUtil;
 	}
 
 	/**
-	 * Getter for the evaluation tree of this level
+	 * Get method for the evaluation tree of this level.
 	 * 
-	 * @return evaluation Tree
+	 * @return The evaluation tree.
 	 */
 	public LevelTree getEvaluationTree() {
 		return evaluationTree;
@@ -409,35 +422,35 @@ public class RetroLevel {
 	}
 
 	/**
-	 * LevelBuilder class to generate a retrolevel.
+	 * LevelBuilder class to generate a retro-level.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	public static class LevelBuilder {
 
 		/**
-		 * a pattern where the level json files may be found
+		 * A pattern where the level-json-files may be found.
 		 */
 		public static final String JSON_PATTERN = "maps/LevelJsons/Level%s.json";
 
 		/**
-		 * the tiledmap that belongs with the level
+		 * The tiled-map that belongs with the level.
 		 */
 		private TiledMap map;
 
 		/**
-		 * the lambda util associated with the level
+		 * The lambda util associated with the level.
 		 */
 		private LambdaUtil lambdaUtil;
 
 		/**
-		 * the level that was created based on the id
+		 * The level that was created based on the ID.
 		 */
 		private RetroLevel level;
 
 		/**
-		 * Creates a new instance of the levelbuilder
+		 * Creates a new instance of the levelBuilder.
 		 */
 		public LevelBuilder() {
 			lambdaUtil = null;
@@ -445,9 +458,7 @@ public class RetroLevel {
 			map = null;
 		}
 
-		/**
-		 * adds the game elements to the map.
-		 */
+		//adds the game elements to the map.
 		private void addGameelements() {
 			List<Vertex> levelelements = lambdaUtil.getVertexList();
 
@@ -472,10 +483,10 @@ public class RetroLevel {
 		}
 		
 		/**
-		 * prepares both map and the lambda structure for the game controller
+		 * Prepares both map and the lambda structure for the game controller.
 		 * 
 		 * @param id
-		 *            the id of the level. range [1 - Constants.MAX_LEVEL]
+		 *            The ID of the level. range [1 - Constants.MAX_LEVEL].
 		 */
 		public void prepare(int id) {
 			map = RetroAssetManager.getMap(id);
@@ -486,9 +497,9 @@ public class RetroLevel {
 		}
 
 		/**
-		 * Returns the level that was created once the prepare method was called
+		 * Get method for the level that was created once the prepare method was called.
 		 * 
-		 * @return the level generated
+		 * @return The level generated.
 		 */
 		public RetroLevel getLevel() {
 			return level;

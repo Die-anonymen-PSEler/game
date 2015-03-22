@@ -9,7 +9,7 @@ import com.retroMachines.util.Constants;
  * controls the statistics of the profile and changes them.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class StatisticController implements OnProfileChangedListener {
 
@@ -59,8 +59,8 @@ public class StatisticController implements OnProfileChangedListener {
 	 * Increases the StepCounter of the current statistic.
 	 * 
 	 * @param amount
-	 *            Adds the amount to the StepCounter. a value smaller than 0
-	 *            will result in 1 step added
+	 *            Adds the amount to the StepCounter. A value smaller than 0
+	 *            will result in 1 step added.
 	 */
 	public void incStepCounter(int amount) {
 		int value = amount;
@@ -71,11 +71,11 @@ public class StatisticController implements OnProfileChangedListener {
 	}
 
 	/**
-	 * Increases the playtime by a given amount
+	 * Increases the play time by a given amount.
 	 * 
 	 * @param diff
-	 *            the amount to add to the play time; a value smaller than 0
-	 *            will result in 1 minute added
+	 *            The amount to add to the play time; A value smaller than 0
+	 *            will result in 1 minute added.
 	 */
 	public void incPlayTime(float diff) {
 		statistic.setPlaytime(diff < 0 ? statistic.getPlaytime()
@@ -83,8 +83,9 @@ public class StatisticController implements OnProfileChangedListener {
 	}
 
 	/**
+	 * Increases the number of levels that are completed.
 	 * @param minimumLevel
-	 *            level 1 will result
+	 *            Level 1 will result.
 	 */
 	public void incLevelCompleted(int minimumLevel) {
 		if (Constants.MAX_LEVEL_ID > statistic.getLevelsComplete()
@@ -98,27 +99,27 @@ public class StatisticController implements OnProfileChangedListener {
 	 */
 	
 	/**
-	 * returns the playtime
+	 * Get method for the play time.
 	 * 
-	 * @return the playtime
+	 * @return The play time.
 	 */
 	public float getPlaytime() {
 		return statistic.getPlaytime();
 	}
 
 	/**
-	 * returns the step counter
+	 * Get method for the step counter.
 	 * 
-	 * @return number of steps made
+	 * @return Number of steps that were made.
 	 */
 	public int getStepCounter() {
 		return statistic.getStepCounter();
 	}
 
 	/**
-	 * returns the number of levels completed
+	 * Get method for the number of levels completed.
 	 * 
-	 * @return the number of levels completed
+	 * @return The number of levels completed.
 	 */
 	public int getLevelsCompleted() {
 		return statistic.getLevelsComplete();

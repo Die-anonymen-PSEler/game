@@ -9,21 +9,22 @@ import com.retroMachines.game.controllers.ProfileController;
  * last used profile.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class GlobalVariables extends Model {
 
 	/**
-	 * the name of the table where the globalVariables are stored
+	 * The name of the table where the globalVariables are stored.
 	 */
 	public static final String TABLE_NAME = "globalVariables";
 
 	/**
-	 * the key for the lastusedprofile id
+	 * The key for the last used profile id.
 	 */
 	public static final String KEY_LAST_USED_PROFILE = "lastUsedProfile";
 
 	/**
-	 * the key for the slots
+	 * The key for the slots.
 	 */
 	public static final String KEY_SLOTS = "Slot_%d";
 
@@ -51,7 +52,7 @@ public class GlobalVariables extends Model {
 	/**
 	 * This function checks if the persistent background storage has a record.
 	 * 
-	 * @return true if a record exists
+	 * @return True if a record exists.
 	 */
 	@Override
 	public boolean hasRecord() {
@@ -67,10 +68,16 @@ public class GlobalVariables extends Model {
 		return;
 	}
 
+	/**
+	 * Fetches the keyValue.
+	 */
 	@Override
 	public void fetch() {
 	}
 
+	/**
+	 * Destroys the value.
+	 */
 	@Override
 	public void destroy() {
 		// nothing to do. just override the value
@@ -81,9 +88,9 @@ public class GlobalVariables extends Model {
 	 * will override the previous value.
 	 * 
 	 * @param key
-	 *            the key under which the value should be stored.
+	 *            The key under which the value should be stored.
 	 * @param value
-	 *            the value that will be stored.
+	 *            The value that will be stored.
 	 */
 	public void put(String key, String value) {
 		pref.putString(key, value);
@@ -91,17 +98,17 @@ public class GlobalVariables extends Model {
 	}
 
 	/**
-	 * Stores a keyValue pair within this class. The int value is casted to a string.
-	 * @param key the key under which the value should be stored
-	 * @param value the value that will be stored.
+	 * Stores a keyValue pair within this class. The integer value is casted to a string.
+	 * @param key The key under which the value should be stored.
+	 * @param value The value that will be stored.
 	 */
 	public void put(String key, int value) {
 		put(key, String.valueOf(value));
 	}
 	
 	/**
-	 * evaluates the ID of the next row that is free
-	 * @return the ID of the next free row
+	 * Evaluates the ID of the next row that is free.
+	 * @return The ID of the next free row.
 	 */
 	public int nextFreeId() {
 		for (int i = 1; i <= ProfileController.MAX_PROFILE_NUMBER; i++) {
@@ -127,7 +134,7 @@ public class GlobalVariables extends Model {
 	 * Returns the only instance of this class. If none has been created yet one
 	 * will be created first.
 	 * 
-	 * @return the singleton.
+	 * @return The singleton.
 	 */
 	public static GlobalVariables getSingleton() {
 		if (Instance == null) {
@@ -140,8 +147,8 @@ public class GlobalVariables extends Model {
 	 * Returns the value according to the key.
 	 * 
 	 * @param key
-	 *            of the key value pair for lookup
-	 * @return the value that was found. null if the key does not exist.
+	 *            Key of the key value pair for lookup.
+	 * @return The value that was found. "null" if the key does not exist.
 	 */
 	public String get(String key) {
 		return pref.getString(key, "-1");

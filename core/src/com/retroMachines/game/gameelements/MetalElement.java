@@ -8,17 +8,25 @@ import com.retroMachines.data.RetroAssetManager;
  * represents the application within the lambda calculus.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class MetalElement extends GameElement {
 
 	/**
-	 * Creates a new instance of MetalElement
-	 * @param the color of the metalElement
+	 * Creates a new instance of MetalElement.
+	 * 
+	 * @param colorId 
+	 * 				The color of the metalElement.
 	 */
 	public MetalElement(int colorId) {
 		super();
 	}
 
+	/**
+	 * Get method for the tileSet of the game element.
+	 * 
+	 * @return The tileSet of the element.
+	 */
 	@Override
 	public TiledMapTileSet getTileSet() {
 		return RetroAssetManager.getObjects();

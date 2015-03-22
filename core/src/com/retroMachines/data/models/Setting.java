@@ -9,94 +9,95 @@ import com.retroMachines.util.Constants;
  * every time a change to this settings file is made.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class Setting extends Model {
 
 	/**
-	 * the key under which the volume is stored.
+	 * The key under which the volume is stored.
 	 */
 	private static final String KEY_VOLUME = "volume";
 
 	/**
-	 * the key under which the sound on off variable is stored.
+	 * The key under which the sound on off variable is stored.
 	 */
 	private static final String KEY_SOUNDONOFF = "soundOnOff";
 
 	/**
-	 * the key under which the left/right control is stored
+	 * The key under which the left/right control is stored.
 	 */
 	private static final String KEY_LEFTCONTROL = "leftControl";
 
 	/**
-	 * the key under which the id of the selected character is stored
+	 * The key under which the id of the selected character is stored.
 	 */
 	private static final String KEY_SELECTEDCHARACTER = "selectedCharacter";
 
 	/**
-	 * pattern where the key under which the tutorial value is stored
+	 * Pattern where the key under which the tutorial value is stored.
 	 */
 	private static final String KEY_PATTERN_TUTORIALS = "tutorial_seen_%s";
 
 	/**
-	 * the value an empty settings instance is set to.
+	 * The value an empty settings instance is set to.
 	 */
 	public static final float DEFAULT_VOLUME = 0.5f;
 
 	/**
-	 * the default value regarding sound on or off.
+	 * The default value regarding sound on or off.
 	 */
 	public static final boolean DEFAULT_SOUNDONOFF = true;
 
 	/**
-	 * default value regarding the left/right control feature. by default right
+	 * Default value regarding the left/right control feature. By default right
 	 * mode is enabled.
 	 */
 	public static final boolean DEFAULT_LEFTCONTROL = false;
 
 	/**
-	 * the id of the character that is disabled by default
+	 * The id of the character that is disabled by default.
 	 */
 	public static final int DEFAULT_SELECTEDCHARACTER = 0;
 
 	/**
-	 * the name of the table where the settings are stored
+	 * The name of the table where the settings are stored.
 	 */
 	public static final String TABLE_NAME = "settings";
 
 	/**
-	 * the volume of the game range 0.0f to 1.0f
+	 * The volume of the game range 0.0f to 1.0f.
 	 */
 	private float volume;
 
 	/**
-	 * true if sound is enabled. false otherwise
+	 * True if sound is enabled. False otherwise.
 	 */
 	private boolean soundOnOff;
 
 	/**
-	 * true if leftControl is enabled
+	 * True if leftControl is enabled.
 	 */
 	private boolean leftControl;
 
 	/**
-	 * the id of the character that is selected
+	 * The ID of the character that is selected.
 	 */
 	private int selectedCharacter;
 
 	/**
 	 * Constructor which creates an Instance of Settings with all needed
-	 * Attributs
+	 * Attributes.
 	 * 
 	 * @param rowId
-	 *            the ID of the row where it should be stored
+	 *            The ID of the row where it should be stored.
 	 * @param leftControl
-	 *            true if in Game the Controlbuttons of RetroMan changed Sites
+	 *            True if in Game the ControlButtons of RetroMan changed Sites
 	 *            (Steering on the right not Left and Jump and Interact Button
-	 *            on Left)
+	 *            on the left).
 	 * @param soundOnOff
-	 *            true if sound is enabled. false otherwise
+	 *            True if sound is enabled. False otherwise.
 	 * @param volume
-	 *            actual volume setting
+	 *            Actual volume setting.
 	 */
 	public Setting(int rowId, boolean leftControl, boolean soundOnOff,
 			float volume) {
@@ -110,10 +111,10 @@ public class Setting extends Model {
 
 	/**
 	 * Constructor which creates a new instance of setting and attempts to find
-	 * further attributes with the row id
+	 * further attributes with the row ID.
 	 * 
 	 * @param rowId
-	 *            the id of the row where the record regarding this setting is
+	 *            The ID of the row where the record regarding this setting is
 	 *            stored.
 	 */
 	public Setting(int rowId) {
@@ -127,6 +128,9 @@ public class Setting extends Model {
 	 * inherited methods
 	 */
 
+	/**
+	 * To edit the settings.
+	 */
 	@Override
 	public void write() {
 		pref.putFloat(KEY_VOLUME, volume);
@@ -136,11 +140,17 @@ public class Setting extends Model {
 		pref.flush();
 	}
 
+	/**
+	 * True if a record excists.
+	 */
 	@Override
 	public boolean hasRecord() {
 		return false;
 	}
 
+	/**
+	 * Fetch the settings.
+	 */
 	@Override
 	public void fetch() {
 		volume = pref.getFloat(KEY_VOLUME, DEFAULT_VOLUME);
@@ -150,6 +160,9 @@ public class Setting extends Model {
 				DEFAULT_SELECTEDCHARACTER);
 	}
 
+	/**
+	 * Reset the settings.
+	 */
 	@Override
 	public void destroy() {
 		volume = DEFAULT_VOLUME;
@@ -169,7 +182,7 @@ public class Setting extends Model {
 	 * Get method to check whether left or right control is enabled in this
 	 * settings objects.
 	 * 
-	 * @return true if the left control; false equals right control.
+	 * @return True if the left control is chosen. "False" equals right control mode is chosen.
 	 */
 	public boolean isLeftControl() {
 		return leftControl;
@@ -178,16 +191,16 @@ public class Setting extends Model {
 	/**
 	 * Get method to check whether sound is enabled or not.
 	 * 
-	 * @return true if sound is enabled; false otherwise.
+	 * @return True if the sound is enabled. False otherwise.
 	 */
 	public boolean isSoundOnOff() {
 		return soundOnOff;
 	}
 
 	/**
-	 * checks whether the tutorial is finished or not 
-	 * @param levelId the level for which it should be checked
-	 * @return true if its finished, false otherwise
+	 * Checks whether the tutorial is finished or not. 
+	 * @param levelId The level of which it should be managed.
+	 * @return True if it is finished. False otherwise.
 	 */
 	public boolean isTutorialFinished(int levelId) {
 		return pref.getBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId),
@@ -195,16 +208,17 @@ public class Setting extends Model {
 	}
 	
 	/**
-	 * @return the current volume
+	 * Get method for the current volume.
+	 * @return The current volume.
 	 */
 	public float getVolume() {
 		return volume;
 	}
 	
 	/**
-	 * getter method for the selected character id
+	 * Get method for the selected character ID.
 	 * 
-	 * @return the id
+	 * @return The ID of the character.
 	 */
 	public int getSelectedCharacter() {
 		return this.selectedCharacter;
@@ -214,7 +228,7 @@ public class Setting extends Model {
 	 * Assigns a new volume to this object.
 	 * 
 	 * @param volume
-	 *            the new volume that is assigned. it's range may go from 0 to
+	 *            The new volume that is assigned. It's range may go from 0 to
 	 *            1.0
 	 */
 	public void setVolume(float volume) {
@@ -229,7 +243,7 @@ public class Setting extends Model {
 	 * Set left control to this setting.
 	 * 
 	 * @param leftControl
-	 *            true if left control shall be enabled; false otherwise
+	 *            True if left control shall be enabled. False otherwise.
 	 */
 	public void setLeftControl(boolean leftControl) {
 		this.leftControl = leftControl;
@@ -240,7 +254,7 @@ public class Setting extends Model {
 	 * Enables or disables the sound in this setting.
 	 * 
 	 * @param soundOnOff
-	 *            true to enable sound; false to disable sound.
+	 *            True to enable sound. False to disable sound.
 	 */
 	public void setSoundOnOff(boolean soundOnOff) {
 		this.soundOnOff = soundOnOff;
@@ -248,10 +262,10 @@ public class Setting extends Model {
 	}
 
 	/**
-	 * assigns a new id regarding the character to the setting instance
+	 * Assigns a new ID regarding the character to the setting instance.
 	 * 
 	 * @param id
-	 *            the id. should be within the range of available characters
+	 *            The new ID. It should be within the range of available characters.
 	 */
 	public void setSelectedCharacter(int id) {
 		this.selectedCharacter = id;
@@ -259,9 +273,9 @@ public class Setting extends Model {
 	}
 
 	/**
-	 * sets whether the tutorial is finished or not
-	 * @param levelId the level where it should be set
-	 * @param value true if finished, false otherwise
+	 * Sets whether the tutorial is finished or not.
+	 * @param levelId The level of the tutorial.
+	 * @param value True if it is finished. False otherwise.
 	 */
 	public void setTutorialFinished(int levelId, boolean value) {
 		pref.putBoolean(String.format(KEY_PATTERN_TUTORIALS, levelId), value);

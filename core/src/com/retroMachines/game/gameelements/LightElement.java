@@ -8,6 +8,7 @@ import com.retroMachines.data.RetroAssetManager;
  * represents the application within the lambda calculus.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class LightElement extends GameElement {
 
@@ -19,6 +20,11 @@ public class LightElement extends GameElement {
 		super();
 	}
 
+	/**
+	 * Get method for the tileSet of the element.
+	 * 
+	 * @return The tileSet of the game element.
+	 */
 	@Override
 	public TiledMapTileSet getTileSet() {
 		return RetroAssetManager.getLights();

@@ -6,7 +6,7 @@ package com.retroMachines.game.controllers;
  * active profile in the game.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public interface OnProfileChangedListener {
 

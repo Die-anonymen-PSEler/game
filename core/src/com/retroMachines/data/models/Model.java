@@ -9,12 +9,13 @@ import com.badlogic.gdx.Preferences;
  * implemented methods.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public abstract class Model {
 
 	/**
-	 * select query to receive the id of the row that was inserted by an insert
-	 * query
+	 * Select query to receive the id of the row that was inserted by an insert
+	 * query.
 	 */
 	public static final String SELECT_LASTINSERTEDID = "SELECT last_insert_rowid()";
 
@@ -39,7 +40,7 @@ public abstract class Model {
 	/**
 	 * Checks if the database has a previous copy for the model.
 	 * 
-	 * @return true if the background storage has a record for the model; false
+	 * @return True if the background storage has a record for the model; false
 	 *         otherwise.
 	 */
 	public abstract boolean hasRecord();
@@ -57,7 +58,7 @@ public abstract class Model {
 	public abstract void fetch();
 
 	/**
-	 * Destroys the object and removes it from the persistent background storage
+	 * Destroys the object and removes it from the persistent background storage.
 	 */
 	public abstract void destroy();
 }

@@ -20,11 +20,12 @@ import com.retroMachines.util.MusicManager;
  * controllers and starts the game.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class RetroMachines extends Game {
 
 	/**
-	 * a stack of screens in order to return to the previous
+	 * A stack of screens in order to return to the previous.
 	 */
 	private final Stack<Screen> screenStack;
 
@@ -50,7 +51,7 @@ public class RetroMachines extends Game {
 	private StatisticController statisticController;
 
 	/**
-	 * creates a new instance of retroMachines
+	 * Creates a new instance of retroMachines.
 	 */
 	public RetroMachines() {
 		super();
@@ -90,7 +91,7 @@ public class RetroMachines extends Game {
 	}
 	
 	/**
-	 * reloads the previous screen.
+	 * Reloads the previous screen.
 	 */
 	public void previousScreen() {
 		if (screenStack.size() >= 2) {
@@ -139,6 +140,10 @@ public class RetroMachines extends Game {
 		return statisticController;
 	}
 
+	/**
+	 * Overrides the method setScreen from Game and is used to set the screen.
+	 * @param screen The screen that is to be set.
+	 */
 	@Override
 	public void setScreen(Screen screen) {
 		screenStack.push(screen);
