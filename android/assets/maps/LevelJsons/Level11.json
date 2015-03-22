@@ -1,23 +1,29 @@
 {
 	"level": 
 	{
-		"description": "Level das ((lambda x.x)(lambda x.x)) darstellt",
+		"description": "Level das ((lambda x. lambda y.xy)(lambda z.z)) darstellt",
 		"hasTutorialScreen": false,
 		"tutorialScreens" : [],
-		"levelid": 10,
+		"levelid": 11,
 		"data": 
 		{
 			"gameelements": 
 			[
 				{
-					"color": 10,
+					"color": 4,
 					"type": "Abs",
 					"posx": 11,
 					"posy": 16
 				},
 					
 				{
-					"color": 10,
+					"color": 4,
+					"type": "Var",
+					"posx": 1,
+					"posy": 1
+				},
+				{
+					"color": 7,
 					"type": "Abs",
 					"posx": 32,
 					"posy": 15
@@ -25,15 +31,22 @@
 				},
 
 				{
-					"color": 10,
+					"color": 7,
 					"type": "Var",
 					"posx": 21,
 					"posy": 5
 				},
 			
 				{
+					"color": 8,
+					"type": "Abs",
+					"posx": 1,
+					"posy": 3
+				},
 				
-					"color": 10,
+				{
+				
+					"color": 8,
 					"type": "Var",
 					"posx": 40,
 					"posy": 18
@@ -49,15 +62,7 @@
 
 			"tree": 
 			[		
-				{
-					"tree": 
-					[	
-						{
-							"tree": []	
-						}
-					]
-				},
-				
+							
 				{
 					"tree":
 					[
@@ -66,6 +71,22 @@
 							[
 								{
 									"tree":[]
+								},
+								{
+									"tree":[]
+								}
+							]
+						}
+					]
+				},
+				{
+					"tree":
+					[
+						{
+							"tree":
+							[
+								{
+									"tree": []
 								}
 							]
 						}
@@ -76,34 +97,31 @@
 			"target": 
 			[				
 				{
-					"color": 10,
-					"type": "Abs",
-					"target": 
-					[				
-						{
-							"color": 10,
-							"type": "Var",
-							"target": []
-						}
-					]
+					"color": 8,
+					"type": "Var",
+					"target": []
 				}
 			],
 			
 			"hint":  
 			[							
 				{
-					"color": 1,
-					"type": "App",
-					"hint":
+					"color": 7,
+					"type": "Abs",
+					"target":
 					[
 						{
-							"color": 10,
-							"type": "Abs",
-							"hint": []
+							"color": 4,
+							"type": "Var",
+							"target": []
+						},
+						{
+							"color": 7,
+							"type": "Var",
+							"target": []
 						}
 					]
 				}
-
 			]
 		}
 	}

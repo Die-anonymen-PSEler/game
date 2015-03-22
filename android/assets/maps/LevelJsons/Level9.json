@@ -12,22 +12,22 @@
 				{
 					"color": 1,
 					"type": "Abs",
-					"posx": 19,
-					"posy": 18
+					"posx": 9,
+					"posy": 19
 				},
 
 				{
 					"color": 1,
 					"type": "Var",
-					"posx": 4,
-					"posy": 6
+					"posx": 17,
+					"posy": 8
 				},
 				
 				{
 					"color": 2,
 					"type": "Abs",
-					"posx": 27,
-					"posy": 7
+					"posx": 34,
+					"posy": 10
 					
 				},
 				
@@ -35,50 +35,50 @@
 				
 					"color": 2,
 					"type": "Var",
-					"posx": 37,
-					"posy": 4
+					"posx": 30,
+					"posy": 18
 				},
 								
 				{
 					"color": 3,
 					"type": "Abs",
-					"posx": 1,
-					"posy": 1
+					"posx": 18,
+					"posy": 11
 				},
 				
 				{
 					"color": 3,
 					"type": "Var",
-					"posx": 17,
-					"posy": 9
+					"posx": 12,
+					"posy": 13
 				},
 			
 				{
 					"color": 4,
 					"type": "Var",
-					"posx": 38,
-					"posy": 16
+					"posx": 12,
+					"posy": 8
 				},
 				
 				{
 					"color": 5,
 					"type": "Var",
-					"posx": 38,
-					"posy": 16
+					"posx": 32,
+					"posy": 5
 				},
 				
 				{
 					"color": 6,
 					"type": "Var",
-					"posx": 38,
-					"posy": 16
+					"posx": 6,
+					"posy": 6
 				},
 				
 				{
 					"color": 1,
 					"type": "App",
-					"posx": 18,
-					"posy":4
+					"posx": 40,
+					"posy":6
 				}
 			],
 
