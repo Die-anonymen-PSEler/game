@@ -11,7 +11,7 @@ def calcWidth(width): return int(int(displayWidth) * int(width) / int(960))
 def calcHeight(height): return int(int(displayHeight) * int(height) / int(540))
 
 #start test
-print "Starting test sequence T8-Settings"
+print "Starting test sequence T9-Leave Game"
 device = MonkeyRunner.waitForConnection()
 displayWidth = device.getProperty("display.width")
 displayHeight = device.getProperty("display.height")
