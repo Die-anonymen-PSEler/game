@@ -369,7 +369,8 @@ public abstract class Vertex {
 				this.getFamily().recolorFamily(newColor, oldColor);
 			}
 			// change own Color
-			updateMap(this.color, newColor);
+			color = newColor;
+			updateMap(newColor, newColor);
 			int offset = (Integer) this.getGameElement().getTileSet()
 					.getProperties().get("firstgid") - 1;
 			this.getGameElement().setTileId(newColor + offset);
@@ -385,14 +386,11 @@ public abstract class Vertex {
 			retValue = true;
 		} else if( this.getColor() == oldColor) {
 			if (this.getFamily() != null) {
-				if (this.getFamilyColorList().contains(oldColor)) {
-					if(this.getFamily().searchEqualAbstractions(oldColor , newColor)) {
-						// Update family Color List
-						this.getFamilyColorList().add(newColor);
-					}
-					retValue = true;
-
+				if(this.getFamily().searchEqualAbstractions(oldColor , newColor)) {
+					// Update family Color List
+					this.getFamilyColorList().add(newColor);
 				}
+				retValue = true;
 			}
 			
 		} else {
@@ -449,7 +447,8 @@ public abstract class Vertex {
 		
 		if(!this.getType().equals(Constants.RetroStrings.APPLICATION_TYPE)) {
 			if(this.getColor() == oldColor) {
-				updateMap(this.color, newColor);
+				this.color = newColor;
+				updateMap(newColor, newColor);
 				int offset = (Integer) this.getGameElement().getTileSet()
 						.getProperties().get("firstgid") - 1;
 				this.getGameElement().setTileId(newColor + offset);

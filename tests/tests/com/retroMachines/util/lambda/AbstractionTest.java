@@ -1,10 +1,6 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.LinkedList;
 
@@ -93,8 +89,11 @@ public class AbstractionTest {
 	@Test
 	public void testGetEvaluationResult() {
 		abs.setNext(null);
+		abs.betaReduction();
 		assertEquals(abs, abs.getEvaluationResult());
 		abs.setNext(new Abstraction(3));
+		abs.setFamily(new Application());
+		abs.betaReduction();
 		assertNull(abs.getEvaluationResult());
 		//Get Evaluation result  gibt nur null zur�ck when abs.next  == null alles supi
 	}
@@ -117,21 +116,24 @@ public class AbstractionTest {
 
 	@Test
 	public void testBetaReduction() {
-		abs.setNext(new Abstraction(2));
-		abs.setFamily(new Abstraction(3));
-		LinkedList<Vertex> list = abs.betaReduction();
-		fail();
-		//TODO: validate list
+		Variable var1 = new Variable(1);
+		Application app1 = new Application();
+		abs.setNext(app1);
+		abs.setFamily(var1);
+		abs.betaReduction();
+		assertTrue(abs.getFamily().getType().equals(Constants.RetroStrings.APPLICATION_TYPE));
+		abs.setNext(null);
+		assertEquals(0, abs.betaReduction().size());
 	}
 
 	@Test
 	public void testAlphaConversion() {
-		abs.setNext(null);
-		abs.setFamily(new Abstraction(absColor));
+		Variable var1 = new Variable(1);
+		Abstraction abs1 = new Abstraction(1);
+		abs.setFamily(var1);
 		assertFalse(abs.alphaConversion());
-		abs.setNext(new Abstraction(2));
-		boolean b = abs.alphaConversion();
-		fail();
+		abs.setFamily(abs1);
+		assertTrue(abs.alphaConversion());
 		//TODO: validate b
 	}
 

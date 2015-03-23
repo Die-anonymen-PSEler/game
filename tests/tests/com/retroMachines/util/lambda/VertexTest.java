@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
+import com.retroMachines.util.Constants;
 
 @RunWith(GdxTestRunner.class)
 public class VertexTest {
@@ -77,15 +78,42 @@ public class VertexTest {
 	}
 
 	@Test
-	public void testRenameFamily() {
-
-		abs.setFamily(var);
-		abs.setNext(null);
-		var.setNext(null);
-		var.setFamily(null);
-		//assertTrue(abs.recolorFamily(1, 2));
-		assertEquals(2, var.getColor());
+	public void testSearchEqualAbstractions() {
+		
+		// includes test recolor family
+		Abstraction abs1 = new Abstraction(1);
+		Abstraction abs2 = new Abstraction(1);
+		Abstraction abs3 = new Abstraction(3);
+		Abstraction abs4 = new Abstraction(1);
+		Abstraction abs5 = new Abstraction(1);
+		Abstraction abs6 = new Abstraction(1);
+		Variable var1 = new Variable(1);
+		Variable var2 = new Variable(1);
+		Variable var3 = new Variable(1);
+		Application app1 = new Application();
+		app1.setFamily(abs6);
+		abs.setFamily(abs1);
+		abs.setNext(abs2);
+		abs.getNextColorList().add(1);
+		abs1.setNext(var1);
+		abs1.setFamily(var3);
+		abs2.setNext(abs3);
+		abs3.setNext(var2);
+		abs3.setFamily(abs5);
+		abs3.getFamilyColorList().add(1);
+		var2.setNext(app1);
+		abs.searchEqualAbstractions(1, 2);
+		assertEquals(2, abs1.getColor());
+		assertEquals(2, abs2.getColor());
 		assertEquals(2, abs.getColor());
+		assertEquals(3, abs3.getColor());
+		assertEquals(1, abs4.getColor());
+		assertEquals(2, abs5.getColor());
+		assertEquals(2, abs6.getColor());
+		assertEquals(2, var1.getColor());
+		assertEquals(1, var2.getColor());
+		assertEquals(2, var3.getColor());
+		assertEquals(1, app1.getColor());
 	}
 
 	@Test
@@ -140,7 +168,11 @@ public class VertexTest {
 
 	@Test
 	public void testUpdateWidth() {
-		fail("Not yet implemented");
+		Application app1 = new Application();
+		abs.setFamily(var);
+		var.setNext(app1);
+		abs.updateWidth();
+		assertEquals(2, abs.getWidth());
 	}
 
 	@Test
@@ -165,28 +197,30 @@ public class VertexTest {
 
 	@Test
 	public void testReadInAnimation() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testReadInFamilyAnimation() {
-		fail("Not yet implemented");
+		//Includes read in Family Animation
+		EvaluationOptimizer.initialize(null);
+		Application app1 = new Application();
+		Application app2 = new Application();
+		Application app3 = new Application();
+		abs.setFamily(app2);
+		app2.setNext(app1);
+		app2.setFamily(app3);
+		abs.readInAnimation(new Vector2(0f, 0f));
+		assertEquals(4, EvaluationOptimizer.getActionList().size());
+		assertEquals(abs.getGameElement(), EvaluationOptimizer.getActionList().getLast().getGameElement());
 	}
 
 	@Test
 	public void testUpdateGameelementPosition() {
-		fail("Not yet implemented");
-	}
-
-// abstraction	
-//	@Test
-//	public void testReorganizePositions() {
-//		fail("Not yet implemented");
-//	}
-
-	@Test
-	public void testSetGameelementPosition() {
-		fail("Not yet implemented");
+		EvaluationOptimizer.initialize(null);
+		Application app1 = new Application();
+		abs.setNext(var);
+		abs.setFamily(app1);
+		abs.updateGameelementPosition(1, 1);
+		assertEquals(0, (long)abs.getGameElement().getPosition().x);
+		assertEquals(0, (long)abs.getGameElement().getPosition().y);
+		assertEquals(3, EvaluationOptimizer.getActionList().size());
+		assertEquals(abs.getGameElement(), EvaluationOptimizer.getActionList().getLast().getGameElement());
 	}
 
 	@Test
