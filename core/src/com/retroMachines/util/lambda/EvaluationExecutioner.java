@@ -11,9 +11,9 @@ import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.ActionListElement;
 import com.retroMachines.util.Constants;
 
-public class EvaluationOptimizer {
+public class EvaluationExecutioner {
 
-	public final static EvaluationOptimizer OPTIMIZER = new EvaluationOptimizer();
+	public final static EvaluationExecutioner OPTIMIZER = new EvaluationExecutioner();
 
 	private static EvaluationController EvaluationController;
 

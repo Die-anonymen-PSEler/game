@@ -278,7 +278,7 @@ public abstract class Vertex {
 		actPosition.x += (Constants.GAMEELEMENT_WIDTH * difX);
 		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
 
-		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
+		EvaluationExecutioner.moveAnimation(actPosition, this.getGameElement(),
 				false);
 
 		if (this.getFamily() != null) {
@@ -314,7 +314,7 @@ public abstract class Vertex {
 		int y = Constants.GAMEELEMENT_WIDTH * (int) newPos.y;
 
 		// Move
-		EvaluationOptimizer.moveAnimation(new Vector2(x + centerVertex
+		EvaluationExecutioner.moveAnimation(new Vector2(x + centerVertex
 				+ paddingScreen.x, y + paddingScreen.y), this.getGameElement(),
 				false);
 
@@ -489,7 +489,7 @@ public abstract class Vertex {
 					cloned(start, listOfNewVertex);
 
 					// Animation
-					EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(
+					EvaluationExecutioner.moveAndScaleAnimationWithoutDelay(
 							position, this.getFamily().getGameElement(), false);
 
 					if (this.getFamily().getNext() != null) {
@@ -517,7 +517,7 @@ public abstract class Vertex {
 				cloned(start, listOfNewVertex);
 
 				// Animation
-				EvaluationOptimizer.moveAndScaleAnimationWithoutDelay(position,
+				EvaluationExecutioner.moveAndScaleAnimationWithoutDelay(position,
 						this.getNext().getGameElement(), false);
 
 				if (this.getNext().getNext() != null) {
@@ -571,7 +571,7 @@ public abstract class Vertex {
 			this.getFamily().readInFamilyAnimation(pos);
 		}
 
-		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
+		EvaluationExecutioner.moveAndScaleAnimation(pos, this.getGameElement(),
 				false);
 	}
 	
@@ -603,7 +603,7 @@ public abstract class Vertex {
 		}
 
 		// Move
-		EvaluationOptimizer
+		EvaluationExecutioner
 				.moveAnimation(startPos, this.getGameElement(), true);
 	}
 	
@@ -709,7 +709,7 @@ public abstract class Vertex {
 			this.getFamily().readInFamilyAnimation(pos);
 		}
 		// Animation
-		EvaluationOptimizer.moveAndScaleAnimation(pos, this.getGameElement(),
+		EvaluationExecutioner.moveAndScaleAnimation(pos, this.getGameElement(),
 				true);
 
 	}
@@ -738,7 +738,7 @@ public abstract class Vertex {
 		actPosition.y += (Constants.GAMEELEMENT_WIDTH * difY);
 		// Start next evaluationStep
 
-		EvaluationOptimizer.moveAnimation(actPosition, this.getGameElement(),
+		EvaluationExecutioner.moveAnimation(actPosition, this.getGameElement(),
 				true);
 	}
 	

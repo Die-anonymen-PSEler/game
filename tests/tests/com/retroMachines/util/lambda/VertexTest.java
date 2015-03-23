@@ -1,6 +1,10 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 
@@ -13,7 +17,6 @@ import org.junit.runner.RunWith;
 import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.GdxTestRunner;
 import com.retroMachines.data.RetroAssetManager;
-import com.retroMachines.util.Constants;
 
 @RunWith(GdxTestRunner.class)
 public class VertexTest {
@@ -198,7 +201,7 @@ public class VertexTest {
 	@Test
 	public void testReadInAnimation() {
 		//Includes read in Family Animation
-		EvaluationOptimizer.initialize(null);
+		EvaluationExecutioner.initialize(null);
 		Application app1 = new Application();
 		Application app2 = new Application();
 		Application app3 = new Application();
@@ -206,21 +209,21 @@ public class VertexTest {
 		app2.setNext(app1);
 		app2.setFamily(app3);
 		abs.readInAnimation(new Vector2(0f, 0f));
-		assertEquals(4, EvaluationOptimizer.getActionList().size());
-		assertEquals(abs.getGameElement(), EvaluationOptimizer.getActionList().getLast().getGameElement());
+		assertEquals(4, EvaluationExecutioner.getActionList().size());
+		assertEquals(abs.getGameElement(), EvaluationExecutioner.getActionList().getLast().getGameElement());
 	}
 
 	@Test
 	public void testUpdateGameelementPosition() {
-		EvaluationOptimizer.initialize(null);
+		EvaluationExecutioner.initialize(null);
 		Application app1 = new Application();
 		abs.setNext(var);
 		abs.setFamily(app1);
 		abs.updateGameelementPosition(1, 1);
 		assertEquals(0, (long)abs.getGameElement().getPosition().x);
 		assertEquals(0, (long)abs.getGameElement().getPosition().y);
-		assertEquals(3, EvaluationOptimizer.getActionList().size());
-		assertEquals(abs.getGameElement(), EvaluationOptimizer.getActionList().getLast().getGameElement());
+		assertEquals(3, EvaluationExecutioner.getActionList().size());
+		assertEquals(abs.getGameElement(), EvaluationExecutioner.getActionList().getLast().getGameElement());
 	}
 
 	@Test

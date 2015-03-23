@@ -8,15 +8,12 @@ import org.junit.Test;
 import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
-import com.retroMachines.game.gameelements.RetroMan;
 
 public class GameControllerRetroManTiledMapTest6 {
 
 	private GameController gameController;
 	
 	private RetroMachines game;
-	
-	private RetroMan retroMan;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -31,7 +28,6 @@ public class GameControllerRetroManTiledMapTest6 {
 		game.getProfileController().createProfile("ABC");
 		gameController = game.getGameController();
 		gameController.startLevel(5);
-		retroMan = gameController.getRetroMan();
 	}
 
 	@After

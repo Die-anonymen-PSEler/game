@@ -12,6 +12,7 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.data.RetroAssetManager;
 import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.gameelements.RetroMan;
+import com.retroMachines.ui.screens.game.EvaluationScreen;
 
 public class GameControllerRetroManTiledMapTest1 {
 	
@@ -139,6 +140,18 @@ public class GameControllerRetroManTiledMapTest1 {
 	@Test
 	public void testEvaluationInvalid() {
 		gameController.evaluationInComplete();
+	}
+	
+	@Test
+	public void testEvaluationTrigger() {
+		retroMan.getPos().set(elementInitialPosition.cpy().add(-1, 0));
+		gameController.interactRetroMan();
+		assertTrue("retroman sollte ein element tragen", retroMan.hasPickedUpElement());
+		retroMan.getPos().set(depotPosition.cpy().add(-1, 0));
+		gameController.interactRetroMan();
+		assertFalse("retroman sollte kein element tragen", retroMan.hasPickedUpElement());
+		gameController.evaluationClicked();
+		assertTrue("sollte der evaluation screen sein", game.getScreen().getClass() == EvaluationScreen.class);
 	}
 
 }

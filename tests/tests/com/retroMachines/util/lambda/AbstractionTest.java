@@ -1,8 +1,10 @@
 package com.retroMachines.util.lambda;
 
-import static org.junit.Assert.*;
-
-import java.util.LinkedList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -145,7 +147,7 @@ public class AbstractionTest {
 	@Test
 	public void testReorganizePositions() {
 		//reset action list
-		EvaluationOptimizer.initialize(null);
+		EvaluationExecutioner.initialize(null);
 		abs.setPosition(new Vector2(1f,1f));
 		abs.setFamily(new Application());
 		Application a = new Application();
@@ -156,8 +158,8 @@ public class AbstractionTest {
 		// position should not yet updated
 		assertEquals(0f, abs.getGameElement().getPosition().x, Constants.FLOAT_EPSILON);
 		assertEquals(0f, abs.getGameElement().getPosition().y, Constants.FLOAT_EPSILON);
-		assertEquals(5, EvaluationOptimizer.getActionList().size());
-		assertEquals(abs.getGameElement(), EvaluationOptimizer.getActionList().getLast().getGameElement());
+		assertEquals(5, EvaluationExecutioner.getActionList().size());
+		assertEquals(abs.getGameElement(), EvaluationExecutioner.getActionList().getLast().getGameElement());
 		
 	}
 

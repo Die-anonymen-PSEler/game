@@ -5,7 +5,7 @@ import com.retroMachines.RetroMachines;
 import com.retroMachines.game.RetroLevel;
 import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.game.EvaluationScreen;
-import com.retroMachines.util.lambda.EvaluationOptimizer;
+import com.retroMachines.util.lambda.EvaluationExecutioner;
 import com.retroMachines.util.lambda.LevelTree;
 
 /**
@@ -67,22 +67,22 @@ public class EvaluationController {
 		lambdaTree = level.getEvaluationTree();
 		game.setScreen(evaluationScreen);
 		evaluationScreen.setLambaTerm(lambdaTree);
-		EvaluationOptimizer.initialize(this);
-		EvaluationOptimizer.addMeToListnerList(this);
+		EvaluationExecutioner.initialize(this);
+		EvaluationExecutioner.addMeToListnerList(this);
 	}
 
 	/**
 	 * When the button for the next step is clicked.
 	 */
 	public void stepEvaluationClicked() {
-		EvaluationOptimizer.nextStepClicked();
+		EvaluationExecutioner.nextStepClicked();
 	}
 
 	/**
 	 * When the button for the whole evaluation is clicked.
 	 */
 	public void autoEvaluationClicked() {
-		EvaluationOptimizer.autoStepClicked();
+		EvaluationExecutioner.autoStepClicked();
 	}	
 
 	/**

@@ -16,7 +16,7 @@ import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.ui.screens.AbstractScreen;
 import com.retroMachines.util.ActionListElement;
 import com.retroMachines.util.Constants;
-import com.retroMachines.util.lambda.EvaluationOptimizer;
+import com.retroMachines.util.lambda.EvaluationExecutioner;
 import com.retroMachines.util.lambda.LevelTree;
 import com.retroMachines.util.lambda.Vertex;
 
@@ -188,7 +188,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 * runs the animation for the evaluation
 	 */
 	public void runAnimation() {
-		LinkedList<ActionListElement> actionList = EvaluationOptimizer.getActionList();
+		LinkedList<ActionListElement> actionList = EvaluationExecutioner.getActionList();
 		for (int i = 0; i < actionList.size(); i++) {
 			ActionListElement actListEle = actionList.get(i);
 			actListEle.getGameElement().addAction(actListEle.getAction());
@@ -223,7 +223,9 @@ public class EvaluationScreen extends AbstractScreen {
 	 * @param g gameElement to be set
 	 */
 	public void setOnStage(GameElement g) {
-		stage.addActor(g);
+		if (g != null) {
+			stage.addActor(g);
+		}
 	}
 	
 	/**

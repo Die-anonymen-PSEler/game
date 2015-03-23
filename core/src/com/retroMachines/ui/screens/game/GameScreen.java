@@ -354,28 +354,6 @@ public class GameScreen extends AbstractScreen implements
 		popupScreenIsShown = false;
 	}
 
-	// ------------------------------------
-	// --Show different views in the game--
-	// ------------------------------------
-
-	/**
-	 * Shows the TaskScreen on top of the game.
-	 */
-	private void showTask() {
-		taskDialog.show(stage);
-	}
-
-	/**
-	 * Shows the HintScreen on top of the game.
-	 */
-	private void showHint() {
-		hintDialog.show(stage);
-	}
-
-	private void showPauseDialog() {
-		pauseDialog.show(stage);
-	}
-
 	/*
 	 * input processing (non-Javadoc)
 	 * 
@@ -480,7 +458,7 @@ public class GameScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			popupScreenIsShown = true;
-			showHint();
+			hintDialog.show(stage);
 		}
 	}
 
@@ -493,7 +471,7 @@ public class GameScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			popupScreenIsShown = true;
-			showTask();
+			taskDialog.show(stage);
 		}
 	}
 
@@ -506,7 +484,7 @@ public class GameScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			popupScreenIsShown = true;
-			showPauseDialog();
+			pauseDialog.show(stage);
 		}
 	}
 

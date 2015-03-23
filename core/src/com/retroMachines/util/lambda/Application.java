@@ -72,7 +72,7 @@ public class Application extends Vertex {
 				.getProperties().get("firstgid") - 1;
 		this.getGameElement().setTileId(2 + offset);
 
-		EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+		EvaluationExecutioner.delayAndRunNextStepAnim(this.getGameElement());
 
 		// no changes
 		return new LinkedList<Vertex>();
@@ -135,14 +135,14 @@ public class Application extends Vertex {
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		// Start next Step no reorganization is needed
-		EvaluationOptimizer.delayAndRunNextStepAnim(this.getGameElement());
+		EvaluationExecutioner.delayAndRunNextStepAnim(this.getGameElement());
 
 	}
 
 	@Override
 	public void deleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
-		EvaluationOptimizer.scaleAnimation(this.getGameElement(), true);
+		EvaluationExecutioner.scaleAnimation(this.getGameElement(), true);
 
 	}
 
