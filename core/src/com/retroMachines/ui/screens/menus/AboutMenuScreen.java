@@ -50,7 +50,7 @@ public class AboutMenuScreen extends MenuScreen {
 	 */
 	public static final String GAMEINFO_THREE = "Ampel: \n"
 			+ "Entspricht der Applikation im Lambda-Kalkuel, dient zum zusammenfassen (klammern) mehrerer Objekte,"
-			+ " soadass sie als ein Objekt verarbeitet werden künnen";
+			+ " so dass sie als ein Objekt verarbeitet werden koennen";
 
 	/**
 	 * Information about the role of the depots.
