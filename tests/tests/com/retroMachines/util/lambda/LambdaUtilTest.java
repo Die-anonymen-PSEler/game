@@ -71,6 +71,9 @@ public class LambdaUtilTest {
 		util.registerNewListener(listener);
 		// listener should be observer now
 		assertTrue(util.getObservers().contains(listener));
+		//register listener another time, should not change anything
+		util.registerNewListener(listener);
+		assertTrue(util.getObservers().contains(listener));
 	}
 
 	@Test
