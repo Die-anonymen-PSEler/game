@@ -56,6 +56,10 @@ public class AbstractionTest {
 	public void testCloneMe() {
 		Abstraction clone = (Abstraction) abs.cloneMe();
 		assertEquals(clone, abs);
+		Abstraction family = new Abstraction(1);
+		abs.setFamily(family);
+		clone = (Abstraction) abs.cloneMe();
+		assertEquals(clone.getFamily(), family);
 	}
 
 	@Test
@@ -81,11 +85,17 @@ public class AbstractionTest {
 
 	@Test
 	public void testUpdatePointerAfterBetaReduction() {
-		Abstraction next = new Abstraction(2);
-		abs.setNext(next);
-		abs.updatePointerAfterBetaReduction();
+		//nextNull attribute is false
+		Abstraction family = new Abstraction(1);
+		abs.setFamily(family);
+		Vertex result = abs.updatePointerAfterBetaReduction();
+		//should return family of abs
+		assertEquals(result, family);
 		abs.setNext(null);
-		abs.updatePointerAfterBetaReduction();
+		abs.betaReduction(); //sets nextNull true
+		result = abs.updatePointerAfterBetaReduction();
+		//result should be null
+		assertNull(result);
 	}
 
 	@Test
@@ -102,17 +112,26 @@ public class AbstractionTest {
 
 	@Test
 	public void testUpdatePositionsAfterBetaReduction() {
-		abs.setNext(null);
+//		abs.setNext(null);
+//		abs.updatePositionsAfterBetaReduction();
+//		abs.setNext(new Abstraction(2));
+//		abs.updatePositionsAfterBetaReduction();
+		//nextNull is false
+		abs.setFamily(null);
+		abs.updatePositionsAfterBetaReduction();//does nothing
+		abs.setFamily(new Abstraction(1));
 		abs.updatePositionsAfterBetaReduction();
-		abs.setNext(new Abstraction(2));
+		abs.setNext(null);
+		abs.betaReduction(); //sets nextNull true
 		abs.updatePositionsAfterBetaReduction();
 	}
 
 	@Test
 	public void testDeleteAfterBetaReduction() {
-		abs.setNext(null);
+		//nextNull attribute in Abstraction class is false
 		abs.deleteAfterBetaReduction();
-		abs.setNext(new Abstraction(2));
+		abs.setNext(null);
+		abs.betaReduction(); //sets nextNull attribute to true
 		abs.deleteAfterBetaReduction();
 	}
 

@@ -668,7 +668,7 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * Updates Pointer after Beta Redction and returns new Worker
+	 * Updates Pointer after Beta Reduction and returns new Worker
 	 * 
 	 * @return new Worker
 	 */
