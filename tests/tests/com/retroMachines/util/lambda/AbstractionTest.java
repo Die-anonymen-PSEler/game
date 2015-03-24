@@ -124,8 +124,22 @@ public class AbstractionTest {
 		abs.setFamily(var1);
 		abs.betaReduction();
 		assertTrue(abs.getFamily().getType().equals(Constants.RetroStrings.APPLICATION_TYPE));
+		abs.setNext(new Abstraction(1));
+		abs.setFamily(null);
+		assertNull(abs.betaReduction());
 		abs.setNext(null);
 		assertEquals(0, abs.betaReduction().size());
+		Abstraction next = new Abstraction(1);
+		next.setNext(new Abstraction(2));
+		abs.setNext(next);
+		Variable family = new Variable(abs.getColor());
+		family.setFamily(new Abstraction(3));
+		family.setNext(new Abstraction(4));
+		abs.setFamily(family);
+		abs.betaReduction();
+		assertEquals(abs.getFamily().getNext(), family.getNext());
+		assertEquals(abs.getNext(), next.getNext());
+		
 	}
 
 	@Test
@@ -136,7 +150,6 @@ public class AbstractionTest {
 		assertFalse(abs.alphaConversion());
 		abs.setFamily(abs1);
 		assertTrue(abs.alphaConversion());
-		//TODO: validate b
 	}
 
 	@Test
