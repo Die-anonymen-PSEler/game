@@ -626,8 +626,8 @@ public class GameScreen extends AbstractScreen implements
 		}
 
 		private void initialize() {
-			super.printTree(gameController.getLevelTarget(), new Vector2(screenWidth / DEFAULTPADDING,
-					screenHeight * ONE_FIFTH));
+			super.printTree(gameController.getLevelTarget(),
+					new Vector2(screenWidth / DEFAULTPADDING, screenHeight * ONE_FOURTH));
 		}
 
 		@Override

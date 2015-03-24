@@ -132,6 +132,7 @@ public class LambdaUtil {
 	 * @return The root vertex of tree.
 	 */
 	private Vertex makeStartVertexHintOrTarget(JsonArray array, String type) {
+
 		if (array == null) {
 			return null;
 		}
@@ -140,16 +141,13 @@ public class LambdaUtil {
 		}
 		Vertex start = null;
 		int count = 1; // index of current element in array
-
+		Dummy pointer = new Dummy();//.next last Vertex
 		for (JsonElement t : array) {
 			// creating vertex
 			Vertex actVertex = getSpecializedVertex(t.getAsJsonObject());
 			// setting v.next
 			if (count == array.size()) {
 				actVertex.setNext(null); // lastVertex.next is null
-			} else {
-				JsonObject nextOb = array.get(count).getAsJsonObject();
-				actVertex.setNext(getSpecializedVertex(nextOb));
 			}
 			// setting family
 			actVertex.setFamily(makeStartVertexHintOrTarget(t.getAsJsonObject()
@@ -157,6 +155,10 @@ public class LambdaUtil {
 
 			if (count == 1) {
 				start = actVertex;
+				pointer.setNext(actVertex);
+			} else {
+				pointer.getNext().setNext(actVertex);
+				pointer.setNext(actVertex);
 			}
 			count++;
 		}

@@ -393,7 +393,7 @@ public class EvaluationExecutioner {
 	 * The nextStep was clicked.
 	 */
 	public static void nextStepClicked() {
-		if (!NextStep) {
+		if (!AutoStep && !NextStep) {
 			NextStep = true;
 			runNextEvaluationStep();
 		}
