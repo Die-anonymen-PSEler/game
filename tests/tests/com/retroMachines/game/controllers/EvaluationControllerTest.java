@@ -1,17 +1,21 @@
 package com.retroMachines.game.controllers;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.retroMachines.game.RetroLevel;
+
 
 
 //@RunWith(GdxTestRunner.class)
 public class EvaluationControllerTest {
 	
 	private EvaluationController evaluationController;
-	/*
+	private GameController gameController;
+	
 	@Before
 	public void setUp() throws Exception {
-		RetroLevel testLevel = new RetroLevel();
-		
-		evaluationController = new evaluationController(testLevel, null, new GameController(null));
 	}
 
 	@After
@@ -21,7 +25,5 @@ public class EvaluationControllerTest {
 
 	@Test
 	public void test() {
-		evaluationController
 	}
-	*/
 }
