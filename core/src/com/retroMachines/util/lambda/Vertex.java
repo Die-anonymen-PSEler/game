@@ -700,7 +700,11 @@ public abstract class Vertex {
 	 *            EvaluationController where next step should be called
 	 */
 	public void readInAnimation(Vector2 pos) {
-
+		//check if pos is null
+		//otherwise there would be a NullPointerException in following instruction
+		if (pos == null) {
+			return;
+		}
 		// Update Position Input
 		pos.x += Constants.GAMEELEMENT_ANIMATION_WIDTH;
 		pos.y += Constants.ABSTRACTION_INPUT;

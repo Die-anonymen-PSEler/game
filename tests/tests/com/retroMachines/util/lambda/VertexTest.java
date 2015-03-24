@@ -211,6 +211,9 @@ public class VertexTest {
 		abs.readInAnimation(new Vector2(0f, 0f));
 		assertEquals(4, EvaluationExecutioner.getActionList().size());
 		assertEquals(abs.getGameElement(), EvaluationExecutioner.getActionList().getLast().getGameElement());
+		abs.setFamily(null);
+		abs.readInAnimation(new Vector2(0, 0));
+		abs.readInAnimation(null);
 	}
 
 	@Test
