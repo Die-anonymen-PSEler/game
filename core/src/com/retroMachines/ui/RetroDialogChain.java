@@ -20,8 +20,8 @@ import com.retroMachines.util.Constants.ButtonStrings;
 /**
  * A DialogChain where every dialog will be displayed after the previous
  * 
- * @author lucabecker
- * 
+ * @author RetroFactory
+ * @version 1.0
  */
 public class RetroDialogChain {
 	
@@ -32,27 +32,27 @@ public class RetroDialogChain {
 	private final static float FOUR_FIFTH = (4 / 5f);
 
 	/**
-	 * List of DialogChains to be displayed
+	 * List of DialogChains to be displayed.
 	 */
 	private List<DialogChain> dialogs;
 
 	/**
-	 * Position of the DialogChain
+	 * Position of the DialogChain.
 	 */
 	private int position;
 
 	/**
-	 * Stage of dialogues
+	 * Stage of dialogues.
 	 */
 	private Stage stage;
 
 	/**
-	 * List of Listeners that check if a dialog is finished
+	 * List of Listeners that check if a dialog is finished.
 	 */
 	private List<DialogChainFinishedListener> listeners;
 
 	/**
-	 * constructor which initializes the two lists
+	 * Constructor which initializes the two lists.
 	 */
 	public RetroDialogChain() {
 		dialogs = new LinkedList<DialogChain>();
@@ -76,17 +76,17 @@ public class RetroDialogChain {
 	}
 
 	/**
-	 * adds a dialog to the list of dialogues to be displayed
-	 * @param title Title of the dialogue
-	 * @param image Image that should be displayed while the dialog is displayed
+	 * Adds a dialog to the list of dialogues to be displayed.
+	 * @param title The title of the dialogue.
+	 * @param image The image that should be displayed while the dialog is displayed.
 	 */
 	public void addDialog(String title, Texture image) {
 		dialogs.add(new DialogChain(title, image));
 	}
 
 	/**
-	 * shows the next dialog in the list
-	 * @param s the stage it is
+	 * Shows the next dialog in the list.
+	 * @param s The stage it is.
 	 */
 	public void show(Stage s) {
 		this.stage = s;
@@ -94,8 +94,8 @@ public class RetroDialogChain {
 	}
 
 	/**
-	 * adds a new listener to the list
-	 * @param listener the listener to be added
+	 * Adds a new listener to the list.
+	 * @param listener The listener to be added.
 	 */
 	public void registerListener(DialogChainFinishedListener listener) {
 		listeners.add(listener);
@@ -106,9 +106,9 @@ public class RetroDialogChain {
 		private Texture img;
 
 		/**
-		 * creates a new instance of DialogChain
-		 * @param title the title it should have
-		 * @param image the image that should be displayed
+		 * Creates a new instance of DialogChain.
+		 * @param title The title it should have.
+		 * @param image The image that should be displayed.
 		 */
 		public DialogChain(String title, Texture image) {
 			super(title, RetroAssetManager.getMenuSkin());
@@ -170,6 +170,11 @@ public class RetroDialogChain {
 
 	}
 
+	/**
+	 * Interface for the listner that controls if the dialog chain is finished.
+	 * @author RetroFactory
+	 * @version 1.0
+	 */
 	public static interface DialogChainFinishedListener {
 
 		/**

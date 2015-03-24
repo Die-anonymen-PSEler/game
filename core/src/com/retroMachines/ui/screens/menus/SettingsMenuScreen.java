@@ -20,7 +20,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * sound of the game.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class SettingsMenuScreen extends MenuScreen {
 
@@ -43,7 +43,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	private final static float SLIDERBACKGROUNDSIZE = (1f / 75f);
 
 	/**
-	 * 1 The setting controller, so changes can be committed.
+	 * The setting controller, so changes can be committed.
 	 */
 	private SettingController settingController;
 
@@ -157,7 +157,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	 * Listener for the louder button.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	private class LouderButtonClickListener extends ClickListener {
 		@Override
@@ -175,7 +175,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	 * Listener for the quieter button.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	private class QuieterButtonClickListener extends ClickListener {
 		@Override
@@ -193,7 +193,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	 * Listener for the volume on off button.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	private class SoundOnOffButtonClickListener extends ClickListener {
 		@Override
@@ -216,7 +216,7 @@ public class SettingsMenuScreen extends MenuScreen {
 	 * Listener for ProfileSettingsview
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	private class ProfileSettingsButtonClickListener extends ClickListener {
 		@Override

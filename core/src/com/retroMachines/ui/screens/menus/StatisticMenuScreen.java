@@ -14,8 +14,8 @@ import com.retroMachines.util.Constants;
  * The statistic menu screen displays the statistics of the currently active
  * profile.
  * 
- * @author Larissa
- * 
+ * @author RetroFactory
+ * @version 1.0
  */
 public class StatisticMenuScreen extends MenuScreen {
 

@@ -38,7 +38,7 @@ import com.retroMachines.util.lambda.Vertex;
  * within the render method of this class.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class GameScreen extends AbstractScreen implements
 		DialogChainFinishedListener {
@@ -52,7 +52,7 @@ public class GameScreen extends AbstractScreen implements
 	private final static float DIALOGTEXTWIDTH = (7f / 10f);
 
 	/**
-	 * a render for displaying the map and everything else to the screen.
+	 * A render for displaying the map and everything else to the screen.
 	 */
 	private OrthogonalTiledMapRenderer renderer;
 
@@ -62,22 +62,22 @@ public class GameScreen extends AbstractScreen implements
 	private OrthographicCamera camera;
 
 	/**
-	 * reference to the gameController for information regarding the user input
+	 * Reference to the gameController for information regarding the user input.
 	 */
 	private final GameController gameController;
 
 	/**
-	 * the dialog which is shown when hintButton is pressed
+	 * The dialog which is shown when hintButton is pressed.
 	 */
 	private HintDialog hintDialog;
 
 	/**
-	 * the dialog which is shown when pauseButton is pressed
+	 * The dialog which is shown when pauseButton is pressed.
 	 */
 	private PauseDialog pauseDialog;
 
 	/**
-	 * the dialog which is shown when targetButton is pressed
+	 * The dialog which is shown when targetButton is pressed.
 	 */
 	private TaskDialog taskDialog;
 
@@ -86,19 +86,16 @@ public class GameScreen extends AbstractScreen implements
 	 */
 
 	/**
-	 * like in css the order goes top-> right -> bottom -> left
+	 * Like in CSS the order goes top-> right -> bottom -> left.
 	 */
 	private final int[] mapBounds;
 
-	/**
-	 * 
-	 */
 	private final float[] camBounds;
 
 	/**
 	 * True if LevelMenu is shown. No other Button clicks like steering of
 	 * RetroMan are now possible True if LevelMenu, Hint or Task is shown. No
-	 * other ButtonClicks like steering of RetroMan are now possible
+	 * other ButtonClicks like steering of RetroMan are now possible.
 	 */
 	private boolean popupScreenIsShown;
 
@@ -114,10 +111,10 @@ public class GameScreen extends AbstractScreen implements
 	private Button buttonA;
 
 	/**
-	 * 
-	 * @param game
-	 * @param gameController
-	 * @param leftiMode
+	 * Constructor of the GameScreen. It initializes some attributes.
+	 * @param game The game of the screen.
+	 * @param gameController The controller of the game.
+	 * @param leftMode If the left-mode is activated.
 	 */
 	public GameScreen(RetroMachines game, GameController gameController,
 			boolean leftMode) {
@@ -127,69 +124,6 @@ public class GameScreen extends AbstractScreen implements
 		mapBounds = new int[4];
 		camBounds = new float[4];
 		initialize();
-	}
-
-	public void initialize() {
-
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 35, 20);
-		camera.zoom -= ZOOM_ADDITION;
-		camera.update();
-
-		stage = new Stage();
-		inputMultiplexer.addProcessor(this);
-
-		drawButtons();
-
-		// instanciate Dialogs
-		hintDialog = new HintDialog("", skin, "default");
-		pauseDialog = new PauseDialog("", skin, "default");
-		taskDialog = new TaskDialog("", skin, "default");
-	}
-
-	/**
-	 * Is called when this screen should be displayed. Starts to play the sound.
-	 */
-	@Override
-	public void show() {
-		Gdx.input.setInputProcessor(inputMultiplexer);
-	}
-
-	/**
-	 * Assigns a new TiledMap to the screen.
-	 * 
-	 * @param map
-	 *            the tiled map for this screen.
-	 */
-	public void setMap(TiledMap map) {
-		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
-		MapProperties prop = map.getProperties();
-		mapBounds[1] = prop.get("width", Integer.class);
-		mapBounds[0] = prop.get("height", Integer.class);
-	}
-
-	@Override
-	public void render(float delta) {
-
-		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		// Double stage.act() and draw();
-		// super.render(delta);
-
-		inputDetection();
-
-		updateCameraPosition(gameController.getRetroMan().getPos().x,
-				gameController.getRetroMan().getPos().y);
-		camera.update();
-
-		renderer.setView(camera);
-		renderer.render();
-
-		gameController.update(delta);
-		gameController.getRetroMan().render(renderer, delta);
-
-		stage.act(Gdx.graphics.getDeltaTime());
-		stage.draw();
 	}
 
 	private void updateCameraPosition(float x, float y) {
@@ -345,10 +279,44 @@ public class GameScreen extends AbstractScreen implements
 		}
 	}
 
-	/*
-	 * Getter and Setter
+	/**
+	 * Is called when this screen should be displayed. Starts to play the sound.
 	 */
+	@Override
+	public void show() {
+		Gdx.input.setInputProcessor(inputMultiplexer);
+	}
 
+	/**
+	 * Method to render the screen.
+	 */
+	@Override
+	public void render(float delta) {
+
+		Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		// Double stage.act() and draw();
+		// super.render(delta);
+
+		inputDetection();
+
+		updateCameraPosition(gameController.getRetroMan().getPos().x,
+				gameController.getRetroMan().getPos().y);
+		camera.update();
+
+		renderer.setView(camera);
+		renderer.render();
+
+		gameController.update(delta);
+		gameController.getRetroMan().render(renderer, delta);
+
+		stage.act(Gdx.graphics.getDeltaTime());
+		stage.draw();
+	}
+
+	/**
+	 * Method to finish the screen.
+	 */
 	@Override
 	public void dialogFinished() {
 		popupScreenIsShown = false;
@@ -403,11 +371,53 @@ public class GameScreen extends AbstractScreen implements
 		return false;
 	}
 
+	/**
+	 * Method for initializing the attributes.
+	 */
+	public void initialize() {
+
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 35, 20);
+		camera.zoom -= ZOOM_ADDITION;
+		camera.update();
+
+		stage = new Stage();
+		inputMultiplexer.addProcessor(this);
+
+		drawButtons();
+
+		// instanciate Dialogs
+		hintDialog = new HintDialog("", skin, "default");
+		pauseDialog = new PauseDialog("", skin, "default");
+		taskDialog = new TaskDialog("", skin, "default");
+	}
+
+	/**
+	 * Assigns a new TiledMap to the screen.
+	 * 
+	 * @param map
+	 *            The tiled map for this screen.
+	 */
+	public void setMap(TiledMap map) {
+		renderer = new OrthogonalTiledMapRenderer(map, 1 / 64f);
+		MapProperties prop = map.getProperties();
+		mapBounds[1] = prop.get("width", Integer.class);
+		mapBounds[0] = prop.get("height", Integer.class);
+	}
+
+	/**
+	 * Method to show the validation error.
+	 * @param s The String where the error has occurred.
+	 */
 	public void showValidateError(String s) {
 		ErrorDialog error = new ErrorDialog("", skin, "default", s);
 		error.show(stage);
 	}
 
+	/**
+	 * Method to show the dialog chain.
+	 * @param dialogChain The chain that is shown.
+	 */
 	public void showDialogChain(RetroDialogChain dialogChain) {
 		dialogChain.show(stage);
 		dialogChain.registerListener(this);
@@ -419,9 +429,10 @@ public class GameScreen extends AbstractScreen implements
 	// -----------------------------------
 
 	/**
-	 * Listener when the user clicks on Button Interact
+	 * Listener when the user clicks on Button Interact.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class InteractButtonClickListener extends ClickListener {
 		@Override
@@ -438,9 +449,10 @@ public class GameScreen extends AbstractScreen implements
 	// ------------------------------
 
 	/**
-	 * Button which starts Evalution Gamecontroller checks if possible or not
+	 * Button which starts the evaluation. The GameController checks if possible or not.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class TryEvaluationButtonClickListener extends ClickListener {
 		@Override
@@ -450,9 +462,10 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * Button which gives a little hint to make the level
+	 * Button which gives a little hint to make the level.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class GetHintClickListener extends ClickListener {
 		@Override
@@ -463,9 +476,10 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * Button which shows the Task of the Level
+	 * Button which shows the Task of the Level.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class GetTaskClickListener extends ClickListener {
 		@Override
@@ -476,9 +490,10 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * Button which shows the Level Menu and interrupts the Game
+	 * Button which shows the Level Menu and interrupts the Game.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class MenuClickListener extends ClickListener {
 		@Override
@@ -489,9 +504,10 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * Button which shows the Level Menu and interrupts the Game
+	 * Button which shows the Level Menu and interrupts the Game.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class LevelMenuClickListener extends ClickListener {
 		@Override
@@ -502,9 +518,10 @@ public class GameScreen extends AbstractScreen implements
 	}
 
 	/**
-	 * Button which shows the Level Menu and interrupts the Game
+	 * Button which shows the Level Menu and interrupts the Game.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class BackToGameClickListener extends ClickListener {
 		@Override

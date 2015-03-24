@@ -9,10 +9,10 @@ import com.retroMachines.util.Constants;
 
 /**
  * This class is part of the model of RetroMachines. Vertices of the Graph of
- * Gameelements extends this class
+ * GameElements extends this class.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public abstract class Vertex {
 
@@ -29,7 +29,7 @@ public abstract class Vertex {
 	private Vertex family;
 
 	/**
-	 * unique id of the color of Variable.
+	 * Unique ID of the color of Variable.
 	 */
 	private int color;
 
@@ -44,12 +44,12 @@ public abstract class Vertex {
 	private Vector2 position;
 
 	/**
-	 * the width of this vertex as number of Vertex in his family
+	 * The width of this vertex as number of Vertex in his family.
 	 */
 	private int width;
 
 	/**
-	 * Width of all Vertex next to this
+	 * Width of all Vertex next to this.
 	 */
 	private int nextWidth;
 
@@ -63,6 +63,9 @@ public abstract class Vertex {
 	 */
 	private LinkedList<Integer> nextColorList;
 
+	/**
+	 * The game element.
+	 */
 	protected GameElement gameElement;
 
 	// --------------------------
@@ -70,7 +73,7 @@ public abstract class Vertex {
 	// --------------------------
 
 	/**
-	 * Default Public Constructor for Dummy Element
+	 * Default public constructor for a dummy element.
 	 */
 	protected Vertex() {
 		isInDepot = false;
@@ -80,7 +83,7 @@ public abstract class Vertex {
 	 * Creates a new instance of the Vertex class.
 	 * 
 	 * @param color
-	 *            color to set.
+	 *            The color to set.
 	 */
 	protected Vertex(int color) {
 		this.color = color;
@@ -98,52 +101,57 @@ public abstract class Vertex {
 	// --------------------------
 	
 	/**
-	 * returns GameElement according to this vertex
+	 * Getter for the game element according to this vertex.
 	 * 
-	 * @return
+	 * @return The game element.
 	 */
 	abstract public GameElement getGameElement();
 	
 	/**
-	 * Returns clone of this vertex without family and next
+	 * Getter for the clone of this vertex without family and next.
 	 * 
-	 * @return clone of this
+	 * @return The clone of this.
 	 */
 	abstract public Vertex getClone();
 
 	/**
-	 * Creates a clone of this Vertex without Next and his hole Family
+	 * Creates a clone of this Vertex without Next and his hole Family.
 	 * 
-	 * @return deep copy of next
+	 * @return The deep copy of the next.
 	 */
 	abstract public Vertex cloneMe();
 
 	/**
-	 * Creates a clone of this Vertex and his hole Family
+	 * Creates a clone of this Vertex and his hole Family.
 	 * 
-	 * @return clone of Vertex with hole family and next coned
+	 * @return Clone of Vertex with hole family and next coned.
 	 */
 	abstract public Vertex cloneFamily();
 
+	/**
+	 * Getter for the type of the element.
+	 * 
+	 * @return The type.
+	 */
 	abstract public String getType();
 
 	/**
-	 * Returns Vertex with should be added to the ResultTree
+	 * Returns Vertex with should be added to the ResultTree.
 	 * 
-	 * @return Returns null if ther is no Vertex wich should be added
+	 * @return Returns null if there is no Vertex which should be added.
 	 */
 	abstract public Vertex getEvaluationResult();
 
 	/**
-	 * Update Position of Family if Worker was deleted in BetaReduction
+	 * Update Position of Family if Worker was deleted in BetaReduction.
 	 */
 	abstract public void updatePositionsAfterBetaReduction();
 
 	/**
-	 * Removes Gameelement from screen if this type of Vertex needs it
+	 * Removes the GameElement from screen if this type of Vertex needs it.
 	 * 
 	 * @param e
-	 *            Instance of Evaluation Controller for next Steps
+	 *            Instance of Evaluation Controller for next Steps.
 	 */
 	abstract public void deleteAfterBetaReduction();
 
@@ -171,21 +179,21 @@ public abstract class Vertex {
 	// ----------------------------------------
 
 	/**
-	 * return vertex witch will be replaced in beta Reduction
+	 * Returns the vertex which will be replaced in the beta-reduction.
 	 * 
-	 * @return return null if no vertex should be read in
+	 * @return Null if no vertex should be read in.
 	 */
 	abstract public Vertex getReadIn();
 
 	/**
-	 * Reorganizes Position of Vertex if needed
+	 * Reorganizes Position of Vertex if needed.
 	 * 
 	 * @param start
-	 *            Offset of positon perhaps Padding to border ...
+	 *            Offset of position perhaps Padding to border.
 	 * @param newPos
-	 *            new Position of this Vertex in num Of GameelementWidths
+	 *            The new Position of this Vertex in number of the GameElementWidths.
 	 * @param e
-	 *            instance of evaluationController for next steps
+	 *            Instance of evaluationController for next steps.
 	 */
 	abstract public void reorganizePositions(Vector2 start, Vector2 newPos);
 	
@@ -287,12 +295,12 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Set Game element and family to given
+	 * Set Game element and family to given.
 	 * 
 	 * @param newPos
-	 *            as Number of GameelementWidths
+	 *            As number of the GameElementWidths.
 	 * @param startpos
-	 *            StartPosition of actual worker for dummys
+	 *            StartPosition of actual worker for the dummies.
 	 */
 	private void setOtherGameelementPosition(Vector2 newPos, Vector2 startPos,
 			Vector2 paddingScreen) {
@@ -327,23 +335,23 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * method to set new color for an vertex (e.g after alphaConversion)
+	 * Method to set new color for an vertex (e.g after alphaConversion).
 	 * 
 	 * @param vertexColor
-	 *            vertex, which color has changed
+	 *            The vertex, which color has changed.
 	 * @param mappedColor
-	 *            new color of vertex
+	 *            The new color of the vertex.
 	 */
 	protected static void updateMap(int vertexColor, int mappedColor) {
 		ColorMap.put(vertexColor, mappedColor);
 	}
 
 	/**
-	 * returns mapped color of vertex
+	 * Returns the mapped color of the vertex.
 	 * 
 	 * @param vertexColor
-	 *            original Color of vertex
-	 * @return mapped color of vertex
+	 *            Original color of the vertex.
+	 * @return The mapped color of the vertex.
 	 */
 	protected static int getMappedColor(int vertexColor) {
 		return ColorMap.get(vertexColor);
@@ -355,11 +363,11 @@ public abstract class Vertex {
 	// ---------------------------------------------------
 
 	/**
-	 * replace all Abstractions with OldColor nect to this vertex and in his family
+	 * Replace all Abstractions with OldColor next to this vertex and in his family.
 	 * 
 	 * @param oldColor
-	 *            Color which should be replaced
-	 * @return true if something is replaced false otherwise
+	 *            Color which should be replaced.
+	 * @return True if something is replaced. False otherwise.
 	 */
 	protected boolean searchEqualAbstractions(int oldColor, int newColor) {
 		boolean retValue = false;
@@ -429,9 +437,9 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Replace all Color of Vertices with oldColor with  given new Color in whole family and next
-	 * @param newColor new Color of vertex
-	 * @param oldColor old Color of vertex
+	 * Replace all Color of Vertices with oldColor with  given new Color in whole family and next.
+	 * @param newColor The new color of the vertex.
+	 * @param oldColor The old color of the vertex.
 	 */
 	protected void recolorFamily(int newColor, int oldColor) {
 		// Update family Color List
@@ -464,12 +472,11 @@ public abstract class Vertex {
 	}	
 
 	/**
-	 * replaces all Elements of a specific color in family of start Vertex
+	 * Replaces all Elements of a specific color in family of start Vertex.
 	 * 
 	 * @param start
-	 *            vertex which is parent of this Vertex and starts the beta
-	 *            Reduction
-	 * @return
+	 *            Vertex which is parent of this Vertex and starts the beta-reduction.
+	 * @return The new family.
 	 */
 	protected LinkedList<Vertex> replaceInFamily(Vertex start) {
 
@@ -532,9 +539,9 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * returns List of Vertex and his hole Family Vertex
+	 * Returns the list of the vertex and his whole family vertex.
 	 * 
-	 * @return List of Vertex
+	 * @return List of Vertex.
 	 */
 	protected LinkedList<Vertex> getVertexList() {
 		LinkedList<Vertex> returnList = new LinkedList<Vertex>();
@@ -548,7 +555,7 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * Updates ColorList of this Vertex and family
+	 * Updates ColorList of this vertex and family.
 	 */
 	protected void updateColorList(LinkedList<Integer> clonedList, int color) {
 		// Update Color List in vertex
@@ -563,6 +570,10 @@ public abstract class Vertex {
 		}
 	}
 
+	/**
+	 * Method to read in the family animation.
+	 * @param pos The position.
+	 */
 	protected void readInFamilyAnimation(Vector2 pos) {
 		if (this.getNext() != null) {
 			this.getNext().readInFamilyAnimation(pos);
@@ -576,10 +587,10 @@ public abstract class Vertex {
 	}
 	
 	/**
-	 * Set Game element and family to given
+	 * Set the game element and family to given position.
 	 * 
 	 * @param newPos
-	 *            as Number of GameelementWidths
+	 *            As number of the gameElementWidths.
 	 */
 	protected void setGameelementPosition(Vector2 start, Vector2 newPos) {
 
@@ -656,6 +667,9 @@ public abstract class Vertex {
 		return (this.getType().equals(other.getType()) && this.getColor() == other.getColor());
 	}
 
+	/**
+	 * Method to update the width.
+	 */
 	public void updateWidth() {
 		// Update width
 		if (this.getFamily() != null) {
@@ -668,9 +682,9 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * Updates Pointer after Beta Reduction and returns new Worker
+	 * Updates pointer after beta-reduction and returns new worker.
 	 * 
-	 * @return new Worker
+	 * @return The new worker.
 	 */
 	public Vertex updatePointerAfterBetaReduction() {
 
@@ -692,12 +706,12 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * Read In Animation for Vertex and his family
+	 * Read in the animation for the vertex and his family.
 	 * 
 	 * @param pos
-	 *            Position of Worker
+	 *            Position of the worker.
 	 * @param e
-	 *            EvaluationController where next step should be called
+	 *            EvaluationController where next step should be called.
 	 */
 	public void readInAnimation(Vector2 pos) {
 		//check if pos is null
@@ -719,13 +733,13 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * update coordinate of gameelement with given difference(Num of
-	 * Gameelemnts)
+	 * Update coordinate of the game element with given difference(number of
+	 * game elements).
 	 * 
 	 * @param difX
-	 *            dif on x axis
+	 *            The difference on the x axis.
 	 * @param difY
-	 *            dif on y axis
+	 *            The difference on the y axis.
 	 */
 	public void updateGameelementPosition(int difX, int difY) {
 		if (this.getNext() != null) {
@@ -746,6 +760,11 @@ public abstract class Vertex {
 				true);
 	}
 	
+	/**
+	 * Method to control if the vertex is in a depot.
+	 * 
+	 * @return True if it is in a depot. False otherwise.
+	 */
 	public boolean isInDepot() {
 		return isInDepot;
 	}
@@ -755,18 +774,18 @@ public abstract class Vertex {
 	 */
 	
 	/**
-	 * Getter for the familyColorList
+	 * Getter for the familyColorList.
 	 * 
-	 * @return The familyColorList of this Vertex
+	 * @return The familyColorList of this Vertex.
 	 */
 	public LinkedList<Integer> getFamilyColorList() {
 		return familyColorList;
 	}
 
 	/**
-	 * Getter for the familyColorList
+	 * Getter for a copy of the familyColorList.
 	 * 
-	 * @return The familyColorList of this Vertex
+	 * @return The familyColorList of this Vertex.
 	 */
 	public LinkedList<Integer> getCopyOfFamilyColorList() {
 		LinkedList<Integer> copyList = new LinkedList<Integer>();
@@ -777,18 +796,18 @@ public abstract class Vertex {
 	}
 
 	/**
-	 * Getter for the nextColorList
+	 * Getter for the nextColorList.
 	 * 
-	 * @return The nextColorList of this Vertex
+	 * @return The nextColorList of this Vertex.
 	 */
 	public LinkedList<Integer> getNextColorList() {
 		return nextColorList;
 	}
 
 	/**
-	 * Getter for the nextColorList
+	 * Getter for a copy the nextColorList.
 	 * 
-	 * @return The nextColorList of this Vertex
+	 * @return The nextColorList of this Vertex.
 	 */
 	public LinkedList<Integer> getCopyOfNextColorList() {
 		LinkedList<Integer> copyList = new LinkedList<Integer>();
@@ -825,22 +844,43 @@ public abstract class Vertex {
 		return next;
 	}
 
+	/**
+	 * Getter for the position.
+	 * 
+	 * @return The position.
+	 */
 	public Vector2 getPosition() {
 		return pos;
 	}
 
+	/**
+	 * Getter for the width.
+	 * @return The width.
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Getter for the width of the next vertex.
+	 * @return The width of the next vertex.
+	 */
 	public int getNextWidth() {
 		return nextWidth;
 	}
 
+	/**
+	 * Setter for the width of the next vertex.
+	 * @param w The new width.
+	 */
 	public void setNextWidth(int w) {
 		nextWidth = w;
 	}	
 	
+	/**
+	 * Setter for the width of this vertex.
+	 * @param w The new width.
+	 */
 	public void setWidth(int w) {
 		width = w;
 	}
@@ -850,7 +890,7 @@ public abstract class Vertex {
 	 * Setter for next Vertex in the lambda-tree.
 	 * 
 	 * @param next
-	 *            Next vertex that is to set.
+	 *            Next vertex that is to be set.
 	 */
 	public void setNext(Vertex next) {
 		this.next = next;
@@ -860,37 +900,46 @@ public abstract class Vertex {
 	 * Setter for the family tree of this vertex.
 	 * 
 	 * @param family
-	 *            The start vertex for the family that is to set.
-	 * @return false if type of Vertex is Variable , true otherwise
+	 *            The start vertex for the family that is to be set.
+	 * @return False if type of Vertex is Variable. True otherwise.
 	 */
 	public void setFamily(Vertex family) {
 		this.family = family;
 	}
 
 	/**
-	 * Setter for the familyColorList
+	 * Setter for the familyColorList.
 	 * 
 	 * @param familyColorList
-	 *            FamilyColorList that is to set
+	 *            FamilyColorList that is to be set.
 	 */
 	public void setFamilyColorlist(LinkedList<Integer> familyColorList) {
 		this.familyColorList = familyColorList;
 	}
 
 	/**
-	 * Setter for the nextColorList
+	 * Setter for the nextColorList.
 	 * 
 	 * @param nextColorList
-	 *            NextColorList that is to set
+	 *            NextColorList that is to be set.
 	 */
 	public void setNextColorlist(LinkedList<Integer> nextColorList) {
 		this.nextColorList = nextColorList;
 	}
 
+	/**
+	 * Setter for the position of the vertex.
+	 * @param p The new position.
+	 */
 	public void setPosition(Vector2 p) {
 		pos = p;
 	}
 
+	/**
+	 * Setter for setting if the vertex is in a depot.
+	 * 
+	 * @param b If the vertex is in a depot.
+	 */
 	public void setIsInDepot(boolean b) {
 		isInDepot = b;
 	}

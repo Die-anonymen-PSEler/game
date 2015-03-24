@@ -8,8 +8,10 @@ import com.retroMachines.game.gameelements.LightElement;
 
 /**
  * 
- * @author RetroFactory
+ * Class for the application of the lambda-term.
  * 
+ * @author RetroFactory
+ * @version 1.0
  */
 public class Application extends Vertex {
 
@@ -18,14 +20,14 @@ public class Application extends Vertex {
 	// --------------------------
 
 	/**
-	 * Creates a clone for beta reduction
+	 * Creates a clone for beta reduction.
 	 * 
 	 * @param next
-	 *            next Clone
+	 *            The next clone.
 	 * @param family
-	 *            family Clone
+	 *            The family clone.
 	 * @param familyColorlist
-	 *            familyColorList of Clone
+	 *            The familyColorList of clone.
 	 */
 	private Application(Vertex next, Vertex family,
 			LinkedList<Integer> familyColorlist) {
@@ -48,8 +50,8 @@ public class Application extends Vertex {
 	// ------------------------------
 
 	/**
-	 * this method does nothing because there is no alpha conversion for
-	 * applications
+	 * This method does nothing because there is no alpha conversion for
+	 * applications.
 	 * @return false
 	 */
 	@Override
@@ -59,7 +61,7 @@ public class Application extends Vertex {
 	}
 
 	/**
-	 * Fulfills one step of beta-reduction for a Abstraction
+	 * Fulfills one step of beta-reduction for a Abstraction.
 	 * 
 	 * @return True if this application has changed, false when an error
 	 *         appeared.
@@ -84,9 +86,9 @@ public class Application extends Vertex {
 	// ---------------------------------------------------
 
 	/**
-	 * Creates a clone of this Vertex without Next, but with his whole Family
+	 * Creates a clone of this Vertex without Next, but with his whole Family.
 	 * 
-	 * @return a deep copy of this vertex except the next attribute in vertex representation
+	 * @return A deep copy of this vertex except the next attribute in vertex representation.
 	 */
 	@Override
 	public Vertex cloneMe() {
@@ -106,9 +108,9 @@ public class Application extends Vertex {
 	}
 
 	/**
-	 * Creates a clone of this Vertex and his whole Family
+	 * Creates a clone of this Vertex and his whole Family.
 	 * 
-	 * @return a deep copy of this vertex including next and family attribute
+	 * @return A deep copy of this vertex including next and family attribute.
 	 */
 	@Override
 	public Vertex cloneFamily() {
@@ -132,6 +134,9 @@ public class Application extends Vertex {
 		return clone;
 	}
 
+	/**
+	 * Method to reorganize the positions.
+	 */
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		// Start next Step no reorganization is needed
@@ -139,6 +144,9 @@ public class Application extends Vertex {
 
 	}
 
+	/**
+	 * Method to delete the application after the beta-reduction.
+	 */
 	@Override
 	public void deleteAfterBetaReduction() {
 		// Remove element and Start next Step of BetaReduction
@@ -146,6 +154,9 @@ public class Application extends Vertex {
 
 	}
 
+	/**
+	 * Method to update the positions after the beta-reduction.
+	 */
 	@Override
 	public void updatePositionsAfterBetaReduction() {
 		// update Gameelement Postions after Gameelement of this was deleted
@@ -157,12 +168,22 @@ public class Application extends Vertex {
 	 * Getter and Setter
 	 */
 	
+	/**
+	 * Getter for the evaluation result.
+	 * 
+	 * @return The evaluation result.
+	 */
 	@Override
 	public Vertex getEvaluationResult() {
 		// Returns null because the Application is no Part of Evaluation Result
 		return null;
 	}
 	
+	/**
+	 * Getter for the game element according to this vertex.
+	 * 
+	 * @return The element.
+	 */
 	@Override
 	public GameElement getGameElement() {
 		if (gameElement == null) {
@@ -170,17 +191,32 @@ public class Application extends Vertex {
 		}
 		return gameElement;
 	}
-
+	
+	/**
+	 * Getter for the type.
+	 * 
+	 * @return The type.
+	 */
 	@Override
 	public String getType() {
 		return "Application";
 	}
 
+	/**
+	 * Getter for what was read in.
+	 * 
+	 * @return What was read.
+	 */
 	@Override
 	public Vertex getReadIn() {
 		return null;
 	}
 
+	/**
+	 * Getter for the clone.
+	 * 
+	 * @return The clone.
+	 */
 	@Override
 	public Vertex getClone() {
 		Vertex clone = new Application(null, null, null);

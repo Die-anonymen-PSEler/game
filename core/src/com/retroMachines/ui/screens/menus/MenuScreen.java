@@ -22,7 +22,7 @@ import com.retroMachines.util.Constants;
  * On main part (the left side) and a small part for buttons and so on.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public abstract class MenuScreen extends AbstractScreen {
 
@@ -55,12 +55,18 @@ public abstract class MenuScreen extends AbstractScreen {
 	 */
 	protected abstract void initialize();
 
+	/**
+	 * Method to show the menu screen.
+	 */
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		super.show();
 	}
 
+	/**
+	 * Method to hide the menu screen.
+	 */
 	@Override
 	public void hide() {
 		Gdx.input.setInputProcessor(null);
@@ -69,7 +75,7 @@ public abstract class MenuScreen extends AbstractScreen {
 
 	/**
 	 * Renders the Stage to the Screen.
-	 * @param delta deltatime
+	 * @param delta The delta time.
 	 */
 	@Override
 	public void render(float delta) {
@@ -80,6 +86,10 @@ public abstract class MenuScreen extends AbstractScreen {
 
 	}
 
+	/*
+	 * @see com.retroMachines.ui.screens.AbstractScreen#keyDown(int)
+	 */
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.BACK || keycode == Keys.BACKSPACE) {
@@ -126,10 +136,10 @@ public abstract class MenuScreen extends AbstractScreen {
 	}
 	
 	/**
-	 * makes the title of the screen
-	 * @param name name of the title
-	 * @param fontsize size of the font
-	 * @return the title made
+	 * Makes the title of the screen.
+	 * @param name The name of the title.
+	 * @param fontsize The size of the font.
+	 * @return The created title.
 	 */
 	public Label makeTitle(String name, float fontsize) {
 		Label title = new Label(name, skin);
@@ -143,7 +153,7 @@ public abstract class MenuScreen extends AbstractScreen {
 	 * Button to return to the MainMenuScreen.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	protected class ReturnButtonClickListener extends ClickListener {
 		@Override

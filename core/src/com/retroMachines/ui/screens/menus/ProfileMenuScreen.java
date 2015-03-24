@@ -21,27 +21,18 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * profile.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class ProfileMenuScreen extends MenuScreen implements
 		OnProfileChangedListener {
 
 	private final static float FONTSIZE_THREE = 3f;
 	private final static float FONTSIZE_TWO_FIVE = 2.5f;
-
-	/**
-	 * 
-	 */
+	
 	private ProfileController profileController;
 
-	/**
-	 * 
-	 */
 	private DeleteDialog deleteDialog;
 
-	/**
-	 * 
-	 */
 	private List<String> profileList;
 
 	/**
@@ -130,6 +121,9 @@ public class ProfileMenuScreen extends MenuScreen implements
 
 	}
 
+	/**
+	 * Method for changing the profile.
+	 */
 	@Override
 	public void profileChanged() {
 		profileList.clearItems();
@@ -153,6 +147,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	 * Listener when the button for creating a profile has been clicked.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class AddProfileButtonClickListener extends ClickListener {
 		@Override
@@ -170,6 +165,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	 * Listener when the button for creating a profile has been clicked.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class DeleteProfileButtonClickListener extends ClickListener {
 		@Override
@@ -188,6 +184,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	 * Afterwards the main menu is shown.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class SelectProfileButtonClickListener extends ClickListener {
 

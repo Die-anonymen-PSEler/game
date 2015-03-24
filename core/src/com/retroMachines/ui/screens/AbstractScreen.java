@@ -14,7 +14,7 @@ import com.retroMachines.RetroMachines;
  * in the game.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public abstract class AbstractScreen implements Screen, InputProcessor {
 
@@ -46,22 +46,22 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 	protected Stage stage;
 
 	/**
-	 * The skin of all Screens
+	 * The skin of all Screens.
 	 */
 	protected Skin skin;
 
 	/**
-	 * input multiplexer for multiple input processors
+	 * Input multiplexer for multiple input processors.
 	 */
 	protected InputMultiplexer inputMultiplexer;
 
 	/**
-	 * width of the screen
+	 * Width of the screen.
 	 */
 	protected float screenWidth;
 	
 	/**
-	 * height of the screen
+	 * Height of the screen.
 	 */
 	protected float screenHeight;
 
@@ -69,7 +69,7 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 	 * The screen class.
 	 * 
 	 * @param game
-	 *            the main game class
+	 *            The main game class.
 	 */
 	protected AbstractScreen(RetroMachines game) {
 		stage = new Stage();
@@ -91,33 +91,59 @@ public abstract class AbstractScreen implements Screen, InputProcessor {
 		stage.draw();
 	}
 
+	/**
+	 * Method to resize the screen.
+	 * 
+	 * @param width
+	 * 			The new width.
+	 * @param height
+	 * 			The new height.
+	 */
 	@Override
 	public void resize(int width, int height) {
 
 	}
 
+	/**
+	 * The method to show the screen.
+	 */
 	@Override
 	public void show() {
 
 	}
 
+	/**
+	 * The method to hide the screen.
+	 */
 	@Override
 	public void hide() {
 	}
 
+	/**
+	 * The method to pause the screen.
+	 */
 	@Override
 	public void pause() {
 	}
 
+	/**
+	 * The method to resume the screen.
+	 */
 	@Override
 	public void resume() {
 	}
 
+	/**
+	 * The method to dispose the screen.
+	 */
 	@Override
 	public void dispose() {
 
 	}
 
+	/**
+	 * The method that controls if the key is pressed.
+	 */
 	@Override
 	public boolean keyDown(int keycode) {
 		return false;

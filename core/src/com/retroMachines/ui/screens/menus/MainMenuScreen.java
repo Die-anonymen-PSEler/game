@@ -20,7 +20,7 @@ import com.retroMachines.util.MusicManager;
  * the game and is displayed right after the application has finished loading.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class MainMenuScreen extends MenuScreen {
 
@@ -113,6 +113,9 @@ public class MainMenuScreen extends MenuScreen {
 		// game.getSettingController().add(this);
 	}
 
+	/**
+	 * Method to show the main menu.
+	 */
 	@Override
 	public void show() {
 		MusicManager.getInstance().startMusic();

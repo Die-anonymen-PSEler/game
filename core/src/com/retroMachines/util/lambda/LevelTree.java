@@ -5,7 +5,7 @@ package com.retroMachines.util.lambda;
  * which stores the lambda terms.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class LevelTree {
 
@@ -18,7 +18,7 @@ public class LevelTree {
 	 * Creates the tree object of a given vertex.
 	 * 
 	 * @param start
-	 *            root of tree to create
+	 *            The root of tree to create.
 	 */
 	public LevelTree(Vertex start) {
 		this.start = start;
@@ -37,11 +37,11 @@ public class LevelTree {
 	// }
 
 	/**
-	 * compares this tree with given one
+	 * Compares this tree with given one.
 	 * 
 	 * @param tree
-	 *            tree object to be compared with this
-	 * @return true if and only if this.start.equals(tree.start) returns true
+	 *            The tree object to be compared with this.
+	 * @return True if and only if this.start.equals(tree.start) returns true.
 	 */
 	public boolean equalsTree(LevelTree tree) {
 		if (tree == null) {
@@ -59,7 +59,7 @@ public class LevelTree {
 	/**
 	 * Getter for the starting point.
 	 * 
-	 * @return start
+	 * @return The start.
 	 */
 	public Vertex getStart() {
 		return start;
@@ -69,10 +69,10 @@ public class LevelTree {
 	 * Setter
 	 */
 	/**
-	 * setter for starting point
+	 * Setter for starting point.
 	 * 
 	 * @param start
-	 *            new start vertex
+	 *            The new start vertex.
 	 */
 	public void setStart(Vertex start) {
 		this.start = start;

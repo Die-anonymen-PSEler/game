@@ -26,7 +26,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * wishes.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class ProfileSettingsMenuScreen extends MenuScreen {
 
@@ -44,8 +44,8 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	private Image charImage;
 
 	/**
-	 * creates a new instance of this class
-	 * @param game the actual game
+	 * Creates a new instance of this class.
+	 * @param game The actual game.
 	 */
 	public ProfileSettingsMenuScreen(RetroMachines game) {
 		super(game);
@@ -192,6 +192,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 * Listener when the button for ok a profile has been clicked
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class AcceptButtonClickListener extends ClickListener {
 		@Override
@@ -204,6 +205,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 * Listener when the button for left control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class LeftControlButtonClickListener extends ClickListener {
 		@Override
@@ -218,6 +220,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 * Listener when the button for right control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class RightControlButtonClickListener extends ClickListener {
 		@Override
@@ -232,6 +235,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 * Listener when the button for right control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class NextCharButtonClickListener extends ClickListener {
 		@Override
@@ -245,6 +249,7 @@ public class ProfileSettingsMenuScreen extends MenuScreen {
 	 * Listener when the button for right control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class TutResetButtonClickListener extends ClickListener {
 		@Override

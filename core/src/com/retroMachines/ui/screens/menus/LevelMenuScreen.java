@@ -20,6 +20,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * has picked one.
  * 
  * @author RetroFactory
+ * @version 1.0
  */
 public class LevelMenuScreen extends MenuScreen {
 
@@ -109,7 +110,7 @@ public class LevelMenuScreen extends MenuScreen {
 	 * Used when level is locked.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0 
 	 */
 	private class LevelLockedButtonClickListener extends ClickListener {
 
@@ -129,7 +130,7 @@ public class LevelMenuScreen extends MenuScreen {
 	 * Used when Level is unlocked and can be played.
 	 * 
 	 * @author RetroFactory
-	 * 
+	 * @version 1.0
 	 */
 	private class LevelUnlockedButtonClickListener extends ClickListener {
 
@@ -153,6 +154,12 @@ public class LevelMenuScreen extends MenuScreen {
 
 	}
 
+	/**
+	 * Used when the return button is clicked.
+	 * 
+	 * @author RetroFactory
+	 * @version 1.0
+	 */
 	protected class ReturnButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

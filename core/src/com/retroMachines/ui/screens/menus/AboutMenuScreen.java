@@ -14,7 +14,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * informations about RetroFactory and the authors of this game are given.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class AboutMenuScreen extends MenuScreen {
 
@@ -28,45 +28,45 @@ public class AboutMenuScreen extends MenuScreen {
 			+ " Luca Becker\n Henrike Hardt\n Larissa Schmid\n Adrian Schulte\n Maik Wiesner");
 
 	/**
-	 * information about the lambda-calculus.
+	 * The information about the lambda-calculus.
 	 */
 	public static final String INFO = "Der Lambda-Kalkuel ist ein Element der Informatik. Es ist eine formale "
 			+ "Sprache, die im Allgemeinen dazu dient, Funktionen zu definieren beziehungsweise zu beschreiben.";
 
 	/**
-	 * information about the role of the metal objects
+	 * Information about the role of the metal objects.
 	 */
 	public static final String GAMEINFO_ONE = "Metallobjekt: \n"
 			+ "Entspricht der Variable im Lambda-Kalkuel, kann von der Maschine vearbeitet werden";
 
 	/**
-	 * information about the role of the machines
+	 * Information about the role of the machines.
 	 */
 	public static final String GAMEINFO_TWO = "Maschine: \n"
 			+ "Entspricht der Abstraktion im Lambda-Kalkuel, kann andere Objekte verarbeiten";
 
 	/**
-	 * information about the role of the lights
+	 * Information about the role of the lights.
 	 */
 	public static final String GAMEINFO_THREE = "Ampel: \n"
 			+ "Entspricht der Applikation im Lambda-Kalkuel, dient zum zusammenfassen (klammern) mehrerer Objekte,"
 			+ " soadass sie als ein Objekt verarbeitet werden künnen";
 
 	/**
-	 * information about the role of the depots
+	 * Information about the role of the depots.
 	 */
 	public static final String GAMEINFO_FOUR = "Depot: \n"
 			+ "Hierin koennen Objekte Platziert werden. die anschliessend ausgewertet werden sollen. (Dargestellt durch schwarz/gelben Kasten)";
 
 	/**
-	 * information about the processing area of an object
+	 * Information about the processing area of an object.
 	 */
 	public static final String GAMEINFO_FIVE = "Verarbeitungsbereich: \n"
 			+ "Der Verarbeitungsbereich eines Objektes sind alle Depots"
 			+ " ueberhalb seines Depots, die durch die nach oben fuehrende Rohre erreicht werden koennen.";
 
 	/**
-	 * information about the input and the input area of an object
+	 * Information about the input and the input area of an object.
 	 */
 	public static final String GAMEINFO_SIX = String.format("Eingabe / EingabeBereich: \n"
 			+ "Der Eingabebereich eines Objektes,"

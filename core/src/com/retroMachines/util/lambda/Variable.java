@@ -7,9 +7,10 @@ import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.game.gameelements.MetalElement;
 
 /**
+ * Class for the variable of the lambda-term.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class Variable extends Vertex {
 
@@ -18,16 +19,16 @@ public class Variable extends Vertex {
 	// --------------------------
 
 	/**
-	 * Creates a clone for beta reduction
+	 * Creates a clone for beta reduction.
 	 * 
 	 * @param next
-	 *            next Clone
+	 *            The next Clone.
 	 * @param family
-	 *            family Clone
+	 *            The family Clone.
 	 * @param color
-	 *            color of Clone
+	 *            The color of Clone.
 	 * @param familyColorlist
-	 *            familyColorList of Clone
+	 *            The familyColorList of Clone.
 	 */
 	private Variable(Vertex next, Vertex family, int color,
 			LinkedList<Integer> familyColorlist) {
@@ -41,7 +42,7 @@ public class Variable extends Vertex {
 	 * Creates a new instance of the Vertex class.
 	 * 
 	 * @param color
-	 *            color to set.
+	 *            The color to set.
 	 */
 	public Variable(int color) {
 		super(color);
@@ -52,8 +53,9 @@ public class Variable extends Vertex {
 	// ------------------------------
 
 	/**
-	 * this method does nothing because there is no alpha conversion for
-	 * variables
+	 * This method does nothing because there is no alpha conversion for
+	 * variables.
+	 * 
 	 * @return false
 	 */
 	@Override
@@ -63,7 +65,7 @@ public class Variable extends Vertex {
 	}
 
 	/**
-	 * Fulfills one step of beta-reduction for a Abstraction
+	 * Fulfills one step of beta-reduction for an abstraction.
 	 * 
 	 * @return empty LinkedList
 	 */
@@ -79,6 +81,9 @@ public class Variable extends Vertex {
 	// ------------------Help Methods---------------------
 	// ---------------------------------------------------
 
+	/**
+	 * Method to clone the variable.
+	 */
 	@Override
 	public Vertex cloneMe() {
 		// check if next or family is null
@@ -98,9 +103,9 @@ public class Variable extends Vertex {
 	}
 
 	/**
-	 * Creates a clone of this Vertex and his hole Family
+	 * Creates a clone of this Vertex and his hole family.
 	 * 
-	 * @return First Vertex in Tree structure
+	 * @return First Vertex in Tree structure.
 	 */
 	@Override
 	public Vertex cloneFamily() {
@@ -125,6 +130,9 @@ public class Variable extends Vertex {
 		return clone;
 	}
 
+	/**
+	 * Method to reorganize the positions.
+	 */
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		// Start next Step no reorganization is needed
@@ -132,6 +140,9 @@ public class Variable extends Vertex {
 
 	}
 
+	/**
+	 * Method to delete the variable after the beta-reduction.
+	 */
 	@Override
 	public void deleteAfterBetaReduction() {
 		// start next evaluationStep
@@ -139,11 +150,17 @@ public class Variable extends Vertex {
 
 	}
 
+	/**
+	 * Method to update the pointer after the beta-reduction.
+	 */
 	@Override
 	public Vertex updatePointerAfterBetaReduction() {
 		return this.getNext();
 	}
 
+	/**
+	 * Method to update the positions after the beta-reduction.
+	 */
 	@Override
 	public void updatePositionsAfterBetaReduction() {
 		// Do nothing , you Have No Family ! :D
@@ -155,6 +172,11 @@ public class Variable extends Vertex {
 	 * Getter and Setter
 	 */
 	
+	/**
+	 * Getter for the game element according to this vertex.
+	 * 
+	 * @return The element.
+	 */
 	@Override
 	public GameElement getGameElement() {
 		// only one instance of gameElement allowed
@@ -163,22 +185,42 @@ public class Variable extends Vertex {
 		}
 		return gameElement;
 	}
-
+	
+	/**
+	 * Getter for the type.
+	 * 
+	 * @return The type.
+	 */
 	@Override
 	public String getType() {
 		return "Variable";
 	}
 
+	/**
+	 * Getter for what was read in.
+	 * 
+	 * @return What was read.
+	 */
 	@Override
 	public Vertex getReadIn() {
 		return null;
 	}
 
+	/**
+	 * Getter for the evaluation result.
+	 * 
+	 * @return The evaluation result.
+	 */
 	@Override
 	public Vertex getEvaluationResult() {
 		return this;
 	}
-
+	
+	/**
+	 * Getter for the clone.
+	 * 
+	 * @return The clone.
+	 */
 	@Override
 	public Vertex getClone() {
 		Vertex clone = new Variable(null, null, getColor(), null);

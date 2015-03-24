@@ -7,29 +7,29 @@ import com.retroMachines.game.controllers.ProfileController;
  * constants that are available through out the entire game and may be used.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public abstract class Constants {
 
 	/**
-	 * The name of the background image file
+	 * The name of the background image file.
 	 */
 	public static final String BACKGROUND_PATH = "Background.png";
 
 	/**
-	 * the name of each available character texture. these names have to match
-	 * the file names and will be used by the assetmanager.
+	 * The name of each available character texture. These names have to match
+	 * the file names and will be used by the assetManager.
 	 */
 	public static final String[] TEXTURE_ANIMATION_NAMES = { "Robot",
 			"BlueMan", "Horse", "Unicorn" };
 
 	/**
-	 * tag for error or log messages.
+	 * Tag for error or log messages.
 	 */
 	public static final String LOG_TAG = "RetroFactory";
 
 	/**
-	 * maximum value of id
+	 * Maximum value of ID
 	 */
 	public static final int MAX_COLOR_ID = 11;
 
@@ -39,12 +39,12 @@ public abstract class Constants {
 	public static final float VOLUME_DELTA = 0.1f;
 
 	/**
-	 * the id of the last level of the game
+	 * The ID of the last level of the game.
 	 */
 	public static final int MAX_LEVEL_ID = 10;
 
 	/**
-	 * the amount of seconds in a minute used by the statistic screen
+	 * The amount of seconds in a minute used by the statistic screen.
 	 */
 	public static final int SECONDS_IN_MINUTE = 60;
 
@@ -53,42 +53,42 @@ public abstract class Constants {
 	 */
 
 	/**
-	 * the gravity that is dragging the character towards the grounds
+	 * The gravity that is dragging the character towards the grounds.
 	 */
 	public static final float WORLD_GRAVITY = -0.5f;
 
 	/**
-	 * the size of pixels each tile has.
+	 * The size of pixels each tile has.
 	 */
 	public static final int TILE_SIZE = 64;
 
 	/**
-	 * the layer id on which retroman may walk
+	 * The layer id on which retroMan may walk.
 	 */
 	public static final int SOLID_LAYER_ID = 1;
 
 	/**
-	 * the layer id which has a opened door
+	 * The layer ID which has a opened door.
 	 */
 	public static final int DOOR_OPEN_LAYER = 2;
 
 	/**
-	 * the layer id which has a closed door
+	 * The layer ID which has a closed door.
 	 */
 	public static final int DOOR_CLOSED_LAYER = 3;
 
 	/**
-	 * the layer id where the Pipes of the depots are.
+	 * The layer ID where the Pipes of the depots are.
 	 */
 	public static final int PIPE_LAYER = 4;
 
 	/**
-	 * the layer id where the depots for the gameelements are.
+	 * The layer ID where the depots for the game elements are.
 	 */
 	public static final int DEPOT_LAYER = 5;
 
 	/**
-	 * the layer id where the lambda objects will be placed
+	 * The layer ID where the lambda objects will be placed.
 	 */
 	public static final int OBJECT_LAYER_ID = 6;
 
@@ -97,155 +97,156 @@ public abstract class Constants {
 	 */
 
 	/**
-	 * The layer in where the depots are
+	 * The layer where the depots are.
 	 */
 	public static final int DEPOTLAYER_Y_DIF = 3;
 
 	/**
-	 * the width of gameElements
+	 * The width of the game elements.
 	 */
 	public static final int GAMEELEMENT_WIDTH = 100;
 
 	/**
-	 * the width of the animation of gameElements
+	 * The width of the animation of the game elements.
 	 */
 	public static final int GAMEELEMENT_ANIMATION_WIDTH = 90;
 
 	/**
-	 * the padding of gameElements
+	 * The padding of the game elements.
 	 */
 	public static final int GAMELEMENT_PADDING = 15;
 
 	/**
-	 * the input size of the abstraction
+	 * The input size of the abstraction.
 	 */
 	public static final int ABSTRACTION_INPUT = 35;
 
 	/**
-	 * the output size of the abstraction
+	 * The output size of the abstraction.
 	 */
 	public static final int ABSTRACTION_OUTPUT = 25;
 
 	/**
-	 * the layer in where the evaluation happens
+	 * The layer where the evaluation happens.
 	 */
 	public static final int EVALUATION_DEFALT_LAYER_DIF = 1;
 
 	/**
-	 * padding of the evaluation screen to the x axis 
+	 * The padding of the evaluation screen to the x axis.
 	 */
 	public static final float EVALUATIONSCREEN_PADDING_X = 0.1f;
 
 	/**
-	 * padding of the evaluation screen to the y axis
+	 * The padding of the evaluation screen to the y axis.
 	 */
 	public static final float EVALUATIONSCREEN_PADDING_Y = 0.3f;
 
 	/**
-	 * ID of the depots
+	 * ID of the depots.
 	 */
 	public static final int DEPOT_ID = 8;
 
 	/**
-	 * scaling of the gameElements
+	 * The scaling of the game elements.
 	 */
 	public static final float GAMEELEMENT_SCALING = 0.25f;
 
 	/**
-	 * the time how long the moving in an action is
+	 * The time how long the moving in an action is.
 	 */
 	public static final float ACTION_MOVINGTIME = 2f;
 
 	/**
-	 * the time how long an action is
+	 * The time how long an action is.
 	 */
 	public static final float ACTION_TIME = 1f;
 
 	/**
-	 * epsilon for float comparisons
+	 * Epsilon for float comparisons.
 	 */
 	public static final float FLOAT_EPSILON = 1E-1f;
 
 	
 	
 	/**
-	 * the names of the buttons that are in the skin file
+	 * The names of the buttons that are in the skin file.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	public abstract static class ButtonStrings {
 		/**
-		 * home button
+		 * The home button.
 		 */
 		public static final String HOME = "home";
 
 		/**
-		 * play button
+		 * The play button.
 		 */
 		public static final String PLAY = "play";
 
 		/**
-		 * ok button
+		 * The OK button.
 		 */
 		public static final String OK = "ok";
 
 		/**
-		 * back button
+		 * The back button.
 		 */
 		public static final String BACK = "back";
 
 		/**
-		 * abort button
+		 * The abort button.
 		 */
 		public static final String ABORT = "abort";
 
 		/**
-		 * left hand control button
+		 * The left hand control button.
 		 */
 		public static final String CONTROL_LEFT = "controlLeft";
 
 		/**
-		 * right hand control button
+		 * The right hand control button.
 		 */
 		public static final String CONTROL_RIGHT = "controlRight";
 
 		/**
-		 * next character button
+		 * The next character button.
 		 */
 		public static final String NEXT_CHAR = "nextChar";
 
 		/**
-		 * sound up button
+		 * The sound up button.
 		 */
 		public static final String SOUND_UP = "soundUp";
 
 		/**
-		 * sound quieter button
+		 * The sound quieter button.
 		 */
 		public static final String SOUND_DOWN = "soundDown";
 
 		/**
-		 * sound off button
+		 * The sound off button.
 		 */
 		public static final String SOUND_OFF = "soundOff";
 
 		/**
-		 * locked button (e.g. level locked)
+		 * The locked button (e.g. level locked).
 		 */
 		public static final String LOCKED = "locked";
 
 		/**
-		 * change profile button
+		 * The change profile button.
 		 */
 		public static final String CHANGE_PROFILE = "changeProfile";
 
 		/**
-		 * add profile button
+		 * The add profile button.
 		 */
 		public static final String ADD_PROFILE = "addProfile";
 
 		/**
-		 * delete profile button
+		 * The delete profile button.
 		 */
 		public static final String DELETE_PROFILE = "deleteProfile";
 	}
@@ -253,27 +254,27 @@ public abstract class Constants {
 	/**
 	 * Further strings that are used by the game.
 	 * 
-	 * @author lucabecker
-	 * 
+	 * @author RetroFactory
+	 * @version 1.0 
 	 */
 	public abstract static class RetroStrings {
 		/**
-		 * TileSet name in TiledMap
+		 * TileSet name in TiledMap.
 		 */
 		public static final String TILESETNAME_MACHINE = "Maschinen";
 
 		/**
-		 * TileSet name in TiledMap
+		 * TileSet name in TiledMap.
 		 */
 		public static final String TILESETNAME_METALOBJECTS = "Metallobjekte";
 
 		/**
-		 * TileSet name in TiledMap
+		 * TileSet name in TiledMap.
 		 */
 		public static final String TILESETNAME_LIGHT = "Ampeln";
 
 		/**
-		 * TileSet name in TiledMap
+		 * TileSet name in TiledMap.
 		 */
 		public static final String TILESETNAME_DEPOT = "Rohre";
 

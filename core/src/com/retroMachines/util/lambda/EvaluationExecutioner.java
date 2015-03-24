@@ -11,29 +11,37 @@ import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.ActionListElement;
 import com.retroMachines.util.Constants;
 
+/**
+ * Class for the evaluation executioner.
+ * @author RetroFactory
+ * @version 1.0
+ */
 public class EvaluationExecutioner {
 
+	/**
+	 * The optimizer.
+	 */
 	public final static EvaluationExecutioner OPTIMIZER = new EvaluationExecutioner();
 
 	private static EvaluationController EvaluationController;
 
 	/**
-	 * The resultTree represents the result of the Evaluation
+	 * The resultTree represents the result of the Evaluation.
 	 */
 	private static LevelTree ResultTree;
 
 	/**
-	 * List of all gameElements in this level
+	 * List of all gameElements in this level.
 	 */
 	private static LinkedList<Vertex> VertexList;
 
 	/**
-	 * resultPointer.next is always last element added to resultTree
+	 * ResultPointer.next is always last element added to resultTree.
 	 */
 	private static Vertex ResultPointer;
 
 	/**
-	 * evaluationPointer . next is always the actual worker in evaluation
+	 * EvaluationPointer .next is always the actual worker in evaluation.
 	 */
 	private static Vertex EvalutionPointer;
 
@@ -226,6 +234,10 @@ public class EvaluationExecutioner {
 		}
 	}
 
+	/**
+	 * Method to initialize the executioner.
+	 * @param e The evaluation controller.
+	 */
 	public static void initialize(EvaluationController e) {
 		AnimationListner = new LinkedList<EvaluationController>();
 		ActionList = new LinkedList<ActionListElement>();
@@ -246,6 +258,12 @@ public class EvaluationExecutioner {
 
 	// -----Methods-------
 
+	/**
+	 * Method for the animation immediately. 
+	 * @param pos The position.
+	 * @param x The game element.
+	 * @param nextStep The next step.
+	 */
 	public static void moveAndScaleAnimationWithoutDelay(Vector2 pos,
 			GameElement x, boolean nextStep) {
 		Action action;
@@ -266,6 +284,12 @@ public class EvaluationExecutioner {
 		ActionList.addLast(new ActionListElement(x, action));
 	}
 
+	/**
+	 * Method for the animation.
+	 * @param pos The position.
+	 * @param x The game element.
+	 * @param nextStep The next step.
+	 */
 	public static void moveAndScaleAnimation(Vector2 pos, GameElement x,
 			boolean nextStep) {
 		Action action;
@@ -292,6 +316,11 @@ public class EvaluationExecutioner {
 		ActionList.addLast(new ActionListElement(x, action));
 	}
 
+	/**
+	 * Method to scale the animation.
+	 * @param x The game element.
+	 * @param nextStep The next step.
+	 */
 	public static void scaleAnimation(GameElement x, boolean nextStep) {
 		Action action;
 		if (nextStep) {
@@ -310,6 +339,12 @@ public class EvaluationExecutioner {
 		ActionList.addLast(new ActionListElement(x, action));
 	}
 
+	/**
+	 * Method for the moving animation.
+	 * @param pos The position.
+	 * @param x The game element.
+	 * @param nextStep The next step.
+	 */
 	public static void moveAnimation(Vector2 pos, GameElement x,
 			boolean nextStep) {
 		Action action;
@@ -325,10 +360,17 @@ public class EvaluationExecutioner {
 		ActionList.addLast(new ActionListElement(x, action));
 	}
 
+	/**
+	 * Method to execute the next step.
+	 */
 	public static void runNextStep() {
 		runNextEvaluationStep();
 	}
 
+	/**
+	 * Method to delay and run the animation of the next step.
+	 * @param x The game element.
+	 */
 	public static void delayAndRunNextStepAnim(GameElement x) {
 
 		Action action = Actions.sequence(Actions.delay(Constants.ACTION_TIME),
@@ -336,6 +378,9 @@ public class EvaluationExecutioner {
 		ActionList.addLast(new ActionListElement(x, action));
 	}
 
+	/**
+	 * The autoStep was clicked.
+	 */
 	public static void autoStepClicked() {
 		if (!AutoStep && !NextStep) {
 			AutoStep = true;
@@ -344,6 +389,9 @@ public class EvaluationExecutioner {
 
 	}
 
+	/**
+	 * The nextStep was clicked.
+	 */
 	public static void nextStepClicked() {
 		if (!NextStep) {
 			NextStep = true;
@@ -351,10 +399,18 @@ public class EvaluationExecutioner {
 		}
 	}
 	
+	/**
+	 * Getter for the action list.
+	 * @return The action list.
+	 */
 	public static LinkedList<ActionListElement> getActionList() {
 		return ActionList;
 	}
 	
+	/**
+	 * Add the caller to the listener list.
+	 * @param e The controller.
+	 */
 	public static void addMeToListnerList(EvaluationController e) {
 		if (e != null) {
 			if(!AnimationListner.contains(e)) {

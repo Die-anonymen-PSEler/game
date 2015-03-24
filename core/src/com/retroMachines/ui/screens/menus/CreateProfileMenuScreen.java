@@ -27,7 +27,7 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * with the user.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class CreateProfileMenuScreen extends MenuScreen {
 
@@ -46,7 +46,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	private final static int TEXTFIELDBORDEROFFSET = 20;
 
 	/**
-	 * controllers associated with this screen
+	 * Controllers associated with this screen.
 	 */
 	private final ProfileController profileController;
 	private final SettingController settingController;
@@ -60,7 +60,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	private Image charImage;
 
 	/**
-	 * counter for the currently shown character image
+	 * Counter for the currently shown character image.
 	 */
 	private int i;
 
@@ -224,6 +224,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 * Listener when the user made his choices and wants to create the profile.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class CreateProfileButtonClickListener extends ClickListener {
 		@Override
@@ -236,6 +237,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 * Listener when the user aborts the profile creation.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class AbortCreateProfileButtonClickListener extends ClickListener {
 		@Override
@@ -254,6 +256,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 * Listener when the button for left control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class LeftControlButtonClickListener extends ClickListener {
 		@Override
@@ -267,6 +270,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 * Listener when the button for right control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class RightControlButtonClickListener extends ClickListener {
 		@Override
@@ -281,6 +285,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 	 * Listener when the button for right control has been chosen.
 	 * 
 	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class NextCharButtonClickListener extends ClickListener {
 		@Override

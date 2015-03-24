@@ -13,43 +13,43 @@ import com.retroMachines.util.Constants.ButtonStrings;
  * Custom version of the dialogs.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class RetroDialog extends Dialog {
 
 	/**
-	 * Default width
+	 * Default width.
 	 */
 	protected final static float DIVIDEWIDTHDEFAULT = 1920f;
 
 	/**
-	 * Width of Dialog
+	 * Width of Dialog.
 	 */
 	protected final static float DIALOGTEXTWIDTH = (10f / 17f);
 
 	/**
-	 * the label which displays the message to the user
+	 * The label which displays the message to the user.
 	 */
 	private Label labelMsg;
 
 	/**
-	 * the skin used by the dialog
+	 * The skin used by the dialog.
 	 */
 	private Skin skin;
 
 	/**
-	 * a possible runnable to be executed on the user his interaction
+	 * A possible runnable to be executed on the user his interaction.
 	 */
 	private Runnable runnable;
 
 	/**
-	 * if true the dialog will disappear on clicking any button it is enabled by
-	 * default
+	 * If true the dialog will disappear on clicking any button it is enabled by
+	 * default.
 	 */
 	private boolean autoClear;
 
 	/**
-	 * creates a new instance of RetroDialog
+	 * Creates a new instance of RetroDialog.
 	 * @param title title the dialog should have
 	 * @param msg the message of the dialog
 	 */
@@ -80,7 +80,7 @@ public class RetroDialog extends Dialog {
 	}
 
 	/**
-	 * don't use this constructor. please use the constructor with double string
+	 * Don't use this constructor. please use the constructor with double string
 	 * parameters
 	 * 
 	 * @param title
@@ -92,6 +92,9 @@ public class RetroDialog extends Dialog {
 		this(title, "");
 	}
 
+	/**
+	 * Method for the result of the dialog.
+	 */
 	@Override
 	protected void result(Object object) {
 		if (autoClear) {
@@ -118,10 +121,10 @@ public class RetroDialog extends Dialog {
 	}
 
 	/**
-	 * Disable / Enable the autoclear function
+	 * Disable / Enable the auto-clear function.
 	 * 
 	 * @param t
-	 *            true to enable it; false otherwise
+	 *            True to enable it. False otherwise.
 	 */
 	public void setAutoClear(boolean t) {
 		autoClear = t;

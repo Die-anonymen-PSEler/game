@@ -26,7 +26,7 @@ import com.retroMachines.util.lambda.Vertex;
  * The animation is started and ended in this screen and can be paused.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class EvaluationScreen extends AbstractScreen {
 
@@ -42,7 +42,7 @@ public class EvaluationScreen extends AbstractScreen {
 	private LevelTree tree;
 
 	/**
-	 * stage for the buttons
+	 * Stage for the buttons.
 	 */
 	private Stage buttonStage;
 
@@ -118,6 +118,9 @@ public class EvaluationScreen extends AbstractScreen {
 		}
 	}
 	
+	/**
+	 * Method to render the evaluation screen.
+	 */
 	@Override
 	public void render(float delta) {
 		super.render(delta);
@@ -134,41 +137,65 @@ public class EvaluationScreen extends AbstractScreen {
 		// music.play();
 	}
 
+	/**
+	 * Method if the key is down.
+	 */
 	@Override
 	public boolean keyDown(int keycode) {
 		return false;
 	}
 
+	/**
+	 * Method if the key is up.
+	 */
 	@Override
 	public boolean keyUp(int keycode) {
 		return false;
 	}
 
+	/**
+	 * Method if the key has a type.
+	 */
 	@Override
 	public boolean keyTyped(char character) {
 		return false;
 	}
 
+	/**
+	 * Method for touching down.
+	 */
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
-
+	
+	/**
+	 * Method for touching up.
+	 */
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
+	/**
+	 * Method for dragging.
+	 */
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		return false;
 	}
 
+	/**
+	 * Method for movements of the mouse.
+	 */
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		return false;
 	}
 
+	/**
+	 * Method for scrolling.
+	 */
 	@Override
 	public boolean scrolled(int amount) {
 		return false;
@@ -185,7 +212,7 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * runs the animation for the evaluation
+	 * Runs the animation for the evaluation.
 	 */
 	public void runAnimation() {
 		LinkedList<ActionListElement> actionList = EvaluationExecutioner.getActionList();
@@ -200,8 +227,8 @@ public class EvaluationScreen extends AbstractScreen {
 	 */
 
 	/**
-	 * returns the padding of the screen
-	 * @return vector of screen padding
+	 * Getter for the padding of the screen.
+	 * @return The vector of the screen padding.
 	 */
 	public Vector2 getScreenPadding() {
 		return new Vector2(screenPadding);
@@ -211,7 +238,7 @@ public class EvaluationScreen extends AbstractScreen {
 	 * Assigns a lambda term to the screen for the animation.
 	 * 
 	 * @param t
-	 *            the lambda term in question
+	 *            The lambda term in question.
 	 */
 	public void setLambaTerm(LevelTree t) {
 		this.tree = t;
@@ -219,8 +246,8 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * sets an element to the stage
-	 * @param g gameElement to be set
+	 * Sets an element to the stage.
+	 * @param g The gameElement that is to be set.
 	 */
 	public void setOnStage(GameElement g) {
 		if (g != null) {
@@ -229,9 +256,10 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 	
 	/**
-	 * Button which shows next Evaluationstep
+	 * Button which shows next evaluation step.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class NextEvaluationStep extends ClickListener {
 		@Override
@@ -241,9 +269,10 @@ public class EvaluationScreen extends AbstractScreen {
 	}
 
 	/**
-	 * Button which shows all Evaluationsteps
+	 * Button which shows all evaluation steps.
 	 * 
-	 * @author Retro Factory
+	 * @author RetroFactory
+	 * @version 1.0
 	 */
 	private class EvaluationStart extends ClickListener {
 		@Override

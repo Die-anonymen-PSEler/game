@@ -21,9 +21,10 @@ import com.retroMachines.game.gameelements.GameElement;
 import com.retroMachines.util.Constants;
 
 /**
+ * Class for the lambda util.
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class LambdaUtil {
 
@@ -81,12 +82,12 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * creates lambda-tree representation of given json array for level tree.
+	 * Creates lambda-tree representation of given json array for level tree.
 	 * Tree contains only dummy vertices. So only structure of tree is given.
 	 * 
 	 * @param tree
-	 *            tree in json representation
-	 * @return root vertex of tree
+	 *            The tree in json representation.
+	 * @return The root vertex of tree.
 	 */
 	private Vertex makeStartVertexTree(JsonArray tree) {
 
@@ -121,14 +122,14 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * creates lambda-tree representation of given json array for target- or
+	 * Creates lambda-tree representation of given json array for target- or
 	 * hint tree.
 	 * 
 	 * @param array
-	 *            tree in json representation
+	 *            The tree in json representation.
 	 * @param type
-	 *            type of tree: must be HINT or TARGET
-	 * @return root vertex of tree
+	 *            The type of tree: must be HINT or TARGET.
+	 * @return The root vertex of tree.
 	 */
 	private Vertex makeStartVertexHintOrTarget(JsonArray array, String type) {
 		if (array == null) {
@@ -163,9 +164,9 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * Adds all TutorialImages of Level
+	 * Adds all TutorialImages of Level.
 	 * 
-	 * @param tutList
+	 * @param tutList 
 	 * @return
 	 */
 	private LinkedList<Texture> makeTutorialImgList(JsonArray tutList) {
@@ -183,8 +184,8 @@ public class LambdaUtil {
 	}
 	
 	/**
-	 * Updates the with of given Vertex and all next and family Vertices
-	 * @param v Vertex as Start of make Width
+	 * Updates the with of given Vertex and all next and family Vertices.
+	 * @param v Vertex as Start of make Width.
 	 */
 	private void makeVertexWidth(Vertex v) {
 		Vertex pointer = new Dummy();
@@ -196,14 +197,14 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * returns new instance of vertex of type {Var,Abs,App}. If parameter does
+	 * Returns new instance of vertex of type {Var,Abs,App}. If parameter does
 	 * not match one of these types, null will be returned.
 	 * 
 	 * @param type
-	 *            type of vertex
+	 *            The type of vertex.
 	 * @param color
-	 *            color to set
-	 * @return new instance of specialized vertex
+	 *            The color to set.
+	 * @return A new instance of specialized vertex.
 	 */
 	private Vertex getSpecializedVertex(JsonObject j) {
 		String type = j.get("type").getAsString();
@@ -227,7 +228,7 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * creates LambdaTree based on JSON description of level
+	 * Creates LambdaTree based on JSON description of level.
 	 */
 	public void createTreeFromJson(String fileName) {
 
@@ -270,16 +271,28 @@ public class LambdaUtil {
 		makeVertexWidth(targetTree.getStart());
 	}
 
+	/**
+	 * Method to register a new listener.
+	 * @param listener The new listener.
+	 */
 	public void registerNewListener(OnNextLambdaStepListener listener) {
 		if (!observers.contains(listener)) {
 			observers.add(listener);
 		}
 	}
 
+	/**
+	 * Method to delete a listener.
+	 * @param listener The listener.
+	 */
 	public void unregisterNewListener(OnNextLambdaStepListener listener) {
 		observers.remove(listener);
 	}
 
+	/**
+	 * If the level has a tutorial.
+	 * @return True if the level has a tutorial. False otherwise.
+	 */
 	public boolean hasTutorial() {
 		return hasTutorial;
 	}
@@ -289,14 +302,14 @@ public class LambdaUtil {
 	 */
 	
 	/**
-	 * returns gameElement according to vertex with specified position. Null if
-	 * there is no such vertex
+	 * Getter for the game element according to vertex with specified position. Null if
+	 * there is no such vertex.
 	 * 
 	 * @param posX
-	 *            x coordinate
+	 *            The x coordinate.
 	 * @param posY
-	 *            y coordinate
-	 * @return gameElement according to vertex
+	 *            The y coordinate.
+	 * @return The game element according to vertex.
 	 */
 	public GameElement getGameElement(int posX, int posY) {
 		// getting vertex
@@ -312,11 +325,11 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * returns vertex belonging to given gameElement.
+	 * Getter for the vertex belonging to given gameElement.
 	 * 
 	 * @param g
-	 *            GameElement to get vertex of
-	 * @return vertex belonging to GameElement
+	 *            Game element to get vertex of.
+	 * @return The vertex belonging to Game element.
 	 */
 	public Vertex getVertex(GameElement g) {
 		if (g == null) {
@@ -331,70 +344,86 @@ public class LambdaUtil {
 	}
 
 	/**
-	 * getter for vertexList
+	 * Getter for the vertexList.
 	 * 
-	 * @return vertexList
+	 * @return The vertexList.
 	 */
 	public List<Vertex> getVertexList() {
 		return vertexList;
 	}
 
 	/**
-	 * getter for gameElementList
+	 * Getter for gameElementList.
 	 * 
-	 * @return gameElementList
+	 * @return The gameElementList.
 	 */
 	public List<GameElement> getGameElementList() {
 		return gameElementList;
 	}
 
 	/**
-	 * getter for levelTree
+	 * Getter for the levelTree.
 	 * 
-	 * @return may be null if {@link #createTreeFromJson(String)
-	 *         createTreeFromJson} method was not invoked
+	 * @return May be null if {@link #createTreeFromJson(String)
+	 *         createTreeFromJson} method was not invoked.
 	 */
 	public LevelTree getLevelTree() {
 		return levelTree;
 	}
 
 	/**
-	 * getter for targetTree
+	 * Getter for the targetTree.
 	 * 
-	 * @return may be null if {@link #createTreeFromJson(String)
-	 *         createTreeFromJson} method was not invoked
+	 * @return May be null if {@link #createTreeFromJson(String)
+	 *         createTreeFromJson} method was not invoked.
 	 */
 	public LevelTree getTargetTree() {
 		return targetTree;
 	}
 
+	/**
+	 * Getter for the tutorials.
+	 * 
+	 * @return The tutorials.
+	 */
 	public List<Texture> getTutorials() {
 		return tutorialImgs;
 	}
 
 	/**
-	 * getter for hintTree
+	 * Getter for the hintTree.
 	 * 
-	 * @return may be null if {@link #createTreeFromJson(String)
-	 *         createTreeFromJson} method was not invoked
+	 * @return May be null if {@link #createTreeFromJson(String)
+	 *         createTreeFromJson} method was not invoked.
 	 */
 	public LevelTree getHintTree() {
 		return hintTree;
 	}
 
+	/**
+	 * Getter for the number of available depots.
+	 * 
+	 * @return The number of the depots.
+	 */
 	public int getNumOfDepots() {
 		return numOfDepots;
 	}
 
 	/**
-	 * getter for observers, needed for testcases.
+	 * Getter for observers, needed for the test cases.
 	 * 
-	 * @return observers as ArrayList
+	 * @return The observers as an ArrayList.
 	 */
 	public ArrayList<OnNextLambdaStepListener> getObservers() {
 		return (ArrayList<OnNextLambdaStepListener>) observers;
 	}
 
+	/**
+	 * An Interface for the next lambda step listener.
+	 * 
+	 * @author RetroFactory
+	 * @version 1.0
+	 */
 	public interface OnNextLambdaStepListener {
 
 		/**

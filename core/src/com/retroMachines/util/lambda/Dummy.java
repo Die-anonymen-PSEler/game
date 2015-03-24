@@ -6,12 +6,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.retroMachines.game.gameelements.GameElement;
 
 /**
- * A class to instanciate dummy vertices. Each method does nothing
+ * A class to instantiate dummy vertices. Each method does nothing
  * 
  * @author RetroFactory
- * 
+ * @version 1.0
  */
 public class Dummy extends Vertex {
+	/*
+	 * @see com.retroMachines.util.lambda.Vertex#betaReduction()
+	 */
 
 	@Override
 	public LinkedList<Vertex> betaReduction() {
