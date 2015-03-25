@@ -249,8 +249,9 @@ public class Abstraction extends Vertex {
 	public Vertex updatePointerAfterBetaReduction() {
 		if (nextNull) {
 			return this.getNext();
-		}	
-		return super.updatePointerAfterBetaReduction();
+		} else {
+			return this.getFamily();
+		}
 	}
 
 	/**
