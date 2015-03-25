@@ -132,7 +132,6 @@ public class EvaluationExecutioner {
 		// creating copy of current tree
 		LevelTree oldTree = new LevelTree(EvalutionPointer.cloneMe());
 		Vertex result = EvalutionPointer.getNext().getEvaluationResult();
-
 		if (result != null) {
 			// check whether there is an infinite evaluation (same tree after
 			// evaluation as before)
@@ -153,8 +152,14 @@ public class EvaluationExecutioner {
 			// make resultTree if needed
 			OffsetX += result.getWidth() * Constants.GAMEELEMENT_WIDTH;
 			if (ResultTree != null) {
-				ResultPointer.getNext().setNext(result);
-				ResultPointer.setNext(ResultPointer.getNext().getNext());
+				if(ResultPointer.getNext().getType().equals(Constants.RetroStrings.ABSTRACTION_TYPE)) {
+					ResultPointer.getNext().setFamily(result);
+					ResultPointer.setNext(ResultPointer.getNext().getFamily());
+				} else {
+					ResultPointer.getNext().setNext(result);
+					ResultPointer.setNext(ResultPointer.getNext().getNext());
+				}
+
 			} else {
 				ResultTree = new LevelTree(result);
 				ResultPointer.setNext(ResultTree.getStart());
@@ -162,7 +167,8 @@ public class EvaluationExecutioner {
 		}
 		
 		// Stor last worker
-		EvalutionPointer.setFamily(EvalutionPointer.getNext());
+		Vertex v = EvalutionPointer.getNext().cloneMe();
+		EvalutionPointer.setFamily(v);
 		EvalutionPointer.setNext(EvalutionPointer.getNext()
 				.updatePointerAfterBetaReduction());
 		
