@@ -50,7 +50,7 @@
 					"color": 3,
 					"type": "Var",
 					"posx": 12,
-					"posy": 13
+					"posy": 12
 				},
 			
 				{
@@ -85,80 +85,117 @@
 			"tree": 
 			[		
 				{
-					"tree": 
-					[	
+					"tree":
+					[
 						{
-							"tree": 
+							"tree":
 							[
 								{
 									"tree":
 									[
 										{
-											"tree": []
+											"tree":[]
 										},
-						
 										{
 											"tree":[]
 										},
-						
 										{
 											"tree":[]
 										}
 									]
 								}
 							]
-						}	
+						}
 					]
 				},
-				
 				{
-					"tree":[]
-				},
-				
-				{
-					"tree":[]
+					"tree":
+					[
+						{
+							"tree":[]
+						},
+						{
+							"tree":[]
+						},
+						{
+							"tree":[]
+						}
+					]
 				}
 			],
 
 			"target": 
 			[				
 				{
-					"color": 5,
-					"type": "Var",
-					"target": []
-				},
+					"color": 2,
+					"type": "Abs",
+					"target": 
+					[
+						{
+							"color": 3,
+							"type": "Abs",
+							"target": 
+							[
+								{
+									"color": 4,
+									"type": "Var",
+									"target": []
+								},
 				
-				{
-					"color": 5,
-					"type": "Var",
-					"target": []
-				},
+								{
+									"color": 5,
+									"type": "Var",
+									"target": []
+								},
 				
-				{
-					"color": 6,
-					"type": "Var",
-					"target": []
+								{
+									"color": 6,
+									"type": "Var",
+									"target": []
+								},
+								
+								{
+									"color": 3,
+									"type": "Var",
+									"target": []
+								},
+											
+								{
+									"color": 2,
+									"type": "Var",
+									"target": []
+								}
+							]
+						}
+					]
 				}
 			],
 			
 			"hint":  
 			[							
 				{
-					"color": 3,
-					"type": "Var",
-					"hint": []
-				},
-				
-				{
-					"color": 3,
-					"type": "Var",
-					"hint": []
-				},
-				
-				{
-					"color": 9,
-					"type":"Var",
-					"hint": []
+					"color": 2,
+					"type": "App",
+					"hint": 
+					[
+						{
+							"color": 4,
+							"type": "Var",
+							"hint": []
+						},
+						
+						{
+							"color": 5,
+							"type": "Var",
+							"hint": []
+						},
+						
+						{
+							"color": 6,
+							"type": "Var",
+							"hint": []
+						}
+					]
 				}
 
 			]
