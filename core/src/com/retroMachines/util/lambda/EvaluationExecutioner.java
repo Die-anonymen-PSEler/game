@@ -131,7 +131,6 @@ public class EvaluationExecutioner {
 
 		// creating copy of current tree
 		LevelTree oldTree = new LevelTree(EvalutionPointer.cloneMe());
-		EvalutionPointer.setFamily(EvalutionPointer.getNext());
 		Vertex result = EvalutionPointer.getNext().getEvaluationResult();
 
 		if (result != null) {
@@ -139,7 +138,10 @@ public class EvaluationExecutioner {
 			// evaluation as before)
 			if (result.getNext() != null
 					&& !result.getType().equals(
-							Constants.RetroStrings.VARIABLE_TYPE)) {
+						Constants.RetroStrings.VARIABLE_TYPE)
+					&& EvalutionPointer.getFamily().getType().equals(EvalutionPointer.getNext().getType())
+					&& EvalutionPointer.getFamily().getColor() == EvalutionPointer.getNext().getColor()) {
+				
 				LevelTree newTree = new LevelTree(result.getNext());
 				if (oldTree.equalsTree(newTree)) {
 					// we can stop evaluation at this point
@@ -158,10 +160,12 @@ public class EvaluationExecutioner {
 				ResultPointer.setNext(ResultTree.getStart());
 			}
 		}
-
+		
+		// Stor last worker
+		EvalutionPointer.setFamily(EvalutionPointer.getNext());
 		EvalutionPointer.setNext(EvalutionPointer.getNext()
 				.updatePointerAfterBetaReduction());
-
+		
 		if (EvalutionPointer.getNext() == null) {
 			// End of Evaluation
 			ResultPointer.getNext().setNext(null);

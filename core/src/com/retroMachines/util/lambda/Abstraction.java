@@ -218,7 +218,13 @@ public class Abstraction extends Vertex {
 	@Override
 	public void reorganizePositions(Vector2 start, Vector2 newPos) {
 		// Abstraction needs reorganizesation of Element position
-		this.setGameelementPosition(start, newPos);
+		if(nextNull) {
+			EvaluationExecutioner.delayAndRunNextStepAnim(this.getGameElement());
+			return;
+		} else {
+			this.setGameelementPosition(start, newPos);
+		}
+
 	}
 
 	/**

@@ -216,7 +216,9 @@ public class EvaluationScreen extends AbstractScreen {
 	 */
 	public void runAnimation() {
 		LinkedList<ActionListElement> actionList = EvaluationExecutioner.getActionList();
-		for (int i = 0; i < actionList.size(); i++) {
+		for (int i = 0; i < actionList.size(); i++) 
+		{
+
 			ActionListElement actListEle = actionList.get(i);
 			actListEle.getGameElement().addAction(actListEle.getAction());
 		}
