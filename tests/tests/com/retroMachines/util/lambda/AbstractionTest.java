@@ -92,6 +92,7 @@ public class AbstractionTest {
 		//should return family of abs
 		assertEquals(result, family);
 		abs.setNext(null);
+		abs.setFamily(null);
 		abs.betaReduction(); //sets nextNull true
 		result = abs.updatePointerAfterBetaReduction();
 		//result should be null
