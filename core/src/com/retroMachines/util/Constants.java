@@ -21,7 +21,7 @@ public abstract class Constants {
 	 * the file names and will be used by the assetManager.
 	 */
 	public static final String[] TEXTURE_ANIMATION_NAMES = { "Robot",
-			"BlueMan", "Horse", "Unicorn" };
+		"Horse", "Unicorn" };
 
 	/**
 	 * Tag for error or log messages.
