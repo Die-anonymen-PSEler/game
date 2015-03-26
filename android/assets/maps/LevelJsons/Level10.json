@@ -2,8 +2,13 @@
 	"level": 
 	{
 		"description": "Level das ((lambda x.x)(lambda x.x)) darstellt",
-		"hasTutorialScreen": false,
-		"tutorialScreens" : [],
+		"hasTutorialScreen": true,
+		"tutorialScreens" : [
+				{
+				"title" : "Alpha Conversion",
+				"img" : "Tutorial_XY"
+				}
+		],
 		"levelid": 10,
 		"data": 
 		{
