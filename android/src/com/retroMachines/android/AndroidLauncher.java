@@ -8,11 +8,19 @@ import com.retroMachines.RetroMachines;
 
 public class AndroidLauncher extends AndroidApplication {
 	
+	private RetroMachines game;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		RetroMachines game = new RetroMachines();
+		game = new RetroMachines();
 		initialize(game, config);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		game.androidResume();
 	}
 }

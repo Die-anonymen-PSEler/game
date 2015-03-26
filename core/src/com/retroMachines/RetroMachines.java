@@ -11,6 +11,7 @@ import com.retroMachines.game.controllers.GameController;
 import com.retroMachines.game.controllers.ProfileController;
 import com.retroMachines.game.controllers.SettingController;
 import com.retroMachines.game.controllers.StatisticController;
+import com.retroMachines.ui.screens.game.GameScreen;
 import com.retroMachines.ui.screens.menus.CreateProfileMenuScreen;
 import com.retroMachines.ui.screens.menus.MainMenuScreen;
 import com.retroMachines.util.MusicManager;
@@ -49,6 +50,12 @@ public class RetroMachines extends Game {
 	 * The Statistic Controller controls the game statistics like PlayTime etc.
 	 */
 	private StatisticController statisticController;
+	
+	/**
+	 * this variable will be set to true in case the android onResume method is called
+	 * which will cause the game to abort a level 
+	 */
+	private boolean androidResume;
 
 	/**
 	 * Creates a new instance of retroMachines.
@@ -139,6 +146,17 @@ public class RetroMachines extends Game {
 	public StatisticController getStatisticController() {
 		return statisticController;
 	}
+	
+	/**
+	 * is called when the android listener is resuming the app
+	 * only relevant when in gamescreen
+	 */
+	public void androidResume() {
+		if (getScreen() != null
+			&& getScreen().getClass() == GameScreen.class) {
+			this.androidResume = true;
+		}
+	}
 
 	/**
 	 * Overrides the method setScreen from Game and is used to set the screen.
@@ -148,5 +166,14 @@ public class RetroMachines extends Game {
 	public void setScreen(Screen screen) {
 		screenStack.push(screen);
 		super.setScreen(screen);
+	}
+	
+	@Override
+	public void resume() {
+		super.resume();
+		if (this.androidResume && gameController != null) {
+			this.androidResume = false;
+			gameController.abortLevel();
+		}
 	}
 }
