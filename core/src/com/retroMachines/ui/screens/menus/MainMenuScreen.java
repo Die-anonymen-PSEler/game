@@ -199,7 +199,7 @@ public class MainMenuScreen extends MenuScreen {
 		@Override
 		protected void result(Object object) {
 			if ((Boolean) object) {
-				Gdx.app.exit();
+				System.exit(1);
 			} else {
 				this.remove();
 			}
