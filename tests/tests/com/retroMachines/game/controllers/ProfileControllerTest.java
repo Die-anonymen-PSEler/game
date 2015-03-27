@@ -129,6 +129,12 @@ public class ProfileControllerTest {
 		assertFalse("profil scheint erstellt worden zu sein", listener.callHappened);
 	}
 	
+	@Test
+	public void testUpperLowerCase() {
+		String lowerCase = NAME.toLowerCase();
+		assertFalse("selber name nur klein", profileController.canUserBeCreated(lowerCase));
+	}
+	
 	private class MockListener implements OnProfileChangedListener {
 		
 		public boolean callHappened;

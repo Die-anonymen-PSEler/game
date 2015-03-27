@@ -55,4 +55,17 @@ public class SettingProfileControllerIntegrationTest {
 		profileController.deleteProfile("maik");
 		profileController.deleteProfile("adrian");
 	}
+	
+	@Test
+	public void testRegressionTutorialTest() {
+		profileController.createProfile("maik");
+		assertFalse("sollte noch nicht gesehen sein", settingController.isTutorialFinished(1));
+		settingController.setTutorialFinished(1, true);
+		settingController.setTutorialFinished(3, true);
+		profileController.deleteProfile("maik");
+		profileController.createProfile("adrian");
+		assertFalse("sollte noch nicht gesehen sein", settingController.isTutorialFinished(1));
+		assertFalse("sollte noch nicht gesehen sein", settingController.isTutorialFinished(3));
+		profileController.deleteProfile("adrian");
+	}
 }
