@@ -305,6 +305,6 @@ public abstract class Constants {
 
 		public static final String ERROR_MAX_USER = "Es können maximal " + ProfileController.MAX_PROFILE_NUMBER + " erstellt werden.";
 
-		public static final String ERROR_EMTPY_USER = "Bitte geben Sie einen Benutzernamen an.";
+		public static final String ERROR_EMTPY_USER = "Bitte gib einen Benutzernamen an.";
 	}
 }
