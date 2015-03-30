@@ -115,7 +115,7 @@ public class CreateProfileMenuScreen extends MenuScreen {
 		skin = RetroAssetManager.getMenuSkin();
 
 		// Make Title
-		Label title = new Label("Create Profile", skin);
+		Label title = new Label("Profil erstellen", skin);
 		title.setFontScale((FONTSIZE_THREE * screenWidth) / DIVIDEWIDTHDEFAULT);
 		title.setAlignment(Align.center);
 
