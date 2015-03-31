@@ -295,7 +295,7 @@ public abstract class Constants {
 
 		public static final String APPLICATION_FAMILY_INVALID = "Jede Ampel braucht eine Verarbeitungsbereich!";
 
-		public static final String VARIABLE_FAMILY_INVALID = "Kein Metallobjekt hat einen Verarbeitungsbereich!";
+		public static final String VARIABLE_FAMILY_INVALID = "Metallobjekte sollten keinen Verarbeitungsbereich haben!";
 
 		public static final String SOLUTION_INVALID = "Leider nicht richtig. Versuch es nochmal.";
 
