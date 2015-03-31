@@ -152,7 +152,7 @@ public class ProfileMenuScreen extends MenuScreen implements
 	private class AddProfileButtonClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			if (profileController.canUserBeCreated("this won't ever exist in this live")) {
+			if (profileController.canUserBeCreated("thiswonteverexistinthislive")) {
 				game.setScreen(new CreateProfileMenuScreen(game));
 			} else {
 				RetroDialog dialog = new RetroDialog("", "Du kannst maximal 5 Profile haben");

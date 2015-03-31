@@ -123,6 +123,10 @@ public class ProfileController {
 			errorMsg = RetroStrings.ERROR_EMTPY_USER;
 			return false;
 		}
+		if (!username.matches(RetroStrings.ALPHANUMERIC_REGEX)) {
+			errorMsg = RetroStrings.ERROR_PATTERN_MISMATCH;
+			return false;
+		}
 		for (String name : profileNames.keySet()) {
 			String lowerCaseList = name.toLowerCase();
 			String usernameLower = username.toLowerCase();
